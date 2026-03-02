@@ -1,0 +1,16 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+pydantic
+pydantic-settings
+python-jose[cryptography]
+bcrypt
+python-multipart
+yfinance
+requests
+feedparser
+reportlab
+aiohttp
+python-dotenv
+email-validator
+passlib

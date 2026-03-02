@@ -1,0 +1,119 @@
+# ==============================
+# ENVIRONMENT VARIABLES
+# ==============================
+.env
+.env.*
+!.env.example
+!.env.template
+
+# ==============================
+# PYTHON
+# ==============================
+__pycache__/
+*.py[cod]
+*$py.class
+
+venv/
+.venv/
+env/
+ENV/
+
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+pip-log.txt
+pip-delete-this-directory.txt
+
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+.pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+.mypy_cache/
+.pyre/
+.pytype/
+
+*.so
+
+# ==============================
+# NODE / REACT
+# ==============================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+build/
+dist/
+
+.next/
+.out/
+.vite/
+
+# ==============================
+# DATABASE
+# ==============================
+*.db
+*.sqlite3
+*.sqlite
+*.log
+*.sql
+
+# ==============================
+# DOCKER
+# ==============================
+.dockerignore
+docker-compose.override.yml
+
+# ==============================
+# TESTING
+# ==============================
+coverage/
+*.lcov
+
+# ==============================
+# IDE / EDITOR
+# ==============================
+.vscode/
+.idea/
+*.swp
+*.swo
+*.DS_Store
+Thumbs.db
+
+# ==============================
+# CERTIFICATES / KEYS
+# ==============================
+*.pem
+*.key
+*.crt
+*.csr
+
+# ==============================
+# LOGS
+# ==============================
+logs/
+*.log
+
+# ==============================
+# MISC
+# ==============================
+*.tar
+*.gz
+*.zip
+*.rar
+tmp/
+temp/
+.cache/
+.sass-cache/
