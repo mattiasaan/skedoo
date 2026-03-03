@@ -71,7 +71,7 @@ class Login extends StatelessWidget {
                 SizedBox(height: 12),
                 TextField(
                   style: TextStyle(color: Palette.text),
-                  obscureText: false,
+                  obscureText: true,
                   decoration: InputDecoration(
                     labelText: "Password",
                     labelStyle: TextStyle(color: Palette.text),
@@ -97,7 +97,9 @@ class Login extends StatelessWidget {
                 ),
                 SizedBox(height: 12),
                 FloatingActionButton.extended(
-                  onPressed: () => {},
+                  onPressed: () => {
+                    Navigator.pushNamed(context, '/dashboard'),
+                  },
                   icon: Icon(Icons.person, color: Palette.text),
                   label: Text("Entra con le credenziali", style: TextStyle(
                     color: Palette.text,
