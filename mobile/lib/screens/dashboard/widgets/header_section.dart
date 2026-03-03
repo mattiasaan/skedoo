@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../../../palette/palette.dart';
 
 class HeaderSection extends StatelessWidget {
@@ -6,6 +7,9 @@ class HeaderSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    String formattedDate = DateFormat('EEEE, MMM d').format(DateTime.now());
+
     return Row(
       children: [
         const CircleAvatar(
@@ -18,39 +22,23 @@ class HeaderSection extends StatelessWidget {
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              Text(
-                "Hi, Alex!",
-                style: TextStyle(
-                  color: Palette.text_primary,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 4),
-              Text(
-                "Monday, Oct 24",
-                style: TextStyle(
-                  color: Palette.text_secondary,
-                  fontSize: 14,
-                ),
-              ),
+            children: [
+              const Text("Hi, Alex!", 
+                style: TextStyle(color: Palette.text_primary, fontSize: 22, fontWeight: FontWeight.bold)),
+              Text(formattedDate, 
+                style: const TextStyle(color: Palette.text_secondary, fontSize: 14)),
             ],
           ),
         ),
-        Stack(
-          children: const [
-            Icon(Icons.notifications_none,
-                color: Palette.text_primary),
-            Positioned(
-              right: 2,
-              top: 2,
-              child: CircleAvatar(
-                radius: 4,
-                backgroundColor: Colors.red,
-              ),
-            ),
-          ],
+        IconButton(
+          icon: const Badge(
+            label: Text(''),
+            child: Icon(Icons.notifications_none, color: Palette.text_primary, size: 28),
+          ),
+          onPressed: () => Navigator.push(
+            context, 
+            MaterialPageRoute(builder: (context) => const NotificationScreen())
+          ),
         )
       ],
     );
