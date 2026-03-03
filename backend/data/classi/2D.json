@@ -1,0 +1,239 @@
+{
+  "id": "2D",
+  "nome": "2 D",
+  "docente_coordinatore": "D'AGOSTINO Veronica",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "TUFANO Guido"
+        ],
+        "aula": "AULA B 206*"
+      },
+      "09:00": {
+        "materia": "Chimica",
+        "materia_completa": "Scienze integrate (Chimica)",
+        "docenti": [
+          "D'AGOSTINO Veronica"
+        ],
+        "aula": "AULA B 306"
+      },
+      "09:50": {
+        "materia": "Fisica",
+        "materia_completa": "Scienze integrate (Fisica)",
+        "docenti": [
+          "CALDERAN Tabitha"
+        ],
+        "aula": "AULA FIS (B 308**)"
+      },
+      "10:40": {
+        "materia": "Tecno. e tecniche rappr. graf. Amin Mohammad Kazem",
+        "aula": "LAB. CAD 2 (B 221)"
+      },
+      "11:45": {
+        "materia": "Scienze e Biologia",
+        "materia_completa": "Scienze integrate (Sci. e Bio)",
+        "docenti": [
+          "MACCAGNAN Elisa"
+        ],
+        "aula": "AULA B 309"
+      },
+      "12:35": {
+        "materia": "Matematica",
+        "docenti": [
+          "MANARESI Federica"
+        ],
+        "aula": "AULA B 107"
+      },
+      "14:30": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "CERADINI Alessandro"
+        ],
+        "aula": "AULA B 209"
+      },
+      "15:20": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "GARBIN Simonetta"
+        ],
+        "aula": "AULA B 206*"
+      },
+      "16:10": {
+        "materia": "Storia",
+        "docenti": [
+          "CERADINI Alessandro"
+        ],
+        "aula": "AULA B 209"
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "TUFANO Guido"
+        ]
+      },
+      "09:50": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "CERADINI Alessandro"
+        ],
+        "aula": "AULA B 115"
+      },
+      "10:40": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "GARBIN Simonetta"
+        ],
+        "aula": "AULA B 205"
+      },
+      "11:45": {
+        "materia": "Matematica",
+        "docenti": [
+          "MANARESI Federica"
+        ]
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Fisica",
+        "materia_completa": "Scienze integrate (Fisica)",
+        "docenti": [
+          "CALDERAN Tabitha",
+          "GIAGNORIO Stefano"
+        ],
+        "aula": "LAB. FIS 1 (B 310)"
+      },
+      "09:50": {
+        "materia": "Scienze e Biologia",
+        "materia_completa": "Scienze integrate (Sci. e Bio)",
+        "docenti": [
+          "MACCAGNAN Elisa"
+        ],
+        "aula": "AULA B 304"
+      },
+      "10:40": {
+        "materia": "Scienze e Tecn. Applicate",
+        "materia_completa": "Scienze e tecnologie applicate",
+        "docenti": [
+          "BERSANETTI Alessio"
+        ],
+        "aula": "LAB. INF 4 (D 201**)"
+      },
+      "11:45": {
+        "materia": "Scienze e Tecn. Applicate",
+        "materia_completa": "Scienze e tecnologie applicate",
+        "docenti": [
+          "BERSANETTI Alessio",
+          "D'ANTONI Mario"
+        ],
+        "aula": "LAB. INF 4 (D 201**)"
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Diritto ed Economia",
+        "materia_completa": "Diritto ed economia",
+        "docenti": [
+          "SIBILLA Claudio"
+        ],
+        "aula": "AULA 201"
+      },
+      "09:00": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "CERADINI Alessandro"
+        ]
+      },
+      "10:40": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "GARBIN Simonetta"
+        ],
+        "aula": "AULA B 204"
+      },
+      "11:45": {
+        "materia": "Chimica",
+        "materia_completa": "Scienze integrate (Chimica)",
+        "docenti": [
+          "D'AGOSTINO Veronica",
+          "GIORDANO Carmelo"
+        ],
+        "aula": "AULA B 307*,LAB. CHI 2 (A 306)"
+      },
+      "14:30": {
+        "materia": "Religione",
+        "docenti": [
+          "SCIBELLI Alice"
+        ],
+        "aula": "AULA B 307*"
+      },
+      "15:20": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "TUFANO Guido"
+        ],
+        "aula": "AULA B 211"
+      },
+      "16:10": {
+        "materia": "Matematica",
+        "docenti": [
+          "MANARESI Federica"
+        ],
+        "aula": "AULA B 204"
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "GIGLIOLI Valentina"
+        ]
+      },
+      "09:50": {
+        "materia": "Diritto ed Economia",
+        "materia_completa": "Diritto ed economia",
+        "docenti": [
+          "SIBILLA Claudio"
+        ],
+        "aula": "AULA 201"
+      },
+      "10:40": {
+        "materia": "Storia",
+        "docenti": [
+          "CERADINI Alessandro"
+        ],
+        "aula": "AULA B 110*"
+      },
+      "11:45": {
+        "materia": "Tecn. e Tecniche Grafiche",
+        "materia_completa": "Tecno. e tecniche rappr. graf.",
+        "docenti": [
+          "MELECHI' Michele",
+          "SINICHI Amin Mohammad Kazem"
+        ],
+        "aula": "LAB. CAD 2 (B 221)"
+      }
+    }
+  }
+}

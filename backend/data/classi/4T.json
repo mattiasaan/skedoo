@@ -1,0 +1,225 @@
+{
+  "id": "4T",
+  "nome": "4 T",
+  "docente_coordinatore": "RICCA Mariaelena",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "DI CELLO Jacopo"
+        ]
+      },
+      "09:50": {
+        "materia": "Biologia Sanitaria",
+        "materia_completa": "Bio., micro. e tec. contr.san.",
+        "docenti": [
+          "STICCOTTI Gea"
+        ],
+        "aula": "AULA SCI (B 301**)"
+      },
+      "10:40": {
+        "materia": "Chimica Organica",
+        "materia_completa": "Chimica org. e biochimica",
+        "docenti": [
+          "MONACHELLA Angelo",
+          "RICCA Mariaelena"
+        ],
+        "aula": "AULA B 306,LAB. CHI 1 (A 303)"
+      },
+      "12:35": {
+        "materia": "Matematica",
+        "docenti": [
+          "ECCHER Andrea"
+        ],
+        "aula": "AULA B 108"
+      },
+      "14:30": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "GARBIN Simonetta"
+        ],
+        "aula": "AULA B 206*"
+      },
+      "15:20": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "CANEVE Elisa"
+        ],
+        "aula": "AULA B 307*"
+      },
+      "16:10": {
+        "materia": "Storia",
+        "docenti": [
+          "CANEVE Elisa"
+        ],
+        "aula": "AULA B 307*"
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Biologia Sanitaria",
+        "materia_completa": "Bio., micro. e tec. contr.san.",
+        "docenti": [
+          "FIORINI Raffaele",
+          "STICCOTTI Gea"
+        ]
+      },
+      "09:50": {
+        "materia": "Igiene e Anatomia",
+        "materia_completa": "Igiene, anat., fisiol., patol.",
+        "docenti": [
+          "BIANCHI Patrick",
+          "RIGHES Cecilia"
+        ]
+      },
+      "11:45": {
+        "materia": "Chimica Organica",
+        "materia_completa": "Chimica org. e biochimica",
+        "docenti": [
+          "RICCA Mariaelena"
+        ]
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Storia",
+        "docenti": [
+          "CANEVE Elisa"
+        ],
+        "aula": "AULA B 110*"
+      },
+      "09:00": {
+        "materia": "Chimica Analitica",
+        "materia_completa": "Chimica analitica e strum.",
+        "docenti": [
+          "BIANCHI Patrick",
+          "PECORARO Diego"
+        ],
+        "aula": "AULA B 209,LAB. CHI 4 (B 320)"
+      },
+      "09:50": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "GARBIN Simonetta"
+        ],
+        "aula": "AULA B 101"
+      },
+      "10:40": {
+        "materia": "Igiene e Anatomia",
+        "materia_completa": "Igiene, anat., fisiol., patol.",
+        "docenti": [
+          "RIGHES Cecilia"
+        ],
+        "aula": "AULA B 306"
+      },
+      "11:45": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "TUFANO Guido"
+        ]
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "CANEVE Elisa"
+        ]
+      },
+      "09:50": {
+        "materia": "Chimica Organica",
+        "materia_completa": "Chimica org. e biochimica",
+        "docenti": [
+          "MONACHELLA Angelo",
+          "RICCA Mariaelena"
+        ],
+        "aula": "AULA CHI (B 317**),LAB. CHI 1 (A 303)"
+      },
+      "10:40": {
+        "materia": "Biologia Sanitaria",
+        "materia_completa": "Bio., micro. e tec. contr.san.",
+        "docenti": [
+          "FIORINI Raffaele",
+          "STICCOTTI Gea"
+        ],
+        "aula": "AULA BIO (302),LAB. BIO (A 302)"
+      },
+      "11:45": {
+        "materia": "Biologia Sanitaria",
+        "materia_completa": "Bio., micro. e tec. contr.san.",
+        "docenti": [
+          "STICCOTTI Gea"
+        ],
+        "aula": "AULA BIO (302)"
+      },
+      "12:35": {
+        "materia": "Igiene e Anatomia",
+        "materia_completa": "Igiene, anat., fisiol., patol.",
+        "docenti": [
+          "RIGHES Cecilia"
+        ],
+        "aula": "AULA BIO (302)"
+      },
+      "14:30": {
+        "materia": "Matematica",
+        "docenti": [
+          "ECCHER Andrea"
+        ]
+      },
+      "16:10": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "TUFANO Guido"
+        ],
+        "aula": "AULA B 211"
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Chimica Analitica",
+        "materia_completa": "Chimica analitica e strum.",
+        "docenti": [
+          "BIANCHI Patrick",
+          "PECORARO Diego"
+        ]
+      },
+      "09:50": {
+        "materia": "Religione",
+        "docenti": [
+          "SOMMA Giancarlo"
+        ],
+        "aula": "AULA B 213"
+      },
+      "10:40": {
+        "materia": "Matematica",
+        "docenti": [
+          "ECCHER Andrea"
+        ],
+        "aula": "AULA B 106*"
+      },
+      "11:45": {
+        "materia": "Igiene e Anatomia",
+        "materia_completa": "Igiene, anat., fisiol., patol.",
+        "docenti": [
+          "RIGHES Cecilia"
+        ]
+      }
+    }
+  }
+}

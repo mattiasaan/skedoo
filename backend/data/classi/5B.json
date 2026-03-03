@@ -1,0 +1,206 @@
+{
+  "id": "5B",
+  "nome": "5 B",
+  "docente_coordinatore": "CANTISANI Silviano",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "macchine e energia Meccanica, macchine e energia",
+        "docenti": [
+          "GAETANO Giuseppe",
+          "TASSIELLI Davide Giuseppe",
+          "LAB. MEC 2 (D 008:",
+          "M.M.E.)"
+        ]
+      },
+      "09:00": {
+        "materia": "Q1 Q2",
+        "aula": "LAB. MEC 2 (D 008: M.M.E.)"
+      },
+      "09:50": {
+        "materia": "Disegno e Prog. Industriale",
+        "materia_completa": "Dis., progettaz. e org. ind.le",
+        "docenti": [
+          "DE BENEDITTIS Fabio Antonio"
+        ],
+        "aula": "LAB. MEC 2 (D 008: M.M.E.)"
+      },
+      "10:40": {
+        "materia": "Matematica",
+        "docenti": [
+          "SARRI Wanda"
+        ],
+        "aula": "Aula D 205**"
+      },
+      "11:45": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "MENCHISE Antonella"
+        ]
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "GARBIN Simonetta"
+        ],
+        "aula": "AULA B 101"
+      },
+      "09:00": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "VITIELLO Anna"
+        ]
+      },
+      "10:40": {
+        "materia": "Religione",
+        "docenti": [
+          "SOMMA Giancarlo"
+        ],
+        "aula": "AULA B 013*"
+      },
+      "11:45": {
+        "materia": "Matematica",
+        "docenti": [
+          "SARRI Wanda"
+        ]
+      },
+      "14:30": {
+        "materia": "Tecn. Meccanica",
+        "materia_completa": "Tecnol. mec. di proc. e prod.",
+        "docenti": [
+          "CANTISANI Silviano",
+          "VALENTINI Paolo"
+        ],
+        "aula": "LAB. MEC 1 (D 010: M.U.)"
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Disegno e Prog. Industriale",
+        "materia_completa": "Dis., progettaz. e org. ind.le",
+        "docenti": [
+          "DE BENEDITTIS Fabio Antonio",
+          "GAETANO Giuseppe"
+        ],
+        "aula": "LAB. PNRR IND. 4.0 (D 011)"
+      },
+      "09:50": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "MENCHISE Antonella"
+        ],
+        "aula": "AULA B 206*"
+      },
+      "10:40": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "VITIELLO Anna"
+        ],
+        "aula": "AULA B 113"
+      },
+      "11:45": {
+        "materia": "Sistemi e Automazione",
+        "materia_completa": "Sistemi ed automazione",
+        "docenti": [
+          "SERIO Leonardo"
+        ]
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Storia",
+        "docenti": [
+          "VITIELLO Anna"
+        ],
+        "aula": "AULA B 105"
+      },
+      "09:00": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "GARBIN Simonetta"
+        ],
+        "aula": "AULA B 013*"
+      },
+      "09:50": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "GIGLIOLI Valentina"
+        ]
+      },
+      "11:45": {
+        "materia": "Meccanica",
+        "materia_completa": "Meccanica, macchine e energia",
+        "docenti": [
+          "TASSIELLI Davide Giuseppe"
+        ]
+      },
+      "14:30": {
+        "materia": "Sistemi e Automazione",
+        "materia_completa": "Sistemi ed automazione",
+        "docenti": [
+          "CANTISANI Silviano",
+          "SERIO Leonardo"
+        ],
+        "aula": "LAB. MEC 4 (B218: SIST. E AUT)"
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Storia",
+        "docenti": [
+          "VITIELLO Anna"
+        ],
+        "aula": "AULA B 101"
+      },
+      "09:00": {
+        "materia": "Tecn. Meccanica",
+        "materia_completa": "Tecnol. mec. di proc. e prod.",
+        "docenti": [
+          "VALENTINI Paolo"
+        ],
+        "aula": "LAB. MEC. 5 (B119: AUT. & R.)"
+      },
+      "09:50": {
+        "materia": "Tecn. Meccanica",
+        "materia_completa": "Tecnol. mec. di proc. e prod.",
+        "docenti": [
+          "CANTISANI Silviano",
+          "VALENTINI Paolo"
+        ],
+        "aula": "LAB. MEC. 5 (B119: AUT. & R.)"
+      },
+      "10:40": {
+        "materia": "Meccanica",
+        "materia_completa": "Meccanica, macchine e energia",
+        "docenti": [
+          "TASSIELLI Davide Giuseppe"
+        ],
+        "aula": "LAB. MEC 2 (D 008: M.M.E.)"
+      },
+      "11:45": {
+        "materia": "Disegno e Prog. Industriale",
+        "materia_completa": "Dis., progettaz. e org. ind.le",
+        "docenti": [
+          "DE BENEDITTIS Fabio Antonio"
+        ]
+      }
+    }
+  }
+}

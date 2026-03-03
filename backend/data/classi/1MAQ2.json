@@ -1,0 +1,237 @@
+{
+  "id": "1MAQ2",
+  "nome": "1 MAQ2",
+  "docente_coordinatore": "RIGHI Arianna",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "Matematica",
+        "docenti": [
+          "MANARESI Federica"
+        ]
+      },
+      "09:50": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "BENETTI Mattia"
+        ],
+        "aula": "AULA B 110*"
+      },
+      "10:40": {
+        "materia": "Storia",
+        "docenti": [
+          "BENETTI Mattia"
+        ],
+        "aula": "AULA B 110*"
+      },
+      "11:45": {
+        "materia": "Chimica",
+        "materia_completa": "Scienze integrate (Chimica)",
+        "docenti": [
+          "D'AGOSTINO Veronica",
+          "MASCIOVECCHIO Marina"
+        ],
+        "aula": "AULA B 307*,LAB. CHI 2 (A 306)"
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Diritto ed Economia",
+        "materia_completa": "Diritto ed economia",
+        "docenti": [
+          "SCARSO Carla Salvatrice"
+        ],
+        "aula": "LAB. MEC. 5 (B119: AUT. & R.)"
+      },
+      "09:00": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "RIGHI Arianna"
+        ],
+        "aula": "LAB. MEC. 5 (B119: AUT. & R.)"
+      },
+      "09:50": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "BENETTI Mattia"
+        ],
+        "aula": "LAB. MEC. 5 (B119: AUT. & R.)"
+      },
+      "10:40": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "FISCHNALLER Barbara"
+        ],
+        "aula": "LAB. MEC. 5 (B119: AUT. & R.)"
+      },
+      "11:45": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "OCHNER Daniel",
+          "POTENZIAMENTO TEDESCO",
+          "FISCHNALLER Barbara",
+          "(ATTIVITA' MODULARE)"
+        ]
+      },
+      "14:30": {
+        "materia": "Lab. Tecn. ed Esercitazioni",
+        "materia_completa": "Lab. tecn. e esercitazioni",
+        "docenti": [
+          "PILOTTI Alessio"
+        ]
+      },
+      "16:10": {
+        "materia": "Tecnologie Informatiche",
+        "materia_completa": "Tecnologie informatiche",
+        "docenti": [
+          "CANNONE Maria"
+        ],
+        "aula": "LAB. INF 4 (D 201**)"
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Matematica",
+        "docenti": [
+          "MANARESI Federica"
+        ],
+        "aula": "LAB. MEC. 5 (B119: AUT. & R.)"
+      },
+      "09:00": {
+        "materia": "Tecn. e Tecniche Grafiche",
+        "materia_completa": "Tecno. e tecniche rappr. graf.",
+        "docenti": [
+          "CANTISANI Silviano",
+          "VALENTINI Paolo"
+        ],
+        "aula": "LAB. MEC. 5 (B119: AUT. & R.)"
+      },
+      "10:40": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "FISCHNALLER Barbara"
+        ],
+        "aula": "AULA B 004"
+      },
+      "11:45": {
+        "materia": "Diritto ed Economia",
+        "materia_completa": "Diritto ed economia",
+        "docenti": [
+          "SCARSO Carla Salvatrice"
+        ],
+        "aula": "LAB. MEC. 5 (B119: AUT. & R.)"
+      },
+      "12:35": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "RIGHI Arianna",
+          "POTENZIAMENTO TEDESCO",
+          "FISCHNALLER Barbara",
+          "(ATTIVITA' MODULARE)"
+        ],
+        "aula": "LAB. MEC. 5 (B119: AUT. & R.)"
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "BENETTI Mattia"
+        ]
+      },
+      "09:50": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "FISCHNALLER Barbara"
+        ],
+        "aula": "LAB. MEC. 5 (B119: AUT. & R.)"
+      },
+      "10:40": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "RIGHI Arianna"
+        ],
+        "aula": "LAB. MEC. 5 (B119: AUT. & R.)"
+      },
+      "11:45": {
+        "materia": "Fisica",
+        "materia_completa": "Scienze integrate (Fisica)",
+        "docenti": [
+          "VERRA Dennis",
+          "ZUECH Claudio",
+          "FILIERA ROBOTICA EDUCATIVA",
+          "CANNONE Maria",
+          "(ATTIVITA' MODULARE)"
+        ]
+      },
+      "14:30": {
+        "materia": "Tecnologie Informatiche",
+        "materia_completa": "Tecnologie informatiche",
+        "docenti": [
+          "CANNONE Maria",
+          "RUZZON Kevin"
+        ]
+      },
+      "16:10": {
+        "materia": "Religione",
+        "docenti": [
+          "MONTALTO Salvatore"
+        ],
+        "aula": "AULA B 206*"
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "RIGHI Arianna"
+        ],
+        "aula": "AULA B 204"
+      },
+      "09:00": {
+        "materia": "Matematica",
+        "docenti": [
+          "MANARESI Federica"
+        ],
+        "aula": "AULA B 108"
+      },
+      "09:50": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "FISCHNALLER Barbara"
+        ],
+        "aula": "AULA B 011"
+      },
+      "11:45": {
+        "materia": "Lab. Tecn. ed Esercitazioni",
+        "materia_completa": "Lab. tecn. e esercitazioni",
+        "docenti": [
+          "PILOTTI Alessio",
+          "FILIERA STAMPA 3 D",
+          "(ATTIVITA' MODULARE)"
+        ],
+        "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
+      }
+    }
+  }
+}

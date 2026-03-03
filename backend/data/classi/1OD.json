@@ -1,0 +1,237 @@
+{
+  "id": "1OD",
+  "nome": "1 OD",
+  "docente_coordinatore": "DI TRAPANI Rosalba",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "CARLIN Martina"
+        ],
+        "aula": "AULA B 004"
+      },
+      "09:00": {
+        "materia": "Matematica",
+        "docenti": [
+          "MICILLO Martia Giustina",
+          "PNRR AMB. E ENERGIA (301)"
+        ]
+      },
+      "09:50": {
+        "materia": "e modell. odontotecnica",
+        "docenti": [
+          "DOCILE Valeria Anna"
+        ]
+      },
+      "11:45": {
+        "materia": "Religione",
+        "docenti": [
+          "SCIBELLI Alice"
+        ],
+        "aula": "AULA B 201"
+      },
+      "12:35": {
+        "materia": "Storia",
+        "docenti": [
+          "VENDRAME Emilio"
+        ],
+        "aula": "AULA B 112*"
+      },
+      "14:30": {
+        "materia": "Lab. Odontotecnico",
+        "materia_completa": "Eser. di lab. odontotecnico",
+        "docenti": [
+          "SAIANI Christian"
+        ]
+      },
+      "16:10": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "GIGLIOLI Valentina"
+        ],
+        "aula": "PAL. \"Torcaso\""
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Diritto ed Economia",
+        "materia_completa": "Diritto ed economia",
+        "docenti": [
+          "SIBILLA Claudio"
+        ],
+        "aula": "AULA 201"
+      },
+      "09:00": {
+        "materia": "Scienze e Biologia",
+        "materia_completa": "Scienze integrate (Sci. e Bio)",
+        "docenti": [
+          "MARRA Carla"
+        ],
+        "aula": "AULA B 307*"
+      },
+      "09:50": {
+        "materia": "Matematica",
+        "docenti": [
+          "MICILLO Martia Giustina"
+        ],
+        "aula": "AULA B 104"
+      },
+      "10:40": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "DI MARCO Raffaele Francesco"
+        ],
+        "aula": "AULA B 211"
+      },
+      "11:45": {
+        "materia": "Storia",
+        "docenti": [
+          "VENDRAME Emilio"
+        ],
+        "aula": "AULA B 211"
+      },
+      "12:35": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "GARBIN Simonetta"
+        ],
+        "aula": "AULA B 112*"
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Lab. Odontotecnico",
+        "materia_completa": "Eser. di lab. odontotecnico",
+        "docenti": [
+          "SAIANI Christian"
+        ]
+      },
+      "09:50": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "CARLIN Martina"
+        ],
+        "aula": "AULA B 004"
+      },
+      "10:40": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "GARBIN Simonetta"
+        ],
+        "aula": "AULA B 206*"
+      },
+      "11:45": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "DI MARCO Raffaele Francesco"
+        ]
+      },
+      "14:30": {
+        "materia": "Fisica",
+        "materia_completa": "Scienze integrate (Fisica)",
+        "docenti": [
+          "PAPAIS Denise",
+          "ZECCHIN Enrico"
+        ]
+      },
+      "16:10": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "GIGLIOLI Valentina"
+        ],
+        "aula": "PAL. \"Torcaso\""
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "GARBIN Simonetta"
+        ],
+        "aula": "AULA B 101"
+      },
+      "09:00": {
+        "materia": "Anatomia e Fisiologia",
+        "materia_completa": "Anatomia, fisiologia, igiene",
+        "docenti": [
+          "DI TRAPANI Rosalba"
+        ],
+        "aula": "AULA CHI (B 317**)"
+      },
+      "09:50": {
+        "materia": "Chimica",
+        "materia_completa": "Scienze integrate (Chimica)",
+        "docenti": [
+          "BIDDAU Antonella",
+          "GIORDANO Carmelo"
+        ],
+        "aula": "AULA B 309,LAB. CHI 3 (B 318)"
+      },
+      "11:45": {
+        "materia": "Matematica",
+        "docenti": [
+          "MICILLO Martia Giustina"
+        ]
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Scienze e Biologia",
+        "materia_completa": "Scienze integrate (Sci. e Bio)",
+        "docenti": [
+          "MARRA Carla"
+        ],
+        "aula": "AULA B 306"
+      },
+      "09:00": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "DI MARCO Raffaele Francesco"
+        ],
+        "aula": "AULA B 113"
+      },
+      "09:50": {
+        "materia": "Anatomia e Fisiologia",
+        "materia_completa": "Anatomia, fisiologia, igiene",
+        "docenti": [
+          "DI TRAPANI Rosalba"
+        ],
+        "aula": "AULA SCI (B 301**)"
+      },
+      "10:40": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "CARLIN Martina"
+        ]
+      },
+      "12:35": {
+        "materia": "Diritto ed Economia",
+        "materia_completa": "Diritto ed economia",
+        "docenti": [
+          "SIBILLA Claudio"
+        ],
+        "aula": "AULA 201"
+      }
+    }
+  }
+}

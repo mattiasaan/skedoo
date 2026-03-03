@@ -1,0 +1,237 @@
+{
+  "id": "3H",
+  "nome": "3 H",
+  "docente_coordinatore": "ALIAJ Mimoza",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "ROTTENSTEINER Sylvia"
+        ],
+        "aula": "AULA 201"
+      },
+      "09:00": {
+        "materia": "Religione",
+        "docenti": [
+          "SCIBELLI Alice"
+        ],
+        "aula": "AULA B 201"
+      },
+      "09:50": {
+        "materia": "Sistemi Automatici",
+        "materia_completa": "Sistemi automatici",
+        "docenti": [
+          "DONATI Lorenzo"
+        ],
+        "aula": "LAB. ELEE 1 (A 210*: L.E.AP)"
+      },
+      "10:40": {
+        "materia": "Matematica",
+        "docenti": [
+          "ECCHER Andrea"
+        ],
+        "aula": "AULA B 108"
+      },
+      "11:45": {
+        "materia": "Elettronica",
+        "materia_completa": "Elettronica ed elettrotecnica",
+        "docenti": [
+          "CASTALDO Franco"
+        ]
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Tec. Prog. Sistemi Elettr.",
+        "materia_completa": "Tec. e prog. sist. ele. e elee",
+        "docenti": [
+          "NATALE Luigi",
+          "SICIGNANO Cristoforo"
+        ],
+        "aula": "LAB. ELE 1 (D 001)"
+      },
+      "09:50": {
+        "materia": "Elettronica",
+        "materia_completa": "Elettronica ed elettrotecnica",
+        "docenti": [
+          "CASTALDO Franco"
+        ],
+        "aula": "LAB. ELE 3 (D 005)"
+      },
+      "10:40": {
+        "materia": "Elettronica",
+        "materia_completa": "Elettronica ed elettrotecnica",
+        "docenti": [
+          "CASTALDO Franco",
+          "GENOVESE Fulvio"
+        ],
+        "aula": "LAB. ELE 3 (D 005)"
+      },
+      "11:45": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "ALIAJ Mimoza"
+        ],
+        "aula": "AULA B 207"
+      },
+      "12:35": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "VERZELLA Alba"
+        ],
+        "aula": "AULA B 210*"
+      },
+      "14:30": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "ROTTENSTEINER Sylvia"
+        ]
+      },
+      "16:10": {
+        "materia": "Storia",
+        "docenti": [
+          "CHIANESE Francesco"
+        ],
+        "aula": "AULA B 205"
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "ALIAJ Mimoza"
+        ],
+        "aula": "AULA B 004"
+      },
+      "09:00": {
+        "materia": "Storia",
+        "docenti": [
+          "CHIANESE Francesco"
+        ],
+        "aula": "AULA B 105"
+      },
+      "09:50": {
+        "materia": "Sistemi Automatici",
+        "materia_completa": "Sistemi automatici",
+        "docenti": [
+          "DONATI Lorenzo"
+        ],
+        "aula": "LAB. ELE 2 (D 004)"
+      },
+      "10:40": {
+        "materia": "Sistemi Automatici",
+        "materia_completa": "Sistemi automatici",
+        "docenti": [
+          "DONATI Lorenzo",
+          "ERRANTE Antonino"
+        ],
+        "aula": "LAB. ELE 2 (D 004)"
+      },
+      "11:45": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "VERZELLA Alba"
+        ]
+      },
+      "14:30": {
+        "materia": "Complementi di Matematica",
+        "materia_completa": "Complementi di matematica",
+        "docenti": [
+          "ECCHER Andrea"
+        ],
+        "aula": "AULA B 213"
+      },
+      "15:20": {
+        "materia": "Elettronica",
+        "materia_completa": "Elettronica ed elettrotecnica",
+        "docenti": [
+          "CASTALDO Franco"
+        ],
+        "aula": "LAB. ELE 1 (D 001)"
+      },
+      "16:10": {
+        "materia": "Elettronica",
+        "materia_completa": "Elettronica ed elettrotecnica",
+        "docenti": [
+          "CASTALDO Franco",
+          "GENOVESE Fulvio"
+        ],
+        "aula": "LAB. ELE 1 (D 001)"
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "OCHNER Daniel"
+        ]
+      },
+      "09:50": {
+        "materia": "Tec. Prog. Sistemi Elettr.",
+        "materia_completa": "Tec. e prog. sist. ele. e elee",
+        "docenti": [
+          "SICIGNANO Cristoforo"
+        ]
+      },
+      "11:45": {
+        "materia": "Elettronica",
+        "materia_completa": "Elettronica ed elettrotecnica",
+        "docenti": [
+          "CASTALDO Franco",
+          "GENOVESE Fulvio"
+        ],
+        "aula": "LAB. ELE 3 (D 005)"
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Matematica",
+        "docenti": [
+          "ECCHER Andrea"
+        ]
+      },
+      "09:50": {
+        "materia": "Tec. Prog. Sistemi Elettr.",
+        "materia_completa": "Tec. e prog. sist. ele. e elee",
+        "docenti": [
+          "SICIGNANO Cristoforo"
+        ],
+        "aula": "LAB. ELE 2 (D 004)"
+      },
+      "10:40": {
+        "materia": "Tec. Prog. Sistemi Elettr.",
+        "materia_completa": "Tec. e prog. sist. ele. e elee",
+        "docenti": [
+          "NATALE Luigi",
+          "SICIGNANO Cristoforo"
+        ],
+        "aula": "LAB. ELE 2 (D 004)"
+      },
+      "11:45": {
+        "materia": "Sistemi Automatici",
+        "materia_completa": "Sistemi automatici",
+        "docenti": [
+          "DONATI Lorenzo",
+          "ERRANTE Antonino"
+        ],
+        "aula": "LAB. ELE 2 (D 004)"
+      }
+    }
+  }
+}

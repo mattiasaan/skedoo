@@ -1,0 +1,230 @@
+{
+  "id": "3D",
+  "nome": "3 D",
+  "docente_coordinatore": "GUADAGNINI Maria Pia",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "Igiene, anat., fisiol., patol. anat., fisiol., patol.",
+        "docenti": [
+          "DE MARIA Liliana",
+          "LATTUCA Teresa"
+        ],
+        "aula": "AULA B 311*"
+      },
+      "09:00": {
+        "materia": "Q1 Q2",
+        "aula": "AULA B 311* LAB. SCI (B 305**) LAB. SCI (B 305**)"
+      },
+      "09:50": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "ROTTENSTEINER Sylvia"
+        ],
+        "aula": "AULA B 206*"
+      },
+      "10:40": {
+        "materia": "Matematica",
+        "docenti": [
+          "D'ALESSIO Valeria"
+        ]
+      },
+      "12:35": {
+        "materia": "Religione",
+        "docenti": [
+          "SOMMA Giancarlo"
+        ],
+        "aula": "AULA B 210*"
+      },
+      "14:30": {
+        "materia": "Chimica Analitica",
+        "materia_completa": "Chimica analitica e strum.",
+        "docenti": [
+          "CITTA' Tiziana",
+          "D'AGOSTINO Veronica"
+        ]
+      },
+      "16:10": {
+        "materia": "Storia",
+        "docenti": [
+          "GHISU Maria Gabriella"
+        ],
+        "aula": "AULA B 213"
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Igiene e Anatomia",
+        "materia_completa": "Igiene, anat., fisiol., patol.",
+        "docenti": [
+          "DE MARIA Liliana"
+        ]
+      },
+      "09:50": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "DELLA PENNA Daniela"
+        ],
+        "aula": "AULA B 207"
+      },
+      "10:40": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "GHISU Maria Gabriella"
+        ],
+        "aula": "AULA B 110*"
+      },
+      "11:45": {
+        "materia": "Chimica Organica",
+        "materia_completa": "Chimica org. e biochimica",
+        "docenti": [
+          "CITTA' Tiziana",
+          "GUADAGNINI Maria Pia"
+        ],
+        "aula": "AULA B 307*,LAB. CHI 1 (A 303)"
+      },
+      "14:30": {
+        "materia": "Biologia Sanitaria",
+        "materia_completa": "Bio., micro. e tec. contr.san.",
+        "docenti": [
+          "FIORINI Raffaele",
+          "MACCAGNAN Elisa"
+        ],
+        "aula": "AULA BIO (302),LAB. BIO (A 302)"
+      },
+      "16:10": {
+        "materia": "Matematica",
+        "docenti": [
+          "D'ALESSIO Valeria"
+        ],
+        "aula": "AULA B 201"
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Chimica Analitica",
+        "materia_completa": "Chimica analitica e strum.",
+        "docenti": [
+          "D'AGOSTINO Veronica"
+        ],
+        "aula": "AULA FIS (B 308**)"
+      },
+      "09:00": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "DELLA PENNA Daniela"
+        ],
+        "aula": "AULA B 004"
+      },
+      "09:50": {
+        "materia": "Chimica Organica",
+        "materia_completa": "Chimica org. e biochimica",
+        "docenti": [
+          "CITTA' Tiziana",
+          "GUADAGNINI Maria Pia"
+        ],
+        "aula": "AULA CHI (B 317**),LAB. CHI 1 (A 303)"
+      },
+      "10:40": {
+        "materia": "Storia",
+        "docenti": [
+          "GHISU Maria Gabriella"
+        ],
+        "aula": "AULA B 105"
+      },
+      "11:45": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "ROTTENSTEINER Sylvia"
+        ]
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Biologia Sanitaria",
+        "materia_completa": "Bio., micro. e tec. contr.san.",
+        "docenti": [
+          "FIORINI Raffaele",
+          "MACCAGNAN Elisa"
+        ],
+        "aula": "AULA B 309,LAB. BIO (A 302)"
+      },
+      "09:00": {
+        "materia": "Biologia Sanitaria",
+        "materia_completa": "Bio., micro. e tec. contr.san.",
+        "docenti": [
+          "MACCAGNAN Elisa"
+        ],
+        "aula": "AULA B 309"
+      },
+      "09:50": {
+        "materia": "Matematica",
+        "docenti": [
+          "D'ALESSIO Valeria"
+        ],
+        "aula": "Aula D 204**"
+      },
+      "10:40": {
+        "materia": "Chimica Analitica",
+        "materia_completa": "Chimica analitica e strum.",
+        "docenti": [
+          "CITTA' Tiziana",
+          "D'AGOSTINO Veronica"
+        ],
+        "aula": "AULA B 307*,LAB. CHI 2 (A 306)"
+      },
+      "11:45": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "GHISU Maria Gabriella"
+        ]
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Igiene e Anatomia",
+        "materia_completa": "Igiene, anat., fisiol., patol.",
+        "docenti": [
+          "DE MARIA Liliana"
+        ]
+      },
+      "09:50": {
+        "materia": "Chimica Organica",
+        "materia_completa": "Chimica org. e biochimica",
+        "docenti": [
+          "GUADAGNINI Maria Pia"
+        ],
+        "aula": "AULA B 307*"
+      },
+      "10:40": {
+        "materia": "Biologia Sanitaria",
+        "materia_completa": "Bio., micro. e tec. contr.san.",
+        "docenti": [
+          "MACCAGNAN Elisa"
+        ],
+        "aula": "AULA BIO (302)"
+      },
+      "11:45": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "SALVATERRA Joshua"
+        ]
+      }
+    }
+  }
+}

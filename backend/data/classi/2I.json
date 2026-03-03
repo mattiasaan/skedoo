@@ -1,0 +1,210 @@
+{
+  "id": "2I",
+  "nome": "2 I",
+  "docente_coordinatore": "STOPPARI Antonella",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "VITRANO Rosalba"
+        ]
+      },
+      "09:50": {
+        "materia": "Fisica",
+        "docenti": [
+          "TURCO Giuseppe",
+          "ZUECH Claudio"
+        ],
+        "aula": "LAB. FIS 1 (B 310)"
+      },
+      "11:45": {
+        "materia": "Matematica",
+        "docenti": [
+          "GIUSTI Marina"
+        ],
+        "aula": "AULA B 108"
+      },
+      "12:35": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "DELLA PENNA Daniela"
+        ],
+        "aula": "AULA B 101"
+      },
+      "14:30": {
+        "materia": "Diritto ed Economia",
+        "materia_completa": "Diritto ed economia",
+        "docenti": [
+          "SCARSO Carla Salvatrice"
+        ],
+        "aula": "AULA B 201"
+      },
+      "15:20": {
+        "materia": "Storia e Geografia",
+        "materia_completa": "Storia e geografia",
+        "docenti": [
+          "STOPPARI Antonella"
+        ],
+        "aula": "AULA B 210*"
+      },
+      "16:10": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "BERTOLDI Michela",
+          "PNRR AMB. E ENERGIA (301)"
+        ]
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Scienze Naturali",
+        "materia_completa": "Scienze naturali",
+        "docenti": [
+          "LEGGIERO Stefania"
+        ]
+      },
+      "09:50": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "BERTOLDI Michela"
+        ],
+        "aula": "AULA B 004"
+      },
+      "10:40": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "STOPPARI Antonella"
+        ]
+      },
+      "12:35": {
+        "materia": "Diritto ed Economia",
+        "materia_completa": "Diritto ed economia",
+        "docenti": [
+          "SCARSO Carla Salvatrice"
+        ],
+        "aula": "AULA B 201"
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Matematica",
+        "docenti": [
+          "GIUSTI Marina"
+        ]
+      },
+      "09:50": {
+        "materia": "Fisica",
+        "docenti": [
+          "TURCO Giuseppe"
+        ],
+        "aula": "LAB. FIS 1 (B 310)"
+      },
+      "10:40": {
+        "materia": "Storia e Geografia",
+        "materia_completa": "Storia e geografia",
+        "docenti": [
+          "STOPPARI Antonella"
+        ],
+        "aula": "AULA B 111"
+      },
+      "11:45": {
+        "materia": "Scienze Naturali",
+        "materia_completa": "Scienze naturali",
+        "docenti": [
+          "GIORDANO Carmelo",
+          "LEGGIERO Stefania"
+        ]
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Disegno e Arte",
+        "materia_completa": "Disegno e storia dell'arte",
+        "docenti": [
+          "DELLA RAGIONE Silvia"
+        ]
+      },
+      "09:50": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "STOPPARI Antonella"
+        ],
+        "aula": "AULA B 113"
+      },
+      "10:40": {
+        "materia": "Matematica",
+        "docenti": [
+          "GIUSTI Marina"
+        ],
+        "aula": "Aula D 204**"
+      },
+      "11:45": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "BERTOLDI Michela"
+        ]
+      },
+      "14:30": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "DELLA PENNA Daniela"
+        ]
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Religione",
+        "docenti": [
+          "MONTALTO Salvatore"
+        ],
+        "aula": "AULA B 201"
+      },
+      "09:00": {
+        "materia": "Matematica",
+        "docenti": [
+          "GIUSTI Marina"
+        ],
+        "aula": "AULA B 106*"
+      },
+      "09:50": {
+        "materia": "Informatica",
+        "docenti": [
+          "SALIHAJ Anila"
+        ]
+      },
+      "11:45": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "STOPPARI Antonella"
+        ],
+        "aula": "AULA B 110*"
+      },
+      "12:35": {
+        "materia": "Storia e Geografia",
+        "materia_completa": "Storia e geografia",
+        "docenti": [
+          "STOPPARI Antonella"
+        ],
+        "aula": "AULA B 110*"
+      }
+    }
+  }
+}

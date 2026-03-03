@@ -1,0 +1,207 @@
+{
+  "id": "4L",
+  "nome": "4 L",
+  "docente_coordinatore": "GAGLIOSTRO Antonio",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "Matematica",
+        "docenti": [
+          "GAGLIOSTRO Antonio"
+        ]
+      },
+      "09:50": {
+        "materia": "Informatica",
+        "docenti": [
+          "IACCARINO Gennaro"
+        ],
+        "aula": "LAB. INF 3 (B 116)"
+      },
+      "10:40": {
+        "materia": "Storia",
+        "docenti": [
+          "BARTOLI Lucia"
+        ],
+        "aula": "AULA B 209"
+      },
+      "11:45": {
+        "materia": "Filosofia",
+        "docenti": [
+          "BARTOLI Lucia"
+        ],
+        "aula": "AULA B 209"
+      },
+      "12:35": {
+        "materia": "Religione",
+        "docenti": [
+          "BOVO Paolo"
+        ],
+        "aula": "AULA 201"
+      },
+      "14:30": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "LONOCE Maria Pompea"
+        ],
+        "aula": "AULA B 307*"
+      },
+      "15:20": {
+        "materia": "Scienze Naturali",
+        "materia_completa": "Scienze naturali",
+        "docenti": [
+          "SERAFIN Alice",
+          "PNRR AMB. E ENERGIA (301)"
+        ]
+      },
+      "16:10": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "RIGHI Arianna"
+        ],
+        "aula": "AULA B 309"
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Disegno e Arte",
+        "materia_completa": "Disegno e storia dell'arte",
+        "docenti": [
+          "DELLA RAGIONE Silvia"
+        ]
+      },
+      "09:50": {
+        "materia": "Storia",
+        "docenti": [
+          "BARTOLI Lucia"
+        ],
+        "aula": "AULA FIS (B 308**)"
+      },
+      "10:40": {
+        "materia": "Filosofia",
+        "docenti": [
+          "BARTOLI Lucia"
+        ],
+        "aula": "AULA FIS (B 308**)"
+      },
+      "11:45": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "RIGHI Arianna"
+        ],
+        "aula": "AULA FIS (B 308**)"
+      },
+      "12:35": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "ALDROVANDI Carla"
+        ],
+        "aula": "AULA B 007*"
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "LONOCE Maria Pompea"
+        ]
+      },
+      "09:50": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "RIGHI Arianna"
+        ],
+        "aula": "AULA B 207"
+      },
+      "10:40": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "ALDROVANDI Carla"
+        ]
+      },
+      "12:35": {
+        "materia": "Fisica",
+        "docenti": [
+          "MARTINI Giampietro"
+        ],
+        "aula": "AULA FIS (B 308**)"
+      },
+      "14:30": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "GIGLIOLI Valentina"
+        ]
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Informatica",
+        "docenti": [
+          "IACCARINO Gennaro"
+        ]
+      },
+      "09:50": {
+        "materia": "Fisica",
+        "docenti": [
+          "MARTINI Giampietro",
+          "ZUECH Claudio"
+        ],
+        "aula": "LAB. FIS 2 (B 314)"
+      },
+      "11:45": {
+        "materia": "Scienze Naturali",
+        "materia_completa": "Scienze naturali",
+        "docenti": [
+          "CITTA' Tiziana",
+          "SERAFIN Alice"
+        ]
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Matematica",
+        "docenti": [
+          "GAGLIOSTRO Antonio"
+        ]
+      },
+      "09:50": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "LONOCE Maria Pompea"
+        ],
+        "aula": "AULA B 207"
+      },
+      "10:40": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "ALDROVANDI Carla"
+        ],
+        "aula": "AULA B 206*"
+      },
+      "11:45": {
+        "materia": "Scienze Naturali",
+        "materia_completa": "Scienze naturali",
+        "docenti": [
+          "SERAFIN Alice"
+        ]
+      }
+    }
+  }
+}

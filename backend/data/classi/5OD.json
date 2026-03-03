@@ -1,0 +1,187 @@
+{
+  "id": "5OD",
+  "nome": "5 OD",
+  "docente_coordinatore": "CARLIN Martina",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "DELLA PENNA Daniela"
+        ],
+        "aula": "AULA B 309"
+      },
+      "09:00": {
+        "materia": "Matematica",
+        "docenti": [
+          "STIVELLA Marco"
+        ]
+      },
+      "10:40": {
+        "materia": "Religione",
+        "docenti": [
+          "BOVO Paolo"
+        ],
+        "aula": "AULA 201"
+      },
+      "11:45": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "CARLIN Martina"
+        ]
+      },
+      "14:30": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "CANEVE Elisa"
+        ],
+        "aula": "LAB. INF 1 (B 208)"
+      },
+      "15:20": {
+        "materia": "Storia",
+        "docenti": [
+          "CERADINI Alessandro"
+        ],
+        "aula": "AULA B 209"
+      },
+      "16:10": {
+        "materia": "Diritto Sanitario",
+        "materia_completa": "Dir. prat.com., leg. soc./san.",
+        "docenti": [
+          "SCARSO Carla Salvatrice"
+        ],
+        "aula": "AULA B 201"
+      }
+    },
+    "martedi": {
+      "09:00": {
+        "materia": "Lab. Odontotecnico",
+        "materia_completa": "Eser. di lab. odontotecnico",
+        "docenti": [
+          "GIBILISCO Marco"
+        ],
+        "aula": "LAB. ODO 2 (A 308)"
+      },
+      "10:40": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "CANEVE Elisa"
+        ]
+      },
+      "12:35": {
+        "materia": "Scienze dei Materiali Dentali",
+        "materia_completa": "Scienze dei mat. dent. e lab.",
+        "docenti": [
+          "RIOLO Marcello"
+        ],
+        "aula": "AULA FIS (B 308**)"
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Gnatologia",
+        "docenti": [
+          "RIGHES Cecilia"
+        ]
+      },
+      "09:50": {
+        "materia": "Matematica",
+        "docenti": [
+          "STIVELLA Marco"
+        ],
+        "aula": "Aula D 204**"
+      },
+      "10:40": {
+        "materia": "Storia",
+        "docenti": [
+          "CERADINI Alessandro"
+        ],
+        "aula": "AULA 201"
+      },
+      "11:45": {
+        "materia": "Scienze dei Materiali Dentali",
+        "materia_completa": "Scienze dei mat. dent. e lab.",
+        "docenti": [
+          "GIBILISCO Marco",
+          "RIOLO Marcello"
+        ]
+      },
+      "15:20": {
+        "materia": "Lab. Odontotecnico",
+        "materia_completa": "Eser. di lab. odontotecnico",
+        "docenti": [
+          "GIBILISCO Marco"
+        ],
+        "aula": "LAB. ODO 2 (A 308)"
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Gnatologia",
+        "docenti": [
+          "RIGHES Cecilia"
+        ]
+      },
+      "09:50": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "CARLIN Martina"
+        ],
+        "aula": "AULA B 206*"
+      },
+      "11:45": {
+        "materia": "Lab. Odontotecnico",
+        "materia_completa": "Eser. di lab. odontotecnico",
+        "docenti": [
+          "GIBILISCO Marco"
+        ],
+        "aula": "LAB. ODO 2 (A 308)"
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Diritto Sanitario",
+        "materia_completa": "Dir. prat.com., leg. soc./san.",
+        "docenti": [
+          "SCARSO Carla Salvatrice"
+        ],
+        "aula": "AULA B 111"
+      },
+      "09:00": {
+        "materia": "Scienze dei Materiali Dentali",
+        "materia_completa": "Scienze dei mat. dent. e lab.",
+        "docenti": [
+          "RIOLO Marcello"
+        ]
+      },
+      "10:40": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "DELLA PENNA Daniela"
+        ],
+        "aula": "AULA B 204"
+      },
+      "11:45": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "OCHNER Daniel"
+        ]
+      }
+    }
+  }
+}

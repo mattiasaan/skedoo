@@ -1,0 +1,239 @@
+{
+  "id": "1MAQ1",
+  "nome": "1 MAQ1",
+  "docente_coordinatore": "TERZONI Giulia",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "ZEZZA Maria"
+        ]
+      },
+      "09:50": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "SCHROFFENEGGER Sonja"
+        ],
+        "aula": "AULA B 011"
+      },
+      "11:45": {
+        "materia": "Lab. Tecn. ed Esercitazioni",
+        "materia_completa": "Lab. tecn. e esercitazioni",
+        "docenti": [
+          "PILOTTI Alessio",
+          "POTENZIAMENTO TEDESCO",
+          "SCHROFFENEGGER Sonja",
+          "(ATTIVITA' MODULARE)"
+        ],
+        "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Fisica",
+        "materia_completa": "Scienze integrate (Fisica)",
+        "docenti": [
+          "TURCO Giuseppe",
+          "ZUECH Claudio"
+        ],
+        "aula": "LAB. FIS 2 (B 314)"
+      },
+      "09:50": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "RIGHI Arianna"
+        ],
+        "aula": "AULA B 206*"
+      },
+      "10:40": {
+        "materia": "Matematica",
+        "docenti": [
+          "TERZONI Giulia"
+        ]
+      },
+      "12:35": {
+        "materia": "Storia",
+        "docenti": [
+          "ZEZZA Maria",
+          "FILIERA ROBOTICA EDUCATIVA",
+          "CANNONE Maria",
+          "(ATTIVITA' MODULARE)"
+        ],
+        "aula": "AULA B 105"
+      },
+      "14:30": {
+        "materia": "Tecnologie Informatiche",
+        "materia_completa": "Tecnologie informatiche",
+        "docenti": [
+          "CANNONE Maria",
+          "RUZZON Kevin"
+        ]
+      },
+      "16:10": {
+        "materia": "Religione",
+        "docenti": [
+          "MONTALTO Salvatore"
+        ],
+        "aula": "AULA B 206*"
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "SCHROFFENEGGER Sonja"
+        ],
+        "aula": "AULA B 013*"
+      },
+      "09:00": {
+        "materia": "Chimica",
+        "materia_completa": "Scienze integrate (Chimica)",
+        "docenti": [
+          "MASCIOVECCHIO Marina",
+          "TOSI Sara"
+        ],
+        "aula": "AULA B 309,LAB. CHI 2 (A 306)"
+      },
+      "10:40": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "RIGHI Arianna"
+        ],
+        "aula": "AULA B 101"
+      },
+      "11:45": {
+        "materia": "Diritto ed Economia",
+        "materia_completa": "Diritto ed economia",
+        "docenti": [
+          "MARROCCO Caterina"
+        ],
+        "aula": "AULA B 201"
+      },
+      "12:35": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "ZEZZA Maria",
+          "FILIERA STAMPA 3 D",
+          "PILOTTI Alessio",
+          "(ATTIVITA' MODULARE)"
+        ],
+        "aula": "AULA B 109"
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "SCHROFFENEGGER Sonja"
+        ],
+        "aula": "AULA B 004"
+      },
+      "09:00": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "RIGHI Arianna"
+        ],
+        "aula": "AULA B 101"
+      },
+      "09:50": {
+        "materia": "Matematica",
+        "docenti": [
+          "TERZONI Giulia"
+        ],
+        "aula": "AULA B 104"
+      },
+      "10:40": {
+        "materia": "Diritto ed Economia",
+        "materia_completa": "Diritto ed economia",
+        "docenti": [
+          "MARROCCO Caterina"
+        ],
+        "aula": "AULA B 201"
+      },
+      "11:45": {
+        "materia": "Tecn. e Tecniche Grafiche",
+        "materia_completa": "Tecno. e tecniche rappr. graf.",
+        "docenti": [
+          "CANTISANI Silviano",
+          "PASCIUTO Paolo"
+        ],
+        "aula": "LAB. MEC. 5 (B119: AUT. & R.)"
+      },
+      "14:30": {
+        "materia": "Lab. Tecn. ed Esercitazioni",
+        "materia_completa": "Lab. tecn. e esercitazioni",
+        "docenti": [
+          "PILOTTI Alessio"
+        ]
+      },
+      "16:10": {
+        "materia": "Tecnologie Informatiche",
+        "materia_completa": "Tecnologie informatiche",
+        "docenti": [
+          "CANNONE Maria"
+        ],
+        "aula": "LAB. INF 4 (D 201**)"
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "ZEZZA Maria"
+        ],
+        "aula": "AULA B 113"
+      },
+      "09:00": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "RIGHI Arianna"
+        ],
+        "aula": "AULA B 204"
+      },
+      "09:50": {
+        "materia": "Matematica",
+        "docenti": [
+          "TERZONI Giulia"
+        ],
+        "aula": "Aula D 205**"
+      },
+      "10:40": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "SCHROFFENEGGER Sonja"
+        ],
+        "aula": "AULA B 007*"
+      },
+      "11:45": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "SEBASTIANI Alfredo",
+          "POTENZIAMENTO TEDESCO",
+          "SCHROFFENEGGER Sonja",
+          "(ATTIVITA' MODULARE)"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,258 @@
+{
+  "id": "5N",
+  "nome": "5 N",
+  "docente_coordinatore": "VERZELLA Alba",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "VERZELLA Alba"
+        ]
+      },
+      "09:50": {
+        "materia": "Elettronica",
+        "materia_completa": "Elettronica ed elettrotecnica",
+        "docenti": [
+          "IOVENE Roberto",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 N"
+        ],
+        "aula": "LAB. ELE 3 (D 005)"
+      },
+      "10:40": {
+        "materia": "Elettronica ed elettrotecnica Fausto,IOVENE Roberto",
+        "docenti": [
+          "<5",
+          "G/N> <5",
+          "G/N> 5 N"
+        ],
+        "aula": "LAB. ELE 3 (D 005)"
+      },
+      "11:45": {
+        "materia": "Tec. Prog. Sistemi Elettr.",
+        "materia_completa": "Tec. e prog. sist. ele. e elee",
+        "docenti": [
+          "LOPEZ Maria Virginia",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 N"
+        ],
+        "aula": "LAB. ELEE 4 (B 120/2)"
+      },
+      "14:30": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "BESTE Anna Maria Waltraud"
+        ]
+      },
+      "16:10": {
+        "materia": "Matematica",
+        "docenti": [
+          "PRESTIGIACOMO Davide"
+        ],
+        "aula": "LAB. INF 2 (B 212)"
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "SALVATERRA Joshua"
+        ]
+      },
+      "09:50": {
+        "materia": "Tec. Prog. Sistemi Elettr.",
+        "materia_completa": "Tec. e prog. sist. ele. e elee",
+        "docenti": [
+          "LOPEZ Maria Virginia",
+          "NATALE Luigi",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 N"
+        ],
+        "aula": "LAB. ELE 1 (D 001)"
+      },
+      "11:45": {
+        "materia": "Elettronica",
+        "materia_completa": "Elettronica ed elettrotecnica",
+        "docenti": [
+          "BASTIANELLO Fausto",
+          "IOVENE Roberto",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 N"
+        ],
+        "aula": "LAB. ELEE 4 (B 120/2)"
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Sistemi Automatici",
+        "materia_completa": "Sistemi automatici",
+        "docenti": [
+          "SICIGNANO Cristoforo",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 N"
+        ],
+        "aula": "LAB. ELE 2 (D 004)"
+      },
+      "09:50": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "PEROTTI Antonio"
+        ],
+        "aula": "LAB. PNRR AMB. E ENERGIA (301)"
+      },
+      "10:40": {
+        "materia": "Storia",
+        "docenti": [
+          "VERZELLA Alba"
+        ],
+        "aula": "AULA B 213"
+      },
+      "11:45": {
+        "materia": "Matematica",
+        "docenti": [
+          "PRESTIGIACOMO Davide"
+        ]
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Sistemi Automatici",
+        "materia_completa": "Sistemi automatici",
+        "docenti": [
+          "NATALE Luigi",
+          "SICIGNANO Cristoforo",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 N"
+        ],
+        "aula": "LAB. ELE 2 (D 004)"
+      },
+      "09:50": {
+        "materia": "Elettronica",
+        "materia_completa": "Elettronica ed elettrotecnica",
+        "docenti": [
+          "IOVENE Roberto",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 N"
+        ],
+        "aula": "LAB. ELEE 3 (B 120/1)"
+      },
+      "10:40": {
+        "materia": "Tec. Prog. Sistemi Elettr.",
+        "materia_completa": "Tec. e prog. sist. ele. e elee",
+        "docenti": [
+          "LOPEZ Maria Virginia",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 N"
+        ],
+        "aula": "LAB. ELEE 3 (B 120/1)"
+      },
+      "11:45": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "PEROTTI Antonio"
+        ],
+        "aula": "AULA B 201"
+      },
+      "12:35": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "BESTE Anna Maria Waltraud"
+        ],
+        "aula": "AULA B 011"
+      },
+      "14:30": {
+        "materia": "Religione",
+        "docenti": [
+          "MONTALTO Salvatore"
+        ],
+        "aula": "AULA B 206*"
+      },
+      "15:20": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "VERZELLA Alba"
+        ],
+        "aula": "AULA B 307*"
+      },
+      "16:10": {
+        "materia": "Storia",
+        "docenti": [
+          "VERZELLA Alba"
+        ],
+        "aula": "AULA B 307*"
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Sistemi Automatici",
+        "materia_completa": "Sistemi automatici",
+        "docenti": [
+          "NATALE Luigi",
+          "SICIGNANO Cristoforo",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 N"
+        ],
+        "aula": "LAB. ELE 2 (D 004)"
+      },
+      "09:50": {
+        "materia": "Tec. Prog. Sistemi Elettr.",
+        "materia_completa": "Tec. e prog. sist. ele. e elee",
+        "docenti": [
+          "LOPEZ Maria Virginia",
+          "NATALE Luigi",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 N"
+        ],
+        "aula": "LAB. ELEE 4 (B 120/2)"
+      },
+      "10:40": {
+        "materia": "Tec. Prog. Sistemi Elettr.",
+        "materia_completa": "Tec. e prog. sist. ele. e elee",
+        "docenti": [
+          "LOPEZ Maria Virginia",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 N"
+        ],
+        "aula": "LAB. ELEE 4 (B 120/2)"
+      },
+      "11:45": {
+        "materia": "Elettronica",
+        "materia_completa": "Elettronica ed elettrotecnica",
+        "docenti": [
+          "IOVENE Roberto",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 N"
+        ],
+        "aula": "LAB. MEC 2 (D 008: M.M.E.)"
+      }
+    }
+  }
+}

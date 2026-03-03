@@ -1,0 +1,227 @@
+{
+  "id": "4MAT",
+  "nome": "4 MAT",
+  "docente_coordinatore": "HOFER Verena",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "ZANONI Barbara"
+        ]
+      },
+      "09:50": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "HOFER Verena"
+        ],
+        "aula": "AULA B 016"
+      },
+      "10:40": {
+        "materia": "meccaniche ed appl.",
+        "docenti": [
+          "TASSIELLI Davide Giuseppe"
+        ]
+      },
+      "12:35": {
+        "materia": "Matematica",
+        "docenti": [
+          "MICILLO Martia Giustina"
+        ],
+        "aula": "Aula D 205**"
+      },
+      "14:30": {
+        "materia": "Tecn. di Installazione",
+        "materia_completa": "Tecnol. tecni. di inst. e man.",
+        "docenti": [
+          "ERRANTE Antonino",
+          "LOMBINO Alessandro"
+        ],
+        "aula": "LAB. ELE 1 (D 001)"
+      },
+      "16:10": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "VITRANO Rosalba"
+        ],
+        "aula": "PAL. \"Talvera Sud\""
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "PEROTTI Antonio"
+        ]
+      },
+      "09:50": {
+        "materia": "Storia",
+        "docenti": [
+          "ZANONI Barbara"
+        ],
+        "aula": "AULA B 108"
+      },
+      "10:40": {
+        "materia": "Religione",
+        "docenti": [
+          "SCIBELLI Alice"
+        ],
+        "aula": "AULA B 213"
+      },
+      "11:45": {
+        "materia": "Matematica",
+        "docenti": [
+          "MICILLO Martia Giustina"
+        ]
+      }
+    },
+    "mercoledi": {
+      "09:00": {
+        "materia": "Lab. Tecn. ed Esercitazioni",
+        "materia_completa": "Lab. tecn. e esercitazioni",
+        "docenti": [
+          "ERRANTE Antonino"
+        ],
+        "aula": "LAB. ELE 4 (C 003)"
+      },
+      "10:40": {
+        "materia": "Tecn. Meccanica",
+        "materia_completa": "Tecnologie meccaniche ed appl.",
+        "docenti": [
+          "GAETANO Giuseppe",
+          "TASSIELLI Davide Giuseppe"
+        ],
+        "aula": "LAB. MEC 1 (D 010: M.U.)"
+      },
+      "11:45": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "ZANONI Barbara"
+        ],
+        "aula": "AULA B 115"
+      },
+      "12:35": {
+        "materia": "Storia",
+        "docenti": [
+          "ZANONI Barbara"
+        ],
+        "aula": "AULA B 115"
+      },
+      "14:30": {
+        "materia": "Tecn. Elettr. e Elettrotecnica",
+        "materia_completa": "Tecn. elettri-elettro. e appl.",
+        "docenti": [
+          "BURATTI Alfredo",
+          "GENOVESE Fulvio"
+        ],
+        "aula": "LAB. ELEE 4 (B 120/2)"
+      },
+      "16:10": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "VITRANO Rosalba"
+        ],
+        "aula": "PAL. \"Talvera Sud\""
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Tecn. Elettr. e Elettrotecnica",
+        "materia_completa": "Tecn. elettri-elettro. e appl.",
+        "docenti": [
+          "BURATTI Alfredo"
+        ],
+        "aula": "LAB. ELE 4 (C 003)"
+      },
+      "09:00": {
+        "materia": "Tecn. Elettr. e Elettrotecnica",
+        "materia_completa": "Tecn. elettri-elettro. e appl.",
+        "docenti": [
+          "BURATTI Alfredo",
+          "GENOVESE Fulvio"
+        ],
+        "aula": "LAB. ELE 4 (C 003)"
+      },
+      "09:50": {
+        "materia": "Tecn. di Installazione",
+        "materia_completa": "Tecnol. tecni. di inst. e man.",
+        "docenti": [
+          "LOMBINO Alessandro"
+        ],
+        "aula": "LAB. ELE 3 (D 005)"
+      },
+      "10:40": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "HOFER Verena"
+        ]
+      },
+      "12:35": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "PEROTTI Antonio"
+        ],
+        "aula": "AULA B 106*"
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Tecn. Meccanica",
+        "materia_completa": "Tecnologie meccaniche ed appl.",
+        "docenti": [
+          "GAETANO Giuseppe",
+          "TASSIELLI Davide Giuseppe"
+        ]
+      },
+      "09:50": {
+        "materia": "Tecn. di Installazione",
+        "materia_completa": "Tecnol. tecni. di inst. e man.",
+        "docenti": [
+          "LOMBINO Alessandro"
+        ],
+        "aula": "LAB. ELE 1 (D 001)"
+      },
+      "10:40": {
+        "materia": "Tecn. di Installazione",
+        "materia_completa": "Tecnol. tecni. di inst. e man.",
+        "docenti": [
+          "ERRANTE Antonino",
+          "LOMBINO Alessandro"
+        ],
+        "aula": "LAB. ELE 1 (D 001)"
+      },
+      "11:45": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "ZANONI Barbara"
+        ],
+        "aula": "AULA B 207"
+      },
+      "12:35": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "HOFER Verena"
+        ],
+        "aula": "AULA B 013*"
+      }
+    }
+  }
+}

@@ -1,0 +1,196 @@
+{
+  "id": "3OD",
+  "nome": "3 OD",
+  "docente_coordinatore": "RIOLO Marcello",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "Anatomia e Fisiologia",
+        "materia_completa": "Anatomia, fisiologia, igiene",
+        "docenti": [
+          "DI TRAPANI Rosalba"
+        ],
+        "aula": "AULA B 307*"
+      },
+      "09:00": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "CARLIN Martina"
+        ],
+        "aula": "AULA B 004"
+      },
+      "09:50": {
+        "materia": "Matematica",
+        "docenti": [
+          "MICILLO Martia Giustina"
+        ],
+        "aula": "Aula D 205**"
+      },
+      "11:45": {
+        "materia": "Lab. Odontotecnico",
+        "materia_completa": "Eser. di lab. odontotecnico",
+        "docenti": [
+          "BRILLO Susanna"
+        ],
+        "aula": "LAB. ODO 1 (A 307)"
+      },
+      "14:30": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "VITRANO Rosalba"
+        ]
+      },
+      "16:10": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "LA MATTINA Alessandra"
+        ],
+        "aula": "AULA B 304"
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Scienze dei Materiali Dentali",
+        "materia_completa": "Scienze dei mat. dent. e lab.",
+        "docenti": [
+          "RIOLO Marcello"
+        ]
+      },
+      "09:50": {
+        "materia": "Religione",
+        "docenti": [
+          "SOMMA Giancarlo"
+        ],
+        "aula": "AULA B 107"
+      },
+      "10:40": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "CERADINI Alessandro"
+        ],
+        "aula": "AULA B 210*"
+      },
+      "11:45": {
+        "materia": "Rappr. e modell. odontotecnica Rappr. e modell. odontotecnica",
+        "docenti": [
+          "BRILLO Susanna",
+          "DOCILE Valeria Anna"
+        ],
+        "aula": "LAB. DIS (B 215)"
+      },
+      "12:35": {
+        "materia": "Q1 Q2",
+        "aula": "LAB. DIS (B 215) LAB. ODO 1 (A 307)"
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Scienze dei Materiali Dentali",
+        "materia_completa": "Scienze dei mat. dent. e lab.",
+        "docenti": [
+          "RIOLO Marcello"
+        ],
+        "aula": "AULA MEC (D 009)"
+      },
+      "09:00": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "CERADINI Alessandro"
+        ]
+      },
+      "10:40": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "CARLIN Martina"
+        ]
+      },
+      "12:35": {
+        "materia": "Storia",
+        "docenti": [
+          "CERADINI Alessandro"
+        ],
+        "aula": "AULA B 108"
+      },
+      "15:20": {
+        "materia": "Lab. Odontotecnico",
+        "materia_completa": "Eser. di lab. odontotecnico",
+        "docenti": [
+          "BRILLO Susanna"
+        ],
+        "aula": "LAB. ODO 1 (A 307)"
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Matematica",
+        "docenti": [
+          "MICILLO Martia Giustina"
+        ]
+      },
+      "09:50": {
+        "materia": "Scienze dei Materiali Dentali",
+        "materia_completa": "Scienze dei mat. dent. e lab.",
+        "docenti": [
+          "MARIANI Chiara",
+          "RIOLO Marcello"
+        ]
+      },
+      "11:45": {
+        "materia": "Anatomia e Fisiologia",
+        "materia_completa": "Anatomia, fisiologia, igiene",
+        "docenti": [
+          "DI TRAPANI Rosalba"
+        ],
+        "aula": "AULA FIS (B 308**)"
+      },
+      "12:35": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "LA MATTINA Alessandra"
+        ],
+        "aula": "AULA B 204"
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Rappresentazione Odontotecnica",
+        "materia_completa": "Rappr. e modell. odontotecnica",
+        "docenti": [
+          "BRILLO Susanna",
+          "DOCILE Valeria Anna"
+        ],
+        "aula": "LAB. DIS (B 215)"
+      },
+      "09:50": {
+        "materia": "Storia",
+        "docenti": [
+          "CERADINI Alessandro"
+        ],
+        "aula": "AULA B 111"
+      },
+      "11:45": {
+        "materia": "Lab. Odontotecnico",
+        "materia_completa": "Eser. di lab. odontotecnico",
+        "docenti": [
+          "BRILLO Susanna"
+        ],
+        "aula": "LAB. ODO 1 (A 307)"
+      }
+    }
+  }
+}

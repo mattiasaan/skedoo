@@ -1,0 +1,253 @@
+{
+  "id": "3C",
+  "nome": "3 C",
+  "docente_coordinatore": "DELLA PENNA Daniela",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "Bio., micro. e tec. contr.amb. Patrick,STICCOTTI Gea"
+      },
+      "09:00": {
+        "materia": "BIO (302),LAB. BIO (A 302)",
+        "docenti": [
+          "<3",
+          "C/T> <3",
+          "C/T> 3 C"
+        ]
+      },
+      "09:50": {
+        "materia": "Chimica org. e biochimica Angelo,RICCA Mariaelena",
+        "docenti": [
+          "<3",
+          "C/T> <3",
+          "C/T> 3 C"
+        ],
+        "aula": "AULA B 304,LAB. CHI 1 (A 303)"
+      },
+      "10:40": {
+        "materia": "Storia",
+        "docenti": [
+          "MOLINI Paola"
+        ],
+        "aula": "AULA B 113"
+      },
+      "11:45": {
+        "materia": "Matematica",
+        "docenti": [
+          "BERTOLINO Giuseppe"
+        ]
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Chimica Analitica",
+        "materia_completa": "Chimica analitica e strum.",
+        "docenti": [
+          "GUADAGNINI Maria Pia",
+          "<3",
+          "C/T> <3",
+          "C/T> 3 C"
+        ],
+        "aula": "AULA CHI (B 317**)"
+      },
+      "09:00": {
+        "materia": "Chimica Analitica",
+        "materia_completa": "Chimica analitica e strum.",
+        "docenti": [
+          "CITTA' Tiziana",
+          "GUADAGNINI Maria Pia",
+          "<3",
+          "C/T> <3",
+          "C/T> 3 C"
+        ],
+        "aula": "AULA CHI (B 317**),LAB. CHI 2 (A 306)"
+      },
+      "09:50": {
+        "materia": "Chimica Organica",
+        "materia_completa": "Chimica org. e biochimica",
+        "docenti": [
+          "MONACHELLA Angelo",
+          "RICCA Mariaelena",
+          "<3",
+          "C/T> <3",
+          "C/T> 3 C"
+        ],
+        "aula": "LAB. CHI 1 (A 303) LAB. PNRR AMB. E ENERGIA (301)"
+      },
+      "11:45": {
+        "materia": "Matematica",
+        "docenti": [
+          "BERTOLINO Giuseppe"
+        ],
+        "aula": "Aula D 204**"
+      },
+      "12:35": {
+        "materia": "Storia",
+        "docenti": [
+          "MOLINI Paola"
+        ],
+        "aula": "AULA B 115"
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Chimica Organica",
+        "materia_completa": "Chimica org. e biochimica",
+        "docenti": [
+          "RICCA Mariaelena",
+          "<3",
+          "C/T> <3",
+          "C/T> 3 C"
+        ],
+        "aula": "AULA CHI (B 317**)"
+      },
+      "09:50": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "DELLA PENNA Daniela"
+        ],
+        "aula": "AULA B 205"
+      },
+      "10:40": {
+        "materia": "Fisica Ambientale",
+        "materia_completa": "Fisica ambientale",
+        "docenti": [
+          "TURCO Giuseppe",
+          "<3",
+          "C/T> <3",
+          "C/T> 3 C"
+        ],
+        "aula": "LAB. FIS 1 (B 310)"
+      },
+      "11:45": {
+        "materia": "Biologia Ambientale",
+        "materia_completa": "Bio., micro. e tec. contr.amb.",
+        "docenti": [
+          "BIANCHI Patrick",
+          "STICCOTTI Gea",
+          "<3",
+          "C/T> <3",
+          "C/T> 3 C"
+        ],
+        "aula": "AULA BIO (302),LAB. BIO (A 302)"
+      },
+      "14:30": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "MOLINI Paola"
+        ]
+      },
+      "16:10": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "PATELLA Nadia"
+        ],
+        "aula": "AULA B 309"
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Chimica Analitica",
+        "materia_completa": "Chimica analitica e strum.",
+        "docenti": [
+          "GUADAGNINI Maria Pia",
+          "<3",
+          "C/T> <3",
+          "C/T> 3 C"
+        ],
+        "aula": "Aula D 206**"
+      },
+      "09:00": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "PATELLA Nadia"
+        ]
+      },
+      "10:40": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "MOLINI Paola"
+        ],
+        "aula": "AULA B 210*"
+      },
+      "11:45": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "SALVATERRA Joshua"
+        ]
+      },
+      "14:30": {
+        "materia": "Fisica Ambientale",
+        "materia_completa": "Fisica ambientale",
+        "docenti": [
+          "TURCO Giuseppe",
+          "<3",
+          "C/T> <3",
+          "C/T> 3 C"
+        ],
+        "aula": "LAB. FIS 1 (B 310)"
+      },
+      "16:10": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "DELLA PENNA Daniela"
+        ],
+        "aula": "AULA B 304"
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Biologia Ambientale",
+        "materia_completa": "Bio., micro. e tec. contr.amb.",
+        "docenti": [
+          "STICCOTTI Gea",
+          "<3",
+          "C/T> <3",
+          "C/T> 3 C"
+        ],
+        "aula": "AULA B 307*"
+      },
+      "09:50": {
+        "materia": "Religione",
+        "docenti": [
+          "MONTALTO Salvatore"
+        ],
+        "aula": "AULA B 110*"
+      },
+      "10:40": {
+        "materia": "Matematica",
+        "docenti": [
+          "BERTOLINO Giuseppe"
+        ],
+        "aula": "Aula D 204**"
+      },
+      "11:45": {
+        "materia": "Chimica Analitica",
+        "materia_completa": "Chimica analitica e strum.",
+        "docenti": [
+          "CITTA' Tiziana",
+          "GUADAGNINI Maria Pia",
+          "<3",
+          "C/T> <3",
+          "C/T> 3 C"
+        ],
+        "aula": "LAB. CHI 2 (A 306) LAB. PNRR AMB. E ENERGIA (301)"
+      }
+    }
+  }
+}

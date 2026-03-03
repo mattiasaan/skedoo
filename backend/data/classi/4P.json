@@ -1,0 +1,188 @@
+{
+  "id": "4P",
+  "nome": "4 P",
+  "docente_coordinatore": "ZEZZA Maria",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "09:00": {
+        "materia": "Lab. Odontotecnico",
+        "materia_completa": "Eser. di lab. odontotecnico",
+        "docenti": [
+          "GIBILISCO Marco"
+        ],
+        "aula": "LAB. ODO 2 (A 308)"
+      },
+      "10:40": {
+        "materia": "Matematica",
+        "docenti": [
+          "MICILLO Martia Giustina"
+        ],
+        "aula": "AULA B 309"
+      },
+      "11:45": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "ZEZZA Maria"
+        ]
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Religione",
+        "docenti": [
+          "SCIBELLI Alice"
+        ],
+        "aula": "AULA B 201"
+      },
+      "09:00": {
+        "materia": "Scienze dei Materiali Dentali",
+        "materia_completa": "Scienze dei mat. dent. e lab.",
+        "docenti": [
+          "BIDDAU Antonella"
+        ]
+      },
+      "10:40": {
+        "materia": "Storia",
+        "docenti": [
+          "ZEZZA Maria"
+        ],
+        "aula": "AULA B 209"
+      },
+      "11:45": {
+        "materia": "Gnatologia",
+        "docenti": [
+          "DE MARIA Liliana Gnatologia",
+          "SAIANI Christian DE MARIA Liliana"
+        ],
+        "aula": "LAB. ODO 1 (A 307) LAB. PNRR AMB. E ENERGIA (301)"
+      },
+      "12:35": {
+        "materia": "Q1 Q2",
+        "aula": "LAB. PNRR AMB. E ENERGIA (301)"
+      },
+      "14:30": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "CARLIN Martina"
+        ]
+      },
+      "16:10": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "ROMANI Sara"
+        ],
+        "aula": "AULA B 211"
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "DI CELLO Jacopo"
+        ]
+      },
+      "09:50": {
+        "materia": "Gnatologia",
+        "docenti": [
+          "DE MARIA Liliana"
+        ],
+        "aula": "AULA B 211"
+      },
+      "10:40": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "ZEZZA Maria"
+        ],
+        "aula": "AULA B 211"
+      },
+      "11:45": {
+        "materia": "Storia",
+        "docenti": [
+          "ZEZZA Maria"
+        ],
+        "aula": "AULA B 211"
+      },
+      "12:35": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "ROMANI Sara"
+        ],
+        "aula": "AULA B 204"
+      },
+      "14:30": {
+        "materia": "Matematica",
+        "docenti": [
+          "MICILLO Martia Giustina"
+        ]
+      },
+      "16:10": {
+        "materia": "Scienze dei Materiali Dentali",
+        "materia_completa": "Scienze dei mat. dent. e lab.",
+        "docenti": [
+          "BIDDAU Antonella"
+        ],
+        "aula": "AULA B 304"
+      }
+    },
+    "giovedi": {
+      "09:00": {
+        "materia": "Lab. Odontotecnico",
+        "materia_completa": "Eser. di lab. odontotecnico",
+        "docenti": [
+          "GIBILISCO Marco"
+        ],
+        "aula": "LAB. ODO 2 (A 308)"
+      },
+      "10:40": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "CARLIN Martina"
+        ],
+        "aula": "AULA B 112*"
+      },
+      "11:45": {
+        "materia": "Scienze dei Materiali Dentali",
+        "materia_completa": "Scienze dei mat. dent. e lab.",
+        "docenti": [
+          "BIDDAU Antonella",
+          "QUATTROCCHI Francesco"
+        ],
+        "aula": "LAB. CAD 1 (B 219)"
+      }
+    },
+    "venerdi": {
+      "09:00": {
+        "materia": "Lab. Odontotecnico",
+        "materia_completa": "Eser. di lab. odontotecnico",
+        "docenti": [
+          "GIBILISCO Marco"
+        ],
+        "aula": "LAB. ODO 2 (A 308)"
+      },
+      "10:40": {
+        "materia": "Rappresentazione Odontotecnica",
+        "materia_completa": "Rappr. e modell. odontotecnica",
+        "docenti": [
+          "DOCILE Valeria Anna",
+          "SAIANI Christian"
+        ],
+        "aula": "LAB. CAD 1 (B 219) LAB. DIS (B 215)"
+      }
+    }
+  }
+}

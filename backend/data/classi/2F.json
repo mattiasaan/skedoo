@@ -1,0 +1,233 @@
+{
+  "id": "2F",
+  "nome": "2 F",
+  "docente_coordinatore": "ZECCHIN Enrico",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "HOFER Verena"
+        ]
+      },
+      "09:50": {
+        "materia": "Scienze e Biologia",
+        "materia_completa": "Scienze integrate (Sci. e Bio)",
+        "docenti": [
+          "MAURO Sergio"
+        ],
+        "aula": "AULA B 306"
+      },
+      "10:40": {
+        "materia": "Matematica",
+        "docenti": [
+          "PREVIDI Paola"
+        ]
+      },
+      "12:35": {
+        "materia": "Chimica",
+        "materia_completa": "Scienze integrate (Chimica)",
+        "docenti": [
+          "BIDDAU Antonella"
+        ],
+        "aula": "AULA B 311*"
+      },
+      "14:30": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "PEROTTI Antonio"
+        ],
+        "aula": "AULA FIS (B 308**)"
+      },
+      "15:20": {
+        "materia": "Storia",
+        "docenti": [
+          "MARI Paola"
+        ],
+        "aula": "AULA B 207"
+      },
+      "16:10": {
+        "materia": "Tecn. e Tecniche Grafiche",
+        "materia_completa": "Tecno. e tecniche rappr. graf.",
+        "docenti": [
+          "PERRICONE Cristina"
+        ],
+        "aula": "LAB. CAD 2 (B 221)"
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "MARI Paola"
+        ]
+      },
+      "09:50": {
+        "materia": "Fisica",
+        "materia_completa": "Scienze integrate (Fisica)",
+        "docenti": [
+          "ZECCHIN Enrico",
+          "ZUECH Claudio"
+        ]
+      },
+      "11:45": {
+        "materia": "Chimica",
+        "materia_completa": "Scienze integrate (Chimica)",
+        "docenti": [
+          "BIDDAU Antonella",
+          "MONACHELLA Angelo"
+        ],
+        "aula": "AULA B 311*,LAB. CHI 3 (B 318)"
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Diritto ed Economia",
+        "materia_completa": "Diritto ed economia",
+        "docenti": [
+          "SCARSO Carla Salvatrice"
+        ],
+        "aula": "AULA B 201"
+      },
+      "09:00": {
+        "materia": "Matematica",
+        "docenti": [
+          "PREVIDI Paola"
+        ],
+        "aula": "AULA B 007*"
+      },
+      "09:50": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "MARI Paola"
+        ],
+        "aula": "AULA B 106*"
+      },
+      "10:40": {
+        "materia": "Scienze e Tecn. Applicate",
+        "materia_completa": "Scienze e tecnologie applicate",
+        "docenti": [
+          "ARABIA Eliana"
+        ],
+        "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
+      },
+      "11:45": {
+        "materia": "Scienze e Tecn. Applicate",
+        "materia_completa": "Scienze e tecnologie applicate",
+        "docenti": [
+          "ARABIA Eliana",
+          "BASTIANELLO Fausto"
+        ],
+        "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "SEBASTIANI Alfredo"
+        ]
+      },
+      "09:50": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "HOFER Verena"
+        ],
+        "aula": "AULA B 016"
+      },
+      "10:40": {
+        "materia": "Fisica",
+        "materia_completa": "Scienze integrate (Fisica)",
+        "docenti": [
+          "ZECCHIN Enrico"
+        ],
+        "aula": "LAB. FIS 1 (B 310)"
+      },
+      "11:45": {
+        "materia": "Tecn. e Tecniche Grafiche",
+        "materia_completa": "Tecno. e tecniche rappr. graf.",
+        "docenti": [
+          "GAETANO Giuseppe",
+          "PERRICONE Cristina"
+        ],
+        "aula": "LAB. CAD 2 (B 221)"
+      },
+      "14:30": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "MARI Paola"
+        ],
+        "aula": "AULA B 207"
+      },
+      "15:20": {
+        "materia": "Storia",
+        "docenti": [
+          "MARI Paola"
+        ],
+        "aula": "AULA B 207"
+      },
+      "16:10": {
+        "materia": "Religione",
+        "docenti": [
+          "SCIBELLI Alice"
+        ],
+        "aula": "AULA 201"
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Scienze e Biologia",
+        "materia_completa": "Scienze integrate (Sci. e Bio)",
+        "docenti": [
+          "MAURO Sergio"
+        ],
+        "aula": "AULA B 304"
+      },
+      "09:00": {
+        "materia": "Matematica",
+        "docenti": [
+          "PREVIDI Paola"
+        ],
+        "aula": "Aula D 204**"
+      },
+      "09:50": {
+        "materia": "Diritto ed Economia",
+        "materia_completa": "Diritto ed economia",
+        "docenti": [
+          "SCARSO Carla Salvatrice"
+        ],
+        "aula": "AULA B 311*"
+      },
+      "10:40": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "HOFER Verena"
+        ],
+        "aula": "AULA B 016"
+      },
+      "11:45": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "PEROTTI Antonio"
+        ]
+      }
+    }
+  }
+}

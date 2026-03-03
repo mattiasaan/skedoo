@@ -1,0 +1,211 @@
+{
+  "id": "3MAT",
+  "nome": "3 MAT",
+  "docente_coordinatore": "BURATTI Alfredo",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "Tecn. di Installazione",
+        "materia_completa": "Tecnol. tecni. di inst. e man.",
+        "docenti": [
+          "BALESTRUCCI Domenico",
+          "LOVECCHIO Stefano"
+        ],
+        "aula": "LAB. ELE 4 (C 003)"
+      },
+      "09:50": {
+        "materia": "Religione",
+        "docenti": [
+          "SCIBELLI Alice"
+        ],
+        "aula": "AULA B 201"
+      },
+      "10:40": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "ZEZZA Maria"
+        ],
+        "aula": "AULA B 115"
+      },
+      "11:45": {
+        "materia": "Lab. Tecn. ed Esercitazioni",
+        "materia_completa": "Lab. tecn. e esercitazioni",
+        "docenti": [
+          "NATALE Luigi"
+        ]
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Tecn. Elettr. e Elettrotecnica",
+        "materia_completa": "Tecn. elettri-elettro. e appl.",
+        "docenti": [
+          "BURATTI Alfredo",
+          "GENOVESE Fulvio"
+        ],
+        "aula": "LAB. ELE 4 (C 003)"
+      },
+      "09:50": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "PEROTTI Antonio"
+        ],
+        "aula": "AULA B 016"
+      },
+      "11:45": {
+        "materia": "Tecnologie meccaniche ed appl.Tecnologie meccaniche ed appl.",
+        "docenti": [
+          "CANTISANI Silviano",
+          "PASCIUTO Paolo"
+        ],
+        "aula": "LAB. MEC 2 (D 008: M.M.E.) AULA MEC (D 009) LAB. MEC 3 (D 006: CONG.) LAB. MEC 1 (D 010: M.U.)"
+      },
+      "12:35": {
+        "materia": "Q1 Q2"
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "HOFER Verena"
+        ],
+        "aula": "AULA B 114"
+      },
+      "09:00": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "ZEZZA Maria"
+        ]
+      },
+      "10:40": {
+        "materia": "Matematica",
+        "docenti": [
+          "PRESTIGIACOMO Davide"
+        ],
+        "aula": "Aula D 204**"
+      },
+      "11:45": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "PEROTTI Antonio"
+        ]
+      },
+      "14:30": {
+        "materia": "Tecn. Meccanica",
+        "materia_completa": "Tecnologie meccaniche ed appl.",
+        "docenti": [
+          "PASCIUTO Paolo"
+        ]
+      },
+      "16:10": {
+        "materia": "Tecn. Elettr. e Elettrotecnica",
+        "materia_completa": "Tecn. elettri-elettro. e appl.",
+        "docenti": [
+          "BURATTI Alfredo"
+        ],
+        "aula": "LAB. ELEE 4 (B 120/2)"
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "HOFER Verena"
+        ]
+      },
+      "09:50": {
+        "materia": "Tecn. Elettr. e Elettrotecnica",
+        "materia_completa": "Tecn. elettri-elettro. e appl.",
+        "docenti": [
+          "BURATTI Alfredo",
+          "GENOVESE Fulvio"
+        ],
+        "aula": "LAB. ELE 4 (C 003)"
+      },
+      "10:40": {
+        "materia": "Tecn. Elettr. e Elettrotecnica",
+        "materia_completa": "Tecn. elettri-elettro. e appl.",
+        "docenti": [
+          "BURATTI Alfredo"
+        ],
+        "aula": "LAB. ELE 4 (C 003)"
+      },
+      "11:45": {
+        "materia": "Matematica",
+        "docenti": [
+          "PRESTIGIACOMO Davide"
+        ]
+      },
+      "14:30": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "ZEZZA Maria"
+        ],
+        "aula": "AULA B 201"
+      },
+      "15:20": {
+        "materia": "Storia",
+        "docenti": [
+          "ZEZZA Maria"
+        ],
+        "aula": "AULA B 201"
+      },
+      "16:10": {
+        "materia": "Tecn. di Installazione",
+        "materia_completa": "Tecnol. tecni. di inst. e man.",
+        "docenti": [
+          "BALESTRUCCI Domenico",
+          "LOVECCHIO Stefano"
+        ],
+        "aula": "LAB. ELE 3 (D 005)"
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "HOFER Verena"
+        ],
+        "aula": "AULA B 016"
+      },
+      "09:00": {
+        "materia": "Storia",
+        "docenti": [
+          "ZEZZA Maria"
+        ],
+        "aula": "AULA B 112*"
+      },
+      "09:50": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "NOLLI Cinzia"
+        ]
+      },
+      "11:45": {
+        "materia": "Lab. Tecn. ed Esercitazioni",
+        "materia_completa": "Lab. tecn. e esercitazioni",
+        "docenti": [
+          "NATALE Luigi"
+        ]
+      }
+    }
+  }
+}

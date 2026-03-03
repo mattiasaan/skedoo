@@ -1,0 +1,233 @@
+{
+  "id": "1E",
+  "nome": "1 E",
+  "docente_coordinatore": "PATRUNO Elisabetta",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "Matematica",
+        "docenti": [
+          "STIVELLA Marco"
+        ],
+        "aula": "AULA B 104"
+      },
+      "09:00": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "PATRUNO Elisabetta"
+        ]
+      },
+      "10:40": {
+        "materia": "Chimica",
+        "materia_completa": "Scienze integrate (Chimica)",
+        "docenti": [
+          "PECORARO Diego"
+        ],
+        "aula": "AULA B 205"
+      },
+      "11:45": {
+        "materia": "Fisica",
+        "materia_completa": "Scienze integrate (Fisica)",
+        "docenti": [
+          "PAPAIS Denise",
+          "ZECCHIN Enrico"
+        ]
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Matematica",
+        "docenti": [
+          "STIVELLA Marco"
+        ]
+      },
+      "09:50": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "PATRUNO Elisabetta"
+        ],
+        "aula": "AULA B 109"
+      },
+      "10:40": {
+        "materia": "Storia",
+        "docenti": [
+          "PATRUNO Elisabetta"
+        ],
+        "aula": "AULA B 109"
+      },
+      "11:45": {
+        "materia": "Religione",
+        "docenti": [
+          "SCIBELLI Alice"
+        ],
+        "aula": "AULA B 213"
+      },
+      "12:35": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "TUFANO Guido"
+        ],
+        "aula": "AULA B 211"
+      },
+      "14:30": {
+        "materia": "Diritto ed Economia",
+        "materia_completa": "Diritto ed economia",
+        "docenti": [
+          "MARROCCO Caterina"
+        ],
+        "aula": "AULA B 210*"
+      },
+      "15:20": {
+        "materia": "Scienze e Biologia",
+        "materia_completa": "Scienze integrate (Sci. e Bio)",
+        "docenti": [
+          "MAURO Sergio"
+        ],
+        "aula": "AULA B 304"
+      },
+      "16:10": {
+        "materia": "Tecn. e Tecniche Grafiche",
+        "materia_completa": "Tecno. e tecniche rappr. graf.",
+        "docenti": [
+          "SINICHI Amin Mohammad Kazem"
+        ],
+        "aula": "LAB. DIS (B 215)"
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "TUFANO Guido"
+        ],
+        "aula": "AULA 201"
+      },
+      "09:00": {
+        "materia": "Scienze e Biologia",
+        "materia_completa": "Scienze integrate (Sci. e Bio)",
+        "docenti": [
+          "MAURO Sergio"
+        ],
+        "aula": "AULA B 306"
+      },
+      "09:50": {
+        "materia": "Tecn. e Tecniche Grafiche",
+        "materia_completa": "Tecno. e tecniche rappr. graf.",
+        "docenti": [
+          "DE ROSSI Andrea",
+          "SINICHI Amin Mohammad Kazem"
+        ],
+        "aula": "LAB. DIS (B 215)"
+      },
+      "11:45": {
+        "materia": "Matematica",
+        "docenti": [
+          "STIVELLA Marco"
+        ],
+        "aula": "AULA B 104"
+      },
+      "12:35": {
+        "materia": "Diritto ed Economia",
+        "materia_completa": "Diritto ed economia",
+        "docenti": [
+          "MARROCCO Caterina"
+        ],
+        "aula": "AULA B 201"
+      },
+      "14:30": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "PEROTTI Antonio"
+        ]
+      },
+      "16:10": {
+        "materia": "Tecnologie Informatiche",
+        "materia_completa": "Tecnologie informatiche",
+        "docenti": [
+          "LOPEZ Maria Virginia"
+        ],
+        "aula": "LAB. INF 1 (B 208)"
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "PATRUNO Elisabetta"
+        ],
+        "aula": "AULA B 111"
+      },
+      "09:00": {
+        "materia": "Storia",
+        "docenti": [
+          "PATRUNO Elisabetta"
+        ],
+        "aula": "AULA B 111"
+      },
+      "09:50": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "DI CELLO Jacopo"
+        ]
+      },
+      "11:45": {
+        "materia": "Chimica",
+        "materia_completa": "Scienze integrate (Chimica)",
+        "docenti": [
+          "MONACHELLA Angelo",
+          "PECORARO Diego"
+        ],
+        "aula": "AULA B 309,LAB. CHI 3 (B 318)"
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "TUFANO Guido"
+        ]
+      },
+      "09:50": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "PEROTTI Antonio"
+        ],
+        "aula": "AULA B 101"
+      },
+      "10:40": {
+        "materia": "Fisica",
+        "materia_completa": "Scienze integrate (Fisica)",
+        "docenti": [
+          "ZECCHIN Enrico"
+        ],
+        "aula": "AULA FIS (B 308**)"
+      },
+      "11:45": {
+        "materia": "Tecnologie Informatiche",
+        "materia_completa": "Tecnologie informatiche",
+        "docenti": [
+          "BONACCORSI Rosario",
+          "LOPEZ Maria Virginia"
+        ],
+        "aula": "LAB. INF 1 (B 208)"
+      }
+    }
+  }
+}

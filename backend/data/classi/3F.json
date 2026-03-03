@@ -1,0 +1,213 @@
+{
+  "id": "3F",
+  "nome": "3 F",
+  "docente_coordinatore": "LATINA Giuliano",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "Tec. Prog. Sistemi Inf.",
+        "materia_completa": "Tec. e prog. sist. inf. e tel.",
+        "docenti": [
+          "DONATI Lorenzo"
+        ]
+      },
+      "09:50": {
+        "materia": "Matematica",
+        "docenti": [
+          "TERZONI Giulia"
+        ],
+        "aula": "LAB. ELEE 4 (B 120/2)"
+      },
+      "10:40": {
+        "materia": "Complementi di Matematica",
+        "materia_completa": "Complementi di matematica",
+        "docenti": [
+          "TERZONI Giulia"
+        ],
+        "aula": "Aula D 206**"
+      },
+      "11:45": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "DI CELLO Jacopo"
+        ]
+      },
+      "14:30": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "PERRUCCI Rosi"
+        ]
+      },
+      "16:10": {
+        "materia": "Telecomunicazioni",
+        "docenti": [
+          "ARABIA Eliana"
+        ],
+        "aula": "LAB. ELEE 1 (A 210*: L.E.AP)"
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Sistemi e Reti",
+        "materia_completa": "Sistemi e reti",
+        "docenti": [
+          "LATINA Giuliano"
+        ]
+      },
+      "09:50": {
+        "materia": "Telecomunicazioni",
+        "docenti": [
+          "ARABIA Eliana",
+          "BALESTRUCCI Domenico"
+        ],
+        "aula": "LAB. ELEE 1 (A 210*: L.E.AP)"
+      },
+      "11:45": {
+        "materia": "Informatica",
+        "docenti": [
+          "BONACCORSI Rosario",
+          "SALIHAJ Anila"
+        ],
+        "aula": "LAB. INF 3 (B 116)"
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Telecomunicazioni",
+        "docenti": [
+          "ARABIA Eliana",
+          "BALESTRUCCI Domenico"
+        ],
+        "aula": "LAB. ELEE 1 (A 210*: L.E.AP)"
+      },
+      "09:50": {
+        "materia": "Informatica",
+        "docenti": [
+          "SALIHAJ Anila"
+        ],
+        "aula": "LAB. INF 4 (D 201**)"
+      },
+      "10:40": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "MENCHISE Antonella"
+        ]
+      },
+      "12:35": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "GARBIN Simonetta"
+        ],
+        "aula": "AULA B 013*"
+      },
+      "14:30": {
+        "materia": "Religione",
+        "docenti": [
+          "SOMMA Giancarlo"
+        ],
+        "aula": "AULA B 210*"
+      },
+      "15:20": {
+        "materia": "Sistemi e Reti",
+        "materia_completa": "Sistemi e reti",
+        "docenti": [
+          "LATINA Giuliano"
+        ],
+        "aula": "LAB. INF 5 (D 202**)"
+      },
+      "16:10": {
+        "materia": "Complementi di Matematica",
+        "materia_completa": "Complementi di matematica",
+        "docenti": [
+          "TERZONI Giulia"
+        ],
+        "aula": "AULA B 207"
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Storia",
+        "docenti": [
+          "VENDRAME Emilio"
+        ],
+        "aula": "AULA B 115"
+      },
+      "09:00": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "MENCHISE Antonella"
+        ],
+        "aula": "AULA B 004"
+      },
+      "09:50": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "GARBIN Simonetta"
+        ],
+        "aula": "AULA B 205"
+      },
+      "10:40": {
+        "materia": "Tec. Prog. Sistemi Inf.",
+        "materia_completa": "Tec. e prog. sist. inf. e tel.",
+        "docenti": [
+          "BASTIANELLO Fausto",
+          "DONATI Lorenzo"
+        ],
+        "aula": "LAB. ELEE 1 (A 210*: L.E.AP)"
+      },
+      "12:35": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "PERRUCCI Rosi"
+        ],
+        "aula": "AULA B 209"
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Telecomunicazioni",
+        "docenti": [
+          "ARABIA Eliana",
+          "BALESTRUCCI Domenico"
+        ],
+        "aula": "LAB. ELEE 1 (A 210*: L.E.AP)"
+      },
+      "09:50": {
+        "materia": "Sistemi e Reti",
+        "materia_completa": "Sistemi e reti",
+        "docenti": [
+          "LATINA Giuliano"
+        ],
+        "aula": "Aula D 204**"
+      },
+      "10:40": {
+        "materia": "Storia",
+        "docenti": [
+          "VENDRAME Emilio"
+        ],
+        "aula": "AULA B 111"
+      },
+      "11:45": {
+        "materia": "Matematica",
+        "docenti": [
+          "TERZONI Giulia"
+        ]
+      }
+    }
+  }
+}

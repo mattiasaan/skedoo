@@ -1,0 +1,205 @@
+{
+  "id": "5I",
+  "nome": "5 I",
+  "docente_coordinatore": "BERTOLDI Michela",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "Scienze Naturali",
+        "materia_completa": "Scienze naturali",
+        "docenti": [
+          "MACCAGNAN Elisa"
+        ]
+      },
+      "09:50": {
+        "materia": "Disegno e Arte",
+        "materia_completa": "Disegno e storia dell'arte",
+        "docenti": [
+          "DELLA RAGIONE Silvia"
+        ]
+      },
+      "11:45": {
+        "materia": "Fisica",
+        "docenti": [
+          "VERRA Dennis",
+          "ZUECH Claudio"
+        ]
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "PERRUCCI Rosi"
+        ]
+      },
+      "09:50": {
+        "materia": "Matematica",
+        "docenti": [
+          "PREVIDI Paola"
+        ],
+        "aula": "Aula D 205**"
+      },
+      "10:40": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "BERTOLDI Michela"
+        ],
+        "aula": "AULA B 016"
+      },
+      "11:45": {
+        "materia": "Filosofia",
+        "docenti": [
+          "BARTOLI Lucia"
+        ],
+        "aula": "AULA B 016"
+      },
+      "12:35": {
+        "materia": "Storia",
+        "docenti": [
+          "BARTOLI Lucia"
+        ],
+        "aula": "AULA B 016"
+      },
+      "14:30": {
+        "materia": "Religione",
+        "docenti": [
+          "MONTALTO Salvatore"
+        ],
+        "aula": "AULA B 206*"
+      },
+      "15:20": {
+        "materia": "Fisica",
+        "docenti": [
+          "VERRA Dennis"
+        ],
+        "aula": "AULA FIS (B 308**)"
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "BERTOLDI Michela"
+        ],
+        "aula": "AULA B 207"
+      },
+      "09:00": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "PERRUCCI Rosi"
+        ],
+        "aula": "AULA B 207"
+      },
+      "09:50": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "OCHNER Daniel"
+        ]
+      },
+      "11:45": {
+        "materia": "Matematica",
+        "docenti": [
+          "PREVIDI Paola"
+        ]
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "BERTOLDI Michela"
+        ]
+      },
+      "09:50": {
+        "materia": "Scienze Naturali",
+        "materia_completa": "Scienze naturali",
+        "docenti": [
+          "LATTUCA Teresa",
+          "MACCAGNAN Elisa"
+        ]
+      },
+      "11:45": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "PERRUCCI Rosi"
+        ],
+        "aula": "AULA B 114"
+      },
+      "12:35": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "TACUS Alessandra"
+        ],
+        "aula": "AULA B 114"
+      },
+      "14:30": {
+        "materia": "Informatica",
+        "docenti": [
+          "DE GIORGI Nicola"
+        ]
+      },
+      "16:10": {
+        "materia": "Matematica",
+        "docenti": [
+          "PREVIDI Paola"
+        ],
+        "aula": "AULA B 205"
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Filosofia",
+        "docenti": [
+          "BARTOLI Lucia"
+        ],
+        "aula": "AULA B 210*"
+      },
+      "09:00": {
+        "materia": "Storia",
+        "docenti": [
+          "BARTOLI Lucia"
+        ],
+        "aula": "AULA B 210*"
+      },
+      "09:50": {
+        "materia": "Informatica",
+        "docenti": [
+          "DE GIORGI Nicola"
+        ],
+        "aula": "LAB. INF 3 (B 116)"
+      },
+      "10:40": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "TACUS Alessandra"
+        ]
+      },
+      "12:35": {
+        "materia": "Scienze Naturali",
+        "materia_completa": "Scienze naturali",
+        "docenti": [
+          "MACCAGNAN Elisa"
+        ],
+        "aula": "AULA B 309"
+      }
+    }
+  }
+}

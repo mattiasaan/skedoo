@@ -1,0 +1,207 @@
+{
+  "id": "4E",
+  "nome": "4 E",
+  "docente_coordinatore": "D'ALESSIO Valeria",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "DELIU Ornela"
+        ],
+        "aula": "AULA B 209"
+      },
+      "09:00": {
+        "materia": "Religione",
+        "docenti": [
+          "BOVO Paolo"
+        ],
+        "aula": "AULA 201"
+      },
+      "09:50": {
+        "materia": "Matematica",
+        "docenti": [
+          "D'ALESSIO Valeria"
+        ],
+        "aula": "AULA B 106*"
+      },
+      "10:40": {
+        "materia": "Storia",
+        "docenti": [
+          "MAISANO Nunziatina"
+        ],
+        "aula": "AULA B 114"
+      },
+      "11:45": {
+        "materia": "Tec. e prog. sist. inf. e tel. Maria,TOMEI Leonardo"
+      },
+      "14:30": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "FISCHNALLER Barbara"
+        ]
+      },
+      "16:10": {
+        "materia": "Informatica",
+        "docenti": [
+          "RECLA Alessandro"
+        ],
+        "aula": "LAB. INF 1 (B 208)"
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "FISCHNALLER Barbara"
+        ],
+        "aula": "AULA B 013*"
+      },
+      "09:00": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "DELIU Ornela"
+        ],
+        "aula": "AULA B 207"
+      },
+      "09:50": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "SALVATERRA Joshua"
+        ]
+      },
+      "11:45": {
+        "materia": "Informatica",
+        "docenti": [
+          "BELLAVITA Federica",
+          "RECLA Alessandro"
+        ],
+        "aula": "LAB. INF 1 (B 208)"
+      },
+      "14:30": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "MAISANO Nunziatina"
+        ],
+        "aula": "AULA 201"
+      },
+      "15:20": {
+        "materia": "Storia",
+        "docenti": [
+          "MAISANO Nunziatina"
+        ],
+        "aula": "AULA 201"
+      },
+      "16:10": {
+        "materia": "Sistemi e Reti",
+        "materia_completa": "Sistemi e reti",
+        "docenti": [
+          "DELIZIA Marco"
+        ],
+        "aula": "LAB. INF 1 (B 208)"
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Informatica",
+        "docenti": [
+          "BELLAVITA Federica",
+          "RECLA Alessandro"
+        ],
+        "aula": "LAB. INF 1 (B 208)"
+      },
+      "09:50": {
+        "materia": "Tec. Prog. Sistemi Inf.",
+        "materia_completa": "Tec. e prog. sist. inf. e tel.",
+        "docenti": [
+          "CANNONE Maria"
+        ]
+      },
+      "11:45": {
+        "materia": "Complementi di Matematica",
+        "materia_completa": "Complementi di matematica",
+        "docenti": [
+          "D'ALESSIO Valeria"
+        ],
+        "aula": "Aula D 204**"
+      },
+      "12:35": {
+        "materia": "Sistemi e Reti",
+        "materia_completa": "Sistemi e reti",
+        "docenti": [
+          "DELIZIA Marco"
+        ],
+        "aula": "Aula D 204**"
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "MAISANO Nunziatina"
+        ]
+      },
+      "09:50": {
+        "materia": "Telecomunicazioni",
+        "docenti": [
+          "MARAGIOGLIO Angela"
+        ],
+        "aula": "LAB. ELEE 1 (A 210*: L.E.AP)"
+      },
+      "10:40": {
+        "materia": "Complementi di Matematica",
+        "materia_completa": "Complementi di matematica",
+        "docenti": [
+          "D'ALESSIO Valeria"
+        ],
+        "aula": "LAB. INF 1 (B 208)"
+      },
+      "11:45": {
+        "materia": "Informatica",
+        "docenti": [
+          "BELLAVITA Federica",
+          "RECLA Alessandro"
+        ],
+        "aula": "LAB. INF 1 (B 208)"
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Sistemi e Reti",
+        "materia_completa": "Sistemi e reti",
+        "docenti": [
+          "DELIZIA Marco"
+        ]
+      },
+      "09:50": {
+        "materia": "Matematica",
+        "docenti": [
+          "D'ALESSIO Valeria"
+        ]
+      },
+      "11:45": {
+        "materia": "Telecomunicazioni",
+        "docenti": [
+          "BALESTRUCCI Domenico",
+          "MARAGIOGLIO Angela"
+        ],
+        "aula": "LAB. ELEE 1 (A 210*: L.E.AP)"
+      }
+    }
+  }
+}

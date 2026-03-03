@@ -1,0 +1,219 @@
+{
+  "id": "4N",
+  "nome": "4 N",
+  "docente_coordinatore": "MINICHIELLO Genesio",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "DI MARCO Raffaele Francesco"
+        ]
+      },
+      "09:50": {
+        "materia": "Elettronica",
+        "materia_completa": "Elettronica ed elettrotecnica",
+        "docenti": [
+          "RONDINI Ferdinando"
+        ],
+        "aula": "LAB. ELEE 3 (B 120/1)"
+      },
+      "10:40": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "SCHROFFENEGGER Sonja"
+        ]
+      },
+      "12:35": {
+        "materia": "Matematica",
+        "docenti": [
+          "STIVELLA Marco"
+        ],
+        "aula": "AULA B 104"
+      },
+      "14:30": {
+        "materia": "Sistemi Automatici",
+        "materia_completa": "Sistemi automatici",
+        "docenti": [
+          "MINICHIELLO Genesio"
+        ]
+      },
+      "16:10": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "GARBIN Simonetta"
+        ],
+        "aula": "AULA B 206*"
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "DI MARCO Raffaele Francesco"
+        ],
+        "aula": "AULA B 209"
+      },
+      "09:00": {
+        "materia": "Storia",
+        "docenti": [
+          "DI MARCO Raffaele Francesco"
+        ],
+        "aula": "AULA B 209"
+      },
+      "09:50": {
+        "materia": "Elettronica",
+        "materia_completa": "Elettronica ed elettrotecnica",
+        "docenti": [
+          "MAGNANI Fabio",
+          "RONDINI Ferdinando"
+        ],
+        "aula": "LAB. ELE 4 (C 003)"
+      },
+      "11:45": {
+        "materia": "Sistemi Automatici",
+        "materia_completa": "Sistemi automatici",
+        "docenti": [
+          "BALESTRUCCI Domenico",
+          "MINICHIELLO Genesio"
+        ],
+        "aula": "LAB. ELEE 1 (A 210*: L.E.AP)"
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "GARBIN Simonetta"
+        ],
+        "aula": "AULA B 206*"
+      },
+      "09:00": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "SCHROFFENEGGER Sonja"
+        ],
+        "aula": "AULA B 206*"
+      },
+      "09:50": {
+        "materia": "Tec. Prog. Sistemi Elettr.",
+        "materia_completa": "Tec. e prog. sist. ele. e elee",
+        "docenti": [
+          "LOVECCHIO Stefano"
+        ],
+        "aula": "LAB. ELE 1 (D 001)"
+      },
+      "10:40": {
+        "materia": "Tec. Prog. Sistemi Elettr.",
+        "materia_completa": "Tec. e prog. sist. ele. e elee",
+        "docenti": [
+          "LOVECCHIO Stefano",
+          "MAGNANI Fabio"
+        ],
+        "aula": "LAB. ELE 1 (D 001)"
+      },
+      "11:45": {
+        "materia": "Sistemi Automatici",
+        "materia_completa": "Sistemi automatici",
+        "docenti": [
+          "BALESTRUCCI Domenico",
+          "MINICHIELLO Genesio"
+        ],
+        "aula": "LAB. ELEE 3 (B 120/1)"
+      },
+      "12:35": {
+        "materia": "Sistemi Automatici",
+        "materia_completa": "Sistemi automatici",
+        "docenti": [
+          "MINICHIELLO Genesio"
+        ],
+        "aula": "LAB. ELEE 3 (B 120/1)"
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Elettronica",
+        "materia_completa": "Elettronica ed elettrotecnica",
+        "docenti": [
+          "RONDINI Ferdinando"
+        ]
+      },
+      "09:50": {
+        "materia": "Religione",
+        "docenti": [
+          "SOMMA Giancarlo"
+        ],
+        "aula": "AULA B 110*"
+      },
+      "10:40": {
+        "materia": "Complementi di Matematica",
+        "materia_completa": "Complementi di matematica",
+        "docenti": [
+          "STIVELLA Marco"
+        ],
+        "aula": "AULA B 105"
+      },
+      "11:45": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "GIGLIOLI Valentina"
+        ]
+      },
+      "14:30": {
+        "materia": "Tec. Prog. Sistemi Elettr.",
+        "materia_completa": "Tec. e prog. sist. ele. e elee",
+        "docenti": [
+          "LOVECCHIO Stefano",
+          "MAGNANI Fabio"
+        ],
+        "aula": "LAB. ELE 2 (D 004)"
+      },
+      "16:10": {
+        "materia": "Storia",
+        "docenti": [
+          "DI MARCO Raffaele Francesco"
+        ],
+        "aula": "AULA B 309"
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Tec. Prog. Sistemi Elettr.",
+        "materia_completa": "Tec. e prog. sist. ele. e elee",
+        "docenti": [
+          "LOVECCHIO Stefano"
+        ]
+      },
+      "09:50": {
+        "materia": "Elettronica",
+        "materia_completa": "Elettronica ed elettrotecnica",
+        "docenti": [
+          "MAGNANI Fabio",
+          "RONDINI Ferdinando"
+        ],
+        "aula": "LAB. ELE 3 (D 005)"
+      },
+      "11:45": {
+        "materia": "Matematica",
+        "docenti": [
+          "STIVELLA Marco"
+        ]
+      }
+    }
+  }
+}

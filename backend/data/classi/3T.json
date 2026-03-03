@@ -1,0 +1,271 @@
+{
+  "id": "3T",
+  "nome": "3 T",
+  "docente_coordinatore": "DELLA PENNA Daniela",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "Chimica Analitica",
+        "materia_completa": "Chimica analitica e strum.",
+        "docenti": [
+          "MASCIOVECCHIO Marina",
+          "TOSI Sara",
+          "<3",
+          "C/T> <3",
+          "C/T> 3 T"
+        ],
+        "aula": "AULA CHI (B 317**)"
+      },
+      "10:40": {
+        "materia": "Storia",
+        "docenti": [
+          "MOLINI Paola"
+        ],
+        "aula": "AULA B 113"
+      },
+      "11:45": {
+        "materia": "Matematica",
+        "docenti": [
+          "BERTOLINO Giuseppe"
+        ]
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Chimica Organica",
+        "materia_completa": "Chimica org. e biochimica",
+        "docenti": [
+          "MASCIOVECCHIO Marina",
+          "RICCA Mariaelena",
+          "<3",
+          "C/T> <3",
+          "C/T> 3 T"
+        ],
+        "aula": "LAB. CHI 1 (A 303) LAB. PNRR AMB. E ENERGIA (301)"
+      },
+      "09:50": {
+        "materia": "Biologia Sanitaria",
+        "materia_completa": "Bio., micro. e tec. contr.san.",
+        "docenti": [
+          "SERAFIN Alice",
+          "<3",
+          "C/T> <3",
+          "C/T> 3 T"
+        ],
+        "aula": "AULA B 209"
+      },
+      "10:40": {
+        "materia": "Igiene e Anatomia",
+        "materia_completa": "Igiene, anat., fisiol., patol.",
+        "docenti": [
+          "DE MARIA Liliana",
+          "<3",
+          "C/T> <3",
+          "C/T> 3 T"
+        ],
+        "aula": "AULA B 309"
+      },
+      "11:45": {
+        "materia": "Matematica",
+        "docenti": [
+          "BERTOLINO Giuseppe"
+        ],
+        "aula": "Aula D 204**"
+      },
+      "12:35": {
+        "materia": "Storia",
+        "docenti": [
+          "MOLINI Paola"
+        ],
+        "aula": "AULA B 115"
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Biologia Sanitaria",
+        "materia_completa": "Bio., micro. e tec. contr.san.",
+        "docenti": [
+          "FIORINI Raffaele",
+          "SERAFIN Alice",
+          "<3",
+          "C/T> <3",
+          "C/T> 3 T"
+        ],
+        "aula": "AULA BIO (302),LAB. BIO (A 302)"
+      },
+      "09:00": {
+        "materia": "Biologia Sanitaria",
+        "materia_completa": "Bio., micro. e tec. contr.san.",
+        "docenti": [
+          "SERAFIN Alice",
+          "<3",
+          "C/T> <3",
+          "C/T> 3 T"
+        ],
+        "aula": "AULA BIO (302)"
+      },
+      "09:50": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "DELLA PENNA Daniela"
+        ],
+        "aula": "AULA B 205"
+      },
+      "10:40": {
+        "materia": "Chimica Analitica",
+        "materia_completa": "Chimica analitica e strum.",
+        "docenti": [
+          "TOSI Sara",
+          "<3",
+          "C/T> <3",
+          "C/T> 3 T"
+        ],
+        "aula": "AULA B 307*"
+      },
+      "11:45": {
+        "materia": "Igiene e Anatomia",
+        "materia_completa": "Igiene, anat., fisiol., patol.",
+        "docenti": [
+          "DE MARIA Liliana",
+          "<3",
+          "C/T> <3",
+          "C/T> 3 T"
+        ],
+        "aula": "AULA 201"
+      },
+      "14:30": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "MOLINI Paola"
+        ]
+      },
+      "16:10": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "PATELLA Nadia"
+        ],
+        "aula": "AULA B 309"
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Chimica Organica",
+        "materia_completa": "Chimica org. e biochimica",
+        "docenti": [
+          "RICCA Mariaelena",
+          "<3",
+          "C/T> <3",
+          "C/T> 3 T"
+        ],
+        "aula": "AULA CHI (B 317**)"
+      },
+      "09:00": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "PATELLA Nadia"
+        ]
+      },
+      "10:40": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "MOLINI Paola"
+        ],
+        "aula": "AULA B 210*"
+      },
+      "11:45": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "SALVATERRA Joshua",
+          "Igiene",
+          "BIANCHI anat.",
+          "fisiol.",
+          "Patrick patol. Igiene",
+          "anat.",
+          "patol.",
+          "DE MARIA Liliana DE MARIA Liliana",
+          "<3",
+          "C/T> <3",
+          "C/T> 3 T <3",
+          "LAB. C/T> BIO <3 (A C/T> 302) 3 T"
+        ]
+      },
+      "15:20": {
+        "materia": "Q1 Q2",
+        "aula": "LAB. PNRR LAB. AMB. BIO E (A ENERGIA 302) (301) LAB. PNRR AMB. E ENERGIA (301)"
+      },
+      "16:10": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "DELLA PENNA Daniela"
+        ],
+        "aula": "AULA B 304"
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Biologia Sanitaria",
+        "materia_completa": "Bio., micro. e tec. contr.san.",
+        "docenti": [
+          "FIORINI Raffaele",
+          "SERAFIN Alice",
+          "<3",
+          "C/T> <3",
+          "C/T> 3 T"
+        ],
+        "aula": "AULA BIO (302),LAB. BIO (A 302)"
+      },
+      "09:50": {
+        "materia": "Religione",
+        "docenti": [
+          "MONTALTO Salvatore"
+        ],
+        "aula": "AULA B 110*"
+      },
+      "10:40": {
+        "materia": "Matematica",
+        "docenti": [
+          "BERTOLINO Giuseppe"
+        ],
+        "aula": "Aula D 204**"
+      },
+      "11:45": {
+        "materia": "Igiene e Anatomia",
+        "materia_completa": "Igiene, anat., fisiol., patol.",
+        "docenti": [
+          "DE MARIA Liliana",
+          "<3",
+          "C/T> <3",
+          "C/T> 3 T"
+        ],
+        "aula": "AULA B 307*"
+      },
+      "12:35": {
+        "materia": "Chimica Organica",
+        "materia_completa": "Chimica org. e biochimica",
+        "docenti": [
+          "MASCIOVECCHIO Marina",
+          "RICCA Mariaelena",
+          "<3",
+          "C/T> <3",
+          "C/T> 3 T"
+        ],
+        "aula": "AULA B 307*,LAB. CHI 1 (A 303)"
+      }
+    }
+  }
+}

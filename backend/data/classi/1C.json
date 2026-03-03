@@ -1,0 +1,228 @@
+{
+  "id": "1C",
+  "nome": "1 C",
+  "docente_coordinatore": "MILANESE Sabina",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "Tecno. e tecniche rappr. graf. Amin Mohammad Kazem",
+        "aula": "LAB. CAD 2 (B 221)"
+      },
+      "09:00": {
+        "materia": "Religione",
+        "docenti": [
+          "MONTALTO Salvatore"
+        ],
+        "aula": "AULA B 213"
+      },
+      "09:50": {
+        "materia": "Tecnologie Informatiche",
+        "materia_completa": "Tecnologie informatiche",
+        "docenti": [
+          "BONACCORSI Rosario",
+          "LOPEZ Maria Virginia"
+        ],
+        "aula": "LAB. INF 2 (B 212)"
+      },
+      "11:45": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "MOLINI Paola"
+        ],
+        "aula": "AULA B 113"
+      },
+      "12:35": {
+        "materia": "Storia",
+        "docenti": [
+          "MOLINI Paola"
+        ],
+        "aula": "AULA B 113"
+      },
+      "14:30": {
+        "materia": "Chimica",
+        "materia_completa": "Scienze integrate (Chimica)",
+        "docenti": [
+          "GUADAGNINI Maria Pia",
+          "MONACHELLA Angelo"
+        ]
+      },
+      "16:10": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "FISCHNALLER Barbara"
+        ],
+        "aula": "AULA B 204"
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "ALIAJ Mimoza"
+        ],
+        "aula": "AULA B 110*"
+      },
+      "09:00": {
+        "materia": "Diritto ed Economia",
+        "materia_completa": "Diritto ed economia",
+        "docenti": [
+          "SIBILLA Claudio"
+        ],
+        "aula": "AULA 201"
+      },
+      "09:50": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "MOLINI Paola"
+        ],
+        "aula": "AULA B 113"
+      },
+      "10:40": {
+        "materia": "Storia",
+        "docenti": [
+          "MOLINI Paola"
+        ],
+        "aula": "AULA B 113"
+      },
+      "11:45": {
+        "materia": "Matematica",
+        "docenti": [
+          "MILANESE Sabina"
+        ],
+        "aula": "AULA B 105"
+      },
+      "12:35": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "FISCHNALLER Barbara"
+        ],
+        "aula": "AULA B 013*"
+      },
+      "14:30": {
+        "materia": "Tecn. e Tecniche Grafiche",
+        "materia_completa": "Tecno. e tecniche rappr. graf.",
+        "docenti": [
+          "MELECHI' Michele",
+          "SINICHI Amin Mohammad Kazem"
+        ],
+        "aula": "LAB. DIS (B 215)"
+      },
+      "16:10": {
+        "materia": "Scienze e Biologia",
+        "materia_completa": "Scienze integrate (Sci. e Bio)",
+        "docenti": [
+          "MAURO Sergio"
+        ],
+        "aula": "AULA B 304"
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Matematica",
+        "docenti": [
+          "MILANESE Sabina"
+        ]
+      },
+      "09:50": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "NOLLI Cinzia"
+        ]
+      },
+      "11:45": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "FISCHNALLER Barbara"
+        ]
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Tecnologie Informatiche",
+        "materia_completa": "Tecnologie informatiche",
+        "docenti": [
+          "LOPEZ Maria Virginia"
+        ],
+        "aula": "LAB. ELE 3 (D 005)"
+      },
+      "09:00": {
+        "materia": "Scienze e Biologia",
+        "materia_completa": "Scienze integrate (Sci. e Bio)",
+        "docenti": [
+          "MAURO Sergio"
+        ],
+        "aula": "AULA B 306"
+      },
+      "09:50": {
+        "materia": "Fisica",
+        "materia_completa": "Scienze integrate (Fisica)",
+        "docenti": [
+          "VERRA Dennis"
+        ],
+        "aula": "AULA FIS (B 308**)"
+      },
+      "10:40": {
+        "materia": "Chimica",
+        "materia_completa": "Scienze integrate (Chimica)",
+        "docenti": [
+          "GUADAGNINI Maria Pia"
+        ],
+        "aula": "AULA B 107"
+      },
+      "11:45": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "MOLINI Paola"
+        ]
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Diritto ed Economia",
+        "materia_completa": "Diritto ed economia",
+        "docenti": [
+          "SIBILLA Claudio"
+        ],
+        "aula": "AULA 201"
+      },
+      "09:00": {
+        "materia": "Matematica",
+        "docenti": [
+          "MILANESE Sabina"
+        ],
+        "aula": "AULA B 104"
+      },
+      "09:50": {
+        "materia": "Fisica",
+        "materia_completa": "Scienze integrate (Fisica)",
+        "docenti": [
+          "FANIZZA Marco",
+          "VERRA Dennis"
+        ]
+      },
+      "11:45": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "ALIAJ Mimoza"
+        ]
+      }
+    }
+  }
+}

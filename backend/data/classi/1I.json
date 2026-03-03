@@ -1,0 +1,202 @@
+{
+  "id": "1I",
+  "nome": "1 I",
+  "docente_coordinatore": "VERRA Dennis",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "Fisica",
+        "docenti": [
+          "GIAGNORIO Stefano",
+          "VERRA Dennis"
+        ],
+        "aula": "LAB. FIS 2 (B 314)"
+      },
+      "09:50": {
+        "materia": "Religione",
+        "docenti": [
+          "SOMMA Giancarlo"
+        ],
+        "aula": "Aula D 206**"
+      },
+      "10:40": {
+        "materia": "Matematica",
+        "docenti": [
+          "GIUSTI Marina"
+        ],
+        "aula": "AULA B 304"
+      },
+      "11:45": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "ALDROVANDI Carla"
+        ]
+      },
+      "14:30": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "STOPPARI Antonella"
+        ],
+        "aula": "AULA B 304"
+      },
+      "15:20": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "TACUS Alessandra"
+        ],
+        "aula": "AULA B 304"
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "STOPPARI Antonella"
+        ]
+      },
+      "09:50": {
+        "materia": "Diritto ed Economia",
+        "materia_completa": "Diritto ed economia",
+        "docenti": [
+          "SIBILLA Claudio"
+        ],
+        "aula": "AULA B 304"
+      },
+      "10:40": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "ALDROVANDI Carla"
+        ],
+        "aula": "AULA B 304"
+      },
+      "11:45": {
+        "materia": "Scienze Naturali",
+        "materia_completa": "Scienze naturali",
+        "docenti": [
+          "LEGGIERO Stefania"
+        ]
+      },
+      "14:30": {
+        "materia": "Informatica",
+        "docenti": [
+          "DI DIO Daniele"
+        ]
+      },
+      "16:10": {
+        "materia": "Fisica",
+        "docenti": [
+          "VERRA Dennis"
+        ],
+        "aula": "AULA FIS (B 308**)"
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Diritto ed Economia",
+        "materia_completa": "Diritto ed economia",
+        "docenti": [
+          "SIBILLA Claudio"
+        ],
+        "aula": "AULA B 304"
+      },
+      "09:00": {
+        "materia": "Storia e Geografia",
+        "materia_completa": "Storia e geografia",
+        "docenti": [
+          "STOPPARI Antonella"
+        ],
+        "aula": "AULA B 304"
+      },
+      "09:50": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "SALVATERRA Joshua"
+        ]
+      },
+      "11:45": {
+        "materia": "Disegno e Arte",
+        "materia_completa": "Disegno e storia dell'arte",
+        "docenti": [
+          "DELLA RAGIONE Silvia"
+        ]
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Matematica",
+        "docenti": [
+          "GIUSTI Marina"
+        ]
+      },
+      "09:50": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "TACUS Alessandra"
+        ]
+      },
+      "11:45": {
+        "materia": "Storia e Geografia",
+        "materia_completa": "Storia e geografia",
+        "docenti": [
+          "STOPPARI Antonella"
+        ],
+        "aula": "AULA B 304"
+      },
+      "12:35": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "STOPPARI Antonella"
+        ],
+        "aula": "AULA B 304"
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Scienze Naturali",
+        "materia_completa": "Scienze naturali",
+        "docenti": [
+          "GIORDANO Carmelo",
+          "LEGGIERO Stefania"
+        ]
+      },
+      "09:50": {
+        "materia": "Storia e Geografia",
+        "materia_completa": "Storia e geografia",
+        "docenti": [
+          "STOPPARI Antonella"
+        ],
+        "aula": "AULA B 304"
+      },
+      "10:40": {
+        "materia": "Matematica",
+        "docenti": [
+          "GIUSTI Marina"
+        ]
+      },
+      "12:35": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "ALDROVANDI Carla"
+        ],
+        "aula": "AULA B 304"
+      }
+    }
+  }
+}

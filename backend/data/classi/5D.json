@@ -1,0 +1,203 @@
+{
+  "id": "5D",
+  "nome": "5 D",
+  "docente_coordinatore": "GHISU Maria Gabriella",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "PATELLA Nadia"
+        ]
+      },
+      "09:50": {
+        "materia": "Matematica",
+        "docenti": [
+          "GAGLIOSTRO Antonio"
+        ],
+        "aula": "AULA B 107"
+      },
+      "10:40": {
+        "materia": "Legislazione Sanitaria",
+        "materia_completa": "Legislazione sanitaria",
+        "docenti": [
+          "MARROCCO Caterina"
+        ],
+        "aula": "AULA B 206*"
+      },
+      "11:45": {
+        "materia": "Igiene e Anatomia",
+        "materia_completa": "Igiene, anat., fisiol., patol.",
+        "docenti": [
+          "DI TRAPANI Rosalba"
+        ]
+      },
+      "12:35": {
+        "materia": "BIO (302),LAB. BIO (A 302)",
+        "docenti": [
+          "FIORINI Raffaele"
+        ]
+      },
+      "14:30": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "GHISU Maria Gabriella"
+        ],
+        "aula": "AULA B 213"
+      },
+      "15:20": {
+        "materia": "Storia",
+        "docenti": [
+          "GHISU Maria Gabriella"
+        ],
+        "aula": "AULA B 213"
+      },
+      "16:10": {
+        "materia": "Biologia Sanitaria",
+        "materia_completa": "Bio., micro. e tec. contr.san.",
+        "docenti": [
+          "SERAFIN Alice"
+        ],
+        "aula": "AULA BIO (302)"
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Matematica",
+        "docenti": [
+          "GAGLIOSTRO Antonio"
+        ]
+      },
+      "09:50": {
+        "materia": "Igiene e Anatomia",
+        "materia_completa": "Igiene, anat., fisiol., patol.",
+        "docenti": [
+          "DI TRAPANI Rosalba"
+        ]
+      },
+      "11:45": {
+        "materia": "Biologia Sanitaria",
+        "materia_completa": "Bio., micro. e tec. contr.san.",
+        "docenti": [
+          "FIORINI Raffaele",
+          "SERAFIN Alice"
+        ]
+      },
+      "14:30": {
+        "materia": "Religione",
+        "docenti": [
+          "BOVO Paolo"
+        ],
+        "aula": "AULA B 311*"
+      },
+      "15:20": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "DI CELLO Jacopo"
+        ],
+        "aula": "PAL. \"Talvera Centro\""
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Storia",
+        "docenti": [
+          "GHISU Maria Gabriella"
+        ],
+        "aula": "AULA B 111"
+      },
+      "09:00": {
+        "materia": "Legislazione Sanitaria",
+        "materia_completa": "Legislazione sanitaria",
+        "docenti": [
+          "MARROCCO Caterina"
+        ]
+      },
+      "10:40": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "FRANCHINI Nicoletta"
+        ],
+        "aula": "AULA B 205"
+      },
+      "11:45": {
+        "materia": "Igiene e Anatomia",
+        "materia_completa": "Igiene, anat., fisiol., patol.",
+        "docenti": [
+          "DI TRAPANI Rosalba"
+        ]
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "PATELLA Nadia"
+        ],
+        "aula": "AULA B 007*"
+      },
+      "09:00": {
+        "materia": "Biologia Sanitaria",
+        "materia_completa": "Bio., micro. e tec. contr.san.",
+        "docenti": [
+          "FIORINI Raffaele",
+          "SERAFIN Alice"
+        ]
+      },
+      "11:45": {
+        "materia": "Chimica Organica",
+        "materia_completa": "Chimica org. e biochimica",
+        "docenti": [
+          "MASCIOVECCHIO Marina",
+          "RICCA Mariaelena"
+        ],
+        "aula": "AULA B 306,LAB. CHI 1 (A 303)"
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Igiene e Anatomia",
+        "materia_completa": "Igiene, anat., fisiol., patol.",
+        "docenti": [
+          "DI TRAPANI Rosalba"
+        ],
+        "aula": "AULA B 106*"
+      },
+      "09:00": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "GHISU Maria Gabriella"
+        ]
+      },
+      "10:40": {
+        "materia": "Chimica Organica",
+        "materia_completa": "Chimica org. e biochimica",
+        "docenti": [
+          "RICCA Mariaelena"
+        ]
+      },
+      "12:35": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "FRANCHINI Nicoletta"
+        ],
+        "aula": "AULA B 207"
+      }
+    }
+  }
+}

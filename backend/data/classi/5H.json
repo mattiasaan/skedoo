@@ -1,0 +1,210 @@
+{
+  "id": "5H",
+  "nome": "5 H",
+  "docente_coordinatore": "LOMBINO Alessandro",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "Elettronica",
+        "materia_completa": "Elettronica ed elettrotecnica",
+        "docenti": [
+          "GRANITTO Luca",
+          "LOPEZ Maria Virginia"
+        ],
+        "aula": "LAB. ELE 1 (D 001)"
+      },
+      "09:50": {
+        "materia": "Storia",
+        "docenti": [
+          "ZEZZA Maria"
+        ],
+        "aula": "AULA B 115"
+      },
+      "10:40": {
+        "materia": "Religione",
+        "docenti": [
+          "SOMMA Giancarlo"
+        ],
+        "aula": "AULA B 210*"
+      },
+      "11:45": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "VERZELLA Alba"
+        ]
+      },
+      "14:30": {
+        "materia": "Sistemi Automatici",
+        "materia_completa": "Sistemi automatici",
+        "docenti": [
+          "SICIGNANO Cristoforo"
+        ]
+      },
+      "16:10": {
+        "materia": "Tec. Prog. Sistemi Elettr.",
+        "materia_completa": "Tec. e prog. sist. ele. e elee",
+        "docenti": [
+          "LOMBINO Alessandro",
+          "NATALE Luigi"
+        ],
+        "aula": "LAB. ELE 2 (D 004)"
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Elettronica",
+        "materia_completa": "Elettronica ed elettrotecnica",
+        "docenti": [
+          "LOPEZ Maria Virginia"
+        ],
+        "aula": "LAB. ELE 3 (D 005)"
+      },
+      "09:00": {
+        "materia": "Elettronica",
+        "materia_completa": "Elettronica ed elettrotecnica",
+        "docenti": [
+          "GRANITTO Luca",
+          "LOPEZ Maria Virginia"
+        ],
+        "aula": "LAB. ELE 3 (D 005)"
+      },
+      "09:50": {
+        "materia": "Storia",
+        "docenti": [
+          "ZEZZA Maria"
+        ],
+        "aula": "AULA B 210*"
+      },
+      "10:40": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "PEROTTI Antonio"
+        ],
+        "aula": "AULA B 206*"
+      },
+      "11:45": {
+        "materia": "Sistemi Automatici",
+        "materia_completa": "Sistemi automatici",
+        "docenti": [
+          "MAGNANI Fabio",
+          "SICIGNANO Cristoforo"
+        ],
+        "aula": "LAB. ELE 2 (D 004)"
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Tec. Prog. Sistemi Elettr.",
+        "materia_completa": "Tec. e prog. sist. ele. e elee",
+        "docenti": [
+          "LOMBINO Alessandro",
+          "NATALE Luigi"
+        ],
+        "aula": "LAB. ELE 1 (D 001)"
+      },
+      "09:50": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "VERZELLA Alba"
+        ],
+        "aula": "AULA B 213"
+      },
+      "10:40": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "BESTE Anna Maria Waltraud"
+        ],
+        "aula": "AULA B 207"
+      },
+      "11:45": {
+        "materia": "Sistemi Automatici",
+        "materia_completa": "Sistemi automatici",
+        "docenti": [
+          "MAGNANI Fabio",
+          "SICIGNANO Cristoforo"
+        ],
+        "aula": "LAB. ELE 2 (D 004)"
+      },
+      "14:30": {
+        "materia": "Elettronica",
+        "materia_completa": "Elettronica ed elettrotecnica",
+        "docenti": [
+          "LOPEZ Maria Virginia"
+        ]
+      },
+      "16:10": {
+        "materia": "Matematica",
+        "docenti": [
+          "MICILLO Martia Giustina"
+        ],
+        "aula": "AULA B 204"
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "BESTE Anna Maria Waltraud"
+        ]
+      },
+      "09:50": {
+        "materia": "Elettronica",
+        "materia_completa": "Elettronica ed elettrotecnica",
+        "docenti": [
+          "LOPEZ Maria Virginia"
+        ],
+        "aula": "LAB. ELE 1 (D 001)"
+      },
+      "10:40": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "PEROTTI Antonio"
+        ],
+        "aula": "AULA B 013*"
+      },
+      "11:45": {
+        "materia": "Tec. Prog. Sistemi Elettr.",
+        "materia_completa": "Tec. e prog. sist. ele. e elee",
+        "docenti": [
+          "LOMBINO Alessandro"
+        ]
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Tec. Prog. Sistemi Elettr.",
+        "materia_completa": "Tec. e prog. sist. ele. e elee",
+        "docenti": [
+          "LOMBINO Alessandro"
+        ]
+      },
+      "09:50": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "DI CELLO Jacopo"
+        ]
+      },
+      "11:45": {
+        "materia": "Matematica",
+        "docenti": [
+          "MICILLO Martia Giustina"
+        ]
+      }
+    }
+  }
+}

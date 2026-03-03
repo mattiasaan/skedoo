@@ -1,0 +1,215 @@
+{
+  "id": "4I",
+  "nome": "4 I",
+  "docente_coordinatore": "TURCO Giuseppe",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "Matematica",
+        "docenti": [
+          "PREVIDI Paola"
+        ],
+        "aula": "AULA B 105"
+      },
+      "09:00": {
+        "materia": "Fisica",
+        "docenti": [
+          "TURCO Giuseppe"
+        ],
+        "aula": "LAB. FIS 1 (B 310)"
+      },
+      "09:50": {
+        "materia": "Religione",
+        "docenti": [
+          "BOVO Paolo"
+        ],
+        "aula": "AULA 201"
+      },
+      "10:40": {
+        "materia": "Informatica",
+        "docenti": [
+          "IACCARINO Gennaro"
+        ],
+        "aula": "LAB. INF 3 (B 116)"
+      },
+      "11:45": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "SALVATERRA Joshua"
+        ]
+      },
+      "14:30": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "BERTOLDI Michela"
+        ],
+        "aula": "AULA B 309"
+      },
+      "15:20": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "RIGHI Arianna"
+        ],
+        "aula": "LAB. INF 1 (B 208)"
+      },
+      "16:10": {
+        "materia": "Storia",
+        "docenti": [
+          "STOPPARI Antonella"
+        ],
+        "aula": "AULA B 205"
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Matematica",
+        "docenti": [
+          "PREVIDI Paola"
+        ]
+      },
+      "09:50": {
+        "materia": "Scienze Naturali",
+        "materia_completa": "Scienze naturali",
+        "docenti": [
+          "CITTA' Tiziana",
+          "MARRA Carla"
+        ]
+      },
+      "11:45": {
+        "materia": "Disegno e Arte",
+        "materia_completa": "Disegno e storia dell'arte",
+        "docenti": [
+          "DELLA RAGIONE Silvia"
+        ]
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Fisica",
+        "docenti": [
+          "TURCO Giuseppe",
+          "ZUECH Claudio"
+        ],
+        "aula": "LAB. FIS 2 (B 314)"
+      },
+      "09:50": {
+        "materia": "Scienze Naturali",
+        "materia_completa": "Scienze naturali",
+        "docenti": [
+          "MARRA Carla"
+        ],
+        "aula": "AULA SCI (B 301**)"
+      },
+      "10:40": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "BERTOLDI Michela"
+        ]
+      },
+      "12:35": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "STOPPARI Antonella"
+        ],
+        "aula": "AULA B 211"
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "STOPPARI Antonella"
+        ]
+      },
+      "09:50": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "BERTOLDI Michela"
+        ],
+        "aula": "AULA B 013*"
+      },
+      "10:40": {
+        "materia": "Informatica",
+        "docenti": [
+          "IACCARINO Gennaro"
+        ]
+      },
+      "12:35": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "RIGHI Arianna"
+        ],
+        "aula": "AULA B 007*"
+      },
+      "14:30": {
+        "materia": "Matematica",
+        "docenti": [
+          "PREVIDI Paola"
+        ],
+        "aula": "AULA B 205"
+      },
+      "15:20": {
+        "materia": "Filosofia",
+        "docenti": [
+          "BARTOLI Lucia"
+        ],
+        "aula": "AULA B 210*"
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "STOPPARI Antonella"
+        ],
+        "aula": "AULA B 114"
+      },
+      "09:00": {
+        "materia": "Storia",
+        "docenti": [
+          "STOPPARI Antonella"
+        ],
+        "aula": "AULA B 114"
+      },
+      "09:50": {
+        "materia": "Scienze Naturali",
+        "materia_completa": "Scienze naturali",
+        "docenti": [
+          "MARRA Carla"
+        ]
+      },
+      "11:45": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "RIGHI Arianna"
+        ],
+        "aula": "AULA B 210*"
+      },
+      "12:35": {
+        "materia": "Filosofia",
+        "docenti": [
+          "BARTOLI Lucia"
+        ],
+        "aula": "AULA B 210*"
+      }
+    }
+  }
+}

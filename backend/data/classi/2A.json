@@ -1,0 +1,223 @@
+{
+  "id": "2A",
+  "nome": "2 A",
+  "docente_coordinatore": "BESTE Anna Maria Waltraud",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "FRANCHINI Nicoletta"
+        ]
+      },
+      "09:50": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "OCHNER Daniel"
+        ]
+      },
+      "11:45": {
+        "materia": "Religione",
+        "docenti": [
+          "BOVO Paolo"
+        ],
+        "aula": "AULA 201"
+      },
+      "12:35": {
+        "materia": "Matematica",
+        "docenti": [
+          "SARRI Wanda"
+        ],
+        "aula": "AULA B 105"
+      },
+      "14:30": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "VITIELLO Anna"
+        ]
+      },
+      "16:10": {
+        "materia": "Fisica",
+        "materia_completa": "Scienze integrate (Fisica)",
+        "docenti": [
+          "CALDERAN Tabitha"
+        ],
+        "aula": "AULA MEC (D 009)"
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Scienze e Biologia",
+        "materia_completa": "Scienze integrate (Sci. e Bio)",
+        "docenti": [
+          "SERAFIN Alice"
+        ],
+        "aula": "AULA B 311*"
+      },
+      "09:00": {
+        "materia": "Diritto ed Economia",
+        "materia_completa": "Diritto ed economia",
+        "docenti": [
+          "SCARSO Carla Salvatrice"
+        ],
+        "aula": "AULA B 201"
+      },
+      "09:50": {
+        "materia": "Tecn. e Tecniche Grafiche",
+        "materia_completa": "Tecno. e tecniche rappr. graf.",
+        "docenti": [
+          "GAETANO Giuseppe",
+          "PERRICONE Cristina"
+        ],
+        "aula": "LAB. CAD 2 (B 221)"
+      },
+      "11:45": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "VITIELLO Anna"
+        ]
+      },
+      "14:30": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "BESTE Anna Maria Waltraud"
+        ]
+      },
+      "16:10": {
+        "materia": "Chimica",
+        "materia_completa": "Scienze integrate (Chimica)",
+        "docenti": [
+          "PECORARO Diego"
+        ],
+        "aula": "AULA CHI (B 317**)"
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Storia",
+        "docenti": [
+          "VITIELLO Anna"
+        ],
+        "aula": "AULA B 109"
+      },
+      "09:00": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "FRANCHINI Nicoletta"
+        ],
+        "aula": "AULA B 204"
+      },
+      "09:50": {
+        "materia": "Tecn. e Tecniche Grafiche",
+        "materia_completa": "Tecno. e tecniche rappr. graf.",
+        "docenti": [
+          "PERRICONE Cristina"
+        ],
+        "aula": "LAB. CAD 2 (B 221)"
+      },
+      "10:40": {
+        "materia": "Scienze e Tecn. Applicate",
+        "materia_completa": "Scienze e tecnologie applicate",
+        "docenti": [
+          "VALENTINI Paolo"
+        ],
+        "aula": "AULA MEC (D 009)"
+      },
+      "11:45": {
+        "materia": "Scienze e Tecn. Applicate",
+        "materia_completa": "Scienze e tecnologie applicate",
+        "docenti": [
+          "CANTISANI Silviano",
+          "VALENTINI Paolo"
+        ]
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Scienze e Biologia",
+        "materia_completa": "Scienze integrate (Sci. e Bio)",
+        "docenti": [
+          "SERAFIN Alice"
+        ],
+        "aula": "AULA BIO (302)"
+      },
+      "09:00": {
+        "materia": "Matematica",
+        "docenti": [
+          "SARRI Wanda"
+        ]
+      },
+      "10:40": {
+        "materia": "Storia",
+        "docenti": [
+          "VITIELLO Anna"
+        ],
+        "aula": "AULA B 114"
+      },
+      "11:45": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "BESTE Anna Maria Waltraud"
+        ],
+        "aula": "AULA B 011"
+      },
+      "12:35": {
+        "materia": "Diritto ed Economia",
+        "materia_completa": "Diritto ed economia",
+        "docenti": [
+          "SCARSO Carla Salvatrice"
+        ],
+        "aula": "AULA B 201"
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Fisica",
+        "materia_completa": "Scienze integrate (Fisica)",
+        "docenti": [
+          "CALDERAN Tabitha",
+          "GIAGNORIO Stefano"
+        ],
+        "aula": "LAB. FIS 2 (B 314)"
+      },
+      "09:50": {
+        "materia": "Chimica",
+        "materia_completa": "Scienze integrate (Chimica)",
+        "docenti": [
+          "MONACHELLA Angelo",
+          "PECORARO Diego"
+        ]
+      },
+      "11:45": {
+        "materia": "Matematica",
+        "docenti": [
+          "SARRI Wanda"
+        ],
+        "aula": "AULA B 108"
+      },
+      "12:35": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "BESTE Anna Maria Waltraud"
+        ],
+        "aula": "AULA B 004"
+      }
+    }
+  }
+}

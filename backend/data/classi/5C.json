@@ -1,0 +1,199 @@
+{
+  "id": "5C",
+  "nome": "5 C",
+  "docente_coordinatore": "MOLINI Paola",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "MOLINI Paola"
+        ],
+        "aula": "AULA B 113"
+      },
+      "09:00": {
+        "materia": "Storia",
+        "docenti": [
+          "MOLINI Paola"
+        ],
+        "aula": "AULA B 113"
+      },
+      "09:50": {
+        "materia": "Fisica Ambientale",
+        "materia_completa": "Fisica ambientale",
+        "docenti": [
+          "VERRA Dennis",
+          "PNRR AMB. E ENERGIA (301)"
+        ]
+      },
+      "10:40": {
+        "materia": "Chimica Analitica",
+        "materia_completa": "Chimica analitica e strum.",
+        "docenti": [
+          "BIANCHI Patrick",
+          "TOSI Sara"
+        ],
+        "aula": "AULA CHI (B 317**) LAB. CHI 4 (B 320)"
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "MOLINI Paola"
+        ]
+      },
+      "09:50": {
+        "materia": "Biologia Ambientale",
+        "materia_completa": "Bio., micro. e tec. contr.amb.",
+        "docenti": [
+          "STICCOTTI Gea"
+        ],
+        "aula": "AULA B 309"
+      },
+      "10:40": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "FRANCHINI Nicoletta"
+        ],
+        "aula": "AULA B 101"
+      },
+      "11:45": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "PATELLA Nadia"
+        ]
+      },
+      "14:30": {
+        "materia": "Matematica",
+        "docenti": [
+          "D'ALESSIO Valeria"
+        ]
+      },
+      "16:10": {
+        "materia": "Religione",
+        "docenti": [
+          "BOVO Paolo"
+        ],
+        "aula": "AULA B 311*"
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Chimica Organica",
+        "materia_completa": "Chimica org. e biochimica",
+        "docenti": [
+          "CITTA' Tiziana",
+          "GUADAGNINI Maria Pia"
+        ],
+        "aula": "Aula D 204**,LAB. CHI 1 (A 303)"
+      },
+      "09:50": {
+        "materia": "Biologia Ambientale",
+        "materia_completa": "Bio., micro. e tec. contr.amb.",
+        "docenti": [
+          "BIANCHI Patrick",
+          "STICCOTTI Gea"
+        ]
+      },
+      "11:45": {
+        "materia": "Chimica Analitica",
+        "materia_completa": "Chimica analitica e strum.",
+        "docenti": [
+          "TOSI Sara"
+        ]
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Matematica",
+        "docenti": [
+          "D'ALESSIO Valeria"
+        ],
+        "aula": "AULA B 112*"
+      },
+      "09:00": {
+        "materia": "Storia",
+        "docenti": [
+          "MOLINI Paola"
+        ],
+        "aula": "AULA B 108"
+      },
+      "09:50": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "VITRANO Rosalba"
+        ]
+      },
+      "11:45": {
+        "materia": "Chimica Organica",
+        "materia_completa": "Chimica org. e biochimica",
+        "docenti": [
+          "GUADAGNINI Maria Pia"
+        ]
+      },
+      "14:30": {
+        "materia": "Biologia Ambientale",
+        "materia_completa": "Bio., micro. e tec. contr.amb.",
+        "docenti": [
+          "STICCOTTI Gea"
+        ]
+      },
+      "16:10": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "FRANCHINI Nicoletta"
+        ],
+        "aula": "AULA B 311*"
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Fisica Ambientale",
+        "materia_completa": "Fisica ambientale",
+        "docenti": [
+          "VERRA Dennis"
+        ]
+      },
+      "09:50": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "PATELLA Nadia"
+        ],
+        "aula": "AULA B 205"
+      },
+      "10:40": {
+        "materia": "Chimica Organica",
+        "materia_completa": "Chimica org. e biochimica",
+        "docenti": [
+          "CITTA' Tiziana",
+          "GUADAGNINI Maria Pia"
+        ],
+        "aula": "AULA B 306,LAB. CHI 1 (A 303)"
+      },
+      "11:45": {
+        "materia": "Biologia Ambientale",
+        "materia_completa": "Bio., micro. e tec. contr.amb.",
+        "docenti": [
+          "BIANCHI Patrick",
+          "STICCOTTI Gea"
+        ]
+      }
+    }
+  }
+}

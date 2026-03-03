@@ -1,0 +1,220 @@
+{
+  "id": "1P",
+  "nome": "1 P",
+  "docente_coordinatore": "PRESTIGIACOMO Davide",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "e modell. odontotecnica",
+        "docenti": [
+          "DOCILE Valeria Anna"
+        ]
+      },
+      "09:50": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "PATELLA Nadia"
+        ],
+        "aula": "AULA B 007*"
+      },
+      "10:40": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "DI MARCO Raffaele Francesco"
+        ]
+      },
+      "12:35": {
+        "materia": "Diritto ed Economia",
+        "materia_completa": "Diritto ed economia",
+        "docenti": [
+          "MARROCCO Caterina"
+        ],
+        "aula": "AULA B 109"
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Scienze e Biologia",
+        "materia_completa": "Scienze integrate (Sci. e Bio)",
+        "docenti": [
+          "MARRA Carla"
+        ],
+        "aula": "AULA B 307*"
+      },
+      "09:00": {
+        "materia": "Religione",
+        "docenti": [
+          "SCIBELLI Alice"
+        ],
+        "aula": "AULA B 213"
+      },
+      "09:50": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "PATELLA Nadia"
+        ],
+        "aula": "AULA B 013*"
+      },
+      "10:40": {
+        "materia": "Matematica",
+        "docenti": [
+          "PRESTIGIACOMO Davide"
+        ],
+        "aula": "AULA B 106*"
+      },
+      "11:45": {
+        "materia": "Anatomia e Fisiologia",
+        "materia_completa": "Anatomia, fisiologia, igiene",
+        "docenti": [
+          "DI TRAPANI Rosalba"
+        ],
+        "aula": "AULA SCI (B 301**)"
+      },
+      "12:35": {
+        "materia": "Storia",
+        "docenti": [
+          "DI MARCO Raffaele Francesco"
+        ],
+        "aula": "AULA B 108"
+      },
+      "14:30": {
+        "materia": "Lab. Odontotecnico",
+        "materia_completa": "Eser. di lab. odontotecnico",
+        "docenti": [
+          "MARIANI Chiara"
+        ]
+      },
+      "16:10": {
+        "materia": "Diritto ed Economia",
+        "materia_completa": "Diritto ed economia",
+        "docenti": [
+          "MARROCCO Caterina"
+        ],
+        "aula": "AULA B 209"
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Matematica",
+        "docenti": [
+          "PRESTIGIACOMO Davide"
+        ]
+      },
+      "09:50": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "DI MARCO Raffaele Francesco"
+        ],
+        "aula": "AULA B 111"
+      },
+      "10:40": {
+        "materia": "Scienze e Biologia",
+        "materia_completa": "Scienze integrate (Sci. e Bio)",
+        "docenti": [
+          "MARRA Carla"
+        ],
+        "aula": "AULA SCI (B 301**)"
+      },
+      "11:45": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "DELIU Ornela"
+        ]
+      },
+      "14:30": {
+        "materia": "Chimica",
+        "materia_completa": "Scienze integrate (Chimica)",
+        "docenti": [
+          "BIDDAU Antonella",
+          "GIORDANO Carmelo"
+        ],
+        "aula": "AULA B 304,LAB. CHI 3 (B 318)"
+      },
+      "16:10": {
+        "materia": "Anatomia e Fisiologia",
+        "materia_completa": "Anatomia, fisiologia, igiene",
+        "docenti": [
+          "DI TRAPANI Rosalba"
+        ],
+        "aula": "AULA B 205"
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Lab. Odontotecnico",
+        "materia_completa": "Eser. di lab. odontotecnico",
+        "docenti": [
+          "MARIANI Chiara"
+        ]
+      },
+      "09:50": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "DELIU Ornela"
+        ],
+        "aula": "AULA B 101"
+      },
+      "10:40": {
+        "materia": "Matematica",
+        "docenti": [
+          "PRESTIGIACOMO Davide"
+        ],
+        "aula": "AULA B 104"
+      },
+      "11:45": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "PATELLA Nadia"
+        ]
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "VITRANO Rosalba"
+        ]
+      },
+      "09:50": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "DI MARCO Raffaele Francesco"
+        ],
+        "aula": "AULA B 113"
+      },
+      "10:40": {
+        "materia": "Storia",
+        "docenti": [
+          "DI MARCO Raffaele Francesco"
+        ],
+        "aula": "AULA B 113"
+      },
+      "11:45": {
+        "materia": "Fisica",
+        "materia_completa": "Scienze integrate (Fisica)",
+        "docenti": [
+          "CALDERAN Tabitha",
+          "FANIZZA Marco"
+        ],
+        "aula": "LAB. FIS 2 (B 314)"
+      }
+    }
+  }
+}

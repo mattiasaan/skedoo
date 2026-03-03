@@ -1,0 +1,207 @@
+{
+  "id": "3I",
+  "nome": "3 I",
+  "docente_coordinatore": "GIUSTI Marina",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "Matematica",
+        "docenti": [
+          "GIUSTI Marina"
+        ],
+        "aula": "AULA B 210*"
+      },
+      "09:00": {
+        "materia": "Filosofia",
+        "docenti": [
+          "BARTOLI Lucia"
+        ],
+        "aula": "AULA B 209"
+      },
+      "09:50": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "ALDROVANDI Carla"
+        ],
+        "aula": "AULA B 204"
+      },
+      "10:40": {
+        "materia": "Scienze Naturali",
+        "materia_completa": "Scienze naturali",
+        "docenti": [
+          "DALLA TORRE Massimiliano",
+          "LATTUCA Teresa"
+        ]
+      },
+      "12:35": {
+        "materia": "Storia",
+        "docenti": [
+          "BERTOLDI Christian"
+        ],
+        "aula": "AULA B 111"
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "DELLA PENNA Daniela"
+        ],
+        "aula": "AULA B 207"
+      },
+      "09:00": {
+        "materia": "Religione",
+        "docenti": [
+          "SOMMA Giancarlo"
+        ],
+        "aula": "AULA B 101"
+      },
+      "09:50": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "VITRANO Rosalba"
+        ]
+      },
+      "11:45": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "ALDROVANDI Carla"
+        ],
+        "aula": "AULA B 007*"
+      },
+      "12:35": {
+        "materia": "Scienze Naturali",
+        "materia_completa": "Scienze naturali",
+        "docenti": [
+          "DALLA TORRE Massimiliano"
+        ],
+        "aula": "AULA SCI (B 301**)"
+      },
+      "14:30": {
+        "materia": "Matematica",
+        "docenti": [
+          "GIUSTI Marina"
+        ]
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Scienze Naturali",
+        "materia_completa": "Scienze naturali",
+        "docenti": [
+          "DALLA TORRE Massimiliano"
+        ]
+      },
+      "09:50": {
+        "materia": "Fisica",
+        "docenti": [
+          "MARTINI Giampietro"
+        ],
+        "aula": "AULA FIS (B 308**)"
+      },
+      "10:40": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "BERTOLDI Christian"
+        ],
+        "aula": "AULA B 106*"
+      },
+      "11:45": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "DELLA PENNA Daniela"
+        ]
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "BERTOLDI Christian"
+        ]
+      },
+      "09:50": {
+        "materia": "Disegno e Arte",
+        "materia_completa": "Disegno e storia dell'arte",
+        "docenti": [
+          "DELLA RAGIONE Silvia"
+        ]
+      },
+      "11:45": {
+        "materia": "Matematica",
+        "docenti": [
+          "GIUSTI Marina"
+        ],
+        "aula": "Aula D 204**"
+      },
+      "12:35": {
+        "materia": "Scienze Naturali",
+        "materia_completa": "Scienze naturali",
+        "docenti": [
+          "DALLA TORRE Massimiliano"
+        ],
+        "aula": "LAB. PNRR AMB. E ENERGIA (301)"
+      },
+      "14:30": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "ALDROVANDI Carla"
+        ]
+      },
+      "16:10": {
+        "materia": "Filosofia",
+        "docenti": [
+          "BARTOLI Lucia"
+        ],
+        "aula": "AULA B 210*"
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Fisica",
+        "docenti": [
+          "MARTINI Giampietro",
+          "PAPAIS Denise"
+        ],
+        "aula": "LAB. FIS 1 (B 310)"
+      },
+      "09:50": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "BERTOLDI Christian"
+        ],
+        "aula": "AULA B 109"
+      },
+      "10:40": {
+        "materia": "Storia",
+        "docenti": [
+          "BERTOLDI Christian"
+        ],
+        "aula": "AULA B 109"
+      },
+      "11:45": {
+        "materia": "Informatica",
+        "docenti": [
+          "DE GIORGI Nicola"
+        ]
+      }
+    }
+  }
+}

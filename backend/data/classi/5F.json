@@ -1,0 +1,206 @@
+{
+  "id": "5F",
+  "nome": "5 F",
+  "docente_coordinatore": "BERTOLDI Christian",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "Tec. Prog. Sistemi Inf.",
+        "materia_completa": "Tec. e prog. sist. inf. e tel.",
+        "docenti": [
+          "BASTIANELLO Fausto",
+          "RONDINI Ferdinando"
+        ],
+        "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
+      },
+      "09:50": {
+        "materia": "Storia",
+        "docenti": [
+          "BERTOLDI Christian"
+        ],
+        "aula": "AULA B 112*"
+      },
+      "10:40": {
+        "materia": "Religione",
+        "docenti": [
+          "SCIBELLI Alice"
+        ],
+        "aula": "AULA B 201"
+      },
+      "11:45": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "DELIU Ornela"
+        ],
+        "aula": "AULA B 211"
+      },
+      "12:35": {
+        "materia": "Gestione Progetto",
+        "materia_completa": "Gest. progetto, org. di impresa",
+        "docenti": [
+          "RONDINI Ferdinando"
+        ],
+        "aula": "AULA B 211"
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Telecomunicazioni",
+        "docenti": [
+          "BASTIANELLO Fausto",
+          "MINICHIELLO Genesio"
+        ],
+        "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
+      },
+      "09:50": {
+        "materia": "Sistemi e Reti",
+        "materia_completa": "Sistemi e reti",
+        "docenti": [
+          "LATINA Giuliano"
+        ],
+        "aula": "LAB. ELEE 3 (B 120/1)"
+      },
+      "10:40": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "DELIU Ornela"
+        ],
+        "aula": "Aula D 206**"
+      },
+      "11:45": {
+        "materia": "Tec. Prog. Sistemi Inf.",
+        "materia_completa": "Tec. e prog. sist. inf. e tel.",
+        "docenti": [
+          "RONDINI Ferdinando"
+        ],
+        "aula": "LAB. ELE 3 (D 005)"
+      },
+      "12:35": {
+        "materia": "Matematica",
+        "docenti": [
+          "TERZONI Giulia"
+        ],
+        "aula": "LAB. ELEE 3 (B 120/1)"
+      },
+      "14:30": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "SCHROFFENEGGER Sonja"
+        ],
+        "aula": "AULA B 204"
+      },
+      "15:20": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "BERTOLDI Christian"
+        ],
+        "aula": "AULA B 210*"
+      },
+      "16:10": {
+        "materia": "Storia",
+        "docenti": [
+          "BERTOLDI Christian"
+        ],
+        "aula": "AULA B 210*"
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Telecomunicazioni",
+        "docenti": [
+          "BASTIANELLO Fausto",
+          "MINICHIELLO Genesio"
+        ],
+        "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
+      },
+      "09:50": {
+        "materia": "Tec. Prog. Sistemi Inf.",
+        "materia_completa": "Tec. e prog. sist. inf. e tel.",
+        "docenti": [
+          "BASTIANELLO Fausto",
+          "RONDINI Ferdinando"
+        ],
+        "aula": "LAB. ELEE 4 (B 120/2)"
+      },
+      "11:45": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "SCHROFFENEGGER Sonja"
+        ]
+      },
+      "14:30": {
+        "materia": "Gestione Progetto",
+        "materia_completa": "Gest. progetto, org. di impresa",
+        "docenti": [
+          "RONDINI Ferdinando"
+        ]
+      },
+      "16:10": {
+        "materia": "Sistemi e Reti",
+        "materia_completa": "Sistemi e reti",
+        "docenti": [
+          "LATINA Giuliano"
+        ],
+        "aula": "LAB. INF 5 (D 202**)"
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Matematica",
+        "docenti": [
+          "TERZONI Giulia"
+        ]
+      },
+      "09:50": {
+        "materia": "Telecomunicazioni",
+        "docenti": [
+          "MINICHIELLO Genesio"
+        ]
+      },
+      "11:45": {
+        "materia": "Sistemi e Reti",
+        "materia_completa": "Sistemi e reti",
+        "docenti": [
+          "LATINA Giuliano"
+        ]
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "BERTOLDI Christian"
+        ]
+      },
+      "09:50": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "SEBASTIANI Alfredo"
+        ]
+      },
+      "11:45": {
+        "materia": "Telecomunicazioni",
+        "docenti": [
+          "BASTIANELLO Fausto",
+          "MINICHIELLO Genesio"
+        ],
+        "aula": "LAB. ELEE 4 (B 120/2)"
+      }
+    }
+  }
+}

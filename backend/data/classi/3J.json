@@ -1,0 +1,212 @@
+{
+  "id": "3J",
+  "nome": "3 J",
+  "docente_coordinatore": "MARAGIOGLIO Angela",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "MAISANO Nunziatina"
+        ]
+      },
+      "09:50": {
+        "materia": "Complementi di Matematica",
+        "materia_completa": "Complementi di matematica",
+        "docenti": [
+          "ECCHER Andrea"
+        ],
+        "aula": "Aula D 204**"
+      },
+      "10:40": {
+        "materia": "Tec. Prog. Sistemi Inf.",
+        "materia_completa": "Tec. e prog. sist. inf. e tel.",
+        "docenti": [
+          "DI DIO Daniele"
+        ]
+      },
+      "12:35": {
+        "materia": "Telecomunicazioni",
+        "docenti": [
+          "MARAGIOGLIO Angela",
+          "PNRR AMB. E ENERGIA (301)"
+        ]
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Informatica",
+        "docenti": [
+          "BERSANETTI Alessio",
+          "RUZZON Kevin"
+        ],
+        "aula": "LAB. INF 5 (D 202**)"
+      },
+      "09:50": {
+        "materia": "Informatica",
+        "docenti": [
+          "BERSANETTI Alessio"
+        ],
+        "aula": "LAB. INF 5 (D 202**)"
+      },
+      "10:40": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "TUFANO Guido"
+        ]
+      },
+      "12:35": {
+        "materia": "Religione",
+        "docenti": [
+          "SOMMA Giancarlo"
+        ],
+        "aula": "AULA B 213"
+      },
+      "14:30": {
+        "materia": "Telecomunicazioni",
+        "docenti": [
+          "MARAGIOGLIO Angela",
+          "RONDINI Flavio"
+        ],
+        "aula": "LAB. ELEE 1 (A 210*: L.E.AP)"
+      },
+      "16:10": {
+        "materia": "Sistemi e Reti",
+        "materia_completa": "Sistemi e reti",
+        "docenti": [
+          "CANTARELLA Alfredo"
+        ],
+        "aula": "LAB. INF 5 (D 202**)"
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "MAISANO Nunziatina"
+        ],
+        "aula": "LAB. PNRR AMB. E ENERGIA (301)"
+      },
+      "09:00": {
+        "materia": "Sistemi e Reti",
+        "materia_completa": "Sistemi e reti",
+        "docenti": [
+          "CANTARELLA Alfredo"
+        ],
+        "aula": "LAB. INF 5 (D 202**)"
+      },
+      "09:50": {
+        "materia": "Tec. Prog. Sistemi Inf.",
+        "materia_completa": "Tec. e prog. sist. inf. e tel.",
+        "docenti": [
+          "D'ANTONI Mario",
+          "DI DIO Daniele"
+        ]
+      },
+      "11:45": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "GARBIN Simonetta"
+        ],
+        "aula": "AULA B 107"
+      },
+      "12:35": {
+        "materia": "Storia",
+        "docenti": [
+          "MAISANO Nunziatina"
+        ],
+        "aula": "AULA B 107"
+      },
+      "14:30": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "SALVATERRA Joshua"
+        ]
+      },
+      "16:10": {
+        "materia": "Complementi di Matematica",
+        "materia_completa": "Complementi di matematica",
+        "docenti": [
+          "ECCHER Andrea"
+        ],
+        "aula": "AULA B 213"
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Informatica",
+        "docenti": [
+          "BERSANETTI Alessio",
+          "RUZZON Kevin"
+        ],
+        "aula": "LAB. INF 2 (B 212)"
+      },
+      "09:50": {
+        "materia": "Matematica",
+        "docenti": [
+          "ECCHER Andrea"
+        ]
+      },
+      "11:45": {
+        "materia": "Storia",
+        "docenti": [
+          "MAISANO Nunziatina"
+        ],
+        "aula": "AULA B 110*"
+      },
+      "12:35": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "GARBIN Simonetta"
+        ],
+        "aula": "AULA B 110*"
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Informatica",
+        "docenti": [
+          "BERSANETTI Alessio",
+          "RUZZON Kevin"
+        ],
+        "aula": "LAB. INF 4 (D 201**)"
+      },
+      "09:50": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "TUFANO Guido"
+        ],
+        "aula": "AULA B 013*"
+      },
+      "10:40": {
+        "materia": "Sistemi e Reti",
+        "materia_completa": "Sistemi e reti",
+        "docenti": [
+          "CANTARELLA Alfredo"
+        ]
+      },
+      "12:35": {
+        "materia": "Matematica",
+        "docenti": [
+          "ECCHER Andrea"
+        ],
+        "aula": "AULA B 104"
+      }
+    }
+  }
+}

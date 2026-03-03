@@ -1,0 +1,206 @@
+{
+  "id": "5E",
+  "nome": "5 E",
+  "docente_coordinatore": "CANTARELLA Alfredo",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "Tec. Prog. Sistemi Inf.",
+        "materia_completa": "Tec. e prog. sist. inf. e tel.",
+        "docenti": [
+          "CANNONE Maria"
+        ],
+        "aula": "LAB. INF 4 (D 201**)"
+      },
+      "09:00": {
+        "materia": "Sistemi e Reti",
+        "materia_completa": "Sistemi e reti",
+        "docenti": [
+          "CANTARELLA Alfredo"
+        ]
+      },
+      "10:40": {
+        "materia": "Gestione Progetto",
+        "materia_completa": "Gest. progetto, org. di impresa",
+        "docenti": [
+          "DELIZIA Marco"
+        ],
+        "aula": "LAB. INF 1 (B 208)"
+      },
+      "11:45": {
+        "materia": "Informatica",
+        "docenti": [
+          "D'ANTONI Mario",
+          "PAREDES Stefano"
+        ],
+        "aula": "LAB. INF 5 (D 202**)"
+      },
+      "14:30": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "PETRONE Antonella"
+        ]
+      },
+      "16:10": {
+        "materia": "Storia",
+        "docenti": [
+          "PERRUCCI Rosi"
+        ],
+        "aula": "AULA 201"
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Informatica",
+        "docenti": [
+          "D'ANTONI Mario",
+          "PAREDES Stefano"
+        ],
+        "aula": "LAB. INF 3 (B 116)"
+      },
+      "09:50": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "PERRUCCI Rosi"
+        ],
+        "aula": "AULA 201"
+      },
+      "10:40": {
+        "materia": "Storia",
+        "docenti": [
+          "PERRUCCI Rosi"
+        ],
+        "aula": "AULA 201"
+      },
+      "11:45": {
+        "materia": "Gestione Progetto",
+        "materia_completa": "Gest. progetto, org. di impresa",
+        "docenti": [
+          "DELIZIA Marco"
+        ]
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Tec. Prog. Sistemi Inf.",
+        "materia_completa": "Tec. e prog. sist. inf. e tel.",
+        "docenti": [
+          "CANNONE Maria",
+          "TOMEI Leonardo"
+        ],
+        "aula": "LAB. INF 4 (D 201**)"
+      },
+      "09:50": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "ALIAJ Mimoza"
+        ],
+        "aula": "AULA B 112*"
+      },
+      "10:40": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "PETRONE Antonella"
+        ],
+        "aula": "AULA B 114"
+      },
+      "11:45": {
+        "materia": "Matematica",
+        "docenti": [
+          "MILANESE Sabina"
+        ]
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "PERRUCCI Rosi"
+        ]
+      },
+      "09:50": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "ALIAJ Mimoza"
+        ],
+        "aula": "AULA B 307*"
+      },
+      "10:40": {
+        "materia": "Sistemi e Reti",
+        "materia_completa": "Sistemi e reti",
+        "docenti": [
+          "CANTARELLA Alfredo"
+        ],
+        "aula": "LAB. INF 5 (D 202**)"
+      },
+      "11:45": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "VITRANO Rosalba"
+        ]
+      },
+      "14:30": {
+        "materia": "Informatica",
+        "docenti": [
+          "D'ANTONI Mario",
+          "PAREDES Stefano"
+        ],
+        "aula": "LAB. INF 5 (D 202**)"
+      },
+      "16:10": {
+        "materia": "Matematica",
+        "docenti": [
+          "MILANESE Sabina"
+        ],
+        "aula": "AULA B 209"
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Informatica",
+        "docenti": [
+          "PAREDES Stefano"
+        ]
+      },
+      "09:50": {
+        "materia": "Tec. Prog. Sistemi Inf.",
+        "materia_completa": "Tec. e prog. sist. inf. e tel.",
+        "docenti": [
+          "CANNONE Maria",
+          "TOMEI Leonardo"
+        ],
+        "aula": "LAB. INF 4 (D 201**)"
+      },
+      "11:45": {
+        "materia": "Religione",
+        "docenti": [
+          "MONTALTO Salvatore"
+        ],
+        "aula": "AULA B 213"
+      },
+      "12:35": {
+        "materia": "Sistemi e Reti",
+        "materia_completa": "Sistemi e reti",
+        "docenti": [
+          "CANTARELLA Alfredo"
+        ],
+        "aula": "LAB. INF 5 (D 202**)"
+      }
+    }
+  }
+}

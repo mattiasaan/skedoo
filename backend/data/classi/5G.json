@@ -1,0 +1,247 @@
+{
+  "id": "5G",
+  "nome": "5 G",
+  "docente_coordinatore": "VERZELLA Alba",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "VERZELLA Alba"
+        ]
+      },
+      "09:50": {
+        "materia": "Elettronica ed elettrotecnica Angela,PILOTTI Alessio",
+        "docenti": [
+          "<5",
+          "G/N> <5",
+          "G/N> 5 G"
+        ],
+        "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
+      },
+      "10:40": {
+        "materia": "Tec. Prog. Sistemi Elettr.",
+        "materia_completa": "Tec. e prog. sist. ele. e elee",
+        "docenti": [
+          "LATINA Giuliano",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 G"
+        ],
+        "aula": "LAB. ELEE 1 (A 210*: L.E.AP)"
+      },
+      "11:45": {
+        "materia": "Sistemi Automatici",
+        "materia_completa": "Sistemi automatici",
+        "docenti": [
+          "BALESTRUCCI Domenico",
+          "BURATTI Alfredo",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 G"
+        ],
+        "aula": "LAB. ELEE 3 (B 120/1)"
+      },
+      "14:30": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "BESTE Anna Maria Waltraud"
+        ]
+      },
+      "16:10": {
+        "materia": "Matematica",
+        "docenti": [
+          "PRESTIGIACOMO Davide"
+        ],
+        "aula": "LAB. INF 2 (B 212)"
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "SALVATERRA Joshua"
+        ]
+      },
+      "09:50": {
+        "materia": "Sistemi Automatici",
+        "materia_completa": "Sistemi automatici",
+        "docenti": [
+          "BURATTI Alfredo",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 G"
+        ],
+        "aula": "LAB. ELE 2 (D 004)"
+      },
+      "11:45": {
+        "materia": "Tec. Prog. Sistemi Elettr.",
+        "materia_completa": "Tec. e prog. sist. ele. e elee",
+        "docenti": [
+          "LATINA Giuliano",
+          "PILOTTI Alessio",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 G"
+        ],
+        "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Elettronica",
+        "materia_completa": "Elettronica ed elettrotecnica",
+        "docenti": [
+          "MARAGIOGLIO Angela",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 G"
+        ],
+        "aula": "LAB. ELEE 3 (B 120/1)"
+      },
+      "09:50": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "PEROTTI Antonio"
+        ],
+        "aula": "LAB. PNRR AMB. E ENERGIA (301)"
+      },
+      "10:40": {
+        "materia": "Storia",
+        "docenti": [
+          "VERZELLA Alba"
+        ],
+        "aula": "AULA B 213"
+      },
+      "11:45": {
+        "materia": "Matematica",
+        "docenti": [
+          "PRESTIGIACOMO Davide"
+        ]
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Elettronica",
+        "materia_completa": "Elettronica ed elettrotecnica",
+        "docenti": [
+          "MARAGIOGLIO Angela",
+          "PILOTTI Alessio",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 G"
+        ],
+        "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
+      },
+      "09:50": {
+        "materia": "Tec. Prog. Sistemi Elettr.",
+        "materia_completa": "Tec. e prog. sist. ele. e elee",
+        "docenti": [
+          "LATINA Giuliano",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 G"
+        ],
+        "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
+      },
+      "10:40": {
+        "materia": "Tec. Prog. Sistemi Elettr.",
+        "materia_completa": "Tec. e prog. sist. ele. e elee",
+        "docenti": [
+          "LATINA Giuliano",
+          "PILOTTI Alessio",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 G"
+        ],
+        "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
+      },
+      "11:45": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "PEROTTI Antonio"
+        ],
+        "aula": "AULA B 201"
+      },
+      "12:35": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "BESTE Anna Maria Waltraud"
+        ],
+        "aula": "AULA B 011"
+      },
+      "14:30": {
+        "materia": "Religione",
+        "docenti": [
+          "MONTALTO Salvatore"
+        ],
+        "aula": "AULA B 206*"
+      },
+      "15:20": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "VERZELLA Alba"
+        ],
+        "aula": "AULA B 307*"
+      },
+      "16:10": {
+        "materia": "Storia",
+        "docenti": [
+          "VERZELLA Alba"
+        ],
+        "aula": "AULA B 307*"
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Elettronica",
+        "materia_completa": "Elettronica ed elettrotecnica",
+        "docenti": [
+          "MARAGIOGLIO Angela",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 G"
+        ],
+        "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
+      },
+      "09:50": {
+        "materia": "Sistemi Automatici",
+        "materia_completa": "Sistemi automatici",
+        "docenti": [
+          "BALESTRUCCI Domenico",
+          "BURATTI Alfredo",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 G"
+        ],
+        "aula": "LAB. ELEE 3 (B 120/1)"
+      },
+      "11:45": {
+        "materia": "Tec. Prog. Sistemi Elettr.",
+        "materia_completa": "Tec. e prog. sist. ele. e elee",
+        "docenti": [
+          "LATINA Giuliano",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 G"
+        ],
+        "aula": "LAB. ELE 3 (D 005)"
+      }
+    }
+  }
+}

@@ -1,0 +1,218 @@
+{
+  "id": "3A",
+  "nome": "3 A",
+  "docente_coordinatore": "SARRI Wanda",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "Sistemi e Automazione",
+        "materia_completa": "Sistemi ed automazione",
+        "docenti": [
+          "DE BENEDITTIS Fabio Antonio",
+          "MELECHI' Michele"
+        ]
+      },
+      "09:50": {
+        "materia": "Matematica",
+        "docenti": [
+          "SARRI Wanda"
+        ],
+        "aula": "AULA B 108"
+      },
+      "10:40": {
+        "materia": "Religione",
+        "docenti": [
+          "MONTALTO Salvatore"
+        ],
+        "aula": "AULA B 213"
+      },
+      "11:45": {
+        "materia": "Tecn. Meccanica",
+        "materia_completa": "Tecnol. mec. di proc. e prod.",
+        "docenti": [
+          "CANTISANI Silviano",
+          "PASCIUTO Paolo"
+        ]
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "RIGHI Arianna"
+        ],
+        "aula": "AULA B 007*"
+      },
+      "09:00": {
+        "materia": "Matematica",
+        "docenti": [
+          "SARRI Wanda"
+        ]
+      },
+      "10:40": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "ROTTENSTEINER Sylvia"
+        ],
+        "aula": "AULA B 207"
+      },
+      "11:45": {
+        "materia": "Disegno e Prog. Industriale",
+        "materia_completa": "Dis., progettaz. e org. ind.le",
+        "docenti": [
+          "DE ROSSI Andrea",
+          "ZAVARISE Alessandro"
+        ],
+        "aula": "LAB. PNRR IND. 4.0 (D 011)"
+      },
+      "14:30": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "CHIANESE Francesco"
+        ]
+      },
+      "16:10": {
+        "materia": "Meccanica",
+        "materia_completa": "Meccanica, macchine e energia",
+        "docenti": [
+          "TASSIELLI Davide Giuseppe"
+        ],
+        "aula": "AULA MEC (D 009)"
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Meccanica, macchine e energiaMeccanica, macchine e energia",
+        "docenti": [
+          "MELECHI' Michele",
+          "TASSIELLI Davide Giuseppe"
+        ]
+      },
+      "09:00": {
+        "materia": "Q1 Q2",
+        "aula": "LAB. MEC 2 (D 008: M.M.E.) LAB. MEC 2 (D 008: M.M.E.)"
+      },
+      "09:50": {
+        "materia": "Storia",
+        "docenti": [
+          "CHIANESE Francesco"
+        ],
+        "aula": "AULA B 105"
+      },
+      "10:40": {
+        "materia": "Sistemi e Automazione",
+        "materia_completa": "Sistemi ed automazione",
+        "docenti": [
+          "DE BENEDITTIS Fabio Antonio"
+        ],
+        "aula": "LAB. MEC 2 (D 008: M.M.E.)"
+      },
+      "11:45": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "DI CELLO Jacopo"
+        ]
+      },
+      "14:30": {
+        "materia": "Disegno e Prog. Industriale",
+        "materia_completa": "Dis., progettaz. e org. ind.le",
+        "docenti": [
+          "ZAVARISE Alessandro"
+        ]
+      },
+      "16:10": {
+        "materia": "Tecn. Meccanica",
+        "materia_completa": "Tecnol. mec. di proc. e prod.",
+        "docenti": [
+          "PASCIUTO Paolo"
+        ],
+        "aula": "LAB. MEC 2 (D 008: M.M.E.)"
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Meccanica",
+        "materia_completa": "Meccanica, macchine e energia",
+        "docenti": [
+          "TASSIELLI Davide Giuseppe"
+        ]
+      },
+      "09:50": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "RIGHI Arianna"
+        ],
+        "aula": "AULA B 204"
+      },
+      "10:40": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "CHIANESE Francesco"
+        ],
+        "aula": "AULA B 115"
+      },
+      "11:45": {
+        "materia": "Storia",
+        "docenti": [
+          "CHIANESE Francesco"
+        ],
+        "aula": "AULA B 115"
+      },
+      "12:35": {
+        "materia": "Matematica",
+        "docenti": [
+          "SARRI Wanda"
+        ],
+        "aula": "Aula D 205**"
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "ROTTENSTEINER Sylvia"
+        ]
+      },
+      "09:50": {
+        "materia": "Sistemi e Automazione",
+        "materia_completa": "Sistemi ed automazione",
+        "docenti": [
+          "DE BENEDITTIS Fabio Antonio"
+        ],
+        "aula": "LAB. MEC 4 (B218: SIST. E AUT) LAB. PNRR IND. 4.0 (D 011)"
+      },
+      "10:40": {
+        "materia": "Sistemi e Automazione",
+        "materia_completa": "Sistemi ed automazione",
+        "docenti": [
+          "DE BENEDITTIS Fabio Antonio",
+          "MELECHI' Michele"
+        ],
+        "aula": "LAB. MEC 4 (B218: SIST. E AUT) LAB. PNRR IND. 4.0 (D 011)"
+      },
+      "11:45": {
+        "materia": "Tecn. Meccanica",
+        "materia_completa": "Tecnol. mec. di proc. e prod.",
+        "docenti": [
+          "CANTISANI Silviano",
+          "PASCIUTO Paolo"
+        ]
+      }
+    }
+  }
+}

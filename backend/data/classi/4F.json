@@ -1,0 +1,210 @@
+{
+  "id": "4F",
+  "nome": "4 F",
+  "docente_coordinatore": "ARABIA Eliana",
+  "pomeriggio": true,
+  "giorni_attivi": [
+    "lunedi",
+    "martedi",
+    "mercoledi",
+    "giovedi",
+    "venerdi"
+  ],
+  "orario": {
+    "lunedi": {
+      "08:10": {
+        "materia": "Matematica",
+        "docenti": [
+          "MILANESE Sabina"
+        ]
+      },
+      "09:50": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "VERZELLA Alba"
+        ],
+        "aula": "AULA B 207"
+      },
+      "10:40": {
+        "materia": "Storia",
+        "docenti": [
+          "VERZELLA Alba"
+        ],
+        "aula": "AULA B 207"
+      },
+      "11:45": {
+        "materia": "Religione",
+        "docenti": [
+          "SOMMA Giancarlo"
+        ],
+        "aula": "AULA B 210*"
+      },
+      "12:35": {
+        "materia": "Sistemi e Reti",
+        "materia_completa": "Sistemi e reti",
+        "docenti": [
+          "LATINA Giuliano"
+        ],
+        "aula": "LAB. INF 4 (D 201**)"
+      },
+      "14:30": {
+        "materia": "Telecomunicazioni",
+        "docenti": [
+          "ARABIA Eliana",
+          "MAGNANI Fabio"
+        ]
+      },
+      "16:10": {
+        "materia": "Informatica",
+        "docenti": [
+          "SALIHAJ Anila"
+        ],
+        "aula": "LAB. INF 3 (B 116)"
+      }
+    },
+    "martedi": {
+      "08:10": {
+        "materia": "Telecomunicazioni",
+        "docenti": [
+          "ARABIA Eliana",
+          "MAGNANI Fabio"
+        ]
+      },
+      "09:50": {
+        "materia": "Tec. Prog. Sistemi Inf.",
+        "materia_completa": "Tec. e prog. sist. inf. e tel.",
+        "docenti": [
+          "DONATI Lorenzo",
+          "PILOTTI Alessio"
+        ]
+      },
+      "11:45": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "GARBIN Simonetta"
+        ],
+        "aula": "AULA B 206*"
+      },
+      "12:35": {
+        "materia": "Complementi di Matematica",
+        "materia_completa": "Complementi di matematica",
+        "docenti": [
+          "MILANESE Sabina"
+        ],
+        "aula": "Aula D 205**"
+      }
+    },
+    "mercoledi": {
+      "08:10": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "VERZELLA Alba"
+        ]
+      },
+      "09:50": {
+        "materia": "Matematica",
+        "docenti": [
+          "MILANESE Sabina"
+        ],
+        "aula": "Aula D 205**"
+      },
+      "10:40": {
+        "materia": "Complementi di Matematica",
+        "materia_completa": "Complementi di matematica",
+        "docenti": [
+          "MILANESE Sabina"
+        ],
+        "aula": "Aula D 205**"
+      },
+      "11:45": {
+        "materia": "Sistemi e Reti",
+        "materia_completa": "Sistemi e reti",
+        "docenti": [
+          "LATINA Giuliano"
+        ]
+      }
+    },
+    "giovedi": {
+      "08:10": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "VITRANO Rosalba"
+        ]
+      },
+      "09:50": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "BESTE Anna Maria Waltraud"
+        ],
+        "aula": "AULA B 011"
+      },
+      "10:40": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "VERZELLA Alba"
+        ],
+        "aula": "LAB. INF 2 (B 212)"
+      },
+      "11:45": {
+        "materia": "Informatica",
+        "docenti": [
+          "BONACCORSI Rosario",
+          "SALIHAJ Anila"
+        ],
+        "aula": "LAB. INF 2 (B 212)"
+      },
+      "14:30": {
+        "materia": "Tec. Prog. Sistemi Inf.",
+        "materia_completa": "Tec. e prog. sist. inf. e tel.",
+        "docenti": [
+          "DONATI Lorenzo"
+        ]
+      },
+      "16:10": {
+        "materia": "Telecomunicazioni",
+        "docenti": [
+          "ARABIA Eliana"
+        ],
+        "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
+      }
+    },
+    "venerdi": {
+      "08:10": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "BESTE Anna Maria Waltraud"
+        ]
+      },
+      "09:50": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "GARBIN Simonetta"
+        ],
+        "aula": "AULA B 204"
+      },
+      "10:40": {
+        "materia": "Sistemi e Reti",
+        "materia_completa": "Sistemi e reti",
+        "docenti": [
+          "LATINA Giuliano"
+        ],
+        "aula": "AULA B 209"
+      },
+      "11:45": {
+        "materia": "Telecomunicazioni",
+        "docenti": [
+          "ARABIA Eliana",
+          "MAGNANI Fabio"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,834 @@
+[
+  {
+    "id": "1A",
+    "nome": "1 A",
+    "docente_coordinatore": "MAISANO Nunziatina",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "1B",
+    "nome": "1 B",
+    "docente_coordinatore": "MANARESI Federica",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "1C",
+    "nome": "1 C",
+    "docente_coordinatore": "MILANESE Sabina",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "1D",
+    "nome": "1 D",
+    "docente_coordinatore": "PERRUCCI Rosi",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "1E",
+    "nome": "1 E",
+    "docente_coordinatore": "PATRUNO Elisabetta",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "1F",
+    "nome": "1 F",
+    "docente_coordinatore": "CHIANESE Francesco",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "1G",
+    "nome": "1 G",
+    "docente_coordinatore": "CANEVE Elisa",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "1I",
+    "nome": "1 I",
+    "docente_coordinatore": "VERRA Dennis",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "1L",
+    "nome": "1 L",
+    "docente_coordinatore": "LONOCE Maria Pompea",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "1MAQ1",
+    "nome": "1 MAQ1",
+    "docente_coordinatore": "TERZONI Giulia",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "1MAQ2",
+    "nome": "1 MAQ2",
+    "docente_coordinatore": "RIGHI Arianna",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "1OD",
+    "nome": "1 OD",
+    "docente_coordinatore": "DI TRAPANI Rosalba",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "1P",
+    "nome": "1 P",
+    "docente_coordinatore": "PRESTIGIACOMO Davide",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "2A",
+    "nome": "2 A",
+    "docente_coordinatore": "BESTE Anna Maria Waltraud",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "2B",
+    "nome": "2 B",
+    "docente_coordinatore": "MARI Paola",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "2C",
+    "nome": "2 C",
+    "docente_coordinatore": "PETRONE Antonella",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "2D",
+    "nome": "2 D",
+    "docente_coordinatore": "D'AGOSTINO Veronica",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "2E",
+    "nome": "2 E",
+    "docente_coordinatore": "CALDERAN Tabitha",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "2F",
+    "nome": "2 F",
+    "docente_coordinatore": "ZECCHIN Enrico",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "2I",
+    "nome": "2 I",
+    "docente_coordinatore": "STOPPARI Antonella",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "2L",
+    "nome": "2 L",
+    "docente_coordinatore": "ALDROVANDI Carla",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "2OD",
+    "nome": "2 OD",
+    "docente_coordinatore": "DOCILE Valeria Anna",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "2P",
+    "nome": "2 P",
+    "docente_coordinatore": "STIVELLA Marco",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "3A",
+    "nome": "3 A",
+    "docente_coordinatore": "SARRI Wanda",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "3C",
+    "nome": "3 C",
+    "docente_coordinatore": "DELLA PENNA Daniela",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "3T",
+    "nome": "3 T",
+    "docente_coordinatore": "DELLA PENNA Daniela",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "3D",
+    "nome": "3 D",
+    "docente_coordinatore": "GUADAGNINI Maria Pia",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "3E",
+    "nome": "3 E",
+    "docente_coordinatore": "TABARELLI DE FATIS Stefania",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "3F",
+    "nome": "3 F",
+    "docente_coordinatore": "LATINA Giuliano",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "3H",
+    "nome": "3 H",
+    "docente_coordinatore": "ALIAJ Mimoza",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "3I",
+    "nome": "3 I",
+    "docente_coordinatore": "GIUSTI Marina",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "3J",
+    "nome": "3 J",
+    "docente_coordinatore": "MARAGIOGLIO Angela",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "3L",
+    "nome": "3 L",
+    "docente_coordinatore": "BARTOLI Lucia",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "3MAT",
+    "nome": "3 MAT",
+    "docente_coordinatore": "BURATTI Alfredo",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "3OD",
+    "nome": "3 OD",
+    "docente_coordinatore": "RIOLO Marcello",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "3P",
+    "nome": "3 P",
+    "docente_coordinatore": "QUATTROCCHI Francesco",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "4A",
+    "nome": "4 A",
+    "docente_coordinatore": "BENETTI Mattia",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "4D",
+    "nome": "4 D",
+    "docente_coordinatore": "MACCAGNAN Elisa",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "4E",
+    "nome": "4 E",
+    "docente_coordinatore": "D'ALESSIO Valeria",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "4F",
+    "nome": "4 F",
+    "docente_coordinatore": "ARABIA Eliana",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "4H",
+    "nome": "4 H",
+    "docente_coordinatore": "CASTALDO Franco",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "4I",
+    "nome": "4 I",
+    "docente_coordinatore": "TURCO Giuseppe",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "4J",
+    "nome": "4 J",
+    "docente_coordinatore": "DELIZIA Marco",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "4L",
+    "nome": "4 L",
+    "docente_coordinatore": "GAGLIOSTRO Antonio",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "4MAT",
+    "nome": "4 MAT",
+    "docente_coordinatore": "HOFER Verena",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "4N",
+    "nome": "4 N",
+    "docente_coordinatore": "MINICHIELLO Genesio",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "4OD",
+    "nome": "4 OD",
+    "docente_coordinatore": "ZANONI Barbara",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "4P",
+    "nome": "4 P",
+    "docente_coordinatore": "ZEZZA Maria",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "4T",
+    "nome": "4 T",
+    "docente_coordinatore": "RICCA Mariaelena",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "5A",
+    "nome": "5 A",
+    "docente_coordinatore": "VALENTINI Paolo",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "5B",
+    "nome": "5 B",
+    "docente_coordinatore": "CANTISANI Silviano",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "5C",
+    "nome": "5 C",
+    "docente_coordinatore": "MOLINI Paola",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "5D",
+    "nome": "5 D",
+    "docente_coordinatore": "GHISU Maria Gabriella",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "5E",
+    "nome": "5 E",
+    "docente_coordinatore": "CANTARELLA Alfredo",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "5F",
+    "nome": "5 F",
+    "docente_coordinatore": "BERTOLDI Christian",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "5G",
+    "nome": "5 G",
+    "docente_coordinatore": "VERZELLA Alba",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "5N",
+    "nome": "5 N",
+    "docente_coordinatore": "VERZELLA Alba",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "5H",
+    "nome": "5 H",
+    "docente_coordinatore": "LOMBINO Alessandro",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "5I",
+    "nome": "5 I",
+    "docente_coordinatore": "BERTOLDI Michela",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "5J",
+    "nome": "5 J",
+    "docente_coordinatore": "BERSANETTI Alessio",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "5K",
+    "nome": "5 K",
+    "docente_coordinatore": "DE GIORGI Nicola",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "5L",
+    "nome": "5 L",
+    "docente_coordinatore": "DALLA TORRE Massimiliano",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "5MAT",
+    "nome": "5 MAT",
+    "docente_coordinatore": "ERRANTE Antonino",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  },
+  {
+    "id": "5OD",
+    "nome": "5 OD",
+    "docente_coordinatore": "CARLIN Martina",
+    "pomeriggio": true,
+    "giorni_attivi": [
+      "lunedi",
+      "martedi",
+      "mercoledi",
+      "giovedi",
+      "venerdi"
+    ]
+  }
+]
