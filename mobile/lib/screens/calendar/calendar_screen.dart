@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../palette/palette.dart';
+import '../../models/event_model.dart'; // ✅ Importa la lista dummyEvents
 import '../dashboard/notification_screen.dart';
+import 'all_events_screen.dart';
+import 'event_detail_screen.dart';
 
 class CalendarScreen extends StatefulWidget {
   const CalendarScreen({super.key});
@@ -11,18 +14,18 @@ class CalendarScreen extends StatefulWidget {
 }
 
 class _CalendarScreenState extends State<CalendarScreen> {
-  // ✅ Inizializziamo con la data attuale del sistema
   late DateTime _focusedDay;
   late DateTime _selectedDay;
   late PageController _pageController;
+  bool _isSearching = false;
+  final int _initialPage = 1200;
 
   @override
   void initState() {
     super.initState();
     _focusedDay = DateTime.now();
     _selectedDay = DateTime.now();
-    // Il PageController parte da 0 (il mese attuale)
-    _pageController = PageController(initialPage: 0);
+    _pageController = PageController(initialPage: _initialPage);
   }
 
   @override
@@ -39,21 +42,27 @@ class _CalendarScreenState extends State<CalendarScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         automaticallyImplyLeading: false,
-        title: const Text("Calendar", style: TextStyle(color: Palette.text_primary, fontWeight: FontWeight.bold)),
+        title: _isSearching
+            ? TextField(
+                autofocus: true,
+                style: const TextStyle(color: Palette.text_primary),
+                decoration: const InputDecoration(
+                    hintText: "Search events...",
+                    hintStyle: TextStyle(color: Palette.text_tertiary),
+                    border: InputBorder.none),
+              )
+            : const Text("Calendar",
+                style: TextStyle(
+                    color: Palette.text_primary, fontWeight: FontWeight.bold)),
         centerTitle: true,
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.search, color: Palette.text_primary)),
           IconButton(
-            onPressed: () {
-              Navigator.push(
-                context, 
-                MaterialPageRoute(builder: (context) => const NotificationScreen()),
-              );
-            }, 
-            icon: const Icon(
-              Icons.notifications_none, 
-              color: Palette.text_primary
-            )
+            onPressed: () => setState(() => _isSearching = !_isSearching),
+            icon: Icon(_isSearching ? Icons.close : Icons.search, color: Palette.text_primary),
+          ),
+          IconButton(
+            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const NotificationScreen())),
+            icon: const Icon(Icons.notifications_none, color: Palette.text_primary),
           ),
         ],
       ),
@@ -62,7 +71,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // ✅ Header Dinamico: Mostra Mese e Anno Correnti
+            // Header Mese
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -72,14 +81,9 @@ class _CalendarScreenState extends State<CalendarScreen> {
                 ),
                 Row(
                   children: [
-                    IconButton(
-                      icon: const Icon(Icons.chevron_left, color: Palette.primary),
-                      onPressed: () => _pageController.previousPage(duration: const Duration(milliseconds: 300), curve: Curves.easeInOut),
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.chevron_right, color: Palette.primary),
-                      onPressed: () => _pageController.nextPage(duration: const Duration(milliseconds: 300), curve: Curves.easeInOut),
-                    ),
+                    _buildNavCircle(Icons.chevron_left, () => _pageController.previousPage(duration: const Duration(milliseconds: 300), curve: Curves.easeInOut)),
+                    const SizedBox(width: 8),
+                    _buildNavCircle(Icons.chevron_right, () => _pageController.nextPage(duration: const Duration(milliseconds: 300), curve: Curves.easeInOut)),
                   ],
                 ),
               ],
@@ -87,42 +91,68 @@ class _CalendarScreenState extends State<CalendarScreen> {
             const SizedBox(height: 20),
             _buildDaysOfWeek(),
             const SizedBox(height: 12),
-            
-            // Container del Calendario Interattivo
+
+            // Griglia Calendario (Design Originale)
             SizedBox(
-              height: 280, 
+              height: 280,
               child: PageView.builder(
                 controller: _pageController,
                 onPageChanged: (index) {
                   setState(() {
-                    // Calcola il nuovo mese basandosi sull'indice (0 = mese attuale)
                     DateTime now = DateTime.now();
-                    _focusedDay = DateTime(now.year, now.month + index, 1);
+                    _focusedDay = DateTime(now.year, now.month + (index - _initialPage), 1);
                   });
                 },
                 itemBuilder: (context, index) {
                   DateTime now = DateTime.now();
-                  return _buildCalendarGrid(DateTime(now.year, now.month + index, 1));
+                  return _buildCalendarGrid(DateTime(now.year, now.month + (index - _initialPage), 1));
                 },
               ),
             ),
-            
+
             const SizedBox(height: 10),
             _buildLegend(),
             const SizedBox(height: 32),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                Text("Events", style: TextStyle(color: Palette.text_primary, fontSize: 18, fontWeight: FontWeight.bold)),
-                Text("See All", style: TextStyle(color: Palette.primary, fontWeight: FontWeight.bold)),
+              children: [
+                const Text("Events", style: TextStyle(color: Palette.text_primary, fontSize: 18, fontWeight: FontWeight.bold)),
+                GestureDetector(
+                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const AllEventsScreen())),
+                  child: const Text("See All", style: TextStyle(color: Palette.primary, fontWeight: FontWeight.bold)),
+                ),
               ],
             ),
             const SizedBox(height: 16),
-            _buildEventCard("Math Mid-term Test", "09:00 AM - 10:30 AM • Room 302", Icons.calculate_outlined, Colors.green),
-            _buildEventCard("Weekly School Assembly", "11:00 AM - 12:00 PM • Main Hall", Icons.groups_outlined, Colors.blue),
-            const SizedBox(height: 100), 
+            
+            Column(
+              children: dummyEvents.isEmpty 
+                ? [
+                    const SizedBox(height: 20),
+                    const Center(
+                      child: Text("No events today", 
+                        style: TextStyle(color: Palette.text_tertiary, fontSize: 14))
+                    )
+                  ]
+                : dummyEvents.map((event) => _buildEventCard(event)).toList(),
+            ),
+            
+            const SizedBox(height: 100),
           ],
         ),
+      ),
+    );
+  }
+
+  // --- WIDGETS CON IL TUO DESIGN ---
+
+  Widget _buildNavCircle(IconData icon, VoidCallback onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(4),
+        decoration: BoxDecoration(color: Palette.background_secondary, shape: BoxShape.circle),
+        child: Icon(icon, color: Palette.primary, size: 24),
       ),
     );
   }
@@ -147,44 +177,27 @@ class _CalendarScreenState extends State<CalendarScreen> {
       padding: EdgeInsets.zero,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: 42, 
+      itemCount: 42,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 7,
-        mainAxisSpacing: 8,
-        crossAxisSpacing: 8,
+        crossAxisCount: 7, mainAxisSpacing: 8, crossAxisSpacing: 8,
       ),
       itemBuilder: (context, index) {
         int dayNumber = index - firstDayOffset + 1;
-        bool isCurrentMonth = dayNumber > 0 && dayNumber <= daysInMonth;
-
-        if (!isCurrentMonth) return const SizedBox();
+        if (dayNumber < 1 || dayNumber > daysInMonth) return const SizedBox();
 
         DateTime currentDateTime = DateTime(month.year, month.month, dayNumber);
-        
-        // Controllo se è il giorno selezionato
-        bool isSelected = _selectedDay.year == currentDateTime.year &&
-                          _selectedDay.month == currentDateTime.month &&
-                          _selectedDay.day == currentDateTime.day;
-        
-        // Controllo se è oggi (per aggiungere un piccolo bordo o stile differente se vuoi)
-        DateTime today = DateTime.now();
-        bool isToday = today.year == currentDateTime.year &&
-                       today.month == currentDateTime.month &&
-                       today.day == currentDateTime.day;
+        bool isSelected = DateUtils.isSameDay(_selectedDay, currentDateTime);
+        bool isToday = DateUtils.isSameDay(DateTime.now(), currentDateTime);
 
         return GestureDetector(
-          onTap: () {
-            setState(() {
-              _selectedDay = currentDateTime;
-            });
-          },
+          onTap: () => setState(() => _selectedDay = currentDateTime),
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 200),
             decoration: BoxDecoration(
               color: isSelected ? Palette.primary : Palette.background_secondary.withOpacity(0.3),
               borderRadius: BorderRadius.circular(12),
-              border: isToday && !isSelected 
-                  ? Border.all(color: Palette.primary, width: 1.5) // Bordo verde se è oggi ma non selezionato
+              border: isToday && !isSelected
+                  ? Border.all(color: Palette.primary, width: 1.5)
                   : Border.all(color: Palette.background_tertiary, width: 1),
             ),
             child: Center(
@@ -224,30 +237,33 @@ class _CalendarScreenState extends State<CalendarScreen> {
     );
   }
 
-  Widget _buildEventCard(String title, String subtitle, IconData icon, Color color) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(color: Palette.background_secondary, borderRadius: BorderRadius.circular(20)),
-      child: Row(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(color: color.withOpacity(0.1), borderRadius: BorderRadius.circular(14)),
-            child: Icon(icon, color: color, size: 22),
-          ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(title, style: const TextStyle(color: Palette.text_primary, fontSize: 15, fontWeight: FontWeight.bold)),
-                Text(subtitle, style: const TextStyle(color: Palette.text_tertiary, fontSize: 12)),
-              ],
+  Widget _buildEventCard(Event event) {
+    return GestureDetector(
+      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => EventDetailScreen(event: event))),
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 12),
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(color: Palette.background_secondary, borderRadius: BorderRadius.circular(20)),
+        child: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(color: event.color.withOpacity(0.1), borderRadius: BorderRadius.circular(14)),
+              child: Icon(event.icon, color: event.color, size: 22),
             ),
-          ),
-          const Icon(Icons.chevron_right, color: Palette.text_tertiary, size: 20),
-        ],
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(event.title, style: const TextStyle(color: Palette.text_primary, fontSize: 15, fontWeight: FontWeight.bold)),
+                  Text(event.time, style: const TextStyle(color: Palette.text_tertiary, fontSize: 12)),
+                ],
+              ),
+            ),
+            const Icon(Icons.chevron_right, color: Palette.text_tertiary, size: 20),
+          ],
+        ),
       ),
     );
   }
