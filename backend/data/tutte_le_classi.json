@@ -60,7 +60,8 @@
           "materia_completa": "Lingua inglese",
           "docenti": [
             "FRANCHINI Nicoletta"
-          ]
+          ],
+          "aula": "AULA B 205"
         },
         "09:50": {
           "materia": "Diritto ed Economia",
@@ -82,7 +83,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "ROTTENSTEINER Sylvia"
-          ]
+          ],
+          "aula": "AULA B 004"
         },
         "14:30": {
           "materia": "Fisica",
@@ -116,7 +118,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "MAISANO Nunziatina"
-          ]
+          ],
+          "aula": "AULA B 109"
         },
         "10:40": {
           "materia": "Tedesco",
@@ -131,7 +134,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "OCHNER Daniel"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Sud\""
         }
       },
       "giovedi": {
@@ -162,7 +166,8 @@
           "materia": "Matematica",
           "docenti": [
             "SARRI Wanda"
-          ]
+          ],
+          "aula": "AULA B 108"
         },
         "12:35": {
           "materia": "Storia",
@@ -227,7 +232,8 @@
           "docenti": [
             "MONACHELLA Angelo",
             "PECORARO Diego"
-          ]
+          ],
+          "aula": "AULA CHI (B 317**) LAB. CHI 3 (B 318)"
         }
       }
     }
@@ -260,14 +266,16 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "GIGLIOLI Valentina"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Sud\""
         },
         "11:45": {
           "materia": "Italiano",
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "PATRUNO Elisabetta"
-          ]
+          ],
+          "aula": "AULA B 114"
         }
       },
       "martedi": {
@@ -275,7 +283,8 @@
           "materia": "Matematica",
           "docenti": [
             "MANARESI Federica"
-          ]
+          ],
+          "aula": "AULA B 104"
         },
         "09:50": {
           "materia": "Inglese",
@@ -299,7 +308,8 @@
           "docenti": [
             "PAPAIS Denise",
             "ZECCHIN Enrico"
-          ]
+          ],
+          "aula": "LAB. FIS 1 (B 310)"
         },
         "14:30": {
           "materia": "Scienze e Biologia",
@@ -374,7 +384,8 @@
           "docenti": [
             "GIORDANO Carmelo",
             "PECORARO Diego"
-          ]
+          ],
+          "aula": "LAB. CHI 3 (B 318) LAB. PNRR AMB. E ENERGIA (301)"
         },
         "09:50": {
           "materia": "Italiano",
@@ -396,14 +407,16 @@
           "materia_completa": "Lingua inglese",
           "docenti": [
             "ROMANI Sara"
-          ]
+          ],
+          "aula": "AULA B 101"
         },
         "14:30": {
           "materia": "Tedesco",
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "ROTTENSTEINER Sylvia"
-          ]
+          ],
+          "aula": "AULA B 213"
         },
         "16:10": {
           "materia": "Tecn. e Tecniche Grafiche",
@@ -442,7 +455,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "ROTTENSTEINER Sylvia"
-          ]
+          ],
+          "aula": "AULA B 004"
         },
         "12:35": {
           "materia": "Tecnologie Informatiche",
@@ -510,7 +524,8 @@
           "docenti": [
             "GUADAGNINI Maria Pia",
             "MONACHELLA Angelo"
-          ]
+          ],
+          "aula": "AULA CHI (B 317**) LAB. CHI 3 (B 318)"
         },
         "16:10": {
           "materia": "Tedesco",
@@ -591,21 +606,24 @@
           "materia": "Matematica",
           "docenti": [
             "MILANESE Sabina"
-          ]
+          ],
+          "aula": "AULA B 108"
         },
         "09:50": {
           "materia": "Scienze Motorie",
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "NOLLI Cinzia"
-          ]
+          ],
+          "aula": "PAL. \"Torcaso\""
         },
         "11:45": {
           "materia": "Tedesco",
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "FISCHNALLER Barbara"
-          ]
+          ],
+          "aula": "AULA B 004"
         }
       },
       "giovedi": {
@@ -646,7 +664,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "MOLINI Paola"
-          ]
+          ],
+          "aula": "AULA B 210*"
         }
       },
       "venerdi": {
@@ -671,14 +690,16 @@
           "docenti": [
             "FANIZZA Marco",
             "VERRA Dennis"
-          ]
+          ],
+          "aula": "LAB. FIS 2 (B 314)"
         },
         "11:45": {
           "materia": "Inglese",
           "materia_completa": "Lingua inglese",
           "docenti": [
             "ALIAJ Mimoza"
-          ]
+          ],
+          "aula": "AULA B 101"
         }
       }
     }
@@ -710,14 +731,16 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "MENCHISE Antonella"
-          ]
+          ],
+          "aula": "AULA B 013*"
         },
         "10:40": {
           "materia": "Inglese",
           "materia_completa": "Lingua inglese",
           "docenti": [
             "DELLA PENNA Daniela"
-          ]
+          ],
+          "aula": "AULA B 101"
         },
         "12:35": {
           "materia": "Religione",
@@ -750,7 +773,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "VITRANO Rosalba"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Sud\""
         },
         "09:50": {
           "materia": "Tecnologie Informatiche",
@@ -772,7 +796,8 @@
           "materia": "Matematica",
           "docenti": [
             "PRESTIGIACOMO Davide"
-          ]
+          ],
+          "aula": "AULA B 104"
         }
       },
       "mercoledi": {
@@ -813,7 +838,8 @@
           "docenti": [
             "PAPAIS Denise",
             "VERRA Dennis"
-          ]
+          ],
+          "aula": "LAB. FIS 2 (B 314)"
         }
       },
       "giovedi": {
@@ -869,7 +895,8 @@
           "docenti": [
             "FUCA' Lia",
             "MASCIOVECCHIO Marina"
-          ]
+          ],
+          "aula": "AULA BIO (302) LAB. CHI 2 (A 306)"
         },
         "16:10": {
           "materia": "Tecn. e Tecniche Grafiche",
@@ -902,7 +929,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "PERRUCCI Rosi"
-          ]
+          ],
+          "aula": "AULA B 114"
         },
         "12:35": {
           "materia": "Fisica",
@@ -941,7 +969,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "PATRUNO Elisabetta"
-          ]
+          ],
+          "aula": "AULA B 114"
         },
         "10:40": {
           "materia": "Chimica",
@@ -957,7 +986,8 @@
           "docenti": [
             "PAPAIS Denise",
             "ZECCHIN Enrico"
-          ]
+          ],
+          "aula": "LAB. FIS 1 (B 310)"
         }
       },
       "martedi": {
@@ -965,7 +995,8 @@
           "materia": "Matematica",
           "docenti": [
             "STIVELLA Marco"
-          ]
+          ],
+          "aula": "Aula D 205**"
         },
         "09:50": {
           "materia": "Italiano",
@@ -1068,7 +1099,8 @@
           "materia_completa": "Lingua inglese",
           "docenti": [
             "PEROTTI Antonio"
-          ]
+          ],
+          "aula": "AULA B 209"
         },
         "16:10": {
           "materia": "Tecnologie Informatiche",
@@ -1100,7 +1132,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "DI CELLO Jacopo"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Centro\""
         },
         "11:45": {
           "materia": "Chimica",
@@ -1118,7 +1151,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "TUFANO Guido"
-          ]
+          ],
+          "aula": "AULA B 004"
         },
         "09:50": {
           "materia": "Inglese",
@@ -1173,7 +1207,8 @@
           "materia": "Matematica",
           "docenti": [
             "PREVIDI Paola"
-          ]
+          ],
+          "aula": "AULA B 105"
         },
         "10:40": {
           "materia": "Tedesco",
@@ -1188,7 +1223,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "TODARO Mattia"
-          ]
+          ],
+          "aula": "PAL. \"Torcaso\""
         }
       },
       "martedi": {
@@ -1237,7 +1273,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "HOFER Verena"
-          ]
+          ],
+          "aula": "AULA B 213"
         },
         "16:10": {
           "materia": "Chimica",
@@ -1290,7 +1327,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "CHIANESE Francesco"
-          ]
+          ],
+          "aula": "AULA B 109"
         },
         "09:50": {
           "materia": "Fisica",
@@ -1354,7 +1392,8 @@
           "docenti": [
             "FUCA' Lia",
             "MONACHELLA Angelo"
-          ]
+          ],
+          "aula": "AULA B 311*,LAB. CHI 3 (B 318)"
         },
         "09:50": {
           "materia": "Tedesco",
@@ -1408,7 +1447,8 @@
           "materia": "Matematica",
           "docenti": [
             "D'ALESSIO Valeria"
-          ]
+          ],
+          "aula": "AULA B 106*"
         },
         "09:50": {
           "materia": "Diritto ed Economia",
@@ -1423,7 +1463,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "PATELLA Nadia"
-          ]
+          ],
+          "aula": "AULA B 016"
         },
         "12:35": {
           "materia": "Scienze e Biologia",
@@ -1464,7 +1505,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "DI CELLO Jacopo"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Centro\""
         },
         "14:30": {
           "materia": "Chimica",
@@ -1472,7 +1514,8 @@
           "docenti": [
             "FUCA' Lia",
             "MONACHELLA Angelo"
-          ]
+          ],
+          "aula": "AULA B 307*,LAB. CHI 3 (B 318)"
         },
         "16:10": {
           "materia": "Fisica",
@@ -1489,7 +1532,8 @@
           "materia_completa": "Lingua inglese",
           "docenti": [
             "TACUS Alessandra"
-          ]
+          ],
+          "aula": "AULA B 101"
         },
         "09:50": {
           "materia": "Scienze e Biologia",
@@ -1593,7 +1637,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "CANEVE Elisa"
-          ]
+          ],
+          "aula": "AULA B 115"
         },
         "09:50": {
           "materia": "Tecnologie Informatiche",
@@ -1664,7 +1709,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "ALDROVANDI Carla"
-          ]
+          ],
+          "aula": "AULA B 304"
         },
         "14:30": {
           "materia": "Italiano",
@@ -1689,7 +1735,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "STOPPARI Antonella"
-          ]
+          ],
+          "aula": "AULA B 304"
         },
         "09:50": {
           "materia": "Diritto ed Economia",
@@ -1712,13 +1759,15 @@
           "materia_completa": "Scienze naturali",
           "docenti": [
             "LEGGIERO Stefania"
-          ]
+          ],
+          "aula": "AULA B 304"
         },
         "14:30": {
           "materia": "Informatica",
           "docenti": [
             "DI DIO Daniele"
-          ]
+          ],
+          "aula": "LAB. INF 2 (B 212)"
         },
         "16:10": {
           "materia": "Fisica",
@@ -1750,14 +1799,16 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "SALVATERRA Joshua"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Centro\""
         },
         "11:45": {
           "materia": "Disegno e Arte",
           "materia_completa": "Disegno e storia dell'arte",
           "docenti": [
             "DELLA RAGIONE Silvia"
-          ]
+          ],
+          "aula": "LAB. CAD 1 (B 219)"
         }
       },
       "giovedi": {
@@ -1765,14 +1816,16 @@
           "materia": "Matematica",
           "docenti": [
             "GIUSTI Marina"
-          ]
+          ],
+          "aula": "AULA B 304"
         },
         "09:50": {
           "materia": "Inglese",
           "materia_completa": "Lingua inglese",
           "docenti": [
             "TACUS Alessandra"
-          ]
+          ],
+          "aula": "AULA B 304"
         },
         "11:45": {
           "materia": "Storia e Geografia",
@@ -1798,7 +1851,8 @@
           "docenti": [
             "GIORDANO Carmelo",
             "LEGGIERO Stefania"
-          ]
+          ],
+          "aula": "AULA SCI (B 301**) LAB. SCI (B 305**)"
         },
         "09:50": {
           "materia": "Storia e Geografia",
@@ -1812,7 +1866,8 @@
           "materia": "Matematica",
           "docenti": [
             "GIUSTI Marina"
-          ]
+          ],
+          "aula": "AULA B 304"
         },
         "12:35": {
           "materia": "Tedesco",
@@ -1851,13 +1906,15 @@
           "materia_completa": "Lingua inglese",
           "docenti": [
             "DELLA PENNA Daniela"
-          ]
+          ],
+          "aula": "AULA B 101"
         },
         "10:40": {
           "materia": "Matematica",
           "docenti": [
             "GAGLIOSTRO Antonio"
-          ]
+          ],
+          "aula": "AULA B 107"
         },
         "12:35": {
           "materia": "Fisica",
@@ -1870,7 +1927,8 @@
           "materia": "Informatica",
           "docenti": [
             "SALIHAJ Anila"
-          ]
+          ],
+          "aula": "LAB. INF 3 (B 116)"
         },
         "16:10": {
           "materia": "Storia e Geografia",
@@ -1887,7 +1945,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "LONOCE Maria Pompea"
-          ]
+          ],
+          "aula": "AULA B 113"
         },
         "09:50": {
           "materia": "Fisica",
@@ -1935,14 +1994,16 @@
           "materia_completa": "Disegno e storia dell'arte",
           "docenti": [
             "DELLA RAGIONE Silvia"
-          ]
+          ],
+          "aula": "LAB. CAD 1 (B 219)"
         },
         "11:45": {
           "materia": "Tedesco",
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "PETRONE Antonella"
-          ]
+          ],
+          "aula": "AULA B 007*"
         }
       },
       "giovedi": {
@@ -1982,14 +2043,16 @@
           "materia_completa": "Scienze naturali",
           "docenti": [
             "LEGGIERO Stefania"
-          ]
+          ],
+          "aula": "AULA B 311*"
         },
         "14:30": {
           "materia": "Scienze Motorie",
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "NOLLI Cinzia"
-          ]
+          ],
+          "aula": "PAL. \"Torcaso\""
         }
       },
       "venerdi": {
@@ -2030,7 +2093,8 @@
           "docenti": [
             "GIORDANO Carmelo",
             "LEGGIERO Stefania"
-          ]
+          ],
+          "aula": "AULA SCI (B 301**) LAB. SCI (B 305**)"
         }
       }
     }
@@ -2054,7 +2118,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "ZEZZA Maria"
-          ]
+          ],
+          "aula": "AULA B 110*"
         },
         "09:50": {
           "materia": "Tedesco",
@@ -2068,12 +2133,16 @@
           "materia": "Lab. Tecn. ed Esercitazioni",
           "materia_completa": "Lab. tecn. e esercitazioni",
           "docenti": [
-            "PILOTTI Alessio",
+            "PILOTTI Alessio"
+          ],
+          "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
+        },
+        "13:25": {
+          "docenti": [
             "POTENZIAMENTO TEDESCO",
             "SCHROFFENEGGER Sonja",
             "(ATTIVITA' MODULARE)"
-          ],
-          "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
+          ]
         }
       },
       "martedi": {
@@ -2098,17 +2167,22 @@
           "materia": "Matematica",
           "docenti": [
             "TERZONI Giulia"
-          ]
+          ],
+          "aula": "LAB. ELEE 3 (B 120/1)"
         },
         "12:35": {
           "materia": "Storia",
           "docenti": [
-            "ZEZZA Maria",
+            "ZEZZA Maria"
+          ],
+          "aula": "AULA B 105"
+        },
+        "13:25": {
+          "docenti": [
             "FILIERA ROBOTICA EDUCATIVA",
             "CANNONE Maria",
             "(ATTIVITA' MODULARE)"
-          ],
-          "aula": "AULA B 105"
+          ]
         },
         "14:30": {
           "materia": "Tecnologie Informatiche",
@@ -2116,7 +2190,8 @@
           "docenti": [
             "CANNONE Maria",
             "RUZZON Kevin"
-          ]
+          ],
+          "aula": "LAB. INF 4 (D 201**)"
         },
         "16:10": {
           "materia": "Religione",
@@ -2164,12 +2239,16 @@
           "materia": "Italiano",
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
-            "ZEZZA Maria",
+            "ZEZZA Maria"
+          ],
+          "aula": "AULA B 109"
+        },
+        "13:25": {
+          "docenti": [
             "FILIERA STAMPA 3 D",
             "PILOTTI Alessio",
             "(ATTIVITA' MODULARE)"
-          ],
-          "aula": "AULA B 109"
+          ]
         }
       },
       "giovedi": {
@@ -2218,7 +2297,8 @@
           "materia_completa": "Lab. tecn. e esercitazioni",
           "docenti": [
             "PILOTTI Alessio"
-          ]
+          ],
+          "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
         },
         "16:10": {
           "materia": "Tecnologie Informatiche",
@@ -2265,7 +2345,12 @@
           "materia": "Scienze Motorie",
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
-            "SEBASTIANI Alfredo",
+            "SEBASTIANI Alfredo"
+          ],
+          "aula": "PAL. \"Talvera Sud\""
+        },
+        "13:25": {
+          "docenti": [
             "POTENZIAMENTO TEDESCO",
             "SCHROFFENEGGER Sonja",
             "(ATTIVITA' MODULARE)"
@@ -2292,7 +2377,8 @@
           "materia": "Matematica",
           "docenti": [
             "MANARESI Federica"
-          ]
+          ],
+          "aula": "AULA B 108"
         },
         "09:50": {
           "materia": "Italiano",
@@ -2356,7 +2442,12 @@
           "materia": "Scienze Motorie",
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
-            "OCHNER Daniel",
+            "OCHNER Daniel"
+          ],
+          "aula": "PAL. \"Torcaso\""
+        },
+        "13:25": {
+          "docenti": [
             "POTENZIAMENTO TEDESCO",
             "FISCHNALLER Barbara",
             "(ATTIVITA' MODULARE)"
@@ -2367,7 +2458,8 @@
           "materia_completa": "Lab. tecn. e esercitazioni",
           "docenti": [
             "PILOTTI Alessio"
-          ]
+          ],
+          "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
         },
         "16:10": {
           "materia": "Tecnologie Informatiche",
@@ -2415,12 +2507,16 @@
           "materia": "Inglese",
           "materia_completa": "Lingua inglese",
           "docenti": [
-            "RIGHI Arianna",
+            "RIGHI Arianna"
+          ],
+          "aula": "LAB. MEC. 5 (B119: AUT. & R.)"
+        },
+        "13:25": {
+          "docenti": [
             "POTENZIAMENTO TEDESCO",
             "FISCHNALLER Barbara",
             "(ATTIVITA' MODULARE)"
-          ],
-          "aula": "LAB. MEC. 5 (B119: AUT. & R.)"
+          ]
         }
       },
       "giovedi": {
@@ -2429,7 +2525,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "BENETTI Mattia"
-          ]
+          ],
+          "aula": "LAB. MEC. 5 (B119: AUT. & R.)"
         },
         "09:50": {
           "materia": "Tedesco",
@@ -2452,7 +2549,12 @@
           "materia_completa": "Scienze integrate (Fisica)",
           "docenti": [
             "VERRA Dennis",
-            "ZUECH Claudio",
+            "ZUECH Claudio"
+          ],
+          "aula": "LAB. FIS 2 (B 314)"
+        },
+        "13:25": {
+          "docenti": [
             "FILIERA ROBOTICA EDUCATIVA",
             "CANNONE Maria",
             "(ATTIVITA' MODULARE)"
@@ -2464,7 +2566,8 @@
           "docenti": [
             "CANNONE Maria",
             "RUZZON Kevin"
-          ]
+          ],
+          "aula": "LAB. INF 4 (D 201**)"
         },
         "16:10": {
           "materia": "Religione",
@@ -2502,11 +2605,16 @@
           "materia": "Lab. Tecn. ed Esercitazioni",
           "materia_completa": "Lab. tecn. e esercitazioni",
           "docenti": [
-            "PILOTTI Alessio",
-            "FILIERA STAMPA 3 D",
-            "(ATTIVITA' MODULARE)"
+            "PILOTTI Alessio"
           ],
           "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
+        },
+        "13:25": {
+          "docenti": [
+            "FILIERA STAMPA 3 D",
+            "PILOTTI Alessio",
+            "(ATTIVITA' MODULARE)"
+          ]
         }
       }
     }
@@ -2544,7 +2652,8 @@
           "materia": "e modell. odontotecnica",
           "docenti": [
             "DOCILE Valeria Anna"
-          ]
+          ],
+          "aula": "LAB. DIS (B 215)"
         },
         "11:45": {
           "materia": "Religione",
@@ -2565,7 +2674,8 @@
           "materia_completa": "Eser. di lab. odontotecnico",
           "docenti": [
             "SAIANI Christian"
-          ]
+          ],
+          "aula": "LAB. ODO 2 (A 308)"
         },
         "16:10": {
           "materia": "Scienze Motorie",
@@ -2630,7 +2740,8 @@
           "materia_completa": "Eser. di lab. odontotecnico",
           "docenti": [
             "SAIANI Christian"
-          ]
+          ],
+          "aula": "LAB. ODO 2 (A 308)"
         },
         "09:50": {
           "materia": "Tedesco",
@@ -2653,7 +2764,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "DI MARCO Raffaele Francesco"
-          ]
+          ],
+          "aula": "AULA B 111"
         },
         "14:30": {
           "materia": "Fisica",
@@ -2661,7 +2773,8 @@
           "docenti": [
             "PAPAIS Denise",
             "ZECCHIN Enrico"
-          ]
+          ],
+          "aula": "LAB. FIS 1 (B 310)"
         },
         "16:10": {
           "materia": "Scienze Motorie",
@@ -2702,7 +2815,8 @@
           "materia": "Matematica",
           "docenti": [
             "MICILLO Martia Giustina"
-          ]
+          ],
+          "aula": "AULA B 104"
         }
       },
       "venerdi": {
@@ -2735,7 +2849,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "CARLIN Martina"
-          ]
+          ],
+          "aula": "AULA B 011"
         },
         "12:35": {
           "materia": "Diritto ed Economia",
@@ -2766,7 +2881,8 @@
           "materia": "e modell. odontotecnica",
           "docenti": [
             "DOCILE Valeria Anna"
-          ]
+          ],
+          "aula": "LAB. DIS (B 215)"
         },
         "09:50": {
           "materia": "Tedesco",
@@ -2781,7 +2897,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "DI MARCO Raffaele Francesco"
-          ]
+          ],
+          "aula": "AULA B 112*"
         },
         "12:35": {
           "materia": "Diritto ed Economia",
@@ -2843,7 +2960,8 @@
           "materia_completa": "Eser. di lab. odontotecnico",
           "docenti": [
             "MARIANI Chiara"
-          ]
+          ],
+          "aula": "LAB. ODO 1 (A 307)"
         },
         "16:10": {
           "materia": "Diritto ed Economia",
@@ -2859,7 +2977,8 @@
           "materia": "Matematica",
           "docenti": [
             "PRESTIGIACOMO Davide"
-          ]
+          ],
+          "aula": "AULA B 210*"
         },
         "09:50": {
           "materia": "Italiano",
@@ -2882,7 +3001,8 @@
           "materia_completa": "Lingua inglese",
           "docenti": [
             "DELIU Ornela"
-          ]
+          ],
+          "aula": "AULA B 206*"
         },
         "14:30": {
           "materia": "Chimica",
@@ -2908,7 +3028,8 @@
           "materia_completa": "Eser. di lab. odontotecnico",
           "docenti": [
             "MARIANI Chiara"
-          ]
+          ],
+          "aula": "LAB. ODO 1 (A 307)"
         },
         "09:50": {
           "materia": "Inglese",
@@ -2930,7 +3051,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "PATELLA Nadia"
-          ]
+          ],
+          "aula": "AULA B 004"
         }
       },
       "venerdi": {
@@ -2939,7 +3061,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "VITRANO Rosalba"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Sud\""
         },
         "09:50": {
           "materia": "Italiano",
@@ -2987,14 +3110,16 @@
           "materia_completa": "Lingua inglese",
           "docenti": [
             "FRANCHINI Nicoletta"
-          ]
+          ],
+          "aula": "AULA B 204"
         },
         "09:50": {
           "materia": "Scienze Motorie",
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "OCHNER Daniel"
-          ]
+          ],
+          "aula": "PAL. \"Torcaso\""
         },
         "11:45": {
           "materia": "Religione",
@@ -3015,7 +3140,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "VITIELLO Anna"
-          ]
+          ],
+          "aula": "AULA B 205"
         },
         "16:10": {
           "materia": "Fisica",
@@ -3057,14 +3183,16 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "VITIELLO Anna"
-          ]
+          ],
+          "aula": "AULA B 113"
         },
         "14:30": {
           "materia": "Tedesco",
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "BESTE Anna Maria Waltraud"
-          ]
+          ],
+          "aula": "AULA B 211"
         },
         "16:10": {
           "materia": "Chimica",
@@ -3113,7 +3241,8 @@
           "docenti": [
             "CANTISANI Silviano",
             "VALENTINI Paolo"
-          ]
+          ],
+          "aula": "AULA MEC (D 009) LAB. MEC 1 (D 010: M.U.)"
         }
       },
       "giovedi": {
@@ -3129,7 +3258,8 @@
           "materia": "Matematica",
           "docenti": [
             "SARRI Wanda"
-          ]
+          ],
+          "aula": "AULA B 106*"
         },
         "10:40": {
           "materia": "Storia",
@@ -3171,7 +3301,8 @@
           "docenti": [
             "MONACHELLA Angelo",
             "PECORARO Diego"
-          ]
+          ],
+          "aula": "AULA CHI (B 317**) LAB. CHI 3 (B 318)"
         },
         "11:45": {
           "materia": "Matematica",
@@ -3271,7 +3402,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "PETRONE Antonella"
-          ]
+          ],
+          "aula": "AULA B 004"
         },
         "09:50": {
           "materia": "Storia",
@@ -3293,7 +3425,8 @@
           "materia_completa": "Lingua inglese",
           "docenti": [
             "FRANCHINI Nicoletta"
-          ]
+          ],
+          "aula": "AULA B 205"
         }
       },
       "mercoledi": {
@@ -3301,7 +3434,8 @@
           "materia": "Matematica",
           "docenti": [
             "D'ALESSIO Valeria"
-          ]
+          ],
+          "aula": "Aula D 206**"
         },
         "09:50": {
           "materia": "Tedesco",
@@ -3333,7 +3467,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "TABARELLI DE FATIS Stefania"
-          ]
+          ],
+          "aula": "AULA B 201"
         },
         "16:10": {
           "materia": "Fisica",
@@ -3359,7 +3494,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "OCHNER Daniel"
-          ]
+          ],
+          "aula": "PAL. \"Torcaso\""
         },
         "11:45": {
           "materia": "Scienze e Biologia",
@@ -3440,7 +3576,8 @@
           "materia_completa": "Lingua inglese",
           "docenti": [
             "ROMANI Sara"
-          ]
+          ],
+          "aula": "AULA B 205"
         },
         "09:50": {
           "materia": "Matematica",
@@ -3480,7 +3617,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "GHISU Maria Gabriella"
-          ]
+          ],
+          "aula": "AULA B 109"
         },
         "09:50": {
           "materia": "Chimica",
@@ -3488,7 +3626,8 @@
           "docenti": [
             "D'AGOSTINO Veronica",
             "LATTUCA Teresa"
-          ]
+          ],
+          "aula": "AULA CHI (B 317**) LAB. CHI 3 (B 318)"
         },
         "11:45": {
           "materia": "Fisica",
@@ -3503,7 +3642,8 @@
           "materia": "Matematica",
           "docenti": [
             "BERTOLINO Giuseppe"
-          ]
+          ],
+          "aula": "AULA B 209"
         },
         "16:10": {
           "materia": "Scienze Motorie",
@@ -3553,7 +3693,8 @@
           "docenti": [
             "CITTA' Tiziana",
             "GUADAGNINI Maria Pia"
-          ]
+          ],
+          "aula": "AULA CHI (B 317**) LAB. CHI 3 (B 318)"
         }
       },
       "giovedi": {
@@ -3585,7 +3726,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "PETRONE Antonella"
-          ]
+          ],
+          "aula": "AULA B 013*"
         },
         "14:30": {
           "materia": "Inglese",
@@ -3749,7 +3891,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "TUFANO Guido"
-          ]
+          ],
+          "aula": "AULA B 011"
         },
         "09:50": {
           "materia": "Italiano",
@@ -3771,7 +3914,8 @@
           "materia": "Matematica",
           "docenti": [
             "MANARESI Federica"
-          ]
+          ],
+          "aula": "AULA B 107"
         }
       },
       "mercoledi": {
@@ -3824,7 +3968,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "CERADINI Alessandro"
-          ]
+          ],
+          "aula": "AULA B 115"
         },
         "10:40": {
           "materia": "Inglese",
@@ -3872,7 +4017,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "GIGLIOLI Valentina"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Centro\""
         },
         "09:50": {
           "materia": "Diritto ed Economia",
@@ -3935,7 +4081,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "DI CELLO Jacopo"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Centro\""
         },
         "11:45": {
           "materia": "Tecno. e tecniche rappr. graf. Amin Mohammad Kazem",
@@ -3967,7 +4114,8 @@
           "materia_completa": "Lingua inglese",
           "docenti": [
             "TACUS Alessandra"
-          ]
+          ],
+          "aula": "AULA B 204"
         },
         "09:50": {
           "materia": "Scienze e Biologia",
@@ -4073,7 +4221,8 @@
           "materia": "Matematica",
           "docenti": [
             "MANARESI Federica"
-          ]
+          ],
+          "aula": "AULA B 204"
         },
         "16:10": {
           "materia": "Italiano",
@@ -4145,7 +4294,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "HOFER Verena"
-          ]
+          ],
+          "aula": "AULA B 016"
         },
         "09:50": {
           "materia": "Scienze e Biologia",
@@ -4159,7 +4309,8 @@
           "materia": "Matematica",
           "docenti": [
             "PREVIDI Paola"
-          ]
+          ],
+          "aula": "AULA B 105"
         },
         "12:35": {
           "materia": "Chimica",
@@ -4199,7 +4350,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "MARI Paola"
-          ]
+          ],
+          "aula": "AULA B 211"
         },
         "09:50": {
           "materia": "Fisica",
@@ -4207,7 +4359,8 @@
           "docenti": [
             "ZECCHIN Enrico",
             "ZUECH Claudio"
-          ]
+          ],
+          "aula": "LAB. FIS 2 (B 314)"
         },
         "11:45": {
           "materia": "Chimica",
@@ -4267,7 +4420,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "SEBASTIANI Alfredo"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Centro\""
         },
         "09:50": {
           "materia": "Tedesco",
@@ -4354,7 +4508,8 @@
           "materia_completa": "Lingua inglese",
           "docenti": [
             "PEROTTI Antonio"
-          ]
+          ],
+          "aula": "AULA B 204"
         }
       }
     }
@@ -4378,7 +4533,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "VITRANO Rosalba"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Sud\""
         },
         "09:50": {
           "materia": "Fisica",
@@ -4434,7 +4590,8 @@
           "materia_completa": "Scienze naturali",
           "docenti": [
             "LEGGIERO Stefania"
-          ]
+          ],
+          "aula": "AULA B 206*"
         },
         "09:50": {
           "materia": "Tedesco",
@@ -4449,7 +4606,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "STOPPARI Antonella"
-          ]
+          ],
+          "aula": "AULA B 115"
         },
         "12:35": {
           "materia": "Diritto ed Economia",
@@ -4465,7 +4623,8 @@
           "materia": "Matematica",
           "docenti": [
             "GIUSTI Marina"
-          ]
+          ],
+          "aula": "Aula D 205**"
         },
         "09:50": {
           "materia": "Fisica",
@@ -4488,7 +4647,8 @@
           "docenti": [
             "GIORDANO Carmelo",
             "LEGGIERO Stefania"
-          ]
+          ],
+          "aula": "AULA SCI (B 301**) LAB. SCI (B 305**)"
         }
       },
       "giovedi": {
@@ -4497,7 +4657,8 @@
           "materia_completa": "Disegno e storia dell'arte",
           "docenti": [
             "DELLA RAGIONE Silvia"
-          ]
+          ],
+          "aula": "LAB. CAD 1 (B 219)"
         },
         "09:50": {
           "materia": "Italiano",
@@ -4519,14 +4680,16 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "BERTOLDI Michela"
-          ]
+          ],
+          "aula": "AULA B 205"
         },
         "14:30": {
           "materia": "Inglese",
           "materia_completa": "Lingua inglese",
           "docenti": [
             "DELLA PENNA Daniela"
-          ]
+          ],
+          "aula": "AULA B 304"
         }
       },
       "venerdi": {
@@ -4548,7 +4711,8 @@
           "materia": "Informatica",
           "docenti": [
             "SALIHAJ Anila"
-          ]
+          ],
+          "aula": "LAB. INF 1 (B 208)"
         },
         "11:45": {
           "materia": "Italiano",
@@ -4594,7 +4758,8 @@
           "materia": "Matematica",
           "docenti": [
             "GIUSTI Marina"
-          ]
+          ],
+          "aula": "AULA B 210*"
         },
         "10:40": {
           "materia": "Tedesco",
@@ -4608,7 +4773,8 @@
           "materia": "Informatica",
           "docenti": [
             "DELIZIA Marco"
-          ]
+          ],
+          "aula": "LAB. INF 3 (B 116)"
         },
         "14:30": {
           "materia": "Scienze Naturali",
@@ -4616,7 +4782,8 @@
           "docenti": [
             "LATTUCA Teresa",
             "LEGGIERO Stefania"
-          ]
+          ],
+          "aula": "AULA SCI (B 301**) LAB. SCI (B 305**)"
         }
       },
       "martedi": {
@@ -4625,7 +4792,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "ALDROVANDI Carla"
-          ]
+          ],
+          "aula": "AULA B 016"
         },
         "09:50": {
           "materia": "Italiano",
@@ -4664,7 +4832,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "NOLLI Cinzia"
-          ]
+          ],
+          "aula": "PAL. \"Torcaso\""
         },
         "16:10": {
           "materia": "Matematica",
@@ -4680,7 +4849,8 @@
           "materia_completa": "Scienze naturali",
           "docenti": [
             "LEGGIERO Stefania"
-          ]
+          ],
+          "aula": "AULA SCI (B 301**)"
         },
         "09:50": {
           "materia": "Storia e Geografia",
@@ -4713,7 +4883,8 @@
           "materia_completa": "Lingua inglese",
           "docenti": [
             "PEROTTI Antonio"
-          ]
+          ],
+          "aula": "AULA B 204"
         },
         "09:50": {
           "materia": "Matematica",
@@ -4735,7 +4906,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "LONOCE Maria Pompea"
-          ]
+          ],
+          "aula": "AULA B 109"
         }
       },
       "venerdi": {
@@ -4744,7 +4916,8 @@
           "materia_completa": "Disegno e storia dell'arte",
           "docenti": [
             "DELLA RAGIONE Silvia"
-          ]
+          ],
+          "aula": "LAB. CAD 1 (B 219)"
         },
         "09:50": {
           "materia": "Tedesco",
@@ -4798,7 +4971,8 @@
           "materia_completa": "Eser. di lab. odontotecnico",
           "docenti": [
             "BRILLO Susanna"
-          ]
+          ],
+          "aula": "LAB. ODO 1 (A 307)"
         },
         "09:50": {
           "materia": "Tedesco",
@@ -4856,21 +5030,24 @@
           "materia_completa": "Eser. di lab. odontotecnico",
           "docenti": [
             "BRILLO Susanna"
-          ]
+          ],
+          "aula": "LAB. ODO 1 (A 307)"
         },
         "09:50": {
           "materia": "Rappresentazione Odontotecnica",
           "materia_completa": "Rappr. e modell. odontotecnica",
           "docenti": [
             "DOCILE Valeria Anna"
-          ]
+          ],
+          "aula": "LAB. DIS (B 215)"
         },
         "11:45": {
           "materia": "Italiano",
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "ZANONI Barbara"
-          ]
+          ],
+          "aula": "AULA B 114"
         }
       },
       "mercoledi": {
@@ -4879,7 +5056,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "CARLIN Martina"
-          ]
+          ],
+          "aula": "AULA B 016"
         },
         "09:50": {
           "materia": "Storia",
@@ -4916,7 +5094,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "VITRANO Rosalba"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Sud\""
         },
         "16:10": {
           "materia": "Religione",
@@ -4979,7 +5158,8 @@
           "materia": "Matematica",
           "docenti": [
             "STIVELLA Marco"
-          ]
+          ],
+          "aula": "AULA B 107"
         },
         "09:50": {
           "materia": "Italiano",
@@ -5050,7 +5230,8 @@
           "materia": "Matematica",
           "docenti": [
             "STIVELLA Marco"
-          ]
+          ],
+          "aula": "AULA B 104"
         },
         "12:35": {
           "materia": "Religione",
@@ -5099,7 +5280,8 @@
           "materia_completa": "Eser. di lab. odontotecnico",
           "docenti": [
             "SAIANI Christian"
-          ]
+          ],
+          "aula": "LAB. ODO 1 (A 307)"
         },
         "11:45": {
           "materia": "Chimica",
@@ -5163,7 +5345,8 @@
           "materia_completa": "Rappr. e modell. odontotecnica",
           "docenti": [
             "DOCILE Valeria Anna"
-          ]
+          ],
+          "aula": "LAB. DIS (B 215)"
         },
         "16:10": {
           "materia": "Scienze Motorie",
@@ -5180,7 +5363,8 @@
           "materia_completa": "Lingua inglese",
           "docenti": [
             "ALIAJ Mimoza"
-          ]
+          ],
+          "aula": "AULA B 205"
         },
         "09:50": {
           "materia": "Italiano",
@@ -5203,7 +5387,8 @@
           "materia_completa": "Eser. di lab. odontotecnico",
           "docenti": [
             "SAIANI Christian"
-          ]
+          ],
+          "aula": "LAB. ODO 1 (A 307)"
         }
       },
       "venerdi": {
@@ -5212,7 +5397,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "MENCHISE Antonella"
-          ]
+          ],
+          "aula": "AULA B 013*"
         },
         "09:50": {
           "materia": "Matematica",
@@ -5234,7 +5420,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "CANEVE Elisa"
-          ]
+          ],
+          "aula": "AULA B 112*"
         }
       }
     }
@@ -5259,7 +5446,8 @@
           "docenti": [
             "DE BENEDITTIS Fabio Antonio",
             "MELECHI' Michele"
-          ]
+          ],
+          "aula": "LAB. CAD 1 (B 219) LAB. PNRR IND. 4.0 (D 011)"
         },
         "09:50": {
           "materia": "Matematica",
@@ -5281,7 +5469,8 @@
           "docenti": [
             "CANTISANI Silviano",
             "PASCIUTO Paolo"
-          ]
+          ],
+          "aula": "LAB. MEC 1 (D 010: M.U.) LAB. MEC 2 (D 008: M.M.E.)"
         }
       },
       "martedi": {
@@ -5297,7 +5486,8 @@
           "materia": "Matematica",
           "docenti": [
             "SARRI Wanda"
-          ]
+          ],
+          "aula": "Aula D 204**"
         },
         "10:40": {
           "materia": "Tedesco",
@@ -5321,7 +5511,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "CHIANESE Francesco"
-          ]
+          ],
+          "aula": "AULA B 205"
         },
         "16:10": {
           "materia": "Meccanica",
@@ -5364,14 +5555,16 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "DI CELLO Jacopo"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Centro\""
         },
         "14:30": {
           "materia": "Disegno e Prog. Industriale",
           "materia_completa": "Dis., progettaz. e org. ind.le",
           "docenti": [
             "ZAVARISE Alessandro"
-          ]
+          ],
+          "aula": "LAB. CAD 1 (B 219)"
         },
         "16:10": {
           "materia": "Tecn. Meccanica",
@@ -5388,7 +5581,8 @@
           "materia_completa": "Meccanica, macchine e energia",
           "docenti": [
             "TASSIELLI Davide Giuseppe"
-          ]
+          ],
+          "aula": "LAB. MEC 2 (D 008: M.M.E.)"
         },
         "09:50": {
           "materia": "Inglese",
@@ -5427,7 +5621,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "ROTTENSTEINER Sylvia"
-          ]
+          ],
+          "aula": "AULA B 011"
         },
         "09:50": {
           "materia": "Sistemi e Automazione",
@@ -5452,7 +5647,8 @@
           "docenti": [
             "CANTISANI Silviano",
             "PASCIUTO Paolo"
-          ]
+          ],
+          "aula": "LAB. MEC 3 (D 006: CONG.) LAB. MEC. 5 (B119: AUT. & R.) LAB. MEC. 6 (D 012: SALD.)"
         }
       }
     }
@@ -5502,7 +5698,8 @@
           "materia": "Matematica",
           "docenti": [
             "BERTOLINO Giuseppe"
-          ]
+          ],
+          "aula": "Aula D 206**"
         }
       },
       "martedi": {
@@ -5604,7 +5801,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "MOLINI Paola"
-          ]
+          ],
+          "aula": "AULA B 205"
         },
         "16:10": {
           "materia": "Tedesco",
@@ -5632,7 +5830,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "PATELLA Nadia"
-          ]
+          ],
+          "aula": "AULA B 007*"
         },
         "10:40": {
           "materia": "Italiano",
@@ -5647,7 +5846,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "SALVATERRA Joshua"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Centro\""
         },
         "14:30": {
           "materia": "Fisica Ambientale",
@@ -5747,7 +5947,8 @@
           "materia": "Matematica",
           "docenti": [
             "BERTOLINO Giuseppe"
-          ]
+          ],
+          "aula": "Aula D 206**"
         }
       },
       "martedi": {
@@ -5859,7 +6060,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "MOLINI Paola"
-          ]
+          ],
+          "aula": "AULA B 205"
         },
         "16:10": {
           "materia": "Tedesco",
@@ -5887,7 +6089,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "PATELLA Nadia"
-          ]
+          ],
+          "aula": "AULA B 007*"
         },
         "10:40": {
           "materia": "Italiano",
@@ -5901,7 +6104,12 @@
           "materia": "Scienze Motorie",
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
-            "SALVATERRA Joshua",
+            "SALVATERRA Joshua"
+          ],
+          "aula": "PAL. \"Talvera Centro\""
+        },
+        "14:30": {
+          "docenti": [
             "Igiene",
             "BIANCHI anat.",
             "fisiol.",
@@ -6019,7 +6227,8 @@
           "materia": "Matematica",
           "docenti": [
             "D'ALESSIO Valeria"
-          ]
+          ],
+          "aula": "AULA B 106*"
         },
         "12:35": {
           "materia": "Religione",
@@ -6034,7 +6243,8 @@
           "docenti": [
             "CITTA' Tiziana",
             "D'AGOSTINO Veronica"
-          ]
+          ],
+          "aula": "AULA BIO (302) LAB. CHI 1 (A 303)"
         },
         "16:10": {
           "materia": "Storia",
@@ -6050,7 +6260,8 @@
           "materia_completa": "Igiene, anat., fisiol., patol.",
           "docenti": [
             "DE MARIA Liliana"
-          ]
+          ],
+          "aula": "AULA B 309"
         },
         "09:50": {
           "materia": "Inglese",
@@ -6132,7 +6343,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "ROTTENSTEINER Sylvia"
-          ]
+          ],
+          "aula": "AULA B 112*"
         }
       },
       "giovedi": {
@@ -6174,7 +6386,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "GHISU Maria Gabriella"
-          ]
+          ],
+          "aula": "AULA B 111"
         }
       },
       "venerdi": {
@@ -6183,7 +6396,8 @@
           "materia_completa": "Igiene, anat., fisiol., patol.",
           "docenti": [
             "DE MARIA Liliana"
-          ]
+          ],
+          "aula": "AULA B 309"
         },
         "09:50": {
           "materia": "Chimica Organica",
@@ -6206,7 +6420,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "SALVATERRA Joshua"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Centro\""
         }
       }
     }
@@ -6271,7 +6486,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "TABARELLI DE FATIS Stefania"
-          ]
+          ],
+          "aula": "AULA B 115"
         },
         "09:50": {
           "materia": "Informatica",
@@ -6286,7 +6502,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "GIGLIOLI Valentina"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Sud\""
         }
       },
       "mercoledi": {
@@ -6303,7 +6520,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "TUFANO Guido"
-          ]
+          ],
+          "aula": "AULA B 011"
         },
         "10:40": {
           "materia": "Informatica",
@@ -6318,13 +6536,15 @@
           "docenti": [
             "DI DIO Daniele",
             "TOMEI Leonardo"
-          ]
+          ],
+          "aula": "LAB. INF 2 (B 212)"
         },
         "14:30": {
           "materia": "Matematica",
           "docenti": [
             "GAGLIOSTRO Antonio"
-          ]
+          ],
+          "aula": "AULA B 211"
         },
         "16:10": {
           "materia": "Storia",
@@ -6340,7 +6560,8 @@
           "materia_completa": "Tec. e prog. sist. inf. e tel.",
           "docenti": [
             "DI DIO Daniele"
-          ]
+          ],
+          "aula": "LAB. INF 4 (D 201**)"
         },
         "09:50": {
           "materia": "Religione",
@@ -6394,7 +6615,8 @@
           "materia_completa": "Sistemi e reti",
           "docenti": [
             "CANTARELLA Alfredo"
-          ]
+          ],
+          "aula": "LAB. INF 5 (D 202**)"
         },
         "09:50": {
           "materia": "Telecomunicazioni",
@@ -6442,7 +6664,8 @@
           "materia_completa": "Tec. e prog. sist. inf. e tel.",
           "docenti": [
             "DONATI Lorenzo"
-          ]
+          ],
+          "aula": "LAB. ELEE 1 (A 210*: L.E.AP)"
         },
         "09:50": {
           "materia": "Matematica",
@@ -6464,14 +6687,16 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "DI CELLO Jacopo"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Centro\""
         },
         "14:30": {
           "materia": "Italiano",
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "PERRUCCI Rosi"
-          ]
+          ],
+          "aula": "AULA 201"
         },
         "16:10": {
           "materia": "Telecomunicazioni",
@@ -6487,7 +6712,8 @@
           "materia_completa": "Sistemi e reti",
           "docenti": [
             "LATINA Giuliano"
-          ]
+          ],
+          "aula": "LAB. INF 4 (D 201**)"
         },
         "09:50": {
           "materia": "Telecomunicazioni",
@@ -6527,7 +6753,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "MENCHISE Antonella"
-          ]
+          ],
+          "aula": "AULA B 011"
         },
         "12:35": {
           "materia": "Inglese",
@@ -6631,7 +6858,8 @@
           "materia": "Matematica",
           "docenti": [
             "TERZONI Giulia"
-          ]
+          ],
+          "aula": "Aula D 205**"
         }
       }
     }
@@ -6685,7 +6913,8 @@
           "materia_completa": "Elettronica ed elettrotecnica",
           "docenti": [
             "CASTALDO Franco"
-          ]
+          ],
+          "aula": "LAB. ELE 1 (D 001)"
         }
       },
       "martedi": {
@@ -6736,7 +6965,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "ROTTENSTEINER Sylvia"
-          ]
+          ],
+          "aula": "AULA B 309"
         },
         "16:10": {
           "materia": "Storia",
@@ -6784,7 +7014,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "VERZELLA Alba"
-          ]
+          ],
+          "aula": "AULA B 105"
         },
         "14:30": {
           "materia": "Complementi di Matematica",
@@ -6818,14 +7049,16 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "OCHNER Daniel"
-          ]
+          ],
+          "aula": "PAL. \"Torcaso\""
         },
         "09:50": {
           "materia": "Tec. Prog. Sistemi Elettr.",
           "materia_completa": "Tec. e prog. sist. ele. e elee",
           "docenti": [
             "SICIGNANO Cristoforo"
-          ]
+          ],
+          "aula": "LAB. ELE 2 (D 004)"
         },
         "11:45": {
           "materia": "Elettronica",
@@ -6842,7 +7075,8 @@
           "materia": "Matematica",
           "docenti": [
             "ECCHER Andrea"
-          ]
+          ],
+          "aula": "Aula D 205**"
         },
         "09:50": {
           "materia": "Tec. Prog. Sistemi Elettr.",
@@ -6915,7 +7149,8 @@
           "docenti": [
             "DALLA TORRE Massimiliano",
             "LATTUCA Teresa"
-          ]
+          ],
+          "aula": "AULA SCI (B 301**) LAB. SCI (B 305**)"
         },
         "12:35": {
           "materia": "Storia",
@@ -6946,7 +7181,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "VITRANO Rosalba"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Sud\""
         },
         "11:45": {
           "materia": "Tedesco",
@@ -6968,7 +7204,8 @@
           "materia": "Matematica",
           "docenti": [
             "GIUSTI Marina"
-          ]
+          ],
+          "aula": "AULA B 207"
         }
       },
       "mercoledi": {
@@ -6977,7 +7214,8 @@
           "materia_completa": "Scienze naturali",
           "docenti": [
             "DALLA TORRE Massimiliano"
-          ]
+          ],
+          "aula": "AULA B 311*"
         },
         "09:50": {
           "materia": "Fisica",
@@ -6999,7 +7237,8 @@
           "materia_completa": "Lingua inglese",
           "docenti": [
             "DELLA PENNA Daniela"
-          ]
+          ],
+          "aula": "AULA B 207"
         }
       },
       "giovedi": {
@@ -7008,14 +7247,16 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "BERTOLDI Christian"
-          ]
+          ],
+          "aula": "AULA B 209"
         },
         "09:50": {
           "materia": "Disegno e Arte",
           "materia_completa": "Disegno e storia dell'arte",
           "docenti": [
             "DELLA RAGIONE Silvia"
-          ]
+          ],
+          "aula": "LAB. CAD 1 (B 219)"
         },
         "11:45": {
           "materia": "Matematica",
@@ -7037,7 +7278,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "ALDROVANDI Carla"
-          ]
+          ],
+          "aula": "AULA 201"
         },
         "16:10": {
           "materia": "Filosofia",
@@ -7075,7 +7317,8 @@
           "materia": "Informatica",
           "docenti": [
             "DE GIORGI Nicola"
-          ]
+          ],
+          "aula": "LAB. INF 3 (B 116)"
         }
       }
     }
@@ -7099,7 +7342,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "MAISANO Nunziatina"
-          ]
+          ],
+          "aula": "AULA B 211"
         },
         "09:50": {
           "materia": "Complementi di Matematica",
@@ -7114,7 +7358,8 @@
           "materia_completa": "Tec. e prog. sist. inf. e tel.",
           "docenti": [
             "DI DIO Daniele"
-          ]
+          ],
+          "aula": "LAB. INF 4 (D 201**)"
         },
         "12:35": {
           "materia": "Telecomunicazioni",
@@ -7145,7 +7390,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "TUFANO Guido"
-          ]
+          ],
+          "aula": "AULA B 011"
         },
         "12:35": {
           "materia": "Religione",
@@ -7194,7 +7440,8 @@
           "docenti": [
             "D'ANTONI Mario",
             "DI DIO Daniele"
-          ]
+          ],
+          "aula": "LAB. INF 3 (B 116)"
         },
         "11:45": {
           "materia": "Inglese",
@@ -7216,7 +7463,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "SALVATERRA Joshua"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Centro\""
         },
         "16:10": {
           "materia": "Complementi di Matematica",
@@ -7240,7 +7488,8 @@
           "materia": "Matematica",
           "docenti": [
             "ECCHER Andrea"
-          ]
+          ],
+          "aula": "Aula D 206**"
         },
         "11:45": {
           "materia": "Storia",
@@ -7280,7 +7529,8 @@
           "materia_completa": "Sistemi e reti",
           "docenti": [
             "CANTARELLA Alfredo"
-          ]
+          ],
+          "aula": "LAB. INF 5 (D 202**)"
         },
         "12:35": {
           "materia": "Matematica",
@@ -7310,7 +7560,8 @@
           "materia": "Informatica",
           "docenti": [
             "IACCARINO Gennaro"
-          ]
+          ],
+          "aula": "LAB. INF 3 (B 116)"
         },
         "09:50": {
           "materia": "Filosofia",
@@ -7324,7 +7575,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "BERTOLDI Christian"
-          ]
+          ],
+          "aula": "AULA B 111"
         },
         "12:35": {
           "materia": "Matematica",
@@ -7341,14 +7593,16 @@
           "docenti": [
             "DALLA TORRE Massimiliano",
             "LATTUCA Teresa"
-          ]
+          ],
+          "aula": "AULA SCI (B 301**) LAB. SCI (B 305**)"
         },
         "09:50": {
           "materia": "Disegno e Arte",
           "materia_completa": "Disegno e storia dell'arte",
           "docenti": [
             "DELLA RAGIONE Silvia"
-          ]
+          ],
+          "aula": "LAB. CAD 1 (B 219)"
         },
         "11:45": {
           "materia": "Tedesco",
@@ -7418,13 +7672,15 @@
           "materia_completa": "Scienze naturali",
           "docenti": [
             "DALLA TORRE Massimiliano"
-          ]
+          ],
+          "aula": "AULA B 306"
         },
         "14:30": {
           "materia": "Matematica",
           "docenti": [
             "TERZONI Giulia"
-          ]
+          ],
+          "aula": "AULA B 207"
         }
       },
       "giovedi": {
@@ -7433,7 +7689,8 @@
           "docenti": [
             "PAPAIS Denise",
             "VERRA Dennis"
-          ]
+          ],
+          "aula": "LAB. FIS 1 (B 310)"
         },
         "09:50": {
           "materia": "Scienze Naturali",
@@ -7455,7 +7712,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "FISCHNALLER Barbara"
-          ]
+          ],
+          "aula": "AULA B 206*"
         }
       },
       "venerdi": {
@@ -7464,7 +7722,8 @@
           "materia_completa": "Lingua inglese",
           "docenti": [
             "ALIAJ Mimoza"
-          ]
+          ],
+          "aula": "AULA B 205"
         },
         "09:50": {
           "materia": "Scienze Naturali",
@@ -7542,7 +7801,8 @@
           "materia_completa": "Lab. tecn. e esercitazioni",
           "docenti": [
             "NATALE Luigi"
-          ]
+          ],
+          "aula": "LAB. ELE 4 (C 003)"
         }
       },
       "martedi": {
@@ -7589,7 +7849,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "ZEZZA Maria"
-          ]
+          ],
+          "aula": "AULA B 114"
         },
         "10:40": {
           "materia": "Matematica",
@@ -7603,14 +7864,16 @@
           "materia_completa": "Lingua inglese",
           "docenti": [
             "PEROTTI Antonio"
-          ]
+          ],
+          "aula": "AULA B 209"
         },
         "14:30": {
           "materia": "Tecn. Meccanica",
           "materia_completa": "Tecnologie meccaniche ed appl.",
           "docenti": [
             "PASCIUTO Paolo"
-          ]
+          ],
+          "aula": "LAB. MEC 2 (D 008: M.M.E.)"
         },
         "16:10": {
           "materia": "Tecn. Elettr. e Elettrotecnica",
@@ -7627,7 +7890,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "HOFER Verena"
-          ]
+          ],
+          "aula": "AULA B 016"
         },
         "09:50": {
           "materia": "Tecn. Elettr. e Elettrotecnica",
@@ -7650,7 +7914,8 @@
           "materia": "Matematica",
           "docenti": [
             "PRESTIGIACOMO Davide"
-          ]
+          ],
+          "aula": "Aula D 206**"
         },
         "14:30": {
           "materia": "Italiano",
@@ -7698,14 +7963,16 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "NOLLI Cinzia"
-          ]
+          ],
+          "aula": "PAL. \"Torcaso\""
         },
         "11:45": {
           "materia": "Lab. Tecn. ed Esercitazioni",
           "materia_completa": "Lab. tecn. e esercitazioni",
           "docenti": [
             "NATALE Luigi"
-          ]
+          ],
+          "aula": "LAB. ELE 4 (C 003)"
         }
       }
     }
@@ -7760,7 +8027,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "VITRANO Rosalba"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Sud\""
         },
         "16:10": {
           "materia": "Inglese",
@@ -7777,7 +8045,8 @@
           "materia_completa": "Scienze dei mat. dent. e lab.",
           "docenti": [
             "RIOLO Marcello"
-          ]
+          ],
+          "aula": "AULA MEC (D 009)"
         },
         "09:50": {
           "materia": "Religione",
@@ -7821,14 +8090,16 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "CERADINI Alessandro"
-          ]
+          ],
+          "aula": "AULA B 115"
         },
         "10:40": {
           "materia": "Tedesco",
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "CARLIN Martina"
-          ]
+          ],
+          "aula": "AULA B 016"
         },
         "12:35": {
           "materia": "Storia",
@@ -7851,7 +8122,8 @@
           "materia": "Matematica",
           "docenti": [
             "MICILLO Martia Giustina"
-          ]
+          ],
+          "aula": "Aula D 204**"
         },
         "09:50": {
           "materia": "Scienze dei Materiali Dentali",
@@ -7859,7 +8131,8 @@
           "docenti": [
             "MARIANI Chiara",
             "RIOLO Marcello"
-          ]
+          ],
+          "aula": "AULA B 311*,LAB. ODO 1 (A 307)"
         },
         "11:45": {
           "materia": "Anatomia e Fisiologia",
@@ -7932,7 +8205,8 @@
           "materia_completa": "Scienze dei mat. dent. e lab.",
           "docenti": [
             "BIDDAU Antonella"
-          ]
+          ],
+          "aula": "AULA B 307*"
         },
         "10:40": {
           "materia": "Inglese",
@@ -7955,7 +8229,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "GIGLIOLI Valentina"
-          ]
+          ],
+          "aula": "PAL. \"Torcaso\""
         },
         "16:10": {
           "materia": "Tedesco",
@@ -7971,7 +8246,8 @@
           "materia": "Matematica",
           "docenti": [
             "TERZONI Giulia"
-          ]
+          ],
+          "aula": "LAB. INF 1 (B 208)"
         },
         "09:50": {
           "materia": "Religione",
@@ -8018,7 +8294,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "BESTE Anna Maria Waltraud"
-          ]
+          ],
+          "aula": "AULA B 112*"
         },
         "09:50": {
           "materia": "Inglese",
@@ -8067,7 +8344,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "VENDRAME Emilio"
-          ]
+          ],
+          "aula": "AULA B 211"
         }
       },
       "venerdi": {
@@ -8117,7 +8395,8 @@
           "materia": "Matematica",
           "docenti": [
             "ECCHER Andrea"
-          ]
+          ],
+          "aula": "Aula D 204**"
         },
         "09:50": {
           "materia": "Sistemi e Automazione",
@@ -8136,7 +8415,8 @@
           "docenti": [
             "DE ROSSI Andrea",
             "VALENTINI Paolo"
-          ]
+          ],
+          "aula": "AULA MEC (D 009) LAB. MEC 3 (D 006: CONG.)"
         }
       },
       "martedi": {
@@ -8153,14 +8433,16 @@
           "materia_completa": "Dis., progettaz. e org. ind.le",
           "docenti": [
             "ZAVARISE Alessandro"
-          ]
+          ],
+          "aula": "LAB. PNRR IND. 4.0 (D 011)"
         },
         "10:40": {
           "materia": "Italiano",
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "BENETTI Mattia"
-          ]
+          ],
+          "aula": "AULA B 108"
         },
         "12:35": {
           "materia": "Matematica",
@@ -8222,7 +8504,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "PATELLA Nadia"
-          ]
+          ],
+          "aula": "AULA B 309"
         },
         "16:10": {
           "materia": "Disegno e Prog. Industriale",
@@ -8279,7 +8562,8 @@
           "materia_completa": "Meccanica, macchine e energia",
           "docenti": [
             "DE BENEDITTIS Fabio Antonio"
-          ]
+          ],
+          "aula": "LAB. MEC 2 (D 008: M.M.E.)"
         },
         "16:10": {
           "materia": "Tecn. Meccanica",
@@ -8296,7 +8580,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "NOLLI Cinzia"
-          ]
+          ],
+          "aula": "PAL. \"Torcaso\""
         },
         "09:50": {
           "materia": "Storia",
@@ -8318,7 +8603,8 @@
           "docenti": [
             "DE ROSSI Andrea",
             "VALENTINI Paolo"
-          ]
+          ],
+          "aula": "AULA MEC (D 009) LAB. MEC 1 (D 010: M.U.)"
         }
       }
     }
@@ -8341,7 +8627,8 @@
           "materia": "Matematica",
           "docenti": [
             "BERTOLINO Giuseppe"
-          ]
+          ],
+          "aula": "Aula D 206**"
         },
         "09:50": {
           "materia": "Biologia Sanitaria",
@@ -8361,7 +8648,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "TUFANO Guido"
-          ]
+          ],
+          "aula": "AULA B 007*"
         }
       },
       "martedi": {
@@ -8370,7 +8658,8 @@
           "materia_completa": "Igiene, anat., fisiol., patol.",
           "docenti": [
             "DI TRAPANI Rosalba"
-          ]
+          ],
+          "aula": "AULA B 306"
         },
         "09:50": {
           "materia": "Italiano",
@@ -8392,7 +8681,8 @@
           "materia_completa": "Chimica org. e biochimica",
           "docenti": [
             "D'AGOSTINO Veronica"
-          ]
+          ],
+          "aula": "AULA CHI (B 317**)"
         },
         "14:30": {
           "materia": "Chimica Analitica",
@@ -8400,7 +8690,8 @@
           "docenti": [
             "BIANCHI Patrick",
             "PECORARO Diego"
-          ]
+          ],
+          "aula": "AULA CHI (B 317**) LAB. CHI 4 (B 320)"
         },
         "16:10": {
           "materia": "Biologia Sanitaria",
@@ -8451,7 +8742,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "GIGLIOLI Valentina"
-          ]
+          ],
+          "aula": "PAL. \"Torcaso\""
         },
         "14:30": {
           "materia": "Igiene e Anatomia",
@@ -8484,7 +8776,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "GHISU Maria Gabriella"
-          ]
+          ],
+          "aula": "AULA B 211"
         },
         "10:40": {
           "materia": "Inglese",
@@ -8532,7 +8825,8 @@
           "materia_completa": "Igiene, anat., fisiol., patol.",
           "docenti": [
             "DI TRAPANI Rosalba"
-          ]
+          ],
+          "aula": "AULA B 209"
         }
       }
     }
@@ -8581,14 +8875,16 @@
           "aula": "AULA B 114"
         },
         "11:45": {
-          "materia": "Tec. e prog. sist. inf. e tel. Maria,TOMEI Leonardo"
+          "materia": "Tec. e prog. sist. inf. e tel. Maria,TOMEI Leonardo",
+          "aula": "LAB. ELEE 1 (A 210*: L.E.AP)"
         },
         "14:30": {
           "materia": "Tedesco",
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "FISCHNALLER Barbara"
-          ]
+          ],
+          "aula": "AULA B 204"
         },
         "16:10": {
           "materia": "Informatica",
@@ -8620,7 +8916,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "SALVATERRA Joshua"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Centro\""
         },
         "11:45": {
           "materia": "Informatica",
@@ -8668,7 +8965,8 @@
           "materia_completa": "Tec. e prog. sist. inf. e tel.",
           "docenti": [
             "CANNONE Maria"
-          ]
+          ],
+          "aula": "LAB. INF 2 (B 212)"
         },
         "11:45": {
           "materia": "Complementi di Matematica",
@@ -8693,7 +8991,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "MAISANO Nunziatina"
-          ]
+          ],
+          "aula": "AULA B 210*"
         },
         "09:50": {
           "materia": "Telecomunicazioni",
@@ -8725,13 +9024,15 @@
           "materia_completa": "Sistemi e reti",
           "docenti": [
             "DELIZIA Marco"
-          ]
+          ],
+          "aula": "LAB. ELEE 4 (B 120/2)"
         },
         "09:50": {
           "materia": "Matematica",
           "docenti": [
             "D'ALESSIO Valeria"
-          ]
+          ],
+          "aula": "AULA B 107"
         },
         "11:45": {
           "materia": "Telecomunicazioni",
@@ -8762,7 +9063,8 @@
           "materia": "Matematica",
           "docenti": [
             "MILANESE Sabina"
-          ]
+          ],
+          "aula": "Aula D 205**"
         },
         "09:50": {
           "materia": "Italiano",
@@ -8799,7 +9101,8 @@
           "docenti": [
             "ARABIA Eliana",
             "MAGNANI Fabio"
-          ]
+          ],
+          "aula": "LAB. ELEE 1 (A 210*: L.E.AP)"
         },
         "16:10": {
           "materia": "Informatica",
@@ -8815,7 +9118,8 @@
           "docenti": [
             "ARABIA Eliana",
             "MAGNANI Fabio"
-          ]
+          ],
+          "aula": "LAB. ELEE 1 (A 210*: L.E.AP)"
         },
         "09:50": {
           "materia": "Tec. Prog. Sistemi Inf.",
@@ -8823,7 +9127,8 @@
           "docenti": [
             "DONATI Lorenzo",
             "PILOTTI Alessio"
-          ]
+          ],
+          "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
         },
         "11:45": {
           "materia": "Inglese",
@@ -8848,7 +9153,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "VERZELLA Alba"
-          ]
+          ],
+          "aula": "AULA B 211"
         },
         "09:50": {
           "materia": "Matematica",
@@ -8870,7 +9176,8 @@
           "materia_completa": "Sistemi e reti",
           "docenti": [
             "LATINA Giuliano"
-          ]
+          ],
+          "aula": "LAB. INF 1 (B 208)"
         }
       },
       "giovedi": {
@@ -8879,7 +9186,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "VITRANO Rosalba"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Sud\""
         },
         "09:50": {
           "materia": "Tedesco",
@@ -8910,7 +9218,8 @@
           "materia_completa": "Tec. e prog. sist. inf. e tel.",
           "docenti": [
             "DONATI Lorenzo"
-          ]
+          ],
+          "aula": "LAB. ELEE 1 (A 210*: L.E.AP)"
         },
         "16:10": {
           "materia": "Telecomunicazioni",
@@ -8926,7 +9235,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "BESTE Anna Maria Waltraud"
-          ]
+          ],
+          "aula": "AULA B 206*"
         },
         "09:50": {
           "materia": "Inglese",
@@ -8949,7 +9259,8 @@
           "docenti": [
             "ARABIA Eliana",
             "MAGNANI Fabio"
-          ]
+          ],
+          "aula": "LAB. ELEE 3 (B 120/1)"
         }
       }
     }
@@ -8973,7 +9284,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "SCHROFFENEGGER Sonja"
-          ]
+          ],
+          "aula": "AULA B 011"
         },
         "09:50": {
           "materia": "Elettronica",
@@ -8999,14 +9311,16 @@
           "materia": "Matematica",
           "docenti": [
             "MICILLO Martia Giustina"
-          ]
+          ],
+          "aula": "AULA B 107"
         },
         "09:50": {
           "materia": "Scienze Motorie",
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "OCHNER Daniel"
-          ]
+          ],
+          "aula": "PAL. \"Torcaso\""
         },
         "11:45": {
           "materia": "Elettronica",
@@ -9022,7 +9336,8 @@
           "materia_completa": "Tec. e prog. sist. ele. e elee",
           "docenti": [
             "BAMPI Alessandro"
-          ]
+          ],
+          "aula": "LAB. ELE 1 (D 001)"
         },
         "16:10": {
           "materia": "Tedesco",
@@ -9071,7 +9386,8 @@
           "materia_completa": "Sistemi automatici",
           "docenti": [
             "DONATI Lorenzo"
-          ]
+          ],
+          "aula": "LAB. ELE 1 (D 001)"
         }
       },
       "giovedi": {
@@ -9111,14 +9427,16 @@
           "docenti": [
             "BAMPI Alessandro",
             "NATALE Luigi"
-          ]
+          ],
+          "aula": "LAB. ELE 1 (D 001)"
         },
         "14:30": {
           "materia": "Italiano",
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "DI MARCO Raffaele Francesco"
-          ]
+          ],
+          "aula": "AULA B 309"
         },
         "16:10": {
           "materia": "Sistemi Automatici",
@@ -9167,7 +9485,8 @@
           "materia_completa": "Elettronica ed elettrotecnica",
           "docenti": [
             "CASTALDO Franco"
-          ]
+          ],
+          "aula": "LAB. ELE 1 (D 001)"
         }
       }
     }
@@ -9219,7 +9538,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "SALVATERRA Joshua"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Sud\""
         },
         "14:30": {
           "materia": "Tedesco",
@@ -9250,7 +9570,8 @@
           "materia": "Matematica",
           "docenti": [
             "PREVIDI Paola"
-          ]
+          ],
+          "aula": "AULA B 108"
         },
         "09:50": {
           "materia": "Scienze Naturali",
@@ -9258,14 +9579,16 @@
           "docenti": [
             "CITTA' Tiziana",
             "MARRA Carla"
-          ]
+          ],
+          "aula": "AULA SCI (B 301**) LAB. SCI (B 305**)"
         },
         "11:45": {
           "materia": "Disegno e Arte",
           "materia_completa": "Disegno e storia dell'arte",
           "docenti": [
             "DELLA RAGIONE Silvia"
-          ]
+          ],
+          "aula": "LAB. CAD 1 (B 219)"
         }
       },
       "mercoledi": {
@@ -9290,7 +9613,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "BERTOLDI Michela"
-          ]
+          ],
+          "aula": "AULA B 204"
         },
         "12:35": {
           "materia": "Italiano",
@@ -9307,7 +9631,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "STOPPARI Antonella"
-          ]
+          ],
+          "aula": "AULA B 207"
         },
         "09:50": {
           "materia": "Tedesco",
@@ -9321,7 +9646,8 @@
           "materia": "Informatica",
           "docenti": [
             "IACCARINO Gennaro"
-          ]
+          ],
+          "aula": "LAB. INF 3 (B 116)"
         },
         "12:35": {
           "materia": "Inglese",
@@ -9367,7 +9693,8 @@
           "materia_completa": "Scienze naturali",
           "docenti": [
             "MARRA Carla"
-          ]
+          ],
+          "aula": "AULA B 210*"
         },
         "11:45": {
           "materia": "Inglese",
@@ -9406,7 +9733,8 @@
           "materia_completa": "Tec. e prog. sist. inf. e tel.",
           "docenti": [
             "RECLA Alessandro"
-          ]
+          ],
+          "aula": "LAB. ELE 3 (D 005)"
         },
         "09:50": {
           "materia": "Storia",
@@ -9476,7 +9804,8 @@
           "materia_completa": "Sistemi e reti",
           "docenti": [
             "DELIZIA Marco"
-          ]
+          ],
+          "aula": "LAB. INF 1 (B 208)"
         },
         "16:10": {
           "materia": "Italiano",
@@ -9549,7 +9878,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "MAISANO Nunziatina"
-          ]
+          ],
+          "aula": "AULA B 207"
         },
         "11:45": {
           "materia": "Telecomunicazioni",
@@ -9563,7 +9893,8 @@
           "materia": "Matematica",
           "docenti": [
             "MILANESE Sabina"
-          ]
+          ],
+          "aula": "AULA B 209"
         },
         "16:10": {
           "materia": "Informatica",
@@ -9588,14 +9919,16 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "SALVATERRA Joshua"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Centro\""
         },
         "11:45": {
           "materia": "Tedesco",
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "FISCHNALLER Barbara"
-          ]
+          ],
+          "aula": "AULA B 016"
         }
       }
     }
@@ -9618,7 +9951,8 @@
           "materia": "Matematica",
           "docenti": [
             "GAGLIOSTRO Antonio"
-          ]
+          ],
+          "aula": "AULA B 107"
         },
         "09:50": {
           "materia": "Informatica",
@@ -9679,7 +10013,8 @@
           "materia_completa": "Disegno e storia dell'arte",
           "docenti": [
             "DELLA RAGIONE Silvia"
-          ]
+          ],
+          "aula": "LAB. CAD 1 (B 219)"
         },
         "09:50": {
           "materia": "Storia",
@@ -9718,7 +10053,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "LONOCE Maria Pompea"
-          ]
+          ],
+          "aula": "AULA B 106*"
         },
         "09:50": {
           "materia": "Inglese",
@@ -9733,7 +10069,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "ALDROVANDI Carla"
-          ]
+          ],
+          "aula": "AULA B 013*"
         },
         "12:35": {
           "materia": "Fisica",
@@ -9747,7 +10084,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "GIGLIOLI Valentina"
-          ]
+          ],
+          "aula": "PAL. \"Torcaso\""
         }
       },
       "giovedi": {
@@ -9755,7 +10093,8 @@
           "materia": "Informatica",
           "docenti": [
             "IACCARINO Gennaro"
-          ]
+          ],
+          "aula": "LAB. INF 3 (B 116)"
         },
         "09:50": {
           "materia": "Fisica",
@@ -9771,7 +10110,8 @@
           "docenti": [
             "CITTA' Tiziana",
             "SERAFIN Alice"
-          ]
+          ],
+          "aula": "AULA SCI (B 301**) LAB. SCI (B 305**)"
         }
       },
       "venerdi": {
@@ -9779,7 +10119,8 @@
           "materia": "Matematica",
           "docenti": [
             "GAGLIOSTRO Antonio"
-          ]
+          ],
+          "aula": "Aula D 206**"
         },
         "09:50": {
           "materia": "Italiano",
@@ -9802,7 +10143,8 @@
           "materia_completa": "Scienze naturali",
           "docenti": [
             "SERAFIN Alice"
-          ]
+          ],
+          "aula": "AULA B 311*"
         }
       }
     }
@@ -9826,7 +10168,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "ZANONI Barbara"
-          ]
+          ],
+          "aula": "AULA B 109"
         },
         "09:50": {
           "materia": "Tedesco",
@@ -9840,7 +10183,8 @@
           "materia": "meccaniche ed appl.",
           "docenti": [
             "TASSIELLI Davide Giuseppe"
-          ]
+          ],
+          "aula": "LAB. MEC. 5 (B119: AUT. & R.)"
         },
         "12:35": {
           "materia": "Matematica",
@@ -9873,7 +10217,8 @@
           "materia_completa": "Lingua inglese",
           "docenti": [
             "PEROTTI Antonio"
-          ]
+          ],
+          "aula": "AULA B 112*"
         },
         "09:50": {
           "materia": "Storia",
@@ -9893,7 +10238,8 @@
           "materia": "Matematica",
           "docenti": [
             "MICILLO Martia Giustina"
-          ]
+          ],
+          "aula": "AULA B 111"
         }
       },
       "mercoledi": {
@@ -9978,7 +10324,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "HOFER Verena"
-          ]
+          ],
+          "aula": "AULA B 016"
         },
         "12:35": {
           "materia": "Inglese",
@@ -9996,7 +10343,8 @@
           "docenti": [
             "GAETANO Giuseppe",
             "TASSIELLI Davide Giuseppe"
-          ]
+          ],
+          "aula": "LAB. MEC 1 (D 010: M.U.) LAB. MEC 2 (D 008: M.M.E.)"
         },
         "09:50": {
           "materia": "Tecn. di Installazione",
@@ -10053,7 +10401,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "DI MARCO Raffaele Francesco"
-          ]
+          ],
+          "aula": "AULA B 112*"
         },
         "09:50": {
           "materia": "Elettronica",
@@ -10068,7 +10417,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "SCHROFFENEGGER Sonja"
-          ]
+          ],
+          "aula": "AULA B 011"
         },
         "12:35": {
           "materia": "Matematica",
@@ -10082,7 +10432,8 @@
           "materia_completa": "Sistemi automatici",
           "docenti": [
             "MINICHIELLO Genesio"
-          ]
+          ],
+          "aula": "LAB. ELE 3 (D 005)"
         },
         "16:10": {
           "materia": "Inglese",
@@ -10186,7 +10537,8 @@
           "materia_completa": "Elettronica ed elettrotecnica",
           "docenti": [
             "RONDINI Ferdinando"
-          ]
+          ],
+          "aula": "LAB. ELE 1 (D 001)"
         },
         "09:50": {
           "materia": "Religione",
@@ -10208,7 +10560,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "GIGLIOLI Valentina"
-          ]
+          ],
+          "aula": "PAL. \"Torcaso\""
         },
         "14:30": {
           "materia": "Tec. Prog. Sistemi Elettr.",
@@ -10233,7 +10586,8 @@
           "materia_completa": "Tec. e prog. sist. ele. e elee",
           "docenti": [
             "LOVECCHIO Stefano"
-          ]
+          ],
+          "aula": "LAB. ELE 1 (D 001)"
         },
         "09:50": {
           "materia": "Elettronica",
@@ -10248,7 +10602,8 @@
           "materia": "Matematica",
           "docenti": [
             "STIVELLA Marco"
-          ]
+          ],
+          "aula": "AULA B 107"
         }
       }
     }
@@ -10272,7 +10627,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "OCHNER Daniel"
-          ]
+          ],
+          "aula": "PAL. \"Torcaso\""
         },
         "09:50": {
           "materia": "Storia",
@@ -10293,7 +10649,8 @@
           "materia": "Matematica",
           "docenti": [
             "PRESTIGIACOMO Davide"
-          ]
+          ],
+          "aula": "LAB. INF 2 (B 212)"
         },
         "16:10": {
           "materia": "Scienze dei Materiali Dentali",
@@ -10356,7 +10713,8 @@
           "docenti": [
             "RIOLO Marcello",
             "SAIANI Christian"
-          ]
+          ],
+          "aula": "AULA B 311*,LAB. ODO 2 (A 308)"
         },
         "11:45": {
           "materia": "Inglese",
@@ -10381,7 +10739,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "ZANONI Barbara"
-          ]
+          ],
+          "aula": "AULA B 107"
         },
         "09:50": {
           "materia": "Matematica",
@@ -10421,7 +10780,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "CARLIN Martina"
-          ]
+          ],
+          "aula": "AULA B 016"
         },
         "10:40": {
           "materia": "Storia",
@@ -10435,7 +10795,8 @@
           "materia_completa": "Scienze dei mat. dent. e lab.",
           "docenti": [
             "RIOLO Marcello"
-          ]
+          ],
+          "aula": "AULA B 306"
         }
       }
     }
@@ -10474,7 +10835,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "ZEZZA Maria"
-          ]
+          ],
+          "aula": "AULA B 115"
         }
       },
       "martedi": {
@@ -10490,7 +10852,8 @@
           "materia_completa": "Scienze dei mat. dent. e lab.",
           "docenti": [
             "BIDDAU Antonella"
-          ]
+          ],
+          "aula": "AULA B 311*"
         },
         "10:40": {
           "materia": "Storia",
@@ -10516,7 +10879,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "CARLIN Martina"
-          ]
+          ],
+          "aula": "AULA B 306"
         },
         "16:10": {
           "materia": "Inglese",
@@ -10533,7 +10897,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "DI CELLO Jacopo"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Sud\""
         },
         "09:50": {
           "materia": "Gnatologia",
@@ -10569,7 +10934,8 @@
           "materia": "Matematica",
           "docenti": [
             "MICILLO Martia Giustina"
-          ]
+          ],
+          "aula": "AULA B 204"
         },
         "16:10": {
           "materia": "Scienze dei Materiali Dentali",
@@ -10647,7 +11013,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "DI CELLO Jacopo"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Centro\""
         },
         "09:50": {
           "materia": "Biologia Sanitaria",
@@ -10704,7 +11071,8 @@
           "docenti": [
             "FIORINI Raffaele",
             "STICCOTTI Gea"
-          ]
+          ],
+          "aula": "AULA BIO (302),LAB. BIO (A 302)"
         },
         "09:50": {
           "materia": "Igiene e Anatomia",
@@ -10712,14 +11080,16 @@
           "docenti": [
             "BIANCHI Patrick",
             "RIGHES Cecilia"
-          ]
+          ],
+          "aula": "AULA BIO (302),LAB. BIO (A 302)"
         },
         "11:45": {
           "materia": "Chimica Organica",
           "materia_completa": "Chimica org. e biochimica",
           "docenti": [
             "RICCA Mariaelena"
-          ]
+          ],
+          "aula": "AULA B 306"
         }
       },
       "mercoledi": {
@@ -10760,7 +11130,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "TUFANO Guido"
-          ]
+          ],
+          "aula": "AULA B 114"
         }
       },
       "giovedi": {
@@ -10769,7 +11140,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "CANEVE Elisa"
-          ]
+          ],
+          "aula": "AULA B 201"
         },
         "09:50": {
           "materia": "Chimica Organica",
@@ -10809,7 +11181,8 @@
           "materia": "Matematica",
           "docenti": [
             "ECCHER Andrea"
-          ]
+          ],
+          "aula": "AULA B 306"
         },
         "16:10": {
           "materia": "Tedesco",
@@ -10827,7 +11200,8 @@
           "docenti": [
             "BIANCHI Patrick",
             "PECORARO Diego"
-          ]
+          ],
+          "aula": "AULA CHI (B 317**) LAB. CHI 4 (B 320)"
         },
         "09:50": {
           "materia": "Religione",
@@ -10848,7 +11222,8 @@
           "materia_completa": "Igiene, anat., fisiol., patol.",
           "docenti": [
             "RIGHES Cecilia"
-          ]
+          ],
+          "aula": "AULA B 211"
         }
       }
     }
@@ -10873,7 +11248,8 @@
           "docenti": [
             "DE ROSSI Andrea",
             "VALENTINI Paolo"
-          ]
+          ],
+          "aula": "AULA MEC (D 009) LAB. MEC 1 (D 010: M.U.)"
         },
         "09:50": {
           "materia": "Disegno e Prog. Industriale",
@@ -10895,7 +11271,8 @@
           "materia_completa": "Sistemi ed automazione",
           "docenti": [
             "SERIO Leonardo"
-          ]
+          ],
+          "aula": "LAB. PNRR IND. 4.0 (D 011)"
         }
       },
       "martedi": {
@@ -10927,7 +11304,8 @@
           "materia": "Matematica",
           "docenti": [
             "ECCHER Andrea"
-          ]
+          ],
+          "aula": "Aula D 205**"
         },
         "12:35": {
           "materia": "Inglese",
@@ -10942,7 +11320,8 @@
           "materia_completa": "Dis., progettaz. e org. ind.le",
           "docenti": [
             "TASSIELLI Davide Giuseppe"
-          ]
+          ],
+          "aula": "AULA MEC (D 009)"
         },
         "16:10": {
           "materia": "Tedesco",
@@ -10959,7 +11338,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "NOLLI Cinzia"
-          ]
+          ],
+          "aula": "PAL. \"Torcaso\""
         },
         "09:50": {
           "materia": "Italiano",
@@ -11002,7 +11382,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "VITIELLO Anna"
-          ]
+          ],
+          "aula": "AULA MEC (D 009)"
         },
         "10:40": {
           "materia": "Religione",
@@ -11017,7 +11398,8 @@
           "docenti": [
             "MELECHI' Michele",
             "SERIO Leonardo"
-          ]
+          ],
+          "aula": "LAB. MEC 4 (B218: SIST. E AUT) LAB. PNRR IND. 4.0 (D 011)"
         },
         "14:30": {
           "materia": "Tecn. Meccanica",
@@ -11025,7 +11407,8 @@
           "docenti": [
             "DE ROSSI Andrea",
             "VALENTINI Paolo"
-          ]
+          ],
+          "aula": "AULA MEC (D 009) LAB. MEC 1 (D 010: M.U.)"
         },
         "16:10": {
           "materia": "Matematica",
@@ -11041,7 +11424,8 @@
           "materia_completa": "Meccanica, macchine e energia",
           "docenti": [
             "DE BENEDITTIS Fabio Antonio"
-          ]
+          ],
+          "aula": "AULA MEC (D 009)"
         },
         "09:50": {
           "materia": "Storia",
@@ -11063,7 +11447,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "MENCHISE Antonella"
-          ]
+          ],
+          "aula": "AULA B 206*"
         }
       }
     }
@@ -11115,7 +11500,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "MENCHISE Antonella"
-          ]
+          ],
+          "aula": "AULA B 013*"
         }
       },
       "martedi": {
@@ -11132,7 +11518,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "VITIELLO Anna"
-          ]
+          ],
+          "aula": "AULA B 007*"
         },
         "10:40": {
           "materia": "Religione",
@@ -11145,7 +11532,8 @@
           "materia": "Matematica",
           "docenti": [
             "SARRI Wanda"
-          ]
+          ],
+          "aula": "Aula D 206**"
         },
         "14:30": {
           "materia": "Tecn. Meccanica",
@@ -11188,7 +11576,8 @@
           "materia_completa": "Sistemi ed automazione",
           "docenti": [
             "SERIO Leonardo"
-          ]
+          ],
+          "aula": "LAB. ELE 3 (D 005)"
         }
       },
       "giovedi": {
@@ -11212,14 +11601,16 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "GIGLIOLI Valentina"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Sud\""
         },
         "11:45": {
           "materia": "Meccanica",
           "materia_completa": "Meccanica, macchine e energia",
           "docenti": [
             "TASSIELLI Davide Giuseppe"
-          ]
+          ],
+          "aula": "LAB. MEC 2 (D 008: M.M.E.)"
         },
         "14:30": {
           "materia": "Sistemi e Automazione",
@@ -11269,7 +11660,8 @@
           "materia_completa": "Dis., progettaz. e org. ind.le",
           "docenti": [
             "DE BENEDITTIS Fabio Antonio"
-          ]
+          ],
+          "aula": "LAB. PNRR IND. 4.0 (D 011)"
         }
       }
     }
@@ -11327,7 +11719,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "MOLINI Paola"
-          ]
+          ],
+          "aula": "AULA B 111"
         },
         "09:50": {
           "materia": "Biologia Ambientale",
@@ -11350,13 +11743,15 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "PATELLA Nadia"
-          ]
+          ],
+          "aula": "AULA B 209"
         },
         "14:30": {
           "materia": "Matematica",
           "docenti": [
             "D'ALESSIO Valeria"
-          ]
+          ],
+          "aula": "AULA B 201"
         },
         "16:10": {
           "materia": "Religione",
@@ -11382,14 +11777,16 @@
           "docenti": [
             "BIANCHI Patrick",
             "STICCOTTI Gea"
-          ]
+          ],
+          "aula": "AULA BIO (302),LAB. BIO (A 302)"
         },
         "11:45": {
           "materia": "Chimica Analitica",
           "materia_completa": "Chimica analitica e strum.",
           "docenti": [
             "TOSI Sara"
-          ]
+          ],
+          "aula": "AULA B 307*"
         }
       },
       "giovedi": {
@@ -11412,21 +11809,24 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "VITRANO Rosalba"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Sud\""
         },
         "11:45": {
           "materia": "Chimica Organica",
           "materia_completa": "Chimica org. e biochimica",
           "docenti": [
             "GUADAGNINI Maria Pia"
-          ]
+          ],
+          "aula": "AULA B 105"
         },
         "14:30": {
           "materia": "Biologia Ambientale",
           "materia_completa": "Bio., micro. e tec. contr.amb.",
           "docenti": [
             "STICCOTTI Gea"
-          ]
+          ],
+          "aula": "AULA SCI (B 301**)"
         },
         "16:10": {
           "materia": "Inglese",
@@ -11443,7 +11843,8 @@
           "materia_completa": "Fisica ambientale",
           "docenti": [
             "VERRA Dennis"
-          ]
+          ],
+          "aula": "AULA FIS (B 308**)"
         },
         "09:50": {
           "materia": "Tedesco",
@@ -11468,7 +11869,8 @@
           "docenti": [
             "BIANCHI Patrick",
             "STICCOTTI Gea"
-          ]
+          ],
+          "aula": "AULA BIO (302),LAB. BIO (A 302)"
         }
       }
     }
@@ -11492,7 +11894,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "PATELLA Nadia"
-          ]
+          ],
+          "aula": "AULA B 007*"
         },
         "09:50": {
           "materia": "Matematica",
@@ -11551,14 +11954,16 @@
           "materia": "Matematica",
           "docenti": [
             "GAGLIOSTRO Antonio"
-          ]
+          ],
+          "aula": "AULA B 106*"
         },
         "09:50": {
           "materia": "Igiene e Anatomia",
           "materia_completa": "Igiene, anat., fisiol., patol.",
           "docenti": [
             "DI TRAPANI Rosalba"
-          ]
+          ],
+          "aula": "AULA B 306"
         },
         "11:45": {
           "materia": "Biologia Sanitaria",
@@ -11566,7 +11971,8 @@
           "docenti": [
             "FIORINI Raffaele",
             "SERAFIN Alice"
-          ]
+          ],
+          "aula": "AULA BIO (302),LAB. BIO (A 302)"
         },
         "14:30": {
           "materia": "Religione",
@@ -11597,7 +12003,8 @@
           "materia_completa": "Legislazione sanitaria",
           "docenti": [
             "MARROCCO Caterina"
-          ]
+          ],
+          "aula": "AULA B 104"
         },
         "10:40": {
           "materia": "Inglese",
@@ -11612,7 +12019,8 @@
           "materia_completa": "Igiene, anat., fisiol., patol.",
           "docenti": [
             "DI TRAPANI Rosalba"
-          ]
+          ],
+          "aula": "AULA B 311*"
         }
       },
       "giovedi": {
@@ -11630,7 +12038,8 @@
           "docenti": [
             "FIORINI Raffaele",
             "SERAFIN Alice"
-          ]
+          ],
+          "aula": "AULA BIO (302),LAB. BIO (A 302)"
         },
         "11:45": {
           "materia": "Chimica Organica",
@@ -11656,14 +12065,16 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "GHISU Maria Gabriella"
-          ]
+          ],
+          "aula": "AULA B 211"
         },
         "10:40": {
           "materia": "Chimica Organica",
           "materia_completa": "Chimica org. e biochimica",
           "docenti": [
             "RICCA Mariaelena"
-          ]
+          ],
+          "aula": "AULA B 309"
         },
         "12:35": {
           "materia": "Inglese",
@@ -11703,7 +12114,8 @@
           "materia_completa": "Sistemi e reti",
           "docenti": [
             "CANTARELLA Alfredo"
-          ]
+          ],
+          "aula": "LAB. INF 5 (D 202**)"
         },
         "10:40": {
           "materia": "Gestione Progetto",
@@ -11726,7 +12138,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "PETRONE Antonella"
-          ]
+          ],
+          "aula": "AULA B 306"
         },
         "16:10": {
           "materia": "Storia",
@@ -11765,7 +12178,8 @@
           "materia_completa": "Gest. progetto, org. di impresa",
           "docenti": [
             "DELIZIA Marco"
-          ]
+          ],
+          "aula": "LAB. INF 5 (D 202**)"
         }
       },
       "mercoledi": {
@@ -11798,7 +12212,8 @@
           "materia": "Matematica",
           "docenti": [
             "MILANESE Sabina"
-          ]
+          ],
+          "aula": "Aula D 205**"
         }
       },
       "giovedi": {
@@ -11807,7 +12222,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "PERRUCCI Rosi"
-          ]
+          ],
+          "aula": "AULA B 307*"
         },
         "09:50": {
           "materia": "Inglese",
@@ -11830,7 +12246,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "VITRANO Rosalba"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Sud\""
         },
         "14:30": {
           "materia": "Informatica",
@@ -11853,7 +12270,8 @@
           "materia": "Informatica",
           "docenti": [
             "PAREDES Stefano"
-          ]
+          ],
+          "aula": "LAB. INF 3 (B 116)"
         },
         "09:50": {
           "materia": "Tec. Prog. Sistemi Inf.",
@@ -12023,14 +12441,16 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "SCHROFFENEGGER Sonja"
-          ]
+          ],
+          "aula": "AULA B 213"
         },
         "14:30": {
           "materia": "Gestione Progetto",
           "materia_completa": "Gest. progetto, org. di impresa",
           "docenti": [
             "RONDINI Ferdinando"
-          ]
+          ],
+          "aula": "LAB. INF 1 (B 208)"
         },
         "16:10": {
           "materia": "Sistemi e Reti",
@@ -12046,20 +12466,23 @@
           "materia": "Matematica",
           "docenti": [
             "TERZONI Giulia"
-          ]
+          ],
+          "aula": "LAB. INF 1 (B 208)"
         },
         "09:50": {
           "materia": "Telecomunicazioni",
           "docenti": [
             "MINICHIELLO Genesio"
-          ]
+          ],
+          "aula": "LAB. ELEE 4 (B 120/2)"
         },
         "11:45": {
           "materia": "Sistemi e Reti",
           "materia_completa": "Sistemi e reti",
           "docenti": [
             "LATINA Giuliano"
-          ]
+          ],
+          "aula": "LAB. INF 5 (D 202**)"
         }
       },
       "venerdi": {
@@ -12068,14 +12491,16 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "BERTOLDI Christian"
-          ]
+          ],
+          "aula": "AULA B 207"
         },
         "09:50": {
           "materia": "Scienze Motorie",
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "SEBASTIANI Alfredo"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Sud\""
         },
         "11:45": {
           "materia": "Telecomunicazioni",
@@ -12107,7 +12532,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "VERZELLA Alba"
-          ]
+          ],
+          "aula": "AULA B 207"
         },
         "09:50": {
           "materia": "Elettronica ed elettrotecnica Angela,PILOTTI Alessio",
@@ -12146,7 +12572,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "BESTE Anna Maria Waltraud"
-          ]
+          ],
+          "aula": "AULA B 211"
         },
         "16:10": {
           "materia": "Matematica",
@@ -12162,7 +12589,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "SALVATERRA Joshua"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Centro\""
         },
         "09:50": {
           "materia": "Sistemi Automatici",
@@ -12219,7 +12647,8 @@
           "materia": "Matematica",
           "docenti": [
             "PRESTIGIACOMO Davide"
-          ]
+          ],
+          "aula": "AULA B 210*"
         }
       },
       "giovedi": {
@@ -12354,7 +12783,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "VERZELLA Alba"
-          ]
+          ],
+          "aula": "AULA B 207"
         },
         "09:50": {
           "materia": "Elettronica",
@@ -12392,7 +12822,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "BESTE Anna Maria Waltraud"
-          ]
+          ],
+          "aula": "AULA B 211"
         },
         "16:10": {
           "materia": "Matematica",
@@ -12408,7 +12839,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "SALVATERRA Joshua"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Centro\""
         },
         "09:50": {
           "materia": "Tec. Prog. Sistemi Elettr.",
@@ -12466,7 +12898,8 @@
           "materia": "Matematica",
           "docenti": [
             "PRESTIGIACOMO Davide"
-          ]
+          ],
+          "aula": "AULA B 210*"
         }
       },
       "giovedi": {
@@ -12635,14 +13068,16 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "VERZELLA Alba"
-          ]
+          ],
+          "aula": "AULA B 207"
         },
         "14:30": {
           "materia": "Sistemi Automatici",
           "materia_completa": "Sistemi automatici",
           "docenti": [
             "SICIGNANO Cristoforo"
-          ]
+          ],
+          "aula": "LAB. ELE 2 (D 004)"
         },
         "16:10": {
           "materia": "Tec. Prog. Sistemi Elettr.",
@@ -12737,7 +13172,8 @@
           "materia_completa": "Elettronica ed elettrotecnica",
           "docenti": [
             "LOPEZ Maria Virginia"
-          ]
+          ],
+          "aula": "LAB. ELE 3 (D 005)"
         },
         "16:10": {
           "materia": "Matematica",
@@ -12753,7 +13189,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "BESTE Anna Maria Waltraud"
-          ]
+          ],
+          "aula": "AULA B 011"
         },
         "09:50": {
           "materia": "Elettronica",
@@ -12776,7 +13213,8 @@
           "materia_completa": "Tec. e prog. sist. ele. e elee",
           "docenti": [
             "LOMBINO Alessandro"
-          ]
+          ],
+          "aula": "LAB. ELE 4 (C 003)"
         }
       },
       "venerdi": {
@@ -12785,20 +13223,23 @@
           "materia_completa": "Tec. e prog. sist. ele. e elee",
           "docenti": [
             "LOMBINO Alessandro"
-          ]
+          ],
+          "aula": "LAB. ELEE 3 (B 120/1)"
         },
         "09:50": {
           "materia": "Scienze Motorie",
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "DI CELLO Jacopo"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Sud\""
         },
         "11:45": {
           "materia": "Matematica",
           "docenti": [
             "MICILLO Martia Giustina"
-          ]
+          ],
+          "aula": "Aula D 206**"
         }
       }
     }
@@ -12822,21 +13263,24 @@
           "materia_completa": "Scienze naturali",
           "docenti": [
             "MACCAGNAN Elisa"
-          ]
+          ],
+          "aula": "AULA SCI (B 301**)"
         },
         "09:50": {
           "materia": "Disegno e Arte",
           "materia_completa": "Disegno e storia dell'arte",
           "docenti": [
             "DELLA RAGIONE Silvia"
-          ]
+          ],
+          "aula": "LAB. CAD 1 (B 219)"
         },
         "11:45": {
           "materia": "Fisica",
           "docenti": [
             "VERRA Dennis",
             "ZUECH Claudio"
-          ]
+          ],
+          "aula": "LAB. FIS 2 (B 314)"
         }
       },
       "martedi": {
@@ -12845,7 +13289,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "PERRUCCI Rosi"
-          ]
+          ],
+          "aula": "AULA B 114"
         },
         "09:50": {
           "materia": "Matematica",
@@ -12913,13 +13358,15 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "OCHNER Daniel"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Sud\""
         },
         "11:45": {
           "materia": "Matematica",
           "docenti": [
             "PREVIDI Paola"
-          ]
+          ],
+          "aula": "Aula D 206**"
         }
       },
       "giovedi": {
@@ -12928,7 +13375,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "BERTOLDI Michela"
-          ]
+          ],
+          "aula": "AULA B 113"
         },
         "09:50": {
           "materia": "Scienze Naturali",
@@ -12936,7 +13384,8 @@
           "docenti": [
             "LATTUCA Teresa",
             "MACCAGNAN Elisa"
-          ]
+          ],
+          "aula": "AULA SCI (B 301**) LAB. SCI (B 305**)"
         },
         "11:45": {
           "materia": "Italiano",
@@ -12958,7 +13407,8 @@
           "materia": "Informatica",
           "docenti": [
             "DE GIORGI Nicola"
-          ]
+          ],
+          "aula": "LAB. INF 3 (B 116)"
         },
         "16:10": {
           "materia": "Matematica",
@@ -12995,7 +13445,8 @@
           "materia_completa": "Lingua inglese",
           "docenti": [
             "TACUS Alessandra"
-          ]
+          ],
+          "aula": "AULA B 105"
         },
         "12:35": {
           "materia": "Scienze Naturali",
@@ -13034,7 +13485,8 @@
           "materia_completa": "Sistemi e reti",
           "docenti": [
             "DELIZIA Marco"
-          ]
+          ],
+          "aula": "LAB. INF 1 (B 208)"
         },
         "10:40": {
           "materia": "Gestione Progetto",
@@ -13116,7 +13568,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "TODARO Mattia"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Centro\""
         },
         "09:50": {
           "materia": "Sistemi e Reti",
@@ -13139,14 +13592,16 @@
           "materia_completa": "Gest. progetto, org. di impresa",
           "docenti": [
             "SALIHAJ Anila"
-          ]
+          ],
+          "aula": "LAB. ELEE 4 (B 120/2)"
         },
         "14:30": {
           "materia": "Italiano",
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "BENETTI Mattia"
-          ]
+          ],
+          "aula": "AULA 201"
         },
         "16:10": {
           "materia": "Matematica",
@@ -13161,7 +13616,8 @@
           "materia": "Matematica",
           "docenti": [
             "GAGLIOSTRO Antonio"
-          ]
+          ],
+          "aula": "Aula D 205**"
         },
         "09:50": {
           "materia": "Tec. Prog. Sistemi Inf.",
@@ -13176,7 +13632,8 @@
           "materia": "Informatica",
           "docenti": [
             "BERSANETTI Alessio"
-          ]
+          ],
+          "aula": "LAB. ELE 2 (D 004)"
         }
       },
       "venerdi": {
@@ -13185,7 +13642,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "SCHROFFENEGGER Sonja"
-          ]
+          ],
+          "aula": "AULA B 105"
         },
         "09:50": {
           "materia": "Inglese",
@@ -13271,7 +13729,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "SALVATERRA Joshua"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Centro\""
         },
         "16:10": {
           "materia": "Inglese",
@@ -13287,27 +13746,31 @@
           "materia": "Matematica",
           "docenti": [
             "MILANESE Sabina"
-          ]
+          ],
+          "aula": "Aula D 206**"
         },
         "09:50": {
           "materia": "Informatica",
           "docenti": [
             "DE GIORGI Nicola"
-          ]
+          ],
+          "aula": "LAB. INF 2 (B 212)"
         },
         "11:45": {
           "materia": "Tedesco",
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "PETRONE Antonella"
-          ]
+          ],
+          "aula": "AULA B 101"
         },
         "14:30": {
           "materia": "Sistemi e Reti",
           "materia_completa": "Sistemi e reti",
           "docenti": [
             "CANTARELLA Alfredo"
-          ]
+          ],
+          "aula": "LAB. INF 5 (D 202**)"
         },
         "16:10": {
           "materia": "Tec. Prog. Sistemi Inf.",
@@ -13341,7 +13804,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "BENETTI Mattia"
-          ]
+          ],
+          "aula": "AULA B 110*"
         }
       },
       "giovedi": {
@@ -13358,7 +13822,8 @@
           "materia_completa": "Gest. progetto, org. di impresa",
           "docenti": [
             "DELIZIA Marco"
-          ]
+          ],
+          "aula": "LAB. INF 5 (D 202**)"
         },
         "10:40": {
           "materia": "Inglese",
@@ -13439,7 +13904,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "ALDROVANDI Carla"
-          ]
+          ],
+          "aula": "AULA B 304"
         },
         "09:50": {
           "materia": "Scienze Naturali",
@@ -13454,7 +13920,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "CHIANESE Francesco"
-          ]
+          ],
+          "aula": "AULA B 109"
         },
         "12:35": {
           "materia": "Storia",
@@ -13468,7 +13935,8 @@
           "materia_completa": "Disegno e storia dell'arte",
           "docenti": [
             "DELLA RAGIONE Silvia"
-          ]
+          ],
+          "aula": "LAB. CAD 1 (B 219)"
         },
         "16:10": {
           "materia": "Inglese",
@@ -13514,7 +13982,8 @@
           "materia_completa": "Lingua inglese",
           "docenti": [
             "TACUS Alessandra"
-          ]
+          ],
+          "aula": "AULA B 204"
         }
       },
       "mercoledi": {
@@ -13539,13 +14008,15 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "DI CELLO Jacopo"
-          ]
+          ],
+          "aula": "PAL. \"Talvera Sud\""
         },
         "11:45": {
           "materia": "Informatica",
           "docenti": [
             "CANNONE Maria"
-          ]
+          ],
+          "aula": "LAB. INF 3 (B 116)"
         }
       },
       "giovedi": {
@@ -13555,7 +14026,8 @@
           "docenti": [
             "CITTA' Tiziana",
             "DALLA TORRE Massimiliano"
-          ]
+          ],
+          "aula": "AULA SCI (B 301**) LAB. SCI (B 305**)"
         },
         "09:50": {
           "materia": "Italiano",
@@ -13569,7 +14041,8 @@
           "materia": "Matematica",
           "docenti": [
             "TERZONI Giulia"
-          ]
+          ],
+          "aula": "AULA B 106*"
         },
         "12:35": {
           "materia": "Fisica",
@@ -13654,7 +14127,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "VENDRAME Emilio"
-          ]
+          ],
+          "aula": "AULA B 111"
         },
         "09:50": {
           "materia": "Tecn. di Installazione",
@@ -13670,7 +14144,8 @@
           "materia_completa": "Lingua inglese",
           "docenti": [
             "ROMANI Sara"
-          ]
+          ],
+          "aula": "AULA B 205"
         }
       },
       "martedi": {
@@ -13679,7 +14154,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "GIGLIOLI Valentina"
-          ]
+          ],
+          "aula": "PAL. \"Torcaso\""
         },
         "09:50": {
           "materia": "Matematica",
@@ -13709,7 +14185,8 @@
           "materia_completa": "Tecnol. tecni. di inst. e man.",
           "docenti": [
             "LOVECCHIO Stefano"
-          ]
+          ],
+          "aula": "LAB. ELE 2 (D 004)"
         },
         "16:10": {
           "materia": "Tedesco",
@@ -13750,7 +14227,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "HOFER Verena"
-          ]
+          ],
+          "aula": "AULA B 106*"
         }
       },
       "giovedi": {
@@ -13826,7 +14304,8 @@
           "materia_completa": "Tecnol. tecni. di inst. e man.",
           "docenti": [
             "LOVECCHIO Stefano"
-          ]
+          ],
+          "aula": "LAB. ELE 4 (C 003)"
         },
         "11:45": {
           "materia": "Matematica",
@@ -13871,7 +14350,8 @@
           "materia": "Matematica",
           "docenti": [
             "STIVELLA Marco"
-          ]
+          ],
+          "aula": "AULA B 309"
         },
         "10:40": {
           "materia": "Religione",
@@ -13885,7 +14365,8 @@
           "materia_completa": "Tedesco II Lingua",
           "docenti": [
             "CARLIN Martina"
-          ]
+          ],
+          "aula": "AULA B 004"
         },
         "14:30": {
           "materia": "Italiano",
@@ -13925,7 +14406,8 @@
           "materia_completa": "Lingua e letteratura italiana",
           "docenti": [
             "CANEVE Elisa"
-          ]
+          ],
+          "aula": "AULA B 112*"
         },
         "12:35": {
           "materia": "Scienze dei Materiali Dentali",
@@ -13941,7 +14423,8 @@
           "materia": "Gnatologia",
           "docenti": [
             "RIGHES Cecilia"
-          ]
+          ],
+          "aula": "AULA B 205"
         },
         "09:50": {
           "materia": "Matematica",
@@ -13963,7 +14446,8 @@
           "docenti": [
             "GIBILISCO Marco",
             "RIOLO Marcello"
-          ]
+          ],
+          "aula": "LAB. ODO 2 (A 308) LAB. PNRR AMB. E ENERGIA (301)"
         },
         "15:20": {
           "materia": "Lab. Odontotecnico",
@@ -13979,7 +14463,8 @@
           "materia": "Gnatologia",
           "docenti": [
             "RIGHES Cecilia"
-          ]
+          ],
+          "aula": "AULA FIS (B 308**)"
         },
         "09:50": {
           "materia": "Tedesco",
@@ -14012,7 +14497,8 @@
           "materia_completa": "Scienze dei mat. dent. e lab.",
           "docenti": [
             "RIOLO Marcello"
-          ]
+          ],
+          "aula": "AULA B 306"
         },
         "10:40": {
           "materia": "Inglese",
@@ -14027,7 +14513,8 @@
           "materia_completa": "Scienze motorie e sportive",
           "docenti": [
             "OCHNER Daniel"
-          ]
+          ],
+          "aula": "PAL. \"Torcaso\""
         }
       }
     }

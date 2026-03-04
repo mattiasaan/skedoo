@@ -58,7 +58,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "TABARELLI DE FATIS Stefania"
-        ]
+        ],
+        "aula": "AULA B 115"
       },
       "09:50": {
         "materia": "Informatica",
@@ -73,7 +74,8 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "GIGLIOLI Valentina"
-        ]
+        ],
+        "aula": "PAL. \"Talvera Sud\""
       }
     },
     "mercoledi": {
@@ -90,7 +92,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "TUFANO Guido"
-        ]
+        ],
+        "aula": "AULA B 011"
       },
       "10:40": {
         "materia": "Informatica",
@@ -105,13 +108,15 @@
         "docenti": [
           "DI DIO Daniele",
           "TOMEI Leonardo"
-        ]
+        ],
+        "aula": "LAB. INF 2 (B 212)"
       },
       "14:30": {
         "materia": "Matematica",
         "docenti": [
           "GAGLIOSTRO Antonio"
-        ]
+        ],
+        "aula": "AULA B 211"
       },
       "16:10": {
         "materia": "Storia",
@@ -127,7 +132,8 @@
         "materia_completa": "Tec. e prog. sist. inf. e tel.",
         "docenti": [
           "DI DIO Daniele"
-        ]
+        ],
+        "aula": "LAB. INF 4 (D 201**)"
       },
       "09:50": {
         "materia": "Religione",
@@ -181,7 +187,8 @@
         "materia_completa": "Sistemi e reti",
         "docenti": [
           "CANTARELLA Alfredo"
-        ]
+        ],
+        "aula": "LAB. INF 5 (D 202**)"
       },
       "09:50": {
         "materia": "Telecomunicazioni",

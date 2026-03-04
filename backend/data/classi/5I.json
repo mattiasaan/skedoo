@@ -17,21 +17,24 @@
         "materia_completa": "Scienze naturali",
         "docenti": [
           "MACCAGNAN Elisa"
-        ]
+        ],
+        "aula": "AULA SCI (B 301**)"
       },
       "09:50": {
         "materia": "Disegno e Arte",
         "materia_completa": "Disegno e storia dell'arte",
         "docenti": [
           "DELLA RAGIONE Silvia"
-        ]
+        ],
+        "aula": "LAB. CAD 1 (B 219)"
       },
       "11:45": {
         "materia": "Fisica",
         "docenti": [
           "VERRA Dennis",
           "ZUECH Claudio"
-        ]
+        ],
+        "aula": "LAB. FIS 2 (B 314)"
       }
     },
     "martedi": {
@@ -40,7 +43,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "PERRUCCI Rosi"
-        ]
+        ],
+        "aula": "AULA B 114"
       },
       "09:50": {
         "materia": "Matematica",
@@ -108,13 +112,15 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "OCHNER Daniel"
-        ]
+        ],
+        "aula": "PAL. \"Talvera Sud\""
       },
       "11:45": {
         "materia": "Matematica",
         "docenti": [
           "PREVIDI Paola"
-        ]
+        ],
+        "aula": "Aula D 206**"
       }
     },
     "giovedi": {
@@ -123,7 +129,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "BERTOLDI Michela"
-        ]
+        ],
+        "aula": "AULA B 113"
       },
       "09:50": {
         "materia": "Scienze Naturali",
@@ -131,7 +138,8 @@
         "docenti": [
           "LATTUCA Teresa",
           "MACCAGNAN Elisa"
-        ]
+        ],
+        "aula": "AULA SCI (B 301**) LAB. SCI (B 305**)"
       },
       "11:45": {
         "materia": "Italiano",
@@ -153,7 +161,8 @@
         "materia": "Informatica",
         "docenti": [
           "DE GIORGI Nicola"
-        ]
+        ],
+        "aula": "LAB. INF 3 (B 116)"
       },
       "16:10": {
         "materia": "Matematica",
@@ -190,7 +199,8 @@
         "materia_completa": "Lingua inglese",
         "docenti": [
           "TACUS Alessandra"
-        ]
+        ],
+        "aula": "AULA B 105"
       },
       "12:35": {
         "materia": "Scienze Naturali",

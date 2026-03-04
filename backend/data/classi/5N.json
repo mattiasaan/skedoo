@@ -17,7 +17,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "VERZELLA Alba"
-        ]
+        ],
+        "aula": "AULA B 207"
       },
       "09:50": {
         "materia": "Elettronica",
@@ -55,7 +56,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "BESTE Anna Maria Waltraud"
-        ]
+        ],
+        "aula": "AULA B 211"
       },
       "16:10": {
         "materia": "Matematica",
@@ -71,7 +73,8 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "SALVATERRA Joshua"
-        ]
+        ],
+        "aula": "PAL. \"Talvera Centro\""
       },
       "09:50": {
         "materia": "Tec. Prog. Sistemi Elettr.",
@@ -129,7 +132,8 @@
         "materia": "Matematica",
         "docenti": [
           "PRESTIGIACOMO Davide"
-        ]
+        ],
+        "aula": "AULA B 210*"
       }
     },
     "giovedi": {

@@ -39,7 +39,8 @@
         "materia": "Matematica",
         "docenti": [
           "STIVELLA Marco"
-        ]
+        ],
+        "aula": "AULA B 104"
       },
       "12:35": {
         "materia": "Religione",
@@ -88,7 +89,8 @@
         "materia_completa": "Eser. di lab. odontotecnico",
         "docenti": [
           "SAIANI Christian"
-        ]
+        ],
+        "aula": "LAB. ODO 1 (A 307)"
       },
       "11:45": {
         "materia": "Chimica",
@@ -152,7 +154,8 @@
         "materia_completa": "Rappr. e modell. odontotecnica",
         "docenti": [
           "DOCILE Valeria Anna"
-        ]
+        ],
+        "aula": "LAB. DIS (B 215)"
       },
       "16:10": {
         "materia": "Scienze Motorie",
@@ -169,7 +172,8 @@
         "materia_completa": "Lingua inglese",
         "docenti": [
           "ALIAJ Mimoza"
-        ]
+        ],
+        "aula": "AULA B 205"
       },
       "09:50": {
         "materia": "Italiano",
@@ -192,7 +196,8 @@
         "materia_completa": "Eser. di lab. odontotecnico",
         "docenti": [
           "SAIANI Christian"
-        ]
+        ],
+        "aula": "LAB. ODO 1 (A 307)"
       }
     },
     "venerdi": {
@@ -201,7 +206,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "MENCHISE Antonella"
-        ]
+        ],
+        "aula": "AULA B 013*"
       },
       "09:50": {
         "materia": "Matematica",
@@ -223,7 +229,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "CANEVE Elisa"
-        ]
+        ],
+        "aula": "AULA B 112*"
       }
     }
   }

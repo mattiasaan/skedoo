@@ -16,7 +16,8 @@
         "materia": "e modell. odontotecnica",
         "docenti": [
           "DOCILE Valeria Anna"
-        ]
+        ],
+        "aula": "LAB. DIS (B 215)"
       },
       "09:50": {
         "materia": "Tedesco",
@@ -31,7 +32,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "DI MARCO Raffaele Francesco"
-        ]
+        ],
+        "aula": "AULA B 112*"
       },
       "12:35": {
         "materia": "Diritto ed Economia",
@@ -93,7 +95,8 @@
         "materia_completa": "Eser. di lab. odontotecnico",
         "docenti": [
           "MARIANI Chiara"
-        ]
+        ],
+        "aula": "LAB. ODO 1 (A 307)"
       },
       "16:10": {
         "materia": "Diritto ed Economia",
@@ -109,7 +112,8 @@
         "materia": "Matematica",
         "docenti": [
           "PRESTIGIACOMO Davide"
-        ]
+        ],
+        "aula": "AULA B 210*"
       },
       "09:50": {
         "materia": "Italiano",
@@ -132,7 +136,8 @@
         "materia_completa": "Lingua inglese",
         "docenti": [
           "DELIU Ornela"
-        ]
+        ],
+        "aula": "AULA B 206*"
       },
       "14:30": {
         "materia": "Chimica",
@@ -158,7 +163,8 @@
         "materia_completa": "Eser. di lab. odontotecnico",
         "docenti": [
           "MARIANI Chiara"
-        ]
+        ],
+        "aula": "LAB. ODO 1 (A 307)"
       },
       "09:50": {
         "materia": "Inglese",
@@ -180,7 +186,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "PATELLA Nadia"
-        ]
+        ],
+        "aula": "AULA B 004"
       }
     },
     "venerdi": {
@@ -189,7 +196,8 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "VITRANO Rosalba"
-        ]
+        ],
+        "aula": "PAL. \"Talvera Sud\""
       },
       "09:50": {
         "materia": "Italiano",

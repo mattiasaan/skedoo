@@ -43,7 +43,8 @@
         "materia": "Matematica",
         "docenti": [
           "BERTOLINO Giuseppe"
-        ]
+        ],
+        "aula": "Aula D 206**"
       }
     },
     "martedi": {
@@ -145,7 +146,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "MOLINI Paola"
-        ]
+        ],
+        "aula": "AULA B 205"
       },
       "16:10": {
         "materia": "Tedesco",
@@ -173,7 +175,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "PATELLA Nadia"
-        ]
+        ],
+        "aula": "AULA B 007*"
       },
       "10:40": {
         "materia": "Italiano",
@@ -188,7 +191,8 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "SALVATERRA Joshua"
-        ]
+        ],
+        "aula": "PAL. \"Talvera Centro\""
       },
       "14:30": {
         "materia": "Fisica Ambientale",

@@ -23,7 +23,8 @@
         "materia": "Matematica",
         "docenti": [
           "PREVIDI Paola"
-        ]
+        ],
+        "aula": "AULA B 105"
       },
       "10:40": {
         "materia": "Tedesco",
@@ -38,7 +39,8 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "TODARO Mattia"
-        ]
+        ],
+        "aula": "PAL. \"Torcaso\""
       }
     },
     "martedi": {
@@ -87,7 +89,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "HOFER Verena"
-        ]
+        ],
+        "aula": "AULA B 213"
       },
       "16:10": {
         "materia": "Chimica",
@@ -140,7 +143,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "CHIANESE Francesco"
-        ]
+        ],
+        "aula": "AULA B 109"
       },
       "09:50": {
         "materia": "Fisica",
@@ -204,7 +208,8 @@
         "docenti": [
           "FUCA' Lia",
           "MONACHELLA Angelo"
-        ]
+        ],
+        "aula": "AULA B 311*,LAB. CHI 3 (B 318)"
       },
       "09:50": {
         "materia": "Tedesco",

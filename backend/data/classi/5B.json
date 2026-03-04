@@ -45,7 +45,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "MENCHISE Antonella"
-        ]
+        ],
+        "aula": "AULA B 013*"
       }
     },
     "martedi": {
@@ -62,7 +63,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "VITIELLO Anna"
-        ]
+        ],
+        "aula": "AULA B 007*"
       },
       "10:40": {
         "materia": "Religione",
@@ -75,7 +77,8 @@
         "materia": "Matematica",
         "docenti": [
           "SARRI Wanda"
-        ]
+        ],
+        "aula": "Aula D 206**"
       },
       "14:30": {
         "materia": "Tecn. Meccanica",
@@ -118,7 +121,8 @@
         "materia_completa": "Sistemi ed automazione",
         "docenti": [
           "SERIO Leonardo"
-        ]
+        ],
+        "aula": "LAB. ELE 3 (D 005)"
       }
     },
     "giovedi": {
@@ -142,14 +146,16 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "GIGLIOLI Valentina"
-        ]
+        ],
+        "aula": "PAL. \"Talvera Sud\""
       },
       "11:45": {
         "materia": "Meccanica",
         "materia_completa": "Meccanica, macchine e energia",
         "docenti": [
           "TASSIELLI Davide Giuseppe"
-        ]
+        ],
+        "aula": "LAB. MEC 2 (D 008: M.M.E.)"
       },
       "14:30": {
         "materia": "Sistemi e Automazione",
@@ -199,7 +205,8 @@
         "materia_completa": "Dis., progettaz. e org. ind.le",
         "docenti": [
           "DE BENEDITTIS Fabio Antonio"
-        ]
+        ],
+        "aula": "LAB. PNRR IND. 4.0 (D 011)"
       }
     }
   }

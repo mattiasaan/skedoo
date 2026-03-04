@@ -45,7 +45,8 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "SALVATERRA Joshua"
-        ]
+        ],
+        "aula": "PAL. \"Talvera Sud\""
       },
       "14:30": {
         "materia": "Tedesco",
@@ -76,7 +77,8 @@
         "materia": "Matematica",
         "docenti": [
           "PREVIDI Paola"
-        ]
+        ],
+        "aula": "AULA B 108"
       },
       "09:50": {
         "materia": "Scienze Naturali",
@@ -84,14 +86,16 @@
         "docenti": [
           "CITTA' Tiziana",
           "MARRA Carla"
-        ]
+        ],
+        "aula": "AULA SCI (B 301**) LAB. SCI (B 305**)"
       },
       "11:45": {
         "materia": "Disegno e Arte",
         "materia_completa": "Disegno e storia dell'arte",
         "docenti": [
           "DELLA RAGIONE Silvia"
-        ]
+        ],
+        "aula": "LAB. CAD 1 (B 219)"
       }
     },
     "mercoledi": {
@@ -116,7 +120,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "BERTOLDI Michela"
-        ]
+        ],
+        "aula": "AULA B 204"
       },
       "12:35": {
         "materia": "Italiano",
@@ -133,7 +138,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "STOPPARI Antonella"
-        ]
+        ],
+        "aula": "AULA B 207"
       },
       "09:50": {
         "materia": "Tedesco",
@@ -147,7 +153,8 @@
         "materia": "Informatica",
         "docenti": [
           "IACCARINO Gennaro"
-        ]
+        ],
+        "aula": "LAB. INF 3 (B 116)"
       },
       "12:35": {
         "materia": "Inglese",
@@ -193,7 +200,8 @@
         "materia_completa": "Scienze naturali",
         "docenti": [
           "MARRA Carla"
-        ]
+        ],
+        "aula": "AULA B 210*"
       },
       "11:45": {
         "materia": "Inglese",

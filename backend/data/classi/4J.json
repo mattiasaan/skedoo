@@ -17,7 +17,8 @@
         "materia_completa": "Tec. e prog. sist. inf. e tel.",
         "docenti": [
           "RECLA Alessandro"
-        ]
+        ],
+        "aula": "LAB. ELE 3 (D 005)"
       },
       "09:50": {
         "materia": "Storia",
@@ -87,7 +88,8 @@
         "materia_completa": "Sistemi e reti",
         "docenti": [
           "DELIZIA Marco"
-        ]
+        ],
+        "aula": "LAB. INF 1 (B 208)"
       },
       "16:10": {
         "materia": "Italiano",
@@ -160,7 +162,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "MAISANO Nunziatina"
-        ]
+        ],
+        "aula": "AULA B 207"
       },
       "11:45": {
         "materia": "Telecomunicazioni",
@@ -174,7 +177,8 @@
         "materia": "Matematica",
         "docenti": [
           "MILANESE Sabina"
-        ]
+        ],
+        "aula": "AULA B 209"
       },
       "16:10": {
         "materia": "Informatica",
@@ -199,14 +203,16 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "SALVATERRA Joshua"
-        ]
+        ],
+        "aula": "PAL. \"Talvera Centro\""
       },
       "11:45": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "FISCHNALLER Barbara"
-        ]
+        ],
+        "aula": "AULA B 016"
       }
     }
   }

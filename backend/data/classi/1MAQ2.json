@@ -16,7 +16,8 @@
         "materia": "Matematica",
         "docenti": [
           "MANARESI Federica"
-        ]
+        ],
+        "aula": "AULA B 108"
       },
       "09:50": {
         "materia": "Italiano",
@@ -80,7 +81,12 @@
         "materia": "Scienze Motorie",
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
-          "OCHNER Daniel",
+          "OCHNER Daniel"
+        ],
+        "aula": "PAL. \"Torcaso\""
+      },
+      "13:25": {
+        "docenti": [
           "POTENZIAMENTO TEDESCO",
           "FISCHNALLER Barbara",
           "(ATTIVITA' MODULARE)"
@@ -91,7 +97,8 @@
         "materia_completa": "Lab. tecn. e esercitazioni",
         "docenti": [
           "PILOTTI Alessio"
-        ]
+        ],
+        "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
       },
       "16:10": {
         "materia": "Tecnologie Informatiche",
@@ -139,12 +146,16 @@
         "materia": "Inglese",
         "materia_completa": "Lingua inglese",
         "docenti": [
-          "RIGHI Arianna",
+          "RIGHI Arianna"
+        ],
+        "aula": "LAB. MEC. 5 (B119: AUT. & R.)"
+      },
+      "13:25": {
+        "docenti": [
           "POTENZIAMENTO TEDESCO",
           "FISCHNALLER Barbara",
           "(ATTIVITA' MODULARE)"
-        ],
-        "aula": "LAB. MEC. 5 (B119: AUT. & R.)"
+        ]
       }
     },
     "giovedi": {
@@ -153,7 +164,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "BENETTI Mattia"
-        ]
+        ],
+        "aula": "LAB. MEC. 5 (B119: AUT. & R.)"
       },
       "09:50": {
         "materia": "Tedesco",
@@ -176,7 +188,12 @@
         "materia_completa": "Scienze integrate (Fisica)",
         "docenti": [
           "VERRA Dennis",
-          "ZUECH Claudio",
+          "ZUECH Claudio"
+        ],
+        "aula": "LAB. FIS 2 (B 314)"
+      },
+      "13:25": {
+        "docenti": [
           "FILIERA ROBOTICA EDUCATIVA",
           "CANNONE Maria",
           "(ATTIVITA' MODULARE)"
@@ -188,7 +205,8 @@
         "docenti": [
           "CANNONE Maria",
           "RUZZON Kevin"
-        ]
+        ],
+        "aula": "LAB. INF 4 (D 201**)"
       },
       "16:10": {
         "materia": "Religione",
@@ -226,11 +244,16 @@
         "materia": "Lab. Tecn. ed Esercitazioni",
         "materia_completa": "Lab. tecn. e esercitazioni",
         "docenti": [
-          "PILOTTI Alessio",
-          "FILIERA STAMPA 3 D",
-          "(ATTIVITA' MODULARE)"
+          "PILOTTI Alessio"
         ],
         "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
+      },
+      "13:25": {
+        "docenti": [
+          "FILIERA STAMPA 3 D",
+          "PILOTTI Alessio",
+          "(ATTIVITA' MODULARE)"
+        ]
       }
     }
   }

@@ -16,7 +16,8 @@
         "materia": "Informatica",
         "docenti": [
           "IACCARINO Gennaro"
-        ]
+        ],
+        "aula": "LAB. INF 3 (B 116)"
       },
       "09:50": {
         "materia": "Filosofia",
@@ -30,7 +31,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "BERTOLDI Christian"
-        ]
+        ],
+        "aula": "AULA B 111"
       },
       "12:35": {
         "materia": "Matematica",
@@ -47,14 +49,16 @@
         "docenti": [
           "DALLA TORRE Massimiliano",
           "LATTUCA Teresa"
-        ]
+        ],
+        "aula": "AULA SCI (B 301**) LAB. SCI (B 305**)"
       },
       "09:50": {
         "materia": "Disegno e Arte",
         "materia_completa": "Disegno e storia dell'arte",
         "docenti": [
           "DELLA RAGIONE Silvia"
-        ]
+        ],
+        "aula": "LAB. CAD 1 (B 219)"
       },
       "11:45": {
         "materia": "Tedesco",
@@ -124,13 +128,15 @@
         "materia_completa": "Scienze naturali",
         "docenti": [
           "DALLA TORRE Massimiliano"
-        ]
+        ],
+        "aula": "AULA B 306"
       },
       "14:30": {
         "materia": "Matematica",
         "docenti": [
           "TERZONI Giulia"
-        ]
+        ],
+        "aula": "AULA B 207"
       }
     },
     "giovedi": {
@@ -139,7 +145,8 @@
         "docenti": [
           "PAPAIS Denise",
           "VERRA Dennis"
-        ]
+        ],
+        "aula": "LAB. FIS 1 (B 310)"
       },
       "09:50": {
         "materia": "Scienze Naturali",
@@ -161,7 +168,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "FISCHNALLER Barbara"
-        ]
+        ],
+        "aula": "AULA B 206*"
       }
     },
     "venerdi": {
@@ -170,7 +178,8 @@
         "materia_completa": "Lingua inglese",
         "docenti": [
           "ALIAJ Mimoza"
-        ]
+        ],
+        "aula": "AULA B 205"
       },
       "09:50": {
         "materia": "Scienze Naturali",

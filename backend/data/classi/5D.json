@@ -17,7 +17,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "PATELLA Nadia"
-        ]
+        ],
+        "aula": "AULA B 007*"
       },
       "09:50": {
         "materia": "Matematica",
@@ -76,14 +77,16 @@
         "materia": "Matematica",
         "docenti": [
           "GAGLIOSTRO Antonio"
-        ]
+        ],
+        "aula": "AULA B 106*"
       },
       "09:50": {
         "materia": "Igiene e Anatomia",
         "materia_completa": "Igiene, anat., fisiol., patol.",
         "docenti": [
           "DI TRAPANI Rosalba"
-        ]
+        ],
+        "aula": "AULA B 306"
       },
       "11:45": {
         "materia": "Biologia Sanitaria",
@@ -91,7 +94,8 @@
         "docenti": [
           "FIORINI Raffaele",
           "SERAFIN Alice"
-        ]
+        ],
+        "aula": "AULA BIO (302),LAB. BIO (A 302)"
       },
       "14:30": {
         "materia": "Religione",
@@ -122,7 +126,8 @@
         "materia_completa": "Legislazione sanitaria",
         "docenti": [
           "MARROCCO Caterina"
-        ]
+        ],
+        "aula": "AULA B 104"
       },
       "10:40": {
         "materia": "Inglese",
@@ -137,7 +142,8 @@
         "materia_completa": "Igiene, anat., fisiol., patol.",
         "docenti": [
           "DI TRAPANI Rosalba"
-        ]
+        ],
+        "aula": "AULA B 311*"
       }
     },
     "giovedi": {
@@ -155,7 +161,8 @@
         "docenti": [
           "FIORINI Raffaele",
           "SERAFIN Alice"
-        ]
+        ],
+        "aula": "AULA BIO (302),LAB. BIO (A 302)"
       },
       "11:45": {
         "materia": "Chimica Organica",
@@ -181,14 +188,16 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "GHISU Maria Gabriella"
-        ]
+        ],
+        "aula": "AULA B 211"
       },
       "10:40": {
         "materia": "Chimica Organica",
         "materia_completa": "Chimica org. e biochimica",
         "docenti": [
           "RICCA Mariaelena"
-        ]
+        ],
+        "aula": "AULA B 309"
       },
       "12:35": {
         "materia": "Inglese",

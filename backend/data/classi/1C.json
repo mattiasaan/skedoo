@@ -53,7 +53,8 @@
         "docenti": [
           "GUADAGNINI Maria Pia",
           "MONACHELLA Angelo"
-        ]
+        ],
+        "aula": "AULA CHI (B 317**) LAB. CHI 3 (B 318)"
       },
       "16:10": {
         "materia": "Tedesco",
@@ -134,21 +135,24 @@
         "materia": "Matematica",
         "docenti": [
           "MILANESE Sabina"
-        ]
+        ],
+        "aula": "AULA B 108"
       },
       "09:50": {
         "materia": "Scienze Motorie",
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "NOLLI Cinzia"
-        ]
+        ],
+        "aula": "PAL. \"Torcaso\""
       },
       "11:45": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "FISCHNALLER Barbara"
-        ]
+        ],
+        "aula": "AULA B 004"
       }
     },
     "giovedi": {
@@ -189,7 +193,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "MOLINI Paola"
-        ]
+        ],
+        "aula": "AULA B 210*"
       }
     },
     "venerdi": {
@@ -214,14 +219,16 @@
         "docenti": [
           "FANIZZA Marco",
           "VERRA Dennis"
-        ]
+        ],
+        "aula": "LAB. FIS 2 (B 314)"
       },
       "11:45": {
         "materia": "Inglese",
         "materia_completa": "Lingua inglese",
         "docenti": [
           "ALIAJ Mimoza"
-        ]
+        ],
+        "aula": "AULA B 101"
       }
     }
   }

@@ -17,7 +17,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "SCHROFFENEGGER Sonja"
-        ]
+        ],
+        "aula": "AULA B 011"
       },
       "09:50": {
         "materia": "Elettronica",
@@ -43,14 +44,16 @@
         "materia": "Matematica",
         "docenti": [
           "MICILLO Martia Giustina"
-        ]
+        ],
+        "aula": "AULA B 107"
       },
       "09:50": {
         "materia": "Scienze Motorie",
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "OCHNER Daniel"
-        ]
+        ],
+        "aula": "PAL. \"Torcaso\""
       },
       "11:45": {
         "materia": "Elettronica",
@@ -66,7 +69,8 @@
         "materia_completa": "Tec. e prog. sist. ele. e elee",
         "docenti": [
           "BAMPI Alessandro"
-        ]
+        ],
+        "aula": "LAB. ELE 1 (D 001)"
       },
       "16:10": {
         "materia": "Tedesco",
@@ -115,7 +119,8 @@
         "materia_completa": "Sistemi automatici",
         "docenti": [
           "DONATI Lorenzo"
-        ]
+        ],
+        "aula": "LAB. ELE 1 (D 001)"
       }
     },
     "giovedi": {
@@ -155,14 +160,16 @@
         "docenti": [
           "BAMPI Alessandro",
           "NATALE Luigi"
-        ]
+        ],
+        "aula": "LAB. ELE 1 (D 001)"
       },
       "14:30": {
         "materia": "Italiano",
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "DI MARCO Raffaele Francesco"
-        ]
+        ],
+        "aula": "AULA B 309"
       },
       "16:10": {
         "materia": "Sistemi Automatici",
@@ -211,7 +218,8 @@
         "materia_completa": "Elettronica ed elettrotecnica",
         "docenti": [
           "CASTALDO Franco"
-        ]
+        ],
+        "aula": "LAB. ELE 1 (D 001)"
       }
     }
   }

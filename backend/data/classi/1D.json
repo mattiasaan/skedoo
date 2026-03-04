@@ -25,14 +25,16 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "MENCHISE Antonella"
-        ]
+        ],
+        "aula": "AULA B 013*"
       },
       "10:40": {
         "materia": "Inglese",
         "materia_completa": "Lingua inglese",
         "docenti": [
           "DELLA PENNA Daniela"
-        ]
+        ],
+        "aula": "AULA B 101"
       },
       "12:35": {
         "materia": "Religione",
@@ -65,7 +67,8 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "VITRANO Rosalba"
-        ]
+        ],
+        "aula": "PAL. \"Talvera Sud\""
       },
       "09:50": {
         "materia": "Tecnologie Informatiche",
@@ -87,7 +90,8 @@
         "materia": "Matematica",
         "docenti": [
           "PRESTIGIACOMO Davide"
-        ]
+        ],
+        "aula": "AULA B 104"
       }
     },
     "mercoledi": {
@@ -128,7 +132,8 @@
         "docenti": [
           "PAPAIS Denise",
           "VERRA Dennis"
-        ]
+        ],
+        "aula": "LAB. FIS 2 (B 314)"
       }
     },
     "giovedi": {
@@ -184,7 +189,8 @@
         "docenti": [
           "FUCA' Lia",
           "MASCIOVECCHIO Marina"
-        ]
+        ],
+        "aula": "AULA BIO (302) LAB. CHI 2 (A 306)"
       },
       "16:10": {
         "materia": "Tecn. e Tecniche Grafiche",
@@ -217,7 +223,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "PERRUCCI Rosi"
-        ]
+        ],
+        "aula": "AULA B 114"
       },
       "12:35": {
         "materia": "Fisica",

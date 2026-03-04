@@ -1,12 +1,15 @@
 import json
 import re
 import os
+from pathlib import Path
 
-INPUT_PATH  = "/mnt/user-data/outputs/orario_classi.json"
-OUTPUT_DIR  = "/mnt/user-data/outputs"
-API_PATH    = os.path.join(OUTPUT_DIR, "orario_api.json")
-INDEX_PATH  = os.path.join(OUTPUT_DIR, "classi_index.json")
-CLASSI_DIR  = os.path.join(OUTPUT_DIR, "classi")
+# Paths relative to this script's folder
+HERE        = Path(__file__).parent
+INPUT_PATH  = HERE / "orario_classi.json"
+OUTPUT_DIR  = HERE
+API_PATH    = HERE / "orario_api.json"
+INDEX_PATH  = HERE / "classi_index.json"
+CLASSI_DIR  = HERE / "classi"
 
 # Mapping normalizzazione
 

@@ -40,14 +40,16 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "VERZELLA Alba"
-        ]
+        ],
+        "aula": "AULA B 207"
       },
       "14:30": {
         "materia": "Sistemi Automatici",
         "materia_completa": "Sistemi automatici",
         "docenti": [
           "SICIGNANO Cristoforo"
-        ]
+        ],
+        "aula": "LAB. ELE 2 (D 004)"
       },
       "16:10": {
         "materia": "Tec. Prog. Sistemi Elettr.",
@@ -142,7 +144,8 @@
         "materia_completa": "Elettronica ed elettrotecnica",
         "docenti": [
           "LOPEZ Maria Virginia"
-        ]
+        ],
+        "aula": "LAB. ELE 3 (D 005)"
       },
       "16:10": {
         "materia": "Matematica",
@@ -158,7 +161,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "BESTE Anna Maria Waltraud"
-        ]
+        ],
+        "aula": "AULA B 011"
       },
       "09:50": {
         "materia": "Elettronica",
@@ -181,7 +185,8 @@
         "materia_completa": "Tec. e prog. sist. ele. e elee",
         "docenti": [
           "LOMBINO Alessandro"
-        ]
+        ],
+        "aula": "LAB. ELE 4 (C 003)"
       }
     },
     "venerdi": {
@@ -190,20 +195,23 @@
         "materia_completa": "Tec. e prog. sist. ele. e elee",
         "docenti": [
           "LOMBINO Alessandro"
-        ]
+        ],
+        "aula": "LAB. ELEE 3 (B 120/1)"
       },
       "09:50": {
         "materia": "Scienze Motorie",
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "DI CELLO Jacopo"
-        ]
+        ],
+        "aula": "PAL. \"Talvera Sud\""
       },
       "11:45": {
         "materia": "Matematica",
         "docenti": [
           "MICILLO Martia Giustina"
-        ]
+        ],
+        "aula": "Aula D 206**"
       }
     }
   }

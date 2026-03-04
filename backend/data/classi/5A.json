@@ -18,7 +18,8 @@
         "docenti": [
           "DE ROSSI Andrea",
           "VALENTINI Paolo"
-        ]
+        ],
+        "aula": "AULA MEC (D 009) LAB. MEC 1 (D 010: M.U.)"
       },
       "09:50": {
         "materia": "Disegno e Prog. Industriale",
@@ -40,7 +41,8 @@
         "materia_completa": "Sistemi ed automazione",
         "docenti": [
           "SERIO Leonardo"
-        ]
+        ],
+        "aula": "LAB. PNRR IND. 4.0 (D 011)"
       }
     },
     "martedi": {
@@ -72,7 +74,8 @@
         "materia": "Matematica",
         "docenti": [
           "ECCHER Andrea"
-        ]
+        ],
+        "aula": "Aula D 205**"
       },
       "12:35": {
         "materia": "Inglese",
@@ -87,7 +90,8 @@
         "materia_completa": "Dis., progettaz. e org. ind.le",
         "docenti": [
           "TASSIELLI Davide Giuseppe"
-        ]
+        ],
+        "aula": "AULA MEC (D 009)"
       },
       "16:10": {
         "materia": "Tedesco",
@@ -104,7 +108,8 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "NOLLI Cinzia"
-        ]
+        ],
+        "aula": "PAL. \"Torcaso\""
       },
       "09:50": {
         "materia": "Italiano",
@@ -147,7 +152,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "VITIELLO Anna"
-        ]
+        ],
+        "aula": "AULA MEC (D 009)"
       },
       "10:40": {
         "materia": "Religione",
@@ -162,7 +168,8 @@
         "docenti": [
           "MELECHI' Michele",
           "SERIO Leonardo"
-        ]
+        ],
+        "aula": "LAB. MEC 4 (B218: SIST. E AUT) LAB. PNRR IND. 4.0 (D 011)"
       },
       "14:30": {
         "materia": "Tecn. Meccanica",
@@ -170,7 +177,8 @@
         "docenti": [
           "DE ROSSI Andrea",
           "VALENTINI Paolo"
-        ]
+        ],
+        "aula": "AULA MEC (D 009) LAB. MEC 1 (D 010: M.U.)"
       },
       "16:10": {
         "materia": "Matematica",
@@ -186,7 +194,8 @@
         "materia_completa": "Meccanica, macchine e energia",
         "docenti": [
           "DE BENEDITTIS Fabio Antonio"
-        ]
+        ],
+        "aula": "AULA MEC (D 009)"
       },
       "09:50": {
         "materia": "Storia",
@@ -208,7 +217,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "MENCHISE Antonella"
-        ]
+        ],
+        "aula": "AULA B 206*"
       }
     }
   }

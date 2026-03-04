@@ -24,7 +24,8 @@
         "materia_completa": "Scienze dei mat. dent. e lab.",
         "docenti": [
           "BIDDAU Antonella"
-        ]
+        ],
+        "aula": "AULA B 307*"
       },
       "10:40": {
         "materia": "Inglese",
@@ -47,7 +48,8 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "GIGLIOLI Valentina"
-        ]
+        ],
+        "aula": "PAL. \"Torcaso\""
       },
       "16:10": {
         "materia": "Tedesco",
@@ -63,7 +65,8 @@
         "materia": "Matematica",
         "docenti": [
           "TERZONI Giulia"
-        ]
+        ],
+        "aula": "LAB. INF 1 (B 208)"
       },
       "09:50": {
         "materia": "Religione",
@@ -110,7 +113,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "BESTE Anna Maria Waltraud"
-        ]
+        ],
+        "aula": "AULA B 112*"
       },
       "09:50": {
         "materia": "Inglese",
@@ -159,7 +163,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "VENDRAME Emilio"
-        ]
+        ],
+        "aula": "AULA B 211"
       }
     },
     "venerdi": {

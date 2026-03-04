@@ -16,7 +16,8 @@
         "materia": "Matematica",
         "docenti": [
           "MILANESE Sabina"
-        ]
+        ],
+        "aula": "Aula D 205**"
       },
       "09:50": {
         "materia": "Italiano",
@@ -53,7 +54,8 @@
         "docenti": [
           "ARABIA Eliana",
           "MAGNANI Fabio"
-        ]
+        ],
+        "aula": "LAB. ELEE 1 (A 210*: L.E.AP)"
       },
       "16:10": {
         "materia": "Informatica",
@@ -69,7 +71,8 @@
         "docenti": [
           "ARABIA Eliana",
           "MAGNANI Fabio"
-        ]
+        ],
+        "aula": "LAB. ELEE 1 (A 210*: L.E.AP)"
       },
       "09:50": {
         "materia": "Tec. Prog. Sistemi Inf.",
@@ -77,7 +80,8 @@
         "docenti": [
           "DONATI Lorenzo",
           "PILOTTI Alessio"
-        ]
+        ],
+        "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
       },
       "11:45": {
         "materia": "Inglese",
@@ -102,7 +106,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "VERZELLA Alba"
-        ]
+        ],
+        "aula": "AULA B 211"
       },
       "09:50": {
         "materia": "Matematica",
@@ -124,7 +129,8 @@
         "materia_completa": "Sistemi e reti",
         "docenti": [
           "LATINA Giuliano"
-        ]
+        ],
+        "aula": "LAB. INF 1 (B 208)"
       }
     },
     "giovedi": {
@@ -133,7 +139,8 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "VITRANO Rosalba"
-        ]
+        ],
+        "aula": "PAL. \"Talvera Sud\""
       },
       "09:50": {
         "materia": "Tedesco",
@@ -164,7 +171,8 @@
         "materia_completa": "Tec. e prog. sist. inf. e tel.",
         "docenti": [
           "DONATI Lorenzo"
-        ]
+        ],
+        "aula": "LAB. ELEE 1 (A 210*: L.E.AP)"
       },
       "16:10": {
         "materia": "Telecomunicazioni",
@@ -180,7 +188,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "BESTE Anna Maria Waltraud"
-        ]
+        ],
+        "aula": "AULA B 206*"
       },
       "09:50": {
         "materia": "Inglese",
@@ -203,7 +212,8 @@
         "docenti": [
           "ARABIA Eliana",
           "MAGNANI Fabio"
-        ]
+        ],
+        "aula": "LAB. ELEE 3 (B 120/1)"
       }
     }
   }

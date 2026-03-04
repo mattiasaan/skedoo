@@ -17,7 +17,8 @@
         "materia_completa": "Eser. di lab. odontotecnico",
         "docenti": [
           "BRILLO Susanna"
-        ]
+        ],
+        "aula": "LAB. ODO 1 (A 307)"
       },
       "09:50": {
         "materia": "Tedesco",
@@ -75,21 +76,24 @@
         "materia_completa": "Eser. di lab. odontotecnico",
         "docenti": [
           "BRILLO Susanna"
-        ]
+        ],
+        "aula": "LAB. ODO 1 (A 307)"
       },
       "09:50": {
         "materia": "Rappresentazione Odontotecnica",
         "materia_completa": "Rappr. e modell. odontotecnica",
         "docenti": [
           "DOCILE Valeria Anna"
-        ]
+        ],
+        "aula": "LAB. DIS (B 215)"
       },
       "11:45": {
         "materia": "Italiano",
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "ZANONI Barbara"
-        ]
+        ],
+        "aula": "AULA B 114"
       }
     },
     "mercoledi": {
@@ -98,7 +102,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "CARLIN Martina"
-        ]
+        ],
+        "aula": "AULA B 016"
       },
       "09:50": {
         "materia": "Storia",
@@ -135,7 +140,8 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "VITRANO Rosalba"
-        ]
+        ],
+        "aula": "PAL. \"Talvera Sud\""
       },
       "16:10": {
         "materia": "Religione",
@@ -198,7 +204,8 @@
         "materia": "Matematica",
         "docenti": [
           "STIVELLA Marco"
-        ]
+        ],
+        "aula": "AULA B 107"
       },
       "09:50": {
         "materia": "Italiano",

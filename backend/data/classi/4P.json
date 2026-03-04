@@ -32,7 +32,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "ZEZZA Maria"
-        ]
+        ],
+        "aula": "AULA B 115"
       }
     },
     "martedi": {
@@ -48,7 +49,8 @@
         "materia_completa": "Scienze dei mat. dent. e lab.",
         "docenti": [
           "BIDDAU Antonella"
-        ]
+        ],
+        "aula": "AULA B 311*"
       },
       "10:40": {
         "materia": "Storia",
@@ -74,7 +76,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "CARLIN Martina"
-        ]
+        ],
+        "aula": "AULA B 306"
       },
       "16:10": {
         "materia": "Inglese",
@@ -91,7 +94,8 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "DI CELLO Jacopo"
-        ]
+        ],
+        "aula": "PAL. \"Talvera Sud\""
       },
       "09:50": {
         "materia": "Gnatologia",
@@ -127,7 +131,8 @@
         "materia": "Matematica",
         "docenti": [
           "MICILLO Martia Giustina"
-        ]
+        ],
+        "aula": "AULA B 204"
       },
       "16:10": {
         "materia": "Scienze dei Materiali Dentali",

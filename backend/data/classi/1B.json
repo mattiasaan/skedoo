@@ -26,14 +26,16 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "GIGLIOLI Valentina"
-        ]
+        ],
+        "aula": "PAL. \"Talvera Sud\""
       },
       "11:45": {
         "materia": "Italiano",
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "PATRUNO Elisabetta"
-        ]
+        ],
+        "aula": "AULA B 114"
       }
     },
     "martedi": {
@@ -41,7 +43,8 @@
         "materia": "Matematica",
         "docenti": [
           "MANARESI Federica"
-        ]
+        ],
+        "aula": "AULA B 104"
       },
       "09:50": {
         "materia": "Inglese",
@@ -65,7 +68,8 @@
         "docenti": [
           "PAPAIS Denise",
           "ZECCHIN Enrico"
-        ]
+        ],
+        "aula": "LAB. FIS 1 (B 310)"
       },
       "14:30": {
         "materia": "Scienze e Biologia",
@@ -140,7 +144,8 @@
         "docenti": [
           "GIORDANO Carmelo",
           "PECORARO Diego"
-        ]
+        ],
+        "aula": "LAB. CHI 3 (B 318) LAB. PNRR AMB. E ENERGIA (301)"
       },
       "09:50": {
         "materia": "Italiano",
@@ -162,14 +167,16 @@
         "materia_completa": "Lingua inglese",
         "docenti": [
           "ROMANI Sara"
-        ]
+        ],
+        "aula": "AULA B 101"
       },
       "14:30": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "ROTTENSTEINER Sylvia"
-        ]
+        ],
+        "aula": "AULA B 213"
       },
       "16:10": {
         "materia": "Tecn. e Tecniche Grafiche",
@@ -208,7 +215,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "ROTTENSTEINER Sylvia"
-        ]
+        ],
+        "aula": "AULA B 004"
       },
       "12:35": {
         "materia": "Tecnologie Informatiche",

@@ -23,7 +23,8 @@
         "materia": "Matematica",
         "docenti": [
           "GIUSTI Marina"
-        ]
+        ],
+        "aula": "AULA B 210*"
       },
       "10:40": {
         "materia": "Tedesco",
@@ -37,7 +38,8 @@
         "materia": "Informatica",
         "docenti": [
           "DELIZIA Marco"
-        ]
+        ],
+        "aula": "LAB. INF 3 (B 116)"
       },
       "14:30": {
         "materia": "Scienze Naturali",
@@ -45,7 +47,8 @@
         "docenti": [
           "LATTUCA Teresa",
           "LEGGIERO Stefania"
-        ]
+        ],
+        "aula": "AULA SCI (B 301**) LAB. SCI (B 305**)"
       }
     },
     "martedi": {
@@ -54,7 +57,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "ALDROVANDI Carla"
-        ]
+        ],
+        "aula": "AULA B 016"
       },
       "09:50": {
         "materia": "Italiano",
@@ -93,7 +97,8 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "NOLLI Cinzia"
-        ]
+        ],
+        "aula": "PAL. \"Torcaso\""
       },
       "16:10": {
         "materia": "Matematica",
@@ -109,7 +114,8 @@
         "materia_completa": "Scienze naturali",
         "docenti": [
           "LEGGIERO Stefania"
-        ]
+        ],
+        "aula": "AULA SCI (B 301**)"
       },
       "09:50": {
         "materia": "Storia e Geografia",
@@ -142,7 +148,8 @@
         "materia_completa": "Lingua inglese",
         "docenti": [
           "PEROTTI Antonio"
-        ]
+        ],
+        "aula": "AULA B 204"
       },
       "09:50": {
         "materia": "Matematica",
@@ -164,7 +171,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "LONOCE Maria Pompea"
-        ]
+        ],
+        "aula": "AULA B 109"
       }
     },
     "venerdi": {
@@ -173,7 +181,8 @@
         "materia_completa": "Disegno e storia dell'arte",
         "docenti": [
           "DELLA RAGIONE Silvia"
-        ]
+        ],
+        "aula": "LAB. CAD 1 (B 219)"
       },
       "09:50": {
         "materia": "Tedesco",

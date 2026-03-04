@@ -59,7 +59,8 @@
         "materia_completa": "Lingua inglese",
         "docenti": [
           "FRANCHINI Nicoletta"
-        ]
+        ],
+        "aula": "AULA B 205"
       },
       "09:50": {
         "materia": "Diritto ed Economia",
@@ -81,7 +82,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "ROTTENSTEINER Sylvia"
-        ]
+        ],
+        "aula": "AULA B 004"
       },
       "14:30": {
         "materia": "Fisica",
@@ -115,7 +117,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "MAISANO Nunziatina"
-        ]
+        ],
+        "aula": "AULA B 109"
       },
       "10:40": {
         "materia": "Tedesco",
@@ -130,7 +133,8 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "OCHNER Daniel"
-        ]
+        ],
+        "aula": "PAL. \"Talvera Sud\""
       }
     },
     "giovedi": {
@@ -161,7 +165,8 @@
         "materia": "Matematica",
         "docenti": [
           "SARRI Wanda"
-        ]
+        ],
+        "aula": "AULA B 108"
       },
       "12:35": {
         "materia": "Storia",
@@ -226,7 +231,8 @@
         "docenti": [
           "MONACHELLA Angelo",
           "PECORARO Diego"
-        ]
+        ],
+        "aula": "AULA CHI (B 317**) LAB. CHI 3 (B 318)"
       }
     }
   }

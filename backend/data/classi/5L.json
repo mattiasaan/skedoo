@@ -17,7 +17,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "ALDROVANDI Carla"
-        ]
+        ],
+        "aula": "AULA B 304"
       },
       "09:50": {
         "materia": "Scienze Naturali",
@@ -32,7 +33,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "CHIANESE Francesco"
-        ]
+        ],
+        "aula": "AULA B 109"
       },
       "12:35": {
         "materia": "Storia",
@@ -46,7 +48,8 @@
         "materia_completa": "Disegno e storia dell'arte",
         "docenti": [
           "DELLA RAGIONE Silvia"
-        ]
+        ],
+        "aula": "LAB. CAD 1 (B 219)"
       },
       "16:10": {
         "materia": "Inglese",
@@ -92,7 +95,8 @@
         "materia_completa": "Lingua inglese",
         "docenti": [
           "TACUS Alessandra"
-        ]
+        ],
+        "aula": "AULA B 204"
       }
     },
     "mercoledi": {
@@ -117,13 +121,15 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "DI CELLO Jacopo"
-        ]
+        ],
+        "aula": "PAL. \"Talvera Sud\""
       },
       "11:45": {
         "materia": "Informatica",
         "docenti": [
           "CANNONE Maria"
-        ]
+        ],
+        "aula": "LAB. INF 3 (B 116)"
       }
     },
     "giovedi": {
@@ -133,7 +139,8 @@
         "docenti": [
           "CITTA' Tiziana",
           "DALLA TORRE Massimiliano"
-        ]
+        ],
+        "aula": "AULA SCI (B 301**) LAB. SCI (B 305**)"
       },
       "09:50": {
         "materia": "Italiano",
@@ -147,7 +154,8 @@
         "materia": "Matematica",
         "docenti": [
           "TERZONI Giulia"
-        ]
+        ],
+        "aula": "AULA B 106*"
       },
       "12:35": {
         "materia": "Fisica",

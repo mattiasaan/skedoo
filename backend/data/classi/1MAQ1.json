@@ -17,7 +17,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "ZEZZA Maria"
-        ]
+        ],
+        "aula": "AULA B 110*"
       },
       "09:50": {
         "materia": "Tedesco",
@@ -31,12 +32,16 @@
         "materia": "Lab. Tecn. ed Esercitazioni",
         "materia_completa": "Lab. tecn. e esercitazioni",
         "docenti": [
-          "PILOTTI Alessio",
+          "PILOTTI Alessio"
+        ],
+        "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
+      },
+      "13:25": {
+        "docenti": [
           "POTENZIAMENTO TEDESCO",
           "SCHROFFENEGGER Sonja",
           "(ATTIVITA' MODULARE)"
-        ],
-        "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
+        ]
       }
     },
     "martedi": {
@@ -61,17 +66,22 @@
         "materia": "Matematica",
         "docenti": [
           "TERZONI Giulia"
-        ]
+        ],
+        "aula": "LAB. ELEE 3 (B 120/1)"
       },
       "12:35": {
         "materia": "Storia",
         "docenti": [
-          "ZEZZA Maria",
+          "ZEZZA Maria"
+        ],
+        "aula": "AULA B 105"
+      },
+      "13:25": {
+        "docenti": [
           "FILIERA ROBOTICA EDUCATIVA",
           "CANNONE Maria",
           "(ATTIVITA' MODULARE)"
-        ],
-        "aula": "AULA B 105"
+        ]
       },
       "14:30": {
         "materia": "Tecnologie Informatiche",
@@ -79,7 +89,8 @@
         "docenti": [
           "CANNONE Maria",
           "RUZZON Kevin"
-        ]
+        ],
+        "aula": "LAB. INF 4 (D 201**)"
       },
       "16:10": {
         "materia": "Religione",
@@ -127,12 +138,16 @@
         "materia": "Italiano",
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
-          "ZEZZA Maria",
+          "ZEZZA Maria"
+        ],
+        "aula": "AULA B 109"
+      },
+      "13:25": {
+        "docenti": [
           "FILIERA STAMPA 3 D",
           "PILOTTI Alessio",
           "(ATTIVITA' MODULARE)"
-        ],
-        "aula": "AULA B 109"
+        ]
       }
     },
     "giovedi": {
@@ -181,7 +196,8 @@
         "materia_completa": "Lab. tecn. e esercitazioni",
         "docenti": [
           "PILOTTI Alessio"
-        ]
+        ],
+        "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
       },
       "16:10": {
         "materia": "Tecnologie Informatiche",
@@ -228,7 +244,12 @@
         "materia": "Scienze Motorie",
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
-          "SEBASTIANI Alfredo",
+          "SEBASTIANI Alfredo"
+        ],
+        "aula": "PAL. \"Talvera Sud\""
+      },
+      "13:25": {
+        "docenti": [
           "POTENZIAMENTO TEDESCO",
           "SCHROFFENEGGER Sonja",
           "(ATTIVITA' MODULARE)"

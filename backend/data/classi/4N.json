@@ -17,7 +17,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "DI MARCO Raffaele Francesco"
-        ]
+        ],
+        "aula": "AULA B 112*"
       },
       "09:50": {
         "materia": "Elettronica",
@@ -32,7 +33,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "SCHROFFENEGGER Sonja"
-        ]
+        ],
+        "aula": "AULA B 011"
       },
       "12:35": {
         "materia": "Matematica",
@@ -46,7 +48,8 @@
         "materia_completa": "Sistemi automatici",
         "docenti": [
           "MINICHIELLO Genesio"
-        ]
+        ],
+        "aula": "LAB. ELE 3 (D 005)"
       },
       "16:10": {
         "materia": "Inglese",
@@ -150,7 +153,8 @@
         "materia_completa": "Elettronica ed elettrotecnica",
         "docenti": [
           "RONDINI Ferdinando"
-        ]
+        ],
+        "aula": "LAB. ELE 1 (D 001)"
       },
       "09:50": {
         "materia": "Religione",
@@ -172,7 +176,8 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "GIGLIOLI Valentina"
-        ]
+        ],
+        "aula": "PAL. \"Torcaso\""
       },
       "14:30": {
         "materia": "Tec. Prog. Sistemi Elettr.",
@@ -197,7 +202,8 @@
         "materia_completa": "Tec. e prog. sist. ele. e elee",
         "docenti": [
           "LOVECCHIO Stefano"
-        ]
+        ],
+        "aula": "LAB. ELE 1 (D 001)"
       },
       "09:50": {
         "materia": "Elettronica",
@@ -212,7 +218,8 @@
         "materia": "Matematica",
         "docenti": [
           "STIVELLA Marco"
-        ]
+        ],
+        "aula": "AULA B 107"
       }
     }
   }

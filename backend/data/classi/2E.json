@@ -32,7 +32,8 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "DI CELLO Jacopo"
-        ]
+        ],
+        "aula": "PAL. \"Talvera Centro\""
       },
       "11:45": {
         "materia": "Tecno. e tecniche rappr. graf. Amin Mohammad Kazem",
@@ -64,7 +65,8 @@
         "materia_completa": "Lingua inglese",
         "docenti": [
           "TACUS Alessandra"
-        ]
+        ],
+        "aula": "AULA B 204"
       },
       "09:50": {
         "materia": "Scienze e Biologia",
@@ -170,7 +172,8 @@
         "materia": "Matematica",
         "docenti": [
           "MANARESI Federica"
-        ]
+        ],
+        "aula": "AULA B 204"
       },
       "16:10": {
         "materia": "Italiano",

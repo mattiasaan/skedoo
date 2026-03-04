@@ -17,7 +17,8 @@
         "materia_completa": "Tec. e prog. sist. inf. e tel.",
         "docenti": [
           "DONATI Lorenzo"
-        ]
+        ],
+        "aula": "LAB. ELEE 1 (A 210*: L.E.AP)"
       },
       "09:50": {
         "materia": "Matematica",
@@ -39,14 +40,16 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "DI CELLO Jacopo"
-        ]
+        ],
+        "aula": "PAL. \"Talvera Centro\""
       },
       "14:30": {
         "materia": "Italiano",
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "PERRUCCI Rosi"
-        ]
+        ],
+        "aula": "AULA 201"
       },
       "16:10": {
         "materia": "Telecomunicazioni",
@@ -62,7 +65,8 @@
         "materia_completa": "Sistemi e reti",
         "docenti": [
           "LATINA Giuliano"
-        ]
+        ],
+        "aula": "LAB. INF 4 (D 201**)"
       },
       "09:50": {
         "materia": "Telecomunicazioni",
@@ -102,7 +106,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "MENCHISE Antonella"
-        ]
+        ],
+        "aula": "AULA B 011"
       },
       "12:35": {
         "materia": "Inglese",
@@ -206,7 +211,8 @@
         "materia": "Matematica",
         "docenti": [
           "TERZONI Giulia"
-        ]
+        ],
+        "aula": "Aula D 205**"
       }
     }
   }

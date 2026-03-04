@@ -41,7 +41,8 @@
         "materia_completa": "Lab. tecn. e esercitazioni",
         "docenti": [
           "NATALE Luigi"
-        ]
+        ],
+        "aula": "LAB. ELE 4 (C 003)"
       }
     },
     "martedi": {
@@ -88,7 +89,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "ZEZZA Maria"
-        ]
+        ],
+        "aula": "AULA B 114"
       },
       "10:40": {
         "materia": "Matematica",
@@ -102,14 +104,16 @@
         "materia_completa": "Lingua inglese",
         "docenti": [
           "PEROTTI Antonio"
-        ]
+        ],
+        "aula": "AULA B 209"
       },
       "14:30": {
         "materia": "Tecn. Meccanica",
         "materia_completa": "Tecnologie meccaniche ed appl.",
         "docenti": [
           "PASCIUTO Paolo"
-        ]
+        ],
+        "aula": "LAB. MEC 2 (D 008: M.M.E.)"
       },
       "16:10": {
         "materia": "Tecn. Elettr. e Elettrotecnica",
@@ -126,7 +130,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "HOFER Verena"
-        ]
+        ],
+        "aula": "AULA B 016"
       },
       "09:50": {
         "materia": "Tecn. Elettr. e Elettrotecnica",
@@ -149,7 +154,8 @@
         "materia": "Matematica",
         "docenti": [
           "PRESTIGIACOMO Davide"
-        ]
+        ],
+        "aula": "Aula D 206**"
       },
       "14:30": {
         "materia": "Italiano",
@@ -197,14 +203,16 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "NOLLI Cinzia"
-        ]
+        ],
+        "aula": "PAL. \"Torcaso\""
       },
       "11:45": {
         "materia": "Lab. Tecn. ed Esercitazioni",
         "materia_completa": "Lab. tecn. e esercitazioni",
         "docenti": [
           "NATALE Luigi"
-        ]
+        ],
+        "aula": "LAB. ELE 4 (C 003)"
       }
     }
   }

@@ -17,7 +17,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "MAISANO Nunziatina"
-        ]
+        ],
+        "aula": "AULA B 211"
       },
       "09:50": {
         "materia": "Complementi di Matematica",
@@ -32,7 +33,8 @@
         "materia_completa": "Tec. e prog. sist. inf. e tel.",
         "docenti": [
           "DI DIO Daniele"
-        ]
+        ],
+        "aula": "LAB. INF 4 (D 201**)"
       },
       "12:35": {
         "materia": "Telecomunicazioni",
@@ -63,7 +65,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "TUFANO Guido"
-        ]
+        ],
+        "aula": "AULA B 011"
       },
       "12:35": {
         "materia": "Religione",
@@ -112,7 +115,8 @@
         "docenti": [
           "D'ANTONI Mario",
           "DI DIO Daniele"
-        ]
+        ],
+        "aula": "LAB. INF 3 (B 116)"
       },
       "11:45": {
         "materia": "Inglese",
@@ -134,7 +138,8 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "SALVATERRA Joshua"
-        ]
+        ],
+        "aula": "PAL. \"Talvera Centro\""
       },
       "16:10": {
         "materia": "Complementi di Matematica",
@@ -158,7 +163,8 @@
         "materia": "Matematica",
         "docenti": [
           "ECCHER Andrea"
-        ]
+        ],
+        "aula": "Aula D 206**"
       },
       "11:45": {
         "materia": "Storia",
@@ -198,7 +204,8 @@
         "materia_completa": "Sistemi e reti",
         "docenti": [
           "CANTARELLA Alfredo"
-        ]
+        ],
+        "aula": "LAB. INF 5 (D 202**)"
       },
       "12:35": {
         "materia": "Matematica",

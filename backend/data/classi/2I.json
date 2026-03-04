@@ -17,7 +17,8 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "VITRANO Rosalba"
-        ]
+        ],
+        "aula": "PAL. \"Talvera Sud\""
       },
       "09:50": {
         "materia": "Fisica",
@@ -73,7 +74,8 @@
         "materia_completa": "Scienze naturali",
         "docenti": [
           "LEGGIERO Stefania"
-        ]
+        ],
+        "aula": "AULA B 206*"
       },
       "09:50": {
         "materia": "Tedesco",
@@ -88,7 +90,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "STOPPARI Antonella"
-        ]
+        ],
+        "aula": "AULA B 115"
       },
       "12:35": {
         "materia": "Diritto ed Economia",
@@ -104,7 +107,8 @@
         "materia": "Matematica",
         "docenti": [
           "GIUSTI Marina"
-        ]
+        ],
+        "aula": "Aula D 205**"
       },
       "09:50": {
         "materia": "Fisica",
@@ -127,7 +131,8 @@
         "docenti": [
           "GIORDANO Carmelo",
           "LEGGIERO Stefania"
-        ]
+        ],
+        "aula": "AULA SCI (B 301**) LAB. SCI (B 305**)"
       }
     },
     "giovedi": {
@@ -136,7 +141,8 @@
         "materia_completa": "Disegno e storia dell'arte",
         "docenti": [
           "DELLA RAGIONE Silvia"
-        ]
+        ],
+        "aula": "LAB. CAD 1 (B 219)"
       },
       "09:50": {
         "materia": "Italiano",
@@ -158,14 +164,16 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "BERTOLDI Michela"
-        ]
+        ],
+        "aula": "AULA B 205"
       },
       "14:30": {
         "materia": "Inglese",
         "materia_completa": "Lingua inglese",
         "docenti": [
           "DELLA PENNA Daniela"
-        ]
+        ],
+        "aula": "AULA B 304"
       }
     },
     "venerdi": {
@@ -187,7 +195,8 @@
         "materia": "Informatica",
         "docenti": [
           "SALIHAJ Anila"
-        ]
+        ],
+        "aula": "LAB. INF 1 (B 208)"
       },
       "11:45": {
         "materia": "Italiano",

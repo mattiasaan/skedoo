@@ -17,7 +17,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "VENDRAME Emilio"
-        ]
+        ],
+        "aula": "AULA B 111"
       },
       "09:50": {
         "materia": "Tecn. di Installazione",
@@ -33,7 +34,8 @@
         "materia_completa": "Lingua inglese",
         "docenti": [
           "ROMANI Sara"
-        ]
+        ],
+        "aula": "AULA B 205"
       }
     },
     "martedi": {
@@ -42,7 +44,8 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "GIGLIOLI Valentina"
-        ]
+        ],
+        "aula": "PAL. \"Torcaso\""
       },
       "09:50": {
         "materia": "Matematica",
@@ -72,7 +75,8 @@
         "materia_completa": "Tecnol. tecni. di inst. e man.",
         "docenti": [
           "LOVECCHIO Stefano"
-        ]
+        ],
+        "aula": "LAB. ELE 2 (D 004)"
       },
       "16:10": {
         "materia": "Tedesco",
@@ -113,7 +117,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "HOFER Verena"
-        ]
+        ],
+        "aula": "AULA B 106*"
       }
     },
     "giovedi": {
@@ -189,7 +194,8 @@
         "materia_completa": "Tecnol. tecni. di inst. e man.",
         "docenti": [
           "LOVECCHIO Stefano"
-        ]
+        ],
+        "aula": "LAB. ELE 4 (C 003)"
       },
       "11:45": {
         "materia": "Matematica",

@@ -78,7 +78,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "PETRONE Antonella"
-        ]
+        ],
+        "aula": "AULA B 004"
       },
       "09:50": {
         "materia": "Storia",
@@ -100,7 +101,8 @@
         "materia_completa": "Lingua inglese",
         "docenti": [
           "FRANCHINI Nicoletta"
-        ]
+        ],
+        "aula": "AULA B 205"
       }
     },
     "mercoledi": {
@@ -108,7 +110,8 @@
         "materia": "Matematica",
         "docenti": [
           "D'ALESSIO Valeria"
-        ]
+        ],
+        "aula": "Aula D 206**"
       },
       "09:50": {
         "materia": "Tedesco",
@@ -140,7 +143,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "TABARELLI DE FATIS Stefania"
-        ]
+        ],
+        "aula": "AULA B 201"
       },
       "16:10": {
         "materia": "Fisica",
@@ -166,7 +170,8 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "OCHNER Daniel"
-        ]
+        ],
+        "aula": "PAL. \"Torcaso\""
       },
       "11:45": {
         "materia": "Scienze e Biologia",

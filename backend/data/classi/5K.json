@@ -55,7 +55,8 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "SALVATERRA Joshua"
-        ]
+        ],
+        "aula": "PAL. \"Talvera Centro\""
       },
       "16:10": {
         "materia": "Inglese",
@@ -71,27 +72,31 @@
         "materia": "Matematica",
         "docenti": [
           "MILANESE Sabina"
-        ]
+        ],
+        "aula": "Aula D 206**"
       },
       "09:50": {
         "materia": "Informatica",
         "docenti": [
           "DE GIORGI Nicola"
-        ]
+        ],
+        "aula": "LAB. INF 2 (B 212)"
       },
       "11:45": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "PETRONE Antonella"
-        ]
+        ],
+        "aula": "AULA B 101"
       },
       "14:30": {
         "materia": "Sistemi e Reti",
         "materia_completa": "Sistemi e reti",
         "docenti": [
           "CANTARELLA Alfredo"
-        ]
+        ],
+        "aula": "LAB. INF 5 (D 202**)"
       },
       "16:10": {
         "materia": "Tec. Prog. Sistemi Inf.",
@@ -125,7 +130,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "BENETTI Mattia"
-        ]
+        ],
+        "aula": "AULA B 110*"
       }
     },
     "giovedi": {
@@ -142,7 +148,8 @@
         "materia_completa": "Gest. progetto, org. di impresa",
         "docenti": [
           "DELIZIA Marco"
-        ]
+        ],
+        "aula": "LAB. INF 5 (D 202**)"
       },
       "10:40": {
         "materia": "Inglese",

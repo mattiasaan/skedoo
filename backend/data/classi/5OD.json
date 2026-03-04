@@ -24,7 +24,8 @@
         "materia": "Matematica",
         "docenti": [
           "STIVELLA Marco"
-        ]
+        ],
+        "aula": "AULA B 309"
       },
       "10:40": {
         "materia": "Religione",
@@ -38,7 +39,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "CARLIN Martina"
-        ]
+        ],
+        "aula": "AULA B 004"
       },
       "14:30": {
         "materia": "Italiano",
@@ -78,7 +80,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "CANEVE Elisa"
-        ]
+        ],
+        "aula": "AULA B 112*"
       },
       "12:35": {
         "materia": "Scienze dei Materiali Dentali",
@@ -94,7 +97,8 @@
         "materia": "Gnatologia",
         "docenti": [
           "RIGHES Cecilia"
-        ]
+        ],
+        "aula": "AULA B 205"
       },
       "09:50": {
         "materia": "Matematica",
@@ -116,7 +120,8 @@
         "docenti": [
           "GIBILISCO Marco",
           "RIOLO Marcello"
-        ]
+        ],
+        "aula": "LAB. ODO 2 (A 308) LAB. PNRR AMB. E ENERGIA (301)"
       },
       "15:20": {
         "materia": "Lab. Odontotecnico",
@@ -132,7 +137,8 @@
         "materia": "Gnatologia",
         "docenti": [
           "RIGHES Cecilia"
-        ]
+        ],
+        "aula": "AULA FIS (B 308**)"
       },
       "09:50": {
         "materia": "Tedesco",
@@ -165,7 +171,8 @@
         "materia_completa": "Scienze dei mat. dent. e lab.",
         "docenti": [
           "RIOLO Marcello"
-        ]
+        ],
+        "aula": "AULA B 306"
       },
       "10:40": {
         "materia": "Inglese",
@@ -180,7 +187,8 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "OCHNER Daniel"
-        ]
+        ],
+        "aula": "PAL. \"Torcaso\""
       }
     }
   }

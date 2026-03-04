@@ -85,7 +85,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "TUFANO Guido"
-        ]
+        ],
+        "aula": "AULA B 011"
       },
       "09:50": {
         "materia": "Italiano",
@@ -107,7 +108,8 @@
         "materia": "Matematica",
         "docenti": [
           "MANARESI Federica"
-        ]
+        ],
+        "aula": "AULA B 107"
       }
     },
     "mercoledi": {
@@ -160,7 +162,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "CERADINI Alessandro"
-        ]
+        ],
+        "aula": "AULA B 115"
       },
       "10:40": {
         "materia": "Inglese",
@@ -208,7 +211,8 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "GIGLIOLI Valentina"
-        ]
+        ],
+        "aula": "PAL. \"Talvera Centro\""
       },
       "09:50": {
         "materia": "Diritto ed Economia",

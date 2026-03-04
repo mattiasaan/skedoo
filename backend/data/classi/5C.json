@@ -51,7 +51,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "MOLINI Paola"
-        ]
+        ],
+        "aula": "AULA B 111"
       },
       "09:50": {
         "materia": "Biologia Ambientale",
@@ -74,13 +75,15 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "PATELLA Nadia"
-        ]
+        ],
+        "aula": "AULA B 209"
       },
       "14:30": {
         "materia": "Matematica",
         "docenti": [
           "D'ALESSIO Valeria"
-        ]
+        ],
+        "aula": "AULA B 201"
       },
       "16:10": {
         "materia": "Religione",
@@ -106,14 +109,16 @@
         "docenti": [
           "BIANCHI Patrick",
           "STICCOTTI Gea"
-        ]
+        ],
+        "aula": "AULA BIO (302),LAB. BIO (A 302)"
       },
       "11:45": {
         "materia": "Chimica Analitica",
         "materia_completa": "Chimica analitica e strum.",
         "docenti": [
           "TOSI Sara"
-        ]
+        ],
+        "aula": "AULA B 307*"
       }
     },
     "giovedi": {
@@ -136,21 +141,24 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "VITRANO Rosalba"
-        ]
+        ],
+        "aula": "PAL. \"Talvera Sud\""
       },
       "11:45": {
         "materia": "Chimica Organica",
         "materia_completa": "Chimica org. e biochimica",
         "docenti": [
           "GUADAGNINI Maria Pia"
-        ]
+        ],
+        "aula": "AULA B 105"
       },
       "14:30": {
         "materia": "Biologia Ambientale",
         "materia_completa": "Bio., micro. e tec. contr.amb.",
         "docenti": [
           "STICCOTTI Gea"
-        ]
+        ],
+        "aula": "AULA SCI (B 301**)"
       },
       "16:10": {
         "materia": "Inglese",
@@ -167,7 +175,8 @@
         "materia_completa": "Fisica ambientale",
         "docenti": [
           "VERRA Dennis"
-        ]
+        ],
+        "aula": "AULA FIS (B 308**)"
       },
       "09:50": {
         "materia": "Tedesco",
@@ -192,7 +201,8 @@
         "docenti": [
           "BIANCHI Patrick",
           "STICCOTTI Gea"
-        ]
+        ],
+        "aula": "AULA BIO (302),LAB. BIO (A 302)"
       }
     }
   }

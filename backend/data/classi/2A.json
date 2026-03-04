@@ -17,14 +17,16 @@
         "materia_completa": "Lingua inglese",
         "docenti": [
           "FRANCHINI Nicoletta"
-        ]
+        ],
+        "aula": "AULA B 204"
       },
       "09:50": {
         "materia": "Scienze Motorie",
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "OCHNER Daniel"
-        ]
+        ],
+        "aula": "PAL. \"Torcaso\""
       },
       "11:45": {
         "materia": "Religione",
@@ -45,7 +47,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "VITIELLO Anna"
-        ]
+        ],
+        "aula": "AULA B 205"
       },
       "16:10": {
         "materia": "Fisica",
@@ -87,14 +90,16 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "VITIELLO Anna"
-        ]
+        ],
+        "aula": "AULA B 113"
       },
       "14:30": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "BESTE Anna Maria Waltraud"
-        ]
+        ],
+        "aula": "AULA B 211"
       },
       "16:10": {
         "materia": "Chimica",
@@ -143,7 +148,8 @@
         "docenti": [
           "CANTISANI Silviano",
           "VALENTINI Paolo"
-        ]
+        ],
+        "aula": "AULA MEC (D 009) LAB. MEC 1 (D 010: M.U.)"
       }
     },
     "giovedi": {
@@ -159,7 +165,8 @@
         "materia": "Matematica",
         "docenti": [
           "SARRI Wanda"
-        ]
+        ],
+        "aula": "AULA B 106*"
       },
       "10:40": {
         "materia": "Storia",
@@ -201,7 +208,8 @@
         "docenti": [
           "MONACHELLA Angelo",
           "PECORARO Diego"
-        ]
+        ],
+        "aula": "AULA CHI (B 317**) LAB. CHI 3 (B 318)"
       },
       "11:45": {
         "materia": "Matematica",

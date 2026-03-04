@@ -17,7 +17,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "ZANONI Barbara"
-        ]
+        ],
+        "aula": "AULA B 109"
       },
       "09:50": {
         "materia": "Tedesco",
@@ -31,7 +32,8 @@
         "materia": "meccaniche ed appl.",
         "docenti": [
           "TASSIELLI Davide Giuseppe"
-        ]
+        ],
+        "aula": "LAB. MEC. 5 (B119: AUT. & R.)"
       },
       "12:35": {
         "materia": "Matematica",
@@ -64,7 +66,8 @@
         "materia_completa": "Lingua inglese",
         "docenti": [
           "PEROTTI Antonio"
-        ]
+        ],
+        "aula": "AULA B 112*"
       },
       "09:50": {
         "materia": "Storia",
@@ -84,7 +87,8 @@
         "materia": "Matematica",
         "docenti": [
           "MICILLO Martia Giustina"
-        ]
+        ],
+        "aula": "AULA B 111"
       }
     },
     "mercoledi": {
@@ -169,7 +173,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "HOFER Verena"
-        ]
+        ],
+        "aula": "AULA B 016"
       },
       "12:35": {
         "materia": "Inglese",
@@ -187,7 +192,8 @@
         "docenti": [
           "GAETANO Giuseppe",
           "TASSIELLI Davide Giuseppe"
-        ]
+        ],
+        "aula": "LAB. MEC 1 (D 010: M.U.) LAB. MEC 2 (D 008: M.M.E.)"
       },
       "09:50": {
         "materia": "Tecn. di Installazione",

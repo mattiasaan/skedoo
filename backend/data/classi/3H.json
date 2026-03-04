@@ -47,7 +47,8 @@
         "materia_completa": "Elettronica ed elettrotecnica",
         "docenti": [
           "CASTALDO Franco"
-        ]
+        ],
+        "aula": "LAB. ELE 1 (D 001)"
       }
     },
     "martedi": {
@@ -98,7 +99,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "ROTTENSTEINER Sylvia"
-        ]
+        ],
+        "aula": "AULA B 309"
       },
       "16:10": {
         "materia": "Storia",
@@ -146,7 +148,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "VERZELLA Alba"
-        ]
+        ],
+        "aula": "AULA B 105"
       },
       "14:30": {
         "materia": "Complementi di Matematica",
@@ -180,14 +183,16 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "OCHNER Daniel"
-        ]
+        ],
+        "aula": "PAL. \"Torcaso\""
       },
       "09:50": {
         "materia": "Tec. Prog. Sistemi Elettr.",
         "materia_completa": "Tec. e prog. sist. ele. e elee",
         "docenti": [
           "SICIGNANO Cristoforo"
-        ]
+        ],
+        "aula": "LAB. ELE 2 (D 004)"
       },
       "11:45": {
         "materia": "Elettronica",
@@ -204,7 +209,8 @@
         "materia": "Matematica",
         "docenti": [
           "ECCHER Andrea"
-        ]
+        ],
+        "aula": "Aula D 205**"
       },
       "09:50": {
         "materia": "Tec. Prog. Sistemi Elettr.",

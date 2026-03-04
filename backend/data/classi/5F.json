@@ -139,14 +139,16 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "SCHROFFENEGGER Sonja"
-        ]
+        ],
+        "aula": "AULA B 213"
       },
       "14:30": {
         "materia": "Gestione Progetto",
         "materia_completa": "Gest. progetto, org. di impresa",
         "docenti": [
           "RONDINI Ferdinando"
-        ]
+        ],
+        "aula": "LAB. INF 1 (B 208)"
       },
       "16:10": {
         "materia": "Sistemi e Reti",
@@ -162,20 +164,23 @@
         "materia": "Matematica",
         "docenti": [
           "TERZONI Giulia"
-        ]
+        ],
+        "aula": "LAB. INF 1 (B 208)"
       },
       "09:50": {
         "materia": "Telecomunicazioni",
         "docenti": [
           "MINICHIELLO Genesio"
-        ]
+        ],
+        "aula": "LAB. ELEE 4 (B 120/2)"
       },
       "11:45": {
         "materia": "Sistemi e Reti",
         "materia_completa": "Sistemi e reti",
         "docenti": [
           "LATINA Giuliano"
-        ]
+        ],
+        "aula": "LAB. INF 5 (D 202**)"
       }
     },
     "venerdi": {
@@ -184,14 +189,16 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "BERTOLDI Christian"
-        ]
+        ],
+        "aula": "AULA B 207"
       },
       "09:50": {
         "materia": "Scienze Motorie",
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "SEBASTIANI Alfredo"
-        ]
+        ],
+        "aula": "PAL. \"Talvera Sud\""
       },
       "11:45": {
         "materia": "Telecomunicazioni",

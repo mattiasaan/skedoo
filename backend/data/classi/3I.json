@@ -40,7 +40,8 @@
         "docenti": [
           "DALLA TORRE Massimiliano",
           "LATTUCA Teresa"
-        ]
+        ],
+        "aula": "AULA SCI (B 301**) LAB. SCI (B 305**)"
       },
       "12:35": {
         "materia": "Storia",
@@ -71,7 +72,8 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "VITRANO Rosalba"
-        ]
+        ],
+        "aula": "PAL. \"Talvera Sud\""
       },
       "11:45": {
         "materia": "Tedesco",
@@ -93,7 +95,8 @@
         "materia": "Matematica",
         "docenti": [
           "GIUSTI Marina"
-        ]
+        ],
+        "aula": "AULA B 207"
       }
     },
     "mercoledi": {
@@ -102,7 +105,8 @@
         "materia_completa": "Scienze naturali",
         "docenti": [
           "DALLA TORRE Massimiliano"
-        ]
+        ],
+        "aula": "AULA B 311*"
       },
       "09:50": {
         "materia": "Fisica",
@@ -124,7 +128,8 @@
         "materia_completa": "Lingua inglese",
         "docenti": [
           "DELLA PENNA Daniela"
-        ]
+        ],
+        "aula": "AULA B 207"
       }
     },
     "giovedi": {
@@ -133,14 +138,16 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "BERTOLDI Christian"
-        ]
+        ],
+        "aula": "AULA B 209"
       },
       "09:50": {
         "materia": "Disegno e Arte",
         "materia_completa": "Disegno e storia dell'arte",
         "docenti": [
           "DELLA RAGIONE Silvia"
-        ]
+        ],
+        "aula": "LAB. CAD 1 (B 219)"
       },
       "11:45": {
         "materia": "Matematica",
@@ -162,7 +169,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "ALDROVANDI Carla"
-        ]
+        ],
+        "aula": "AULA 201"
       },
       "16:10": {
         "materia": "Filosofia",
@@ -200,7 +208,8 @@
         "materia": "Informatica",
         "docenti": [
           "DE GIORGI Nicola"
-        ]
+        ],
+        "aula": "LAB. INF 3 (B 116)"
       }
     }
   }

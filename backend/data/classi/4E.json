@@ -42,14 +42,16 @@
         "aula": "AULA B 114"
       },
       "11:45": {
-        "materia": "Tec. e prog. sist. inf. e tel. Maria,TOMEI Leonardo"
+        "materia": "Tec. e prog. sist. inf. e tel. Maria,TOMEI Leonardo",
+        "aula": "LAB. ELEE 1 (A 210*: L.E.AP)"
       },
       "14:30": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "FISCHNALLER Barbara"
-        ]
+        ],
+        "aula": "AULA B 204"
       },
       "16:10": {
         "materia": "Informatica",
@@ -81,7 +83,8 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "SALVATERRA Joshua"
-        ]
+        ],
+        "aula": "PAL. \"Talvera Centro\""
       },
       "11:45": {
         "materia": "Informatica",
@@ -129,7 +132,8 @@
         "materia_completa": "Tec. e prog. sist. inf. e tel.",
         "docenti": [
           "CANNONE Maria"
-        ]
+        ],
+        "aula": "LAB. INF 2 (B 212)"
       },
       "11:45": {
         "materia": "Complementi di Matematica",
@@ -154,7 +158,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "MAISANO Nunziatina"
-        ]
+        ],
+        "aula": "AULA B 210*"
       },
       "09:50": {
         "materia": "Telecomunicazioni",
@@ -186,13 +191,15 @@
         "materia_completa": "Sistemi e reti",
         "docenti": [
           "DELIZIA Marco"
-        ]
+        ],
+        "aula": "LAB. ELEE 4 (B 120/2)"
       },
       "09:50": {
         "materia": "Matematica",
         "docenti": [
           "D'ALESSIO Valeria"
-        ]
+        ],
+        "aula": "AULA B 107"
       },
       "11:45": {
         "materia": "Telecomunicazioni",

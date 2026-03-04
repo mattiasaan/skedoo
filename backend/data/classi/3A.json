@@ -18,7 +18,8 @@
         "docenti": [
           "DE BENEDITTIS Fabio Antonio",
           "MELECHI' Michele"
-        ]
+        ],
+        "aula": "LAB. CAD 1 (B 219) LAB. PNRR IND. 4.0 (D 011)"
       },
       "09:50": {
         "materia": "Matematica",
@@ -40,7 +41,8 @@
         "docenti": [
           "CANTISANI Silviano",
           "PASCIUTO Paolo"
-        ]
+        ],
+        "aula": "LAB. MEC 1 (D 010: M.U.) LAB. MEC 2 (D 008: M.M.E.)"
       }
     },
     "martedi": {
@@ -56,7 +58,8 @@
         "materia": "Matematica",
         "docenti": [
           "SARRI Wanda"
-        ]
+        ],
+        "aula": "Aula D 204**"
       },
       "10:40": {
         "materia": "Tedesco",
@@ -80,7 +83,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "CHIANESE Francesco"
-        ]
+        ],
+        "aula": "AULA B 205"
       },
       "16:10": {
         "materia": "Meccanica",
@@ -123,14 +127,16 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "DI CELLO Jacopo"
-        ]
+        ],
+        "aula": "PAL. \"Talvera Centro\""
       },
       "14:30": {
         "materia": "Disegno e Prog. Industriale",
         "materia_completa": "Dis., progettaz. e org. ind.le",
         "docenti": [
           "ZAVARISE Alessandro"
-        ]
+        ],
+        "aula": "LAB. CAD 1 (B 219)"
       },
       "16:10": {
         "materia": "Tecn. Meccanica",
@@ -147,7 +153,8 @@
         "materia_completa": "Meccanica, macchine e energia",
         "docenti": [
           "TASSIELLI Davide Giuseppe"
-        ]
+        ],
+        "aula": "LAB. MEC 2 (D 008: M.M.E.)"
       },
       "09:50": {
         "materia": "Inglese",
@@ -186,7 +193,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "ROTTENSTEINER Sylvia"
-        ]
+        ],
+        "aula": "AULA B 011"
       },
       "09:50": {
         "materia": "Sistemi e Automazione",
@@ -211,7 +219,8 @@
         "docenti": [
           "CANTISANI Silviano",
           "PASCIUTO Paolo"
-        ]
+        ],
+        "aula": "LAB. MEC 3 (D 006: CONG.) LAB. MEC. 5 (B119: AUT. & R.) LAB. MEC. 6 (D 012: SALD.)"
       }
     }
   }

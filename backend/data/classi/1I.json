@@ -39,7 +39,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "ALDROVANDI Carla"
-        ]
+        ],
+        "aula": "AULA B 304"
       },
       "14:30": {
         "materia": "Italiano",
@@ -64,7 +65,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "STOPPARI Antonella"
-        ]
+        ],
+        "aula": "AULA B 304"
       },
       "09:50": {
         "materia": "Diritto ed Economia",
@@ -87,13 +89,15 @@
         "materia_completa": "Scienze naturali",
         "docenti": [
           "LEGGIERO Stefania"
-        ]
+        ],
+        "aula": "AULA B 304"
       },
       "14:30": {
         "materia": "Informatica",
         "docenti": [
           "DI DIO Daniele"
-        ]
+        ],
+        "aula": "LAB. INF 2 (B 212)"
       },
       "16:10": {
         "materia": "Fisica",
@@ -125,14 +129,16 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "SALVATERRA Joshua"
-        ]
+        ],
+        "aula": "PAL. \"Talvera Centro\""
       },
       "11:45": {
         "materia": "Disegno e Arte",
         "materia_completa": "Disegno e storia dell'arte",
         "docenti": [
           "DELLA RAGIONE Silvia"
-        ]
+        ],
+        "aula": "LAB. CAD 1 (B 219)"
       }
     },
     "giovedi": {
@@ -140,14 +146,16 @@
         "materia": "Matematica",
         "docenti": [
           "GIUSTI Marina"
-        ]
+        ],
+        "aula": "AULA B 304"
       },
       "09:50": {
         "materia": "Inglese",
         "materia_completa": "Lingua inglese",
         "docenti": [
           "TACUS Alessandra"
-        ]
+        ],
+        "aula": "AULA B 304"
       },
       "11:45": {
         "materia": "Storia e Geografia",
@@ -173,7 +181,8 @@
         "docenti": [
           "GIORDANO Carmelo",
           "LEGGIERO Stefania"
-        ]
+        ],
+        "aula": "AULA SCI (B 301**) LAB. SCI (B 305**)"
       },
       "09:50": {
         "materia": "Storia e Geografia",
@@ -187,7 +196,8 @@
         "materia": "Matematica",
         "docenti": [
           "GIUSTI Marina"
-        ]
+        ],
+        "aula": "AULA B 304"
       },
       "12:35": {
         "materia": "Tedesco",

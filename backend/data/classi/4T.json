@@ -17,7 +17,8 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "DI CELLO Jacopo"
-        ]
+        ],
+        "aula": "PAL. \"Talvera Centro\""
       },
       "09:50": {
         "materia": "Biologia Sanitaria",
@@ -74,7 +75,8 @@
         "docenti": [
           "FIORINI Raffaele",
           "STICCOTTI Gea"
-        ]
+        ],
+        "aula": "AULA BIO (302),LAB. BIO (A 302)"
       },
       "09:50": {
         "materia": "Igiene e Anatomia",
@@ -82,14 +84,16 @@
         "docenti": [
           "BIANCHI Patrick",
           "RIGHES Cecilia"
-        ]
+        ],
+        "aula": "AULA BIO (302),LAB. BIO (A 302)"
       },
       "11:45": {
         "materia": "Chimica Organica",
         "materia_completa": "Chimica org. e biochimica",
         "docenti": [
           "RICCA Mariaelena"
-        ]
+        ],
+        "aula": "AULA B 306"
       }
     },
     "mercoledi": {
@@ -130,7 +134,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "TUFANO Guido"
-        ]
+        ],
+        "aula": "AULA B 114"
       }
     },
     "giovedi": {
@@ -139,7 +144,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "CANEVE Elisa"
-        ]
+        ],
+        "aula": "AULA B 201"
       },
       "09:50": {
         "materia": "Chimica Organica",
@@ -179,7 +185,8 @@
         "materia": "Matematica",
         "docenti": [
           "ECCHER Andrea"
-        ]
+        ],
+        "aula": "AULA B 306"
       },
       "16:10": {
         "materia": "Tedesco",
@@ -197,7 +204,8 @@
         "docenti": [
           "BIANCHI Patrick",
           "PECORARO Diego"
-        ]
+        ],
+        "aula": "AULA CHI (B 317**) LAB. CHI 4 (B 320)"
       },
       "09:50": {
         "materia": "Religione",
@@ -218,7 +226,8 @@
         "materia_completa": "Igiene, anat., fisiol., patol.",
         "docenti": [
           "RIGHES Cecilia"
-        ]
+        ],
+        "aula": "AULA B 211"
       }
     }
   }

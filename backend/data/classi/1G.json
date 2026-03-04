@@ -16,7 +16,8 @@
         "materia": "Matematica",
         "docenti": [
           "D'ALESSIO Valeria"
-        ]
+        ],
+        "aula": "AULA B 106*"
       },
       "09:50": {
         "materia": "Diritto ed Economia",
@@ -31,7 +32,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "PATELLA Nadia"
-        ]
+        ],
+        "aula": "AULA B 016"
       },
       "12:35": {
         "materia": "Scienze e Biologia",
@@ -72,7 +74,8 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "DI CELLO Jacopo"
-        ]
+        ],
+        "aula": "PAL. \"Talvera Centro\""
       },
       "14:30": {
         "materia": "Chimica",
@@ -80,7 +83,8 @@
         "docenti": [
           "FUCA' Lia",
           "MONACHELLA Angelo"
-        ]
+        ],
+        "aula": "AULA B 307*,LAB. CHI 3 (B 318)"
       },
       "16:10": {
         "materia": "Fisica",
@@ -97,7 +101,8 @@
         "materia_completa": "Lingua inglese",
         "docenti": [
           "TACUS Alessandra"
-        ]
+        ],
+        "aula": "AULA B 101"
       },
       "09:50": {
         "materia": "Scienze e Biologia",
@@ -201,7 +206,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "CANEVE Elisa"
-        ]
+        ],
+        "aula": "AULA B 115"
       },
       "09:50": {
         "materia": "Tecnologie Informatiche",

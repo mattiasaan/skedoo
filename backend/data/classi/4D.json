@@ -16,7 +16,8 @@
         "materia": "Matematica",
         "docenti": [
           "BERTOLINO Giuseppe"
-        ]
+        ],
+        "aula": "Aula D 206**"
       },
       "09:50": {
         "materia": "Biologia Sanitaria",
@@ -36,7 +37,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "TUFANO Guido"
-        ]
+        ],
+        "aula": "AULA B 007*"
       }
     },
     "martedi": {
@@ -45,7 +47,8 @@
         "materia_completa": "Igiene, anat., fisiol., patol.",
         "docenti": [
           "DI TRAPANI Rosalba"
-        ]
+        ],
+        "aula": "AULA B 306"
       },
       "09:50": {
         "materia": "Italiano",
@@ -67,7 +70,8 @@
         "materia_completa": "Chimica org. e biochimica",
         "docenti": [
           "D'AGOSTINO Veronica"
-        ]
+        ],
+        "aula": "AULA CHI (B 317**)"
       },
       "14:30": {
         "materia": "Chimica Analitica",
@@ -75,7 +79,8 @@
         "docenti": [
           "BIANCHI Patrick",
           "PECORARO Diego"
-        ]
+        ],
+        "aula": "AULA CHI (B 317**) LAB. CHI 4 (B 320)"
       },
       "16:10": {
         "materia": "Biologia Sanitaria",
@@ -126,7 +131,8 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "GIGLIOLI Valentina"
-        ]
+        ],
+        "aula": "PAL. \"Torcaso\""
       },
       "14:30": {
         "materia": "Igiene e Anatomia",
@@ -159,7 +165,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "GHISU Maria Gabriella"
-        ]
+        ],
+        "aula": "AULA B 211"
       },
       "10:40": {
         "materia": "Inglese",
@@ -207,7 +214,8 @@
         "materia_completa": "Igiene, anat., fisiol., patol.",
         "docenti": [
           "DI TRAPANI Rosalba"
-        ]
+        ],
+        "aula": "AULA B 209"
       }
     }
   }

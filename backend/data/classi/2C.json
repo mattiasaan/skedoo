@@ -17,7 +17,8 @@
         "materia_completa": "Lingua inglese",
         "docenti": [
           "ROMANI Sara"
-        ]
+        ],
+        "aula": "AULA B 205"
       },
       "09:50": {
         "materia": "Matematica",
@@ -57,7 +58,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "GHISU Maria Gabriella"
-        ]
+        ],
+        "aula": "AULA B 109"
       },
       "09:50": {
         "materia": "Chimica",
@@ -65,7 +67,8 @@
         "docenti": [
           "D'AGOSTINO Veronica",
           "LATTUCA Teresa"
-        ]
+        ],
+        "aula": "AULA CHI (B 317**) LAB. CHI 3 (B 318)"
       },
       "11:45": {
         "materia": "Fisica",
@@ -80,7 +83,8 @@
         "materia": "Matematica",
         "docenti": [
           "BERTOLINO Giuseppe"
-        ]
+        ],
+        "aula": "AULA B 209"
       },
       "16:10": {
         "materia": "Scienze Motorie",
@@ -130,7 +134,8 @@
         "docenti": [
           "CITTA' Tiziana",
           "GUADAGNINI Maria Pia"
-        ]
+        ],
+        "aula": "AULA CHI (B 317**) LAB. CHI 3 (B 318)"
       }
     },
     "giovedi": {
@@ -162,7 +167,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "PETRONE Antonella"
-        ]
+        ],
+        "aula": "AULA B 013*"
       },
       "14:30": {
         "materia": "Inglese",

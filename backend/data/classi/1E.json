@@ -24,7 +24,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "PATRUNO Elisabetta"
-        ]
+        ],
+        "aula": "AULA B 114"
       },
       "10:40": {
         "materia": "Chimica",
@@ -40,7 +41,8 @@
         "docenti": [
           "PAPAIS Denise",
           "ZECCHIN Enrico"
-        ]
+        ],
+        "aula": "LAB. FIS 1 (B 310)"
       }
     },
     "martedi": {
@@ -48,7 +50,8 @@
         "materia": "Matematica",
         "docenti": [
           "STIVELLA Marco"
-        ]
+        ],
+        "aula": "Aula D 205**"
       },
       "09:50": {
         "materia": "Italiano",
@@ -151,7 +154,8 @@
         "materia_completa": "Lingua inglese",
         "docenti": [
           "PEROTTI Antonio"
-        ]
+        ],
+        "aula": "AULA B 209"
       },
       "16:10": {
         "materia": "Tecnologie Informatiche",
@@ -183,7 +187,8 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "DI CELLO Jacopo"
-        ]
+        ],
+        "aula": "PAL. \"Talvera Centro\""
       },
       "11:45": {
         "materia": "Chimica",
@@ -201,7 +206,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "TUFANO Guido"
-        ]
+        ],
+        "aula": "AULA B 004"
       },
       "09:50": {
         "materia": "Inglese",

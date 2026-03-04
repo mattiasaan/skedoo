@@ -36,7 +36,8 @@
         "materia": "Matematica",
         "docenti": [
           "D'ALESSIO Valeria"
-        ]
+        ],
+        "aula": "AULA B 106*"
       },
       "12:35": {
         "materia": "Religione",
@@ -51,7 +52,8 @@
         "docenti": [
           "CITTA' Tiziana",
           "D'AGOSTINO Veronica"
-        ]
+        ],
+        "aula": "AULA BIO (302) LAB. CHI 1 (A 303)"
       },
       "16:10": {
         "materia": "Storia",
@@ -67,7 +69,8 @@
         "materia_completa": "Igiene, anat., fisiol., patol.",
         "docenti": [
           "DE MARIA Liliana"
-        ]
+        ],
+        "aula": "AULA B 309"
       },
       "09:50": {
         "materia": "Inglese",
@@ -149,7 +152,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "ROTTENSTEINER Sylvia"
-        ]
+        ],
+        "aula": "AULA B 112*"
       }
     },
     "giovedi": {
@@ -191,7 +195,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "GHISU Maria Gabriella"
-        ]
+        ],
+        "aula": "AULA B 111"
       }
     },
     "venerdi": {
@@ -200,7 +205,8 @@
         "materia_completa": "Igiene, anat., fisiol., patol.",
         "docenti": [
           "DE MARIA Liliana"
-        ]
+        ],
+        "aula": "AULA B 309"
       },
       "09:50": {
         "materia": "Chimica Organica",
@@ -223,7 +229,8 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "SALVATERRA Joshua"
-        ]
+        ],
+        "aula": "PAL. \"Talvera Centro\""
       }
     }
   }

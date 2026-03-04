@@ -17,7 +17,8 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "OCHNER Daniel"
-        ]
+        ],
+        "aula": "PAL. \"Torcaso\""
       },
       "09:50": {
         "materia": "Storia",
@@ -38,7 +39,8 @@
         "materia": "Matematica",
         "docenti": [
           "PRESTIGIACOMO Davide"
-        ]
+        ],
+        "aula": "LAB. INF 2 (B 212)"
       },
       "16:10": {
         "materia": "Scienze dei Materiali Dentali",
@@ -101,7 +103,8 @@
         "docenti": [
           "RIOLO Marcello",
           "SAIANI Christian"
-        ]
+        ],
+        "aula": "AULA B 311*,LAB. ODO 2 (A 308)"
       },
       "11:45": {
         "materia": "Inglese",
@@ -126,7 +129,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "ZANONI Barbara"
-        ]
+        ],
+        "aula": "AULA B 107"
       },
       "09:50": {
         "materia": "Matematica",
@@ -166,7 +170,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "CARLIN Martina"
-        ]
+        ],
+        "aula": "AULA B 016"
       },
       "10:40": {
         "materia": "Storia",
@@ -180,7 +185,8 @@
         "materia_completa": "Scienze dei mat. dent. e lab.",
         "docenti": [
           "RIOLO Marcello"
-        ]
+        ],
+        "aula": "AULA B 306"
       }
     }
   }

@@ -16,7 +16,8 @@
         "materia": "Matematica",
         "docenti": [
           "GAGLIOSTRO Antonio"
-        ]
+        ],
+        "aula": "AULA B 107"
       },
       "09:50": {
         "materia": "Informatica",
@@ -77,7 +78,8 @@
         "materia_completa": "Disegno e storia dell'arte",
         "docenti": [
           "DELLA RAGIONE Silvia"
-        ]
+        ],
+        "aula": "LAB. CAD 1 (B 219)"
       },
       "09:50": {
         "materia": "Storia",
@@ -116,7 +118,8 @@
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
           "LONOCE Maria Pompea"
-        ]
+        ],
+        "aula": "AULA B 106*"
       },
       "09:50": {
         "materia": "Inglese",
@@ -131,7 +134,8 @@
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
           "ALDROVANDI Carla"
-        ]
+        ],
+        "aula": "AULA B 013*"
       },
       "12:35": {
         "materia": "Fisica",
@@ -145,7 +149,8 @@
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
           "GIGLIOLI Valentina"
-        ]
+        ],
+        "aula": "PAL. \"Torcaso\""
       }
     },
     "giovedi": {
@@ -153,7 +158,8 @@
         "materia": "Informatica",
         "docenti": [
           "IACCARINO Gennaro"
-        ]
+        ],
+        "aula": "LAB. INF 3 (B 116)"
       },
       "09:50": {
         "materia": "Fisica",
@@ -169,7 +175,8 @@
         "docenti": [
           "CITTA' Tiziana",
           "SERAFIN Alice"
-        ]
+        ],
+        "aula": "AULA SCI (B 301**) LAB. SCI (B 305**)"
       }
     },
     "venerdi": {
@@ -177,7 +184,8 @@
         "materia": "Matematica",
         "docenti": [
           "GAGLIOSTRO Antonio"
-        ]
+        ],
+        "aula": "Aula D 206**"
       },
       "09:50": {
         "materia": "Italiano",
@@ -200,7 +208,8 @@
         "materia_completa": "Scienze naturali",
         "docenti": [
           "SERAFIN Alice"
-        ]
+        ],
+        "aula": "AULA B 311*"
       }
     }
   }
