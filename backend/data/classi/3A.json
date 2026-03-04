@@ -21,6 +21,15 @@
         ],
         "aula": "LAB. CAD 1 (B 219) LAB. PNRR IND. 4.0 (D 011)"
       },
+      "09:00": {
+        "materia": "Sistemi e Automazione",
+        "materia_completa": "Sistemi ed automazione",
+        "docenti": [
+          "DE BENEDITTIS Fabio Antonio",
+          "MELECHI' Michele"
+        ],
+        "aula": "LAB. CAD 1 (B 219) LAB. PNRR IND. 4.0 (D 011)"
+      },
       "09:50": {
         "materia": "Matematica",
         "docenti": [
@@ -36,6 +45,15 @@
         "aula": "AULA B 213"
       },
       "11:45": {
+        "materia": "Tecn. Meccanica",
+        "materia_completa": "Tecnol. mec. di proc. e prod.",
+        "docenti": [
+          "CANTISANI Silviano",
+          "PASCIUTO Paolo"
+        ],
+        "aula": "LAB. MEC 1 (D 010: M.U.) LAB. MEC 2 (D 008: M.M.E.)"
+      },
+      "12:35": {
         "materia": "Tecn. Meccanica",
         "materia_completa": "Tecnol. mec. di proc. e prod.",
         "docenti": [
@@ -61,6 +79,13 @@
         ],
         "aula": "Aula D 204**"
       },
+      "09:50": {
+        "materia": "Matematica",
+        "docenti": [
+          "SARRI Wanda"
+        ],
+        "aula": "Aula D 204**"
+      },
       "10:40": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
@@ -78,7 +103,24 @@
         ],
         "aula": "LAB. PNRR IND. 4.0 (D 011)"
       },
+      "12:35": {
+        "materia": "Disegno e Prog. Industriale",
+        "materia_completa": "Dis., progettaz. e org. ind.le",
+        "docenti": [
+          "DE ROSSI Andrea",
+          "ZAVARISE Alessandro"
+        ],
+        "aula": "LAB. PNRR IND. 4.0 (D 011)"
+      },
       "14:30": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "CHIANESE Francesco"
+        ],
+        "aula": "AULA B 205"
+      },
+      "15:20": {
         "materia": "Italiano",
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
@@ -100,6 +142,8 @@
         "materia": "Meccanica, macchine e energiaMeccanica, macchine e energia",
         "docenti": [
           "MELECHI' Michele",
+          "MELECHI' Michele",
+          "TASSIELLI Davide Giuseppe",
           "TASSIELLI Davide Giuseppe"
         ]
       },
@@ -130,7 +174,23 @@
         ],
         "aula": "PAL. \"Talvera Centro\""
       },
+      "12:35": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "DI CELLO Jacopo"
+        ],
+        "aula": "PAL. \"Talvera Centro\""
+      },
       "14:30": {
+        "materia": "Disegno e Prog. Industriale",
+        "materia_completa": "Dis., progettaz. e org. ind.le",
+        "docenti": [
+          "ZAVARISE Alessandro"
+        ],
+        "aula": "LAB. CAD 1 (B 219)"
+      },
+      "15:20": {
         "materia": "Disegno e Prog. Industriale",
         "materia_completa": "Dis., progettaz. e org. ind.le",
         "docenti": [
@@ -149,6 +209,14 @@
     },
     "giovedi": {
       "08:10": {
+        "materia": "Meccanica",
+        "materia_completa": "Meccanica, macchine e energia",
+        "docenti": [
+          "TASSIELLI Davide Giuseppe"
+        ],
+        "aula": "LAB. MEC 2 (D 008: M.M.E.)"
+      },
+      "09:00": {
         "materia": "Meccanica",
         "materia_completa": "Meccanica, macchine e energia",
         "docenti": [
@@ -185,10 +253,25 @@
           "SARRI Wanda"
         ],
         "aula": "Aula D 205**"
+      },
+      "13:25": {
+        "materia": "Matematica",
+        "docenti": [
+          "SARRI Wanda"
+        ],
+        "aula": "Aula D 205**"
       }
     },
     "venerdi": {
       "08:10": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "ROTTENSTEINER Sylvia"
+        ],
+        "aula": "AULA B 011"
+      },
+      "09:00": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
@@ -214,6 +297,15 @@
         "aula": "LAB. MEC 4 (B218: SIST. E AUT) LAB. PNRR IND. 4.0 (D 011)"
       },
       "11:45": {
+        "materia": "Tecn. Meccanica",
+        "materia_completa": "Tecnol. mec. di proc. e prod.",
+        "docenti": [
+          "CANTISANI Silviano",
+          "PASCIUTO Paolo"
+        ],
+        "aula": "LAB. MEC 3 (D 006: CONG.) LAB. MEC. 5 (B119: AUT. & R.) LAB. MEC. 6 (D 012: SALD.)"
+      },
+      "12:35": {
         "materia": "Tecn. Meccanica",
         "materia_completa": "Tecnol. mec. di proc. e prod.",
         "docenti": [

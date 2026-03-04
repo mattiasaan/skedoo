@@ -3,7 +3,7 @@ from typing import Dict, List, Optional
 
 
 class Lesson(BaseModel):
-  materia: str
+  materia: Optional[str] = None
   materia_completa: Optional[str] = None
   docenti: List[str] = Field(default_factory=list)
   aula: Optional[str] = None

@@ -24,6 +24,18 @@
         ],
         "aula": "AULA CHI (B 317**)"
       },
+      "09:00": {
+        "materia": "Chimica Analitica",
+        "materia_completa": "Chimica analitica e strum.",
+        "docenti": [
+          "MASCIOVECCHIO Marina",
+          "TOSI Sara",
+          "<3",
+          "C/T> <3",
+          "C/T> 3 T"
+        ],
+        "aula": "AULA CHI (B 317**)"
+      },
       "10:40": {
         "materia": "Storia",
         "docenti": [
@@ -37,10 +49,29 @@
           "BERTOLINO Giuseppe"
         ],
         "aula": "Aula D 206**"
+      },
+      "12:35": {
+        "materia": "Matematica",
+        "docenti": [
+          "BERTOLINO Giuseppe"
+        ],
+        "aula": "Aula D 206**"
       }
     },
     "martedi": {
       "08:10": {
+        "materia": "Chimica Organica",
+        "materia_completa": "Chimica org. e biochimica",
+        "docenti": [
+          "MASCIOVECCHIO Marina",
+          "RICCA Mariaelena",
+          "<3",
+          "C/T> <3",
+          "C/T> 3 T"
+        ],
+        "aula": "LAB. CHI 1 (A 303) LAB. PNRR AMB. E ENERGIA (301)"
+      },
+      "09:00": {
         "materia": "Chimica Organica",
         "materia_completa": "Chimica org. e biochimica",
         "docenti": [
@@ -82,6 +113,13 @@
         "aula": "Aula D 204**"
       },
       "12:35": {
+        "materia": "Storia",
+        "docenti": [
+          "MOLINI Paola"
+        ],
+        "aula": "AULA B 115"
+      },
+      "13:25": {
         "materia": "Storia",
         "docenti": [
           "MOLINI Paola"
@@ -143,7 +181,26 @@
         ],
         "aula": "AULA 201"
       },
+      "12:35": {
+        "materia": "Igiene e Anatomia",
+        "materia_completa": "Igiene, anat., fisiol., patol.",
+        "docenti": [
+          "DE MARIA Liliana",
+          "<3",
+          "C/T> <3",
+          "C/T> 3 T"
+        ],
+        "aula": "AULA 201"
+      },
       "14:30": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "MOLINI Paola"
+        ],
+        "aula": "AULA B 205"
+      },
+      "15:20": {
         "materia": "Italiano",
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
@@ -180,6 +237,14 @@
         ],
         "aula": "AULA B 007*"
       },
+      "09:50": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "PATELLA Nadia"
+        ],
+        "aula": "AULA B 007*"
+      },
       "10:40": {
         "materia": "Italiano",
         "materia_completa": "Lingua e letteratura italiana",
@@ -196,6 +261,14 @@
         ],
         "aula": "PAL. \"Talvera Centro\""
       },
+      "12:35": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "SALVATERRA Joshua"
+        ],
+        "aula": "PAL. \"Talvera Centro\""
+      },
       "14:30": {
         "docenti": [
           "Igiene",
@@ -203,6 +276,7 @@
           "fisiol.",
           "Patrick patol. Igiene",
           "anat.",
+          "fisiol.",
           "patol.",
           "DE MARIA Liliana DE MARIA Liliana",
           "<3",
@@ -226,6 +300,18 @@
     },
     "venerdi": {
       "08:10": {
+        "materia": "Biologia Sanitaria",
+        "materia_completa": "Bio., micro. e tec. contr.san.",
+        "docenti": [
+          "FIORINI Raffaele",
+          "SERAFIN Alice",
+          "<3",
+          "C/T> <3",
+          "C/T> 3 T"
+        ],
+        "aula": "AULA BIO (302),LAB. BIO (A 302)"
+      },
+      "09:00": {
         "materia": "Biologia Sanitaria",
         "materia_completa": "Bio., micro. e tec. contr.san.",
         "docenti": [
@@ -263,6 +349,18 @@
         "aula": "AULA B 307*"
       },
       "12:35": {
+        "materia": "Chimica Organica",
+        "materia_completa": "Chimica org. e biochimica",
+        "docenti": [
+          "MASCIOVECCHIO Marina",
+          "RICCA Mariaelena",
+          "<3",
+          "C/T> <3",
+          "C/T> 3 T"
+        ],
+        "aula": "AULA B 307*,LAB. CHI 1 (A 303)"
+      },
+      "13:25": {
         "materia": "Chimica Organica",
         "materia_completa": "Chimica org. e biochimica",
         "docenti": [

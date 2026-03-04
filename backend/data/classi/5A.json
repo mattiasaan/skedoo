@@ -21,6 +21,15 @@
         ],
         "aula": "AULA MEC (D 009) LAB. MEC 1 (D 010: M.U.)"
       },
+      "09:00": {
+        "materia": "Tecn. Meccanica",
+        "materia_completa": "Tecnol. mec. di proc. e prod.",
+        "docenti": [
+          "DE ROSSI Andrea",
+          "VALENTINI Paolo"
+        ],
+        "aula": "AULA MEC (D 009) LAB. MEC 1 (D 010: M.U.)"
+      },
       "09:50": {
         "materia": "Disegno e Prog. Industriale",
         "materia_completa": "Dis., progettaz. e org. ind.le",
@@ -37,6 +46,14 @@
         "aula": "LAB. MEC 2 (D 008: M.M.E.)"
       },
       "11:45": {
+        "materia": "Sistemi e Automazione",
+        "materia_completa": "Sistemi ed automazione",
+        "docenti": [
+          "SERIO Leonardo"
+        ],
+        "aula": "LAB. PNRR IND. 4.0 (D 011)"
+      },
+      "12:35": {
         "materia": "Sistemi e Automazione",
         "materia_completa": "Sistemi ed automazione",
         "docenti": [
@@ -77,6 +94,13 @@
         ],
         "aula": "Aula D 205**"
       },
+      "11:45": {
+        "materia": "Matematica",
+        "docenti": [
+          "ECCHER Andrea"
+        ],
+        "aula": "Aula D 205**"
+      },
       "12:35": {
         "materia": "Inglese",
         "materia_completa": "Lingua inglese",
@@ -85,7 +109,23 @@
         ],
         "aula": "AULA B 011"
       },
+      "13:25": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "RIGHI Arianna"
+        ],
+        "aula": "AULA B 011"
+      },
       "14:30": {
+        "materia": "Disegno e Prog. Industriale",
+        "materia_completa": "Dis., progettaz. e org. ind.le",
+        "docenti": [
+          "TASSIELLI Davide Giuseppe"
+        ],
+        "aula": "AULA MEC (D 009)"
+      },
+      "15:20": {
         "materia": "Disegno e Prog. Industriale",
         "materia_completa": "Dis., progettaz. e org. ind.le",
         "docenti": [
@@ -104,6 +144,14 @@
     },
     "mercoledi": {
       "08:10": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "NOLLI Cinzia"
+        ],
+        "aula": "PAL. \"Torcaso\""
+      },
+      "09:00": {
         "materia": "Scienze Motorie",
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
@@ -136,6 +184,15 @@
           "TASSIELLI Davide Giuseppe"
         ],
         "aula": "LAB. PNRR IND. 4.0 (D 011)"
+      },
+      "12:35": {
+        "materia": "Disegno e Prog. Industriale",
+        "materia_completa": "Dis., progettaz. e org. ind.le",
+        "docenti": [
+          "MELECHI' Michele",
+          "TASSIELLI Davide Giuseppe"
+        ],
+        "aula": "LAB. PNRR IND. 4.0 (D 011)"
       }
     },
     "giovedi": {
@@ -148,6 +205,14 @@
         "aula": "AULA MEC (D 009)"
       },
       "09:00": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "VITIELLO Anna"
+        ],
+        "aula": "AULA MEC (D 009)"
+      },
+      "09:50": {
         "materia": "Italiano",
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
@@ -171,7 +236,25 @@
         ],
         "aula": "LAB. MEC 4 (B218: SIST. E AUT) LAB. PNRR IND. 4.0 (D 011)"
       },
+      "12:35": {
+        "materia": "Sistemi e Automazione",
+        "materia_completa": "Sistemi ed automazione",
+        "docenti": [
+          "MELECHI' Michele",
+          "SERIO Leonardo"
+        ],
+        "aula": "LAB. MEC 4 (B218: SIST. E AUT) LAB. PNRR IND. 4.0 (D 011)"
+      },
       "14:30": {
+        "materia": "Tecn. Meccanica",
+        "materia_completa": "Tecnol. mec. di proc. e prod.",
+        "docenti": [
+          "DE ROSSI Andrea",
+          "VALENTINI Paolo"
+        ],
+        "aula": "AULA MEC (D 009) LAB. MEC 1 (D 010: M.U.)"
+      },
+      "15:20": {
         "materia": "Tecn. Meccanica",
         "materia_completa": "Tecnol. mec. di proc. e prod.",
         "docenti": [
@@ -197,6 +280,14 @@
         ],
         "aula": "AULA MEC (D 009)"
       },
+      "09:00": {
+        "materia": "Meccanica",
+        "materia_completa": "Meccanica, macchine e energia",
+        "docenti": [
+          "DE BENEDITTIS Fabio Antonio"
+        ],
+        "aula": "AULA MEC (D 009)"
+      },
       "09:50": {
         "materia": "Storia",
         "docenti": [
@@ -213,6 +304,14 @@
         "aula": "AULA MEC (D 009)"
       },
       "11:45": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "MENCHISE Antonella"
+        ],
+        "aula": "AULA B 206*"
+      },
+      "12:35": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
         "docenti": [

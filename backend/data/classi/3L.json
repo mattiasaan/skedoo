@@ -19,6 +19,13 @@
         ],
         "aula": "LAB. INF 3 (B 116)"
       },
+      "09:00": {
+        "materia": "Informatica",
+        "docenti": [
+          "IACCARINO Gennaro"
+        ],
+        "aula": "LAB. INF 3 (B 116)"
+      },
       "09:50": {
         "materia": "Filosofia",
         "docenti": [
@@ -34,7 +41,22 @@
         ],
         "aula": "AULA B 111"
       },
+      "11:45": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "BERTOLDI Christian"
+        ],
+        "aula": "AULA B 111"
+      },
       "12:35": {
+        "materia": "Matematica",
+        "docenti": [
+          "TERZONI Giulia"
+        ],
+        "aula": "Aula D 204**"
+      },
+      "13:25": {
         "materia": "Matematica",
         "docenti": [
           "TERZONI Giulia"
@@ -52,7 +74,24 @@
         ],
         "aula": "AULA SCI (B 301**) LAB. SCI (B 305**)"
       },
+      "09:00": {
+        "materia": "Scienze Naturali",
+        "materia_completa": "Scienze naturali",
+        "docenti": [
+          "DALLA TORRE Massimiliano",
+          "LATTUCA Teresa"
+        ],
+        "aula": "AULA SCI (B 301**) LAB. SCI (B 305**)"
+      },
       "09:50": {
+        "materia": "Disegno e Arte",
+        "materia_completa": "Disegno e storia dell'arte",
+        "docenti": [
+          "DELLA RAGIONE Silvia"
+        ],
+        "aula": "LAB. CAD 1 (B 219)"
+      },
+      "10:40": {
         "materia": "Disegno e Arte",
         "materia_completa": "Disegno e storia dell'arte",
         "docenti": [
@@ -76,6 +115,14 @@
         ],
         "aula": "AULA B 207"
       },
+      "13:25": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "ALIAJ Mimoza"
+        ],
+        "aula": "AULA B 207"
+      },
       "14:30": {
         "materia": "Fisica",
         "docenti": [
@@ -84,6 +131,14 @@
         "aula": "AULA FIS (B 308**)"
       },
       "15:20": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "OCHNER Daniel"
+        ],
+        "aula": "PAL. \"Talvera Nord\""
+      },
+      "16:10": {
         "materia": "Scienze Motorie",
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
@@ -131,7 +186,22 @@
         ],
         "aula": "AULA B 306"
       },
+      "12:35": {
+        "materia": "Scienze Naturali",
+        "materia_completa": "Scienze naturali",
+        "docenti": [
+          "DALLA TORRE Massimiliano"
+        ],
+        "aula": "AULA B 306"
+      },
       "14:30": {
+        "materia": "Matematica",
+        "docenti": [
+          "TERZONI Giulia"
+        ],
+        "aula": "AULA B 207"
+      },
+      "15:20": {
         "materia": "Matematica",
         "docenti": [
           "TERZONI Giulia"
@@ -141,6 +211,14 @@
     },
     "giovedi": {
       "08:10": {
+        "materia": "Fisica",
+        "docenti": [
+          "PAPAIS Denise",
+          "VERRA Dennis"
+        ],
+        "aula": "LAB. FIS 1 (B 310)"
+      },
+      "09:00": {
         "materia": "Fisica",
         "docenti": [
           "PAPAIS Denise",
@@ -170,10 +248,26 @@
           "FISCHNALLER Barbara"
         ],
         "aula": "AULA B 206*"
+      },
+      "12:35": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "FISCHNALLER Barbara"
+        ],
+        "aula": "AULA B 206*"
       }
     },
     "venerdi": {
       "08:10": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "ALIAJ Mimoza"
+        ],
+        "aula": "AULA B 205"
+      },
+      "09:00": {
         "materia": "Inglese",
         "materia_completa": "Lingua inglese",
         "docenti": [
@@ -205,6 +299,13 @@
         "aula": "AULA B 109"
       },
       "12:35": {
+        "materia": "Storia",
+        "docenti": [
+          "BERTOLDI Christian"
+        ],
+        "aula": "AULA B 109"
+      },
+      "13:25": {
         "materia": "Storia",
         "docenti": [
           "BERTOLDI Christian"

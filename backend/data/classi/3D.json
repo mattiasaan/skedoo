@@ -16,6 +16,7 @@
         "materia": "Igiene, anat., fisiol., patol. anat., fisiol., patol.",
         "docenti": [
           "DE MARIA Liliana",
+          "DE MARIA Liliana",
           "LATTUCA Teresa"
         ],
         "aula": "AULA B 311*"
@@ -39,6 +40,13 @@
         ],
         "aula": "AULA B 106*"
       },
+      "11:45": {
+        "materia": "Matematica",
+        "docenti": [
+          "D'ALESSIO Valeria"
+        ],
+        "aula": "AULA B 106*"
+      },
       "12:35": {
         "materia": "Religione",
         "docenti": [
@@ -46,7 +54,23 @@
         ],
         "aula": "AULA B 210*"
       },
+      "13:25": {
+        "materia": "Religione",
+        "docenti": [
+          "SOMMA Giancarlo"
+        ],
+        "aula": "AULA B 210*"
+      },
       "14:30": {
+        "materia": "Chimica Analitica",
+        "materia_completa": "Chimica analitica e strum.",
+        "docenti": [
+          "CITTA' Tiziana",
+          "D'AGOSTINO Veronica"
+        ],
+        "aula": "AULA BIO (302) LAB. CHI 1 (A 303)"
+      },
+      "15:20": {
         "materia": "Chimica Analitica",
         "materia_completa": "Chimica analitica e strum.",
         "docenti": [
@@ -65,6 +89,14 @@
     },
     "martedi": {
       "08:10": {
+        "materia": "Igiene e Anatomia",
+        "materia_completa": "Igiene, anat., fisiol., patol.",
+        "docenti": [
+          "DE MARIA Liliana"
+        ],
+        "aula": "AULA B 309"
+      },
+      "09:00": {
         "materia": "Igiene e Anatomia",
         "materia_completa": "Igiene, anat., fisiol., patol.",
         "docenti": [
@@ -97,7 +129,25 @@
         ],
         "aula": "AULA B 307*,LAB. CHI 1 (A 303)"
       },
+      "12:35": {
+        "materia": "Chimica Organica",
+        "materia_completa": "Chimica org. e biochimica",
+        "docenti": [
+          "CITTA' Tiziana",
+          "GUADAGNINI Maria Pia"
+        ],
+        "aula": "AULA B 307*,LAB. CHI 1 (A 303)"
+      },
       "14:30": {
+        "materia": "Biologia Sanitaria",
+        "materia_completa": "Bio., micro. e tec. contr.san.",
+        "docenti": [
+          "FIORINI Raffaele",
+          "MACCAGNAN Elisa"
+        ],
+        "aula": "AULA BIO (302),LAB. BIO (A 302)"
+      },
+      "15:20": {
         "materia": "Biologia Sanitaria",
         "materia_completa": "Bio., micro. e tec. contr.san.",
         "docenti": [
@@ -154,6 +204,14 @@
           "ROTTENSTEINER Sylvia"
         ],
         "aula": "AULA B 112*"
+      },
+      "12:35": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "ROTTENSTEINER Sylvia"
+        ],
+        "aula": "AULA B 112*"
       }
     },
     "giovedi": {
@@ -197,10 +255,26 @@
           "GHISU Maria Gabriella"
         ],
         "aula": "AULA B 111"
+      },
+      "12:35": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "GHISU Maria Gabriella"
+        ],
+        "aula": "AULA B 111"
       }
     },
     "venerdi": {
       "08:10": {
+        "materia": "Igiene e Anatomia",
+        "materia_completa": "Igiene, anat., fisiol., patol.",
+        "docenti": [
+          "DE MARIA Liliana"
+        ],
+        "aula": "AULA B 309"
+      },
+      "09:00": {
         "materia": "Igiene e Anatomia",
         "materia_completa": "Igiene, anat., fisiol., patol.",
         "docenti": [
@@ -225,6 +299,14 @@
         "aula": "AULA BIO (302)"
       },
       "11:45": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "SALVATERRA Joshua"
+        ],
+        "aula": "PAL. \"Talvera Centro\""
+      },
+      "12:35": {
         "materia": "Scienze Motorie",
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [

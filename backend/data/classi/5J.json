@@ -27,6 +27,14 @@
         ],
         "aula": "LAB. INF 1 (B 208)"
       },
+      "09:50": {
+        "materia": "Sistemi e Reti",
+        "materia_completa": "Sistemi e reti",
+        "docenti": [
+          "DELIZIA Marco"
+        ],
+        "aula": "LAB. INF 1 (B 208)"
+      },
       "10:40": {
         "materia": "Gestione Progetto",
         "materia_completa": "Gest. progetto, org. di impresa",
@@ -50,6 +58,14 @@
         ],
         "aula": "AULA B 204"
       },
+      "13:25": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "DELIU Ornela"
+        ],
+        "aula": "AULA B 204"
+      },
       "14:30": {
         "materia": "Tec. Prog. Sistemi Inf.",
         "materia_completa": "Tec. e prog. sist. inf. e tel.",
@@ -59,6 +75,14 @@
         "aula": "LAB. INF 4 (D 201**)"
       },
       "15:20": {
+        "materia": "Informatica",
+        "docenti": [
+          "BERSANETTI Alessio",
+          "D'ANTONI Mario"
+        ],
+        "aula": "LAB. INF 4 (D 201**)"
+      },
+      "16:10": {
         "materia": "Informatica",
         "docenti": [
           "BERSANETTI Alessio",
@@ -92,7 +116,24 @@
         ],
         "aula": "LAB. INF 1 (B 208)"
       },
+      "10:40": {
+        "materia": "Tec. Prog. Sistemi Inf.",
+        "materia_completa": "Tec. e prog. sist. inf. e tel.",
+        "docenti": [
+          "MOLINAROLI Sofia",
+          "RUZZON Kevin"
+        ],
+        "aula": "LAB. INF 1 (B 208)"
+      },
       "11:45": {
+        "materia": "Informatica",
+        "docenti": [
+          "BERSANETTI Alessio",
+          "D'ANTONI Mario"
+        ],
+        "aula": "LAB. INF 4 (D 201**)"
+      },
+      "12:35": {
         "materia": "Informatica",
         "docenti": [
           "BERSANETTI Alessio",
@@ -103,6 +144,14 @@
     },
     "mercoledi": {
       "08:10": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "TODARO Mattia"
+        ],
+        "aula": "PAL. \"Talvera Centro\""
+      },
+      "09:00": {
         "materia": "Scienze Motorie",
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
@@ -134,7 +183,23 @@
         ],
         "aula": "LAB. ELEE 4 (B 120/2)"
       },
+      "12:35": {
+        "materia": "Gestione Progetto",
+        "materia_completa": "Gest. progetto, org. di impresa",
+        "docenti": [
+          "SALIHAJ Anila"
+        ],
+        "aula": "LAB. ELEE 4 (B 120/2)"
+      },
       "14:30": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "BENETTI Mattia"
+        ],
+        "aula": "AULA 201"
+      },
+      "15:20": {
         "materia": "Italiano",
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
@@ -158,7 +223,23 @@
         ],
         "aula": "Aula D 205**"
       },
+      "09:00": {
+        "materia": "Matematica",
+        "docenti": [
+          "GAGLIOSTRO Antonio"
+        ],
+        "aula": "Aula D 205**"
+      },
       "09:50": {
+        "materia": "Tec. Prog. Sistemi Inf.",
+        "materia_completa": "Tec. e prog. sist. inf. e tel.",
+        "docenti": [
+          "MOLINAROLI Sofia",
+          "RUZZON Kevin"
+        ],
+        "aula": "LAB. INF 4 (D 201**)"
+      },
+      "10:40": {
         "materia": "Tec. Prog. Sistemi Inf.",
         "materia_completa": "Tec. e prog. sist. inf. e tel.",
         "docenti": [
@@ -173,10 +254,25 @@
           "BERSANETTI Alessio"
         ],
         "aula": "LAB. ELE 2 (D 004)"
+      },
+      "12:35": {
+        "materia": "Informatica",
+        "docenti": [
+          "BERSANETTI Alessio"
+        ],
+        "aula": "LAB. ELE 2 (D 004)"
       }
     },
     "venerdi": {
       "08:10": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "SCHROFFENEGGER Sonja"
+        ],
+        "aula": "AULA B 105"
+      },
+      "09:00": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
@@ -201,6 +297,14 @@
         "aula": "LAB. INF 3 (B 116)"
       },
       "11:45": {
+        "materia": "Informatica",
+        "docenti": [
+          "BERSANETTI Alessio",
+          "D'ANTONI Mario"
+        ],
+        "aula": "LAB. INF 4 (D 201**)"
+      },
+      "12:35": {
         "materia": "Informatica",
         "docenti": [
           "BERSANETTI Alessio",

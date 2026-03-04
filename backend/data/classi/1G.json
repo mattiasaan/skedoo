@@ -19,6 +19,13 @@
         ],
         "aula": "AULA B 106*"
       },
+      "09:00": {
+        "materia": "Matematica",
+        "docenti": [
+          "D'ALESSIO Valeria"
+        ],
+        "aula": "AULA B 106*"
+      },
       "09:50": {
         "materia": "Diritto ed Economia",
         "materia_completa": "Diritto ed economia",
@@ -35,7 +42,23 @@
         ],
         "aula": "AULA B 016"
       },
+      "11:45": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "PATELLA Nadia"
+        ],
+        "aula": "AULA B 016"
+      },
       "12:35": {
+        "materia": "Scienze e Biologia",
+        "materia_completa": "Scienze integrate (Sci. e Bio)",
+        "docenti": [
+          "MAURO Sergio"
+        ],
+        "aula": "AULA B 306"
+      },
+      "13:25": {
         "materia": "Scienze e Biologia",
         "materia_completa": "Scienze integrate (Sci. e Bio)",
         "docenti": [
@@ -46,6 +69,15 @@
     },
     "martedi": {
       "08:10": {
+        "materia": "Tecn. e Tecniche Grafiche",
+        "materia_completa": "Tecno. e tecniche rappr. graf.",
+        "docenti": [
+          "DE ROSSI Andrea",
+          "PERRICONE Cristina"
+        ],
+        "aula": "LAB. DIS (B 215)"
+      },
+      "09:00": {
         "materia": "Tecn. e Tecniche Grafiche",
         "materia_completa": "Tecno. e tecniche rappr. graf.",
         "docenti": [
@@ -77,7 +109,24 @@
         ],
         "aula": "PAL. \"Talvera Centro\""
       },
+      "12:35": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "DI CELLO Jacopo"
+        ],
+        "aula": "PAL. \"Talvera Centro\""
+      },
       "14:30": {
+        "materia": "Chimica",
+        "materia_completa": "Scienze integrate (Chimica)",
+        "docenti": [
+          "FUCA' Lia",
+          "MONACHELLA Angelo"
+        ],
+        "aula": "AULA B 307*,LAB. CHI 3 (B 318)"
+      },
+      "15:20": {
         "materia": "Chimica",
         "materia_completa": "Scienze integrate (Chimica)",
         "docenti": [
@@ -97,6 +146,14 @@
     },
     "mercoledi": {
       "08:10": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "TACUS Alessandra"
+        ],
+        "aula": "AULA B 101"
+      },
+      "09:00": {
         "materia": "Inglese",
         "materia_completa": "Lingua inglese",
         "docenti": [
@@ -129,6 +186,13 @@
         "aula": "AULA B 109"
       },
       "12:35": {
+        "materia": "Matematica",
+        "docenti": [
+          "D'ALESSIO Valeria"
+        ],
+        "aula": "AULA B 104"
+      },
+      "13:25": {
         "materia": "Matematica",
         "docenti": [
           "D'ALESSIO Valeria"
@@ -175,6 +239,15 @@
         ],
         "aula": "LAB. FIS 1 (B 310)"
       },
+      "12:35": {
+        "materia": "Fisica",
+        "materia_completa": "Scienze integrate (Fisica)",
+        "docenti": [
+          "CALDERAN Tabitha",
+          "PAPAIS Denise"
+        ],
+        "aula": "LAB. FIS 1 (B 310)"
+      },
       "14:30": {
         "materia": "Tecn. e Tecniche Grafiche",
         "materia_completa": "Tecno. e tecniche rappr. graf.",
@@ -209,7 +282,24 @@
         ],
         "aula": "AULA B 115"
       },
+      "09:00": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "CANEVE Elisa"
+        ],
+        "aula": "AULA B 115"
+      },
       "09:50": {
+        "materia": "Tecnologie Informatiche",
+        "materia_completa": "Tecnologie informatiche",
+        "docenti": [
+          "ARABIA Eliana",
+          "BONACCORSI Rosario"
+        ],
+        "aula": "LAB. INF 2 (B 212)"
+      },
+      "10:40": {
         "materia": "Tecnologie Informatiche",
         "materia_completa": "Tecnologie informatiche",
         "docenti": [
@@ -227,6 +317,14 @@
         "aula": "AULA B 007*"
       },
       "12:35": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "TACUS Alessandra"
+        ],
+        "aula": "AULA B 105"
+      },
+      "13:25": {
         "materia": "Inglese",
         "materia_completa": "Lingua inglese",
         "docenti": [

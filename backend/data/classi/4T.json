@@ -20,6 +20,14 @@
         ],
         "aula": "PAL. \"Talvera Centro\""
       },
+      "09:00": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "DI CELLO Jacopo"
+        ],
+        "aula": "PAL. \"Talvera Centro\""
+      },
       "09:50": {
         "materia": "Biologia Sanitaria",
         "materia_completa": "Bio., micro. e tec. contr.san.",
@@ -37,7 +45,23 @@
         ],
         "aula": "AULA B 306,LAB. CHI 1 (A 303)"
       },
+      "11:45": {
+        "materia": "Chimica Organica",
+        "materia_completa": "Chimica org. e biochimica",
+        "docenti": [
+          "MONACHELLA Angelo",
+          "RICCA Mariaelena"
+        ],
+        "aula": "AULA B 306,LAB. CHI 1 (A 303)"
+      },
       "12:35": {
+        "materia": "Matematica",
+        "docenti": [
+          "ECCHER Andrea"
+        ],
+        "aula": "AULA B 108"
+      },
+      "13:25": {
         "materia": "Matematica",
         "docenti": [
           "ECCHER Andrea"
@@ -78,6 +102,15 @@
         ],
         "aula": "AULA BIO (302),LAB. BIO (A 302)"
       },
+      "09:00": {
+        "materia": "Biologia Sanitaria",
+        "materia_completa": "Bio., micro. e tec. contr.san.",
+        "docenti": [
+          "FIORINI Raffaele",
+          "STICCOTTI Gea"
+        ],
+        "aula": "AULA BIO (302),LAB. BIO (A 302)"
+      },
       "09:50": {
         "materia": "Igiene e Anatomia",
         "materia_completa": "Igiene, anat., fisiol., patol.",
@@ -87,7 +120,24 @@
         ],
         "aula": "AULA BIO (302),LAB. BIO (A 302)"
       },
+      "10:40": {
+        "materia": "Igiene e Anatomia",
+        "materia_completa": "Igiene, anat., fisiol., patol.",
+        "docenti": [
+          "BIANCHI Patrick",
+          "RIGHES Cecilia"
+        ],
+        "aula": "AULA BIO (302),LAB. BIO (A 302)"
+      },
       "11:45": {
+        "materia": "Chimica Organica",
+        "materia_completa": "Chimica org. e biochimica",
+        "docenti": [
+          "RICCA Mariaelena"
+        ],
+        "aula": "AULA B 306"
+      },
+      "12:35": {
         "materia": "Chimica Organica",
         "materia_completa": "Chimica org. e biochimica",
         "docenti": [
@@ -136,10 +186,26 @@
           "TUFANO Guido"
         ],
         "aula": "AULA B 114"
+      },
+      "12:35": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "TUFANO Guido"
+        ],
+        "aula": "AULA B 114"
       }
     },
     "giovedi": {
       "08:10": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "CANEVE Elisa"
+        ],
+        "aula": "AULA B 201"
+      },
+      "09:00": {
         "materia": "Italiano",
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
@@ -181,7 +247,22 @@
         ],
         "aula": "AULA BIO (302)"
       },
+      "13:25": {
+        "materia": "Igiene e Anatomia",
+        "materia_completa": "Igiene, anat., fisiol., patol.",
+        "docenti": [
+          "RIGHES Cecilia"
+        ],
+        "aula": "AULA BIO (302)"
+      },
       "14:30": {
+        "materia": "Matematica",
+        "docenti": [
+          "ECCHER Andrea"
+        ],
+        "aula": "AULA B 306"
+      },
+      "15:20": {
         "materia": "Matematica",
         "docenti": [
           "ECCHER Andrea"
@@ -207,6 +288,15 @@
         ],
         "aula": "AULA CHI (B 317**) LAB. CHI 4 (B 320)"
       },
+      "09:00": {
+        "materia": "Chimica Analitica",
+        "materia_completa": "Chimica analitica e strum.",
+        "docenti": [
+          "BIANCHI Patrick",
+          "PECORARO Diego"
+        ],
+        "aula": "AULA CHI (B 317**) LAB. CHI 4 (B 320)"
+      },
       "09:50": {
         "materia": "Religione",
         "docenti": [
@@ -222,6 +312,14 @@
         "aula": "AULA B 106*"
       },
       "11:45": {
+        "materia": "Igiene e Anatomia",
+        "materia_completa": "Igiene, anat., fisiol., patol.",
+        "docenti": [
+          "RIGHES Cecilia"
+        ],
+        "aula": "AULA B 211"
+      },
+      "12:35": {
         "materia": "Igiene e Anatomia",
         "materia_completa": "Igiene, anat., fisiol., patol.",
         "docenti": [

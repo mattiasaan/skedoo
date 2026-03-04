@@ -49,10 +49,27 @@
           "CASTALDO Franco"
         ],
         "aula": "LAB. ELE 1 (D 001)"
+      },
+      "12:35": {
+        "materia": "Elettronica",
+        "materia_completa": "Elettronica ed elettrotecnica",
+        "docenti": [
+          "CASTALDO Franco"
+        ],
+        "aula": "LAB. ELE 1 (D 001)"
       }
     },
     "martedi": {
       "08:10": {
+        "materia": "Tec. Prog. Sistemi Elettr.",
+        "materia_completa": "Tec. e prog. sist. ele. e elee",
+        "docenti": [
+          "NATALE Luigi",
+          "SICIGNANO Cristoforo"
+        ],
+        "aula": "LAB. ELE 1 (D 001)"
+      },
+      "09:00": {
         "materia": "Tec. Prog. Sistemi Elettr.",
         "materia_completa": "Tec. e prog. sist. ele. e elee",
         "docenti": [
@@ -94,7 +111,23 @@
         ],
         "aula": "AULA B 210*"
       },
+      "13:25": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "VERZELLA Alba"
+        ],
+        "aula": "AULA B 210*"
+      },
       "14:30": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "ROTTENSTEINER Sylvia"
+        ],
+        "aula": "AULA B 309"
+      },
+      "15:20": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
@@ -151,6 +184,14 @@
         ],
         "aula": "AULA B 105"
       },
+      "12:35": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "VERZELLA Alba"
+        ],
+        "aula": "AULA B 105"
+      },
       "14:30": {
         "materia": "Complementi di Matematica",
         "materia_completa": "Complementi di matematica",
@@ -186,7 +227,23 @@
         ],
         "aula": "PAL. \"Torcaso\""
       },
+      "09:00": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "OCHNER Daniel"
+        ],
+        "aula": "PAL. \"Torcaso\""
+      },
       "09:50": {
+        "materia": "Tec. Prog. Sistemi Elettr.",
+        "materia_completa": "Tec. e prog. sist. ele. e elee",
+        "docenti": [
+          "SICIGNANO Cristoforo"
+        ],
+        "aula": "LAB. ELE 2 (D 004)"
+      },
+      "10:40": {
         "materia": "Tec. Prog. Sistemi Elettr.",
         "materia_completa": "Tec. e prog. sist. ele. e elee",
         "docenti": [
@@ -202,10 +259,26 @@
           "GENOVESE Fulvio"
         ],
         "aula": "LAB. ELE 3 (D 005)"
+      },
+      "12:35": {
+        "materia": "Elettronica",
+        "materia_completa": "Elettronica ed elettrotecnica",
+        "docenti": [
+          "CASTALDO Franco",
+          "GENOVESE Fulvio"
+        ],
+        "aula": "LAB. ELE 3 (D 005)"
       }
     },
     "venerdi": {
       "08:10": {
+        "materia": "Matematica",
+        "docenti": [
+          "ECCHER Andrea"
+        ],
+        "aula": "Aula D 205**"
+      },
+      "09:00": {
         "materia": "Matematica",
         "docenti": [
           "ECCHER Andrea"
@@ -230,6 +303,15 @@
         "aula": "LAB. ELE 2 (D 004)"
       },
       "11:45": {
+        "materia": "Sistemi Automatici",
+        "materia_completa": "Sistemi automatici",
+        "docenti": [
+          "DONATI Lorenzo",
+          "ERRANTE Antonino"
+        ],
+        "aula": "LAB. ELE 2 (D 004)"
+      },
+      "12:35": {
         "materia": "Sistemi Automatici",
         "materia_completa": "Sistemi automatici",
         "docenti": [

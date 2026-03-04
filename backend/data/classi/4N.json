@@ -20,6 +20,14 @@
         ],
         "aula": "AULA B 112*"
       },
+      "09:00": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "DI MARCO Raffaele Francesco"
+        ],
+        "aula": "AULA B 112*"
+      },
       "09:50": {
         "materia": "Elettronica",
         "materia_completa": "Elettronica ed elettrotecnica",
@@ -36,6 +44,14 @@
         ],
         "aula": "AULA B 011"
       },
+      "11:45": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "SCHROFFENEGGER Sonja"
+        ],
+        "aula": "AULA B 011"
+      },
       "12:35": {
         "materia": "Matematica",
         "docenti": [
@@ -43,7 +59,22 @@
         ],
         "aula": "AULA B 104"
       },
+      "13:25": {
+        "materia": "Matematica",
+        "docenti": [
+          "STIVELLA Marco"
+        ],
+        "aula": "AULA B 104"
+      },
       "14:30": {
+        "materia": "Sistemi Automatici",
+        "materia_completa": "Sistemi automatici",
+        "docenti": [
+          "MINICHIELLO Genesio"
+        ],
+        "aula": "LAB. ELE 3 (D 005)"
+      },
+      "15:20": {
         "materia": "Sistemi Automatici",
         "materia_completa": "Sistemi automatici",
         "docenti": [
@@ -85,7 +116,25 @@
         ],
         "aula": "LAB. ELE 4 (C 003)"
       },
+      "10:40": {
+        "materia": "Elettronica",
+        "materia_completa": "Elettronica ed elettrotecnica",
+        "docenti": [
+          "MAGNANI Fabio",
+          "RONDINI Ferdinando"
+        ],
+        "aula": "LAB. ELE 4 (C 003)"
+      },
       "11:45": {
+        "materia": "Sistemi Automatici",
+        "materia_completa": "Sistemi automatici",
+        "docenti": [
+          "BALESTRUCCI Domenico",
+          "MINICHIELLO Genesio"
+        ],
+        "aula": "LAB. ELEE 1 (A 210*: L.E.AP)"
+      },
+      "12:35": {
         "materia": "Sistemi Automatici",
         "materia_completa": "Sistemi automatici",
         "docenti": [
@@ -145,10 +194,26 @@
           "MINICHIELLO Genesio"
         ],
         "aula": "LAB. ELEE 3 (B 120/1)"
+      },
+      "13:25": {
+        "materia": "Sistemi Automatici",
+        "materia_completa": "Sistemi automatici",
+        "docenti": [
+          "MINICHIELLO Genesio"
+        ],
+        "aula": "LAB. ELEE 3 (B 120/1)"
       }
     },
     "giovedi": {
       "08:10": {
+        "materia": "Elettronica",
+        "materia_completa": "Elettronica ed elettrotecnica",
+        "docenti": [
+          "RONDINI Ferdinando"
+        ],
+        "aula": "LAB. ELE 1 (D 001)"
+      },
+      "09:00": {
         "materia": "Elettronica",
         "materia_completa": "Elettronica ed elettrotecnica",
         "docenti": [
@@ -179,7 +244,24 @@
         ],
         "aula": "PAL. \"Torcaso\""
       },
+      "12:35": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "GIGLIOLI Valentina"
+        ],
+        "aula": "PAL. \"Torcaso\""
+      },
       "14:30": {
+        "materia": "Tec. Prog. Sistemi Elettr.",
+        "materia_completa": "Tec. e prog. sist. ele. e elee",
+        "docenti": [
+          "LOVECCHIO Stefano",
+          "MAGNANI Fabio"
+        ],
+        "aula": "LAB. ELE 2 (D 004)"
+      },
+      "15:20": {
         "materia": "Tec. Prog. Sistemi Elettr.",
         "materia_completa": "Tec. e prog. sist. ele. e elee",
         "docenti": [
@@ -205,6 +287,14 @@
         ],
         "aula": "LAB. ELE 1 (D 001)"
       },
+      "09:00": {
+        "materia": "Tec. Prog. Sistemi Elettr.",
+        "materia_completa": "Tec. e prog. sist. ele. e elee",
+        "docenti": [
+          "LOVECCHIO Stefano"
+        ],
+        "aula": "LAB. ELE 1 (D 001)"
+      },
       "09:50": {
         "materia": "Elettronica",
         "materia_completa": "Elettronica ed elettrotecnica",
@@ -214,7 +304,23 @@
         ],
         "aula": "LAB. ELE 3 (D 005)"
       },
+      "10:40": {
+        "materia": "Elettronica",
+        "materia_completa": "Elettronica ed elettrotecnica",
+        "docenti": [
+          "MAGNANI Fabio",
+          "RONDINI Ferdinando"
+        ],
+        "aula": "LAB. ELE 3 (D 005)"
+      },
       "11:45": {
+        "materia": "Matematica",
+        "docenti": [
+          "STIVELLA Marco"
+        ],
+        "aula": "AULA B 107"
+      },
+      "12:35": {
         "materia": "Matematica",
         "docenti": [
           "STIVELLA Marco"

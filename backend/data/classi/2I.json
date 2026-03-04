@@ -20,7 +20,23 @@
         ],
         "aula": "PAL. \"Talvera Sud\""
       },
+      "09:00": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "VITRANO Rosalba"
+        ],
+        "aula": "PAL. \"Talvera Sud\""
+      },
       "09:50": {
+        "materia": "Fisica",
+        "docenti": [
+          "TURCO Giuseppe",
+          "ZUECH Claudio"
+        ],
+        "aula": "LAB. FIS 1 (B 310)"
+      },
+      "10:40": {
         "materia": "Fisica",
         "docenti": [
           "TURCO Giuseppe",
@@ -36,6 +52,14 @@
         "aula": "AULA B 108"
       },
       "12:35": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "DELLA PENNA Daniela"
+        ],
+        "aula": "AULA B 101"
+      },
+      "13:25": {
         "materia": "Inglese",
         "materia_completa": "Lingua inglese",
         "docenti": [
@@ -77,6 +101,14 @@
         ],
         "aula": "AULA B 206*"
       },
+      "09:00": {
+        "materia": "Scienze Naturali",
+        "materia_completa": "Scienze naturali",
+        "docenti": [
+          "LEGGIERO Stefania"
+        ],
+        "aula": "AULA B 206*"
+      },
       "09:50": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
@@ -93,7 +125,23 @@
         ],
         "aula": "AULA B 115"
       },
+      "11:45": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "STOPPARI Antonella"
+        ],
+        "aula": "AULA B 115"
+      },
       "12:35": {
+        "materia": "Diritto ed Economia",
+        "materia_completa": "Diritto ed economia",
+        "docenti": [
+          "SCARSO Carla Salvatrice"
+        ],
+        "aula": "AULA B 201"
+      },
+      "13:25": {
         "materia": "Diritto ed Economia",
         "materia_completa": "Diritto ed economia",
         "docenti": [
@@ -104,6 +152,13 @@
     },
     "mercoledi": {
       "08:10": {
+        "materia": "Matematica",
+        "docenti": [
+          "GIUSTI Marina"
+        ],
+        "aula": "Aula D 205**"
+      },
+      "09:00": {
         "materia": "Matematica",
         "docenti": [
           "GIUSTI Marina"
@@ -133,10 +188,27 @@
           "LEGGIERO Stefania"
         ],
         "aula": "AULA SCI (B 301**) LAB. SCI (B 305**)"
+      },
+      "12:35": {
+        "materia": "Scienze Naturali",
+        "materia_completa": "Scienze naturali",
+        "docenti": [
+          "GIORDANO Carmelo",
+          "LEGGIERO Stefania"
+        ],
+        "aula": "AULA SCI (B 301**) LAB. SCI (B 305**)"
       }
     },
     "giovedi": {
       "08:10": {
+        "materia": "Disegno e Arte",
+        "materia_completa": "Disegno e storia dell'arte",
+        "docenti": [
+          "DELLA RAGIONE Silvia"
+        ],
+        "aula": "LAB. CAD 1 (B 219)"
+      },
+      "09:00": {
         "materia": "Disegno e Arte",
         "materia_completa": "Disegno e storia dell'arte",
         "docenti": [
@@ -167,7 +239,23 @@
         ],
         "aula": "AULA B 205"
       },
+      "12:35": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "BERTOLDI Michela"
+        ],
+        "aula": "AULA B 205"
+      },
       "14:30": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "DELLA PENNA Daniela"
+        ],
+        "aula": "AULA B 304"
+      },
+      "15:20": {
         "materia": "Inglese",
         "materia_completa": "Lingua inglese",
         "docenti": [
@@ -198,6 +286,13 @@
         ],
         "aula": "LAB. INF 1 (B 208)"
       },
+      "10:40": {
+        "materia": "Informatica",
+        "docenti": [
+          "SALIHAJ Anila"
+        ],
+        "aula": "LAB. INF 1 (B 208)"
+      },
       "11:45": {
         "materia": "Italiano",
         "materia_completa": "Lingua e letteratura italiana",
@@ -207,6 +302,14 @@
         "aula": "AULA B 110*"
       },
       "12:35": {
+        "materia": "Storia e Geografia",
+        "materia_completa": "Storia e geografia",
+        "docenti": [
+          "STOPPARI Antonella"
+        ],
+        "aula": "AULA B 110*"
+      },
+      "13:25": {
         "materia": "Storia e Geografia",
         "materia_completa": "Storia e geografia",
         "docenti": [

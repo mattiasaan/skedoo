@@ -33,6 +33,15 @@
         ],
         "aula": "LAB. FIS 2 (B 314)"
       },
+      "10:40": {
+        "materia": "Fisica",
+        "materia_completa": "Scienze integrate (Fisica)",
+        "docenti": [
+          "GIAGNORIO Stefano",
+          "ZECCHIN Enrico"
+        ],
+        "aula": "LAB. FIS 2 (B 314)"
+      },
       "11:45": {
         "materia": "Inglese",
         "materia_completa": "Lingua inglese",
@@ -42,6 +51,13 @@
         "aula": "AULA B 204"
       },
       "12:35": {
+        "materia": "Matematica",
+        "docenti": [
+          "D'ALESSIO Valeria"
+        ],
+        "aula": "AULA B 106*"
+      },
+      "13:25": {
         "materia": "Matematica",
         "docenti": [
           "D'ALESSIO Valeria"
@@ -81,6 +97,14 @@
         ],
         "aula": "AULA B 004"
       },
+      "09:00": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "PETRONE Antonella"
+        ],
+        "aula": "AULA B 004"
+      },
       "09:50": {
         "materia": "Storia",
         "docenti": [
@@ -103,10 +127,25 @@
           "FRANCHINI Nicoletta"
         ],
         "aula": "AULA B 205"
+      },
+      "12:35": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "FRANCHINI Nicoletta"
+        ],
+        "aula": "AULA B 205"
       }
     },
     "mercoledi": {
       "08:10": {
+        "materia": "Matematica",
+        "docenti": [
+          "D'ALESSIO Valeria"
+        ],
+        "aula": "Aula D 206**"
+      },
+      "09:00": {
         "materia": "Matematica",
         "docenti": [
           "D'ALESSIO Valeria"
@@ -138,7 +177,24 @@
         ],
         "aula": "LAB. ELEE 1 (A 210*: L.E.AP)"
       },
+      "12:35": {
+        "materia": "Scienze e Tecn. Applicate",
+        "materia_completa": "Scienze e tecnologie applicate",
+        "docenti": [
+          "MARAGIOGLIO Angela",
+          "PILOTTI Alessio"
+        ],
+        "aula": "LAB. ELEE 1 (A 210*: L.E.AP)"
+      },
       "14:30": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "TABARELLI DE FATIS Stefania"
+        ],
+        "aula": "AULA B 201"
+      },
+      "15:20": {
         "materia": "Italiano",
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
@@ -165,7 +221,24 @@
         ],
         "aula": "AULA B 311*,LAB. CHI 2 (A 306)"
       },
+      "09:00": {
+        "materia": "Chimica",
+        "materia_completa": "Scienze integrate (Chimica)",
+        "docenti": [
+          "D'AGOSTINO Veronica",
+          "MASCIOVECCHIO Marina"
+        ],
+        "aula": "AULA B 311*,LAB. CHI 2 (A 306)"
+      },
       "09:50": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "OCHNER Daniel"
+        ],
+        "aula": "PAL. \"Torcaso\""
+      },
+      "10:40": {
         "materia": "Scienze Motorie",
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
@@ -182,6 +255,13 @@
         "aula": "AULA B 113"
       },
       "12:35": {
+        "materia": "Matematica",
+        "docenti": [
+          "D'ALESSIO Valeria"
+        ],
+        "aula": "AULA B 108"
+      },
+      "13:25": {
         "materia": "Matematica",
         "docenti": [
           "D'ALESSIO Valeria"
@@ -214,6 +294,15 @@
         ],
         "aula": "LAB. CAD 2 (B 221)"
       },
+      "10:40": {
+        "materia": "Tecn. e Tecniche Grafiche",
+        "materia_completa": "Tecno. e tecniche rappr. graf.",
+        "docenti": [
+          "GAETANO Giuseppe",
+          "SINICHI Amin Mohammad Kazem"
+        ],
+        "aula": "LAB. CAD 2 (B 221)"
+      },
       "11:45": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
@@ -223,6 +312,14 @@
         "aula": "AULA 201"
       },
       "12:35": {
+        "materia": "Scienze e Biologia",
+        "materia_completa": "Scienze integrate (Sci. e Bio)",
+        "docenti": [
+          "MAURO Sergio"
+        ],
+        "aula": "AULA B 213"
+      },
+      "13:25": {
         "materia": "Scienze e Biologia",
         "materia_completa": "Scienze integrate (Sci. e Bio)",
         "docenti": [

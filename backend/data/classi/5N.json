@@ -20,6 +20,14 @@
         ],
         "aula": "AULA B 207"
       },
+      "09:00": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "VERZELLA Alba"
+        ],
+        "aula": "AULA B 207"
+      },
       "09:50": {
         "materia": "Elettronica",
         "materia_completa": "Elettronica ed elettrotecnica",
@@ -51,7 +59,26 @@
         ],
         "aula": "LAB. ELEE 4 (B 120/2)"
       },
+      "12:35": {
+        "materia": "Tec. Prog. Sistemi Elettr.",
+        "materia_completa": "Tec. e prog. sist. ele. e elee",
+        "docenti": [
+          "LOPEZ Maria Virginia",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 N"
+        ],
+        "aula": "LAB. ELEE 4 (B 120/2)"
+      },
       "14:30": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "BESTE Anna Maria Waltraud"
+        ],
+        "aula": "AULA B 211"
+      },
+      "15:20": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
@@ -76,7 +103,27 @@
         ],
         "aula": "PAL. \"Talvera Centro\""
       },
+      "09:00": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "SALVATERRA Joshua"
+        ],
+        "aula": "PAL. \"Talvera Centro\""
+      },
       "09:50": {
+        "materia": "Tec. Prog. Sistemi Elettr.",
+        "materia_completa": "Tec. e prog. sist. ele. e elee",
+        "docenti": [
+          "LOPEZ Maria Virginia",
+          "NATALE Luigi",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 N"
+        ],
+        "aula": "LAB. ELE 1 (D 001)"
+      },
+      "10:40": {
         "materia": "Tec. Prog. Sistemi Elettr.",
         "materia_completa": "Tec. e prog. sist. ele. e elee",
         "docenti": [
@@ -99,10 +146,33 @@
           "G/N> 5 N"
         ],
         "aula": "LAB. ELEE 4 (B 120/2)"
+      },
+      "12:35": {
+        "materia": "Elettronica",
+        "materia_completa": "Elettronica ed elettrotecnica",
+        "docenti": [
+          "BASTIANELLO Fausto",
+          "IOVENE Roberto",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 N"
+        ],
+        "aula": "LAB. ELEE 4 (B 120/2)"
       }
     },
     "mercoledi": {
       "08:10": {
+        "materia": "Sistemi Automatici",
+        "materia_completa": "Sistemi automatici",
+        "docenti": [
+          "SICIGNANO Cristoforo",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 N"
+        ],
+        "aula": "LAB. ELE 2 (D 004)"
+      },
+      "09:00": {
         "materia": "Sistemi Automatici",
         "materia_completa": "Sistemi automatici",
         "docenti": [
@@ -134,10 +204,29 @@
           "PRESTIGIACOMO Davide"
         ],
         "aula": "AULA B 210*"
+      },
+      "12:35": {
+        "materia": "Matematica",
+        "docenti": [
+          "PRESTIGIACOMO Davide"
+        ],
+        "aula": "AULA B 210*"
       }
     },
     "giovedi": {
       "08:10": {
+        "materia": "Sistemi Automatici",
+        "materia_completa": "Sistemi automatici",
+        "docenti": [
+          "NATALE Luigi",
+          "SICIGNANO Cristoforo",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 N"
+        ],
+        "aula": "LAB. ELE 2 (D 004)"
+      },
+      "09:00": {
         "materia": "Sistemi Automatici",
         "materia_completa": "Sistemi automatici",
         "docenti": [
@@ -187,6 +276,14 @@
         ],
         "aula": "AULA B 011"
       },
+      "13:25": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "BESTE Anna Maria Waltraud"
+        ],
+        "aula": "AULA B 011"
+      },
       "14:30": {
         "materia": "Religione",
         "docenti": [
@@ -223,6 +320,18 @@
         ],
         "aula": "LAB. ELE 2 (D 004)"
       },
+      "09:00": {
+        "materia": "Sistemi Automatici",
+        "materia_completa": "Sistemi automatici",
+        "docenti": [
+          "NATALE Luigi",
+          "SICIGNANO Cristoforo",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 N"
+        ],
+        "aula": "LAB. ELE 2 (D 004)"
+      },
       "09:50": {
         "materia": "Tec. Prog. Sistemi Elettr.",
         "materia_completa": "Tec. e prog. sist. ele. e elee",
@@ -247,6 +356,17 @@
         "aula": "LAB. ELEE 4 (B 120/2)"
       },
       "11:45": {
+        "materia": "Elettronica",
+        "materia_completa": "Elettronica ed elettrotecnica",
+        "docenti": [
+          "IOVENE Roberto",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 N"
+        ],
+        "aula": "LAB. MEC 2 (D 008: M.M.E.)"
+      },
+      "12:35": {
         "materia": "Elettronica",
         "materia_completa": "Elettronica ed elettrotecnica",
         "docenti": [

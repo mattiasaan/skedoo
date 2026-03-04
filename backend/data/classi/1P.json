@@ -19,6 +19,13 @@
         ],
         "aula": "LAB. DIS (B 215)"
       },
+      "09:00": {
+        "materia": "e modell. odontotecnica",
+        "docenti": [
+          "DOCILE Valeria Anna"
+        ],
+        "aula": "LAB. DIS (B 215)"
+      },
       "09:50": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
@@ -35,7 +42,23 @@
         ],
         "aula": "AULA B 112*"
       },
+      "11:45": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "DI MARCO Raffaele Francesco"
+        ],
+        "aula": "AULA B 112*"
+      },
       "12:35": {
+        "materia": "Diritto ed Economia",
+        "materia_completa": "Diritto ed economia",
+        "docenti": [
+          "MARROCCO Caterina"
+        ],
+        "aula": "AULA B 109"
+      },
+      "13:25": {
         "materia": "Diritto ed Economia",
         "materia_completa": "Diritto ed economia",
         "docenti": [
@@ -90,7 +113,22 @@
         ],
         "aula": "AULA B 108"
       },
+      "13:25": {
+        "materia": "Storia",
+        "docenti": [
+          "DI MARCO Raffaele Francesco"
+        ],
+        "aula": "AULA B 108"
+      },
       "14:30": {
+        "materia": "Lab. Odontotecnico",
+        "materia_completa": "Eser. di lab. odontotecnico",
+        "docenti": [
+          "MARIANI Chiara"
+        ],
+        "aula": "LAB. ODO 1 (A 307)"
+      },
+      "15:20": {
         "materia": "Lab. Odontotecnico",
         "materia_completa": "Eser. di lab. odontotecnico",
         "docenti": [
@@ -109,6 +147,13 @@
     },
     "mercoledi": {
       "08:10": {
+        "materia": "Matematica",
+        "docenti": [
+          "PRESTIGIACOMO Davide"
+        ],
+        "aula": "AULA B 210*"
+      },
+      "09:00": {
         "materia": "Matematica",
         "docenti": [
           "PRESTIGIACOMO Davide"
@@ -139,7 +184,24 @@
         ],
         "aula": "AULA B 206*"
       },
+      "12:35": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "DELIU Ornela"
+        ],
+        "aula": "AULA B 206*"
+      },
       "14:30": {
+        "materia": "Chimica",
+        "materia_completa": "Scienze integrate (Chimica)",
+        "docenti": [
+          "BIDDAU Antonella",
+          "GIORDANO Carmelo"
+        ],
+        "aula": "AULA B 304,LAB. CHI 3 (B 318)"
+      },
+      "15:20": {
         "materia": "Chimica",
         "materia_completa": "Scienze integrate (Chimica)",
         "docenti": [
@@ -159,6 +221,14 @@
     },
     "giovedi": {
       "08:10": {
+        "materia": "Lab. Odontotecnico",
+        "materia_completa": "Eser. di lab. odontotecnico",
+        "docenti": [
+          "MARIANI Chiara"
+        ],
+        "aula": "LAB. ODO 1 (A 307)"
+      },
+      "09:00": {
         "materia": "Lab. Odontotecnico",
         "materia_completa": "Eser. di lab. odontotecnico",
         "docenti": [
@@ -188,10 +258,26 @@
           "PATELLA Nadia"
         ],
         "aula": "AULA B 004"
+      },
+      "12:35": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "PATELLA Nadia"
+        ],
+        "aula": "AULA B 004"
       }
     },
     "venerdi": {
       "08:10": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "VITRANO Rosalba"
+        ],
+        "aula": "PAL. \"Talvera Sud\""
+      },
+      "09:00": {
         "materia": "Scienze Motorie",
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
@@ -215,6 +301,15 @@
         "aula": "AULA B 113"
       },
       "11:45": {
+        "materia": "Fisica",
+        "materia_completa": "Scienze integrate (Fisica)",
+        "docenti": [
+          "CALDERAN Tabitha",
+          "FANIZZA Marco"
+        ],
+        "aula": "LAB. FIS 2 (B 314)"
+      },
+      "12:35": {
         "materia": "Fisica",
         "materia_completa": "Scienze integrate (Fisica)",
         "docenti": [

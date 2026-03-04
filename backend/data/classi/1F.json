@@ -26,6 +26,13 @@
         ],
         "aula": "AULA B 105"
       },
+      "09:50": {
+        "materia": "Matematica",
+        "docenti": [
+          "PREVIDI Paola"
+        ],
+        "aula": "AULA B 105"
+      },
       "10:40": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
@@ -41,10 +48,27 @@
           "TODARO Mattia"
         ],
         "aula": "PAL. \"Torcaso\""
+      },
+      "12:35": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "TODARO Mattia"
+        ],
+        "aula": "PAL. \"Torcaso\""
       }
     },
     "martedi": {
       "08:10": {
+        "materia": "Tecnologie Informatiche",
+        "materia_completa": "Tecnologie informatiche",
+        "docenti": [
+          "BONACCORSI Rosario",
+          "IOVENE Roberto"
+        ],
+        "aula": "LAB. INF 2 (B 212)"
+      },
+      "09:00": {
         "materia": "Tecnologie Informatiche",
         "materia_completa": "Tecnologie informatiche",
         "docenti": [
@@ -84,7 +108,23 @@
         ],
         "aula": "AULA 201"
       },
+      "13:25": {
+        "materia": "Diritto ed Economia",
+        "materia_completa": "Diritto ed economia",
+        "docenti": [
+          "SIBILLA Claudio"
+        ],
+        "aula": "AULA 201"
+      },
       "14:30": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "HOFER Verena"
+        ],
+        "aula": "AULA B 213"
+      },
+      "15:20": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
@@ -111,7 +151,25 @@
         ],
         "aula": "LAB. DIS (B 215)"
       },
+      "09:00": {
+        "materia": "Tecn. e Tecniche Grafiche",
+        "materia_completa": "Tecno. e tecniche rappr. graf.",
+        "docenti": [
+          "DE ROSSI Andrea",
+          "PERRICONE Cristina"
+        ],
+        "aula": "LAB. DIS (B 215)"
+      },
       "09:50": {
+        "materia": "Fisica",
+        "materia_completa": "Scienze integrate (Fisica)",
+        "docenti": [
+          "CALDERAN Tabitha",
+          "GIAGNORIO Stefano"
+        ],
+        "aula": "LAB. FIS 2 (B 314)"
+      },
+      "10:40": {
         "materia": "Fisica",
         "materia_completa": "Scienze integrate (Fisica)",
         "docenti": [
@@ -135,10 +193,26 @@
           "FRANCHINI Nicoletta"
         ],
         "aula": "AULA B 101"
+      },
+      "13:25": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "FRANCHINI Nicoletta"
+        ],
+        "aula": "AULA B 101"
       }
     },
     "giovedi": {
       "08:10": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "CHIANESE Francesco"
+        ],
+        "aula": "AULA B 109"
+      },
+      "09:00": {
         "materia": "Italiano",
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
@@ -171,6 +245,13 @@
         "aula": "AULA 201"
       },
       "12:35": {
+        "materia": "Religione",
+        "docenti": [
+          "BOVO Paolo"
+        ],
+        "aula": "AULA B 213"
+      },
+      "13:25": {
         "materia": "Religione",
         "docenti": [
           "BOVO Paolo"
@@ -211,6 +292,15 @@
         ],
         "aula": "AULA B 311*,LAB. CHI 3 (B 318)"
       },
+      "09:00": {
+        "materia": "Chimica",
+        "materia_completa": "Scienze integrate (Chimica)",
+        "docenti": [
+          "FUCA' Lia",
+          "MONACHELLA Angelo"
+        ],
+        "aula": "AULA B 311*,LAB. CHI 3 (B 318)"
+      },
       "09:50": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
@@ -236,6 +326,13 @@
         "aula": "AULA B 115"
       },
       "12:35": {
+        "materia": "Storia",
+        "docenti": [
+          "CHIANESE Francesco"
+        ],
+        "aula": "AULA B 115"
+      },
+      "13:25": {
         "materia": "Storia",
         "docenti": [
           "CHIANESE Francesco"

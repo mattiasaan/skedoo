@@ -20,6 +20,14 @@
         ],
         "aula": "LAB. ELE 3 (D 005)"
       },
+      "09:00": {
+        "materia": "Tec. Prog. Sistemi Inf.",
+        "materia_completa": "Tec. e prog. sist. inf. e tel.",
+        "docenti": [
+          "RECLA Alessandro"
+        ],
+        "aula": "LAB. ELE 3 (D 005)"
+      },
       "09:50": {
         "materia": "Storia",
         "docenti": [
@@ -36,6 +44,14 @@
         "aula": "Aula D 204**"
       },
       "11:45": {
+        "materia": "Informatica",
+        "docenti": [
+          "DE GIORGI Nicola",
+          "RUZZON Kevin"
+        ],
+        "aula": "LAB. ELE 3 (D 005)"
+      },
+      "12:35": {
         "materia": "Informatica",
         "docenti": [
           "DE GIORGI Nicola",
@@ -83,7 +99,23 @@
         ],
         "aula": "LAB. INF 2 (B 212)"
       },
+      "12:35": {
+        "materia": "Informatica",
+        "docenti": [
+          "DE GIORGI Nicola",
+          "RUZZON Kevin"
+        ],
+        "aula": "LAB. INF 2 (B 212)"
+      },
       "14:30": {
+        "materia": "Sistemi e Reti",
+        "materia_completa": "Sistemi e reti",
+        "docenti": [
+          "DELIZIA Marco"
+        ],
+        "aula": "LAB. INF 1 (B 208)"
+      },
+      "15:20": {
         "materia": "Sistemi e Reti",
         "materia_completa": "Sistemi e reti",
         "docenti": [
@@ -102,6 +134,14 @@
     },
     "mercoledi": {
       "08:10": {
+        "materia": "Informatica",
+        "docenti": [
+          "DE GIORGI Nicola",
+          "RUZZON Kevin"
+        ],
+        "aula": "LAB. INF 3 (B 116)"
+      },
+      "09:00": {
         "materia": "Informatica",
         "docenti": [
           "DE GIORGI Nicola",
@@ -138,6 +178,13 @@
           "CHIANESE Francesco"
         ],
         "aula": "AULA B 113"
+      },
+      "13:25": {
+        "materia": "Storia",
+        "docenti": [
+          "CHIANESE Francesco"
+        ],
+        "aula": "AULA B 113"
       }
     },
     "giovedi": {
@@ -165,6 +212,14 @@
         ],
         "aula": "AULA B 207"
       },
+      "10:40": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "MAISANO Nunziatina"
+        ],
+        "aula": "AULA B 207"
+      },
       "11:45": {
         "materia": "Telecomunicazioni",
         "docenti": [
@@ -173,7 +228,22 @@
         ],
         "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
       },
+      "12:35": {
+        "materia": "Telecomunicazioni",
+        "docenti": [
+          "BALESTRUCCI Domenico",
+          "MARAGIOGLIO Angela"
+        ],
+        "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
+      },
       "14:30": {
+        "materia": "Matematica",
+        "docenti": [
+          "MILANESE Sabina"
+        ],
+        "aula": "AULA B 209"
+      },
+      "15:20": {
         "materia": "Matematica",
         "docenti": [
           "MILANESE Sabina"
@@ -198,6 +268,15 @@
         ],
         "aula": "LAB. ELE 3 (D 005)"
       },
+      "09:00": {
+        "materia": "Tec. Prog. Sistemi Inf.",
+        "materia_completa": "Tec. e prog. sist. inf. e tel.",
+        "docenti": [
+          "RECLA Alessandro",
+          "TOMEI Leonardo"
+        ],
+        "aula": "LAB. ELE 3 (D 005)"
+      },
       "09:50": {
         "materia": "Scienze Motorie",
         "materia_completa": "Scienze motorie e sportive",
@@ -206,7 +285,23 @@
         ],
         "aula": "PAL. \"Talvera Centro\""
       },
+      "10:40": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "SALVATERRA Joshua"
+        ],
+        "aula": "PAL. \"Talvera Centro\""
+      },
       "11:45": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "FISCHNALLER Barbara"
+        ],
+        "aula": "AULA B 016"
+      },
+      "12:35": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
         "docenti": [

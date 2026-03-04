@@ -34,6 +34,13 @@
         ],
         "aula": "LAB. DIS (B 215)"
       },
+      "10:40": {
+        "materia": "e modell. odontotecnica",
+        "docenti": [
+          "DOCILE Valeria Anna"
+        ],
+        "aula": "LAB. DIS (B 215)"
+      },
       "11:45": {
         "materia": "Religione",
         "docenti": [
@@ -48,7 +55,22 @@
         ],
         "aula": "AULA B 112*"
       },
+      "13:25": {
+        "materia": "Storia",
+        "docenti": [
+          "VENDRAME Emilio"
+        ],
+        "aula": "AULA B 112*"
+      },
       "14:30": {
+        "materia": "Lab. Odontotecnico",
+        "materia_completa": "Eser. di lab. odontotecnico",
+        "docenti": [
+          "SAIANI Christian"
+        ],
+        "aula": "LAB. ODO 2 (A 308)"
+      },
+      "15:20": {
         "materia": "Lab. Odontotecnico",
         "materia_completa": "Eser. di lab. odontotecnico",
         "docenti": [
@@ -111,10 +133,26 @@
           "GARBIN Simonetta"
         ],
         "aula": "AULA B 112*"
+      },
+      "13:25": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "GARBIN Simonetta"
+        ],
+        "aula": "AULA B 112*"
       }
     },
     "mercoledi": {
       "08:10": {
+        "materia": "Lab. Odontotecnico",
+        "materia_completa": "Eser. di lab. odontotecnico",
+        "docenti": [
+          "SAIANI Christian"
+        ],
+        "aula": "LAB. ODO 2 (A 308)"
+      },
+      "09:00": {
         "materia": "Lab. Odontotecnico",
         "materia_completa": "Eser. di lab. odontotecnico",
         "docenti": [
@@ -146,7 +184,24 @@
         ],
         "aula": "AULA B 111"
       },
+      "12:35": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "DI MARCO Raffaele Francesco"
+        ],
+        "aula": "AULA B 111"
+      },
       "14:30": {
+        "materia": "Fisica",
+        "materia_completa": "Scienze integrate (Fisica)",
+        "docenti": [
+          "PAPAIS Denise",
+          "ZECCHIN Enrico"
+        ],
+        "aula": "LAB. FIS 1 (B 310)"
+      },
+      "15:20": {
         "materia": "Fisica",
         "materia_completa": "Scienze integrate (Fisica)",
         "docenti": [
@@ -190,7 +245,23 @@
         ],
         "aula": "AULA B 309,LAB. CHI 3 (B 318)"
       },
+      "10:40": {
+        "materia": "Chimica",
+        "materia_completa": "Scienze integrate (Chimica)",
+        "docenti": [
+          "BIDDAU Antonella",
+          "GIORDANO Carmelo"
+        ],
+        "aula": "AULA B 309,LAB. CHI 3 (B 318)"
+      },
       "11:45": {
+        "materia": "Matematica",
+        "docenti": [
+          "MICILLO Martia Giustina"
+        ],
+        "aula": "AULA B 104"
+      },
+      "12:35": {
         "materia": "Matematica",
         "docenti": [
           "MICILLO Martia Giustina"
@@ -231,7 +302,23 @@
         ],
         "aula": "AULA B 011"
       },
+      "11:45": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "CARLIN Martina"
+        ],
+        "aula": "AULA B 011"
+      },
       "12:35": {
+        "materia": "Diritto ed Economia",
+        "materia_completa": "Diritto ed economia",
+        "docenti": [
+          "SIBILLA Claudio"
+        ],
+        "aula": "AULA 201"
+      },
+      "13:25": {
         "materia": "Diritto ed Economia",
         "materia_completa": "Diritto ed economia",
         "docenti": [

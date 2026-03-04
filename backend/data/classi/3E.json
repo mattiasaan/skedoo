@@ -50,10 +50,26 @@
           "SALIHAJ Anila"
         ],
         "aula": "LAB. INF 2 (B 212)"
+      },
+      "12:35": {
+        "materia": "Informatica",
+        "docenti": [
+          "BELLAVITA Federica",
+          "SALIHAJ Anila"
+        ],
+        "aula": "LAB. INF 2 (B 212)"
       }
     },
     "martedi": {
       "08:10": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "TABARELLI DE FATIS Stefania"
+        ],
+        "aula": "AULA B 115"
+      },
+      "09:00": {
         "materia": "Italiano",
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
@@ -69,7 +85,23 @@
         ],
         "aula": "LAB. INF 4 (D 201**)"
       },
+      "10:40": {
+        "materia": "Informatica",
+        "docenti": [
+          "BELLAVITA Federica",
+          "SALIHAJ Anila"
+        ],
+        "aula": "LAB. INF 4 (D 201**)"
+      },
       "11:45": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "GIGLIOLI Valentina"
+        ],
+        "aula": "PAL. \"Talvera Sud\""
+      },
+      "12:35": {
         "materia": "Scienze Motorie",
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
@@ -95,6 +127,14 @@
         ],
         "aula": "AULA B 011"
       },
+      "09:50": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "TUFANO Guido"
+        ],
+        "aula": "AULA B 011"
+      },
       "10:40": {
         "materia": "Informatica",
         "docenti": [
@@ -111,7 +151,23 @@
         ],
         "aula": "LAB. INF 2 (B 212)"
       },
+      "12:35": {
+        "materia": "Tec. Prog. Sistemi Inf.",
+        "materia_completa": "Tec. e prog. sist. inf. e tel.",
+        "docenti": [
+          "DI DIO Daniele",
+          "TOMEI Leonardo"
+        ],
+        "aula": "LAB. INF 2 (B 212)"
+      },
       "14:30": {
+        "materia": "Matematica",
+        "docenti": [
+          "GAGLIOSTRO Antonio"
+        ],
+        "aula": "AULA B 211"
+      },
+      "15:20": {
         "materia": "Matematica",
         "docenti": [
           "GAGLIOSTRO Antonio"
@@ -128,6 +184,14 @@
     },
     "giovedi": {
       "08:10": {
+        "materia": "Tec. Prog. Sistemi Inf.",
+        "materia_completa": "Tec. e prog. sist. inf. e tel.",
+        "docenti": [
+          "DI DIO Daniele"
+        ],
+        "aula": "LAB. INF 4 (D 201**)"
+      },
+      "09:00": {
         "materia": "Tec. Prog. Sistemi Inf.",
         "materia_completa": "Tec. e prog. sist. inf. e tel.",
         "docenti": [
@@ -165,7 +229,23 @@
         ],
         "aula": "LAB. INF 3 (B 116)"
       },
+      "13:25": {
+        "materia": "Sistemi e Reti",
+        "materia_completa": "Sistemi e reti",
+        "docenti": [
+          "CANTARELLA Alfredo"
+        ],
+        "aula": "LAB. INF 3 (B 116)"
+      },
       "14:30": {
+        "materia": "Informatica",
+        "docenti": [
+          "BELLAVITA Federica",
+          "SALIHAJ Anila"
+        ],
+        "aula": "LAB. INF 2 (B 212)"
+      },
+      "15:20": {
         "materia": "Informatica",
         "docenti": [
           "BELLAVITA Federica",
@@ -190,7 +270,23 @@
         ],
         "aula": "LAB. INF 5 (D 202**)"
       },
+      "09:00": {
+        "materia": "Sistemi e Reti",
+        "materia_completa": "Sistemi e reti",
+        "docenti": [
+          "CANTARELLA Alfredo"
+        ],
+        "aula": "LAB. INF 5 (D 202**)"
+      },
       "09:50": {
+        "materia": "Telecomunicazioni",
+        "docenti": [
+          "MINICHIELLO Genesio",
+          "RONDINI Flavio"
+        ],
+        "aula": "LAB. ELEE 1 (A 210*: L.E.AP)"
+      },
+      "10:40": {
         "materia": "Telecomunicazioni",
         "docenti": [
           "MINICHIELLO Genesio",
@@ -207,6 +303,14 @@
         "aula": "AULA B 201"
       },
       "12:35": {
+        "materia": "Complementi di Matematica",
+        "materia_completa": "Complementi di matematica",
+        "docenti": [
+          "GAGLIOSTRO Antonio"
+        ],
+        "aula": "Aula D 204**"
+      },
+      "13:25": {
         "materia": "Complementi di Matematica",
         "materia_completa": "Complementi di matematica",
         "docenti": [

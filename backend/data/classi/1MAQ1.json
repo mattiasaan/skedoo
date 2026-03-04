@@ -20,6 +20,14 @@
         ],
         "aula": "AULA B 110*"
       },
+      "09:00": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "ZEZZA Maria"
+        ],
+        "aula": "AULA B 110*"
+      },
       "09:50": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
@@ -28,7 +36,23 @@
         ],
         "aula": "AULA B 011"
       },
+      "10:40": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "SCHROFFENEGGER Sonja"
+        ],
+        "aula": "AULA B 011"
+      },
       "11:45": {
+        "materia": "Lab. Tecn. ed Esercitazioni",
+        "materia_completa": "Lab. tecn. e esercitazioni",
+        "docenti": [
+          "PILOTTI Alessio"
+        ],
+        "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
+      },
+      "12:35": {
         "materia": "Lab. Tecn. ed Esercitazioni",
         "materia_completa": "Lab. tecn. e esercitazioni",
         "docenti": [
@@ -54,6 +78,15 @@
         ],
         "aula": "LAB. FIS 2 (B 314)"
       },
+      "09:00": {
+        "materia": "Fisica",
+        "materia_completa": "Scienze integrate (Fisica)",
+        "docenti": [
+          "TURCO Giuseppe",
+          "ZUECH Claudio"
+        ],
+        "aula": "LAB. FIS 2 (B 314)"
+      },
       "09:50": {
         "materia": "Inglese",
         "materia_completa": "Lingua inglese",
@@ -63,6 +96,13 @@
         "aula": "AULA B 206*"
       },
       "10:40": {
+        "materia": "Matematica",
+        "docenti": [
+          "TERZONI Giulia"
+        ],
+        "aula": "LAB. ELEE 3 (B 120/1)"
+      },
+      "11:45": {
         "materia": "Matematica",
         "docenti": [
           "TERZONI Giulia"
@@ -92,6 +132,15 @@
         ],
         "aula": "LAB. INF 4 (D 201**)"
       },
+      "15:20": {
+        "materia": "Tecnologie Informatiche",
+        "materia_completa": "Tecnologie informatiche",
+        "docenti": [
+          "CANNONE Maria",
+          "RUZZON Kevin"
+        ],
+        "aula": "LAB. INF 4 (D 201**)"
+      },
       "16:10": {
         "materia": "Religione",
         "docenti": [
@@ -110,6 +159,15 @@
         "aula": "AULA B 013*"
       },
       "09:00": {
+        "materia": "Chimica",
+        "materia_completa": "Scienze integrate (Chimica)",
+        "docenti": [
+          "MASCIOVECCHIO Marina",
+          "TOSI Sara"
+        ],
+        "aula": "AULA B 309,LAB. CHI 2 (A 306)"
+      },
+      "09:50": {
         "materia": "Chimica",
         "materia_completa": "Scienze integrate (Chimica)",
         "docenti": [
@@ -191,7 +249,24 @@
         ],
         "aula": "LAB. MEC. 5 (B119: AUT. & R.)"
       },
+      "12:35": {
+        "materia": "Tecn. e Tecniche Grafiche",
+        "materia_completa": "Tecno. e tecniche rappr. graf.",
+        "docenti": [
+          "CANTISANI Silviano",
+          "PASCIUTO Paolo"
+        ],
+        "aula": "LAB. MEC. 5 (B119: AUT. & R.)"
+      },
       "14:30": {
+        "materia": "Lab. Tecn. ed Esercitazioni",
+        "materia_completa": "Lab. tecn. e esercitazioni",
+        "docenti": [
+          "PILOTTI Alessio"
+        ],
+        "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
+      },
+      "15:20": {
         "materia": "Lab. Tecn. ed Esercitazioni",
         "materia_completa": "Lab. tecn. e esercitazioni",
         "docenti": [
@@ -241,6 +316,14 @@
         "aula": "AULA B 007*"
       },
       "11:45": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "SEBASTIANI Alfredo"
+        ],
+        "aula": "PAL. \"Talvera Sud\""
+      },
+      "12:35": {
         "materia": "Scienze Motorie",
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [

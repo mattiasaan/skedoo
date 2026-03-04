@@ -28,6 +28,14 @@
         ],
         "aula": "LAB. INF 5 (D 202**)"
       },
+      "09:50": {
+        "materia": "Sistemi e Reti",
+        "materia_completa": "Sistemi e reti",
+        "docenti": [
+          "CANTARELLA Alfredo"
+        ],
+        "aula": "LAB. INF 5 (D 202**)"
+      },
       "10:40": {
         "materia": "Gestione Progetto",
         "materia_completa": "Gest. progetto, org. di impresa",
@@ -44,7 +52,23 @@
         ],
         "aula": "LAB. INF 5 (D 202**)"
       },
+      "12:35": {
+        "materia": "Informatica",
+        "docenti": [
+          "D'ANTONI Mario",
+          "PAREDES Stefano"
+        ],
+        "aula": "LAB. INF 5 (D 202**)"
+      },
       "14:30": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "PETRONE Antonella"
+        ],
+        "aula": "AULA B 306"
+      },
+      "15:20": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
@@ -62,6 +86,14 @@
     },
     "martedi": {
       "08:10": {
+        "materia": "Informatica",
+        "docenti": [
+          "D'ANTONI Mario",
+          "PAREDES Stefano"
+        ],
+        "aula": "LAB. INF 3 (B 116)"
+      },
+      "09:00": {
         "materia": "Informatica",
         "docenti": [
           "D'ANTONI Mario",
@@ -91,10 +123,27 @@
           "DELIZIA Marco"
         ],
         "aula": "LAB. INF 5 (D 202**)"
+      },
+      "12:35": {
+        "materia": "Gestione Progetto",
+        "materia_completa": "Gest. progetto, org. di impresa",
+        "docenti": [
+          "DELIZIA Marco"
+        ],
+        "aula": "LAB. INF 5 (D 202**)"
       }
     },
     "mercoledi": {
       "08:10": {
+        "materia": "Tec. Prog. Sistemi Inf.",
+        "materia_completa": "Tec. e prog. sist. inf. e tel.",
+        "docenti": [
+          "CANNONE Maria",
+          "TOMEI Leonardo"
+        ],
+        "aula": "LAB. INF 4 (D 201**)"
+      },
+      "09:00": {
         "materia": "Tec. Prog. Sistemi Inf.",
         "materia_completa": "Tec. e prog. sist. inf. e tel.",
         "docenti": [
@@ -125,10 +174,25 @@
           "MILANESE Sabina"
         ],
         "aula": "Aula D 205**"
+      },
+      "12:35": {
+        "materia": "Matematica",
+        "docenti": [
+          "MILANESE Sabina"
+        ],
+        "aula": "Aula D 205**"
       }
     },
     "giovedi": {
       "08:10": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "PERRUCCI Rosi"
+        ],
+        "aula": "AULA B 307*"
+      },
+      "09:00": {
         "materia": "Italiano",
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
@@ -160,7 +224,23 @@
         ],
         "aula": "PAL. \"Talvera Sud\""
       },
+      "12:35": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "VITRANO Rosalba"
+        ],
+        "aula": "PAL. \"Talvera Sud\""
+      },
       "14:30": {
+        "materia": "Informatica",
+        "docenti": [
+          "D'ANTONI Mario",
+          "PAREDES Stefano"
+        ],
+        "aula": "LAB. INF 5 (D 202**)"
+      },
+      "15:20": {
         "materia": "Informatica",
         "docenti": [
           "D'ANTONI Mario",
@@ -184,7 +264,23 @@
         ],
         "aula": "LAB. INF 3 (B 116)"
       },
+      "09:00": {
+        "materia": "Informatica",
+        "docenti": [
+          "PAREDES Stefano"
+        ],
+        "aula": "LAB. INF 3 (B 116)"
+      },
       "09:50": {
+        "materia": "Tec. Prog. Sistemi Inf.",
+        "materia_completa": "Tec. e prog. sist. inf. e tel.",
+        "docenti": [
+          "CANNONE Maria",
+          "TOMEI Leonardo"
+        ],
+        "aula": "LAB. INF 4 (D 201**)"
+      },
+      "10:40": {
         "materia": "Tec. Prog. Sistemi Inf.",
         "materia_completa": "Tec. e prog. sist. inf. e tel.",
         "docenti": [
@@ -201,6 +297,14 @@
         "aula": "AULA B 213"
       },
       "12:35": {
+        "materia": "Sistemi e Reti",
+        "materia_completa": "Sistemi e reti",
+        "docenti": [
+          "CANTARELLA Alfredo"
+        ],
+        "aula": "LAB. INF 5 (D 202**)"
+      },
+      "13:25": {
         "materia": "Sistemi e Reti",
         "materia_completa": "Sistemi e reti",
         "docenti": [

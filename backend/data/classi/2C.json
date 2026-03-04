@@ -20,6 +20,14 @@
         ],
         "aula": "AULA B 205"
       },
+      "09:00": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "ROMANI Sara"
+        ],
+        "aula": "AULA B 205"
+      },
       "09:50": {
         "materia": "Matematica",
         "docenti": [
@@ -50,6 +58,14 @@
           "MACCAGNAN Elisa"
         ],
         "aula": "AULA B 309"
+      },
+      "13:25": {
+        "materia": "Scienze e Biologia",
+        "materia_completa": "Scienze integrate (Sci. e Bio)",
+        "docenti": [
+          "MACCAGNAN Elisa"
+        ],
+        "aula": "AULA B 309"
       }
     },
     "martedi": {
@@ -61,7 +77,24 @@
         ],
         "aula": "AULA B 109"
       },
+      "09:00": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "GHISU Maria Gabriella"
+        ],
+        "aula": "AULA B 109"
+      },
       "09:50": {
+        "materia": "Chimica",
+        "materia_completa": "Scienze integrate (Chimica)",
+        "docenti": [
+          "D'AGOSTINO Veronica",
+          "LATTUCA Teresa"
+        ],
+        "aula": "AULA CHI (B 317**) LAB. CHI 3 (B 318)"
+      },
+      "10:40": {
         "materia": "Chimica",
         "materia_completa": "Scienze integrate (Chimica)",
         "docenti": [
@@ -79,7 +112,23 @@
         ],
         "aula": "LAB. FIS 2 (B 314)"
       },
+      "12:35": {
+        "materia": "Fisica",
+        "materia_completa": "Scienze integrate (Fisica)",
+        "docenti": [
+          "TURCO Giuseppe",
+          "ZUECH Claudio"
+        ],
+        "aula": "LAB. FIS 2 (B 314)"
+      },
       "14:30": {
+        "materia": "Matematica",
+        "docenti": [
+          "BERTOLINO Giuseppe"
+        ],
+        "aula": "AULA B 209"
+      },
+      "15:20": {
         "materia": "Matematica",
         "docenti": [
           "BERTOLINO Giuseppe"
@@ -136,6 +185,15 @@
           "GUADAGNINI Maria Pia"
         ],
         "aula": "AULA CHI (B 317**) LAB. CHI 3 (B 318)"
+      },
+      "12:35": {
+        "materia": "Scienze e Tecn. Applicate",
+        "materia_completa": "Scienze e tecnologie applicate",
+        "docenti": [
+          "CITTA' Tiziana",
+          "GUADAGNINI Maria Pia"
+        ],
+        "aula": "AULA CHI (B 317**) LAB. CHI 3 (B 318)"
       }
     },
     "giovedi": {
@@ -162,7 +220,24 @@
         ],
         "aula": "LAB. CAD 2 (B 221)"
       },
+      "10:40": {
+        "materia": "Tecn. e Tecniche Grafiche",
+        "materia_completa": "Tecno. e tecniche rappr. graf.",
+        "docenti": [
+          "MELECHI' Michele",
+          "PERRICONE Cristina"
+        ],
+        "aula": "LAB. CAD 2 (B 221)"
+      },
       "11:45": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "PETRONE Antonella"
+        ],
+        "aula": "AULA B 013*"
+      },
+      "12:35": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
@@ -236,6 +311,13 @@
         "aula": "AULA B 113"
       },
       "12:35": {
+        "materia": "Storia",
+        "docenti": [
+          "GHISU Maria Gabriella"
+        ],
+        "aula": "AULA B 113"
+      },
+      "13:25": {
         "materia": "Storia",
         "docenti": [
           "GHISU Maria Gabriella"

@@ -19,6 +19,13 @@
         ],
         "aula": "Aula D 204**"
       },
+      "09:00": {
+        "materia": "Matematica",
+        "docenti": [
+          "ECCHER Andrea"
+        ],
+        "aula": "Aula D 204**"
+      },
       "09:50": {
         "materia": "Sistemi e Automazione",
         "materia_completa": "Sistemi ed automazione",
@@ -30,7 +37,27 @@
         ],
         "aula": "LAB. PNRR IND. 4.0 (D 011)"
       },
+      "10:40": {
+        "materia": "Sistemi e Automazione",
+        "materia_completa": "Sistemi ed automazione",
+        "docenti": [
+          "MELECHI' Michele",
+          "SERIO Leonardo",
+          "MEC 4",
+          "(B218: SIST. E AUT)"
+        ],
+        "aula": "LAB. PNRR IND. 4.0 (D 011)"
+      },
       "11:45": {
+        "materia": "Tecn. Meccanica",
+        "materia_completa": "Tecnol. mec. di proc. e prod.",
+        "docenti": [
+          "DE ROSSI Andrea",
+          "VALENTINI Paolo"
+        ],
+        "aula": "AULA MEC (D 009) LAB. MEC 3 (D 006: CONG.)"
+      },
+      "12:35": {
         "materia": "Tecn. Meccanica",
         "materia_completa": "Tecnol. mec. di proc. e prod.",
         "docenti": [
@@ -57,6 +84,14 @@
         ],
         "aula": "LAB. PNRR IND. 4.0 (D 011)"
       },
+      "09:50": {
+        "materia": "Disegno e Prog. Industriale",
+        "materia_completa": "Dis., progettaz. e org. ind.le",
+        "docenti": [
+          "ZAVARISE Alessandro"
+        ],
+        "aula": "LAB. PNRR IND. 4.0 (D 011)"
+      },
       "10:40": {
         "materia": "Italiano",
         "materia_completa": "Lingua e letteratura italiana",
@@ -65,7 +100,22 @@
         ],
         "aula": "AULA B 108"
       },
+      "11:45": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "BENETTI Mattia"
+        ],
+        "aula": "AULA B 108"
+      },
       "12:35": {
+        "materia": "Matematica",
+        "docenti": [
+          "ECCHER Andrea"
+        ],
+        "aula": "Aula D 204**"
+      },
+      "13:25": {
         "materia": "Matematica",
         "docenti": [
           "ECCHER Andrea"
@@ -120,7 +170,19 @@
         "materia": "Q1 Q2",
         "aula": "LAB. MEC 2 (D 008: M.M.E.)"
       },
+      "13:25": {
+        "materia": "Q1 Q2",
+        "aula": "LAB. MEC 2 (D 008: M.M.E.)"
+      },
       "14:30": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "PATELLA Nadia"
+        ],
+        "aula": "AULA B 309"
+      },
+      "15:20": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
@@ -139,6 +201,15 @@
     },
     "giovedi": {
       "08:10": {
+        "materia": "Disegno e Prog. Industriale",
+        "materia_completa": "Dis., progettaz. e org. ind.le",
+        "docenti": [
+          "MELECHI' Michele",
+          "ZAVARISE Alessandro"
+        ],
+        "aula": "LAB. PNRR IND. 4.0 (D 011)"
+      },
+      "09:00": {
         "materia": "Disegno e Prog. Industriale",
         "materia_completa": "Dis., progettaz. e org. ind.le",
         "docenti": [
@@ -178,7 +249,23 @@
         ],
         "aula": "Aula D 204**"
       },
+      "13:25": {
+        "materia": "Complementi di Matematica",
+        "materia_completa": "Complementi di matematica",
+        "docenti": [
+          "ECCHER Andrea"
+        ],
+        "aula": "Aula D 204**"
+      },
       "14:30": {
+        "materia": "Meccanica",
+        "materia_completa": "Meccanica, macchine e energia",
+        "docenti": [
+          "DE BENEDITTIS Fabio Antonio"
+        ],
+        "aula": "LAB. MEC 2 (D 008: M.M.E.)"
+      },
+      "15:20": {
         "materia": "Meccanica",
         "materia_completa": "Meccanica, macchine e energia",
         "docenti": [
@@ -204,6 +291,14 @@
         ],
         "aula": "PAL. \"Torcaso\""
       },
+      "09:00": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "NOLLI Cinzia"
+        ],
+        "aula": "PAL. \"Torcaso\""
+      },
       "09:50": {
         "materia": "Storia",
         "docenti": [
@@ -219,6 +314,15 @@
         "aula": "AULA B 211"
       },
       "11:45": {
+        "materia": "Tecn. Meccanica",
+        "materia_completa": "Tecnol. mec. di proc. e prod.",
+        "docenti": [
+          "DE ROSSI Andrea",
+          "VALENTINI Paolo"
+        ],
+        "aula": "AULA MEC (D 009) LAB. MEC 1 (D 010: M.U.)"
+      },
+      "12:35": {
         "materia": "Tecn. Meccanica",
         "materia_completa": "Tecnol. mec. di proc. e prod.",
         "docenti": [

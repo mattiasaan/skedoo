@@ -27,6 +27,14 @@
         ],
         "aula": "AULA B 114"
       },
+      "09:50": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "PATRUNO Elisabetta"
+        ],
+        "aula": "AULA B 114"
+      },
       "10:40": {
         "materia": "Chimica",
         "materia_completa": "Scienze integrate (Chimica)",
@@ -43,10 +51,26 @@
           "ZECCHIN Enrico"
         ],
         "aula": "LAB. FIS 1 (B 310)"
+      },
+      "12:35": {
+        "materia": "Fisica",
+        "materia_completa": "Scienze integrate (Fisica)",
+        "docenti": [
+          "PAPAIS Denise",
+          "ZECCHIN Enrico"
+        ],
+        "aula": "LAB. FIS 1 (B 310)"
       }
     },
     "martedi": {
       "08:10": {
+        "materia": "Matematica",
+        "docenti": [
+          "STIVELLA Marco"
+        ],
+        "aula": "Aula D 205**"
+      },
+      "09:00": {
         "materia": "Matematica",
         "docenti": [
           "STIVELLA Marco"
@@ -76,6 +100,14 @@
         "aula": "AULA B 213"
       },
       "12:35": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "TUFANO Guido"
+        ],
+        "aula": "AULA B 211"
+      },
+      "13:25": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
@@ -134,6 +166,15 @@
         ],
         "aula": "LAB. DIS (B 215)"
       },
+      "10:40": {
+        "materia": "Tecn. e Tecniche Grafiche",
+        "materia_completa": "Tecno. e tecniche rappr. graf.",
+        "docenti": [
+          "DE ROSSI Andrea",
+          "SINICHI Amin Mohammad Kazem"
+        ],
+        "aula": "LAB. DIS (B 215)"
+      },
       "11:45": {
         "materia": "Matematica",
         "docenti": [
@@ -149,7 +190,23 @@
         ],
         "aula": "AULA B 201"
       },
+      "13:25": {
+        "materia": "Diritto ed Economia",
+        "materia_completa": "Diritto ed economia",
+        "docenti": [
+          "MARROCCO Caterina"
+        ],
+        "aula": "AULA B 201"
+      },
       "14:30": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "PEROTTI Antonio"
+        ],
+        "aula": "AULA B 209"
+      },
+      "15:20": {
         "materia": "Inglese",
         "materia_completa": "Lingua inglese",
         "docenti": [
@@ -190,7 +247,24 @@
         ],
         "aula": "PAL. \"Talvera Centro\""
       },
+      "10:40": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "DI CELLO Jacopo"
+        ],
+        "aula": "PAL. \"Talvera Centro\""
+      },
       "11:45": {
+        "materia": "Chimica",
+        "materia_completa": "Scienze integrate (Chimica)",
+        "docenti": [
+          "MONACHELLA Angelo",
+          "PECORARO Diego"
+        ],
+        "aula": "AULA B 309,LAB. CHI 3 (B 318)"
+      },
+      "12:35": {
         "materia": "Chimica",
         "materia_completa": "Scienze integrate (Chimica)",
         "docenti": [
@@ -202,6 +276,14 @@
     },
     "venerdi": {
       "08:10": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "TUFANO Guido"
+        ],
+        "aula": "AULA B 004"
+      },
+      "09:00": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
@@ -226,6 +308,15 @@
         "aula": "AULA FIS (B 308**)"
       },
       "11:45": {
+        "materia": "Tecnologie Informatiche",
+        "materia_completa": "Tecnologie informatiche",
+        "docenti": [
+          "BONACCORSI Rosario",
+          "LOPEZ Maria Virginia"
+        ],
+        "aula": "LAB. INF 1 (B 208)"
+      },
+      "12:35": {
         "materia": "Tecnologie Informatiche",
         "materia_completa": "Tecnologie informatiche",
         "docenti": [

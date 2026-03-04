@@ -51,10 +51,27 @@
           "LOVECCHIO Stefano"
         ],
         "aula": "LAB. INF 1 (B 208)"
+      },
+      "12:35": {
+        "materia": "Tecnologie Informatiche",
+        "materia_completa": "Tecnologie informatiche",
+        "docenti": [
+          "BONACCORSI Rosario",
+          "LOVECCHIO Stefano"
+        ],
+        "aula": "LAB. INF 1 (B 208)"
       }
     },
     "martedi": {
       "08:10": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "FRANCHINI Nicoletta"
+        ],
+        "aula": "AULA B 205"
+      },
+      "09:00": {
         "materia": "Inglese",
         "materia_completa": "Lingua inglese",
         "docenti": [
@@ -85,7 +102,24 @@
         ],
         "aula": "AULA B 004"
       },
+      "12:35": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "ROTTENSTEINER Sylvia"
+        ],
+        "aula": "AULA B 004"
+      },
       "14:30": {
+        "materia": "Fisica",
+        "materia_completa": "Scienze integrate (Fisica)",
+        "docenti": [
+          "CALDERAN Tabitha",
+          "PAPAIS Denise"
+        ],
+        "aula": "LAB. FIS 1 (B 310)"
+      },
+      "15:20": {
         "materia": "Fisica",
         "materia_completa": "Scienze integrate (Fisica)",
         "docenti": [
@@ -120,6 +154,14 @@
         ],
         "aula": "AULA B 109"
       },
+      "09:50": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "MAISANO Nunziatina"
+        ],
+        "aula": "AULA B 109"
+      },
       "10:40": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
@@ -129,6 +171,14 @@
         "aula": "AULA B 007*"
       },
       "11:45": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "OCHNER Daniel"
+        ],
+        "aula": "PAL. \"Talvera Sud\""
+      },
+      "12:35": {
         "materia": "Scienze Motorie",
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
@@ -168,6 +218,13 @@
         ],
         "aula": "AULA B 108"
       },
+      "11:45": {
+        "materia": "Matematica",
+        "docenti": [
+          "SARRI Wanda"
+        ],
+        "aula": "AULA B 108"
+      },
       "12:35": {
         "materia": "Storia",
         "docenti": [
@@ -175,7 +232,23 @@
         ],
         "aula": "AULA B 115"
       },
+      "13:25": {
+        "materia": "Storia",
+        "docenti": [
+          "MAISANO Nunziatina"
+        ],
+        "aula": "AULA B 115"
+      },
       "14:30": {
+        "materia": "Tecn. e Tecniche Grafiche",
+        "materia_completa": "Tecno. e tecniche rappr. graf.",
+        "docenti": [
+          "GAETANO Giuseppe",
+          "SINICHI Amin Mohammad Kazem"
+        ],
+        "aula": "LAB. DIS (B 215)"
+      },
+      "15:20": {
         "materia": "Tecn. e Tecniche Grafiche",
         "materia_completa": "Tecno. e tecniche rappr. graf.",
         "docenti": [
@@ -226,6 +299,15 @@
         "aula": "AULA B 115"
       },
       "11:45": {
+        "materia": "Chimica",
+        "materia_completa": "Scienze integrate (Chimica)",
+        "docenti": [
+          "MONACHELLA Angelo",
+          "PECORARO Diego"
+        ],
+        "aula": "AULA CHI (B 317**) LAB. CHI 3 (B 318)"
+      },
+      "12:35": {
         "materia": "Chimica",
         "materia_completa": "Scienze integrate (Chimica)",
         "docenti": [

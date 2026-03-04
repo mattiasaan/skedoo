@@ -55,6 +55,13 @@
         ],
         "aula": "AULA B 107"
       },
+      "13:25": {
+        "materia": "Matematica",
+        "docenti": [
+          "MANARESI Federica"
+        ],
+        "aula": "AULA B 107"
+      },
       "14:30": {
         "materia": "Italiano",
         "materia_completa": "Lingua e letteratura italiana",
@@ -88,6 +95,14 @@
         ],
         "aula": "AULA B 011"
       },
+      "09:00": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "TUFANO Guido"
+        ],
+        "aula": "AULA B 011"
+      },
       "09:50": {
         "materia": "Italiano",
         "materia_completa": "Lingua e letteratura italiana",
@@ -110,10 +125,26 @@
           "MANARESI Federica"
         ],
         "aula": "AULA B 107"
+      },
+      "12:35": {
+        "materia": "Matematica",
+        "docenti": [
+          "MANARESI Federica"
+        ],
+        "aula": "AULA B 107"
       }
     },
     "mercoledi": {
       "08:10": {
+        "materia": "Fisica",
+        "materia_completa": "Scienze integrate (Fisica)",
+        "docenti": [
+          "CALDERAN Tabitha",
+          "GIAGNORIO Stefano"
+        ],
+        "aula": "LAB. FIS 1 (B 310)"
+      },
+      "09:00": {
         "materia": "Fisica",
         "materia_completa": "Scienze integrate (Fisica)",
         "docenti": [
@@ -146,6 +177,15 @@
           "D'ANTONI Mario"
         ],
         "aula": "LAB. INF 4 (D 201**)"
+      },
+      "12:35": {
+        "materia": "Scienze e Tecn. Applicate",
+        "materia_completa": "Scienze e tecnologie applicate",
+        "docenti": [
+          "BERSANETTI Alessio",
+          "D'ANTONI Mario"
+        ],
+        "aula": "LAB. INF 4 (D 201**)"
       }
     },
     "giovedi": {
@@ -165,6 +205,14 @@
         ],
         "aula": "AULA B 115"
       },
+      "09:50": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "CERADINI Alessandro"
+        ],
+        "aula": "AULA B 115"
+      },
       "10:40": {
         "materia": "Inglese",
         "materia_completa": "Lingua inglese",
@@ -174,6 +222,15 @@
         "aula": "AULA B 204"
       },
       "11:45": {
+        "materia": "Chimica",
+        "materia_completa": "Scienze integrate (Chimica)",
+        "docenti": [
+          "D'AGOSTINO Veronica",
+          "GIORDANO Carmelo"
+        ],
+        "aula": "AULA B 307*,LAB. CHI 2 (A 306)"
+      },
+      "12:35": {
         "materia": "Chimica",
         "materia_completa": "Scienze integrate (Chimica)",
         "docenti": [
@@ -214,6 +271,14 @@
         ],
         "aula": "PAL. \"Talvera Centro\""
       },
+      "09:00": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "GIGLIOLI Valentina"
+        ],
+        "aula": "PAL. \"Talvera Centro\""
+      },
       "09:50": {
         "materia": "Diritto ed Economia",
         "materia_completa": "Diritto ed economia",
@@ -230,6 +295,15 @@
         "aula": "AULA B 110*"
       },
       "11:45": {
+        "materia": "Tecn. e Tecniche Grafiche",
+        "materia_completa": "Tecno. e tecniche rappr. graf.",
+        "docenti": [
+          "MELECHI' Michele",
+          "SINICHI Amin Mohammad Kazem"
+        ],
+        "aula": "LAB. CAD 2 (B 221)"
+      },
+      "12:35": {
         "materia": "Tecn. e Tecniche Grafiche",
         "materia_completa": "Tecno. e tecniche rappr. graf.",
         "docenti": [

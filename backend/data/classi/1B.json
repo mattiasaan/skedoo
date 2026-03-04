@@ -21,7 +21,24 @@
         ],
         "aula": "LAB. INF 2 (B 212)"
       },
+      "09:00": {
+        "materia": "Tecnologie Informatiche",
+        "materia_completa": "Tecnologie informatiche",
+        "docenti": [
+          "BONACCORSI Rosario",
+          "BURATTI Alfredo"
+        ],
+        "aula": "LAB. INF 2 (B 212)"
+      },
       "09:50": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "GIGLIOLI Valentina"
+        ],
+        "aula": "PAL. \"Talvera Sud\""
+      },
+      "10:40": {
         "materia": "Scienze Motorie",
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
@@ -36,10 +53,25 @@
           "PATRUNO Elisabetta"
         ],
         "aula": "AULA B 114"
+      },
+      "12:35": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "PATRUNO Elisabetta"
+        ],
+        "aula": "AULA B 114"
       }
     },
     "martedi": {
       "08:10": {
+        "materia": "Matematica",
+        "docenti": [
+          "MANARESI Federica"
+        ],
+        "aula": "AULA B 104"
+      },
+      "09:00": {
         "materia": "Matematica",
         "docenti": [
           "MANARESI Federica"
@@ -63,6 +95,15 @@
         "aula": "AULA B 201"
       },
       "11:45": {
+        "materia": "Fisica",
+        "materia_completa": "Scienze integrate (Fisica)",
+        "docenti": [
+          "PAPAIS Denise",
+          "ZECCHIN Enrico"
+        ],
+        "aula": "LAB. FIS 1 (B 310)"
+      },
+      "12:35": {
         "materia": "Fisica",
         "materia_completa": "Scienze integrate (Fisica)",
         "docenti": [
@@ -135,10 +176,28 @@
           "SINICHI Amin Mohammad Kazem"
         ],
         "aula": "LAB. DIS (B 215)"
+      },
+      "12:35": {
+        "materia": "Tecn. e Tecniche Grafiche",
+        "materia_completa": "Tecno. e tecniche rappr. graf.",
+        "docenti": [
+          "DE ROSSI Andrea",
+          "SINICHI Amin Mohammad Kazem"
+        ],
+        "aula": "LAB. DIS (B 215)"
       }
     },
     "giovedi": {
       "08:10": {
+        "materia": "Chimica",
+        "materia_completa": "Scienze integrate (Chimica)",
+        "docenti": [
+          "GIORDANO Carmelo",
+          "PECORARO Diego"
+        ],
+        "aula": "LAB. CHI 3 (B 318) LAB. PNRR AMB. E ENERGIA (301)"
+      },
+      "09:00": {
         "materia": "Chimica",
         "materia_completa": "Scienze integrate (Chimica)",
         "docenti": [
@@ -170,7 +229,23 @@
         ],
         "aula": "AULA B 101"
       },
+      "12:35": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "ROMANI Sara"
+        ],
+        "aula": "AULA B 101"
+      },
       "14:30": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "ROTTENSTEINER Sylvia"
+        ],
+        "aula": "AULA B 213"
+      },
+      "15:20": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
@@ -218,7 +293,23 @@
         ],
         "aula": "AULA B 004"
       },
+      "11:45": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "ROTTENSTEINER Sylvia"
+        ],
+        "aula": "AULA B 004"
+      },
       "12:35": {
+        "materia": "Tecnologie Informatiche",
+        "materia_completa": "Tecnologie informatiche",
+        "docenti": [
+          "BURATTI Alfredo"
+        ],
+        "aula": "LAB. INF 2 (B 212)"
+      },
+      "13:25": {
         "materia": "Tecnologie Informatiche",
         "materia_completa": "Tecnologie informatiche",
         "docenti": [

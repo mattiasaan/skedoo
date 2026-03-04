@@ -20,6 +20,14 @@
         ],
         "aula": "AULA B 211"
       },
+      "09:00": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "MAISANO Nunziatina"
+        ],
+        "aula": "AULA B 211"
+      },
       "09:50": {
         "materia": "Complementi di Matematica",
         "materia_completa": "Complementi di matematica",
@@ -36,7 +44,22 @@
         ],
         "aula": "LAB. INF 4 (D 201**)"
       },
+      "11:45": {
+        "materia": "Tec. Prog. Sistemi Inf.",
+        "materia_completa": "Tec. e prog. sist. inf. e tel.",
+        "docenti": [
+          "DI DIO Daniele"
+        ],
+        "aula": "LAB. INF 4 (D 201**)"
+      },
       "12:35": {
+        "materia": "Telecomunicazioni",
+        "docenti": [
+          "MARAGIOGLIO Angela",
+          "PNRR AMB. E ENERGIA (301)"
+        ]
+      },
+      "13:25": {
         "materia": "Telecomunicazioni",
         "docenti": [
           "MARAGIOGLIO Angela",
@@ -46,6 +69,14 @@
     },
     "martedi": {
       "08:10": {
+        "materia": "Informatica",
+        "docenti": [
+          "BERSANETTI Alessio",
+          "RUZZON Kevin"
+        ],
+        "aula": "LAB. INF 5 (D 202**)"
+      },
+      "09:00": {
         "materia": "Informatica",
         "docenti": [
           "BERSANETTI Alessio",
@@ -68,6 +99,14 @@
         ],
         "aula": "AULA B 011"
       },
+      "11:45": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "TUFANO Guido"
+        ],
+        "aula": "AULA B 011"
+      },
       "12:35": {
         "materia": "Religione",
         "docenti": [
@@ -75,7 +114,22 @@
         ],
         "aula": "AULA B 213"
       },
+      "13:25": {
+        "materia": "Religione",
+        "docenti": [
+          "SOMMA Giancarlo"
+        ],
+        "aula": "AULA B 213"
+      },
       "14:30": {
+        "materia": "Telecomunicazioni",
+        "docenti": [
+          "MARAGIOGLIO Angela",
+          "RONDINI Flavio"
+        ],
+        "aula": "LAB. ELEE 1 (A 210*: L.E.AP)"
+      },
+      "15:20": {
         "materia": "Telecomunicazioni",
         "docenti": [
           "MARAGIOGLIO Angela",
@@ -118,6 +172,15 @@
         ],
         "aula": "LAB. INF 3 (B 116)"
       },
+      "10:40": {
+        "materia": "Tec. Prog. Sistemi Inf.",
+        "materia_completa": "Tec. e prog. sist. inf. e tel.",
+        "docenti": [
+          "D'ANTONI Mario",
+          "DI DIO Daniele"
+        ],
+        "aula": "LAB. INF 3 (B 116)"
+      },
       "11:45": {
         "materia": "Inglese",
         "materia_completa": "Lingua inglese",
@@ -133,7 +196,22 @@
         ],
         "aula": "AULA B 107"
       },
+      "13:25": {
+        "materia": "Storia",
+        "docenti": [
+          "MAISANO Nunziatina"
+        ],
+        "aula": "AULA B 107"
+      },
       "14:30": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "SALVATERRA Joshua"
+        ],
+        "aula": "PAL. \"Talvera Centro\""
+      },
+      "15:20": {
         "materia": "Scienze Motorie",
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
@@ -159,7 +237,22 @@
         ],
         "aula": "LAB. INF 2 (B 212)"
       },
+      "09:00": {
+        "materia": "Informatica",
+        "docenti": [
+          "BERSANETTI Alessio",
+          "RUZZON Kevin"
+        ],
+        "aula": "LAB. INF 2 (B 212)"
+      },
       "09:50": {
+        "materia": "Matematica",
+        "docenti": [
+          "ECCHER Andrea"
+        ],
+        "aula": "Aula D 206**"
+      },
+      "10:40": {
         "materia": "Matematica",
         "docenti": [
           "ECCHER Andrea"
@@ -180,10 +273,26 @@
           "GARBIN Simonetta"
         ],
         "aula": "AULA B 110*"
+      },
+      "13:25": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "GARBIN Simonetta"
+        ],
+        "aula": "AULA B 110*"
       }
     },
     "venerdi": {
       "08:10": {
+        "materia": "Informatica",
+        "docenti": [
+          "BERSANETTI Alessio",
+          "RUZZON Kevin"
+        ],
+        "aula": "LAB. INF 4 (D 201**)"
+      },
+      "09:00": {
         "materia": "Informatica",
         "docenti": [
           "BERSANETTI Alessio",
@@ -207,7 +316,22 @@
         ],
         "aula": "LAB. INF 5 (D 202**)"
       },
+      "11:45": {
+        "materia": "Sistemi e Reti",
+        "materia_completa": "Sistemi e reti",
+        "docenti": [
+          "CANTARELLA Alfredo"
+        ],
+        "aula": "LAB. INF 5 (D 202**)"
+      },
       "12:35": {
+        "materia": "Matematica",
+        "docenti": [
+          "ECCHER Andrea"
+        ],
+        "aula": "AULA B 104"
+      },
+      "13:25": {
         "materia": "Matematica",
         "docenti": [
           "ECCHER Andrea"

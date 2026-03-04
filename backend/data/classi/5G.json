@@ -20,6 +20,14 @@
         ],
         "aula": "AULA B 207"
       },
+      "09:00": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "VERZELLA Alba"
+        ],
+        "aula": "AULA B 207"
+      },
       "09:50": {
         "materia": "Elettronica ed elettrotecnica Angela,PILOTTI Alessio",
         "docenti": [
@@ -52,7 +60,27 @@
         ],
         "aula": "LAB. ELEE 3 (B 120/1)"
       },
+      "12:35": {
+        "materia": "Sistemi Automatici",
+        "materia_completa": "Sistemi automatici",
+        "docenti": [
+          "BALESTRUCCI Domenico",
+          "BURATTI Alfredo",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 G"
+        ],
+        "aula": "LAB. ELEE 3 (B 120/1)"
+      },
       "14:30": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "BESTE Anna Maria Waltraud"
+        ],
+        "aula": "AULA B 211"
+      },
+      "15:20": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
@@ -77,7 +105,26 @@
         ],
         "aula": "PAL. \"Talvera Centro\""
       },
+      "09:00": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "SALVATERRA Joshua"
+        ],
+        "aula": "PAL. \"Talvera Centro\""
+      },
       "09:50": {
+        "materia": "Sistemi Automatici",
+        "materia_completa": "Sistemi automatici",
+        "docenti": [
+          "BURATTI Alfredo",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 G"
+        ],
+        "aula": "LAB. ELE 2 (D 004)"
+      },
+      "10:40": {
         "materia": "Sistemi Automatici",
         "materia_completa": "Sistemi automatici",
         "docenti": [
@@ -99,10 +146,33 @@
           "G/N> 5 G"
         ],
         "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
+      },
+      "12:35": {
+        "materia": "Tec. Prog. Sistemi Elettr.",
+        "materia_completa": "Tec. e prog. sist. ele. e elee",
+        "docenti": [
+          "LATINA Giuliano",
+          "PILOTTI Alessio",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 G"
+        ],
+        "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
       }
     },
     "mercoledi": {
       "08:10": {
+        "materia": "Elettronica",
+        "materia_completa": "Elettronica ed elettrotecnica",
+        "docenti": [
+          "MARAGIOGLIO Angela",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 G"
+        ],
+        "aula": "LAB. ELEE 3 (B 120/1)"
+      },
+      "09:00": {
         "materia": "Elettronica",
         "materia_completa": "Elettronica ed elettrotecnica",
         "docenti": [
@@ -134,10 +204,29 @@
           "PRESTIGIACOMO Davide"
         ],
         "aula": "AULA B 210*"
+      },
+      "12:35": {
+        "materia": "Matematica",
+        "docenti": [
+          "PRESTIGIACOMO Davide"
+        ],
+        "aula": "AULA B 210*"
       }
     },
     "giovedi": {
       "08:10": {
+        "materia": "Elettronica",
+        "materia_completa": "Elettronica ed elettrotecnica",
+        "docenti": [
+          "MARAGIOGLIO Angela",
+          "PILOTTI Alessio",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 G"
+        ],
+        "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
+      },
+      "09:00": {
         "materia": "Elettronica",
         "materia_completa": "Elettronica ed elettrotecnica",
         "docenti": [
@@ -188,6 +277,14 @@
         ],
         "aula": "AULA B 011"
       },
+      "13:25": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "BESTE Anna Maria Waltraud"
+        ],
+        "aula": "AULA B 011"
+      },
       "14:30": {
         "materia": "Religione",
         "docenti": [
@@ -223,6 +320,17 @@
         ],
         "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
       },
+      "09:00": {
+        "materia": "Elettronica",
+        "materia_completa": "Elettronica ed elettrotecnica",
+        "docenti": [
+          "MARAGIOGLIO Angela",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 G"
+        ],
+        "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
+      },
       "09:50": {
         "materia": "Sistemi Automatici",
         "materia_completa": "Sistemi automatici",
@@ -235,7 +343,30 @@
         ],
         "aula": "LAB. ELEE 3 (B 120/1)"
       },
+      "10:40": {
+        "materia": "Sistemi Automatici",
+        "materia_completa": "Sistemi automatici",
+        "docenti": [
+          "BALESTRUCCI Domenico",
+          "BURATTI Alfredo",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 G"
+        ],
+        "aula": "LAB. ELEE 3 (B 120/1)"
+      },
       "11:45": {
+        "materia": "Tec. Prog. Sistemi Elettr.",
+        "materia_completa": "Tec. e prog. sist. ele. e elee",
+        "docenti": [
+          "LATINA Giuliano",
+          "<5",
+          "G/N> <5",
+          "G/N> 5 G"
+        ],
+        "aula": "LAB. ELE 3 (D 005)"
+      },
+      "12:35": {
         "materia": "Tec. Prog. Sistemi Elettr.",
         "materia_completa": "Tec. e prog. sist. ele. e elee",
         "docenti": [

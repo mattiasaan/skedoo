@@ -20,6 +20,14 @@
         ],
         "aula": "AULA B 011"
       },
+      "09:00": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "SCHROFFENEGGER Sonja"
+        ],
+        "aula": "AULA B 011"
+      },
       "09:50": {
         "materia": "Elettronica",
         "materia_completa": "Elettronica ed elettrotecnica",
@@ -29,7 +37,25 @@
         ],
         "aula": "LAB. ELE 1 (D 001)"
       },
+      "10:40": {
+        "materia": "Elettronica",
+        "materia_completa": "Elettronica ed elettrotecnica",
+        "docenti": [
+          "CASTALDO Franco",
+          "GRANITTO Luca"
+        ],
+        "aula": "LAB. ELE 1 (D 001)"
+      },
       "11:45": {
+        "materia": "Sistemi Automatici",
+        "materia_completa": "Sistemi automatici",
+        "docenti": [
+          "BASTIANELLO Fausto",
+          "DONATI Lorenzo"
+        ],
+        "aula": "LAB. ELE 2 (D 004)"
+      },
+      "12:35": {
         "materia": "Sistemi Automatici",
         "materia_completa": "Sistemi automatici",
         "docenti": [
@@ -47,7 +73,22 @@
         ],
         "aula": "AULA B 107"
       },
+      "09:00": {
+        "materia": "Matematica",
+        "docenti": [
+          "MICILLO Martia Giustina"
+        ],
+        "aula": "AULA B 107"
+      },
       "09:50": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "OCHNER Daniel"
+        ],
+        "aula": "PAL. \"Torcaso\""
+      },
+      "10:40": {
         "materia": "Scienze Motorie",
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
@@ -64,7 +105,24 @@
         ],
         "aula": "LAB. ELE 1 (D 001)"
       },
+      "12:35": {
+        "materia": "Elettronica",
+        "materia_completa": "Elettronica ed elettrotecnica",
+        "docenti": [
+          "CASTALDO Franco",
+          "GRANITTO Luca"
+        ],
+        "aula": "LAB. ELE 1 (D 001)"
+      },
       "14:30": {
+        "materia": "Tec. Prog. Sistemi Elettr.",
+        "materia_completa": "Tec. e prog. sist. ele. e elee",
+        "docenti": [
+          "BAMPI Alessandro"
+        ],
+        "aula": "LAB. ELE 1 (D 001)"
+      },
+      "15:20": {
         "materia": "Tec. Prog. Sistemi Elettr.",
         "materia_completa": "Tec. e prog. sist. ele. e elee",
         "docenti": [
@@ -121,6 +179,14 @@
           "DONATI Lorenzo"
         ],
         "aula": "LAB. ELE 1 (D 001)"
+      },
+      "12:35": {
+        "materia": "Sistemi Automatici",
+        "materia_completa": "Sistemi automatici",
+        "docenti": [
+          "DONATI Lorenzo"
+        ],
+        "aula": "LAB. ELE 1 (D 001)"
       }
     },
     "giovedi": {
@@ -163,7 +229,24 @@
         ],
         "aula": "LAB. ELE 1 (D 001)"
       },
+      "12:35": {
+        "materia": "Tec. Prog. Sistemi Elettr.",
+        "materia_completa": "Tec. e prog. sist. ele. e elee",
+        "docenti": [
+          "BAMPI Alessandro",
+          "NATALE Luigi"
+        ],
+        "aula": "LAB. ELE 1 (D 001)"
+      },
       "14:30": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "DI MARCO Raffaele Francesco"
+        ],
+        "aula": "AULA B 309"
+      },
+      "15:20": {
         "materia": "Italiano",
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
@@ -214,6 +297,14 @@
         "aula": "Aula D 206**"
       },
       "11:45": {
+        "materia": "Elettronica",
+        "materia_completa": "Elettronica ed elettrotecnica",
+        "docenti": [
+          "CASTALDO Franco"
+        ],
+        "aula": "LAB. ELE 1 (D 001)"
+      },
+      "12:35": {
         "materia": "Elettronica",
         "materia_completa": "Elettronica ed elettrotecnica",
         "docenti": [

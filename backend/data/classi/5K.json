@@ -28,6 +28,14 @@
         ],
         "aula": "LAB. INF 4 (D 201**)"
       },
+      "09:50": {
+        "materia": "Informatica",
+        "docenti": [
+          "BELLAVITA Federica",
+          "DE GIORGI Nicola"
+        ],
+        "aula": "LAB. INF 4 (D 201**)"
+      },
       "10:40": {
         "materia": "Sistemi e Reti",
         "materia_completa": "Sistemi e reti",
@@ -50,7 +58,22 @@
         ],
         "aula": "AULA B 110*"
       },
+      "13:25": {
+        "materia": "Storia",
+        "docenti": [
+          "BENETTI Mattia"
+        ],
+        "aula": "AULA B 110*"
+      },
       "14:30": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "SALVATERRA Joshua"
+        ],
+        "aula": "PAL. \"Talvera Centro\""
+      },
+      "15:20": {
         "materia": "Scienze Motorie",
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
@@ -75,7 +98,21 @@
         ],
         "aula": "Aula D 206**"
       },
+      "09:00": {
+        "materia": "Matematica",
+        "docenti": [
+          "MILANESE Sabina"
+        ],
+        "aula": "Aula D 206**"
+      },
       "09:50": {
+        "materia": "Informatica",
+        "docenti": [
+          "DE GIORGI Nicola"
+        ],
+        "aula": "LAB. INF 2 (B 212)"
+      },
+      "10:40": {
         "materia": "Informatica",
         "docenti": [
           "DE GIORGI Nicola"
@@ -90,7 +127,23 @@
         ],
         "aula": "AULA B 101"
       },
+      "12:35": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "PETRONE Antonella"
+        ],
+        "aula": "AULA B 101"
+      },
       "14:30": {
+        "materia": "Sistemi e Reti",
+        "materia_completa": "Sistemi e reti",
+        "docenti": [
+          "CANTARELLA Alfredo"
+        ],
+        "aula": "LAB. INF 5 (D 202**)"
+      },
+      "15:20": {
         "materia": "Sistemi e Reti",
         "materia_completa": "Sistemi e reti",
         "docenti": [
@@ -117,6 +170,15 @@
         ],
         "aula": "LAB. INF 2 (B 212)"
       },
+      "09:00": {
+        "materia": "Tec. Prog. Sistemi Inf.",
+        "materia_completa": "Tec. e prog. sist. inf. e tel.",
+        "docenti": [
+          "D'ANTONI Mario",
+          "MOLINAROLI Sofia"
+        ],
+        "aula": "LAB. INF 2 (B 212)"
+      },
       "09:50": {
         "materia": "Informatica",
         "docenti": [
@@ -125,7 +187,23 @@
         ],
         "aula": "LAB. INF 1 (B 208)"
       },
+      "10:40": {
+        "materia": "Informatica",
+        "docenti": [
+          "BELLAVITA Federica",
+          "DE GIORGI Nicola"
+        ],
+        "aula": "LAB. INF 1 (B 208)"
+      },
       "11:45": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "BENETTI Mattia"
+        ],
+        "aula": "AULA B 110*"
+      },
+      "12:35": {
         "materia": "Italiano",
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
@@ -151,6 +229,14 @@
         ],
         "aula": "LAB. INF 5 (D 202**)"
       },
+      "09:50": {
+        "materia": "Gestione Progetto",
+        "materia_completa": "Gest. progetto, org. di impresa",
+        "docenti": [
+          "DELIZIA Marco"
+        ],
+        "aula": "LAB. INF 5 (D 202**)"
+      },
       "10:40": {
         "materia": "Inglese",
         "materia_completa": "Lingua inglese",
@@ -167,10 +253,27 @@
           "MOLINAROLI Sofia"
         ],
         "aula": "LAB. INF 4 (D 201**)"
+      },
+      "12:35": {
+        "materia": "Tec. Prog. Sistemi Inf.",
+        "materia_completa": "Tec. e prog. sist. inf. e tel.",
+        "docenti": [
+          "D'ANTONI Mario",
+          "MOLINAROLI Sofia"
+        ],
+        "aula": "LAB. INF 4 (D 201**)"
       }
     },
     "venerdi": {
       "08:10": {
+        "materia": "Informatica",
+        "docenti": [
+          "BELLAVITA Federica",
+          "DE GIORGI Nicola"
+        ],
+        "aula": "LAB. INF 1 (B 208)"
+      },
+      "09:00": {
         "materia": "Informatica",
         "docenti": [
           "BELLAVITA Federica",
@@ -202,6 +305,13 @@
         "aula": "AULA B 111"
       },
       "12:35": {
+        "materia": "Storia",
+        "docenti": [
+          "BENETTI Mattia"
+        ],
+        "aula": "AULA B 111"
+      },
+      "13:25": {
         "materia": "Storia",
         "docenti": [
           "BENETTI Mattia"

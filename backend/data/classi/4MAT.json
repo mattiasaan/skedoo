@@ -20,6 +20,14 @@
         ],
         "aula": "AULA B 109"
       },
+      "09:00": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "ZANONI Barbara"
+        ],
+        "aula": "AULA B 109"
+      },
       "09:50": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
@@ -35,6 +43,13 @@
         ],
         "aula": "LAB. MEC. 5 (B119: AUT. & R.)"
       },
+      "11:45": {
+        "materia": "meccaniche ed appl.",
+        "docenti": [
+          "TASSIELLI Davide Giuseppe"
+        ],
+        "aula": "LAB. MEC. 5 (B119: AUT. & R.)"
+      },
       "12:35": {
         "materia": "Matematica",
         "docenti": [
@@ -42,7 +57,23 @@
         ],
         "aula": "Aula D 205**"
       },
+      "13:25": {
+        "materia": "Matematica",
+        "docenti": [
+          "MICILLO Martia Giustina"
+        ],
+        "aula": "Aula D 205**"
+      },
       "14:30": {
+        "materia": "Tecn. di Installazione",
+        "materia_completa": "Tecnol. tecni. di inst. e man.",
+        "docenti": [
+          "ERRANTE Antonino",
+          "LOMBINO Alessandro"
+        ],
+        "aula": "LAB. ELE 1 (D 001)"
+      },
+      "15:20": {
         "materia": "Tecn. di Installazione",
         "materia_completa": "Tecnol. tecni. di inst. e man.",
         "docenti": [
@@ -62,6 +93,14 @@
     },
     "martedi": {
       "08:10": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "PEROTTI Antonio"
+        ],
+        "aula": "AULA B 112*"
+      },
+      "09:00": {
         "materia": "Inglese",
         "materia_completa": "Lingua inglese",
         "docenti": [
@@ -89,10 +128,25 @@
           "MICILLO Martia Giustina"
         ],
         "aula": "AULA B 111"
+      },
+      "12:35": {
+        "materia": "Matematica",
+        "docenti": [
+          "MICILLO Martia Giustina"
+        ],
+        "aula": "AULA B 111"
       }
     },
     "mercoledi": {
       "09:00": {
+        "materia": "Lab. Tecn. ed Esercitazioni",
+        "materia_completa": "Lab. tecn. e esercitazioni",
+        "docenti": [
+          "ERRANTE Antonino"
+        ],
+        "aula": "LAB. ELE 4 (C 003)"
+      },
+      "09:50": {
         "materia": "Lab. Tecn. ed Esercitazioni",
         "materia_completa": "Lab. tecn. e esercitazioni",
         "docenti": [
@@ -124,7 +178,23 @@
         ],
         "aula": "AULA B 115"
       },
+      "13:25": {
+        "materia": "Storia",
+        "docenti": [
+          "ZANONI Barbara"
+        ],
+        "aula": "AULA B 115"
+      },
       "14:30": {
+        "materia": "Tecn. Elettr. e Elettrotecnica",
+        "materia_completa": "Tecn. elettri-elettro. e appl.",
+        "docenti": [
+          "BURATTI Alfredo",
+          "GENOVESE Fulvio"
+        ],
+        "aula": "LAB. ELEE 4 (B 120/2)"
+      },
+      "15:20": {
         "materia": "Tecn. Elettr. e Elettrotecnica",
         "materia_completa": "Tecn. elettri-elettro. e appl.",
         "docenti": [
@@ -176,7 +246,23 @@
         ],
         "aula": "AULA B 016"
       },
+      "11:45": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "HOFER Verena"
+        ],
+        "aula": "AULA B 016"
+      },
       "12:35": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "PEROTTI Antonio"
+        ],
+        "aula": "AULA B 106*"
+      },
+      "13:25": {
         "materia": "Inglese",
         "materia_completa": "Lingua inglese",
         "docenti": [
@@ -187,6 +273,15 @@
     },
     "venerdi": {
       "08:10": {
+        "materia": "Tecn. Meccanica",
+        "materia_completa": "Tecnologie meccaniche ed appl.",
+        "docenti": [
+          "GAETANO Giuseppe",
+          "TASSIELLI Davide Giuseppe"
+        ],
+        "aula": "LAB. MEC 1 (D 010: M.U.) LAB. MEC 2 (D 008: M.M.E.)"
+      },
+      "09:00": {
         "materia": "Tecn. Meccanica",
         "materia_completa": "Tecnologie meccaniche ed appl.",
         "docenti": [
@@ -221,6 +316,14 @@
         "aula": "AULA B 207"
       },
       "12:35": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "HOFER Verena"
+        ],
+        "aula": "AULA B 013*"
+      },
+      "13:25": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
         "docenti": [

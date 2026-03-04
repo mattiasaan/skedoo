@@ -42,7 +42,21 @@
         ],
         "aula": "AULA B 104"
       },
+      "11:45": {
+        "materia": "Matematica",
+        "docenti": [
+          "STIVELLA Marco"
+        ],
+        "aula": "AULA B 104"
+      },
       "12:35": {
+        "materia": "Religione",
+        "docenti": [
+          "SCIBELLI Alice"
+        ],
+        "aula": "AULA B 201"
+      },
+      "13:25": {
         "materia": "Religione",
         "docenti": [
           "SCIBELLI Alice"
@@ -84,6 +98,15 @@
         ],
         "aula": "LAB. FIS 1 (B 310)"
       },
+      "09:00": {
+        "materia": "Fisica",
+        "materia_completa": "Scienze integrate (Fisica)",
+        "docenti": [
+          "GIAGNORIO Stefano",
+          "ZECCHIN Enrico"
+        ],
+        "aula": "LAB. FIS 1 (B 310)"
+      },
       "09:50": {
         "materia": "Lab. Odontotecnico",
         "materia_completa": "Eser. di lab. odontotecnico",
@@ -92,7 +115,24 @@
         ],
         "aula": "LAB. ODO 1 (A 307)"
       },
+      "10:40": {
+        "materia": "Lab. Odontotecnico",
+        "materia_completa": "Eser. di lab. odontotecnico",
+        "docenti": [
+          "SAIANI Christian"
+        ],
+        "aula": "LAB. ODO 1 (A 307)"
+      },
       "11:45": {
+        "materia": "Chimica",
+        "materia_completa": "Scienze integrate (Chimica)",
+        "docenti": [
+          "GIORDANO Carmelo",
+          "PECORARO Diego"
+        ],
+        "aula": "AULA B 309,LAB. CHI 2 (A 306)"
+      },
+      "12:35": {
         "materia": "Chimica",
         "materia_completa": "Scienze integrate (Chimica)",
         "docenti": [
@@ -149,7 +189,23 @@
         ],
         "aula": "AULA B 011"
       },
+      "13:25": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "MENCHISE Antonella"
+        ],
+        "aula": "AULA B 011"
+      },
       "14:30": {
+        "materia": "Rappresentazione Odontotecnica",
+        "materia_completa": "Rappr. e modell. odontotecnica",
+        "docenti": [
+          "DOCILE Valeria Anna"
+        ],
+        "aula": "LAB. DIS (B 215)"
+      },
+      "15:20": {
         "materia": "Rappresentazione Odontotecnica",
         "materia_completa": "Rappr. e modell. odontotecnica",
         "docenti": [
@@ -168,6 +224,14 @@
     },
     "giovedi": {
       "08:10": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "ALIAJ Mimoza"
+        ],
+        "aula": "AULA B 205"
+      },
+      "09:00": {
         "materia": "Inglese",
         "materia_completa": "Lingua inglese",
         "docenti": [
@@ -198,10 +262,26 @@
           "SAIANI Christian"
         ],
         "aula": "LAB. ODO 1 (A 307)"
+      },
+      "12:35": {
+        "materia": "Lab. Odontotecnico",
+        "materia_completa": "Eser. di lab. odontotecnico",
+        "docenti": [
+          "SAIANI Christian"
+        ],
+        "aula": "LAB. ODO 1 (A 307)"
       }
     },
     "venerdi": {
       "08:10": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "MENCHISE Antonella"
+        ],
+        "aula": "AULA B 013*"
+      },
+      "09:00": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
@@ -225,6 +305,14 @@
         "aula": "AULA B 201"
       },
       "11:45": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "CANEVE Elisa"
+        ],
+        "aula": "AULA B 112*"
+      },
+      "12:35": {
         "materia": "Italiano",
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [

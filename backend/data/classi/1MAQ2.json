@@ -19,6 +19,13 @@
         ],
         "aula": "AULA B 108"
       },
+      "09:00": {
+        "materia": "Matematica",
+        "docenti": [
+          "MANARESI Federica"
+        ],
+        "aula": "AULA B 108"
+      },
       "09:50": {
         "materia": "Italiano",
         "materia_completa": "Lingua e letteratura italiana",
@@ -35,6 +42,15 @@
         "aula": "AULA B 110*"
       },
       "11:45": {
+        "materia": "Chimica",
+        "materia_completa": "Scienze integrate (Chimica)",
+        "docenti": [
+          "D'AGOSTINO Veronica",
+          "MASCIOVECCHIO Marina"
+        ],
+        "aula": "AULA B 307*,LAB. CHI 2 (A 306)"
+      },
+      "12:35": {
         "materia": "Chimica",
         "materia_completa": "Scienze integrate (Chimica)",
         "docenti": [
@@ -85,6 +101,14 @@
         ],
         "aula": "PAL. \"Torcaso\""
       },
+      "12:35": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "OCHNER Daniel"
+        ],
+        "aula": "PAL. \"Torcaso\""
+      },
       "13:25": {
         "docenti": [
           "POTENZIAMENTO TEDESCO",
@@ -93,6 +117,14 @@
         ]
       },
       "14:30": {
+        "materia": "Lab. Tecn. ed Esercitazioni",
+        "materia_completa": "Lab. tecn. e esercitazioni",
+        "docenti": [
+          "PILOTTI Alessio"
+        ],
+        "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
+      },
+      "15:20": {
         "materia": "Lab. Tecn. ed Esercitazioni",
         "materia_completa": "Lab. tecn. e esercitazioni",
         "docenti": [
@@ -118,6 +150,15 @@
         "aula": "LAB. MEC. 5 (B119: AUT. & R.)"
       },
       "09:00": {
+        "materia": "Tecn. e Tecniche Grafiche",
+        "materia_completa": "Tecno. e tecniche rappr. graf.",
+        "docenti": [
+          "CANTISANI Silviano",
+          "VALENTINI Paolo"
+        ],
+        "aula": "LAB. MEC. 5 (B119: AUT. & R.)"
+      },
+      "09:50": {
         "materia": "Tecn. e Tecniche Grafiche",
         "materia_completa": "Tecno. e tecniche rappr. graf.",
         "docenti": [
@@ -167,6 +208,14 @@
         ],
         "aula": "LAB. MEC. 5 (B119: AUT. & R.)"
       },
+      "09:00": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "BENETTI Mattia"
+        ],
+        "aula": "LAB. MEC. 5 (B119: AUT. & R.)"
+      },
       "09:50": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
@@ -192,6 +241,15 @@
         ],
         "aula": "LAB. FIS 2 (B 314)"
       },
+      "12:35": {
+        "materia": "Fisica",
+        "materia_completa": "Scienze integrate (Fisica)",
+        "docenti": [
+          "VERRA Dennis",
+          "ZUECH Claudio"
+        ],
+        "aula": "LAB. FIS 2 (B 314)"
+      },
       "13:25": {
         "docenti": [
           "FILIERA ROBOTICA EDUCATIVA",
@@ -200,6 +258,15 @@
         ]
       },
       "14:30": {
+        "materia": "Tecnologie Informatiche",
+        "materia_completa": "Tecnologie informatiche",
+        "docenti": [
+          "CANNONE Maria",
+          "RUZZON Kevin"
+        ],
+        "aula": "LAB. INF 4 (D 201**)"
+      },
+      "15:20": {
         "materia": "Tecnologie Informatiche",
         "materia_completa": "Tecnologie informatiche",
         "docenti": [
@@ -240,7 +307,23 @@
         ],
         "aula": "AULA B 011"
       },
+      "10:40": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "FISCHNALLER Barbara"
+        ],
+        "aula": "AULA B 011"
+      },
       "11:45": {
+        "materia": "Lab. Tecn. ed Esercitazioni",
+        "materia_completa": "Lab. tecn. e esercitazioni",
+        "docenti": [
+          "PILOTTI Alessio"
+        ],
+        "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
+      },
+      "12:35": {
         "materia": "Lab. Tecn. ed Esercitazioni",
         "materia_completa": "Lab. tecn. e esercitazioni",
         "docenti": [

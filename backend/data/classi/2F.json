@@ -20,6 +20,14 @@
         ],
         "aula": "AULA B 016"
       },
+      "09:00": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "HOFER Verena"
+        ],
+        "aula": "AULA B 016"
+      },
       "09:50": {
         "materia": "Scienze e Biologia",
         "materia_completa": "Scienze integrate (Sci. e Bio)",
@@ -35,7 +43,22 @@
         ],
         "aula": "AULA B 105"
       },
+      "11:45": {
+        "materia": "Matematica",
+        "docenti": [
+          "PREVIDI Paola"
+        ],
+        "aula": "AULA B 105"
+      },
       "12:35": {
+        "materia": "Chimica",
+        "materia_completa": "Scienze integrate (Chimica)",
+        "docenti": [
+          "BIDDAU Antonella"
+        ],
+        "aula": "AULA B 311*"
+      },
+      "13:25": {
         "materia": "Chimica",
         "materia_completa": "Scienze integrate (Chimica)",
         "docenti": [
@@ -76,6 +99,14 @@
         ],
         "aula": "AULA B 211"
       },
+      "09:00": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "MARI Paola"
+        ],
+        "aula": "AULA B 211"
+      },
       "09:50": {
         "materia": "Fisica",
         "materia_completa": "Scienze integrate (Fisica)",
@@ -85,7 +116,25 @@
         ],
         "aula": "LAB. FIS 2 (B 314)"
       },
+      "10:40": {
+        "materia": "Fisica",
+        "materia_completa": "Scienze integrate (Fisica)",
+        "docenti": [
+          "ZECCHIN Enrico",
+          "ZUECH Claudio"
+        ],
+        "aula": "LAB. FIS 2 (B 314)"
+      },
       "11:45": {
+        "materia": "Chimica",
+        "materia_completa": "Scienze integrate (Chimica)",
+        "docenti": [
+          "BIDDAU Antonella",
+          "MONACHELLA Angelo"
+        ],
+        "aula": "AULA B 311*,LAB. CHI 3 (B 318)"
+      },
+      "12:35": {
         "materia": "Chimica",
         "materia_completa": "Scienze integrate (Chimica)",
         "docenti": [
@@ -135,10 +184,27 @@
           "BASTIANELLO Fausto"
         ],
         "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
+      },
+      "12:35": {
+        "materia": "Scienze e Tecn. Applicate",
+        "materia_completa": "Scienze e tecnologie applicate",
+        "docenti": [
+          "ARABIA Eliana",
+          "BASTIANELLO Fausto"
+        ],
+        "aula": "LAB. ELEE 2 (A 212: LA.SA.)"
       }
     },
     "giovedi": {
       "08:10": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "SEBASTIANI Alfredo"
+        ],
+        "aula": "PAL. \"Talvera Centro\""
+      },
+      "09:00": {
         "materia": "Scienze Motorie",
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
@@ -163,6 +229,15 @@
         "aula": "LAB. FIS 1 (B 310)"
       },
       "11:45": {
+        "materia": "Tecn. e Tecniche Grafiche",
+        "materia_completa": "Tecno. e tecniche rappr. graf.",
+        "docenti": [
+          "GAETANO Giuseppe",
+          "PERRICONE Cristina"
+        ],
+        "aula": "LAB. CAD 2 (B 221)"
+      },
+      "12:35": {
         "materia": "Tecn. e Tecniche Grafiche",
         "materia_completa": "Tecno. e tecniche rappr. graf.",
         "docenti": [
@@ -227,6 +302,14 @@
         "aula": "AULA B 016"
       },
       "11:45": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "PEROTTI Antonio"
+        ],
+        "aula": "AULA B 204"
+      },
+      "12:35": {
         "materia": "Inglese",
         "materia_completa": "Lingua inglese",
         "docenti": [

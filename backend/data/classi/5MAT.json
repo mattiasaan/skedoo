@@ -20,7 +20,24 @@
         ],
         "aula": "AULA B 111"
       },
+      "09:00": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "VENDRAME Emilio"
+        ],
+        "aula": "AULA B 111"
+      },
       "09:50": {
+        "materia": "Tecn. di Installazione",
+        "materia_completa": "Tecnol. tecni. di inst. e man.",
+        "docenti": [
+          "LOVECCHIO Stefano",
+          "RONDINI Flavio"
+        ],
+        "aula": "LAB. ELE 4 (C 003)"
+      },
+      "10:40": {
         "materia": "Tecn. di Installazione",
         "materia_completa": "Tecnol. tecni. di inst. e man.",
         "docenti": [
@@ -36,10 +53,26 @@
           "ROMANI Sara"
         ],
         "aula": "AULA B 205"
+      },
+      "12:35": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "ROMANI Sara"
+        ],
+        "aula": "AULA B 205"
       }
     },
     "martedi": {
       "08:10": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "GIGLIOLI Valentina"
+        ],
+        "aula": "PAL. \"Torcaso\""
+      },
+      "09:00": {
         "materia": "Scienze Motorie",
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
@@ -66,11 +99,35 @@
         ],
         "aula": "AULA B 007*"
       },
+      "11:45": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "VENDRAME Emilio",
+          "Tecnol og i e m e c c a n ic h e e d appl. Tecnologie",
+          "CALDERAN meccaniche Tabitha ed appl.",
+          "C A L D E R A N T ab i th a",
+          "GAETANO Giuseppe"
+        ],
+        "aula": "AULA B 007*"
+      },
       "12:35": {
         "materia": "Q1 Q2",
         "aula": "LAB. MEC 1 (D 010: M.U.) LAB. MEC 3 (D 006: CONG.)"
       },
+      "13:25": {
+        "materia": "Q1 Q2",
+        "aula": "LAB. MEC 1 (D 010: M.U.) LAB. MEC 3 (D 006: CONG.)"
+      },
       "14:30": {
+        "materia": "Tecn. di Installazione",
+        "materia_completa": "Tecnol. tecni. di inst. e man.",
+        "docenti": [
+          "LOVECCHIO Stefano"
+        ],
+        "aula": "LAB. ELE 2 (D 004)"
+      },
+      "15:20": {
         "materia": "Tecn. di Installazione",
         "materia_completa": "Tecnol. tecni. di inst. e man.",
         "docenti": [
@@ -97,6 +154,15 @@
         ],
         "aula": "LAB. ELE 3 (D 005)"
       },
+      "09:00": {
+        "materia": "Tecn. di Installazione",
+        "materia_completa": "Tecnol. tecni. di inst. e man.",
+        "docenti": [
+          "LOVECCHIO Stefano",
+          "RONDINI Flavio"
+        ],
+        "aula": "LAB. ELE 3 (D 005)"
+      },
       "09:50": {
         "materia": "Storia",
         "docenti": [
@@ -113,6 +179,14 @@
         "aula": "AULA B 210*"
       },
       "11:45": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "HOFER Verena"
+        ],
+        "aula": "AULA B 106*"
+      },
+      "12:35": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
@@ -170,7 +244,23 @@
         ],
         "aula": "AULA B 016"
       },
+      "13:25": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "HOFER Verena"
+        ],
+        "aula": "AULA B 016"
+      },
       "15:20": {
+        "materia": "Lab. Tecn. ed Esercitazioni",
+        "materia_completa": "Lab. tecn. e esercitazioni",
+        "docenti": [
+          "ERRANTE Antonino"
+        ],
+        "aula": "LAB. ELE 4 (C 003)"
+      },
+      "16:10": {
         "materia": "Lab. Tecn. ed Esercitazioni",
         "materia_completa": "Lab. tecn. e esercitazioni",
         "docenti": [
@@ -189,7 +279,24 @@
         ],
         "aula": "LAB. ELE 4 (C 003)"
       },
+      "09:00": {
+        "materia": "Tecn. Elettr. e Elettrotecnica",
+        "materia_completa": "Tecn. elettri-elettro. e appl.",
+        "docenti": [
+          "BURATTI Alfredo",
+          "ERRANTE Antonino"
+        ],
+        "aula": "LAB. ELE 4 (C 003)"
+      },
       "09:50": {
+        "materia": "Tecn. di Installazione",
+        "materia_completa": "Tecnol. tecni. di inst. e man.",
+        "docenti": [
+          "LOVECCHIO Stefano"
+        ],
+        "aula": "LAB. ELE 4 (C 003)"
+      },
+      "10:40": {
         "materia": "Tecn. di Installazione",
         "materia_completa": "Tecnol. tecni. di inst. e man.",
         "docenti": [
@@ -205,6 +312,13 @@
         "aula": "AULA B 104"
       },
       "12:35": {
+        "materia": "Storia",
+        "docenti": [
+          "VENDRAME Emilio"
+        ],
+        "aula": "AULA B 007*"
+      },
+      "13:25": {
         "materia": "Storia",
         "docenti": [
           "VENDRAME Emilio"

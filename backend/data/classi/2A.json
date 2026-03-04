@@ -20,7 +20,23 @@
         ],
         "aula": "AULA B 204"
       },
+      "09:00": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "FRANCHINI Nicoletta"
+        ],
+        "aula": "AULA B 204"
+      },
       "09:50": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "OCHNER Daniel"
+        ],
+        "aula": "PAL. \"Torcaso\""
+      },
+      "10:40": {
         "materia": "Scienze Motorie",
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
@@ -42,7 +58,22 @@
         ],
         "aula": "AULA B 105"
       },
+      "13:25": {
+        "materia": "Matematica",
+        "docenti": [
+          "SARRI Wanda"
+        ],
+        "aula": "AULA B 105"
+      },
       "14:30": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "VITIELLO Anna"
+        ],
+        "aula": "AULA B 205"
+      },
+      "15:20": {
         "materia": "Italiano",
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
@@ -85,6 +116,15 @@
         ],
         "aula": "LAB. CAD 2 (B 221)"
       },
+      "10:40": {
+        "materia": "Tecn. e Tecniche Grafiche",
+        "materia_completa": "Tecno. e tecniche rappr. graf.",
+        "docenti": [
+          "GAETANO Giuseppe",
+          "PERRICONE Cristina"
+        ],
+        "aula": "LAB. CAD 2 (B 221)"
+      },
       "11:45": {
         "materia": "Italiano",
         "materia_completa": "Lingua e letteratura italiana",
@@ -93,7 +133,23 @@
         ],
         "aula": "AULA B 113"
       },
+      "12:35": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "VITIELLO Anna"
+        ],
+        "aula": "AULA B 113"
+      },
       "14:30": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "BESTE Anna Maria Waltraud"
+        ],
+        "aula": "AULA B 211"
+      },
+      "15:20": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
@@ -150,6 +206,15 @@
           "VALENTINI Paolo"
         ],
         "aula": "AULA MEC (D 009) LAB. MEC 1 (D 010: M.U.)"
+      },
+      "12:35": {
+        "materia": "Scienze e Tecn. Applicate",
+        "materia_completa": "Scienze e tecnologie applicate",
+        "docenti": [
+          "CANTISANI Silviano",
+          "VALENTINI Paolo"
+        ],
+        "aula": "AULA MEC (D 009) LAB. MEC 1 (D 010: M.U.)"
       }
     },
     "giovedi": {
@@ -162,6 +227,13 @@
         "aula": "AULA BIO (302)"
       },
       "09:00": {
+        "materia": "Matematica",
+        "docenti": [
+          "SARRI Wanda"
+        ],
+        "aula": "AULA B 106*"
+      },
+      "09:50": {
         "materia": "Matematica",
         "docenti": [
           "SARRI Wanda"
@@ -190,10 +262,27 @@
           "SCARSO Carla Salvatrice"
         ],
         "aula": "AULA B 201"
+      },
+      "13:25": {
+        "materia": "Diritto ed Economia",
+        "materia_completa": "Diritto ed economia",
+        "docenti": [
+          "SCARSO Carla Salvatrice"
+        ],
+        "aula": "AULA B 201"
       }
     },
     "venerdi": {
       "08:10": {
+        "materia": "Fisica",
+        "materia_completa": "Scienze integrate (Fisica)",
+        "docenti": [
+          "CALDERAN Tabitha",
+          "GIAGNORIO Stefano"
+        ],
+        "aula": "LAB. FIS 2 (B 314)"
+      },
+      "09:00": {
         "materia": "Fisica",
         "materia_completa": "Scienze integrate (Fisica)",
         "docenti": [
@@ -211,6 +300,15 @@
         ],
         "aula": "AULA CHI (B 317**) LAB. CHI 3 (B 318)"
       },
+      "10:40": {
+        "materia": "Chimica",
+        "materia_completa": "Scienze integrate (Chimica)",
+        "docenti": [
+          "MONACHELLA Angelo",
+          "PECORARO Diego"
+        ],
+        "aula": "AULA CHI (B 317**) LAB. CHI 3 (B 318)"
+      },
       "11:45": {
         "materia": "Matematica",
         "docenti": [
@@ -219,6 +317,14 @@
         "aula": "AULA B 108"
       },
       "12:35": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "BESTE Anna Maria Waltraud"
+        ],
+        "aula": "AULA B 004"
+      },
+      "13:25": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
         "docenti": [

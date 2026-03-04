@@ -27,6 +27,14 @@
         ],
         "aula": "AULA B 307*"
       },
+      "09:50": {
+        "materia": "Scienze dei Materiali Dentali",
+        "materia_completa": "Scienze dei mat. dent. e lab.",
+        "docenti": [
+          "BIDDAU Antonella"
+        ],
+        "aula": "AULA B 307*"
+      },
       "10:40": {
         "materia": "Inglese",
         "materia_completa": "Lingua inglese",
@@ -43,7 +51,23 @@
         ],
         "aula": "LAB. DIS (B 215)"
       },
+      "12:35": {
+        "materia": "e modell. odontotecnica",
+        "docenti": [
+          "DOCILE Valeria Anna",
+          "SAIANI Christian"
+        ],
+        "aula": "LAB. DIS (B 215)"
+      },
       "14:30": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "GIGLIOLI Valentina"
+        ],
+        "aula": "PAL. \"Torcaso\""
+      },
+      "15:20": {
         "materia": "Scienze Motorie",
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
@@ -62,6 +86,13 @@
     },
     "martedi": {
       "08:10": {
+        "materia": "Matematica",
+        "docenti": [
+          "TERZONI Giulia"
+        ],
+        "aula": "LAB. INF 1 (B 208)"
+      },
+      "09:00": {
         "materia": "Matematica",
         "docenti": [
           "TERZONI Giulia"
@@ -98,7 +129,23 @@
         ],
         "aula": "AULA B 110*"
       },
+      "13:25": {
+        "materia": "Anatomia e Fisiologia",
+        "materia_completa": "Anatomia, fisiologia, igiene",
+        "docenti": [
+          "RIGHES Cecilia"
+        ],
+        "aula": "AULA B 110*"
+      },
       "15:20": {
+        "materia": "Lab. Odontotecnico",
+        "materia_completa": "Eser. di lab. odontotecnico",
+        "docenti": [
+          "QUATTROCCHI Francesco"
+        ],
+        "aula": "LAB. ODO 2 (A 308)"
+      },
+      "16:10": {
         "materia": "Lab. Odontotecnico",
         "materia_completa": "Eser. di lab. odontotecnico",
         "docenti": [
@@ -116,7 +163,23 @@
         ],
         "aula": "AULA B 112*"
       },
+      "09:00": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "BESTE Anna Maria Waltraud"
+        ],
+        "aula": "AULA B 112*"
+      },
       "09:50": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "DELIU Ornela"
+        ],
+        "aula": "AULA B 204"
+      },
+      "10:40": {
         "materia": "Inglese",
         "materia_completa": "Lingua inglese",
         "docenti": [
@@ -131,10 +194,27 @@
           "QUATTROCCHI Francesco"
         ],
         "aula": "LAB. ODO 1 (A 307)"
+      },
+      "12:35": {
+        "materia": "Lab. Odontotecnico",
+        "materia_completa": "Eser. di lab. odontotecnico",
+        "docenti": [
+          "QUATTROCCHI Francesco"
+        ],
+        "aula": "LAB. ODO 1 (A 307)"
       }
     },
     "giovedi": {
       "08:10": {
+        "materia": "Rappresentazione Odontotecnica",
+        "materia_completa": "Rappr. e modell. odontotecnica",
+        "docenti": [
+          "DOCILE Valeria Anna",
+          "SAIANI Christian"
+        ],
+        "aula": "LAB. DIS (B 215)"
+      },
+      "09:00": {
         "materia": "Rappresentazione Odontotecnica",
         "materia_completa": "Rappr. e modell. odontotecnica",
         "docenti": [
@@ -165,6 +245,14 @@
           "VENDRAME Emilio"
         ],
         "aula": "AULA B 211"
+      },
+      "12:35": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "VENDRAME Emilio"
+        ],
+        "aula": "AULA B 211"
       }
     },
     "venerdi": {
@@ -185,7 +273,24 @@
         ],
         "aula": "LAB. ODO 1 (A 307)"
       },
+      "09:50": {
+        "materia": "Scienze dei Materiali Dentali",
+        "materia_completa": "Scienze dei mat. dent. e lab.",
+        "docenti": [
+          "BIDDAU Antonella",
+          "SAIANI Christian"
+        ],
+        "aula": "LAB. ODO 1 (A 307)"
+      },
       "11:45": {
+        "materia": "Lab. Odontotecnico",
+        "materia_completa": "Eser. di lab. odontotecnico",
+        "docenti": [
+          "QUATTROCCHI Francesco"
+        ],
+        "aula": "LAB. ODO 2 (A 308)"
+      },
+      "12:35": {
         "materia": "Lab. Odontotecnico",
         "materia_completa": "Eser. di lab. odontotecnico",
         "docenti": [

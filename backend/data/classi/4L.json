@@ -19,6 +19,13 @@
         ],
         "aula": "AULA B 107"
       },
+      "09:00": {
+        "materia": "Matematica",
+        "docenti": [
+          "GAGLIOSTRO Antonio"
+        ],
+        "aula": "AULA B 107"
+      },
       "09:50": {
         "materia": "Informatica",
         "docenti": [
@@ -41,6 +48,13 @@
         "aula": "AULA B 209"
       },
       "12:35": {
+        "materia": "Religione",
+        "docenti": [
+          "BOVO Paolo"
+        ],
+        "aula": "AULA 201"
+      },
+      "13:25": {
         "materia": "Religione",
         "docenti": [
           "BOVO Paolo"
@@ -81,6 +95,14 @@
         ],
         "aula": "LAB. CAD 1 (B 219)"
       },
+      "09:00": {
+        "materia": "Disegno e Arte",
+        "materia_completa": "Disegno e storia dell'arte",
+        "docenti": [
+          "DELLA RAGIONE Silvia"
+        ],
+        "aula": "LAB. CAD 1 (B 219)"
+      },
       "09:50": {
         "materia": "Storia",
         "docenti": [
@@ -110,10 +132,26 @@
           "ALDROVANDI Carla"
         ],
         "aula": "AULA B 007*"
+      },
+      "13:25": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "ALDROVANDI Carla"
+        ],
+        "aula": "AULA B 007*"
       }
     },
     "mercoledi": {
       "08:10": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "LONOCE Maria Pompea"
+        ],
+        "aula": "AULA B 106*"
+      },
+      "09:00": {
         "materia": "Italiano",
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
@@ -137,6 +175,14 @@
         ],
         "aula": "AULA B 013*"
       },
+      "11:45": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "ALDROVANDI Carla"
+        ],
+        "aula": "AULA B 013*"
+      },
       "12:35": {
         "materia": "Fisica",
         "docenti": [
@@ -144,7 +190,22 @@
         ],
         "aula": "AULA FIS (B 308**)"
       },
+      "13:25": {
+        "materia": "Fisica",
+        "docenti": [
+          "MARTINI Giampietro"
+        ],
+        "aula": "AULA FIS (B 308**)"
+      },
       "14:30": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "GIGLIOLI Valentina"
+        ],
+        "aula": "PAL. \"Torcaso\""
+      },
+      "15:20": {
         "materia": "Scienze Motorie",
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [
@@ -161,7 +222,22 @@
         ],
         "aula": "LAB. INF 3 (B 116)"
       },
+      "09:00": {
+        "materia": "Informatica",
+        "docenti": [
+          "IACCARINO Gennaro"
+        ],
+        "aula": "LAB. INF 3 (B 116)"
+      },
       "09:50": {
+        "materia": "Fisica",
+        "docenti": [
+          "MARTINI Giampietro",
+          "ZUECH Claudio"
+        ],
+        "aula": "LAB. FIS 2 (B 314)"
+      },
+      "10:40": {
         "materia": "Fisica",
         "docenti": [
           "MARTINI Giampietro",
@@ -177,10 +253,26 @@
           "SERAFIN Alice"
         ],
         "aula": "AULA SCI (B 301**) LAB. SCI (B 305**)"
+      },
+      "12:35": {
+        "materia": "Scienze Naturali",
+        "materia_completa": "Scienze naturali",
+        "docenti": [
+          "CITTA' Tiziana",
+          "SERAFIN Alice"
+        ],
+        "aula": "AULA SCI (B 301**) LAB. SCI (B 305**)"
       }
     },
     "venerdi": {
       "08:10": {
+        "materia": "Matematica",
+        "docenti": [
+          "GAGLIOSTRO Antonio"
+        ],
+        "aula": "Aula D 206**"
+      },
+      "09:00": {
         "materia": "Matematica",
         "docenti": [
           "GAGLIOSTRO Antonio"
@@ -204,6 +296,14 @@
         "aula": "AULA B 206*"
       },
       "11:45": {
+        "materia": "Scienze Naturali",
+        "materia_completa": "Scienze naturali",
+        "docenti": [
+          "SERAFIN Alice"
+        ],
+        "aula": "AULA B 311*"
+      },
+      "12:35": {
         "materia": "Scienze Naturali",
         "materia_completa": "Scienze naturali",
         "docenti": [

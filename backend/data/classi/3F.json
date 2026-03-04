@@ -20,6 +20,14 @@
         ],
         "aula": "LAB. ELEE 1 (A 210*: L.E.AP)"
       },
+      "09:00": {
+        "materia": "Tec. Prog. Sistemi Inf.",
+        "materia_completa": "Tec. e prog. sist. inf. e tel.",
+        "docenti": [
+          "DONATI Lorenzo"
+        ],
+        "aula": "LAB. ELEE 1 (A 210*: L.E.AP)"
+      },
       "09:50": {
         "materia": "Matematica",
         "docenti": [
@@ -43,7 +51,23 @@
         ],
         "aula": "PAL. \"Talvera Centro\""
       },
+      "12:35": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "DI CELLO Jacopo"
+        ],
+        "aula": "PAL. \"Talvera Centro\""
+      },
       "14:30": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "PERRUCCI Rosi"
+        ],
+        "aula": "AULA 201"
+      },
+      "15:20": {
         "materia": "Italiano",
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
@@ -68,7 +92,23 @@
         ],
         "aula": "LAB. INF 4 (D 201**)"
       },
+      "09:00": {
+        "materia": "Sistemi e Reti",
+        "materia_completa": "Sistemi e reti",
+        "docenti": [
+          "LATINA Giuliano"
+        ],
+        "aula": "LAB. INF 4 (D 201**)"
+      },
       "09:50": {
+        "materia": "Telecomunicazioni",
+        "docenti": [
+          "ARABIA Eliana",
+          "BALESTRUCCI Domenico"
+        ],
+        "aula": "LAB. ELEE 1 (A 210*: L.E.AP)"
+      },
+      "10:40": {
         "materia": "Telecomunicazioni",
         "docenti": [
           "ARABIA Eliana",
@@ -83,10 +123,26 @@
           "SALIHAJ Anila"
         ],
         "aula": "LAB. INF 3 (B 116)"
+      },
+      "12:35": {
+        "materia": "Informatica",
+        "docenti": [
+          "BONACCORSI Rosario",
+          "SALIHAJ Anila"
+        ],
+        "aula": "LAB. INF 3 (B 116)"
       }
     },
     "mercoledi": {
       "08:10": {
+        "materia": "Telecomunicazioni",
+        "docenti": [
+          "ARABIA Eliana",
+          "BALESTRUCCI Domenico"
+        ],
+        "aula": "LAB. ELEE 1 (A 210*: L.E.AP)"
+      },
+      "09:00": {
         "materia": "Telecomunicazioni",
         "docenti": [
           "ARABIA Eliana",
@@ -109,7 +165,23 @@
         ],
         "aula": "AULA B 011"
       },
+      "11:45": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "MENCHISE Antonella"
+        ],
+        "aula": "AULA B 011"
+      },
       "12:35": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "GARBIN Simonetta"
+        ],
+        "aula": "AULA B 013*"
+      },
+      "13:25": {
         "materia": "Inglese",
         "materia_completa": "Lingua inglese",
         "docenti": [
@@ -174,7 +246,24 @@
         ],
         "aula": "LAB. ELEE 1 (A 210*: L.E.AP)"
       },
+      "11:45": {
+        "materia": "Tec. Prog. Sistemi Inf.",
+        "materia_completa": "Tec. e prog. sist. inf. e tel.",
+        "docenti": [
+          "BASTIANELLO Fausto",
+          "DONATI Lorenzo"
+        ],
+        "aula": "LAB. ELEE 1 (A 210*: L.E.AP)"
+      },
       "12:35": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "PERRUCCI Rosi"
+        ],
+        "aula": "AULA B 209"
+      },
+      "13:25": {
         "materia": "Italiano",
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
@@ -185,6 +274,14 @@
     },
     "venerdi": {
       "08:10": {
+        "materia": "Telecomunicazioni",
+        "docenti": [
+          "ARABIA Eliana",
+          "BALESTRUCCI Domenico"
+        ],
+        "aula": "LAB. ELEE 1 (A 210*: L.E.AP)"
+      },
+      "09:00": {
         "materia": "Telecomunicazioni",
         "docenti": [
           "ARABIA Eliana",
@@ -208,6 +305,13 @@
         "aula": "AULA B 111"
       },
       "11:45": {
+        "materia": "Matematica",
+        "docenti": [
+          "TERZONI Giulia"
+        ],
+        "aula": "Aula D 205**"
+      },
+      "12:35": {
         "materia": "Matematica",
         "docenti": [
           "TERZONI Giulia"

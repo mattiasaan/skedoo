@@ -28,7 +28,23 @@
         ],
         "aula": "AULA B 013*"
       },
+      "09:50": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "MENCHISE Antonella"
+        ],
+        "aula": "AULA B 013*"
+      },
       "10:40": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "DELLA PENNA Daniela"
+        ],
+        "aula": "AULA B 101"
+      },
+      "11:45": {
         "materia": "Inglese",
         "materia_completa": "Lingua inglese",
         "docenti": [
@@ -43,7 +59,23 @@
         ],
         "aula": "AULA B 213"
       },
+      "13:25": {
+        "materia": "Religione",
+        "docenti": [
+          "MONTALTO Salvatore"
+        ],
+        "aula": "AULA B 213"
+      },
       "14:30": {
+        "materia": "Tecn. e Tecniche Grafiche",
+        "materia_completa": "Tecno. e tecniche rappr. graf.",
+        "docenti": [
+          "DE ROSSI Andrea",
+          "PERRICONE Cristina"
+        ],
+        "aula": "LAB. DIS (B 215)"
+      },
+      "15:20": {
         "materia": "Tecn. e Tecniche Grafiche",
         "materia_completa": "Tecno. e tecniche rappr. graf.",
         "docenti": [
@@ -70,6 +102,14 @@
         ],
         "aula": "PAL. \"Talvera Sud\""
       },
+      "09:00": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "VITRANO Rosalba"
+        ],
+        "aula": "PAL. \"Talvera Sud\""
+      },
       "09:50": {
         "materia": "Tecnologie Informatiche",
         "materia_completa": "Tecnologie informatiche",
@@ -87,6 +127,13 @@
         "aula": "AULA B 204"
       },
       "11:45": {
+        "materia": "Matematica",
+        "docenti": [
+          "PRESTIGIACOMO Davide"
+        ],
+        "aula": "AULA B 104"
+      },
+      "12:35": {
         "materia": "Matematica",
         "docenti": [
           "PRESTIGIACOMO Davide"
@@ -127,6 +174,15 @@
         "aula": "AULA B 110*"
       },
       "11:45": {
+        "materia": "Fisica",
+        "materia_completa": "Scienze integrate (Fisica)",
+        "docenti": [
+          "PAPAIS Denise",
+          "VERRA Dennis"
+        ],
+        "aula": "LAB. FIS 2 (B 314)"
+      },
+      "12:35": {
         "materia": "Fisica",
         "materia_completa": "Scienze integrate (Fisica)",
         "docenti": [
@@ -183,7 +239,24 @@
         ],
         "aula": "AULA B 113"
       },
+      "13:25": {
+        "materia": "Scienze e Biologia",
+        "materia_completa": "Scienze integrate (Sci. e Bio)",
+        "docenti": [
+          "MAURO Sergio"
+        ],
+        "aula": "AULA B 113"
+      },
       "14:30": {
+        "materia": "Chimica",
+        "materia_completa": "Scienze integrate (Chimica)",
+        "docenti": [
+          "FUCA' Lia",
+          "MASCIOVECCHIO Marina"
+        ],
+        "aula": "AULA BIO (302) LAB. CHI 2 (A 306)"
+      },
+      "15:20": {
         "materia": "Chimica",
         "materia_completa": "Scienze integrate (Chimica)",
         "docenti": [
@@ -211,6 +284,15 @@
         ],
         "aula": "LAB. INF 2 (B 212)"
       },
+      "09:00": {
+        "materia": "Tecnologie Informatiche",
+        "materia_completa": "Tecnologie informatiche",
+        "docenti": [
+          "BONACCORSI Rosario",
+          "MINICHIELLO Genesio"
+        ],
+        "aula": "LAB. INF 2 (B 212)"
+      },
       "09:50": {
         "materia": "Matematica",
         "docenti": [
@@ -226,7 +308,23 @@
         ],
         "aula": "AULA B 114"
       },
+      "11:45": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "PERRUCCI Rosi"
+        ],
+        "aula": "AULA B 114"
+      },
       "12:35": {
+        "materia": "Fisica",
+        "materia_completa": "Scienze integrate (Fisica)",
+        "docenti": [
+          "VERRA Dennis"
+        ],
+        "aula": "AULA FIS (B 308**)"
+      },
+      "13:25": {
         "materia": "Fisica",
         "materia_completa": "Scienze integrate (Fisica)",
         "docenti": [

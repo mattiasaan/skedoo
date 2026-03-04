@@ -35,6 +35,14 @@
         ],
         "aula": "PAL. \"Talvera Centro\""
       },
+      "10:40": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "DI CELLO Jacopo"
+        ],
+        "aula": "PAL. \"Talvera Centro\""
+      },
       "11:45": {
         "materia": "Tecno. e tecniche rappr. graf. Amin Mohammad Kazem",
         "docenti": [
@@ -42,7 +50,23 @@
         ],
         "aula": "LAB. CAD 2 (B 221)"
       },
+      "12:35": {
+        "materia": "Tecno. e tecniche rappr. graf. Amin Mohammad Kazem",
+        "docenti": [
+          "GAETANO Giuseppe"
+        ],
+        "aula": "LAB. CAD 2 (B 221)"
+      },
       "14:30": {
+        "materia": "Chimica",
+        "materia_completa": "Scienze integrate (Chimica)",
+        "docenti": [
+          "GIORDANO Carmelo",
+          "RIOLO Marcello"
+        ],
+        "aula": "AULA B 311*,LAB. CHI 2 (A 306)"
+      },
+      "15:20": {
         "materia": "Chimica",
         "materia_completa": "Scienze integrate (Chimica)",
         "docenti": [
@@ -68,6 +92,14 @@
         ],
         "aula": "AULA B 204"
       },
+      "09:00": {
+        "materia": "Inglese",
+        "materia_completa": "Lingua inglese",
+        "docenti": [
+          "TACUS Alessandra"
+        ],
+        "aula": "AULA B 204"
+      },
       "09:50": {
         "materia": "Scienze e Biologia",
         "materia_completa": "Scienze integrate (Sci. e Bio)",
@@ -84,6 +116,14 @@
         "aula": "AULA B 107"
       },
       "11:45": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "MARI Paola"
+        ],
+        "aula": "AULA B 109"
+      },
+      "12:35": {
         "materia": "Italiano",
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
@@ -132,10 +172,28 @@
           "CANTARELLA Alfredo"
         ],
         "aula": "LAB. INF 5 (D 202**)"
+      },
+      "12:35": {
+        "materia": "Scienze e Tecn. Applicate",
+        "materia_completa": "Scienze e tecnologie applicate",
+        "docenti": [
+          "BELLAVITA Federica",
+          "CANTARELLA Alfredo"
+        ],
+        "aula": "LAB. INF 5 (D 202**)"
       }
     },
     "giovedi": {
       "08:10": {
+        "materia": "Fisica",
+        "materia_completa": "Scienze integrate (Fisica)",
+        "docenti": [
+          "CALDERAN Tabitha",
+          "GIAGNORIO Stefano"
+        ],
+        "aula": "LAB. FIS 2 (B 314)"
+      },
+      "09:00": {
         "materia": "Fisica",
         "materia_completa": "Scienze integrate (Fisica)",
         "docenti": [
@@ -168,7 +226,22 @@
         ],
         "aula": "AULA B 107 AULA B 107"
       },
+      "12:35": {
+        "materia": "Diritto ed economia Scienze integrate (Chimica)",
+        "docenti": [
+          "SCARSO Carla Salvatrice",
+          "RIOLO Marcello"
+        ],
+        "aula": "AULA B 107 AULA B 107"
+      },
       "14:30": {
+        "materia": "Matematica",
+        "docenti": [
+          "MANARESI Federica"
+        ],
+        "aula": "AULA B 204"
+      },
+      "15:20": {
         "materia": "Matematica",
         "docenti": [
           "MANARESI Federica"
@@ -216,6 +289,14 @@
         ]
       },
       "11:45": {
+        "materia": "Diritto ed Economia",
+        "materia_completa": "Diritto ed economia",
+        "docenti": [
+          "SCARSO Carla Salvatrice"
+        ],
+        "aula": "AULA B 013* AULA B 201"
+      },
+      "12:35": {
         "materia": "Diritto ed Economia",
         "materia_completa": "Diritto ed economia",
         "docenti": [

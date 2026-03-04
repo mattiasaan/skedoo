@@ -27,6 +27,13 @@
         ],
         "aula": "AULA B 309"
       },
+      "09:50": {
+        "materia": "Matematica",
+        "docenti": [
+          "STIVELLA Marco"
+        ],
+        "aula": "AULA B 309"
+      },
       "10:40": {
         "materia": "Religione",
         "docenti": [
@@ -35,6 +42,14 @@
         "aula": "AULA 201"
       },
       "11:45": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "CARLIN Martina"
+        ],
+        "aula": "AULA B 004"
+      },
+      "12:35": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
@@ -75,7 +90,23 @@
         ],
         "aula": "LAB. ODO 2 (A 308)"
       },
+      "09:50": {
+        "materia": "Lab. Odontotecnico",
+        "materia_completa": "Eser. di lab. odontotecnico",
+        "docenti": [
+          "GIBILISCO Marco"
+        ],
+        "aula": "LAB. ODO 2 (A 308)"
+      },
       "10:40": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "CANEVE Elisa"
+        ],
+        "aula": "AULA B 112*"
+      },
+      "11:45": {
         "materia": "Italiano",
         "materia_completa": "Lingua e letteratura italiana",
         "docenti": [
@@ -90,10 +121,25 @@
           "RIOLO Marcello"
         ],
         "aula": "AULA FIS (B 308**)"
+      },
+      "13:25": {
+        "materia": "Scienze dei Materiali Dentali",
+        "materia_completa": "Scienze dei mat. dent. e lab.",
+        "docenti": [
+          "RIOLO Marcello"
+        ],
+        "aula": "AULA FIS (B 308**)"
       }
     },
     "mercoledi": {
       "08:10": {
+        "materia": "Gnatologia",
+        "docenti": [
+          "RIGHES Cecilia"
+        ],
+        "aula": "AULA B 205"
+      },
+      "09:00": {
         "materia": "Gnatologia",
         "docenti": [
           "RIGHES Cecilia"
@@ -123,7 +169,24 @@
         ],
         "aula": "LAB. ODO 2 (A 308) LAB. PNRR AMB. E ENERGIA (301)"
       },
+      "12:35": {
+        "materia": "Scienze dei Materiali Dentali",
+        "materia_completa": "Scienze dei mat. dent. e lab.",
+        "docenti": [
+          "GIBILISCO Marco",
+          "RIOLO Marcello"
+        ],
+        "aula": "LAB. ODO 2 (A 308) LAB. PNRR AMB. E ENERGIA (301)"
+      },
       "15:20": {
+        "materia": "Lab. Odontotecnico",
+        "materia_completa": "Eser. di lab. odontotecnico",
+        "docenti": [
+          "GIBILISCO Marco"
+        ],
+        "aula": "LAB. ODO 2 (A 308)"
+      },
+      "16:10": {
         "materia": "Lab. Odontotecnico",
         "materia_completa": "Eser. di lab. odontotecnico",
         "docenti": [
@@ -140,6 +203,13 @@
         ],
         "aula": "AULA FIS (B 308**)"
       },
+      "09:00": {
+        "materia": "Gnatologia",
+        "docenti": [
+          "RIGHES Cecilia"
+        ],
+        "aula": "AULA FIS (B 308**)"
+      },
       "09:50": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
@@ -148,7 +218,23 @@
         ],
         "aula": "AULA B 206*"
       },
+      "10:40": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "CARLIN Martina"
+        ],
+        "aula": "AULA B 206*"
+      },
       "11:45": {
+        "materia": "Lab. Odontotecnico",
+        "materia_completa": "Eser. di lab. odontotecnico",
+        "docenti": [
+          "GIBILISCO Marco"
+        ],
+        "aula": "LAB. ODO 2 (A 308)"
+      },
+      "12:35": {
         "materia": "Lab. Odontotecnico",
         "materia_completa": "Eser. di lab. odontotecnico",
         "docenti": [
@@ -174,6 +260,14 @@
         ],
         "aula": "AULA B 306"
       },
+      "09:50": {
+        "materia": "Scienze dei Materiali Dentali",
+        "materia_completa": "Scienze dei mat. dent. e lab.",
+        "docenti": [
+          "RIOLO Marcello"
+        ],
+        "aula": "AULA B 306"
+      },
       "10:40": {
         "materia": "Inglese",
         "materia_completa": "Lingua inglese",
@@ -183,6 +277,14 @@
         "aula": "AULA B 204"
       },
       "11:45": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "OCHNER Daniel"
+        ],
+        "aula": "PAL. \"Torcaso\""
+      },
+      "12:35": {
         "materia": "Scienze Motorie",
         "materia_completa": "Scienze motorie e sportive",
         "docenti": [

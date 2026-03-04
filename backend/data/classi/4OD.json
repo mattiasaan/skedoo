@@ -20,7 +20,22 @@
         ],
         "aula": "PAL. \"Torcaso\""
       },
+      "09:00": {
+        "materia": "Scienze Motorie",
+        "materia_completa": "Scienze motorie e sportive",
+        "docenti": [
+          "OCHNER Daniel"
+        ],
+        "aula": "PAL. \"Torcaso\""
+      },
       "09:50": {
+        "materia": "Storia",
+        "docenti": [
+          "ZANONI Barbara"
+        ],
+        "aula": "AULA B 109"
+      },
+      "10:40": {
         "materia": "Storia",
         "docenti": [
           "ZANONI Barbara"
@@ -35,7 +50,22 @@
         ],
         "aula": "LAB. ODO 2 (A 308)"
       },
+      "12:35": {
+        "materia": "Lab. Odontotecnico",
+        "materia_completa": "Eser. di lab. odontotecnico",
+        "docenti": [
+          "QUATTROCCHI Francesco"
+        ],
+        "aula": "LAB. ODO 2 (A 308)"
+      },
       "14:30": {
+        "materia": "Matematica",
+        "docenti": [
+          "PRESTIGIACOMO Davide"
+        ],
+        "aula": "LAB. INF 2 (B 212)"
+      },
+      "15:20": {
         "materia": "Matematica",
         "docenti": [
           "PRESTIGIACOMO Davide"
@@ -75,7 +105,22 @@
         ],
         "aula": "AULA B 110*"
       },
+      "10:40": {
+        "materia": "Gnatologia",
+        "docenti": [
+          "DE MARIA Liliana"
+        ],
+        "aula": "AULA B 110*"
+      },
       "11:45": {
+        "materia": "Lab. Odontotecnico",
+        "materia_completa": "Eser. di lab. odontotecnico",
+        "docenti": [
+          "QUATTROCCHI Francesco"
+        ],
+        "aula": "LAB. ODO 2 (A 308)"
+      },
+      "12:35": {
         "materia": "Lab. Odontotecnico",
         "materia_completa": "Eser. di lab. odontotecnico",
         "docenti": [
@@ -106,6 +151,15 @@
         ],
         "aula": "AULA B 311*,LAB. ODO 2 (A 308)"
       },
+      "10:40": {
+        "materia": "Scienze dei Materiali Dentali",
+        "materia_completa": "Scienze dei mat. dent. e lab.",
+        "docenti": [
+          "RIOLO Marcello",
+          "SAIANI Christian"
+        ],
+        "aula": "AULA B 311*,LAB. ODO 2 (A 308)"
+      },
       "11:45": {
         "materia": "Inglese",
         "materia_completa": "Lingua inglese",
@@ -115,6 +169,14 @@
         "aula": "AULA B 205"
       },
       "12:35": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "CARLIN Martina"
+        ],
+        "aula": "AULA B 016"
+      },
+      "13:25": {
         "materia": "Tedesco",
         "materia_completa": "Tedesco II Lingua",
         "docenti": [
@@ -132,7 +194,22 @@
         ],
         "aula": "AULA B 107"
       },
+      "09:00": {
+        "materia": "Italiano",
+        "materia_completa": "Lingua e letteratura italiana",
+        "docenti": [
+          "ZANONI Barbara"
+        ],
+        "aula": "AULA B 107"
+      },
       "09:50": {
+        "materia": "Matematica",
+        "docenti": [
+          "PRESTIGIACOMO Davide"
+        ],
+        "aula": "AULA B 107"
+      },
+      "10:40": {
         "materia": "Matematica",
         "docenti": [
           "PRESTIGIACOMO Davide"
@@ -148,7 +225,24 @@
         ],
         "aula": "LAB. DIS (B 215)"
       },
+      "12:35": {
+        "materia": "Rappresentazione Odontotecnica",
+        "materia_completa": "Rappr. e modell. odontotecnica",
+        "docenti": [
+          "BRILLO Susanna",
+          "DOCILE Valeria Anna"
+        ],
+        "aula": "LAB. DIS (B 215)"
+      },
       "15:20": {
+        "materia": "Lab. Odontotecnico",
+        "materia_completa": "Eser. di lab. odontotecnico",
+        "docenti": [
+          "QUATTROCCHI Francesco"
+        ],
+        "aula": "LAB. ODO 2 (A 308)"
+      },
+      "16:10": {
         "materia": "Lab. Odontotecnico",
         "materia_completa": "Eser. di lab. odontotecnico",
         "docenti": [
@@ -173,6 +267,14 @@
         ],
         "aula": "AULA B 016"
       },
+      "09:50": {
+        "materia": "Tedesco",
+        "materia_completa": "Tedesco II Lingua",
+        "docenti": [
+          "CARLIN Martina"
+        ],
+        "aula": "AULA B 016"
+      },
       "10:40": {
         "materia": "Storia",
         "docenti": [
@@ -181,6 +283,14 @@
         "aula": "AULA B 207"
       },
       "11:45": {
+        "materia": "Scienze dei Materiali Dentali",
+        "materia_completa": "Scienze dei mat. dent. e lab.",
+        "docenti": [
+          "RIOLO Marcello"
+        ],
+        "aula": "AULA B 306"
+      },
+      "12:35": {
         "materia": "Scienze dei Materiali Dentali",
         "materia_completa": "Scienze dei mat. dent. e lab.",
         "docenti": [
