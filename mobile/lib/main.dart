@@ -1,27 +1,24 @@
 import 'package:flutter/material.dart';
-import 'screens/login/login.dart';
-import 'screens/dashboard/dashboard_screen.dart';
+import 'screens/dashboard/main_navigation_screen.dart'; // Assicurati che il percorso sia questo
 
-void main() => {
-  runApp(MyApp())
-};
+void main() {
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'skedoo',
+      title: 'University App',
       theme: ThemeData(
+        brightness: Brightness.dark,
         useMaterial3: true,
       ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => Login(),
-        '/dashboard': (context) => DashboardScreen(),
-      },
+      // ✅ È qui che deve puntare: alla schermata con la barra di navigazione
+      home: const MainNavigationScreen(), 
     );
   }
 }
