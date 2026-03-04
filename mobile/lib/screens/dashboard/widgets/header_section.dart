@@ -8,37 +8,58 @@ class HeaderSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     String formattedDate = DateFormat('EEEE, MMM d').format(DateTime.now());
 
     return Row(
       children: [
         const CircleAvatar(
           radius: 24,
-          backgroundImage: NetworkImage(
-            "https://i.pravatar.cc/150?img=3",
-          ),
+          backgroundImage: NetworkImage("https://i.pravatar.cc/150?img=3"),
         ),
         const SizedBox(width: 12),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text("Hi, Alex!", 
-                style: TextStyle(color: Palette.text_primary, fontSize: 22, fontWeight: FontWeight.bold)),
-              Text(formattedDate, 
-                style: const TextStyle(color: Palette.text_secondary, fontSize: 14)),
+              const Text(
+                "Hi, Alex!",
+                style: TextStyle(
+                  color: Palette.text_primary,
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Text(
+                formattedDate,
+                style: const TextStyle(
+                  color: Palette.text_tertiary,
+                  fontSize: 14,
+                ),
+              ),
             ],
           ),
         ),
         IconButton(
-          icon: const Badge(
-            label: Text(''),
-            child: Icon(Icons.notifications_none, color: Palette.text_primary, size: 28),
-          ),
           onPressed: () => Navigator.push(
-            context, 
-            MaterialPageRoute(builder: (context) => const NotificationScreen())
+            context,
+            MaterialPageRoute(builder: (context) => const NotificationScreen()),
+          ),
+          icon: Stack(
+            children: [
+              const Icon(Icons.notifications_none, color: Palette.text_primary, size: 28),
+              Positioned(
+                right: 4,
+                top: 4,
+                child: Container(
+                  height: 8,
+                  width: 8,
+                  decoration: const BoxDecoration(
+                    color: Colors.redAccent,
+                    shape: BoxShape.circle,
+                  ),
+                ),
+              ),
+            ],
           ),
         )
       ],

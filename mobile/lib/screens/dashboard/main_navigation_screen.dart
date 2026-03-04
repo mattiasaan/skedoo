@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../palette/palette.dart';
-// Assicurati che questi percorsi siano corretti nel tuo progetto
-import '../dashboard_content.dart'; 
-import '../../calendar/calendar_screen.dart';
+import '../../palette/palette.dart';
+import 'dashboard_content.dart'; 
+import '../calendar/calendar_screen.dart';
 
 class MainNavigationScreen extends StatefulWidget {
   const MainNavigationScreen({super.key});
@@ -18,8 +17,8 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   final List<Widget> _pages = [
     const DashboardContent(), 
     const CalendarScreen(),
-    const Center(child: Text("Tasks", style: TextStyle(color: Colors.white))),
     const Center(child: Text("Community", style: TextStyle(color: Colors.white))),
+    const Center(child: Text("Profile", style: TextStyle(color: Colors.white))),
   ];
 
   void _onItemTapped(int index) {
@@ -32,15 +31,16 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Palette.background_primary,
-      // Usiamo un IndexedStack per mantenere lo stato delle pagine quando cambi tab
+      // Usiamo IndexedStack per non perdere lo stato delle pagine (scroll, etc)
       body: IndexedStack(
         index: _selectedIndex,
         children: _pages,
       ),
       
+      // ✅ Pulsante "+" centrale
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Azione per aggiungere un nuovo task/evento
+          // Azione per aggiungere
         },
         backgroundColor: Palette.primary,
         shape: const CircleBorder(),
@@ -48,6 +48,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       
+      // ✅ La barra personalizzata definita sotto
       bottomNavigationBar: CustomBottomAppBar(
         selectedIndex: _selectedIndex,
         onTap: _onItemTapped,
@@ -56,7 +57,8 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   }
 }
 
-// ✅ Devi definire la classe CustomBottomAppBar qui sotto o importarla
+// --- CLASSE DELLA BARRA (Assicurati che sia fuori dalla classe precedente) ---
+
 class CustomBottomAppBar extends StatelessWidget {
   final int selectedIndex;
   final Function(int) onTap;
@@ -71,29 +73,29 @@ class CustomBottomAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomAppBar(
       color: Palette.background_secondary,
-      shape: const CircularNotchedRectangle(),
+      shape: const CircularNotchedRectangle(), // Crea l'incavo per il tasto +
       notchMargin: 8,
       child: SizedBox(
         height: 60,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            _navItem(Icons.home_outlined, "HOME", 0),
-            _navItem(Icons.calendar_month_outlined, "CALENDAR", 1),
-            const SizedBox(width: 40), // Spazio vitale per il tasto +
-            _navItem(Icons.groups_outlined, "COMMUNITY", 2),
-            _navItem(Icons.person_outline, "PROFILE", 3),
+            _buildNavItem(Icons.home_outlined, "HOME", 0),
+            _buildNavItem(Icons.calendar_month_outlined, "SCHEDULE", 1),
+            const SizedBox(width: 40), // Spazio vuoto per il FAB
+            _buildNavItem(Icons.groups_outlined, "COMMUNITY", 2),
+            _buildNavItem(Icons.person_outline, "PROFILE", 3),
           ],
         ),
       ),
     );
   }
 
-  Widget _navItem(IconData icon, String label, int index) {
+  Widget _buildNavItem(IconData icon, String label, int index) {
     bool isActive = selectedIndex == index;
     return GestureDetector(
       onTap: () => onTap(index),
-      behavior: HitTestBehavior.opaque, // Rende cliccabile tutta l'area
+      behavior: HitTestBehavior.opaque,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -101,6 +103,7 @@ class CustomBottomAppBar extends StatelessWidget {
             icon,
             color: isActive ? Palette.primary : Palette.text_tertiary,
           ),
+          const SizedBox(height: 4),
           Text(
             label,
             style: TextStyle(
