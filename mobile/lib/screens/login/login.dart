@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../palette/palette.dart';
-import '../dashboard/dashboard_screen.dart';
+import '../dashboard/main_navigation_screen.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -105,7 +105,7 @@ class _LoginState extends State<Login> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => DashboardScreen(),
+                        builder: (context) => MainNavigationScreen(),
                       )  
                     );
                   },
