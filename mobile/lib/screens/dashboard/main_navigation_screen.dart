@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/screens/calendar/add_event_screen.dart';
 import '../../palette/palette.dart';
 import 'dashboard_content.dart'; 
 import '../calendar/calendar_screen.dart';
@@ -39,8 +40,17 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       
       // ✅ Pulsante "+" centrale
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Azione per aggiungere
+        onPressed: () async {
+          final result = await Navigator.push(
+            context, 
+            MaterialPageRoute(builder: (context) => const AddEventScreen())  
+          );
+
+          if (result == true) {
+            setState(() {
+              
+            });
+          }
         },
         backgroundColor: Palette.primary,
         shape: const CircleBorder(),
