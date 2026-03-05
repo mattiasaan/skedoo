@@ -52,7 +52,7 @@ export default function LoginScreen({ onLogin }) {
             </svg>
           </div>
           <h1 style={{ fontSize: 32, fontWeight: 800, color: COLORS.text, letterSpacing: "-0.5px" }}>
-            SchoolHub
+            skedoo
           </h1>
           <p style={{ color: COLORS.textMuted, marginTop: 8, fontSize: 15 }}>
             Bentornato! Accedi al tuo registro elettronico
