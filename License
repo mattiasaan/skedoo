@@ -1,0 +1,74 @@
+# skedoo - LICENZA D'USO
+
+Copyright (c) 2026 Santomaso Mattia
+Tutti i diritti riservati.
+
+# 1. DEFINIZIONI
+
+"Applicazione" indica il software denominato **skedoo**, incluse le relative versioni binarie, codice sorgente, pacchetti, documentazione e materiale correlato.
+"Titolare" indica il proprietario dei diritti sull'Applicazione indicato in testa.
+"Utente" indica la persona fisica o giuridica che utilizza l'Applicazione.
+"Collaboratore" indica chiunque abbia contribuito al progetto su incarico o con il consenso del Titolare.
+"Repository Ufficiale" indica il repository del progetto controllato o indicato dal Titolare come fonte ufficiale del codice sorgente.
+"Pull Request" indica una proposta di modifica del codice sorgente inviata alla Repository Ufficiale allo scopo di contribuire allo sviluppo del progetto.
+
+# 2. CONCESSIONE DI LICENZA
+
+Il Titolare concede all'Utente una licenza personale, non esclusiva, limitata, revocabile, non trasferibile e non sublicenziabile per usare l'Applicazione esclusivamente nei termini indicati da questa Licenza.
+L'Applicazione può essere utilizzata nella sua forma oggetto/binaria.
+L'accesso al codice sorgente è consentito esclusivamente per finalità di studio e contributo allo sviluppo del progetto come definito nella presente Licenza.
+
+# 3. MODIFICHE CONSENTITE PER CONTRIBUTI
+
+L'Utente può modificare il codice sorgente dell'Applicazione **esclusivamente allo scopo di contribuire allo sviluppo del progetto**.
+Tali modifiche sono consentite solo se:
+a) vengono effettuate per proporre miglioramenti, correzioni o nuove funzionalità dell'Applicazione;
+b) vengono inviate al Titolare tramite **Pull Request alla Repository Ufficiale**;
+c) non vengono distribuite, pubblicate o utilizzate in forma modificata al di fuori del processo di contributo al progetto;
+d) non vengono utilizzate per creare versioni derivate distribuite separatamente dall'Applicazione ufficiale.
+
+Il Titolare mantiene il diritto esclusivo di accettare, rifiutare o modificare qualsiasi contributo.
+
+# 4. DIVIETI PRINCIPALI
+Salvo diverso consenso scritto ed esplicito del Titolare, l'Utente non può:
+a) distribuire versioni modificate dell'Applicazione;
+b) vendere, concedere in sublicenza, noleggiare, dare in leasing o altrimenti commercializzare l'Applicazione o parti di essa;
+c) creare fork pubblici o progetti derivati destinati alla distribuzione o all'uso indipendente dall'Applicazione originale;
+d) monetizzare, ottenere ricavi, commissioni, premi o altri proventi (diretti o indiretti) dall'uso, distribuzione o sfruttamento dell'Applicazione senza un accordo scritto con il Titolare.
+
+# 5. PROVENTI E ASSEGNAZIONE
+Qualsiasi provento, ricavo, premio o beneficio economico (qui collettivamente "Proventi") derivante dall'uso, dall'uso improprio o dalla distribuzione dell'Applicazione in violazione della presente Licenza è e resterà proprietà esclusiva del Titolare.
+Nel caso in cui l'Utente, un Collaboratore o terzi ricevano Proventi in violazione della Licenza, sono obbligati a:
+a) informare tempestivamente il Titolare;
+b) trasferire immediatamente e integralmente al Titolare tutti i Proventi e fornire tutta la documentazione e l'accesso necessari per verificare e recuperare tali Proventi.
+È inoltre vietato utilizzare l'Applicazione, direttamente o indirettamente, per partecipare o contribuire a concorsi, contest, premi, eventi promozionali o altre iniziative che prevedano riconoscimenti economici o di altra natura, salvo consenso scritto del Titolare.
+
+# 6. COLLABORATORI E DIRITTI
+I Collaboratori non acquisiscono automaticamente alcun diritto di proprietà sull'Applicazione, sul codice sorgente o sui diritti di sfruttamento, salvo diverso accordo scritto e firmato dal Titolare.
+Con l'invio di una Pull Request o altro contributo, il Collaboratore concede al Titolare una **licenza irrevocabile, gratuita, mondiale e perpetua** per utilizzare, modificare, distribuire e incorporare tale contributo nell'Applicazione.
+Il Titolare può, a sua esclusiva discrezione e solo mediante accordo scritto separato (es. "Revenue Sharing Agreement"), riconoscere ai Collaboratori una quota dei proventi; senza tale accordo scritto non sussiste alcun diritto a ricevere compensi.
+
+# 7. DURATA E RISOLUZIONE
+Questa Licenza è efficace dalla data di accettazione/uso dell'Applicazione e rimane valida fino a risoluzione.
+Il Titolare può risolvere immediatamente la Licenza in caso di violazione sostanziale della stessa; alla risoluzione l'Utente dovrà cessare ogni utilizzo e distruggere tutte le copie dell'Applicazione in suo possesso.
+
+# 8. PROPRIETÀ INTELLETTUALE
+Tutti i diritti di proprietà intellettuale relativi all'Applicazione sono e rimangono di esclusiva proprietà del Titolare.
+Nessuna disposizione del presente contratto trasferisce titoli di proprietà o diritti di sfruttamento all'Utente o ai Collaboratori, eccetto quanto espressamente previsto per iscritto.
+
+# 9. GARANZIE E LIMITAZIONE DI RESPONSABILITÀ
+L'Applicazione è fornita "COSÌ COM'È" senza garanzie di alcun tipo, esplicite o implicite.
+Nella misura massima consentita dalla legge applicabile, il Titolare non sarà responsabile per danni diretti, indiretti, incidentali, consequenziali, punitivi o perdite di profitto derivanti dall'uso o dall'incapacità di usare l'Applicazione.
+Il Titolare non sarà inoltre responsabile per eventuali perdite di dati, fughe di dati, violazioni della sicurezza, accessi non autorizzati, danni a dispositivi o sistemi, o qualsiasi altro evento che comporti perdita, divulgazione o compromissione di informazioni derivante dall'uso dell'Applicazione.
+
+# 10. MANLEVA
+L'Utente si impegna a manlevare e tenere indenne il Titolare da qualsiasi pretesa, perdita, costo o spesa derivante dall'uso dell'Applicazione in violazione di questa Licenza.
+
+# 11. RIMEDI
+In caso di violazione della presente Licenza, il Titolare avrà diritto a ottenere ingiunzioni, sequestri, risarcimento danni e qualunque altro rimedio previsto dalla legge, incluso il recupero dei Proventi ottenuti in violazione.
+
+# 12. VARIE
+Se una qualsiasi clausola della presente Licenza sia ritenuta invalida o inapplicabile, le restanti clausole rimarranno pienamente valide ed efficaci.
+Qualunque modifica a questa Licenza dovrà essere fatta per iscritto e firmata dal Titolare.
+
+FINE LICENZA
