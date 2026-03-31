@@ -1,0 +1,48 @@
+{
+  "giorno": "LUNEDÌ",
+  "data": "20",
+  "entrate": [
+    {
+      "ora": "09:00",
+      "classi": [
+        "1F",
+        "4J",
+        "1A"
+      ],
+      "note": "* RECLA POSTICIPA 1 A 3 D005"
+    },
+    {
+      "ora": "09:50",
+      "classi": [
+        "4N",
+        "1A",
+        "7B",
+        "1C",
+        "1E",
+        "1P"
+      ],
+      "note": ""
+    },
+    {
+      "ora": "15:20",
+      "classi": [
+        "2F"
+      ],
+      "note": ""
+    }
+  ],
+  "uscite": [],
+  "cambi_aula": [],
+  "note": [
+    {
+      "tipo": "FSL",
+      "testo": "ATTIVITÀ DI F.S.L.\nCLASSE 4A"
+    }
+  ],
+  "raw_blocks": {
+    "titolo": "LUNEDÌ 20",
+    "giallo": "ENTRA ALLE 09.00\n1F+4J*\n* RECLA POSTICIPA 1 A 3 D005 \nENTRA ALLE 09.50\n1MAQ2+4N\n1A: 08.101 09.50 AULA D205\n7B: 08.101 09.50 AULA D206\n1C:09.5011145 AULA D205\n7.D:09.50+11145 AULA D206\n1 E:1145112.35 AULA D205\n1P: 717.49 - 12.39 AULA D206\nENTRA ALLE 15.20\n2F",
+    "ciano": "",
+    "rosso": "CAMBIO AULA \n 1 1: 09.50 10.40 AULA B15 \nH MAGI : 09.50 110.0 * LAB. 5119 \nÈ C/T 1145-1325 AULA B20\nE 5 :1055_1145 AULA B210"
+  }
+}
