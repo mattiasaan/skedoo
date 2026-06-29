@@ -1,0 +1,65 @@
+# -------------------------------------------------------------------------
+# CACHE E FILE DI BUILD FLUTTER (Visibili nello screenshot)
+# -------------------------------------------------------------------------
+.dart_tool/
+build/
+
+# File di configurazione e tracciamento interni di Flutter
+.anchor/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+
+# -------------------------------------------------------------------------
+# IDE E STRUMENTI DI SVILUPPO (Visibili nello screenshot)
+# -------------------------------------------------------------------------
+# Esclude la cartella .idea e il file di progetto .iml generati dal tuo IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Se usi o userai anche VS Code in futuro
+.vscode/
+
+# -------------------------------------------------------------------------
+# COMPILAZIONI SPERIMENTALI WEB E LOG
+# -------------------------------------------------------------------------
+.web_plugins/
+*.log
+*.js_
+*.js_errors
+*.js_map
+
+# -------------------------------------------------------------------------
+# FILE CONFIGURAZIONE LOCALE DELLE PIATTAFORME (Android, iOS, Desktop)
+# -------------------------------------------------------------------------
+# Android
+android/local.properties
+android/key.properties
+android/app/src/main/res/values/google-services.json
+*.keystore
+*.jks
+
+# iOS / macOS
+ios/.internal/
+ios/Pods/
+ios/Runner/GeneratedPluginRegistrant.*
+macos/Pods/
+macos/Flutter/GeneratedPluginRegistrant.swift
+*.moved-aside
+Podfile.lock
+DerivedData/
+.xcworkspace/
+
+# Linux / Windows desktop build artifacts locali
+linux/flutter/ephemeral/
+windows/flutter/ephemeral/
+
+# -------------------------------------------------------------------------
+# FILE DI SISTEMA OPERATIVO
+# -------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
