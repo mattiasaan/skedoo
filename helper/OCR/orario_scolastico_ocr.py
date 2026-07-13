@@ -1,3 +1,9 @@
+"""
+=============================================================================
+ ESTRATTORE ORARI SCOLASTICI  —  orario_scolastico_ocr.py  (v3)
+=============================================================================
+"""
+
 import cv2
 import numpy as np
 import pytesseract
@@ -15,21 +21,19 @@ pytesseract.pytesseract.tesseract_cmd = (
     r"C:\Users\matti\AppData\Local\Programs\Tesseract-OCR\tesseract.exe"
 )
 
-TESSERACT_CONFIG = (
-    "--oem 3 "
-    "--psm 6 "
-    "-l ita+eng"
-)
+TESS_STD   = "--oem 3 --psm 6 -l ita+eng"
+TESS_LINE  = "--oem 3 --psm 7 -l ita+eng"   # singola riga (titolo)
+TESS_BLOCK = "--oem 3 --psm 4 -l ita+eng"   # blocco colonne (cambio aula)
 
 # ---------------------------------------------------------------------------
-# RANGE HSV — calibrati sull'immagine reale (analisi pixel automatica)
+# RANGE HSV — calibrati su campionamento pixel reale
 #
-#  Titolo  : H=108-135  S>150  V>130   (blu/ciano saturo)
-#  Giallo  : H= 18- 42  S>100  V>150   (giallo brillante → entrate)
-#  Rosso   : H=  0- 15  S>100  V> 80   (rosso → cambio aula)
-#            H=163-180  S>100  V> 80   (rosso wraparound HSV)
-#  Ciano   : H=100-135  S= 30-180 V>190 (azzurro chiaro → blocco ESCE)
-#  Beige   : H= 10- 35  S= 10- 90 V>180 (crema → FSL/note speciali)
+#  Titolo     : H=108-135  S>150  V>130   (blu saturo)
+#  Giallo     : H= 18- 42  S>100  V>150   (giallo vivo → ENTRA)
+#  Verde ch.  : H= 45- 75  S= 25-80 V>200 (verde menta chiaro → ESCE)
+#  Rosso      : H=  0- 15  S>100  V> 80   (rosso → cambio aula)
+#               H=163-180  S>100  V> 80
+#  Beige      : H= 10- 35  S= 10-90 V>180 (crema → FSL/note)
 # ---------------------------------------------------------------------------
 COLOR_RANGES = {
     "titolo": [
@@ -38,20 +42,19 @@ COLOR_RANGES = {
     "giallo": [
         (np.array([18, 100, 150]), np.array([42, 255, 255])),
     ],
+    "verde": [   # blocco ESCE ALLE — verde menta chiaro (H≈60, bassa saturazione)
+        (np.array([45, 25, 200]), np.array([75, 85, 255])),
+    ],
     "rosso": [
         (np.array([0,  100,  80]), np.array([15, 255, 255])),
         (np.array([163, 100, 80]), np.array([180, 255, 255])),
-    ],
-    "ciano": [
-        (np.array([100, 30, 190]), np.array([135, 180, 255])),
     ],
     "beige": [
         (np.array([10, 10, 180]), np.array([35, 90, 255])),
     ],
 }
 
-MIN_BLOCK_AREA = 2500
-
+MIN_BLOCK_AREA = 2000   # abbassato: cattura anche blocchi piccoli tipo "ENTRA 15:20"
 
 # ===========================================================================
 # DATA CLASSES
@@ -84,7 +87,6 @@ class ScheduleDay:
     note: list = field(default_factory=list)
     raw_blocks: dict = field(default_factory=dict)
 
-
 # ===========================================================================
 # 1. PREPROCESSING
 # ===========================================================================
@@ -101,15 +103,22 @@ def load_and_resize(path: str, max_width: int = 1600) -> np.ndarray:
     return img
 
 
-def enhance_for_ocr(region: np.ndarray) -> np.ndarray:
+def enhance_for_ocr(region: np.ndarray, invert: bool = False) -> np.ndarray:
+    """
+    Preprocessing standard per Tesseract.
+    invert=True: utile per testo chiaro su sfondo scuro/colorato.
+    """
     h, w = region.shape[:2]
-    scale = max(1.0, 180 / (min(h, w) + 1e-5))
-    if scale > 1.1:
+    # Upscale se la regione è troppo piccola
+    scale = max(1.0, 160 / (min(h, w) + 1e-5))
+    if scale > 1.05:
         region = cv2.resize(region, (int(w * scale), int(h * scale)),
                             interpolation=cv2.INTER_CUBIC)
-    gray   = cv2.cvtColor(region, cv2.COLOR_BGR2GRAY)
-    gray   = cv2.fastNlMeansDenoising(gray, h=10, templateWindowSize=7,
-                                      searchWindowSize=21)
+    gray = cv2.cvtColor(region, cv2.COLOR_BGR2GRAY)
+    if invert:
+        gray = cv2.bitwise_not(gray)
+    gray = cv2.fastNlMeansDenoising(gray, h=10, templateWindowSize=7,
+                                    searchWindowSize=21)
     binary = cv2.adaptiveThreshold(
         gray, 255,
         cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
@@ -119,6 +128,25 @@ def enhance_for_ocr(region: np.ndarray) -> np.ndarray:
                                 cv2.BORDER_CONSTANT, value=255)
     return binary
 
+
+def enhance_title(region: np.ndarray) -> np.ndarray:
+    """
+    Preprocessing speciale per il titolo (testo bianco su blu).
+    Usa upscale 3x + threshold di Otsu per testo chiaro su sfondo colorato.
+    """
+    scale = 3
+    big = cv2.resize(region, (region.shape[1]*scale, region.shape[0]*scale),
+                     interpolation=cv2.INTER_LANCZOS4)
+    gray = cv2.cvtColor(big, cv2.COLOR_BGR2GRAY)
+    # Otsu funziona bene quando ci sono due classi nette (bianco/colorato)
+    _, binary = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    # Se il testo è bianco (valore alto) su sfondo scuro → inverti
+    # Controlla il valore medio: se > 127 il testo è scuro su bianco ✓
+    if binary.mean() < 127:
+        binary = cv2.bitwise_not(binary)
+    binary = cv2.copyMakeBorder(binary, 15, 15, 15, 15,
+                                cv2.BORDER_CONSTANT, value=255)
+    return binary
 
 # ===========================================================================
 # 2. RILEVAMENTO BLOCCHI COLORATI
@@ -135,9 +163,26 @@ def get_color_mask(hsv: np.ndarray, color_name: str) -> np.ndarray:
 
 
 def find_blocks(img: np.ndarray, color_name: str,
-                min_area: int = MIN_BLOCK_AREA) -> list:
-    hsv      = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-    mask     = get_color_mask(hsv, color_name)
+                min_area: int = MIN_BLOCK_AREA,
+                x_max_frac: float = 1.0,   # 0.55 = solo metà sinistra
+                x_min_frac: float = 0.0) -> list:
+    """
+    Rileva blocchi del colore dato.
+    x_max_frac / x_min_frac: limita la ricerca a una fascia orizzontale
+    (es. 0.0-0.55 = solo sinistra, 0.55-1.0 = solo destra).
+    """
+    h_img, w_img = img.shape[:2]
+    x_min_px = int(w_img * x_min_frac)
+    x_max_px = int(w_img * x_max_frac)
+
+    hsv  = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+    mask = get_color_mask(hsv, color_name)
+
+    # Maschera solo la fascia di interesse
+    roi_mask = np.zeros_like(mask)
+    roi_mask[:, x_min_px:x_max_px] = 255
+    mask = cv2.bitwise_and(mask, roi_mask)
+
     contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL,
                                    cv2.CHAIN_APPROX_SIMPLE)
     blocks = []
@@ -149,72 +194,112 @@ def find_blocks(img: np.ndarray, color_name: str,
     blocks.sort(key=lambda b: (b[1], b[0]))
     return blocks
 
-
 # ===========================================================================
 # 3. OCR
 # ===========================================================================
 
-def ocr_region(crop: np.ndarray) -> str:
-    prepared = enhance_for_ocr(crop)
-    raw      = pytesseract.image_to_string(prepared, config=TESSERACT_CONFIG)
+def ocr_region(crop: np.ndarray, config: str = TESS_STD,
+               invert: bool = False) -> str:
+    prepared = enhance_for_ocr(crop, invert=invert)
+    raw      = pytesseract.image_to_string(prepared, config=config)
+    return normalize_text(raw)
+
+
+def ocr_title(crop: np.ndarray) -> str:
+    """OCR dedicato per il titolo (testo bianco su blu)."""
+    prepared = enhance_title(crop)
+    raw      = pytesseract.image_to_string(prepared, config=TESS_LINE)
     return normalize_text(raw)
 
 
 def normalize_text(text: str) -> str:
     text = text.upper()
-    text = re.sub(r"[^\w\s.\-:/+*àèéìòùÀÈÉÌÒÙ]", " ", text)
+    text = re.sub(r"[^\w\s.\-:/+*°àèéìòùÀÈÉÌÒÙ]", " ", text)
     text = re.sub(r" {2,}", " ", text)
+    # Correzioni OCR tipiche
     text = re.sub(r"\bO(?=\d)", "0", text)
     text = re.sub(r"(?<=\d)O\b", "0", text)
     text = re.sub(r"\bl(?=\d)", "1", text)
     return text.strip()
 
-
 # ===========================================================================
 # 4. PARSING
 # ===========================================================================
 
-RE_TIME   = re.compile(r"\b(\d{1,2}[.:]\d{2})\s*[-–]\s*(\d{1,2}[.:]\d{2})\b")
-RE_CLASS  = re.compile(r"\b(\d\s*[A-Z]{1,3}(?:/[A-Z])?)\b")
-RE_AULA   = re.compile(
-    r"\b((?:AULA|LAB\.?|LABORATORIO)\s+[A-Z0-9]{1,10}(?:\s+[A-Z0-9]{1,10})?)\b"
+RE_TIME  = re.compile(r"\b(\d{1,2}[.:]\d{2})\s*[-–_]\s*(\d{1,2}[.:]\d{2})\b")
+RE_AULA  = re.compile(
+    r"\b((?:AULA|LAB\.?|LABORATORIO)\s+[A-Z0-9]{1,12}(?:\s+[A-Z0-9]{1,12})?)\b"
 )
-RE_ENTRY  = re.compile(
+RE_ENTRY = re.compile(
     r"ENTRA\s+ALLE\s+(\d{1,2}[.:]\d{2})(.*?)(?=ENTRA\s+ALLE|ESCE\s+ALLE|\Z)",
     re.DOTALL
 )
-RE_EXIT   = re.compile(
+RE_EXIT  = re.compile(
     r"ESCE\s+ALLE\s+(\d{1,2}[.:]\d{2})(.*?)(?=ENTRA\s+ALLE|ESCE\s+ALLE|\Z)",
     re.DOTALL
 )
+# Classe scolastica: cifra + 1-3 lettere, opzionale /lettera
+# NON deve essere preceduta da lettere (evita "D205" → "D2")
+RE_CLASS = re.compile(r"(?<![A-Z])(?<![0-9])\b(\d\s*[A-Z]{1,3}(?:/[A-Z])?)\b")
 
 
 def fmt_time(s: str) -> str:
-    return s.replace(".", ":")
+    return s.replace(".", ":").replace("_", ":")
+
 
 def extract_classes(text: str) -> list:
+    """
+    Estrae le classi dal testo, ignorando i riferimenti ad aule
+    (es. 'AULA D205' non deve generare '5' o 'D2').
+    """
+    # Prima rimuovi tutte le aule dal testo per evitare false classi
+    clean = RE_AULA.sub("AULA_RIMOSSA", text)
+    # Rimuovi anche pattern tipo "D005", "B119" (aule senza keyword)
+    clean = re.sub(r"\b[A-Z]\d{3}\b", "", clean)
+
     seen, out = set(), []
-    for m in RE_CLASS.finditer(text):
+    for m in RE_CLASS.finditer(clean):
         c = m.group(1).replace(" ", "")
-        if c not in seen and len(c) <= 5:
-            seen.add(c); out.append(c)
+        # Filtri anti-falso-positivo
+        if len(c) < 2 or len(c) > 5:
+            continue
+        if c in seen:
+            continue
+        # Evita classi con numeri non validi (es. "7B" non esiste nelle medie/superiori tipiche)
+        digit = int(c[0])
+        if digit < 1 or digit > 5:
+            continue
+        seen.add(c)
+        out.append(c)
     return out
+
 
 def extract_aula(text: str) -> str:
     m = RE_AULA.search(text)
     return m.group(1).strip() if m else ""
 
+
 def extract_orario(text: str) -> str:
     m = RE_TIME.search(text)
     return f"{fmt_time(m.group(1))} - {fmt_time(m.group(2))}" if m else ""
 
+
 def parse_title(text: str):
+    """Estrae giorno della settimana e data dal testo del titolo."""
     days = ["LUNEDÌ","MARTEDÌ","MERCOLEDÌ","GIOVEDÌ","VENERDÌ","SABATO","DOMENICA"]
+    # Gestisce anche versioni senza accento (OCR error)
+    day_variants = {
+        "LUNEDI": "LUNEDÌ", "MARTEDI": "MARTEDÌ", "MERCOLEDI": "MERCOLEDÌ",
+        "GIOVEDI": "GIOVEDÌ", "VENERDI": "VENERDÌ",
+    }
+    for var, correct in day_variants.items():
+        text = text.replace(var, correct)
+
     giorno = next((d for d in days if d in text), "")
     data   = text.replace(giorno, "").strip() if giorno else text.strip()
-    # Pulisci caratteri non alfabetici all'inizio della data
     data   = re.sub(r"^[^0-9A-Z]+", "", data).strip()
     return giorno, data
+
 
 def parse_entry_exit(text: str, kind: str) -> list:
     pattern = RE_ENTRY if kind == "entrate" else RE_EXIT
@@ -228,17 +313,25 @@ def parse_entry_exit(text: str, kind: str) -> list:
         results.append(EntratUscita(ora=ora, classi=classi, note=nota))
     return results
 
+
 def parse_cambi_aula(text: str) -> list:
+    """
+    Ogni riga ha struttura: CLASSE : HH.MM - HH.MM  AULA XXX
+    Tollera OCR rumoroso con separatori irregolari.
+    """
     cambi = []
     for line in text.splitlines():
         line = line.strip()
-        if not line:
+        if not line or len(line) < 8:
             continue
-        orario      = extract_orario(line)
-        aula        = extract_aula(line)
+        orario = extract_orario(line)
+        if not orario:
+            continue   # riga senza orario non è un cambio aula valido
+        aula   = extract_aula(line)
+        # La classe è prima del primo orario/separatore
         classe_part = re.split(r"[:\s]\d{1,2}[.:]\d{2}", line)[0]
-        classi      = extract_classes(classe_part)
-        if classi and orario:
+        classi = extract_classes(classe_part)
+        if classi:
             cambi.append(CambioAula(
                 classe=" ".join(classi),
                 orario=orario,
@@ -246,17 +339,18 @@ def parse_cambi_aula(text: str) -> list:
             ))
     return cambi
 
+
 def classify_note(text: str) -> NotaSpeciale:
-    if "F.S.L" in text or "FSL" in text:
+    up = text.upper()
+    if "F.S.L" in up or "FSL" in up:
         tipo = "FSL"
-    elif "LAB" in text:
+    elif "LAB" in up:
         tipo = "laboratorio"
-    elif "GITA" in text or "LICEO" in text:
+    elif "GITA" in up or "LICEO" in up:
         tipo = "gita"
     else:
         tipo = "generico"
     return NotaSpeciale(tipo=tipo, testo=text)
-
 
 # ===========================================================================
 # 5. PIPELINE PRINCIPALE
@@ -264,61 +358,83 @@ def classify_note(text: str) -> NotaSpeciale:
 
 def process_image(path: str, debug: bool = False) -> dict:
     img    = load_and_resize(path)
+    w_img  = img.shape[1]
     result = ScheduleDay()
 
     if debug:
         os.makedirs("debug", exist_ok=True)
-        _save_debug_masks(img, path)
+        _save_debug_masks(img)
 
-    # --- TITOLO ---
-    title_blocks = find_blocks(img, "titolo")
+    # ------------------------------------------------------------------ TITOLO
+    title_blocks = find_blocks(img, "titolo", min_area=5000)
     if title_blocks:
-        title_text = ocr_region(title_blocks[0][4])
+        title_text = ocr_title(title_blocks[0][4])
     else:
-        title_text = ocr_region(img[0:max(50, img.shape[0]//8), :])
+        # Fallback: prima fascia
+        title_crop = img[0:max(35, img.shape[0]//10), :]
+        title_text = ocr_title(title_crop)
+
     result.giorno, result.data = parse_title(title_text)
     result.raw_blocks["titolo"] = title_text
+    if debug:
+        cv2.imwrite("debug/titolo.png", title_blocks[0][4] if title_blocks else
+                    img[0:35, :])
 
-    # --- GIALLO (entrate, ed eventuali uscite miste) ---
+    # ------------------------------------------------------------------ GIALLO
+    # IMPORTANTE: solo metà sinistra (x_max_frac=0.55) per evitare
+    # di catturare il testo giallo dentro il pannello rosso (cambio aula)
     yellow_texts = []
-    for i, (x, y, w, h, crop) in enumerate(find_blocks(img, "giallo")):
+    for i, (x, y, w, h, crop) in enumerate(
+            find_blocks(img, "giallo", x_max_frac=0.55)):
         t = ocr_region(crop)
         yellow_texts.append(t)
-        if debug: cv2.imwrite(f"debug/giallo_{i}.png", crop)
+        if debug:
+            cv2.imwrite(f"debug/giallo_{i}.png", crop)
+
     full_yellow = "\n".join(yellow_texts)
     result.raw_blocks["giallo"] = full_yellow
     result.entrate = parse_entry_exit(full_yellow, "entrate")
     result.uscite  = parse_entry_exit(full_yellow, "uscite")
 
-    # --- CIANO (blocco ESCE ALLE azzurro chiaro) ---
-    cyan_texts = []
-    for i, (x, y, w, h, crop) in enumerate(find_blocks(img, "ciano")):
+    # ------------------------------------------------------------------ VERDE (ESCE ALLE)
+    # Blocco verde menta chiaro — H≈60, bassa saturazione
+    verde_texts = []
+    for i, (x, y, w, h, crop) in enumerate(
+            find_blocks(img, "verde", x_max_frac=0.55)):
         t = ocr_region(crop)
-        cyan_texts.append(t)
-        if debug: cv2.imwrite(f"debug/ciano_{i}.png", crop)
-    full_cyan = "\n".join(cyan_texts)
-    result.raw_blocks["ciano"] = full_cyan
-    result.uscite  += parse_entry_exit(full_cyan, "uscite")
-    result.entrate += parse_entry_exit(full_cyan, "entrate")
+        verde_texts.append(t)
+        if debug:
+            cv2.imwrite(f"debug/verde_{i}.png", crop)
 
-    # --- ROSSO (cambi aula) ---
+    full_verde = "\n".join(verde_texts)
+    result.raw_blocks["verde"] = full_verde
+    result.uscite  += parse_entry_exit(full_verde, "uscite")
+    result.entrate += parse_entry_exit(full_verde, "entrate")
+
+    # ------------------------------------------------------------------ ROSSO (cambio aula)
+    # Solo metà destra (x_min_frac=0.45) dove si trova il pannello cambio aula
     red_texts = []
-    for i, (x, y, w, h, crop) in enumerate(find_blocks(img, "rosso")):
-        t = ocr_region(crop)
+    for i, (x, y, w, h, crop) in enumerate(
+            find_blocks(img, "rosso", x_min_frac=0.45, min_area=5000)):
+        t = ocr_region(crop, config=TESS_BLOCK)
         red_texts.append(t)
-        if debug: cv2.imwrite(f"debug/rosso_{i}.png", crop)
+        if debug:
+            cv2.imwrite(f"debug/rosso_{i}.png", crop)
+
     full_red = "\n".join(red_texts)
     result.raw_blocks["rosso"] = full_red
     result.cambi_aula = parse_cambi_aula(full_red)
 
-    # --- BEIGE (note FSL ecc.) ---
-    for i, (x, y, w, h, crop) in enumerate(find_blocks(img, "beige", min_area=1500)):
+    # ------------------------------------------------------------------ BEIGE (FSL/note)
+    for i, (x, y, w, h, crop) in enumerate(
+            find_blocks(img, "beige", x_max_frac=0.55, min_area=1500)):
         t = ocr_region(crop)
-        if debug: cv2.imwrite(f"debug/beige_{i}.png", crop)
+        if debug:
+            cv2.imwrite(f"debug/beige_{i}.png", crop)
         if t.strip():
             result.note.append(classify_note(t))
 
-    # --- FALLBACK titolo ---
+    # ------------------------------------------------------------------ Fallback titolo
     if not result.giorno:
         for text in [result.raw_blocks.get("titolo",""),
                      result.raw_blocks.get("giallo","")]:
@@ -336,15 +452,14 @@ def process_image(path: str, debug: bool = False) -> dict:
     return output
 
 
-def _save_debug_masks(img: np.ndarray, path: str):
+def _save_debug_masks(img: np.ndarray):
     hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
     for cname in COLOR_RANGES:
         mask    = get_color_mask(hsv, cname)
         overlay = img.copy()
-        overlay[mask == 0] = (overlay[mask == 0] * 0.3).astype(np.uint8)
+        overlay[mask == 0] = (overlay[mask == 0] * 0.35).astype(np.uint8)
         cv2.imwrite(f"debug/mask_{cname}.png", overlay)
-        print(f"  [debug] {cname}: {(mask>0).sum()} pixel rilevati")
-
+        print(f"  [debug] {cname}: {(mask>0).sum()} pixel")
 
 # ===========================================================================
 # 6. BATCH
@@ -381,7 +496,6 @@ def save_json(data, output_path: str):
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
     print(f"[OK] Salvato: {output_path}")
-
 
 # ===========================================================================
 # 7. ENTRY POINT
