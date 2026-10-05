@@ -2,8 +2,8 @@ import os
 import asyncio
 from dotenv import load_dotenv
 from classeviva import Utente
-from lessonsApi import lezioni_per_data
-from agendaApi import agenda_per_data
+from backend.src.classevivaApi.lessonsApi import lezioni_per_data
+from backend.src.classevivaApi.agendaApi import agenda_per_data
 
 load_dotenv()
 USERNAME = os.getenv("CLASSEVIVA_USER")

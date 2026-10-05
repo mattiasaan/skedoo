@@ -2,8 +2,8 @@ import asyncio
 import os
 from dotenv import load_dotenv
 from classeviva import Utente
-from lessonsApi import lezione_attuale, lezioni_giornata
-from agendaApi import agenda_giornata, agenda_settimanale, agenda_mensile
+from backend.src.classevivaApi.lessonsApi import lezione_attuale, lezioni_giornata
+from backend.src.classevivaApi.agendaApi import agenda_giornata, agenda_settimanale, agenda_mensile
 
 load_dotenv()
 
