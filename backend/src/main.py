@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from schedule.routes import router as schedules_router
+from backend.src.schedule.routes import router as schedules_router
 
 app = FastAPI()
 
