@@ -1,18 +1,8 @@
 fastapi
 uvicorn[standard]
-sqlalchemy
-pydantic
 pydantic-settings
 python-jose[cryptography]
-bcrypt
-python-multipart
-yfinance
-requests
-feedparser
-reportlab
-aiohttp
-python-dotenv
-email-validator
-passlib
-
-Classeviva.py
+# Classeviva.py
+tzdata
+sqlalchemy>=2.0
+psycopg[binary]>=3.1
