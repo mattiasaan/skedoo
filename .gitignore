@@ -324,3 +324,9 @@ info.md
 *.generated.*
 
 backend/data/classi/
+
+.env.example
+.env
+*.env
+
+backend/app/data
