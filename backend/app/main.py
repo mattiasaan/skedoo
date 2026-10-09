@@ -73,5 +73,4 @@ for module in (auth, schedules, grades, agenda):
 
 @app.get("/health", tags=["Health"])
 def health():
-  """Controllo di vita per Docker/hosting (non può portare un JWT). Non espone dati."""
   return {"status": "ok"}

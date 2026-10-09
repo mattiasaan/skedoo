@@ -323,10 +323,12 @@ info.md
 
 *.generated.*
 
-backend/data/classi/
-
 .env.example
 .env
 *.env
+enviorment.md
 
 backend/app/data
+backend/data/classi/
+classi_index.json
+orario_classi.json
