@@ -20,9 +20,8 @@ from .security import current_session
 log = logging.getLogger("skedoo")
 
 GIORNI = ["lunedi", "martedi", "mercoledi", "giovedi", "venerdi", "sabato", "domenica"]  # come weekday() di Python
-ETICHETTE = {"lunedi": "Lunedì", "martedi": "Martedì", "mercoledi": "Mercoledì", "giovedi": "Giovedì",
-             "venerdi": "Venerdì", "sabato": "Sabato", "domenica": "Domenica"}
-# Griglia oraria della scuola: inizio di ogni ora di lezione e durata (modificala se cambiano le campanelle)
+ETICHETTE = {"lunedi": "Lunedì", "martedi": "Martedì", "mercoledi": "Mercoledì", "giovedi": "Giovedì", "venerdi": "Venerdì", "sabato": "Sabato", "domenica": "Domenica"}
+# Griglia oraria della scuola: inizio di ogni ora di lezione e durata
 SLOT_STARTS = ["08:10", "09:00", "09:50", "10:40", "11:45", "12:35", "13:25", "14:30", "15:20", "16:10", "17:10"]
 SLOT_MINUTES = 50
 
