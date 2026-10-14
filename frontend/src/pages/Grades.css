@@ -1,0 +1,10 @@
+.average {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.average strong {
+  font-size: 34px;
+  font-weight: 700;
+}

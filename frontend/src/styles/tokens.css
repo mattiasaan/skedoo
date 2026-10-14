@@ -1,0 +1,33 @@
+/* Colori, spazi e font dell'app. Per cambiare l'aspetto basta modificare questi valori. */
+:root {
+  /* sfondi */
+  --bg: #08100d;
+  --surface: #101a16; /* card */
+  --surface-2: #16221d; /* card in evidenza / input */
+  --border: #1f2e27;
+
+  /* testo */
+  --text: #f2f6f4;
+  --text-muted: #8da097;
+  --text-faint: #5f7168;
+
+  /* verde (colore principale) */
+  --green: #0f5c36;
+  --green-strong: #14733f;
+  --green-text: #34b36b; /* verde leggibile su sfondo scuro */
+  --green-soft: rgba(52, 179, 107, 0.12);
+
+  /* stati */
+  --warning: #f5a524; /* modifiche all'orario */
+  --warning-soft: rgba(245, 165, 36, 0.12);
+  --danger: #ef5b5b; /* voti insufficienti, errori */
+  --danger-soft: rgba(239, 91, 91, 0.12);
+
+  /* forme e spazi */
+  --radius: 16px;
+  --radius-sm: 10px;
+  --gap: 16px;
+  --nav-height: 68px;
+
+  --font: "Lexend", system-ui, sans-serif;
+}

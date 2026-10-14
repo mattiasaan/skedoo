@@ -1,0 +1,27 @@
+.agenda-event {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.agenda-event__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.agenda-event__time,
+.agenda-event__author {
+  font-size: 12px;
+}
+
+.agenda-event h3 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.agenda-event__text {
+  font-size: 14px;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}

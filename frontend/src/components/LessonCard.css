@@ -1,0 +1,98 @@
+.lesson {
+  display: flex;
+  gap: 12px;
+}
+
+.lesson__time {
+  flex: none;
+  width: 44px;
+  padding-top: 14px;
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: right;
+}
+
+.lesson__card {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.lesson__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.lesson__top h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.lesson__warn {
+  flex: none;
+  color: var(--warning);
+}
+
+.lesson__hours {
+  margin-top: 2px;
+  font-size: 12px;
+}
+
+.lesson__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.lesson__meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lesson__done {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+/* in corso: bordo verde */
+.lesson--in_corso .lesson__card {
+  border-color: var(--green-text);
+}
+
+.lesson--finita .lesson__card {
+  opacity: 0.6;
+}
+
+/* modificata: bordo e testo arancioni */
+.lesson--changed .lesson__card {
+  border-left: 4px solid var(--warning);
+}
+
+.lesson__changed-text {
+  color: var(--warning);
+  font-weight: 500;
+}
+
+.lesson__note {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--warning);
+}
