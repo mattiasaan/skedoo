@@ -1,0 +1,19 @@
+.class-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.class-grid__item {
+  min-height: 52px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font-weight: 500;
+}
+
+.class-grid__item.is-selected {
+  border-color: var(--green-text);
+  background: var(--green);
+  color: #fff;
+}
