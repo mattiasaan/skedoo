@@ -21,8 +21,6 @@ tests/                        python -m pytest -q tests
 docs/db-schema.md             schema e relazioni
 ```
 
-Per aggiungere un endpoint: nuovo file in `app/` con un `APIRouter`, `Depends(current_session)` (e `upstream_limit` se chiama ClasseViva), poi `app.include_router(...)` in `main.py`.
-
 ## Avvio
 
 ```bash
@@ -120,6 +118,3 @@ pip install -r requirements-dev.txt
 python -m pytest -q tests
 TEST_DATABASE_URL=postgresql://… python -m pytest -q tests/test_db.py   # su PostgreSQL vero (database vuoto di prova)
 ```
-
-
-python -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
