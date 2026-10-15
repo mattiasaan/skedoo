@@ -332,3 +332,6 @@ backend/app/data
 backend/data/classi/
 classi_index.json
 orario_classi.json
+
+/helper/OCR/debug/*.png
+/helper/OCR/*.json
