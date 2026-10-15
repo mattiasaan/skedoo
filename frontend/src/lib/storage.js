@@ -30,7 +30,6 @@ export const storage = {
 // Chiavi usate nell'app (così sono tutte in un posto solo)
 export const KEYS = {
   token: "token", // JWT della sessione
-  credenziali: "credenziali", // { username, password }: servono per rifare il login quando la sessione scade
   utente: "utente", // { id, nome, cognome }
   classe: "classe", // id della classe scelta, es. "1A"
 };
