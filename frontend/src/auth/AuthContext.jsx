@@ -13,7 +13,7 @@ export function AuthProvider({ children }) {
   const [classe, setClasseState] = useState(() => storage.get(KEYS.classe));
 
   const clearSession = useCallback(() => {
-    [KEYS.token, KEYS.credenziali, KEYS.utente].forEach(storage.remove);
+    [KEYS.token, KEYS.utente].forEach(storage.remove);
     setToken(null);
     setUtente(null);
   }, []);
@@ -24,7 +24,6 @@ export function AuthProvider({ children }) {
   const login = useCallback(async (username, password) => {
     const result = await apiLogin(username.trim(), password);
     storage.set(KEYS.token, result.access_token);
-    storage.set(KEYS.credenziali, { username: username.trim(), password }); // per il ri-login automatico
     storage.set(KEYS.utente, result.utente);
     setToken(result.access_token);
     setUtente(result.utente);
