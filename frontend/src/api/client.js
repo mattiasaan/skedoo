@@ -3,8 +3,7 @@
 // Cosa fa per te:
 //  - aggiunge il token (Authorization: Bearer ...)
 //  - trasforma gli errori in `ApiError` con status, code e un messaggio in italiano
-//  - se la sessione è scaduta (401 session_expired / invalid_token) rifà da solo il login con le
-//    credenziali salvate e ripete la chiamata una volta; se non riesce, esce dall'app.
+//  - se la sessione è scaduta (401 session_expired / invalid_token) esce dall'app.
 import { KEYS, storage } from "../lib/storage";
 
 const BASE = (import.meta.env.VITE_API_URL || "/api").replace(/\/$/, "");
@@ -71,24 +70,6 @@ async function send(path, { method = "GET", body, token }) {
   return data;
 }
 
-// Se più chiamate scoprono insieme che la sessione è scaduta, il login si fa una volta sola
-let refreshing = null;
-
-async function refreshLogin() {
-  if (!refreshing) {
-    refreshing = (async () => {
-      const credenziali = storage.get(KEYS.credenziali);
-      if (!credenziali) throw new ApiError(401, "session_expired", "Sessione scaduta.");
-      const result = await send("/auth/login", { method: "POST", body: credenziali });
-      storage.set(KEYS.token, result.access_token);
-      storage.set(KEYS.utente, result.utente);
-    })().finally(() => {
-      refreshing = null;
-    });
-  }
-  return refreshing;
-}
-
 export async function request(path, options = {}) {
   const { auth = true, ...rest } = options;
   if (!auth) return send(path, rest);
@@ -99,13 +80,7 @@ export async function request(path, options = {}) {
     const expired = error.status === 401 && ["session_expired", "invalid_token", "not_authenticated"].includes(error.code);
     if (!expired) throw error;
 
-    try {
-      await refreshLogin();
-    } catch (loginError) {
-      // password cambiata, nessuna credenziale salvata... non si può continuare
-      if (loginError.status === 401) onSessionLost();
-      throw loginError;
-    }
-    return send(path, { ...rest, token: storage.get(KEYS.token) });
+    onSessionLost();
+    throw error;
   }
 }

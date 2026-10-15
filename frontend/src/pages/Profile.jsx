@@ -38,7 +38,7 @@ export default function Profile() {
           <LogOut size={20} /> Esci
         </button>
         <p className="muted" style={{ fontSize: 12, textAlign: "center" }}>
-          Uscendo, le credenziali salvate su questo dispositivo vengono cancellate.
+          Uscendo, i dati di sessione salvati su questo dispositivo vengono cancellati.
         </p>
       </div>
     </>

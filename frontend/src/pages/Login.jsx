@@ -77,7 +77,7 @@ export default function Login() {
         <button className="btn" disabled={loading || !username || !password}>
           <LogIn size={20} /> {loading ? "Accesso in corso…" : "Accedi con ClasseViva"}
         </button>
-        <p className="login__privacy muted">Le credenziali restano salvate solo su questo dispositivo e servono a rinnovare l'accesso quando scade.</p>
+        <p className="login__privacy muted">Le credenziali non vengono salvate su questo dispositivo.</p>
       </form>
     </div>
   );
