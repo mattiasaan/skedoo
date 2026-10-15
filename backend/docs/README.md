@@ -118,3 +118,6 @@ pip install -r requirements-dev.txt
 python -m pytest -q tests
 TEST_DATABASE_URL=postgresql://… python -m pytest -q tests/test_db.py   # su PostgreSQL vero (database vuoto di prova)
 ```
+
+
+python -m uvicorn app.main:app --reload --host 0.0.0.0
