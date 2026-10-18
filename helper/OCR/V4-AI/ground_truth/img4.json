@@ -1,0 +1,153 @@
+{
+  "giorno": "MERCOLEDÌ",
+  "numero": 13,
+  "mese": "MAGGIO",
+  "entrate": [
+    {
+      "ora": "09:00",
+      "classi": [
+        "1D",
+        "3J",
+        "3OD"
+      ]
+    },
+    {
+      "ora": "09:50",
+      "classi": [
+        "1G",
+        "3T",
+        "4P",
+        "5A",
+        "5D"
+      ]
+    }
+  ],
+  "uscite": [
+    {
+      "ora": "11:45",
+      "classi": [
+        "1C",
+        "1I",
+        "3A",
+        "4D"
+      ]
+    },
+    {
+      "ora": "12:35",
+      "classi": [
+        "1E",
+        "1P",
+        "3J"
+      ]
+    },
+    {
+      "ora": "16:10",
+      "classi": [
+        "1OD",
+        "2P",
+        "4MAT"
+      ]
+    }
+  ],
+  "senza_lezioni_pomeridiane": [
+    {
+      "classi": [
+        "2OD",
+        "3J"
+      ]
+    }
+  ],
+  "cambi_aula": [
+    {
+      "classe": "1A",
+      "orario": "08:10 - 09:00",
+      "aula": "AULA B007"
+    },
+    {
+      "classe": "1B",
+      "orario": "10:55 - 11:45",
+      "aula": "AULA B209"
+    },
+    {
+      "classe": "1C",
+      "orario": "09:50 - 11:45",
+      "aula": "AULA B108"
+    },
+    {
+      "classe": "1I",
+      "orario": "09:50 - 11:45",
+      "aula": "AULA B207"
+    },
+    {
+      "classe": "1L",
+      "orario": "09:50 - 11:45",
+      "aula": "AULA 201"
+    },
+    {
+      "classe": "1MAQ2",
+      "orario": "10:55 - 11:45",
+      "aula": "AULA B111"
+    },
+    {
+      "classe": "2OD",
+      "orario": "08:10 - 10:40",
+      "aula": "LAB. B219"
+    },
+    {
+      "classe": "3I",
+      "orario": "10:55 - 11:45",
+      "aula": "AULA B317"
+    },
+    {
+      "classe": "3L",
+      "orario": "08:10 - 13:25",
+      "aula": "AULA MAGNA"
+    },
+    {
+      "classe": "3P",
+      "orario": "10:55 - 13:25",
+      "aula": "AULA B004"
+    },
+    {
+      "classe": "4D",
+      "orario": "09:00 - 11:45",
+      "aula": "AULA 302"
+    },
+    {
+      "classe": "5C",
+      "orario": "09:50 - 11:45",
+      "aula": "AULA B112"
+    },
+    {
+      "classe": "5E",
+      "orario": "09:50 - 10:40",
+      "aula": "AULA B107"
+    },
+    {
+      "classe": "5H",
+      "orario": "10:55 - 11:45",
+      "aula": "AULA 301"
+    },
+    {
+      "classe": "5I",
+      "orario": "09:50 - 11:45",
+      "aula": "AULA B304"
+    },
+    {
+      "classe": "5K",
+      "orario": "09:50 - 11:45",
+      "aula": "AULA B013"
+    },
+    {
+      "classe": "5L",
+      "orario": "09:50 - 11:45",
+      "aula": "AULA B106"
+    },
+    {
+      "classe": "5OD",
+      "orario": "10:55 - 11:45",
+      "aula": "AULA B309"
+    }
+  ],
+  "n_note": 5
+}

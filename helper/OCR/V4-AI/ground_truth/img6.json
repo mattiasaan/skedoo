@@ -1,0 +1,135 @@
+{
+  "giorno": "GIOVEDÌ",
+  "numero": 7,
+  "mese": "MAGGIO",
+  "entrate": [
+    {
+      "ora": "09:00",
+      "classi": [
+        "3F",
+        "4J",
+        "5MAT"
+      ]
+    },
+    {
+      "ora": "09:50",
+      "classi": [
+        "1A",
+        "3H",
+        "3D",
+        "4F"
+      ]
+    },
+    {
+      "ora": "15:20",
+      "classi": [
+        "3MAT",
+        "5B",
+        "5MAT"
+      ]
+    }
+  ],
+  "uscite": [
+    {
+      "ora": "11:45",
+      "classi": [
+        "3C/T",
+        "3L",
+        "3P",
+        "4N"
+      ]
+    },
+    {
+      "ora": "12:35",
+      "classi": [
+        "1F",
+        "3E"
+      ]
+    },
+    {
+      "ora": "15:20",
+      "classi": [
+        "3I",
+        "4I"
+      ]
+    },
+    {
+      "ora": "16:10",
+      "classi": [
+        "1MAQ2",
+        "4F",
+        "4J",
+        "5I"
+      ]
+    }
+  ],
+  "senza_lezioni_pomeridiane": [],
+  "cambi_aula": [
+    {
+      "classe": "1E",
+      "orario": "09:50 - 11:45",
+      "aula": "LAB. B221"
+    },
+    {
+      "classe": "1G",
+      "orario": "15:20 - 16:10",
+      "aula": "LAB. B221"
+    },
+    {
+      "classe": "2B",
+      "orario": "09:50 - 11:45",
+      "aula": "AULA B016"
+    },
+    {
+      "classe": "2F",
+      "orario": "09:50 - 10:40",
+      "aula": "AULA B307"
+    },
+    {
+      "classe": "3A",
+      "orario": "08:10 - 10:40",
+      "aula": "AULA D205"
+    },
+    {
+      "classe": "3L",
+      "orario": "08:10 - 13:25",
+      "aula": "AULA MAGNA"
+    },
+    {
+      "classe": "4H",
+      "orario": "09:50 - 10:40",
+      "aula": "AULA B115"
+    },
+    {
+      "classe": "5B",
+      "orario": "11:45 - 13:25",
+      "aula": "AULA B016"
+    },
+    {
+      "classe": "5E",
+      "orario": "08:10 - 13:25",
+      "aula": "LAB. D008"
+    },
+    {
+      "classe": "5I",
+      "orario": "09:50 - 11:45",
+      "aula": "AULA B204"
+    },
+    {
+      "classe": "5J",
+      "orario": "08:10 - 13:25",
+      "aula": "AULA A106"
+    },
+    {
+      "classe": "5K",
+      "orario": "08:10 - 13:25",
+      "aula": "LAB. D008"
+    },
+    {
+      "classe": "5MAT",
+      "orario": "12:35 - 13:25",
+      "aula": "AULA B106"
+    }
+  ],
+  "n_note": 3
+}
