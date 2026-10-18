@@ -335,3 +335,7 @@ orario_classi.json
 
 /helper/OCR/debug/*.png
 /helper/OCR/*.json
+
+# /helper/OCR/V4-AI/test_images
+/helper/OCR/V4-AI/output
+/helper/OCR/V4-AI/tests

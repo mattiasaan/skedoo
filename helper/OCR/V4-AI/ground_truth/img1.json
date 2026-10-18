@@ -1,0 +1,125 @@
+{
+  "giorno": "LUNEDÌ",
+  "numero": 9,
+  "mese": "FEBBRAIO",
+  "entrate": [
+    {
+      "ora": "09:00",
+      "classi": [
+        "3H"
+      ]
+    },
+    {
+      "ora": "09:50",
+      "classi": [
+        "1P",
+        "3F",
+        "4J"
+      ]
+    }
+  ],
+  "uscite": [
+    {
+      "ora": "11:45",
+      "classi": [
+        "5A",
+        "5N"
+      ]
+    },
+    {
+      "ora": "16:10",
+      "classi": [
+        "4L"
+      ]
+    }
+  ],
+  "senza_lezioni_pomeridiane": [],
+  "cambi_aula": [
+    {
+      "classe": "1B",
+      "orario": "08:10 - 09:50",
+      "aula": "LAB. D004"
+    },
+    {
+      "classe": "1C",
+      "orario": "09:50 - 11:45",
+      "aula": "LAB. D004"
+    },
+    {
+      "classe": "1L",
+      "orario": "09:00 - 10:40",
+      "aula": "AULA A106"
+    },
+    {
+      "classe": "1MAQ2",
+      "orario": "11:45 - 13:25",
+      "aula": "AULA B309"
+    },
+    {
+      "classe": "1P",
+      "orario": "10:55 - 12:35",
+      "aula": "AULA A106"
+    },
+    {
+      "classe": "2C",
+      "orario": "12:35 - 13:25",
+      "aula": "AULA B311"
+    },
+    {
+      "classe": "2D",
+      "orario": "11:45 - 13:25",
+      "aula": "AULA B307"
+    },
+    {
+      "classe": "2F",
+      "orario": "12:35 - 13:25",
+      "aula": "AULA B107"
+    },
+    {
+      "classe": "3E",
+      "orario": "10:55 - 13:25",
+      "aula": "LAB. A210"
+    },
+    {
+      "classe": null,
+      "orario": "11:45 - 13:25",
+      "aula": "LAB. B219"
+    },
+    {
+      "classe": "3F",
+      "orario": "10:55 - 13:25",
+      "aula": "LAB. D011"
+    },
+    {
+      "classe": "4H",
+      "orario": "10:55 - 13:25",
+      "aula": "AULA CALABRONE"
+    },
+    {
+      "classe": "4I",
+      "orario": "15:20 - 16:10",
+      "aula": "AULA B204"
+    },
+    {
+      "classe": "4L",
+      "orario": "08:10 - 10:40",
+      "aula": "AULA CALABRONE"
+    },
+    {
+      "classe": "5G",
+      "orario": "10:55 - 12:35",
+      "aula": "AULA D004"
+    },
+    {
+      "classe": "5G/N",
+      "orario": "16:20 - 17:10",
+      "aula": "AULA B311"
+    },
+    {
+      "classe": "5OD",
+      "orario": "14:30 - 15:20",
+      "aula": "AULA B204"
+    }
+  ],
+  "n_note": 2
+}

@@ -1,0 +1,47 @@
+{
+  "motori": [
+    "ollama",
+    "rapidocr",
+    "tesseract"
+  ],
+  "ollama": {
+    "host": "http://localhost:11434",
+    "model": "qwen3-vl:8b-instruct",
+    "scale": [
+      3
+    ],
+    "num_ctx": 4096,
+    "timeout_s": 900,
+    "keep_alive": "10m",
+    "think": null
+  },
+  "tesseract_cmd": null,
+  "voti_minimi": 2,
+  "politica": "maggioranza",
+  "orari_noti": [
+    "08:00",
+    "08:10",
+    "09:00",
+    "09:50",
+    "10:40",
+    "10:55",
+    "11:45",
+    "12:35",
+    "13:25",
+    "14:30",
+    "15:20",
+    "16:10",
+    "16:20",
+    "16:30",
+    "17:10"
+  ],
+  "aule_nominali": [
+    "MAGNA",
+    "CALABRONE",
+    "UDIENZE",
+    "TALVERA"
+  ],
+  "salva_ritagli": true,
+  "classi_file": "elenchi/classi.json",
+  "aule_file": "elenchi/aule.json"
+}
