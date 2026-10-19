@@ -30,7 +30,7 @@ class Decision:
 
 
 def decide(readings, priority, voti_minimi=2, politica="maggioranza",
-           same: Optional[Callable] = None) -> Decision:
+           same: Optional[Callable] = None, autonomia: Optional[dict] = None) -> Decision:
     """
     readings : lista di Reading
     priority : lista di famiglie, dalla piu' alla meno affidabile
@@ -100,6 +100,36 @@ def decide(readings, priority, voti_minimi=2, politica="maggioranza",
         dec.reasons.append("avviso_richiede_accordo_totale:" + ",".join(rep.warnings))
 
     bloccato = any(not r.startswith(("verifica_incrociata_impossibile", )) for r in dec.reasons)
+
+    # In scheduled, unattended runs, a valid Ollama reading may be used when
+    # every available OCR family returned a valid but different reading.
+    # This is deliberately narrower than a normal majority: errors, warnings,
+    # missing OCR readings and malformed values never qualify.
+    auto = autonomia or {}
+    primary = auto.get("famiglia_prioritaria", "ollama")
+    allow_primary = auto.get("abilitata", False) and auto.get(
+        "accetta_prioritario_senza_consenso", False)
+    other_families = {r.family for r in usable if r.family != primary}
+    other_clusters_disagree = all(
+        not same(best[0].parsed, r.parsed)
+        for r in usable if r.family != primary
+    )
+    primary_only = (
+        dec.votes == 1
+        and best[0].family == primary
+        and other_families
+        and len(other_families) == families_total - 1
+        and other_clusters_disagree
+        and not rep.fatal
+        and not rep.problems
+        and not rep.warnings
+    )
+    if allow_primary and primary_only and families_total >= 2:
+        dec.reasons.append(
+            f"avviso:accettato_{primary}_senza_consenso_ocr_discordanti")
+        dec.status = "ok"
+        return dec
+
     if bloccato:
         dec.status = "revisione"
         return dec

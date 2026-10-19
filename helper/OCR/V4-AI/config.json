@@ -18,6 +18,11 @@
   "tesseract_cmd": null,
   "voti_minimi": 2,
   "politica": "maggioranza",
+  "autonomia": {
+    "abilitata": true,
+    "famiglia_prioritaria": "ollama",
+    "accetta_prioritario_senza_consenso": true
+  },
   "orari_noti": [
     "08:00",
     "08:10",

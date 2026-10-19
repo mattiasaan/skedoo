@@ -14,7 +14,9 @@ from .engines import (Engine, EngineUnavailable, OllamaVLM, RapidOCREngine,
 from .segment import (righe_pannello, righe_testo, ritaglia_riga,
                       segmenta_riquadri)
 
-PRIORITA = ["ollama", "rapidocr", "tesseract"]
+# Ollama is the preferred reader. RapidOCR and Tesseract remain independent
+# voters; they are intentionally tied after Ollama.
+PRIORITA = ["ollama", "tesseract", "rapidocr"]
 
 
 # ---------------------------------------------------------------------------
@@ -82,7 +84,8 @@ def leggi_unita(unit: Unit, engines, cfg):
             rd.error = f"{type(ex).__name__}: {ex}"
         readings.append(rd)
     dec = decide(readings, PRIORITA, cfg.get("voti_minimi", 2),
-                 cfg.get("politica", "maggioranza"), unit.same_fn)
+                 cfg.get("politica", "maggioranza"), unit.same_fn,
+                 cfg.get("autonomia"))
     return dec
 
 
@@ -187,7 +190,8 @@ def processa_immagine(path, engines, cfg, outdir=None, log=print):
         _applica(res, u, dec, crops_dir)
 
     _controlli_globali(res)
-    res["n_da_verificare"] = sum(1 for c in res["controllo"] if c["stato"] == "revisione")
+    res["n_da_verificare"] = sum(1 for c in res["controllo"]
+                                 if c["stato"] in ("revisione", "dissenso"))
     res["n_dissensi"] = sum(1 for c in res["controllo"] if c["stato"] == "dissenso")
     res["stato"] = "completo" if res["n_da_verificare"] == 0 else "da_verificare"
     return res
@@ -197,7 +201,10 @@ def processa_immagine(path, engines, cfg, outdir=None, log=print):
 # Composizione del risultato
 # ---------------------------------------------------------------------------
 def _verifica(dec):
-    return {"ok": "ok", "dissenso": "ok", "revisione": "da_verificare"}[dec.status]
+    # A majority selects the best candidate, but a dissent means the value
+    # still needs a human check before it can be considered verified.
+    return {"ok": "ok", "dissenso": "da_verificare",
+            "revisione": "da_verificare"}[dec.status]
 
 
 def _registra(res, u, dec, crops_dir, tipo):
