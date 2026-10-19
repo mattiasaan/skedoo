@@ -9,7 +9,8 @@ Legge le immagini degli orari (entrate/uscite, cambi aula, note) e produce un JS
    Qwen3-VL (via Ollama), RapidOCR e Tesseract. I motori non decidono nulla: trascrivono.
 3. Il testo viene interpretato dal codice (`orario/parse.py`) con **regole rigide** (formato di classi, aule, orari, coerenza orari/colori/data).
 4. Un dato è `ok` solo se è valido **e** almeno 2 famiglie di motori diverse leggono la stessa cosa (`orario/consensus.py`).
-   Altrimenti va in **revisione**, con il ritaglio dell'immagine accanto alle letture.
+   Se i motori dissentono, il valore scelto per maggioranza viene mostrato ma resta
+   `da_verificare`: non viene più considerato verificato automaticamente.
 5. La pagina `*_revisione.html` permette di correggere/confermare e scarica il JSON finale `verificato`.
 
 ## Uso
@@ -23,6 +24,7 @@ Per ogni immagine in `output/`: `<nome>.json`, `<nome>_revisione.html` (solo se 
 ### Come leggere il JSON
 - `stato`: `completo` (tutto verificato) oppure `da_verificare` (apri la pagina di revisione).
 - Ogni voce ha `verifica`: `ok` | `da_verificare` (dopo la revisione: `verificato`).
+- Un dissenso tra motori è sempre `da_verificare`, anche con politica `maggioranza`.
 - `avvisi`: controlli di coerenza (stessa classe in due aule con orari sovrapposti, ecc.).
 - `cambi_aula[].classe` è `null` quando nell'immagine originale la classe manca: succede in alcune righe
   di img1/img3 e non è recuperabile da nessun lettore, quindi viene sempre segnalata.
@@ -33,7 +35,12 @@ Per ogni immagine in `output/`: `<nome>.json`, `<nome>_revisione.html` (solo se 
 - `motori`: ordine/famiglie. I motori non disponibili vengono saltati con un avviso.
   Con una sola famiglia disponibile nulla può essere `ok` (nessuna verifica incrociata possibile).
 - `ollama.scale`: ingrandimenti con cui leggere, es. `[3]`. Ogni riga è letta dal modello sul ritaglio ingrandito.
-- `politica`: `maggioranza` (default: 2 famiglie concordi, il dissenso viene mostrato) oppure `unanime`.
+- `politica`: `maggioranza` (default: 2 famiglie concordi, il dissenso viene mostrato e richiede verifica)
+  oppure `unanime`.
+- `autonomia`: per i job senza operatore, un risultato Ollama formalmente valido può essere
+  accettato anche senza consenso solo se tutti gli OCR disponibili hanno prodotto letture valide
+  ma diverse. Il risultato viene comunque registrato in `avvisi`; errori, valori fuori regola o
+  motori senza lettura non attivano questo fallback.
 - `classi_file` / `aule_file` / `orari_noti` / `aule_nominali`: elenchi dei valori ammessi.
   Un valore **fuori elenco** non viene bloccato, ma e' accettato solo se **tutti** i motori disponibili
   concordano (altrimenti va in revisione) e compare tra gli `avvisi`.

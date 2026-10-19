@@ -59,7 +59,7 @@ document.querySelectorAll('.card[data-id]').forEach(bind);
 function esporta(){
   const out=JSON.parse(JSON.stringify(DATA));
   let aperti=0;
-  document.querySelectorAll('.card.rev').forEach(c=>{
+  document.querySelectorAll('.card.rev,.card.dis').forEach(c=>{
     const conf=c.querySelector('input.conf').checked;
     const id=c.dataset.id,tipo=c.dataset.tipo;
     if(tipo==='titolo'){out.titolo_verifica=conf?'verificato':'da_verificare'}
@@ -117,7 +117,7 @@ def _campi(c, res):
 
 def _card(c, res):
     cls = "rev" if c["stato"] == "revisione" else "dis"
-    lab = "DA VERIFICARE" if cls == "rev" else "dissenso tra motori"
+    lab = "DA VERIFICARE" if cls == "rev" else "DISSENSO - DA VERIFICARE"
     e = html.escape
     rows = "".join(f'<tr><td class="mot">{e(k)}</td><td><code>{e(v)}</code></td></tr>'
                    for k, v in c["letture"].items())
@@ -126,11 +126,9 @@ def _card(c, res):
          f'<div class="top"><span class="tag {cls}">{lab}</span><b>{e(c["tipo"])}</b>'
          f'<span class="mot-list">{e(motivi)}</span></div>'
          f'{_img_tag(c.get("ritaglio"))}<table class="l">{rows}</table>')
-    if cls == "rev":
+    if cls in ("rev", "dis"):
         h += _campi(c, res)
         h += '<div class="ok-row"><label><input type="checkbox" class="conf"> Ho controllato sull\'immagine: il valore qui sopra e\' corretto</label></div>'
-    else:
-        h += "<div class='mot-list'>Accettato per maggioranza; controlla se vuoi.</div>"
     return h + "</div>"
 
 
