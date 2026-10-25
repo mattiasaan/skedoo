@@ -5,6 +5,7 @@ Estrazione affidabile degli orari scolastici da immagini.
 Uso:
   python main.py immagine.jpg
   python main.py cartella_immagini --out output
+  python main.py test_images/img-new.png --out output
   python main.py immagine.jpg --motori ollama,rapidocr --unanime
 
 Per ogni immagine produce in <out>/:
