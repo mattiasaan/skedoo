@@ -21,6 +21,10 @@ python main.py test_images --unanime                      # tutti i motori devon
 ```
 Per ogni immagine in `output/`: `<nome>.json`, `<nome>_revisione.html` (solo se serve), `<nome>_ritagli/`, e `riepilogo.json`.
 
+Durante l'elaborazione il terminale mostra la segmentazione, l'avanzamento di ogni
+unita' e l'inizio/fine di ogni motore con la durata. Questo permette di distinguere
+una normale attesa di Ollama da un motore bloccato o in errore.
+
 ### Come leggere il JSON
 - `stato`: `completo` (tutto verificato) oppure `da_verificare` (apri la pagina di revisione).
 - Ogni voce ha `verifica`: `ok` | `da_verificare` (dopo la revisione: `verificato`).

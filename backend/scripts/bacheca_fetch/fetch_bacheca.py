@@ -8,7 +8,6 @@ from __future__ import annotations
 import argparse
 import asyncio
 import json
-import os
 import re
 import sys
 from collections.abc import Mapping, Sequence
@@ -16,13 +15,14 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
-from dotenv import load_dotenv
+from dotenv import dotenv_values
 
 DEFAULT_PATTERN = (
   r"\b(?:comunicazioni?|aggiornamento\s+comunicazione)\s+"
   r"(?:per|del|di)\b.*\b(?:lun|mar|mer|gio|ven|sab|dom)"
 )
 BACKEND_DIR = Path(__file__).resolve().parent.parent
+ENV_FILE = BACKEND_DIR / ".env"
 
 
 def _text(value: Any) -> str:
@@ -154,32 +154,38 @@ async def _download_attachment(
   raise RuntimeError(f"Impossibile scaricare l'allegato {filename} ({detail})")
 
 
-def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
+def parse_args(
+  argv: Sequence[str] | None = None, env: Mapping[str, str | None] | None = None,
+) -> argparse.Namespace:
+  env = env or {}
   parser = argparse.ArgumentParser(description="Filtra comunicazioni dalla bacheca ClasseViva")
   parser.add_argument(
-    "--pattern", default=os.environ.get("CLASSVIVA_BOARD_PATTERN", DEFAULT_PATTERN),
+    "--pattern", default=env.get("CLASSVIVA_BOARD_PATTERN") or DEFAULT_PATTERN,
     help="Regex case-insensitive applicata a tutti i campi dell'avviso",
   )
   parser.add_argument(
     "--output", type=Path,
-    default=Path(os.environ.get("CLASSVIVA_BOARD_OUTPUT", "data/board_matches.json")),
+    default=Path(env.get("CLASSVIVA_BOARD_OUTPUT") or "data/board_matches.json"),
     help="File JSON locale di destinazione",
   )
   parser.add_argument(
     "--attachments-dir", type=Path,
-    default=Path(os.environ.get("CLASSVIVA_BOARD_ATTACHMENTS", "data/board_attachments")),
+    default=Path(env.get("CLASSVIVA_BOARD_ATTACHMENTS") or "data/board_attachments"),
     help="Cartella locale dove salvare gli allegati",
   )
   return parser.parse_args(argv)
 
 
 async def main(argv: Sequence[str] | None = None) -> int:
-  load_dotenv(BACKEND_DIR / ".env")
-  args = parse_args(argv)
-  username = os.environ.get("CLASSVIVA_USERNAME")
-  password = os.environ.get("CLASSVIVA_PASSWORD")
+  if not ENV_FILE.is_file():
+    print(f"File .env non trovato: {ENV_FILE}", file=sys.stderr)
+    return 2
+  env = dotenv_values(ENV_FILE)
+  args = parse_args(argv, env)
+  username = env.get("CLASSVIVA_USERNAME")
+  password = env.get("CLASSVIVA_PASSWORD")
   if not username or not password:
-    print("Imposta CLASSVIVA_USERNAME e CLASSVIVA_PASSWORD nell'ambiente.", file=sys.stderr)
+    print(f"Imposta CLASSVIVA_USERNAME e CLASSVIVA_PASSWORD in {ENV_FILE}.", file=sys.stderr)
     return 2
 
   try:

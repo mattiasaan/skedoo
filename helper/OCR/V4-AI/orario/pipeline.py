@@ -2,6 +2,8 @@
 Pipeline: immagine -> riquadri/righe -> letture di piu' motori -> consenso -> JSON.
 """
 import re
+import sys
+import time
 from pathlib import Path
 
 import cv2
@@ -17,6 +19,14 @@ from .segment import (righe_pannello, righe_testo, ritaglia_riga,
 # Ollama is the preferred reader. RapidOCR and Tesseract remain independent
 # voters; they are intentionally tied after Ollama.
 PRIORITA = ["ollama", "tesseract", "rapidocr"]
+
+
+def _log(log, message):
+    """Scrive subito i progressi anche quando stdout e' bufferizzato."""
+    log(message)
+    for stream in (sys.stdout, sys.stderr):
+        if stream is not None:
+            stream.flush()
 
 
 # ---------------------------------------------------------------------------
@@ -45,12 +55,12 @@ def build_engines(cfg: dict, log=print):
         except EngineUnavailable as e:
             skipped.append((name, str(e)))
     for n, why in skipped:
-        log(f"[AVVISO] motore '{n}' non disponibile: {why}")
+        _log(log, f"[AVVISO] motore '{n}' non disponibile: {why}")
     fams = {e.family for e in engines}
     if not engines:
         raise SystemExit("Nessun motore disponibile: impossibile procedere.")
     if len(fams) < cfg.get("voti_minimi", 2):
-        log(f"[AVVISO] solo {len(fams)} famiglia/e di motori disponibili "
+        _log(log, f"[AVVISO] solo {len(fams)} famiglia/e di motori disponibili "
             f"({', '.join(sorted(fams))}): senza verifica incrociata nulla sara' "
             "marcato 'ok' e tutto andra' in revisione.")
     return engines
@@ -70,18 +80,25 @@ class Unit:
         self.meta = meta or {}
 
 
-def leggi_unita(unit: Unit, engines, cfg):
+def leggi_unita(unit: Unit, engines, cfg, log=print):
     readings = []
     for e in engines:
         if not e.supports(unit.kind):
             continue
         rd = Reading(engine=e.name, family=e.family)
+        started = time.perf_counter()
+        _log(log, f"[OCR] {unit.uid} | {e.name} | avvio")
         try:
             rd.lines = e.read(unit.crop_stretto if getattr(e, 'stretto', False) else unit.crop,
                               unit.kind)
             rd.parsed = unit.parse_fn(rd.lines)
         except Exception as ex:     # noqa: BLE001
             rd.error = f"{type(ex).__name__}: {ex}"
+            _log(log, f"[OCR] {unit.uid} | {e.name} | ERRORE dopo "
+                 f"{time.perf_counter() - started:.1f}s: {rd.error}")
+        else:
+            _log(log, f"[OCR] {unit.uid} | {e.name} | fine "
+                 f"({time.perf_counter() - started:.1f}s)")
         readings.append(rd)
     dec = decide(readings, PRIORITA, cfg.get("voti_minimi", 2),
                  cfg.get("politica", "maggioranza"), unit.same_fn,
@@ -133,7 +150,11 @@ def processa_immagine(path, engines, cfg, outdir=None, log=print):
         crops_dir = outdir / f"{stem}_ritagli"
         crops_dir.mkdir(parents=True, exist_ok=True)
 
+    started = time.perf_counter()
+    _log(log, f"[INFO] {path.name}: segmentazione immagine in corso")
     boxes = segmenta_riquadri(img)
+    _log(log, f"[INFO] {path.name}: segmentazione completata in "
+         f"{time.perf_counter() - started:.1f}s ({len(boxes)} riquadri)")
     units = []        # (Unit, destinazione)
     n = 0
 
@@ -179,21 +200,28 @@ def processa_immagine(path, engines, cfg, outdir=None, log=print):
     if not titoli:
         res["avvisi"].append("titolo_non_trovato")
 
-    log(f"[INFO] {path.name}: {len(units)} unita' da leggere con "
-        f"{', '.join(e.name for e in engines)}")
+    _log(log, f"[INFO] {path.name}: {len(units)} unita' da leggere con "
+         f"{', '.join(e.name for e in engines)}")
 
-    for u in units:
-        dec = leggi_unita(u, engines, cfg)
+    total_started = time.perf_counter()
+    for index, u in enumerate(units, 1):
+        unit_started = time.perf_counter()
+        _log(log, f"[UNITA] {index}/{len(units)} {u.uid} ({u.kind}) | avvio")
+        dec = leggi_unita(u, engines, cfg, log=log)
         if crops_dir is not None:
             cv2.imwrite(str(crops_dir / f"{u.uid}.png"),
                         cv2.resize(u.crop, None, fx=3, fy=3, interpolation=cv2.INTER_CUBIC))
         _applica(res, u, dec, crops_dir)
+        _log(log, f"[UNITA] {index}/{len(units)} {u.uid} | decisione={dec.status} "
+             f"| durata={time.perf_counter() - unit_started:.1f}s")
 
     _controlli_globali(res)
     res["n_da_verificare"] = sum(1 for c in res["controllo"]
                                  if c["stato"] in ("revisione", "dissenso"))
     res["n_dissensi"] = sum(1 for c in res["controllo"] if c["stato"] == "dissenso")
     res["stato"] = "completo" if res["n_da_verificare"] == 0 else "da_verificare"
+    _log(log, f"[INFO] {path.name}: elaborazione completata in "
+         f"{time.perf_counter() - total_started:.1f}s")
     return res
 
 
