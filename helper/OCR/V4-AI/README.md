@@ -71,3 +71,9 @@ La metrica che conta è **ERRORI_SILENZIOSI** (valori sbagliati marcati `ok`): d
 - I riquadri informativi (FSL, viaggi, docenti assenti) si confrontano in modo approssimato sul testo
   (cifre identiche + somiglianza ≥ 93%); le cifre sono sempre controllate esattamente.
 - La pagina di revisione mostra un valore precompilato: la conferma va data guardando il ritaglio.
+
+## download modelli
+  - ollama pull qwen3-vl:2b-instruct # circa 2 minuti a immagine, 8 - 10s a ritaglio 
+  - ollama pull qwen3-vl:4b-instruct # circa 3,5 minuti a immagine, 15-20s a ritaglio
+  - ollama pull qwen3-vl:8b-instruct # circa 10 minuti a immagine, 50s a ritaglio
+  - ollama pull qwen3-vl:30b-instruct # da testare

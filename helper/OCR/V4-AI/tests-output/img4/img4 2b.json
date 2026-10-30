@@ -1,0 +1,436 @@
+{
+  "_source": "img4.jpg",
+  "giorno": "MERCOLEDÌ",
+  "data": "13 MAGGIO",
+  "data_numero": 13,
+  "mese": "MAGGIO",
+  "entrate": [
+    {
+      "unit_id": "img4_02_riquadro",
+      "ora": "09:00",
+      "classi": [
+        "1D",
+        "3J",
+        "3OD"
+      ],
+      "note": "*MENCHISE posticipa 1° a 2° (201)",
+      "verifica": "da_verificare",
+      "marcatori": {
+        "1D": "*"
+      }
+    },
+    {
+      "unit_id": "img4_03_riquadro",
+      "ora": "09:50",
+      "classi": [
+        "1G",
+        "3T",
+        "4P",
+        "5A",
+        "5D"
+      ],
+      "note": "*GHISU posticipa 1° a 3° (B104)",
+      "verifica": "da_verificare",
+      "marcatori": {
+        "5D": "*"
+      }
+    }
+  ],
+  "uscite": [
+    {
+      "unit_id": "img4_04_riquadro",
+      "ora": "11:45",
+      "classi": [
+        "1C",
+        "1I",
+        "3A",
+        "4D"
+      ],
+      "note": "",
+      "verifica": "da_verificare"
+    },
+    {
+      "unit_id": "img4_05_riquadro",
+      "ora": "12:35",
+      "classi": [
+        "1E",
+        "1P",
+        "3J"
+      ],
+      "note": "*DELIU anticipa 6° a 4° (B301)",
+      "verifica": "da_verificare",
+      "marcatori": {
+        "1P": "*"
+      }
+    },
+    {
+      "unit_id": "img4_06_riquadro",
+      "ora": "16:10",
+      "classi": [
+        "1OD",
+        "2P",
+        "4MAT"
+      ],
+      "note": "",
+      "verifica": "ok",
+      "marcatori": {
+        "4MAT": "°"
+      }
+    }
+  ],
+  "senza_lezioni_pomeridiane": [
+    {
+      "unit_id": "img4_07_riquadro",
+      "classi": [
+        "2OD",
+        "3J"
+      ],
+      "note": "",
+      "verifica": "da_verificare"
+    }
+  ],
+  "cambi_aula": [
+    {
+      "unit_id": "img4_14_riga01",
+      "classe": "1A",
+      "orario": "08:10 - 09:00",
+      "aula": "AULA B007",
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img4_15_riga02",
+      "classe": "1B",
+      "orario": "10:55 - 11:45",
+      "aula": "AULA B209",
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img4_16_riga03",
+      "classe": "1C",
+      "orario": "09:50 - 11:45",
+      "aula": "AULA B108",
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img4_17_riga04",
+      "classe": null,
+      "orario": "11:09 - 11:45",
+      "aula": "AULA B207",
+      "verifica": "da_verificare"
+    },
+    {
+      "unit_id": "img4_18_riga05",
+      "classe": "1L",
+      "orario": "09:50 - 11:45",
+      "aula": "AULA 201",
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img4_19_riga06",
+      "classe": "1MAQ2",
+      "orario": "10:55 - 11:45",
+      "aula": "AULA B111",
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img4_20_riga07",
+      "classe": "2OD",
+      "orario": "08:10 - 10:40",
+      "aula": "LAB. B219",
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img4_21_riga08",
+      "classe": "3I",
+      "orario": "10:55 - 11:45",
+      "aula": "AULA B317",
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img4_22_riga09",
+      "classe": "3L",
+      "orario": "08:10 - 13:25",
+      "aula": "AULA MAGNA",
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img4_23_riga10",
+      "classe": "3P",
+      "orario": "10:55 - 13:25",
+      "aula": "AULA B004",
+      "verifica": "da_verificare"
+    },
+    {
+      "unit_id": "img4_24_riga11",
+      "classe": "4D",
+      "orario": "09:00 - 11:45",
+      "aula": "AULA 302",
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img4_25_riga12",
+      "classe": "5C",
+      "orario": "09:50 - 11:45",
+      "aula": "AULA B112",
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img4_26_riga13",
+      "classe": "5E",
+      "orario": "09:50 - 10:40",
+      "aula": "AULA B107",
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img4_27_riga14",
+      "classe": "5H",
+      "orario": "10:55 - 11:45",
+      "aula": "AULA 301",
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img4_28_riga15",
+      "classe": "5I",
+      "orario": "09:50 - 11:45",
+      "aula": "AULA B304",
+      "verifica": "da_verificare"
+    },
+    {
+      "unit_id": "img4_29_riga16",
+      "classe": "5K",
+      "orario": "09:50 - 11:45",
+      "aula": "AULA B013",
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img4_30_riga17",
+      "classe": "5L",
+      "orario": "09:50 - 11:45",
+      "aula": "AULA B106",
+      "verifica": "da_verificare"
+    },
+    {
+      "unit_id": "img4_31_riga18",
+      "classe": "5OD",
+      "orario": "10:55 - 11:45",
+      "aula": "AULA B309",
+      "verifica": "ok"
+    }
+  ],
+  "note": [
+    {
+      "unit_id": "img4_08_riquadro",
+      "tipo": "attivita",
+      "testo": "TROFEO SUPERCLASSI - CAMPI TALVERA\nCLASSI SECONDE\n(NO 2 OD)\nDI CELLO + GIGLIOLI + NOLLI + OCHNER\nSALVATERRA + TABARELLI L + VITRANO",
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img4_09_riquadro",
+      "tipo": "docenti_assenti",
+      "testo": "DOCENTI ASSENTI\nFISCHNALLER + LEGGIERO + LOVECCHIO + MAISANO+ MARROCCO\nRIOLO¹° + SERAFIN¹°-³° + SIBILLA + TACUS",
+      "verifica": "da_verificare"
+    },
+    {
+      "unit_id": "img4_10_riquadro",
+      "tipo": "FSL",
+      "testo": "FORMAZIONE SCUOLA LAVORO\nCLASSE 4 MAT-1",
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img4_11_riquadro",
+      "tipo": "uscita_didattica",
+      "testo": "SETTIMANA BLU - TRIESTE\nCLASSI 2I° + 2L°\nGIORDANO + LONOCE + STOPPARI",
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img4_12_riquadro",
+      "tipo": "uscita_didattica",
+      "testo": "VIAGGIO ISTRUZIONE - NAPOLI\nCLASSI 4 I^3 + 4 L\nCITTA + DELLA RAGIONE + MARRA",
+      "verifica": "ok"
+    }
+  ],
+  "avvisi": [
+    "img4_06_riquadro: marcatore_senza_nota (accettato: tutti i motori concordano)",
+    "img4_11_riquadro: accettato_ollama_senza_consenso_ocr_discordanti (accettato: tutti i motori concordano)",
+    "img4_12_riquadro: accettato_ollama_senza_consenso_ocr_discordanti (accettato: tutti i motori concordano)",
+    "img4_22_riga09: accettato_ollama_senza_consenso_ocr_discordanti (accettato: tutti i motori concordano)",
+    "img4_25_riga12: classe_fuori_elenco (accettato: tutti i motori concordano)",
+    "img4_29_riga16: classe_fuori_elenco (accettato: tutti i motori concordano)"
+  ],
+  "controllo": [
+    {
+      "id": "img4_01_titolo",
+      "tipo": "titolo",
+      "stato": "dissenso",
+      "motivi": [
+        "dissenso:rapidocr='None None None'"
+      ],
+      "ritaglio": "output\\img4_ritagli\\img4_01_titolo.png",
+      "letture": {
+        "ollama:qwen3-vl:2b-instruct@3x": "MERCOLEDÌ 13 MAGGIO",
+        "rapidocr": "MAGGIO  [non interpretabile]",
+        "tesseract": "MERCOLEDÌ 13 MAGGIO"
+      },
+      "voti": 2
+    },
+    {
+      "id": "img4_02_riquadro",
+      "tipo": "entra",
+      "stato": "revisione",
+      "motivi": [
+        "avviso_richiede_accordo_totale:classe_fuori_elenco"
+      ],
+      "ritaglio": "output\\img4_ritagli\\img4_02_riquadro.png",
+      "letture": {
+        "ollama:qwen3-vl:2b-instruct@3x": "entra 09:00: 1D* + 3J + 3OD | *MENCHISE posticipa 1° a 2° (201)",
+        "rapidocr": "entra 09:00:  | 1 D* 3J OD / MENCHISE posticipa (201)",
+        "tesseract": "entra 09:00: 1D* + 3J + 3OD | *MENCHISE posticipa 1° a 2° (201)"
+      },
+      "voti": 2
+    },
+    {
+      "id": "img4_03_riquadro",
+      "tipo": "entra",
+      "stato": "dissenso",
+      "motivi": [
+        "dissenso:rapidocr='ENTRAALLEC 09.50 / 3 T +4P+ 5A+ 5D / GHISU posticipa 13° (B104)'"
+      ],
+      "ritaglio": "output\\img4_ritagli\\img4_03_riquadro.png",
+      "letture": {
+        "ollama:qwen3-vl:2b-instruct@3x": "entra 09:50: 1G + 3T + 4P + 5A + 5D* | *GHISU posticipa 1° a 3° (B104)",
+        "rapidocr": "ENTRAALLEC 09.50 / 3 T +4P+ 5A+ 5D / GHISU posticipa 13° (B104)",
+        "tesseract": "entra 09:50: 1G + 3T + 4P + 5A + 5D* | *GHISU posticipa 1° a 3° (B104)"
+      },
+      "voti": 2
+    },
+    {
+      "id": "img4_04_riquadro",
+      "tipo": "esce",
+      "stato": "dissenso",
+      "motivi": [
+        "dissenso:rapidocr='esce 11:45: C + 3A'"
+      ],
+      "ritaglio": "output\\img4_ritagli\\img4_04_riquadro.png",
+      "letture": {
+        "ollama:qwen3-vl:2b-instruct@3x": "esce 11:45: 1C + 1I + 3A + 4D",
+        "rapidocr": "esce 11:45: C + 3A",
+        "tesseract": "esce 11:45: 1C + 1I + 3A + 4D"
+      },
+      "voti": 2
+    },
+    {
+      "id": "img4_05_riquadro",
+      "tipo": "esce",
+      "stato": "revisione",
+      "motivi": [
+        "accordo_insufficiente_1_su_2",
+        "avviso_richiede_accordo_totale:classe_fuori_elenco"
+      ],
+      "ritaglio": "output\\img4_ritagli\\img4_05_riquadro.png",
+      "letture": {
+        "ollama:qwen3-vl:2b-instruct@3x": "esce 12:35: 1E + 1P* + 3J | *DELIU anticipa 6° a 4° (B301)",
+        "rapidocr": "esce 12:35: 1E + 1P*3J | DELIU anticipa 6° a 4° (B301)",
+        "tesseract": "esce 12:35: 1E + 1P\" + 34I | *DELIU anticipa 6° a 4° (B301)"
+      },
+      "voti": 1
+    },
+    {
+      "id": "img4_07_riquadro",
+      "tipo": "nolez",
+      "stato": "revisione",
+      "motivi": [
+        "accordo_insufficiente_1_su_2",
+        "avviso_richiede_accordo_totale:classe_fuori_elenco"
+      ],
+      "ritaglio": "output\\img4_ritagli\\img4_07_riquadro.png",
+      "letture": {
+        "ollama:qwen3-vl:2b-instruct@3x": "nolez : 2OD + 3J",
+        "rapidocr": "nolez :  | OD",
+        "tesseract": "nolez : 2OD + 34"
+      },
+      "voti": 1
+    },
+    {
+      "id": "img4_09_riquadro",
+      "tipo": "info",
+      "stato": "dissenso",
+      "motivi": [
+        "dissenso:rapidocr=''"
+      ],
+      "ritaglio": "output\\img4_ritagli\\img4_09_riquadro.png",
+      "letture": {
+        "ollama:qwen3-vl:2b-instruct@3x": "DOCENTI ASSENTI / FISCHNALLER + LEGGIERO + LOVECCHIO + MAISANO+ MARROCCO / RIOLO¹° + SERAFIN¹°-³° + SIBILLA + TACUS",
+        "rapidocr": "  [non interpretabile]",
+        "tesseract": "DOCENTIASSENTI / FISCHNALLER +LEGGIERO + LOVECCHIO + MAISANO+ MARROCCO / RIOLO\" + SERAFIN' > + SIBILLA + TACUS"
+      },
+      "voti": 2
+    },
+    {
+      "id": "img4_17_riga04",
+      "tipo": "riga",
+      "stato": "revisione",
+      "motivi": [
+        "classe_assente",
+        "avviso_richiede_accordo_totale:orario_fuori_elenco:11:09"
+      ],
+      "ritaglio": "output\\img4_ritagli\\img4_17_riga04.png",
+      "letture": {
+        "ollama:qwen3-vl:2b-instruct@3x": "? : 11:09 - 11:45  AULA B207",
+        "rapidocr": "1I: 09.50 -111.45 AULA B207  [non interpretabile]",
+        "tesseract": "? : 11:09 - 11:45  AULA B207"
+      },
+      "voti": 2
+    },
+    {
+      "id": "img4_23_riga10",
+      "tipo": "riga",
+      "stato": "revisione",
+      "motivi": [
+        "accordo_insufficiente_1_su_2",
+        "avviso_richiede_accordo_totale:classe_fuori_elenco"
+      ],
+      "ritaglio": "output\\img4_ritagli\\img4_23_riga10.png",
+      "letture": {
+        "ollama:qwen3-vl:2b-instruct@3x": "3P : 10:55 - 13:25  AULA B004",
+        "rapidocr": "3 P: 10.5513.25 AULA B004  [non interpretabile]",
+        "tesseract": "13P.:10.55-413.25AULAB004  [non interpretabile]"
+      },
+      "voti": 1
+    },
+    {
+      "id": "img4_28_riga15",
+      "tipo": "riga",
+      "stato": "dissenso",
+      "motivi": [
+        "dissenso:rapidocr='? : None - None  None'"
+      ],
+      "ritaglio": "output\\img4_ritagli\\img4_28_riga15.png",
+      "letture": {
+        "ollama:qwen3-vl:2b-instruct@3x": "5I : 09:50 - 11:45  AULA B304",
+        "rapidocr": "5I: 09.50 -111.45 AULA B304  [non interpretabile]",
+        "tesseract": "5I : 09:50 - 11:45  AULA B304"
+      },
+      "voti": 2
+    },
+    {
+      "id": "img4_30_riga17",
+      "tipo": "riga",
+      "stato": "dissenso",
+      "motivi": [
+        "dissenso:rapidocr='? : None - None  None'"
+      ],
+      "ritaglio": "output\\img4_ritagli\\img4_30_riga17.png",
+      "letture": {
+        "ollama:qwen3-vl:2b-instruct@3x": "5L : 09:50 - 11:45  AULA B106",
+        "rapidocr": "5 L : 09.50 -111.45 AULA B106  [non interpretabile]",
+        "tesseract": "5L : 09:50 - 11:45  AULA B106"
+      },
+      "voti": 2
+    }
+  ],
+  "titolo_unit_id": "img4_01_titolo",
+  "titolo_verifica": "da_verificare",
+  "n_da_verificare": 11,
+  "n_dissensi": 6,
+  "stato": "da_verificare"
+}

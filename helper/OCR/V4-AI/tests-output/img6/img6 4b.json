@@ -1,0 +1,361 @@
+{
+  "_source": "img6.jpg",
+  "giorno": "GIOVEDÌ",
+  "data": "07 MAGGIO",
+  "data_numero": 7,
+  "mese": "MAGGIO",
+  "entrate": [
+    {
+      "unit_id": "img6_02_riquadro",
+      "ora": "09:00",
+      "classi": [
+        "3F",
+        "4J",
+        "5MAT"
+      ],
+      "note": "",
+      "verifica": "da_verificare",
+      "marcatori": {
+        "4J": "°"
+      }
+    },
+    {
+      "unit_id": "img6_03_riquadro",
+      "ora": "09:50",
+      "classi": [
+        "1A",
+        "3H",
+        "3D",
+        "4F"
+      ],
+      "note": "",
+      "verifica": "da_verificare",
+      "marcatori": {
+        "4F": "°"
+      }
+    },
+    {
+      "unit_id": "img6_06_riquadro",
+      "ora": "15:20",
+      "classi": [
+        "3MAT",
+        "5B",
+        "5MAT"
+      ],
+      "note": "",
+      "verifica": "da_verificare"
+    }
+  ],
+  "uscite": [
+    {
+      "unit_id": "img6_04_riquadro",
+      "ora": "11:45",
+      "classi": [
+        "3C/T",
+        "3L",
+        "3P",
+        "4N"
+      ],
+      "note": "",
+      "verifica": "da_verificare",
+      "marcatori": {
+        "4N": "°"
+      }
+    },
+    {
+      "unit_id": "img6_05_riquadro",
+      "ora": "12:35",
+      "classi": [
+        "1F",
+        "3E"
+      ],
+      "note": "",
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img6_07_riquadro",
+      "ora": "15:20",
+      "classi": [
+        "3I",
+        "4I"
+      ],
+      "note": "",
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img6_08_riquadro",
+      "ora": "16:10",
+      "classi": [
+        "1MAQ2",
+        "4F",
+        "4J",
+        "5I"
+      ],
+      "note": "",
+      "verifica": "da_verificare"
+    }
+  ],
+  "senza_lezioni_pomeridiane": [],
+  "cambi_aula": [
+    {
+      "unit_id": "img6_13_riga01",
+      "classe": "1E",
+      "orario": "09:50 - 11:45",
+      "aula": "LAB. B221",
+      "verifica": "da_verificare"
+    },
+    {
+      "unit_id": "img6_14_riga02",
+      "classe": "1G",
+      "orario": "15:20 - 16:10",
+      "aula": "LAB. B221",
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img6_15_riga03",
+      "classe": "2B",
+      "orario": "09:50 - 11:45",
+      "aula": "AULA B016",
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img6_16_riga04",
+      "classe": "2F",
+      "orario": "09:50 - 10:40",
+      "aula": "AULA B307",
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img6_17_riga05",
+      "classe": "3A",
+      "orario": "08:10 - 10:40",
+      "aula": "AULA D205",
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img6_18_riga06",
+      "classe": "3L",
+      "orario": "08:10 - 13:25",
+      "aula": "AULA MAGNA",
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img6_19_riga07",
+      "classe": "4H",
+      "orario": "09:50 - 10:40",
+      "aula": "AULA B115",
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img6_20_riga08",
+      "classe": "5B",
+      "orario": "11:45 - 13:25",
+      "aula": "AULA B016",
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img6_21_riga09",
+      "classe": "5E",
+      "orario": "08:10 - 13:25",
+      "aula": "LAB. D008",
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img6_22_riga10",
+      "classe": "5I",
+      "orario": "09:50 - 11:45",
+      "aula": "AULA B204",
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img6_23_riga11",
+      "classe": "5J",
+      "orario": "08:10 - 13:25",
+      "aula": "AULA A106",
+      "verifica": "da_verificare"
+    },
+    {
+      "unit_id": "img6_24_riga12",
+      "classe": "5K",
+      "orario": "08:10 - 13:25",
+      "aula": "LAB. D008",
+      "verifica": "da_verificare"
+    },
+    {
+      "unit_id": "img6_25_riga13",
+      "classe": "5MAT",
+      "orario": "12:35 - 13:25",
+      "aula": "AULA B106",
+      "verifica": "ok"
+    }
+  ],
+  "note": [
+    {
+      "unit_id": "img6_09_riquadro",
+      "tipo": "uscita_didattica",
+      "testo": "LAGO DI CALDARO\nCLASSI 2 C + 2 D\n08.00 - 16.30\nD'AGOSTINO + GIORDANO\nLATTUCA + MACCAGNAN",
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img6_10_riquadro",
+      "tipo": "FSL",
+      "testo": "FORMAZIONE SCUOLA LAVORO\nCLASSE 4 MAT",
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img6_11_riquadro",
+      "tipo": "attivita",
+      "testo": "TORNEO DI PALLA VOLO\nPALESTRE DEL TALVERA\nCLASSI QUARTE\nDI CELLO + GIG LIO LI + OCHNER\nSALVATERRA + TABARELLI + VITRANO\n° GLI STUDENTI CHE NON PARTECIPANO AL TORNEO\nSEGUONO LE INDICAZIONI RIPORTATE\nNELLE ENTRATE POSTICIPATE E USCITE ANTICIPATE",
+      "verifica": "da_verificare"
+    }
+  ],
+  "avvisi": [
+    "img6_07_riquadro: accettato_ollama_senza_consenso_ocr_discordanti (accettato: tutti i motori concordano)",
+    "img6_20_riga08: classe_fuori_elenco (accettato: tutti i motori concordano)",
+    "img6_21_riga09: accettato_ollama_senza_consenso_ocr_discordanti (accettato: tutti i motori concordano)"
+  ],
+  "controllo": [
+    {
+      "id": "img6_02_riquadro",
+      "tipo": "entra",
+      "stato": "revisione",
+      "motivi": [
+        "accordo_insufficiente_1_su_2",
+        "avviso_richiede_accordo_totale:marcatore_senza_nota"
+      ],
+      "ritaglio": "output\\img6_ritagli\\img6_02_riquadro.png",
+      "letture": {
+        "ollama:qwen3-vl:4b-instruct@3x": "entra 09:00: 3F + 4J° + 5MAT",
+        "rapidocr": "entra 09:00: 3F4JO + 5MAT",
+        "tesseract": "entra 09:00: 3F + 44° + 5MAT"
+      },
+      "voti": 1
+    },
+    {
+      "id": "img6_03_riquadro",
+      "tipo": "entra",
+      "stato": "revisione",
+      "motivi": [
+        "avviso_richiede_accordo_totale:marcatore_senza_nota"
+      ],
+      "ritaglio": "output\\img6_ritagli\\img6_03_riquadro.png",
+      "letture": {
+        "ollama:qwen3-vl:4b-instruct@3x": "entra 09:50: 1A + 3H + 3D + 4F°",
+        "rapidocr": "entra 09:50: 1A + 33H + 3D + 4F0",
+        "tesseract": "entra 09:50: 1A + 3H + 3D + 4F°"
+      },
+      "voti": 2
+    },
+    {
+      "id": "img6_04_riquadro",
+      "tipo": "esce",
+      "stato": "revisione",
+      "motivi": [
+        "accordo_insufficiente_1_su_2",
+        "avviso_richiede_accordo_totale:classe_fuori_elenco,marcatore_senza_nota"
+      ],
+      "ritaglio": "output\\img6_ritagli\\img6_04_riquadro.png",
+      "letture": {
+        "ollama:qwen3-vl:4b-instruct@3x": "esce 11:45: 3C/T + 3L + 3P + 4N°",
+        "rapidocr": "esce 11:45:  | 30 CIt + +3L  3P 4No",
+        "tesseract": "esce 11:45: 3CIT + 3L + 3P + 4N°"
+      },
+      "voti": 1
+    },
+    {
+      "id": "img6_06_riquadro",
+      "tipo": "entra",
+      "stato": "revisione",
+      "motivi": [
+        "avviso_richiede_accordo_totale:classe_fuori_elenco"
+      ],
+      "ritaglio": "output\\img6_ritagli\\img6_06_riquadro.png",
+      "letture": {
+        "ollama:qwen3-vl:4b-instruct@3x": "entra 15:20: 3MAT + 5B + 5MAT",
+        "rapidocr": "entra 15:20: 3MAT + 5E + 5MAT",
+        "tesseract": "entra 15:20: 3MAT + 5B + 5MAT"
+      },
+      "voti": 2
+    },
+    {
+      "id": "img6_08_riquadro",
+      "tipo": "esce",
+      "stato": "dissenso",
+      "motivi": [
+        "dissenso:tesseract='esce 16:10: 1MAQ2 + 4F + 4J4 + 5I'"
+      ],
+      "ritaglio": "output\\img6_ritagli\\img6_08_riquadro.png",
+      "letture": {
+        "ollama:qwen3-vl:4b-instruct@3x": "esce 16:10: 1MAQ2 + 4F + 4J + 5I",
+        "rapidocr": "esce 16:10: 1MAQ2 + 4F + 4J + 5I",
+        "tesseract": "esce 16:10: 1MAQ2 + 4F + 4J4 + 5I"
+      },
+      "voti": 2
+    },
+    {
+      "id": "img6_11_riquadro",
+      "tipo": "info",
+      "stato": "dissenso",
+      "motivi": [
+        "dissenso:tesseract='SA i NO / ° GLI STUDENTI CHE NON PARTECIPANO AL TORNEO / SEGUONO LE INDICAZIONI RIPORTATE / NELLE ENTRATE POSTICIPATE E USCITE ANTICIPATE'"
+      ],
+      "ritaglio": "output\\img6_ritagli\\img6_11_riquadro.png",
+      "letture": {
+        "ollama:qwen3-vl:4b-instruct@3x": "TORNEO DI PALLA VOLO / PALESTRE DEL TALVERA / CLASSI QUARTE / DI CELLO + GIG LIO LI + OCHNER / SALVATERRA + TABARELLI + VITRANO / ° GLI STUDENTI CHE NON PARTECIPANO AL TORNEO / SEGUONO LE INDICAZIONI RIPORTATE / NELLE ENTRATE POSTICIPATE E USCITE ANTICIPATE",
+        "rapidocr": "TORNEO DIPALLAVOLO / PALESTREDELTALVERA / CLASSIQUARTE / DICELLO+GIGLIOLI+OCHNER / SALVATERRA + TABARELLIL +VITRANO / GLI STUDENTLCHENONPARIECIPANO ALT ORNEO / SEGUONOLE INDIC AZIONLRIPORTATE / NELLEENTRATEPOSTICIPATEEUSCTEANTICIPATE",
+        "tesseract": "SA i NO / ° GLI STUDENTI CHE NON PARTECIPANO AL TORNEO / SEGUONO LE INDICAZIONI RIPORTATE / NELLE ENTRATE POSTICIPATE E USCITE ANTICIPATE"
+      },
+      "voti": 2
+    },
+    {
+      "id": "img6_13_riga01",
+      "tipo": "riga",
+      "stato": "dissenso",
+      "motivi": [
+        "dissenso:tesseract='? : 01:09 - 11:45  LAB. B221'"
+      ],
+      "ritaglio": "output\\img6_ritagli\\img6_13_riga01.png",
+      "letture": {
+        "ollama:qwen3-vl:4b-instruct@3x": "1E : 09:50 - 11:45  LAB. B221",
+        "rapidocr": "1E : 09:50 - 11:45  LAB. B221",
+        "tesseract": "? : 01:09 - 11:45  LAB. B221"
+      },
+      "voti": 2
+    },
+    {
+      "id": "img6_23_riga11",
+      "tipo": "riga",
+      "stato": "dissenso",
+      "motivi": [
+        "dissenso:tesseract='15J : 08:10 - 13:25  AULA A106'"
+      ],
+      "ritaglio": "output\\img6_ritagli\\img6_23_riga11.png",
+      "letture": {
+        "ollama:qwen3-vl:4b-instruct@3x": "5J : 08:10 - 13:25  AULA A106",
+        "rapidocr": "5J : 08:10 - 13:25  AULA A106",
+        "tesseract": "15J : 08:10 - 13:25  AULA A106"
+      },
+      "voti": 2
+    },
+    {
+      "id": "img6_24_riga12",
+      "tipo": "riga",
+      "stato": "revisione",
+      "motivi": [
+        "avviso_richiede_accordo_totale:classe_fuori_elenco"
+      ],
+      "ritaglio": "output\\img6_ritagli\\img6_24_riga12.png",
+      "letture": {
+        "ollama:qwen3-vl:4b-instruct@3x": "5K : 08:10 - 13:25  LAB. D008",
+        "rapidocr": "5K : 08:10 - 13:25  LAB. D008",
+        "tesseract": "15K : 08:10 - 13:25  LAB. D008/"
+      },
+      "voti": 2
+    }
+  ],
+  "titolo_unit_id": "img6_01_titolo",
+  "titolo_verifica": "ok",
+  "n_da_verificare": 9,
+  "n_dissensi": 4,
+  "stato": "da_verificare"
+}
