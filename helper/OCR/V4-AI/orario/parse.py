@@ -1,15 +1,15 @@
 """
-Parsing deterministico del testo trascritto dai motori (AI / OCR).
+Parsing deterministico del testo trascritto da Qwen3-VL.
 
-Nessun motore "decide" nulla: trascrivono soltanto. Qui il testo viene
-convertito in campi strutturati e controllato con regole rigide.
+Il modello trascrive soltanto. Qui il testo viene convertito in campi strutturati
+e controllato con regole rigide.
 
 Ogni funzione parse_* restituisce un oggetto con:
-  .key()      -> tupla confrontabile tra motori diversi (campi critici)
+  .key()      -> tupla dei campi critici (per confronti e test)
   .fatal      -> True se il testo non e' interpretabile
   .problems   -> problemi "duri": il dato non puo' essere accettato cosi' com'e'
-  .warnings   -> problemi "morbidi" (es. valore fuori elenco): il dato e' accettato
-                 solo se TUTTI i motori disponibili concordano
+  .warnings   -> anomalie "morbide" (es. classe fuori elenco): validazione.py le
+                 traduce in affidabilita' media (o bassa per quelle gravi)
 """
 import difflib
 import re
@@ -225,6 +225,10 @@ class RowRead:
 _JUNK = re.compile(r"[|\[\]{}!\u00a6_]")
 
 
+_CLASSE_I_RE = re.compile(
+    r"^\s*([1-5])1\s*:\s*(?=\d{1,2}\s*[.:]\s*[0-5]\d\s*-\s*\d{1,2}\s*[.:]\s*[0-5]\d)")
+
+
 def parse_row(text: str, cfg: dict) -> RowRead:
     r = RowRead(raw=text)
     t = norm(_JUNK.sub(" ", text or ""))
@@ -232,13 +236,19 @@ def parse_row(text: str, cfg: dict) -> RowRead:
         if not find_times(t):
             r.is_header = True
             return r
+    # Qwen 2B legge spesso la lettera I come cifra 1 ("1 I : 09.50 - 10.40" -> "11:09.50 - 10.40"):
+    # "N1:" seguito da DUE orari completi e' una classe NI, non un orario (11:09 non esiste in griglia).
+    m = _CLASSE_I_RE.match(t)
+    if m:
+        t = f"{m.group(1)}I : {t[m.end():].strip()}"
+        r.repaired = True
     times = find_times(t)
     if len(times) < 2:
         r.fatal = True
         r.problems.append("orari_non_trovati")
         return r
     (t1, rep1, s1, e1), (t2, rep2, s2, e2) = times[0], times[1]
-    r.repaired = rep1 or rep2
+    r.repaired = r.repaired or rep1 or rep2
     if t1 is None or t2 is None:
         r.fatal = True
         r.problems.append("orario_non_valido")
@@ -337,6 +347,8 @@ class TitleRead:
     problems: list = field(default_factory=list)
     warnings: list = field(default_factory=list)
     repaired: bool = False
+    anno: Optional[int] = None
+    iso: Optional[str] = None          # 'YYYY-MM-DD' se il giorno della settimana torna
 
     def key(self):
         return (self.giorno, self.numero, self.mese)
@@ -382,19 +394,28 @@ def parse_title(text: str, cfg=None) -> TitleRead:
         r.problems.append("giorno_numero_non_valido")
         return r
     r.numero = n
-    import calendar, datetime
-    oggi = datetime.date.today().year
-    ok = False
-    for anno in (oggi - 1, oggi, oggi + 1):
+    import datetime
+    oggi = datetime.date.today()
+    # Anno: quello configurato, altrimenti la data piu' vicina a oggi. Una finestra piu'
+    # larga renderebbe il controllo inutile (13 MAGGIO e' martedi' nel 2025, mercoledi'
+    # nel 2026, giovedi' nel 2027: ogni giorno della settimana sembrerebbe valido).
+    anni = [int(cfg["anno"])] if cfg and cfg.get("anno") else [oggi.year - 1, oggi.year, oggi.year + 1]
+    date = []
+    for anno in anni:
         try:
-            d = datetime.date(anno, MESI.index(m) + 1, n)
+            date.append(datetime.date(anno, MESI.index(m) + 1, n))
         except ValueError:
             continue
+    if date:
+        d = min(date, key=lambda x: abs((x - oggi).days))
         if GIORNI[d.weekday()] == g:
-            ok = True
-            break
-    if not ok:
-        r.warnings.append("giorno_settimana_incoerente_con_data")
+            r.anno, r.iso = d.year, d.isoformat()
+        else:
+            # giorno della settimana e data non possono coesistere: uno dei due e' letto male
+            # (o l'immagine e' di un altro anno: in quel caso usare --anno)
+            r.problems.append("giorno_settimana_incoerente_con_data")
+    else:
+        r.problems.append("data_non_esistente")
     return r
 
 
@@ -536,12 +557,44 @@ def parse_box(lines, color_hint: str, cfg: dict) -> BoxRead:
     noti = set(cfg.get("orari_noti") or [])
     if noti and r.ora and r.kind in ("entra", "esce") and r.ora not in noti:
         r.warnings.append(f"orario_fuori_elenco:{r.ora}")
+    _check_note(r, cfg)
     # i marcatori (*, °) devono avere una nota corrispondente
     marks = {c.marker[:1] for c in r.classi if c.marker}
     note_marks = {n.strip()[:1] for n in r.note_lines}
     if marks - note_marks:
         r.warnings.append("marcatore_senza_nota")
     return r
+
+
+_NOTA_ORE_RE = re.compile(r"\b(POSTICIPA|ANTICIPA)\s+(?:A\s+)?(\d)\s*°?\s*A\s*(\d)")
+_NOTA_AULA_RE = re.compile(r"\(\s*([A-Z]?\d{3})\s*\)")
+
+
+def _check_note(r, cfg):
+    """Note tipo '* ROSSI posticipa 1° a 3° (B104)': le ore devono avere senso
+    (posticipare = ora piu' tardi, anticipare = piu' presto) e l'aula deve esistere.
+    """
+    valide = cfg.get("_aule_core")
+    for ln in r.note_lines:
+        t = norm(ln)
+        m = _NOTA_ORE_RE.search(t)
+        if m:
+            da, a = int(m.group(2)), int(m.group(3))
+            if not (1 <= da <= 9 and 1 <= a <= 9) or da == a:
+                r.problems.append("nota_ora_non_valida")
+            elif (m.group(1) == "POSTICIPA") != (a > da):
+                r.problems.append("nota_posticipa_anticipa_incoerente")
+        for code in _NOTA_AULA_RE.findall(t):
+            if valide and code not in valide:
+                r.warnings.append("aula_fuori_elenco")
+
+
+# caratteri ammessi nel testo libero: Qwen 4B trasformava '*' in '★' e inventava markdown
+_TESTO_OK = re.compile(r"^[A-Za-zÀ-ÿ0-9\s.,:;'\"()\[\]/+\-*°º^¹²³&%!?#@_=<>]*$")
+
+
+def caratteri_sospetti(testo: str) -> bool:
+    return not _TESTO_OK.match(testo or "")
 
 
 def lines_clean(lines):
