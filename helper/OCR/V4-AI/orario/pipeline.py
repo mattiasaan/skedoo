@@ -178,11 +178,11 @@ def processa_immagine(path, engine, cfg, outdir=None, log=print):
         if crops_dir is not None:
             cv2.imwrite(str(crops_dir / f"{u.uid}.png"),
                         cv2.resize(u.crop, None, fx=3, fy=3, interpolation=cv2.INTER_CUBIC))
-        _applica(res, u, let, letti)
+        _applica(res, u, let, letti, cfg)
         _log(log, f"[UNITA] {index}/{len(units)} {u.uid} | affidabilita="
              f"{let.esito.affidabilita} | durata={time.perf_counter() - unit_started:.1f}s")
 
-    _controlli_globali(res)
+    _controlli_globali(res, note_lette=bool(cfg.get("leggi_note_libere", False)))
     _chiudi(res, letti, stem if crops_dir is not None else None)
     _log(log, f"[INFO] {path.name}: elaborazione completata in "
          f"{time.perf_counter() - total_started:.1f}s")
@@ -211,6 +211,16 @@ def _abbassa(item, livello, motivo):
     item["verifica"] = _verifica(e.affidabilita)
 
 
+_INTESTAZIONE_RE = re.compile(r"\b(ENTR\w*|ESC\w*|ALLE|N[O0]\s*L[EF]Z\w*|POM\w*)\b")
+
+
+def _sembra_intestazione(testo):
+    """Prima riga che ricorda ENTRA/ESCE ALLE / NO LEZ. POM.: potrebbe essere un riquadro
+    principale letto male, non una nota."""
+    prima = P.norm((testo or "").splitlines()[0] if testo else "")
+    return bool(_INTESTAZIONE_RE.search(prima))
+
+
 def _tipo_nota(u, tipo):
     """Un riquadro colorato (entra/esce/no lez.) o un pannello senza righe che finisce tra le note
     NON e' una nota: e' un dato principale non letto, e deve restare tra le voci da verificare."""
@@ -219,7 +229,14 @@ def _tipo_nota(u, tipo):
     return tipo
 
 
-def _applica(res, u, let, letti):
+def _riquadro_informativo(u, p):
+    """Riquadro colorato letto senza intestazione ENTRA/ESCE/NO LEZ. e senza aspetto di
+    intestazione: e' un riquadro informativo (es. DOCENTI ASSENTI), non un dato principale."""
+    return (u.meta.get("hint", "info") != "info" and p.kind == "info" and not p.fatal
+            and not p.problems and not _sembra_intestazione(p.testo))
+
+
+def _applica(res, u, let, letti, cfg):
     p, t = let.parsed, u.meta.get("tipo")
     righe = list(let.lines or [])
     if let.errore:
@@ -279,7 +296,14 @@ def _applica(res, u, let, letti):
         letti[u.uid] = (p.kind, righe)
     else:
         e = valuta(p, let.errore, testo_libero=p.testo)
-        res["note"].append(_voce(u, e, tipo=_tipo_nota(u, classifica_nota(p.testo)), testo=p.testo))
+        if _riquadro_informativo(u, p):
+            if not cfg.get("leggi_note_libere", False):
+                let.esito = e
+                return                  # riquadro informativo: non richiesto
+            tipo = classifica_nota(p.testo)
+        else:
+            tipo = _tipo_nota(u, classifica_nota(p.testo))
+        res["note"].append(_voce(u, e, tipo=tipo, testo=p.testo))
         letti[u.uid] = ("info", righe)
     let.esito = e
 
@@ -319,7 +343,7 @@ def _fuori_ordine(chiavi):
     return fuori
 
 
-def _controlli_globali(res):
+def _controlli_globali(res, note_lette=True):
     """Controlli di coerenza tra voci diverse. Abbassano l'affidabilita' delle voci coinvolte
     e aggiungono una riga a 'avvisi'."""
     from collections import defaultdict
@@ -331,8 +355,12 @@ def _controlli_globali(res):
     righe_note = {ln.strip()[:1] for n in res["note"] for ln in (n.get("testo") or "").splitlines()}
     for chiave in ("entrate", "uscite", "senza_lezioni_pomeridiane"):
         for e in res[chiave]:
-            if "marcatore_senza_nota" in e["motivi"] and all(
-                    m[:1] in righe_note for m in e.get("marcatori", {}).values()):
+            if "marcatore_senza_nota" in e["motivi"] and (not note_lette or all(
+                    m[:1] in righe_note for m in e.get("marcatori", {}).values())):
+                # senza note libere la nota del marcatore puo' stare in un riquadro non letto
+                if not note_lette:
+                    res["avvisi"].append(f"{e['unit_id']}: marcatore senza nota nel riquadro "
+                                         "(la nota puo' essere in un riquadro informativo non letto)")
                 e["motivi"].remove("marcatore_senza_nota")
                 e["affidabilita"] = livello_da_motivi(e["motivi"])
                 e["verifica"] = _verifica(e["affidabilita"])
