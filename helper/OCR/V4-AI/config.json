@@ -1,28 +1,14 @@
 {
-  "motori": [
-    "ollama",
-    "rapidocr",
-    "tesseract"
-  ],
   "ollama": {
     "host": "http://localhost:11434",
     "model": "qwen3-vl:2b-instruct",
-    "scale": [
-      3
-    ],
+    "scale": 3,
     "num_ctx": 4096,
     "timeout_s": 900,
     "keep_alive": "10m",
     "think": null
   },
-  "tesseract_cmd": null,
-  "voti_minimi": 2,
-  "politica": "maggioranza",
-  "autonomia": {
-    "abilitata": true,
-    "famiglia_prioritaria": "ollama",
-    "accetta_prioritario_senza_consenso": true
-  },
+  "anno": null,
   "orari_noti": [
     "08:00",
     "08:10",
@@ -48,5 +34,6 @@
   ],
   "salva_ritagli": true,
   "classi_file": "elenchi/classi.json",
-  "aule_file": "elenchi/aule.json"
+  "aule_file": "elenchi/aule.json",
+  "leggi_note_libere": false
 }

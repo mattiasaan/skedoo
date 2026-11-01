@@ -6,7 +6,7 @@ cosi' non devi scriverle a mano: dopo ogni revisione l'elenco cresce da solo.
 Uso:
   python apprendi.py cartella_con_json_verificati          # solo file con stato 'verificato'
   python apprendi.py cartella --tutti                      # qualsiasi JSON (es. ground_truth/)
-  python apprendi.py cartella --anche-completi             # include 'completo' (verificati dai motori)
+  python apprendi.py cartella --anche-completi             # include 'completo' (tutte le voci con affidabilita' alta)
 """
 import argparse
 import json

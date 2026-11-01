@@ -1,28 +1,25 @@
 """Caricamento configurazione (config.json) con valori di default."""
 import json
-import os
 from pathlib import Path
 
 DEFAULTS = {
-    "motori": ["ollama", "rapidocr", "tesseract"],
     "ollama": {
         "host": "http://localhost:11434",
-        "model": "qwen3-vl:4b",
-        "scale": [3],
+        "model": "qwen3-vl:2b-instruct",
+        "scale": 3,                  # ingrandimento del ritaglio prima della lettura
         "num_ctx": 4096,
         "timeout_s": 900,
         "keep_alive": "10m",
         "think": None,
     },
-    "tesseract_cmd": None,
-    "voti_minimi": 2,
-    "politica": "maggioranza",       # "maggioranza" | "unanime"
-    "orari_noti": [],
+    "anno": None,                    # anno dell'immagine; None = data piu' vicina a oggi
+    "orari_noti": [],                # griglia degli orari: un orario fuori griglia = errore
     "classi_file": None,             # JSON: lista di stringhe o di oggetti con campo "id"
     "aule_file": None,               # JSON: lista di stringhe ("AULA D205", "LAB. B119", "TALVERA")
     "classi_valide": None,           # in alternativa: lista diretta. None = solo controllo di formato
     "aule_valide": None,
     "aule_nominali": ["MAGNA", "CALABRONE", "UDIENZE", "TALVERA"],
+    "leggi_note_libere": False,      # True = legge anche i riquadri informativi (FSL, viaggi, ...)
     "salva_ritagli": True,
 }
 
@@ -78,19 +75,3 @@ def load_config(path=None) -> dict:
     if cfg.get("aule_valide"):
         cfg["_aule_core"] = sorted({core_aula(a) for a in cfg["aule_valide"]})
     return cfg
-
-
-def find_tesseract(cfg: dict):
-    """Percorso di tesseract: config -> PATH -> posizioni tipiche di Windows."""
-    import shutil
-    if cfg.get("tesseract_cmd") and os.path.isfile(cfg["tesseract_cmd"]):
-        return cfg["tesseract_cmd"]
-    found = shutil.which("tesseract")
-    if found:
-        return found
-    for p in (r"C:\Program Files\Tesseract-OCR\tesseract.exe",
-              r"C:\Program Files (x86)\Tesseract-OCR\tesseract.exe",
-              os.path.expandvars(r"%LOCALAPPDATA%\Programs\Tesseract-OCR\tesseract.exe")):
-        if os.path.isfile(p):
-            return p
-    return None
