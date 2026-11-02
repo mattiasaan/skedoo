@@ -24,6 +24,15 @@ class User(BaseModel):
   id: str
   nome: str
   cognome: str
+  scuola: "School | None" = None
+
+
+class School(BaseModel):
+  codice: str | None = None
+  nome: str | None = None
+  dedica: str | None = None
+  citta: str | None = None
+  provincia: str | None = None
 
 
 class TokenOut(BaseModel):
@@ -33,7 +42,7 @@ class TokenOut(BaseModel):
   utente: User
 
 
-@router.post("/login", response_model=TokenOut)
+@router.post("/login", response_model=TokenOut, response_model_exclude_none=True)
 async def login(body: LoginIn, request: Request):
   """Login con le credenziali ClasseViva: l'UNICO endpoint senza JWT, quindi ha limiti suoi:
   tentativi per IP, tentativi per (IP, username) e blocco dopo troppe password sbagliate."""
@@ -56,7 +65,7 @@ async def login(body: LoginIn, request: Request):
   return TokenOut(access_token=token, expires_in=expires_in, utente=User(**session.profile))
 
 
-@router.get("/me", response_model=User)
+@router.get("/me", response_model=User, response_model_exclude_none=True)
 def me(session: CvSession = Depends(current_session)):
   """Utente del token: utile all'avvio dell'app per sapere se è ancora loggato."""
   return User(**session.profile)
