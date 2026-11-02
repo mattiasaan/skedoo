@@ -1,11 +1,12 @@
+#!/usr/bin/env python3
 """
 Collaudo: esegue TUTTE le immagini una alla volta e poi confronta i risultati per capire
 quali sono i veri errori (e quali solo falsi allarmi).
 
 Uso:
-  python collaudo.py                          # immagini in test_images/, risultati in collaudo/
-  python collaudo.py cartella --out collaudo --anno 2026
-  python collaudo.py --solo-confronto         # NON rilegge le immagini: analizza i JSON gia' in collaudo/
+  python collauda.py                          # immagini in test_images/, risultati in collaudo/
+  python collauda.py cartella --out collaudo --anno 2026
+  python collauda.py --solo-confronto         # NON rilegge le immagini: analizza i JSON gia' in collaudo/
 
 Cosa produce (in <out>/): un <immagine>.json per immagine, report.md e report.json.
 
@@ -29,6 +30,9 @@ EXT = {".jpg", ".jpeg", ".png", ".bmp", ".webp", ".tif", ".tiff"}
 QUI = Path(__file__).resolve().parent
 
 
+# ---------------------------------------------------------------------------
+# Esecuzione (una immagine alla volta)
+# ---------------------------------------------------------------------------
 def esegui(immagini, out: Path, cfg, engine=None, log=print):
     from orario.pipeline import build_engine, processa_immagine
     engine = engine or build_engine(cfg)
@@ -50,7 +54,9 @@ def esegui(immagini, out: Path, cfg, engine=None, log=print):
     return ok, errori
 
 
-
+# ---------------------------------------------------------------------------
+# Voci confrontabili
+# ---------------------------------------------------------------------------
 def voci(res):
     """{chiave: dettaglio} per le voci principali (stesse chiavi di evaluate.py)."""
     letto = {d["id"]: d.get("letto") for d in res.get("da_verificare", [])}
@@ -91,6 +97,9 @@ def fmt(k):
     return f"nolez: {' + '.join(k[1])}"
 
 
+# ---------------------------------------------------------------------------
+# Confronto con la trascrizione di riferimento
+# ---------------------------------------------------------------------------
 def confronta_gt(res, gt):
     got, ref = voci(res), voci_gt(gt)
     r = {"attesi": len(ref), "giusti_alta": [], "falsi_allarmi": [], "silenziosi": [],
@@ -111,11 +120,14 @@ def confronta_gt(res, gt):
     return r
 
 
+# ---------------------------------------------------------------------------
+# Confronto tra immagini della stessa data
+# ---------------------------------------------------------------------------
 def confronta_tra_immagini(risultati):
     gruppi = defaultdict(list)
     for nome, res in risultati.items():
-        if res.get("data_iso"):
-            gruppi[res["data_iso"]].append(nome)
+        if res.get("data_numero"):
+            gruppi[f"{res.get('giorno')} {res.get('data')}"].append(nome)
     out = []
     for data, nomi in sorted(gruppi.items()):
         if len(nomi) < 2:
@@ -131,6 +143,9 @@ def confronta_tra_immagini(risultati):
     return out
 
 
+# ---------------------------------------------------------------------------
+# Report
+# ---------------------------------------------------------------------------
 def analizza(out: Path, gt_dir: Path, nomi=None):
     risultati = {}
     for f in sorted(out.glob("*.json")):

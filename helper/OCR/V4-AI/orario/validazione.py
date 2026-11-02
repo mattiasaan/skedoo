@@ -82,7 +82,8 @@ _MOTIVI_MEDI = ("classe_fuori_elenco", "aula_fuori_elenco", "aula_nominale_scono
                 "ritaglio_riga_stimato", "classe_fuori_ordine_alfabetico",
                 "orari_sovrapposti_aule_diverse", "riga_duplicata",
                 "classe_in_entrata_e_uscita_stessa_ora",
-                "cambio_aula_pomeridiano_con_no_lezioni_pomeridiane")
+                "cambio_aula_pomeridiano_con_no_lezioni_pomeridiane",
+                "aula_composta", "classe_dedotta_da_riga_precedente")
 
 
 def livello_da_motivi(motivi) -> str:

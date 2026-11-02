@@ -262,9 +262,10 @@ def _applica(res, u, let, letti, cfg):
         e = valuta(p, let.errore)
         if u.meta.get("sospetta"):
             e.abbassa(MEDIA, "ritaglio_riga_stimato")
-        campi = {"classe": None, "orario": None, "aula": None}
+        campi = {"classe": None, "classe_dedotta": None, "orario": None, "aula": None, "aule": []}
         if p is not None and not p.fatal and not p.is_header:
-            campi.update(classe=p.classe, orario=f"{p.da} - {p.a}", aula=p.aula)
+            campi.update(classe=p.classe, orario=f"{p.da} - {p.a}", aula=p.aula,
+                         aule=list(p.aule or ([p.aula] if p.aula else [])))
             if p.marker:
                 campi["marcatore"] = p.marker
         res["cambi_aula"].append(_voce(u, e, **campi))
@@ -364,6 +365,22 @@ def _controlli_globali(res, note_lette=True):
                 e["motivi"].remove("marcatore_senza_nota")
                 e["affidabilita"] = livello_da_motivi(e["motivi"])
                 e["verifica"] = _verifica(e["affidabilita"])
+
+    # 0b) il pannello stampa la classe solo sulla prima riga: le righe successive della stessa classe
+    #     ne sono prive. Una riga senza classe che inizia dopo la fine della riga con classe che la
+    #     precede viene attribuita a quella classe (classe_dedotta), ma resta almeno 'media'.
+    prec = None
+    for r in righe:
+        if r["classe"]:
+            prec = r
+            continue
+        if (prec and r["orario"] and prec["orario"] and "classe_assente" in r["motivi"]
+                and _minuti(r["orario"][:5]) >= _minuti(prec["orario"][-5:])):
+            r["classe_dedotta"] = prec["classe"]
+            r["motivi"].remove("classe_assente")
+            r["motivi"].append("classe_dedotta_da_riga_precedente")
+            r["affidabilita"] = livello_da_motivi(r["motivi"])
+            r["verifica"] = _verifica(r["affidabilita"])
 
     # 1) il pannello CAMBIO AULA e' in ordine alfabetico di classe (vero in tutte le immagini
     #    di riferimento): una classe letta male di solito rompe l'ordine
