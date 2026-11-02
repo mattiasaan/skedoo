@@ -28,3 +28,10 @@ def register_error_handlers(app: FastAPI) -> None:
     import logging
     logging.getLogger("skedoo").error("Errore database: %s", e.__class__.__name__, exc_info=e)
     return error_response(503, "database_unavailable", "Servizio temporaneamente non disponibile")
+
+  @app.exception_handler(Exception)
+  async def _unexpected_error(_: Request, e: Exception):
+    # Evita risposte HTML o dettagli interni anche quando l'errore non è previsto.
+    import logging
+    logging.getLogger("skedoo").error("Errore inatteso: %s", e.__class__.__name__, exc_info=e)
+    return error_response(500, "internal_error", "Errore interno del servizio")

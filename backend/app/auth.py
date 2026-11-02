@@ -20,19 +20,19 @@ class LoginIn(BaseModel):
   password: str = Field(min_length=1, max_length=256)
 
 
-class User(BaseModel):
-  id: str
-  nome: str
-  cognome: str
-  scuola: "School | None" = None
-
-
 class School(BaseModel):
   codice: str | None = None
   nome: str | None = None
   dedica: str | None = None
   citta: str | None = None
   provincia: str | None = None
+
+
+class User(BaseModel):
+  id: str
+  nome: str
+  cognome: str
+  scuola: School | None = None
 
 
 class TokenOut(BaseModel):
