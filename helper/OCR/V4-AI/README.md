@@ -77,10 +77,14 @@ Come usarlo nell'altro progetto:
 
 ## Misurare / testare
 ```
+python collauda.py                               # TUTTE le immagini una alla volta + report in collaudo/report.md
+python collauda.py --solo-confronto --out collaudo   # rianalizza i JSON gia' prodotti, senza rileggere le immagini
 python -m unittest discover -s tests -v          # nessun modello necessario
 python tests/simula_vlm.py test_images 0.1 8      # finto Qwen con errori iniettati
 python main.py test_images --out output && python evaluate.py output ground_truth
 ```
+`collauda.py` separa i **veri errori** (silenziosi = sbagliati e `alta`; intercettati = sbagliati ma segnalati; mancanti) dai **falsi allarmi** (giusti ma non `alta`, con l'elenco delle classi/aule da aggiungere agli elenchi) e confronta le immagini della stessa data. Esce con codice 1 se ci sono errori silenziosi.
+
 In `evaluate.py` **ERRORI_SILENZIOSI** = valori sbagliati marcati `alta`.
 
 ## download modelli
@@ -88,3 +92,14 @@ In `evaluate.py` **ERRORI_SILENZIOSI** = valori sbagliati marcati `alta`.
   - ollama pull qwen3-vl:4b-instruct # circa 3,5 minuti a immagine, 15-20s a ritaglio
   - ollama pull qwen3-vl:8b-instruct # circa 10 minuti a immagine, 50s a ritaglio
   - ollama pull qwen3-vl:30b-instruct # da testare
+
+## Novità dopo i collaudi (v5.1)
+
+- **Righe senza classe**: il pannello stampa la classe solo sulla prima riga. Le righe successive ricevono
+  `classe_dedotta` (dalla riga precedente) e restano almeno `media` (`classe_dedotta_da_riga_precedente`).
+- **Aule composte** (`AULA D204/5`, `AULA B309+LAB. A306`): il campo `aula` resta il testo letto, `aule` è
+  la lista separata; affidabilità `media` (`aula_composta`).
+- **Titolo con data di un altro anno** (immagini d'archivio): `data_iso` usa l'anno che fa tornare il
+  giorno della settimana, con avviso `data_di_altro_anno:AAAA` (media). Usa `--anno 2026` per fissarlo.
+- Note con "al" (`posticipa 1° al 3°`) riconosciute.
+- `collauda.py` raggruppa le immagini per `giorno + data` nel confronto incrociato.

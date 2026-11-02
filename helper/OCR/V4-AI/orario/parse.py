@@ -16,6 +16,8 @@ import re
 from dataclasses import dataclass, field
 from typing import Optional
 
+from .config import core_aula
+
 # ---------------------------------------------------------------------------
 # Normalizzazione
 # ---------------------------------------------------------------------------
@@ -198,6 +200,7 @@ def canon_aula(s: str, aule_nominali=()):
 # ---------------------------------------------------------------------------
 @dataclass
 class RowRead:
+    aule: list = field(default_factory=list)   # una o piu' aule (aula composta: 'B309+LAB.A306', 'D204/5')
     raw: str = ""
     is_header: bool = False
     classe: Optional[str] = None
@@ -297,7 +300,33 @@ def classe_valida(c: str, valide) -> bool:
     return False
 
 
+def split_aule(aula):
+    """'AULA B309+LAB. A306' -> ['AULA B309', 'LAB. A306'];  'AULA D204/5' -> ['AULA D204', 'AULA D205'];
+    'LAB. B120/1' -> ['LAB. B120', 'LAB. B121']. Aula semplice -> [aula]."""
+    out = []
+    for parte in re.split(r"\s*\+\s*", aula or ""):
+        parte = re.sub(r"^LAB\.?\s*", "LAB. ", re.sub(r"^AULA\s*", "AULA ", parte.strip()))
+        m = re.match(r"^((?:AULA|LAB\.) )?([A-Z]?\d{2,3})\s*/\s*(\d{1,3})$", parte)
+        if m:
+            pre, a, b = m.group(1) or "", m.group(2), m.group(3)
+            seconda = a[:len(a) - len(b)] + b if len(b) < len(a) else b
+            out += [pre + a, pre + seconda]
+        elif parte:
+            out.append(parte)
+    return out
+
+
 def _check_aula(r, aula, nominale, cfg):
+    parti = split_aule(aula)
+    if len(parti) > 1:
+        # aula composta: ogni parte deve essere un'aula nota; e' comunque un formato raro -> avviso
+        r.aule = parti
+        r.warnings.append("aula_composta")
+        valide = cfg.get("_aule_core")
+        if valide and any(core_aula(x) not in valide for x in parti):
+            r.warnings.append("aula_fuori_elenco")
+        return
+    r.aule = [aula]
     core = aula.split(" ", 1)[1] if aula.split(" ", 1)[0] in ("AULA", "LAB.") and " " in aula else aula
     valide = cfg.get("_aule_core")
     if valide:
@@ -411,9 +440,15 @@ def parse_title(text: str, cfg=None) -> TitleRead:
         if GIORNI[d.weekday()] == g:
             r.anno, r.iso = d.year, d.isoformat()
         else:
-            # giorno della settimana e data non possono coesistere: uno dei due e' letto male
-            # (o l'immagine e' di un altro anno: in quel caso usare --anno)
-            r.problems.append("giorno_settimana_incoerente_con_data")
+            altre = [x for x in date if GIORNI[x.weekday()] == g]
+            if altre and not (cfg and cfg.get("anno")):
+                # la data torna con un altro anno (immagine d'archivio?): usabile ma da controllare
+                d = min(altre, key=lambda x: abs((x - oggi).days))
+                r.anno, r.iso = d.year, d.isoformat()
+                r.warnings.append(f"data_di_altro_anno:{d.year}")
+            else:
+                # giorno della settimana e data non possono coesistere: uno dei due e' letto male
+                r.problems.append("giorno_settimana_incoerente_con_data")
     else:
         r.problems.append("data_non_esistente")
     return r
@@ -566,7 +601,7 @@ def parse_box(lines, color_hint: str, cfg: dict) -> BoxRead:
     return r
 
 
-_NOTA_ORE_RE = re.compile(r"\b(POSTICIPA|ANTICIPA)\s+(?:A\s+)?(\d)\s*°?\s*A\s*(\d)")
+_NOTA_ORE_RE = re.compile(r"\b(POSTICIPA|ANTICIPA)\s+(?:A\s+)?(\d)\s*°?\s*AL?\s*(\d)")
 _NOTA_AULA_RE = re.compile(r"\(\s*([A-Z]?\d{3})\s*\)")
 
 
