@@ -21,6 +21,8 @@ app/
   changes.py     GET /changes, /changes/entrate-uscite, /changes/cambi-aula
   db.py          tabelle SQLAlchemy (classes, lessons)
 scripts/import_schedules.py   importa i JSON nel database
+scripts/bacheca_fetch/fetch_bacheca.py  recupera e filtra la bacheca ClasseViva
+scripts/bacheca_fetch/run_periodic.py  esegue il fetch della bacheca a intervalli regolari
 tests/                        python -m pytest -q tests
 docs/db-schema.md             schema e relazioni
 ```
@@ -129,6 +131,26 @@ pip install -r requirements-dev.txt
 python -m pytest -q tests
 TEST_DATABASE_URL=postgresql://… python -m pytest -q tests/test_db.py   # su PostgreSQL vero (database vuoto di prova)
 ```
+
+### Aggiornamento periodico della bacheca
+
+Il runner usa `CLASSVIVA_USERNAME` e `CLASSVIVA_PASSWORD` da `.env` o
+dall'ambiente del processo. Esegue subito un fetch e poi ogni 15 minuti:
+
+```bash
+python -m scripts.bacheca_fetch.run_periodic
+```
+
+Variabili opzionali:
+
+- `BACHECA_FETCH_INTERVAL_SECONDS`: intervallo in secondi, maggiore di zero;
+- `BACHECA_FETCH_RUN_ON_START=false`: salta il fetch iniziale;
+- `CLASSVIVA_BOARD_OUTPUT`: JSON prodotto (default `data/bacheca_fetch/board_matches.json`);
+- `CLASSVIVA_BOARD_ATTACHMENTS`: directory degli allegati;
+- `BACHECA_FETCH_LOG_LEVEL`: livello di logging, default `INFO`.
+
+Gli errori di un ciclo vengono registrati e non interrompono i cicli successivi.
+Il file prodotto sarà l'input del successivo script OCR.
 
 
 python -m uvicorn app.main:app --reload --host 0.0.0.0
