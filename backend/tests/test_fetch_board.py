@@ -2,7 +2,7 @@ import json
 
 import asyncio
 
-from backend.scripts.fetch_bacheca import DEFAULT_PATTERN, download_attachments, filter_board, save_matches
+from scripts.bacheca_fetch.fetch_bacheca import DEFAULT_PATTERN, download_attachments, filter_board, save_matches
 
 
 def test_filter_board_matches_communication_for_day():

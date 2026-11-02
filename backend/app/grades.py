@@ -50,8 +50,8 @@ def _current_year() -> str:
 
 
 def average(grades: list[GradeOut]) -> float | None:
-  """Media pesata. Non fanno media i voti annullati, con peso 0 o non numerici ("Ottimo")."""
-  counted = [g for g in grades if not g.annullato and g.valore is not None and g.peso != 0]
+  """Media pesata; ignora voti annullati, non numerici e pesi non positivi."""
+  counted = [g for g in grades if not g.annullato and g.valore is not None and (g.peso is None or g.peso > 0)]
   total = sum(g.peso or 1 for g in counted)
   return round(sum(g.valore * (g.peso or 1) for g in counted) / total, 2) if counted else None
 

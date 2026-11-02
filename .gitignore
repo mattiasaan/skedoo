@@ -323,7 +323,6 @@ info.md
 
 *.generated.*
 
-.env.example
 .env
 *.env
 enviorment.md

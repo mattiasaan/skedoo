@@ -1,7 +1,7 @@
 from datetime import date
 
 from fastapi import APIRouter, Depends, Query
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from .classeviva import CvSession
 from .errors import AppError
@@ -17,7 +17,7 @@ class AbsenceOut(BaseModel):
   ora: int | None = None
   giustificata: bool = False
   motivo: str | None = None
-  ore: list[dict] = []
+  ore: list[dict] = Field(default_factory=list)
 
 
 class AbsencesOut(BaseModel):

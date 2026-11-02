@@ -6,7 +6,7 @@ API FastAPI per la PWA: orari delle classi, voti e agenda da ClasseViva. Tutto r
 
 ```
 app/
-  main.py        app FastAPI, middleware (limite IP, dimensione body, header di sicurezza), CORS, router
+  main.py        app FastAPI, lifespan, middleware (limite IP, body, header), CORS, router
   config.py      tutte le impostazioni (da .env) e i controlli per la produzione
   security.py    JWT, rate limiter, dipendenza `current_session` usata da ogni endpoint protetto
   classeviva.py  sessioni ClasseViva (login, cache, ri-login) e traduzione degli errori
@@ -20,17 +20,18 @@ app/
   absences.py    GET /assenze
   changes.py     GET /changes, /changes/entrate-uscite, /changes/cambi-aula
   db.py          tabelle SQLAlchemy (classes, lessons)
-scripts/import_schedules.py   importa i JSON nel database
+scripts/import_schedules.py             importa i JSON nel database
 scripts/bacheca_fetch/fetch_bacheca.py  recupera e filtra la bacheca ClasseViva
-scripts/bacheca_fetch/run_periodic.py  esegue il fetch della bacheca a intervalli regolari
-tests/                        python -m pytest -q tests
-docs/db-schema.md             schema e relazioni
+scripts/bacheca_fetch/run_periodic.py   esegue il fetch della bacheca a intervalli regolari
+tests/                                  python -m pytest -q tests
+docs/db-schema.md                       schema e relazioni
+README-TECHNICAL.md                     documentazione tecnica estesa
 ```
 
 ## Avvio
 
 ```bash
-pip install -r requirements.txt            # Classeviva.py 1.3: pip install /percorso/Classeviva.py
+pip install -r requirements.txt
 cp .env.example .env
 uvicorn app.main:app --reload              # Swagger su /docs (solo in sviluppo)
 ```
@@ -100,7 +101,8 @@ Formato `{"code": "...", "message": "..."}` (le validazioni di FastAPI restano i
 | 422 | `invalid_range`, `range_too_large`, `invalid_parameter`, `date_out_of_range` | parametri agenda |
 | 429 | `rate_limited`, `too_many_attempts` | troppe richieste (header `Retry-After`) |
 | 502 | `classeviva_error` | ClasseViva non risponde |
-| 503 | `database_unavailable` | DB non raggiungibile |
+| 500 | `internal_error` | errore inatteso, dettagli solo nei log |
+| 503 | `database_unavailable`, `changes_unavailable` | DB o dati locali non disponibili |
 
 ## Sicurezza
 
@@ -110,6 +112,7 @@ Formato `{"code": "...", "message": "..."}` (le validazioni di FastAPI restano i
 - `ENVIRONMENT=production` rifiuta di partire senza `JWT_SECRET` (≥32 caratteri), `SCHEDULE_SOURCE=db` + `DATABASE_URL`, `CORS_ORIGINS` e `ALLOWED_HOSTS` espliciti.
 - Dietro a un reverse proxy imposta `TRUST_PROXY_HEADERS=true`, altrimenti il rate limit per IP vede solo l'IP del proxy.
 - Il file `.env` non va mai committato.
+- `.env.example` contiene solo nomi e valori di esempio, mai credenziali reali.
 
 ## Database degli orari
 

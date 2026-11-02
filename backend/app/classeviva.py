@@ -101,6 +101,7 @@ class CvSession:
 class SessionStore:
   def __init__(self):
     self._sessions: dict[str, CvSession] = {}
+    self._lock = threading.Lock()
 
   async def login(self, username: str, password: str) -> CvSession:
     utente = Utente(username, password)
@@ -110,20 +111,26 @@ class SessionStore:
       raise translate(e) from e
     # elimina le sessioni inattive da più della durata del token
     limit = get_settings().jwt_ttl_hours * 3600
-    self._sessions = {k: s for k, s in self._sessions.items() if time.monotonic() - s.last_used < limit}
+    now = time.monotonic()
     session = CvSession(username, utente)
     await session.load_school()
-    self._sessions[session.sid] = session
+    with self._lock:
+      self._sessions = {
+        k: s for k, s in self._sessions.items() if now - s.last_used < limit
+      }
+      self._sessions[session.sid] = session
     return session
 
   def get(self, sid: str, username: str) -> CvSession:
-    s = self._sessions.get(sid)
+    with self._lock:
+      s = self._sessions.get(sid)
     if s is None or s.username != username:
       raise AppError(401, "session_expired", "Sessione scaduta, effettua di nuovo il login")
     return s
 
   def logout(self, sid: str) -> None:
-    self._sessions.pop(sid, None)
+    with self._lock:
+      self._sessions.pop(sid, None)
 
 
 store = SessionStore()

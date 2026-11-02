@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, Path
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from .classeviva import CvSession
 from .security import current_session, upstream_limit
@@ -21,7 +21,7 @@ class BoardItemOut(BaseModel):
   valido_da: str | None = None
   valido_a: str | None = None
   letto: bool = False
-  allegati: list[AttachmentOut] = []
+  allegati: list[AttachmentOut] = Field(default_factory=list)
 
 
 class BoardOut(BaseModel):
