@@ -41,6 +41,7 @@ class CvSession:
     self.last_used = time.monotonic()
     self._lock = threading.Lock()
     self._cache: dict[tuple, tuple[float, object]] = {}
+    self._school: dict | None = None
 
   def _run(self, method: str, args: tuple):
     with self._lock:  # la sessione requests non è fatta per l'uso concorrente
@@ -69,7 +70,32 @@ class CvSession:
   @property
   def profile(self) -> dict:
     d = getattr(self.utente, "_dati", None) or {}
-    return {"id": self.username, "nome": d.get("firstName", ""), "cognome": d.get("lastName", "")}
+    return {
+      "id": self.username,
+      "nome": d.get("firstName", ""),
+      "cognome": d.get("lastName", ""),
+      "scuola": self._school,
+    }
+
+  async def load_school(self) -> None:
+    """Carica la scuola dalla carta ClasseViva, senza inserirla nel JWT."""
+    if self._school is not None or not hasattr(self.utente, "carta"):
+      return
+    try:
+      raw = await self.call("carta")
+    except (AppError, eccezioni.ErroreHTTP, eccezioni.SenzaDati) as exc:
+      log.warning("Scuola ClasseViva non disponibile: %s", exc.__class__.__name__)
+      return
+    card = raw.get("card", raw) if isinstance(raw, dict) else {}
+    if not isinstance(card, dict):
+      return
+    self._school = {
+      "codice": card.get("schCode") or card.get("miurSchoolCode"),
+      "nome": card.get("schName"),
+      "dedica": card.get("schDedication"),
+      "citta": card.get("schCity"),
+      "provincia": card.get("schProv"),
+    }
 
 
 class SessionStore:
@@ -86,6 +112,7 @@ class SessionStore:
     limit = get_settings().jwt_ttl_hours * 3600
     self._sessions = {k: s for k, s in self._sessions.items() if time.monotonic() - s.last_used < limit}
     session = CvSession(username, utente)
+    await session.load_school()
     self._sessions[session.sid] = session
     return session
 

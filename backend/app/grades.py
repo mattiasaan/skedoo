@@ -10,7 +10,6 @@ from .config import get_settings
 from .security import current_session, upstream_limit
 
 router = APIRouter(prefix="/grades", tags=["Voti"], dependencies=[Depends(upstream_limit)])
-valutazioni_router = APIRouter(prefix="/valutazioni", tags=["Valutazioni"], dependencies=[Depends(upstream_limit)])
 
 
 class GradeOut(BaseModel):
@@ -87,12 +86,3 @@ async def get_grades(
   """Voti raggruppati per materia, con la media di ogni materia e quella generale."""
   anno = anno or _current_year()
   return build_grades(await session.call("voti", anno), anno, periodo)
-
-
-@valutazioni_router.get("", response_model=GradesOut)
-async def get_valutazioni(
-  anno: str | None = Query(None, pattern=r"^\d{2}$", description="Anno di inizio, es. 26"),
-  periodo: int | None = Query(None, ge=1, description="Solo un periodo"),
-  session: CvSession = Depends(current_session),
-):
-  return await get_grades(anno=anno, periodo=periodo, session=session)
