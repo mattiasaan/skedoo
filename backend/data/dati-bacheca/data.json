@@ -1,0 +1,475 @@
+{
+  "schema_versione": 2,
+  "_source": "img0.png",
+  "estratto_il": "2026-11-02T12:22:29",
+  "motore": {
+    "modello": "qwen3-vl:2b-instruct",
+    "scala": 3
+  },
+  "giorno": "LUNEDÌ",
+  "data": "30 MARZO",
+  "data_numero": 30,
+  "mese": "MARZO",
+  "data_iso": "2026-03-30",
+  "titolo_unit_id": "img0_01_titolo",
+  "titolo_affidabilita": "media",
+  "titolo_motivi": [
+    "data_di_altro_anno:2026"
+  ],
+  "titolo_verifica": "da_verificare",
+  "entrate": [
+    {
+      "unit_id": "img0_02_riquadro",
+      "ora": "09:00",
+      "classi": [
+        "1F",
+        "4J"
+      ],
+      "note": "* RECLA posticipa 1° a 3° (D005)",
+      "marcatori": {
+        "4J": "*"
+      },
+      "affidabilita": "alta",
+      "motivi": [],
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img0_03_riquadro",
+      "ora": "09:50",
+      "classi": [
+        "1MAQ2",
+        "4N"
+      ],
+      "note": "",
+      "affidabilita": "media",
+      "motivi": [
+        "classe_fuori_elenco"
+      ],
+      "verifica": "da_verificare"
+    },
+    {
+      "unit_id": "img0_05_riquadro",
+      "ora": "15:20",
+      "classi": [
+        "2F"
+      ],
+      "note": "",
+      "affidabilita": "alta",
+      "motivi": [],
+      "verifica": "ok"
+    }
+  ],
+  "uscite": [
+    {
+      "unit_id": "img0_04_riquadro",
+      "ora": "12:35",
+      "classi": [
+        "1P",
+        "2D"
+      ],
+      "note": "* MA RROCCO anticipa 6° a 5° (B112)",
+      "marcatori": {
+        "1P": "*"
+      },
+      "affidabilita": "alta",
+      "motivi": [],
+      "verifica": "ok"
+    }
+  ],
+  "senza_lezioni_pomeridiane": [],
+  "cambi_aula": [
+    {
+      "unit_id": "img0_07_riga01",
+      "classe": "1A",
+      "classe_dedotta": null,
+      "orario": "08:10 - 09:50",
+      "aula": "AULA D205",
+      "aule": [
+        "AULA D205"
+      ],
+      "affidabilita": "alta",
+      "motivi": [],
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img0_08_riga02",
+      "classe": "1B",
+      "classe_dedotta": null,
+      "orario": "08:10 - 09:50",
+      "aula": "AULA D206",
+      "aule": [
+        "AULA D206"
+      ],
+      "affidabilita": "alta",
+      "motivi": [],
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img0_09_riga03",
+      "classe": "1C",
+      "classe_dedotta": null,
+      "orario": "09:50 - 11:45",
+      "aula": "AULA D205",
+      "aule": [
+        "AULA D205"
+      ],
+      "affidabilita": "alta",
+      "motivi": [],
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img0_10_riga04",
+      "classe": "1D",
+      "classe_dedotta": null,
+      "orario": "09:50 - 11:45",
+      "aula": "AULA D206",
+      "aule": [
+        "AULA D206"
+      ],
+      "affidabilita": "alta",
+      "motivi": [],
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img0_11_riga05",
+      "classe": "1E",
+      "classe_dedotta": null,
+      "orario": "11:45 - 12:35",
+      "aula": "AULA D205",
+      "aule": [
+        "AULA D205"
+      ],
+      "affidabilita": "alta",
+      "motivi": [],
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img0_12_riga06",
+      "classe": "1I",
+      "classe_dedotta": null,
+      "orario": "09:50 - 10:40",
+      "aula": "AULA B115",
+      "aule": [
+        "AULA B115"
+      ],
+      "affidabilita": "media",
+      "motivi": [
+        "lettura_riparata"
+      ],
+      "verifica": "da_verificare"
+    },
+    {
+      "unit_id": "img0_13_riga07",
+      "classe": "1MAQ1",
+      "classe_dedotta": null,
+      "orario": "09:50 - 10:40",
+      "aula": "LAB. B119",
+      "aule": [
+        "LAB. B119"
+      ],
+      "affidabilita": "alta",
+      "motivi": [],
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img0_14_riga08",
+      "classe": "1P",
+      "classe_dedotta": null,
+      "orario": "11:45 - 12:35",
+      "aula": "AULA D206",
+      "aule": [
+        "AULA D206"
+      ],
+      "affidabilita": "alta",
+      "motivi": [],
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img0_15_riga09",
+      "classe": "3C/T",
+      "classe_dedotta": null,
+      "orario": "11:45 - 13:25",
+      "aula": "AULA B207",
+      "aule": [
+        "AULA B207"
+      ],
+      "affidabilita": "media",
+      "motivi": [
+        "classe_fuori_elenco"
+      ],
+      "verifica": "da_verificare"
+    },
+    {
+      "unit_id": "img0_16_riga10",
+      "classe": "3J",
+      "classe_dedotta": null,
+      "orario": "09:50 - 10:40",
+      "aula": "AULA B013",
+      "aule": [
+        "AULA B013"
+      ],
+      "affidabilita": "media",
+      "motivi": [
+        "classe_fuori_elenco"
+      ],
+      "verifica": "da_verificare"
+    },
+    {
+      "unit_id": "img0_17_riga11",
+      "classe": "3L",
+      "classe_dedotta": null,
+      "orario": "12:35 - 13:25",
+      "aula": "AULA B011",
+      "aule": [
+        "AULA B011"
+      ],
+      "affidabilita": "alta",
+      "motivi": [],
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img0_18_riga12",
+      "classe": "3OD",
+      "classe_dedotta": null,
+      "orario": "09:50 - 10:40",
+      "aula": "AULA B011",
+      "aule": [
+        "AULA B011"
+      ],
+      "affidabilita": "alta",
+      "motivi": [],
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img0_19_riga13",
+      "classe": "4D",
+      "classe_dedotta": null,
+      "orario": "08:10 - 09:50",
+      "aula": "AULA B207",
+      "aule": [
+        "AULA B207"
+      ],
+      "affidabilita": "alta",
+      "motivi": [],
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img0_20_riga14",
+      "classe": "4F",
+      "classe_dedotta": null,
+      "orario": "08:10 - 09:50",
+      "aula": "AULA B108",
+      "aule": [
+        "AULA B108"
+      ],
+      "affidabilita": "alta",
+      "motivi": [],
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img0_21_riga15",
+      "classe": "4I",
+      "classe_dedotta": null,
+      "orario": "08:10 - 10:40",
+      "aula": "AULA D204",
+      "aule": [
+        "AULA D204"
+      ],
+      "affidabilita": "media",
+      "motivi": [
+        "lettura_riparata"
+      ],
+      "verifica": "da_verificare"
+    },
+    {
+      "unit_id": "img0_22_riga16",
+      "classe": "4J",
+      "classe_dedotta": null,
+      "orario": "10:55 - 12:35",
+      "aula": "AULA D204",
+      "aule": [
+        "AULA D204"
+      ],
+      "affidabilita": "alta",
+      "motivi": [],
+      "verifica": "ok"
+    },
+    {
+      "unit_id": "img0_23_riga17",
+      "classe": "4MAT",
+      "classe_dedotta": null,
+      "orario": "12:35 - 13:25",
+      "aula": "AULA B016",
+      "aule": [
+        "AULA B016"
+      ],
+      "affidabilita": "media",
+      "motivi": [
+        "aula_fuori_elenco"
+      ],
+      "verifica": "da_verificare"
+    },
+    {
+      "unit_id": "img0_24_riga18",
+      "classe": "5B",
+      "classe_dedotta": null,
+      "orario": "10:55 - 11:45",
+      "aula": "AULA B210",
+      "aule": [
+        "AULA B210"
+      ],
+      "affidabilita": "media",
+      "motivi": [
+        "classe_fuori_elenco"
+      ],
+      "verifica": "da_verificare"
+    },
+    {
+      "unit_id": "img0_25_riga19",
+      "classe": "5G/N",
+      "classe_dedotta": null,
+      "orario": "08:10 - 13:25",
+      "aula": "AULA A106",
+      "aule": [
+        "AULA A106"
+      ],
+      "affidabilita": "media",
+      "motivi": [
+        "classe_fuori_elenco"
+      ],
+      "verifica": "da_verificare"
+    },
+    {
+      "unit_id": "img0_26_riga20",
+      "classe": "5H",
+      "classe_dedotta": null,
+      "orario": "08:10 - 13:25",
+      "aula": "AULA A106",
+      "aule": [
+        "AULA A106"
+      ],
+      "affidabilita": "alta",
+      "motivi": [],
+      "verifica": "ok"
+    }
+  ],
+  "note": [],
+  "avvisi": [],
+  "da_verificare": [
+    {
+      "id": "img0_01_titolo",
+      "tipo": "titolo",
+      "affidabilita": "media",
+      "motivi": [
+        "data_di_altro_anno:2026"
+      ],
+      "letto": [
+        "LUNEDÌ 30 MARZO"
+      ],
+      "ritaglio": "img0_ritagli/img0_01_titolo.png"
+    },
+    {
+      "id": "img0_03_riquadro",
+      "tipo": "entra",
+      "affidabilita": "media",
+      "motivi": [
+        "classe_fuori_elenco"
+      ],
+      "letto": [
+        "ENTRA ALLE 09.50",
+        "1 MAQ2 + 4 N"
+      ],
+      "ritaglio": "img0_ritagli/img0_03_riquadro.png"
+    },
+    {
+      "id": "img0_12_riga06",
+      "tipo": "riga",
+      "affidabilita": "media",
+      "motivi": [
+        "lettura_riparata"
+      ],
+      "letto": [
+        "11:09.50 - 10.40 AULA B115"
+      ],
+      "ritaglio": "img0_ritagli/img0_12_riga06.png"
+    },
+    {
+      "id": "img0_15_riga09",
+      "tipo": "riga",
+      "affidabilita": "media",
+      "motivi": [
+        "classe_fuori_elenco"
+      ],
+      "letto": [
+        "3 C/T : 11.45 - 13.25 AULA B207"
+      ],
+      "ritaglio": "img0_ritagli/img0_15_riga09.png"
+    },
+    {
+      "id": "img0_16_riga10",
+      "tipo": "riga",
+      "affidabilita": "media",
+      "motivi": [
+        "classe_fuori_elenco"
+      ],
+      "letto": [
+        "3 J : 09.50 - 10.40 AULA B013"
+      ],
+      "ritaglio": "img0_ritagli/img0_16_riga10.png"
+    },
+    {
+      "id": "img0_21_riga15",
+      "tipo": "riga",
+      "affidabilita": "media",
+      "motivi": [
+        "lettura_riparata"
+      ],
+      "letto": [
+        "41:08.10-10.40 AULA D204"
+      ],
+      "ritaglio": "img0_ritagli/img0_21_riga15.png"
+    },
+    {
+      "id": "img0_23_riga17",
+      "tipo": "riga",
+      "affidabilita": "media",
+      "motivi": [
+        "aula_fuori_elenco"
+      ],
+      "letto": [
+        "4 MAT : 12.35 - 13.25 AULA B016"
+      ],
+      "ritaglio": "img0_ritagli/img0_23_riga17.png"
+    },
+    {
+      "id": "img0_24_riga18",
+      "tipo": "riga",
+      "affidabilita": "media",
+      "motivi": [
+        "classe_fuori_elenco"
+      ],
+      "letto": [
+        "5B:10.55-11.45 AULA B210"
+      ],
+      "ritaglio": "img0_ritagli/img0_24_riga18.png"
+    },
+    {
+      "id": "img0_25_riga19",
+      "tipo": "riga",
+      "affidabilita": "media",
+      "motivi": [
+        "classe_fuori_elenco"
+      ],
+      "letto": [
+        "5 G/N : 08.10 - 13.25 AULA A106"
+      ],
+      "ritaglio": "img0_ritagli/img0_25_riga19.png"
+    }
+  ],
+  "n_voci": 25,
+  "n_alta": 16,
+  "n_media": 9,
+  "n_bassa": 0,
+  "n_da_verificare": 9,
+  "stato": "da_verificare"
+}
