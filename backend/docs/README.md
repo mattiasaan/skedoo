@@ -15,6 +15,10 @@ app/
   schedules.py   orari (JSON o DB) + endpoint /schedules
   grades.py      GET /grades
   agenda.py      GET /agenda
+  didactics.py   GET /didattica
+  board.py       GET /bacheca
+  absences.py    GET /assenze
+  changes.py     GET /changes, /changes/entrate-uscite, /changes/cambi-aula
   db.py          tabelle SQLAlchemy (classes, lessons)
 scripts/import_schedules.py   importa i JSON nel database
 tests/                        python -m pytest -q tests
@@ -41,14 +45,21 @@ Gli orari si leggono da `data/`: `classi_index.json` (facoltativo) e `classi/<ID
 
 | Metodo | Path | Descrizione |
 |---|---|---|
-| POST | `/auth/login` | `{username, password}` → `{access_token, token_type, expires_in, utente:{id,nome,cognome}}` |
-| GET | `/auth/me` | `{id, nome, cognome}` |
+| POST | `/auth/login` | `{username, password}` → token e `utente` con dati personali e `scuola` (codice, nome, città, provincia) |
+| GET | `/auth/me` | profilo utente e scuola |
 | POST | `/auth/logout` | 204, chiude la sessione |
 | GET | `/schedules/classes` | `[{id, nome, docente_coordinatore, pomeriggio}]` |
 | GET | `/schedules/{classe}` | orario completo (id non sensibile a maiuscole: `1a` = `1A`) |
 | GET | `/schedules/{classe}/today` | lezioni di oggi (fuso Europe/Rome) |
 | GET | `/grades?anno=26&periodo=1` | voti per materia con medie |
 | GET | `/agenda?da=YYYY-MM-DD&a=YYYY-MM-DD` | eventi per giorno (default oggi…+13 giorni, max 366) |
+| GET | `/didattica` | materiali didattici organizzati per docente e cartella |
+| GET | `/bacheca` | circolari e comunicazioni, con allegati |
+| GET | `/bacheca/{codice}/{id}` | dettaglio di una comunicazione |
+| GET | `/assenze?da=YYYY-MM-DD&a=YYYY-MM-DD` | assenze, ritardi e uscite; senza date restituisce l'anno |
+| GET | `/changes?classe=1A` | tutte le modifiche della classe dal JSON della bacheca |
+| GET | `/changes/entrate-uscite?classe=1A` | entrate e uscite della classe |
+| GET | `/changes/cambi-aula?classe=1A` | cambi aula della classe |
 | GET | `/health` | `{"status":"ok"}`, pubblico |
 
 ### Risposte
