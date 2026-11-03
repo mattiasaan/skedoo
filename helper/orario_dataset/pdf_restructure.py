@@ -50,15 +50,15 @@ TIME_NORMALIZE = {
 }
 
 # Coppie consecutive valide per propagazione materie a 2 ore.
-# Non si propaga oltre il break pranzo (13:25 -> 14:30).
+# Non si propaga oltre il break pranzo (12:35 -> 14:30).
 CONSECUTIVE_PAIRS = {
     ("08:10", "09:00"), ("09:00", "09:50"), ("09:50", "10:40"),
-    ("10:40", "11:45"), ("11:45", "12:35"), ("12:35", "13:25"),
+    ("10:40", "11:45"), ("11:45", "12:35"),
     ("14:30", "15:20"), ("15:20", "16:10"), ("16:10", "17:10"),
 }
 
-# Slot che nel PDF reale non vengono mai usati: non propagare mai verso di essi.
-NEVER_USED_SLOTS = {"17:10"}
+# Slot che nel PDF reale non vengono mai usati.
+NEVER_USED_SLOTS = {"13:25", "17:10"}
 
 DAYS_ORDERED = [
     ("lunedi",    "lunedì"),
@@ -148,6 +148,17 @@ def has_uppercase_surname(words):
                 and not w.startswith('(') and not re.match(r'^[A-Z]\d', w):
             return True
     return False
+
+def find_footer_top(words):
+    rows = defaultdict(list)
+    for word in words:
+        rows[round(word['top'], 1)].append(word)
+
+    for row_words in rows.values():
+        texts = [word['text'].upper() for word in row_words]
+        if 'VIGORE' in texts and any(re.fullmatch(r'\d{4}', text) for text in texts):
+            return min(word['top'] for word in row_words)
+    return None
 
 def parse_cell(entries):
     if not entries:
@@ -277,14 +288,16 @@ def extract_page(page):
 
     # Assegna parole alle celle
     first_slot_y = slot_bounds[0][1]
+    footer_top = find_footer_top(words)
     cell_dict = defaultdict(list)
     for w in words:
         wx, wy, wt = w['x0'], w['top'], w['text']
-        if wy < first_slot_y or wt in TIME_MARKERS or wt in SKIP_WORDS or wt.startswith('©'):
+        if wy < first_slot_y or (footer_top is not None and wy >= footer_top) \
+                or wt in TIME_MARKERS or wt in SKIP_WORDS or wt.startswith('©'):
             continue
         day_name = next((d for d, cx0, cx1 in col_bounds if cx0 <= wx < cx1), None)
         slot_label = next((l for l, sy, ey in slot_bounds if sy <= wy < ey), None)
-        if day_name and slot_label:
+        if day_name and slot_label and slot_label not in NEVER_USED_SLOTS:
             cell_dict[(day_name, slot_label)].append((wy, wx, wt))
 
     # Costruisce schedule
@@ -326,7 +339,8 @@ def extract_page(page):
     for day in DAY_LABELS:
         result["orario"][day] = {}
         for slot_label, _, _ in slot_bounds:
-            if slot_label in AFTERNOON_SLOTS and not has_afternoon:
+            if slot_label in NEVER_USED_SLOTS \
+                    or (slot_label in AFTERNOON_SLOTS and not has_afternoon):
                 continue
             result["orario"][day][slot_label] = schedule[day].get(slot_label)
     return result
@@ -406,6 +420,8 @@ def build_class_object(raw):
             continue
         slots_clean = {}
         for raw_time, norm_time in TIME_NORMALIZE.items():
+            if norm_time in NEVER_USED_SLOTS:
+                continue
             ora = normalize_ora(raw_day.get(raw_time))
             if ora:
                 slots_clean[norm_time] = ora

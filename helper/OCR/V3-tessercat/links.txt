@@ -1,0 +1,8 @@
+https://github.com/UB-Mannheim/tesseract/wiki
+
+
+python test-tesseract.py
+
+python orario_scolastico_ocr.py .\test_images
+
+python orario_scolastico_ocr.py .\test_images --debug

@@ -1,0 +1,205 @@
+{
+  "_source": "img-new.png",
+  "giorno": "LUNEDÌ",
+  "data": "26 OTTOBRE",
+  "data_numero": 26,
+  "mese": "OTTOBRE",
+  "entrate": [
+    {
+      "unit_id": "img-new_02_riquadro",
+      "ora": "09:00",
+      "classi": [
+        "5L"
+      ],
+      "note": "* ALDROVANDI posticipa a 1° a 3° (B115)",
+      "verifica": "da_verificare",
+      "marcatori": {
+        "5L": "*"
+      }
+    },
+    {
+      "unit_id": "img-new_04_riquadro",
+      "ora": "15:20",
+      "classi": [
+        "1B",
+        "1F",
+        "5L"
+      ],
+      "note": "",
+      "verifica": "da_verificare"
+    }
+  ],
+  "uscite": [
+    {
+      "unit_id": "img-new_03_riquadro",
+      "ora": "12:35",
+      "classi": [
+        "5L"
+      ],
+      "note": "* BARTOLI anticipa a 6° a 4° (B112)",
+      "verifica": "da_verificare",
+      "marcatori": {
+        "5L": "*"
+      }
+    },
+    {
+      "unit_id": "img-new_05_riquadro",
+      "ora": "15:20",
+      "classi": [
+        "2C"
+      ],
+      "note": "",
+      "verifica": "da_verificare"
+    },
+    {
+      "unit_id": "img-new_06_riquadro",
+      "ora": "16:10",
+      "classi": [
+        "4E",
+        "5F"
+      ],
+      "note": "",
+      "verifica": "da_verificare"
+    }
+  ],
+  "senza_lezioni_pomeridiane": [],
+  "cambi_aula": [
+    {
+      "unit_id": "img-new_08_riga01",
+      "classe": "1OD",
+      "orario": "10:55 - 11:45",
+      "aula": "AULA B115",
+      "verifica": "da_verificare"
+    },
+    {
+      "unit_id": "img-new_09_riga02",
+      "classe": "4C/T",
+      "orario": "11:45 - 13:25",
+      "aula": "AULA B110",
+      "verifica": "da_verificare"
+    },
+    {
+      "unit_id": "img-new_10_riga03",
+      "classe": "5L",
+      "orario": "10:55 - 11:45",
+      "aula": "AULA B112",
+      "verifica": "ok"
+    }
+  ],
+  "note": [],
+  "avvisi": [
+    "img-new_10_riga03: accettato_ollama_senza_consenso_ocr_discordanti (accettato: tutti i motori concordano)"
+  ],
+  "controllo": [
+    {
+      "id": "img-new_02_riquadro",
+      "tipo": "entra",
+      "stato": "dissenso",
+      "motivi": [
+        "dissenso:rapidocr='entra 09:00: 5L | ALDROVANDI posticipa a 1 30 (B115)'"
+      ],
+      "ritaglio": "output\\img-new_ritagli\\img-new_02_riquadro.png",
+      "letture": {
+        "ollama:qwen3-vl:8b-instruct@3x": "entra 09:00: 5L* | * ALDROVANDI posticipa a 1° a 3° (B115)",
+        "rapidocr": "entra 09:00: 5L | ALDROVANDI posticipa a 1 30 (B115)",
+        "tesseract": "entra 09:00: 5L* | * ALDROVANDI posticipa a 1° a 3° (B115)"
+      },
+      "voti": 2
+    },
+    {
+      "id": "img-new_03_riquadro",
+      "tipo": "esce",
+      "stato": "dissenso",
+      "motivi": [
+        "dissenso:rapidocr='esce 12:35: 5L | BARTOLI anticipa a 60 a 40 (B112)'"
+      ],
+      "ritaglio": "output\\img-new_ritagli\\img-new_03_riquadro.png",
+      "letture": {
+        "ollama:qwen3-vl:8b-instruct@3x": "esce 12:35: 5L* | * BARTOLI anticipa a 6° a 4° (B112)",
+        "rapidocr": "esce 12:35: 5L | BARTOLI anticipa a 60 a 40 (B112)",
+        "tesseract": "esce 12:35: 5L* | * BARTOLI anticipa a 6° a 4° (B112)"
+      },
+      "voti": 2
+    },
+    {
+      "id": "img-new_04_riquadro",
+      "tipo": "entra",
+      "stato": "dissenso",
+      "motivi": [
+        "dissenso:rapidocr='entra 15:20: 1B + 1F5L'"
+      ],
+      "ritaglio": "output\\img-new_ritagli\\img-new_04_riquadro.png",
+      "letture": {
+        "ollama:qwen3-vl:8b-instruct@3x": "entra 15:20: 1B + 1F + 5L",
+        "rapidocr": "entra 15:20: 1B + 1F5L",
+        "tesseract": "entra 15:20: 1B + 1F + 5L"
+      },
+      "voti": 2
+    },
+    {
+      "id": "img-new_05_riquadro",
+      "tipo": "esce",
+      "stato": "dissenso",
+      "motivi": [
+        "dissenso:rapidocr='ESCE 15.20'"
+      ],
+      "ritaglio": "output\\img-new_ritagli\\img-new_05_riquadro.png",
+      "letture": {
+        "ollama:qwen3-vl:8b-instruct@3x": "esce 15:20: 2C",
+        "rapidocr": "ESCE 15.20",
+        "tesseract": "esce 15:20: 2C"
+      },
+      "voti": 2
+    },
+    {
+      "id": "img-new_06_riquadro",
+      "tipo": "esce",
+      "stato": "dissenso",
+      "motivi": [
+        "dissenso:rapidocr='ESCE 16.10 / 4E +5F'"
+      ],
+      "ritaglio": "output\\img-new_ritagli\\img-new_06_riquadro.png",
+      "letture": {
+        "ollama:qwen3-vl:8b-instruct@3x": "esce 16:10: 4E + 5F",
+        "rapidocr": "ESCE 16.10 / 4E +5F",
+        "tesseract": "esce 16:10: 4E + 5F"
+      },
+      "voti": 2
+    },
+    {
+      "id": "img-new_08_riga01",
+      "tipo": "riga",
+      "stato": "dissenso",
+      "motivi": [
+        "dissenso:rapidocr='? : None - None  None'"
+      ],
+      "ritaglio": "output\\img-new_ritagli\\img-new_08_riga01.png",
+      "letture": {
+        "ollama:qwen3-vl:8b-instruct@3x": "1OD : 10:55 - 11:45  AULA B115",
+        "rapidocr": "I1 OD: 10.55 H11.45 AULA B115  [non interpretabile]",
+        "tesseract": "1OD : 10:55 - 11:45  AULA B115"
+      },
+      "voti": 2
+    },
+    {
+      "id": "img-new_09_riga02",
+      "tipo": "riga",
+      "stato": "revisione",
+      "motivi": [
+        "avviso_richiede_accordo_totale:aula_fuori_elenco"
+      ],
+      "ritaglio": "output\\img-new_ritagli\\img-new_09_riga02.png",
+      "letture": {
+        "ollama:qwen3-vl:8b-instruct@3x": "4C/T : 11:45 - 13:25  AULA B110",
+        "rapidocr": "4C/T : 11:45 - 13:25  AULA B110",
+        "tesseract": "4CIT : 11:45 - 13:25  AULA B110"
+      },
+      "voti": 2
+    }
+  ],
+  "titolo_unit_id": "img-new_01_titolo",
+  "titolo_verifica": "ok",
+  "n_da_verificare": 7,
+  "n_dissensi": 6,
+  "stato": "da_verificare"
+}

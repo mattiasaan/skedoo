@@ -1,0 +1,73 @@
+{
+  "giorno": "VENERDÌ",
+  "numero": 5,
+  "mese": "GIUGNO",
+  "entrate": [
+    {
+      "ora": "09:00",
+      "classi": [
+        "2I"
+      ]
+    }
+  ],
+  "uscite": [],
+  "senza_lezioni_pomeridiane": [],
+  "cambi_aula": [
+    {
+      "classe": "1OD",
+      "orario": "09:50 - 10:40",
+      "aula": "AULA B113"
+    },
+    {
+      "classe": "1P",
+      "orario": "09:50 - 10:40",
+      "aula": "AULA B205"
+    },
+    {
+      "classe": "2E",
+      "orario": "10:55 - 12:35",
+      "aula": "TALVERA"
+    },
+    {
+      "classe": "3P",
+      "orario": "08:10 - 09:00",
+      "aula": "AULA D204"
+    },
+    {
+      "classe": "4H",
+      "orario": "09:50 - 11:45",
+      "aula": "AULA D009"
+    },
+    {
+      "classe": "4L",
+      "orario": "08:10 - 09:50",
+      "aula": "AULA A110"
+    },
+    {
+      "classe": "5A",
+      "orario": "10:55 - 11:45",
+      "aula": "AULA B119"
+    },
+    {
+      "classe": "5C",
+      "orario": "09:50 - 10:40",
+      "aula": "AULA B301"
+    },
+    {
+      "classe": "5G",
+      "orario": "08:10 - 09:50",
+      "aula": "AULA D206"
+    },
+    {
+      "classe": "5K",
+      "orario": "08:10 - 09:50",
+      "aula": "AULA UDIENZE"
+    },
+    {
+      "classe": "5L",
+      "orario": "09:50 - 11:45",
+      "aula": "TALVERA"
+    }
+  ],
+  "n_note": 1
+}
