@@ -6,7 +6,7 @@ API FastAPI per la PWA: orari delle classi, voti e agenda da ClasseViva. Tutto r
 
 ```
 app/
-  main.py        app FastAPI, middleware (limite IP, dimensione body, header di sicurezza), CORS, router
+  main.py        app FastAPI, lifespan, middleware (limite IP, body, header), CORS, router
   config.py      tutte le impostazioni (da .env) e i controlli per la produzione
   security.py    JWT, rate limiter, dipendenza `current_session` usata da ogni endpoint protetto
   classeviva.py  sessioni ClasseViva (login, cache, ri-login) e traduzione degli errori
@@ -15,16 +15,23 @@ app/
   schedules.py   orari (JSON o DB) + endpoint /schedules
   grades.py      GET /grades
   agenda.py      GET /agenda
+  didactics.py   GET /didattica
+  board.py       GET /bacheca
+  absences.py    GET /assenze
+  changes.py     GET /changes, /changes/entrate-uscite, /changes/cambi-aula
   db.py          tabelle SQLAlchemy (classes, lessons)
-scripts/import_schedules.py   importa i JSON nel database
-tests/                        python -m pytest -q tests
-docs/db-schema.md             schema e relazioni
+scripts/import_schedules.py             importa i JSON nel database
+scripts/bacheca_fetch/fetch_bacheca.py  recupera e filtra la bacheca ClasseViva
+scripts/bacheca_fetch/run_periodic.py   esegue il fetch della bacheca a intervalli regolari
+tests/                                  python -m pytest -q tests
+docs/db-schema.md                       schema e relazioni
+README-TECHNICAL.md                     documentazione tecnica estesa
 ```
 
 ## Avvio
 
 ```bash
-pip install -r requirements.txt            # Classeviva.py 1.3: pip install /percorso/Classeviva.py
+pip install -r requirements.txt
 cp .env.example .env
 uvicorn app.main:app --reload              # Swagger su /docs (solo in sviluppo)
 ```
@@ -41,14 +48,21 @@ Gli orari si leggono da `data/`: `classi_index.json` (facoltativo) e `classi/<ID
 
 | Metodo | Path | Descrizione |
 |---|---|---|
-| POST | `/auth/login` | `{username, password}` → `{access_token, token_type, expires_in, utente:{id,nome,cognome}}` |
-| GET | `/auth/me` | `{id, nome, cognome}` |
+| POST | `/auth/login` | `{username, password}` → token e `utente` con dati personali e `scuola` (codice, nome, città, provincia) |
+| GET | `/auth/me` | profilo utente e scuola |
 | POST | `/auth/logout` | 204, chiude la sessione |
 | GET | `/schedules/classes` | `[{id, nome, docente_coordinatore, pomeriggio}]` |
 | GET | `/schedules/{classe}` | orario completo (id non sensibile a maiuscole: `1a` = `1A`) |
 | GET | `/schedules/{classe}/today` | lezioni di oggi (fuso Europe/Rome) |
 | GET | `/grades?anno=26&periodo=1` | voti per materia con medie |
 | GET | `/agenda?da=YYYY-MM-DD&a=YYYY-MM-DD` | eventi per giorno (default oggi…+13 giorni, max 366) |
+| GET | `/didattica` | materiali didattici organizzati per docente e cartella |
+| GET | `/bacheca` | circolari e comunicazioni, con allegati |
+| GET | `/bacheca/{codice}/{id}` | dettaglio di una comunicazione |
+| GET | `/assenze?da=YYYY-MM-DD&a=YYYY-MM-DD` | assenze, ritardi e uscite; senza date restituisce l'anno |
+| GET | `/changes?classe=1A` | tutte le modifiche della classe dal JSON della bacheca |
+| GET | `/changes/entrate-uscite?classe=1A` | entrate e uscite della classe |
+| GET | `/changes/cambi-aula?classe=1A` | cambi aula della classe |
 | GET | `/health` | `{"status":"ok"}`, pubblico |
 
 ### Risposte
@@ -87,7 +101,8 @@ Formato `{"code": "...", "message": "..."}` (le validazioni di FastAPI restano i
 | 422 | `invalid_range`, `range_too_large`, `invalid_parameter`, `date_out_of_range` | parametri agenda |
 | 429 | `rate_limited`, `too_many_attempts` | troppe richieste (header `Retry-After`) |
 | 502 | `classeviva_error` | ClasseViva non risponde |
-| 503 | `database_unavailable` | DB non raggiungibile |
+| 500 | `internal_error` | errore inatteso, dettagli solo nei log |
+| 503 | `database_unavailable`, `changes_unavailable` | DB o dati locali non disponibili |
 
 ## Sicurezza
 
@@ -97,6 +112,7 @@ Formato `{"code": "...", "message": "..."}` (le validazioni di FastAPI restano i
 - `ENVIRONMENT=production` rifiuta di partire senza `JWT_SECRET` (≥32 caratteri), `SCHEDULE_SOURCE=db` + `DATABASE_URL`, `CORS_ORIGINS` e `ALLOWED_HOSTS` espliciti.
 - Dietro a un reverse proxy imposta `TRUST_PROXY_HEADERS=true`, altrimenti il rate limit per IP vede solo l'IP del proxy.
 - Il file `.env` non va mai committato.
+- `.env.example` contiene solo nomi e valori di esempio, mai credenziali reali.
 
 ## Database degli orari
 
@@ -118,6 +134,26 @@ pip install -r requirements-dev.txt
 python -m pytest -q tests
 TEST_DATABASE_URL=postgresql://… python -m pytest -q tests/test_db.py   # su PostgreSQL vero (database vuoto di prova)
 ```
+
+### Aggiornamento periodico della bacheca
+
+Il runner usa `CLASSVIVA_USERNAME` e `CLASSVIVA_PASSWORD` da `.env` o
+dall'ambiente del processo. Esegue subito un fetch e poi ogni 15 minuti:
+
+```bash
+python -m scripts.bacheca_fetch.run_periodic
+```
+
+Variabili opzionali:
+
+- `BACHECA_FETCH_INTERVAL_SECONDS`: intervallo in secondi, maggiore di zero;
+- `BACHECA_FETCH_RUN_ON_START=false`: salta il fetch iniziale;
+- `CLASSVIVA_BOARD_OUTPUT`: JSON prodotto (default `data/bacheca_fetch/board_matches.json`);
+- `CLASSVIVA_BOARD_ATTACHMENTS`: directory degli allegati;
+- `BACHECA_FETCH_LOG_LEVEL`: livello di logging, default `INFO`.
+
+Gli errori di un ciclo vengono registrati e non interrompono i cicli successivi.
+Il file prodotto sarà l'input del successivo script OCR.
 
 
 python -m uvicorn app.main:app --reload --host 0.0.0.0

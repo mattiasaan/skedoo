@@ -8,6 +8,7 @@ from __future__ import annotations
 import argparse
 import asyncio
 import json
+import os
 import re
 import sys
 from collections.abc import Mapping, Sequence
@@ -176,11 +177,23 @@ def parse_args(
   return parser.parse_args(argv)
 
 
+def _environment() -> dict[str, str | None]:
+  """Unisce .env e ambiente reale; le variabili d'ambiente hanno precedenza."""
+  values = {key: value for key, value in dotenv_values(ENV_FILE).items()}
+  values.update({
+    key: os.environ[key] for key in (
+      "CLASSVIVA_USERNAME", "CLASSVIVA_PASSWORD", "CLASSVIVA_BOARD_PATTERN",
+      "CLASSVIVA_BOARD_OUTPUT", "CLASSVIVA_BOARD_ATTACHMENTS",
+    ) if key in os.environ
+  })
+  return values
+
+
 async def main(argv: Sequence[str] | None = None) -> int:
-  if not ENV_FILE.is_file():
+  env = _environment()
+  if not ENV_FILE.is_file() and not (env.get("CLASSVIVA_USERNAME") and env.get("CLASSVIVA_PASSWORD")):
     print(f"File .env non trovato: {ENV_FILE}", file=sys.stderr)
     return 2
-  env = dotenv_values(ENV_FILE)
   args = parse_args(argv, env)
   username = env.get("CLASSVIVA_USERNAME")
   password = env.get("CLASSVIVA_PASSWORD")

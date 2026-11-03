@@ -41,6 +41,7 @@ class CvSession:
     self.last_used = time.monotonic()
     self._lock = threading.Lock()
     self._cache: dict[tuple, tuple[float, object]] = {}
+    self._school: dict | None = None
 
   def _run(self, method: str, args: tuple):
     with self._lock:  # la sessione requests non è fatta per l'uso concorrente
@@ -69,12 +70,38 @@ class CvSession:
   @property
   def profile(self) -> dict:
     d = getattr(self.utente, "_dati", None) or {}
-    return {"id": self.username, "nome": d.get("firstName", ""), "cognome": d.get("lastName", "")}
+    return {
+      "id": self.username,
+      "nome": d.get("firstName", ""),
+      "cognome": d.get("lastName", ""),
+      "scuola": self._school,
+    }
+
+  async def load_school(self) -> None:
+    """Carica la scuola dalla carta ClasseViva, senza inserirla nel JWT."""
+    if self._school is not None or not hasattr(self.utente, "carta"):
+      return
+    try:
+      raw = await self.call("carta")
+    except (AppError, eccezioni.ErroreHTTP, eccezioni.SenzaDati) as exc:
+      log.warning("Scuola ClasseViva non disponibile: %s", exc.__class__.__name__)
+      return
+    card = raw.get("card", raw) if isinstance(raw, dict) else {}
+    if not isinstance(card, dict):
+      return
+    self._school = {
+      "codice": card.get("schCode") or card.get("miurSchoolCode"),
+      "nome": card.get("schName"),
+      "dedica": card.get("schDedication"),
+      "citta": card.get("schCity"),
+      "provincia": card.get("schProv"),
+    }
 
 
 class SessionStore:
   def __init__(self):
     self._sessions: dict[str, CvSession] = {}
+    self._lock = threading.Lock()
 
   async def login(self, username: str, password: str) -> CvSession:
     utente = Utente(username, password)
@@ -84,19 +111,26 @@ class SessionStore:
       raise translate(e) from e
     # elimina le sessioni inattive da più della durata del token
     limit = get_settings().jwt_ttl_hours * 3600
-    self._sessions = {k: s for k, s in self._sessions.items() if time.monotonic() - s.last_used < limit}
+    now = time.monotonic()
     session = CvSession(username, utente)
-    self._sessions[session.sid] = session
+    await session.load_school()
+    with self._lock:
+      self._sessions = {
+        k: s for k, s in self._sessions.items() if now - s.last_used < limit
+      }
+      self._sessions[session.sid] = session
     return session
 
   def get(self, sid: str, username: str) -> CvSession:
-    s = self._sessions.get(sid)
+    with self._lock:
+      s = self._sessions.get(sid)
     if s is None or s.username != username:
       raise AppError(401, "session_expired", "Sessione scaduta, effettua di nuovo il login")
     return s
 
   def logout(self, sid: str) -> None:
-    self._sessions.pop(sid, None)
+    with self._lock:
+      self._sessions.pop(sid, None)
 
 
 store = SessionStore()

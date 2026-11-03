@@ -41,6 +41,8 @@ def build_agenda(raw: list[dict]) -> AgendaOut:
   by_day: dict[str, list[EventOut]] = defaultdict(list)
   for r in raw:
     begin, end = r.get("evtDatetimeBegin") or "", r.get("evtDatetimeEnd") or ""
+    if len(begin) < 10 or not begin[:10].strip():
+      continue
     full_day = bool(r.get("isFullDay"))
     # "2026-10-06T10:30:00+02:00": data e ora così come le scrive la scuola
     by_day[begin[:10]].append(EventOut(

@@ -323,7 +323,6 @@ info.md
 
 *.generated.*
 
-.env.example
 .env
 *.env
 enviorment.md
@@ -340,3 +339,5 @@ orario_classi.json
 /helper/OCR/V4-AI/output
 /helper/OCR/V4-AI/tests
 /helper/OCR/V4-AI/collaudo
+
+/backend/docs/frontend-style
