@@ -8,7 +8,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from fastapi import APIRouter, Depends, Path as PathParam
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
@@ -33,7 +33,7 @@ class LessonOut(BaseModel):
   fine: str  # "09:00"
   materia: str
   materia_completa: str | None = None
-  docenti: list[str] = []
+  docenti: list[str] = Field(default_factory=list)
   aula: str | None = None
 
 
