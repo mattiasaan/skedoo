@@ -335,3 +335,6 @@ orario_classi.json
 
 /helper/OCR/debug/*.png
 /helper/OCR/*.json
+
+
+/frontend/frontend-style

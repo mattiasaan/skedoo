@@ -733,3 +733,27 @@ a:focus-visible {
     padding-top: 24px;
   }
 }
+
+@media (min-width: 700px) {
+  .login-page {
+    width: min(100%, 700px);
+    justify-content: center;
+    padding: 56px 24px 28px;
+  }
+
+  .login-panel {
+    padding: 28px;
+  }
+
+  .login-footer {
+    padding-top: 48px;
+  }
+
+  .login-page--setup {
+    padding-top: 56px;
+  }
+
+  .setup-panel {
+    padding: 24px;
+  }
+}
