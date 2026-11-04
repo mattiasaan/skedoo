@@ -1,6 +1,6 @@
 export const lessons = [
 	{ time: '08:00', end: '09:30', subject: 'INGLESE', teacher: 'Prof. Smith', room: 'Aula 104', state: 'COMPLETATA', tone: 'complete' },
-	{ time: '09:30', end: '10:30', subject: 'FISICA', teacher: 'Prof. Rossi', room: 'Laboratorio 201', state: 'IN CORSO', tone: 'current' },
+	{ time: '09:30', end: '10:30', period: '3ª ORA', subject: 'FISICA', teacher: 'Prof. Rossi', room: 'Laboratorio 201', state: 'IN CORSO', tone: 'current' },
 	{ time: '11:45', end: '13:00', subject: 'STORIA DELL’ARTE', teacher: 'Prof. Conti', room: 'Aula 302', state: 'IN ARRIVO', tone: 'upcoming' },
 ]
 
