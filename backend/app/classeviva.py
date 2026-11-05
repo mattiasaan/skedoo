@@ -42,6 +42,7 @@ class CvSession:
     self._lock = threading.Lock()
     self._cache: dict[tuple, tuple[float, object]] = {}
     self._school: dict | None = None
+    self._card_profile: dict = {}
 
   def _run(self, method: str, args: tuple):
     with self._lock:  # la sessione requests non è fatta per l'uso concorrente
@@ -69,11 +70,13 @@ class CvSession:
 
   @property
   def profile(self) -> dict:
-    d = getattr(self.utente, "_dati", None) or {}
+    d = getattr(self.utente, "dati", None)
+    if not isinstance(d, dict):
+      d = getattr(self.utente, "_dati", None) or {}
     return {
       "id": self.username,
-      "nome": d.get("firstName", ""),
-      "cognome": d.get("lastName", ""),
+      "nome": d.get("firstName") or self._card_profile.get("firstName", ""),
+      "cognome": d.get("lastName") or self._card_profile.get("lastName", ""),
       "scuola": self._school,
     }
 
@@ -89,6 +92,10 @@ class CvSession:
     card = raw.get("card", raw) if isinstance(raw, dict) else {}
     if not isinstance(card, dict):
       return
+    self._card_profile = {
+      "firstName": card.get("firstName") or "",
+      "lastName": card.get("lastName") or "",
+    }
     self._school = {
       "codice": card.get("schCode") or card.get("miurSchoolCode"),
       "nome": card.get("schName"),
