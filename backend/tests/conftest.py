@@ -46,11 +46,20 @@ class FakeUtente:
 
   def __init__(self, id_, password):
     self.id, self.password, self.inizio, self._dati = id_, password, None, {}
+    self._profile = {}
 
   async def accedi(self):
     if self.password != "good":
       raise eccezioni.PasswordNonValida("no")
-    self._dati = {"firstName": "Mario", "lastName": "Rossi"}
+    self._dati = {"ident": self.id, "release": "internal"}
+    self._profile = {"ident": self.id, "firstName": "Mario", "lastName": "Rossi"}
+
+  @property
+  def dati(self):
+    return {
+      key: value for key, value in self._profile.items()
+      if key in {"ident", "firstName", "lastName"}
+    }
 
   async def voti(self, anno):
     FakeUtente.calls.append(("voti", anno))

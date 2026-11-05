@@ -1,8 +1,10 @@
 """Gli endpoint: login, orari, voti, agenda."""
 import json
+import asyncio
 from datetime import date
 
 from app.classeviva import store
+from app.classeviva import CvSession
 from app.schedules import load_json
 from conftest import FakeUtente, login
 
@@ -16,6 +18,20 @@ def test_login_and_me(client):
   assert "good" not in body["access_token"]  # la password non è nel token
   me = client.get("/auth/me", headers={"Authorization": f"Bearer {body['access_token']}"})
   assert me.json()["cognome"] == "Rossi"
+
+
+def test_profile_uses_card_identity_when_login_data_is_empty():
+  class CardUtente:
+    dati = {}
+
+    async def carta(self):
+      return {"firstName": "MARIO", "lastName": "ROSSI", "schCode": "BZII0002"}
+
+  session = CvSession("S10854114S", CardUtente())
+  asyncio.run(session.load_school())
+
+  assert session.profile["nome"] == "MARIO"
+  assert session.profile["cognome"] == "ROSSI"
 
 
 def test_login_wrong_password(client):
