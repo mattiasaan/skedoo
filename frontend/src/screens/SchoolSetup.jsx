@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { classPicker } from './api/classPicker'
 import './Login.css'
 
 function Icon({ name, size = 20 }) {
@@ -52,17 +53,37 @@ function Icon({ name, size = 20 }) {
 }
 
 function SchoolSetup({ onEnter }) {
-	const [selectedClass, setSelectedClass] = useState('4a')
+	const [classes, setClasses] = useState([])
+	const [selectedClassId, setSelectedClassId] = useState('')
+	const [loading, setLoading] = useState(true)
+	const [error, setError] = useState(null)
 
-	const classes = [
-		{ id: '4a', name: '4ª Sezione A', details: 'Scienze Applicate • A.S. 2024/2025' },
-		{ id: '4b', name: '4ª Sezione B', details: 'Scienze Applicate • A.S. 2024/2025' },
-		{ id: '3a', name: '3ª Sezione A', details: 'Scienze Applicate • A.S. 2024/2025' },
-	]
-	const schoolClass = classes.find((option) => option.id === selectedClass)
+	useEffect(() => {
+		async function fetchClasses() {
+			try {
+				const data = await classPicker()
+				setClasses(data)
+				if (data.length > 0) {
+					setSelectedClassId(data[0].id)
+				}
+			} catch (err) {
+				setError(err.message)
+			} finally {
+				setLoading(false)
+			}
+		}
+
+		fetchClasses()
+	}, [])
+
+	const schoolClass = classes.find((option) => option.id === selectedClassId) || {
+		nome: loading ? 'Caricamento classi...' : 'Nessuna classe disponibile',
+		docente_coordinatore: ''
+	}
 
 	function handleSubmit(event) {
 		event.preventDefault()
+		localStorage.setItem('selectedClassId', selectedClassId)
 		onEnter()
 	}
 

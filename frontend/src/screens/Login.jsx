@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { login } from './api/login'
 import './Login.css'
 
 function Icon({ name, size = 20 }) {
@@ -84,14 +85,47 @@ function Icon({ name, size = 20 }) {
 	)
 }
 
-function Login({ onEnter }) {
+function Login({ onLoginSuccess }) {
+	const [username, setUsername] = useState('')
+	const [password, setPassword] = useState('')
 	const [showPassword, setShowPassword] = useState(false)
+	const [loading, setLoading] = useState(false)
+	const [error, setError] = useState(null)
 	const [notice, setNotice] = useState('')
 
-	function handleSubmit(event) {
+	async function handleSubmit(event) {
 		event.preventDefault()
+		setLoading(true)
+		setError(null)
 		setNotice('')
-		onEnter()
+
+		try {
+			// Riceve il body con access_token e utente
+			const data = await login(username, password)
+
+			// 1. Salva il token d'accesso per le richieste future
+			if (data.access_token) {
+				localStorage.setItem('token', data.access_token)
+			}
+
+			// 2. (Facoltativo ma utile) Salva anche i dati dell'utente o della scuola
+			if (data.utente) {
+				localStorage.setItem('utente', JSON.stringify(data.utente))
+			}
+
+			const scuola = data.utente?.scuola
+			const isGalileiBolzano = 
+		    	scuola?.dedica === '"G. GALILEI"' &&
+				scuola?.citta.toUpperCase() === 'BOLZANO' 
+
+			if (onLoginSuccess) {
+				onLoginSuccess(isGalileiBolzano)
+			}
+		} catch (e) {
+			setError(e.message)
+		} finally {
+			setLoading(false)
+		}
 	}
 
 	return (
@@ -128,6 +162,8 @@ function Login({ onEnter }) {
 								name="username"
 								placeholder="es. S1234567X o mario.rossi@studenti"
 								required
+								value={username}
+								onChange={(e) => setUsername(e.target.value)}
 							/>
 						</div>
 
@@ -150,6 +186,8 @@ function Login({ onEnter }) {
 								placeholder="Inserisci la password"
 								required
 								type={showPassword ? 'text' : 'password'}
+								value={password}
+								onChange={(e) => setPassword(e.target.value)}
 							/>
 							<button
 								aria-label={showPassword ? 'Nascondi password' : 'Mostra password'}
@@ -165,9 +203,10 @@ function Login({ onEnter }) {
 					</div>
 
 					{notice && <p className="form-notice" role="status">{notice}</p>}
+					{error && <p className="form-notice" role="alert" style={{ color: '#e53935' }}>{error}</p>}
 
-					<button className="submit-button" type="submit">
-						<span>Accedi con ClasseViva</span>
+					<button className="submit-button" type="submit" disabled={loading || !username || !password}>
+						<span>{loading ? 'Accesso in corso...' : 'Accedi con ClasseViva'}</span>
 						<Icon name="arrow" size={22} />
 					</button>
 				</form>
