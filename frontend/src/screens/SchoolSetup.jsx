@@ -55,6 +55,7 @@ function Icon({ name, size = 20 }) {
 function SchoolSetup({ onEnter }) {
 	const [classes, setClasses] = useState([])
 	const [selectedClassId, setSelectedClassId] = useState('')
+	const [isOpen, setIsOpen] = useState(false)
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState(null)
 
@@ -100,33 +101,89 @@ function SchoolSetup({ onEnter }) {
 
 				<form className="login-panel setup-panel" onSubmit={handleSubmit}>
 					<div className="setup-panel-heading">
-						<h2>Seleziona la tua Scuola</h2>
+						<h2>Seleziona la tua Classe</h2>
 					</div>
 
-					<div className="setup-fields">
-						<div className="choice-control choice-control--single">
+					{error && <p style={{ color: '#ff6b6b', fontSize: '14px', marginBottom: '10px' }}>{error}</p>}
+
+					<div className="setup-fields" style={{ position: 'relative' }}>
+						<div 
+							className="choice-control choice-control--single" 
+							onClick={() => !loading && classes.length > 0 && setIsOpen(!isOpen)}
+							style={{ cursor: 'pointer' }}
+						>
 							<Icon name="school" />
 							<span className="choice-copy">
-								<strong>{schoolClass.name}</strong>
-								<small>{schoolClass.details}</small>
+								<strong>{schoolClass.nome}</strong>
+								<small>{schoolClass.docente_coordinatore ? `Coordinatore: ${schoolClass.docente_coordinatore}` : 'Seleziona una sezione'}</small>
 							</span>
 							<Icon name="chevronDown" size={17} />
-							<select
-								aria-label="Seleziona scuola e sezione"
-								id="school-class"
-								value={selectedClass}
-								onChange={(event) => setSelectedClass(event.target.value)}
-							>
-								{classes.map((option) => (
-									<option key={option.id} value={option.id}>
-										{option.name}
-									</option>
-								))}
-							</select>
 						</div>
+
+						{/* Menu a tendina personalizzato con colori in palette */}
+						{isOpen && (
+							<ul style={{
+								position: 'absolute',
+								top: '100%',
+								left: 0,
+								right: 0,
+								marginTop: '8px',
+								background: 'rgba(13, 22, 23, 0.95)',
+								backdropFilter: 'blur(10px)',
+								border: '1px solid rgba(26, 43, 44, 0.8)',
+								borderRadius: '12px',
+								listStyle: 'none',
+								padding: '6px',
+								zIndex: 1000,
+								maxHeight: '220px',
+								overflowY: 'auto',
+								boxShadow: '0 12px 32px rgba(0, 0, 0, 0.6)'
+							}}>
+								{classes.map((option) => {
+									const isSelected = option.id === selectedClassId;
+									return (
+										<li
+											key={option.id}
+											onClick={() => {
+												setSelectedClassId(option.id)
+												setIsOpen(false)
+											}}
+											style={{
+												padding: '10px 14px',
+												borderRadius: '8px',
+												cursor: 'pointer',
+												color: '#ffffff',
+												background: isSelected ? 'rgba(16, 185, 129, 0.15)' : 'transparent',
+												border: isSelected ? '1px solid rgba(16, 185, 129, 0.4)' : '1px solid transparent',
+												display: 'flex',
+												flexDirection: 'column',
+												gap: '3px',
+												marginBottom: '4px',
+												transition: 'all 0.2s ease'
+											}}
+											onMouseEnter={(e) => {
+												if (!isSelected) e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)'
+											}}
+											onMouseLeave={(e) => {
+												if (!isSelected) e.currentTarget.style.background = 'transparent'
+											}}
+										>
+											<strong style={{ fontSize: '14px', color: isSelected ? '#10b981' : '#ffffff' }}>
+												{option.nome}
+											</strong>
+											{option.docente_coordinatore && (
+												<small style={{ color: '#94a3b8', fontSize: '12px' }}>
+													Coordinatore: {option.docente_coordinatore}
+												</small>
+											)}
+										</li>
+									);
+								})}
+							</ul>
+						)}
 					</div>
 
-					<button className="submit-button setup-submit" type="submit">
+					<button className="submit-button setup-submit" type="submit" disabled={loading || classes.length === 0}>
 						<Icon name="check" size={17} />
 						<span>Completa Configurazione ed Entra</span>
 					</button>

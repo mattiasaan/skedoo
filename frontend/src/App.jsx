@@ -7,8 +7,15 @@ function App() {
   const [showDashboard, setShowDashboard] = useState(false)
   const [showSchoolSetup, setShowSchoolSetup] = useState(false)
 
+  // Funzione universale per resettare tutto e tornare al Login
+  const handleLogout = () => {
+    setShowDashboard(false)
+    setShowSchoolSetup(false)
+  }
+
   if (showDashboard) {
-    return <Dashboard onLogout={() => setShowDashboard(false)} />
+    // Passiamo handleLogout anche alla Dashboard/DashboardShell se ha un tasto di logout interno
+    return <Dashboard onLogout={handleLogout} />
   }
 
   if (showSchoolSetup) {

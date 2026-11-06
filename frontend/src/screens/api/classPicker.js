@@ -1,5 +1,7 @@
 export async function classPicker() {
-    const response = await fetch("http://localhost:8000/schedule/classes", {
+    const token = localStorage.getItem("token");
+
+    const response = await fetch("http://localhost:8000/schedules/classes", {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
