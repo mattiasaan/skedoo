@@ -15,7 +15,17 @@ function App() {
     return <SchoolSetup onEnter={() => setShowDashboard(true)} />
   }
 
-  return <Login onEnter={() => setShowSchoolSetup(true)} />
+  return (
+    <Login
+      onLoginSuccess={(needsSetup) => {
+        if (needsSetup) {
+          setShowSchoolSetup(true)
+        } else {
+          setShowDashboard(true)
+        }
+      }}
+    />
+  )
 }
 
 export default App
