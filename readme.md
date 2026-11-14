@@ -43,9 +43,20 @@ Integrazione con:
 
 ## Frontend
 
-* **React**
-* **Responsive UI**
+* **React** + **Vite**
+* **Responsive UI** (telefono, tablet e desktop con sidebar)
 * **Push Notifications**
+
+Avvio in sviluppo (con il backend già attivo su `http://localhost:8000`):
+
+```bash
+cd frontend
+npm install
+npm run dev            # http://localhost:5173, le chiamate /api/* passano dal proxy di Vite
+npm run dev -- --host  # per provarlo dal telefono sulla stessa rete
+```
+
+In produzione impostare `VITE_API_URL` con l'indirizzo dell'API (vedi `frontend/.env.example`).
 
 # Sicurezza
 

@@ -1,108 +1,232 @@
-import { useState } from 'react'
-import { Icon } from './DashboardShared.jsx'
-import { logout } from './api/logout'
+import { useMemo, useState } from 'react'
+import { Icon } from '../components/Icon.jsx'
+import { ErrorMessage, LinkButton, SectionHeading, Skeleton, StateMessage } from '../components/ui.jsx'
+import { useApp } from '../lib/appContext.js'
+import { useAbsences, useDidactics } from '../lib/data.js'
+import { classLabel, dateKey, formatDateTime, initials, schoolDisplayName, schoolYear, teacherName, titleCase } from '../lib/format.js'
+import { readJson, writeJson } from '../lib/session.js'
+import { clearApiCache } from '../lib/useApi.js'
 
-const materials = [
-    { name: 'Dispensa_Meccanica_Quantisti...', teacher: 'Prof. Rossi', size: '2.4 MB', tone: 'green', type: 'Documento' },
-    { name: 'Schema_Illuminismo_Kant.pdf', teacher: 'Prof. Castelli', size: '1.1 MB', tone: 'blue', type: 'PDF' },
-    { name: 'Simulazione_Verifica_Matemati...', teacher: 'Prof.ssa Bianchi', size: '850 KB', tone: 'green', type: 'Documento' },
-]
+const MATERIAL_TYPES = {
+	file: { icon: 'file', tone: 'accent' },
+	link: { icon: 'link', tone: 'blue' },
+	text: { icon: 'clipboard', tone: 'amber' },
+}
 
-function Profile({ onLogout }) {
-    const [notificationsEnabled, setNotificationsEnabled] = useState(true)
-    const [showSyncNotice, setShowSyncNotice] = useState(false)
-    const [loading, setLoading] = useState(false)
+function ProfileCard() {
+	const { user, classId } = useApp()
+	const absences = useAbsences()
+	const pending = absences.data?.riepilogo?.da_giustificare ?? 0
+	const school = user?.scuola
+	const schoolLine = [
+		school ? `${schoolDisplayName(school)}${school.provincia ? ` (${school.provincia})` : ''}` : null,
+		classId ? classLabel(classId).replace(/ª /, 'ª Sezione ') : null,
+	].filter(Boolean).join(' • ')
 
-    async function handleLogout() {
-        try {
-            setLoading(true)
-            await logout() // Chiama l'endpoint di logout e pulisce il localStorage
-        } catch (e) {
-            console.error("Errore durante il logout dal server:", e.message)
-            // Fallback di sicurezza locale in caso di errore di rete
-            localStorage.removeItem("token")
-            localStorage.removeItem("utente")
-            localStorage.removeItem("selectedClassId")
-        } finally {
-            setLoading(false)
-            if (onLogout) {
-                onLogout() // Riporta l'utente alla schermata di Login tramite App.jsx
-            }
-        }
-    }
+	return (
+		<article className="card profile-card">
+			<div className="profile-card__avatar">
+				<span className="avatar avatar--large">{initials(user?.nome, user?.cognome)}</span>
+				<span className="profile-card__verified"><Icon name="check" size={13} strokeWidth={2.6} /></span>
+			</div>
+			<h1 id="profile-heading">{titleCase([user?.nome, user?.cognome].filter(Boolean).join(' ')) || 'Studente'}</h1>
+			{schoolLine && <p className="profile-card__school">{schoolLine}</p>}
+			<span className="profile-card__linked"><span className="live-dot" aria-hidden="true" />Account collegato a Spaggiari ClasseViva</span>
+			<div className="profile-card__meta">
+				<span>Cod. CV: <strong>{user?.id ?? '—'}</strong></span>
+				<i aria-hidden="true">•</i>
+				<span>A.S. {schoolYear()}</span>
+				<i aria-hidden="true">•</i>
+				{absences.data
+					? <span className={pending ? 'tone-text--amber' : 'tone-text--good'}><span className="status-dot" aria-hidden="true" />{pending ? `${pending} da giustificare` : 'Stato Regolare'}</span>
+					: <span>Stato in verifica</span>}
+			</div>
+		</article>
+	)
+}
 
-    return (
-        <section className="alternate-view profile-view" aria-labelledby="profile-heading">
-            <div className="date-heading"><p>IL TUO ACCOUNT</p><span>Informazioni personali e preferenze</span></div>
+function AttendanceSection() {
+	const absences = useAbsences()
+	const events = absences.data?.eventi ?? []
+	const summary = absences.data?.riepilogo
+	const byType = (type) => events.filter((event) => event.tipo === type)
+	const absent = byType('assenza')
+	const justified = absent.filter((event) => event.giustificata).length
+	const exitsPending = byType('uscita').filter((event) => !event.giustificata).length
+	const latePending = byType('ritardo').filter((event) => !event.giustificata).length
 
-            <article className="student-profile-card">
-                <div className="student-avatar-wrap">
-                    <div className="student-avatar">AM</div>
-                    <span className="avatar-check"><Icon name="check" size={12} /></span>
-                </div>
-                <h2 id="profile-heading">Alex Moretti</h2>
-                <p>Liceo Scientifico A. Righi (RM) · 4ª Sezione A</p>
-                <span className="account-connected"><i />Account collegato a Spaggiari ClasseViva</span>
-                <div className="student-meta"><span>Cod. CV: <strong>8849201</strong></span><i />A.S. 2024/2025<i /><span className="regular-status"><i />Stato Regolare</span></div>
-            </article>
+	return (
+		<section className="profile-section" aria-labelledby="attendance-heading">
+			<SectionHeading aside={<span className="badge badge--accent">Anno in corso</span>} icon="pulse" id="attendance-heading" title="Quadro Presenze & Assenze" />
+			{absences.loading && <Skeleton height={130} lines={1} />}
+			{absences.error && !absences.data && <ErrorMessage error={absences.error} onRetry={absences.reload} title="Presenze non disponibili" />}
+			{summary && (
+				<div className="attendance-grid">
+					<article className="attendance-card">
+						<div><span>Assenze</span><Icon name="calendar" size={16} /></div>
+						<p><strong>{summary.assenze}</strong> gg</p>
+						<small className={absent.length - justified ? 'attendance-card__tag attendance-card__tag--amber' : 'attendance-card__tag'}>
+							{justified} giustif. • {absent.length - justified} da giust.
+						</small>
+					</article>
+					<article className="attendance-card">
+						<div><span>Ritardi</span><Icon name="clock" size={16} /></div>
+						<p><strong>{summary.ritardi}</strong> {summary.ritardi === 1 ? 'volta' : 'volte'}</p>
+						<small className={latePending ? 'attendance-card__tag attendance-card__tag--amber' : 'attendance-card__tag'}>
+							{latePending ? `${latePending} da giustificare` : 'Entrate posticipate'}
+						</small>
+					</article>
+					<article className="attendance-card">
+						<div><span>Uscite</span><Icon name="logout" size={16} /></div>
+						<p><strong>{summary.uscite}</strong> {summary.uscite === 1 ? 'volta' : 'volte'}</p>
+						<small className={exitsPending ? 'attendance-card__tag attendance-card__tag--amber' : 'attendance-card__tag attendance-card__tag--blue'}>
+							{exitsPending ? `${exitsPending} da giustificare` : 'Uscite anticipate'}
+						</small>
+					</article>
+				</div>
+			)}
+		</section>
+	)
+}
 
-            <section className="profile-section" aria-labelledby="attendance-heading">
-                <div className="profile-section-heading">
-                    <h3 id="attendance-heading"><Icon name="clock" size={18} />Quadro Presenze &amp; Assenze</h3>
-                    <span className="profile-period">I quadrimestre</span>
-                </div>
-                <div className="attendance-grid">
-                    <article className="attendance-card"><div><span>Assenze</span><Icon name="calendar" size={15} /></div><p><strong>4</strong> gg</p><small>3 giustif. · 1 da giust.</small></article>
-                    <article className="attendance-card"><div><span>Ritardi</span><Icon name="clock" size={15} /></div><p><strong>2</strong> volte</p><small>Entrate posticipate</small></article>
-                    <article className="attendance-card"><div><span>Uscite</span><Icon name="logout" size={15} /></div><p><strong>1</strong> volta</p><small>Con firma genitore</small></article>
-                </div>
-            </section>
+function MaterialsSection() {
+	const didactics = useDidactics()
+	const [expanded, setExpanded] = useState(false)
+	const materials = useMemo(() => (didactics.data?.docenti ?? [])
+		.flatMap((teacher) => teacher.cartelle.flatMap((folder) => folder.materiali.map((material) => ({
+			...material,
+			teacher: teacher.nome,
+			folder: folder.nome,
+			key: `${teacher.id}-${folder.id}-${material.id}`,
+		}))))
+		.sort((a, b) => String(b.condiviso_il ?? '').localeCompare(String(a.condiviso_il ?? ''))), [didactics.data])
+	const visible = expanded ? materials : materials.slice(0, 3)
 
-            <section className="profile-section" aria-labelledby="materials-heading">
-                <div className="profile-section-heading">
-                    <h3 id="materials-heading"><Icon name="task" size={18} />Didattica &amp; Materiali Condivisi</h3>
-                    <span className="materials-total">Vedi tutti (12)</span>
-                </div>
-                <div className="material-list">
-                    {materials.map((material) => (
-                        <article className="material-card" key={material.name}>
-                            <span className={`material-file-icon material-file-icon--${material.tone}`}><Icon name="task" size={18} /></span>
-                            <div><strong>{material.name}</strong><span>{material.teacher} · {material.size}</span></div>
-                            <span aria-hidden="true" className="material-download" title={`${material.type} · download non disponibile in modalità demo`}><Icon name="download" size={17} /></span>
-                        </article>
-                    ))}
-                </div>
-            </section>
+	return (
+		<section className="profile-section" aria-labelledby="materials-heading">
+			<SectionHeading
+				aside={materials.length > 3 && (
+					<LinkButton onClick={() => setExpanded((value) => !value)}>
+						{expanded ? 'Mostra meno' : `Vedi tutti (${materials.length})`}
+					</LinkButton>
+				)}
+				icon="book"
+				id="materials-heading"
+				title="Didattica & Materiali Condivisi"
+			/>
+			{didactics.loading && <Skeleton height={68} lines={3} />}
+			{didactics.error && !didactics.data && <ErrorMessage error={didactics.error} onRetry={didactics.reload} title="Materiali non disponibili" />}
+			{didactics.data && (materials.length ? (
+				<ul className="material-list">
+					{visible.map((material) => {
+						const type = MATERIAL_TYPES[material.tipo] ?? MATERIAL_TYPES.file
+						return (
+							<li className="material-card" key={material.key}>
+								<span className={`icon-tile icon-tile--${type.tone}`}><Icon name={type.icon} size={18} /></span>
+								<span className="material-card__copy">
+									<strong title={material.nome}>{material.nome || 'Materiale senza titolo'}</strong>
+									<small>
+										{[material.teacher ? teacherName(material.teacher) : null, material.folder, material.condiviso_il ? formatDateTime(material.condiviso_il) : null]
+											.filter(Boolean).join(' • ')}
+									</small>
+								</span>
+							</li>
+						)
+					})}
+				</ul>
+			) : (
+				<StateMessage icon="book" text="I docenti non hanno ancora condiviso materiali." title="Nessun materiale" />
+			))}
+		</section>
+	)
+}
 
-            <section className="profile-section" aria-labelledby="preferences-heading">
-                <div className="profile-section-heading"><h3 id="preferences-heading"><Icon name="bell" size={18} />Impostazioni &amp; Notifiche</h3></div>
-                <div className="profile-settings">
-                    <label className="profile-setting">
-                        <Icon name="alert" size={18} />
-                        <span><strong>Avvisi Cambi Orario &amp; Supplenze</strong><small>Ricevi alert push istantanei quando varia la didattica</small></span>
-                        <input checked={notificationsEnabled} onChange={(event) => setNotificationsEnabled(event.target.checked)} type="checkbox" />
-                        <i className="profile-switch" aria-hidden="true"><span /></i>
-                    </label>
-                    <button className="profile-sync-row" onClick={() => setShowSyncNotice(true)} type="button">
-                        <span className="profile-sync-icon"><Icon name="trend" size={17} /></span>
-                        <span><strong>Sincronizza Dati ClasseViva Ora</strong><small>Ultimo sync: Oggi, alle 13:42</small></span>
-                        <Icon name="chevron" size={17} />
-                    </button>
-                    {showSyncNotice && <p className="profile-sync-notice" role="status">Sincronizzazione non disponibile: collega il registro per aggiornare i dati.</p>}
-                </div>
-            </section>
+function SettingsSection() {
+	const { isGalilei, classId, onChangeClass } = useApp()
+	const [alerts, setAlerts] = useState(() => readJson('pref-alerts', true))
+	const [lastSync, setLastSync] = useState(() => readJson('last-sync', null))
 
-            <button 
-                className="logout-button profile-logout" 
-                onClick={handleLogout} 
-                type="button"
-                disabled={loading}
-            >
-                <Icon name="logout" size={17} />
-                {loading ? 'Disconnessione in corso...' : 'Logout dal Profilo'}
-            </button>
-        </section>
-    )
+	function toggleAlerts(value) {
+		setAlerts(value)
+		writeJson('pref-alerts', value)
+	}
+
+	function syncNow() {
+		const date = new Date()
+		const now = `${dateKey(date)}T${date.toTimeString().slice(0, 5)}`
+		clearApiCache()
+		setLastSync(now)
+		writeJson('last-sync', now)
+	}
+
+	const syncLabel = lastSync ? `Ultimo sync: ${formatDateTime(lastSync)}` : 'Aggiorna voti, agenda, assenze e bacheca'
+
+	return (
+		<section className="profile-section" aria-labelledby="settings-heading">
+			<SectionHeading icon="gear" id="settings-heading" title="Impostazioni & Notifiche" />
+			<div className="settings-card">
+				<label className="settings-row">
+					<span className="settings-row__icon settings-row__icon--plain"><Icon name="swap" size={19} /></span>
+					<span className="settings-row__copy">
+						<strong>Avvisi Cambi Orario &amp; Supplenze</strong>
+						<small>Mostra il badge delle notifiche quando cambia l'orario o arriva una circolare</small>
+					</span>
+					<input checked={alerts} className="switch__input" onChange={(event) => toggleAlerts(event.target.checked)} type="checkbox" />
+					<span className="switch" aria-hidden="true"><span /></span>
+				</label>
+				{isGalilei && (
+					<button className="settings-row" onClick={onChangeClass} type="button">
+						<span className="settings-row__icon"><Icon name="users" size={18} /></span>
+						<span className="settings-row__copy">
+							<strong>Classe: {classLabel(classId)}</strong>
+							<small>Cambia la classe usata per orario e variazioni</small>
+						</span>
+						<Icon className="settings-row__chevron" name="chevron" size={18} />
+					</button>
+				)}
+				<button className="settings-row" onClick={syncNow} type="button">
+					<span className="settings-row__icon"><Icon name="refresh" size={18} /></span>
+					<span className="settings-row__copy">
+						<strong>Sincronizza Dati ClasseViva Ora</strong>
+						<small>{syncLabel}</small>
+					</span>
+					<Icon className="settings-row__chevron" name="chevron" size={18} />
+				</button>
+			</div>
+		</section>
+	)
+}
+
+function Profile() {
+	const { onLogout } = useApp()
+	const [leaving, setLeaving] = useState(false)
+
+	return (
+		<div className="page page--profile" aria-labelledby="profile-heading">
+			<div className="profile-layout">
+				<div className="profile-layout__main">
+					<ProfileCard />
+					<AttendanceSection />
+				</div>
+				<div className="profile-layout__side">
+					<MaterialsSection />
+					<SettingsSection />
+					<button
+						className="logout-button"
+						disabled={leaving}
+						onClick={() => {
+							setLeaving(true)
+							onLogout()
+						}}
+						type="button"
+					>
+						<Icon name="logout" size={18} />
+						{leaving ? 'Disconnessione in corso…' : 'Logout dal Profilo'}
+					</button>
+				</div>
+			</div>
+		</div>
+	)
 }
 
 export default Profile
