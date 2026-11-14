@@ -58,9 +58,10 @@ export function useApi(key, fetcher) {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [key])
 
+	/** Richiede di nuovo i dati: la promessa vale true se l'aggiornamento è riuscito. */
 	const reload = useCallback(() => {
-		if (key == null) return Promise.resolve()
-		return load(key, fetcher, true).catch(() => {})
+		if (key == null) return Promise.resolve(false)
+		return load(key, fetcher, true).then(() => true, () => false)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [key])
 

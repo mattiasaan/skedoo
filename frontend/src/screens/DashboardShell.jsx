@@ -1,101 +1,96 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import { BottomNav, Sidebar } from '../components/AppNav.jsx'
 import { DetailHost } from '../components/Details.jsx'
-import { Icon } from '../components/Icon.jsx'
+import { ErrorBoundary } from '../components/ErrorBoundary.jsx'
+import { NotificationsMenu } from '../components/NotificationsMenu.jsx'
+import { boardKey } from '../lib/agenda.js'
 import { AppContext } from '../lib/appContext.js'
-import { useBoard, useChanges, usePersistentFlags } from '../lib/data.js'
-import { classLabel, dateKey, formatDateTime, initials, schoolDisplayName, titleCase } from '../lib/format.js'
+import { usePersistentFlags } from '../lib/data.js'
+import { initials, schoolDisplayName } from '../lib/format.js'
+import { parseRoute } from '../lib/routes.js'
 import { readJson, writeJson } from '../lib/session.js'
+import { useToast } from '../lib/toast.js'
 import Agenda from './Agenda.jsx'
 import Grades from './Grades.jsx'
 import Home from './Home.jsx'
 import Profile from './Profile.jsx'
+import AbsencesPage from './subpages/AbsencesPage.jsx'
+import BoardPage from './subpages/BoardPage.jsx'
+import MaterialsPage from './subpages/MaterialsPage.jsx'
+import TasksPage from './subpages/TasksPage.jsx'
 import './Dashboard.css'
 
-const TABS = [
-	{ id: 'home', label: 'Home', icon: 'grid' },
-	{ id: 'agenda', label: 'Agenda', icon: 'calendar' },
-	{ id: 'voti', label: 'Voti', icon: 'chart' },
-	{ id: 'profilo', label: 'Profilo', icon: 'person' },
-]
-
-function tabFromHash() {
-	const hash = window.location.hash.replace('#', '')
-	return TABS.some((tab) => tab.id === hash) ? hash : 'home'
+const SCREENS = {
+	home: Home,
+	agenda: Agenda,
+	voti: Grades,
+	profilo: Profile,
+	'home/compiti': TasksPage,
+	'home/bacheca': BoardPage,
+	'profilo/assenze': AbsencesPage,
+	'profilo/materiali': MaterialsPage,
 }
 
-/** Notifiche: variazioni d'orario di oggi + circolari non lette. */
-function useNotifications(classId) {
-	const changes = useChanges(classId)
-	const board = useBoard()
-	const [seen, setSeen] = useState(() => readJson('notifications-seen', {}))
-
-	const items = useMemo(() => {
-		const today = dateKey()
-		const changeItems = (changes.data ?? [])
-			.filter((change) => change.data === today)
-			.map((change) => ({ id: `change-${change.id}`, kind: 'change', title: 'Variazione orario', text: change.testo, change }))
-		const boardItems = (board.data?.elementi ?? [])
-			.filter((item) => !item.letto)
-			.slice(0, 6)
-			.map((item) => ({ id: `board-${item.codice}-${item.id}`, kind: 'board', title: item.categoria || 'Circolare', text: item.titolo, when: item.pubblicato_il, item }))
-		return [...changeItems, ...boardItems]
-	}, [changes.data, board.data])
-
-	// preferenza "Avvisi cambi orario" del Profilo: se spenta niente contatore sulla campanella
-	const alertsOn = readJson('pref-alerts', true)
-	const unseen = alertsOn ? items.filter((item) => !seen[item.id]).length : 0
-	const markAllSeen = useCallback(() => {
-		const next = Object.fromEntries(items.map((item) => [item.id, true]))
-		setSeen(next)
-		writeJson('notifications-seen', next)
-	}, [items])
-
-	return { items, unseen, markAllSeen, changes: changes.data ?? [] }
-}
-
-function DashboardShell({ user, classId, onLogout, onChangeClass }) {
-	const [tab, setTab] = useState(tabFromHash)
-	const [detail, setDetail] = useState(null)
-	const [notificationsOpen, setNotificationsOpen] = useState(false)
-	const [doneTasks, toggleDone] = usePersistentFlags('tasks-done')
-	const [savedTasks, toggleSaved] = usePersistentFlags('tasks-saved')
-	const notifications = useNotifications(classId)
-	const popoverRef = useRef(null)
-	const isGalilei = Boolean(classId)
-
-	// La tab vive nell'hash dell'URL: il tasto "indietro" e il refresh funzionano.
+/** Navigazione tramite hash (#voti, #profilo/assenze): "indietro" e refresh funzionano. */
+function useHashRoute() {
+	const [route, setRoute] = useState(() => parseRoute())
 	useEffect(() => {
-		const onHash = () => setTab(tabFromHash())
+		const onHash = () => {
+			setRoute(parseRoute())
+			window.scrollTo({ top: 0 })
+		}
 		window.addEventListener('hashchange', onHash)
 		return () => window.removeEventListener('hashchange', onHash)
 	}, [])
-
-	useEffect(() => {
-		if (!notificationsOpen) return undefined
-		const onPointer = (event) => {
-			if (!popoverRef.current?.contains(event.target)) setNotificationsOpen(false)
-		}
-		const onKey = (event) => {
-			if (event.key === 'Escape') setNotificationsOpen(false)
-		}
-		document.addEventListener('pointerdown', onPointer)
-		document.addEventListener('keydown', onKey)
-		return () => {
-			document.removeEventListener('pointerdown', onPointer)
-			document.removeEventListener('keydown', onKey)
-		}
-	}, [notificationsOpen])
-
-	const navigate = useCallback((id) => {
-		setNotificationsOpen(false)
-		if (window.location.hash !== `#${id}`) window.location.hash = id
-		setTab(id)
-		window.scrollTo({ top: 0 })
+	const navigate = useCallback((path) => {
+		if (window.location.hash === `#${path}`) window.scrollTo({ top: 0, behavior: 'smooth' })
+		else window.location.hash = path
 	}, [])
+	return [route, navigate]
+}
 
-	const openDetail = useCallback((value) => {
-		setNotificationsOpen(false)
-		setDetail(value)
+/** Compiti completati e verifiche salvate (sul dispositivo), con toast e "Annulla". */
+function useTaskFlags(toast) {
+	const [doneTasks, setDone] = usePersistentFlags('tasks-done')
+	const [savedTasks, setSaved] = usePersistentFlags('tasks-saved')
+
+	const toggleDone = useCallback((key) => {
+		const wasDone = Boolean(doneTasks[key])
+		setDone(key, !wasDone)
+		toast(wasDone ? 'Compito di nuovo da fare' : 'Compito completato', {
+			action: { label: 'Annulla', onClick: () => setDone(key, wasDone) },
+		})
+	}, [doneTasks, setDone, toast])
+
+	const toggleSaved = useCallback((key) => {
+		const wasSaved = Boolean(savedTasks[key])
+		setSaved(key, !wasSaved)
+		toast(wasSaved ? 'Rimosso dai salvati' : 'Salvato: lo ritrovi in Compiti & Verifiche', {
+			action: { label: 'Annulla', onClick: () => setSaved(key, wasSaved) },
+		})
+	}, [savedTasks, setSaved, toast])
+
+	return useMemo(() => ({ doneTasks, toggleDone, savedTasks, toggleSaved }), [doneTasks, toggleDone, savedTasks, toggleSaved])
+}
+
+function DashboardShell({ user, classId, onLogout, onChangeClass }) {
+	const toast = useToast()
+	const [route, navigate] = useHashRoute()
+	const [detail, setDetail] = useState(null)
+	const tasks = useTaskFlags(toast)
+	const [boardRead, setBoardRead] = usePersistentFlags('board-read')
+	const [alertsOn, setAlertsOnState] = useState(() => readJson('pref-alerts', true))
+	const isGalilei = Boolean(classId)
+
+	// ClasseViva segna come letta una circolare quando la si apre, ma l'elenco in cache non lo sa ancora
+	const isBoardRead = useCallback((item) => Boolean(item.letto || boardRead[boardKey(item)]), [boardRead])
+	const markBoardRead = useCallback((item) => {
+		if (!boardRead[boardKey(item)]) setBoardRead(boardKey(item), true)
+	}, [boardRead, setBoardRead])
+
+	const setAlertsOn = useCallback((value) => {
+		setAlertsOnState(value)
+		writeJson('pref-alerts', value)
 	}, [])
 
 	const context = useMemo(() => ({
@@ -103,61 +98,24 @@ function DashboardShell({ user, classId, onLogout, onChangeClass }) {
 		classId,
 		isGalilei,
 		navigate,
-		openDetail,
-		doneTasks,
-		toggleDone,
-		savedTasks,
-		toggleSaved,
+		openDetail: setDetail,
+		...tasks,
+		isBoardRead,
+		markBoardRead,
+		alertsOn,
+		setAlertsOn,
 		onLogout,
 		onChangeClass,
-	}), [user, classId, isGalilei, navigate, openDetail, doneTasks, toggleDone, savedTasks, toggleSaved, onLogout, onChangeClass])
+	}), [user, classId, isGalilei, navigate, tasks, isBoardRead, markBoardRead, alertsOn, setAlertsOn, onLogout, onChangeClass])
 
+	const Screen = SCREENS[route.path] ?? Home
 	const school = schoolDisplayName(user?.scuola)
-	const className = classId ? classLabel(classId) : null
-	const richHeader = tab === 'home' && !isGalilei
-
-	function toggleNotifications() {
-		setNotificationsOpen((open) => {
-			if (!open) notifications.markAllSeen()
-			return !open
-		})
-	}
-
-	function openNotification(item) {
-		if (item.kind === 'board') openDetail({ type: 'board', item: item.item })
-		else openDetail({ type: 'changes', changes: notifications.changes.filter((change) => change.data === dateKey()) })
-	}
+	const richHeader = route.path === 'home' && !isGalilei
 
 	return (
 		<AppContext.Provider value={context}>
 			<div className="app-shell">
-				<aside className="sidebar" aria-label="Navigazione">
-					<a className="sidebar__brand" href="#home" onClick={(event) => { event.preventDefault(); navigate('home') }}>
-						<span className="sidebar__logo"><Icon name="cap" size={20} /></span>
-						Skedoo
-					</a>
-					<nav className="sidebar__nav">
-						{TABS.map((item) => (
-							<button
-								aria-current={tab === item.id ? 'page' : undefined}
-								className={`sidebar__item${tab === item.id ? ' sidebar__item--active' : ''}`}
-								key={item.id}
-								onClick={() => navigate(item.id)}
-								type="button"
-							>
-								<Icon name={item.icon} size={20} />
-								{item.label}
-							</button>
-						))}
-					</nav>
-					<button className="sidebar__user" onClick={() => navigate('profilo')} type="button">
-						<span className="avatar avatar--small">{initials(user?.nome, user?.cognome)}</span>
-						<span>
-							<strong>{titleCase([user?.nome, user?.cognome].filter(Boolean).join(' ')) || 'Studente'}</strong>
-							<small>{[school, className].filter(Boolean).join(' • ') || 'ClasseViva'}</small>
-						</span>
-					</button>
-				</aside>
+				<Sidebar activeTab={route.tab} />
 
 				<div className="app-main">
 					<header className={`topbar${richHeader ? ' topbar--rich' : ''}`}>
@@ -169,72 +127,23 @@ function DashboardShell({ user, classId, onLogout, onChangeClass }) {
 										<strong className="topbar__brand">Skedoo</strong>
 										<span className="badge badge--accent">CV Synced</span>
 									</div>
-									<small><span className="live-dot" aria-hidden="true" />{school || 'ClasseViva'}</small>
+									<small><span aria-hidden="true" className="live-dot" />{school || 'ClasseViva'}</small>
 								</div>
 							</div>
 						) : (
 							<a className="topbar__brand" href="#home" onClick={(event) => { event.preventDefault(); navigate('home') }}>Skedoo</a>
 						)}
-
-						<div className="notifications" ref={popoverRef}>
-							<button
-								aria-expanded={notificationsOpen}
-								aria-label={`Notifiche${notifications.unseen ? ` (${notifications.unseen} nuove)` : ''}`}
-								className={`icon-button notifications__button${notificationsOpen ? ' notifications__button--active' : ''}`}
-								onClick={toggleNotifications}
-								type="button"
-							>
-								<Icon name="bell" size={19} />
-								{notifications.unseen > 0 && <span className="notifications__count">{Math.min(notifications.unseen, 9)}</span>}
-							</button>
-							{notificationsOpen && (
-								<div className="notifications__popover" role="region" aria-label="Notifiche">
-									<strong className="notifications__title">Notifiche</strong>
-									{notifications.items.length ? (
-										<ul>
-											{notifications.items.map((item) => (
-												<li key={item.id}>
-													<button onClick={() => openNotification(item)} type="button">
-														<span className={`notifications__icon notifications__icon--${item.kind}`}>
-															<Icon name={item.kind === 'board' ? 'megaphone' : 'swap'} size={16} />
-														</span>
-														<span>
-															<small>{item.title}{item.when ? ` • ${formatDateTime(item.when)}` : ''}</small>
-															<b>{item.text}</b>
-														</span>
-													</button>
-												</li>
-											))}
-										</ul>
-									) : <p className="notifications__empty">Nessuna novità: sei in pari!</p>}
-								</div>
-							)}
-						</div>
+						<NotificationsMenu />
 					</header>
 
 					<main className="content" id="content">
-						{tab === 'home' && <Home />}
-						{tab === 'agenda' && <Agenda />}
-						{tab === 'voti' && <Grades />}
-						{tab === 'profilo' && <Profile />}
+						<ErrorBoundary resetKey={route.path}>
+							<Screen />
+						</ErrorBoundary>
 					</main>
 				</div>
 
-				<nav className="bottom-nav" aria-label="Navigazione principale">
-					{TABS.map((item) => (
-						<button
-							aria-current={tab === item.id ? 'page' : undefined}
-							className={`bottom-nav__item${tab === item.id ? ' bottom-nav__item--active' : ''}`}
-							key={item.id}
-							onClick={() => navigate(item.id)}
-							type="button"
-						>
-							<Icon name={item.icon} size={21} />
-							<span>{item.label}</span>
-						</button>
-					))}
-				</nav>
-
+				<BottomNav activeTab={route.tab} />
 				<DetailHost detail={detail} onClose={() => setDetail(null)} />
 			</div>
 		</AppContext.Provider>

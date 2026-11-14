@@ -47,7 +47,12 @@ export function monthRange(date) {
 	return { da: dateKey(start), a: dateKey(end), start, end }
 }
 
-/** Compiti e verifiche delle prossime due settimane (per Home e dettaglio materia). */
-export function upcomingRange(today = new Date()) {
-	return { da: dateKey(today), a: dateKey(addDays(today, 13)) }
+/** Da oggi per `days` giorni (oggi compreso). */
+export function upcomingRange(today = new Date(), days = 14) {
+	return { da: dateKey(today), a: dateKey(addDays(today, days - 1)) }
+}
+
+/** Chiave stabile di una comunicazione della bacheca (per letta/nascosta). */
+export function boardKey(item) {
+	return `${item.codice}-${item.id}`
 }

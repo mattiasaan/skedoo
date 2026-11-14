@@ -1,9 +1,11 @@
 import { useMemo } from 'react'
 import { Icon } from '../../components/Icon.jsx'
 import { ErrorMessage, LinkButton, SectionHeading, Skeleton } from '../../components/ui.jsx'
+import { boardKey } from '../../lib/agenda.js'
 import { useApp } from '../../lib/appContext.js'
 import { useAbsences, useBoard, useGrades, usePersistentFlags } from '../../lib/data.js'
 import { addDays, dateKey, formatDateTime, formatKickerDate, formatNumber, relativeDay, schoolDisplayName, teacherShort, titleCase } from '../../lib/format.js'
+import { useToast } from '../../lib/toast.js'
 import { allGrades, averageAt, currentTerm, generalAverage, gradeTone, subjectsForTerm, termsOf } from '../../lib/grades.js'
 import { TasksSection } from './TasksSection.jsx'
 
@@ -15,13 +17,20 @@ function boardTitle(item) {
 }
 
 function BoardCard() {
-	const { openDetail } = useApp()
+	const { openDetail, navigate, isBoardRead } = useApp()
+	const toast = useToast()
 	const board = useBoard()
 	const [dismissed, dismiss] = usePersistentFlags('board-dismissed')
 	const items = board.data?.elementi ?? []
-	const item = items.find((entry) => !entry.letto && !dismissed[`${entry.codice}-${entry.id}`])
-		?? items.find((entry) => !dismissed[`${entry.codice}-${entry.id}`])
-	const unread = items.filter((entry) => !entry.letto).length
+	// prima la più recente da leggere, altrimenti l'ultima pubblicata
+	const item = items.find((entry) => !isBoardRead(entry) && !dismissed[boardKey(entry)])
+		?? items.find((entry) => !dismissed[boardKey(entry)])
+	const unread = items.filter((entry) => !isBoardRead(entry)).length
+
+	function hide() {
+		dismiss(boardKey(item), true)
+		toast('Circolare nascosta dalla Home', { tone: 'info', action: { label: 'Annulla', onClick: () => dismiss(boardKey(item), false) } })
+	}
 
 	if (board.loading) return <Skeleton height={130} lines={1} />
 	if (board.error && !board.data) return <ErrorMessage error={board.error} onRetry={board.reload} title="Bacheca non disponibile" />
@@ -39,9 +48,11 @@ function BoardCard() {
 				<button className="board-card__read" onClick={() => openDetail({ type: 'board', item })} type="button">
 					Leggi <Icon name="chevron" size={15} />
 				</button>
-				{unread > 1 && <small className="board-card__count">{unread} comunicazioni da leggere</small>}
+				<button className="board-card__count" onClick={() => navigate('home/bacheca')} type="button">
+					{unread > 1 ? `${unread} comunicazioni da leggere` : 'Tutta la bacheca'} <Icon name="chevron" size={13} />
+				</button>
 			</div>
-			<button aria-label="Nascondi circolare" className="change-alert__close" onClick={() => dismiss(`${item.codice}-${item.id}`, true)} type="button">
+			<button aria-label="Nascondi circolare" className="change-alert__close" onClick={hide} type="button">
 				<Icon name="close" size={17} />
 			</button>
 		</aside>
@@ -110,7 +121,7 @@ function AttendanceCard() {
 
 	return (
 		<section className="home-section" aria-labelledby="attendance-heading">
-			<SectionHeading aside={<LinkButton onClick={() => navigate('profilo')}>Vedi dettagli</LinkButton>} icon="pulse" id="attendance-heading" title="Presenze & Registro" />
+			<SectionHeading aside={<LinkButton onClick={() => navigate('profilo/assenze')}>Vedi dettagli</LinkButton>} icon="pulse" id="attendance-heading" title="Presenze & Registro" />
 			{absences.loading && <Skeleton height={120} lines={1} />}
 			{absences.error && !absences.data && <ErrorMessage error={absences.error} onRetry={absences.reload} title="Presenze non disponibili" />}
 			{summary && (

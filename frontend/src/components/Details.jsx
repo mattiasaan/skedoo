@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { api } from '../lib/api.js'
 import { useApp } from '../lib/appContext.js'
 import { useGrades, useMonthAgenda, useUpcomingAgenda } from '../lib/data.js'
@@ -186,7 +186,14 @@ function SubjectDetail({ name, onClose }) {
 
 // ---------- circolare ----------
 function BoardDetail({ item, onClose }) {
+	const { markBoardRead } = useApp()
 	const detail = useApi(item.codice && item.id ? `board:${item.codice}:${item.id}` : null, () => api.boardItem(item.codice, item.id))
+	const loaded = Boolean(detail.data)
+
+	// aprendola, ClasseViva la segna come letta: si aggiorna subito anche il contatore delle notifiche
+	useEffect(() => {
+		if (loaded) markBoardRead(item)
+	}, [loaded, item, markBoardRead])
 
 	return (
 		<Sheet kicker={item.categoria || 'Bacheca'} onClose={onClose} title={item.titolo || 'Comunicazione'}>
@@ -231,6 +238,36 @@ function ChangesDetail({ changes, onClose }) {
 	)
 }
 
+// ---------- conferma logout ----------
+function LogoutDetail({ onClose }) {
+	const { onLogout } = useApp()
+	const [leaving, setLeaving] = useState(false)
+
+	return (
+		<Sheet kicker="Account" onClose={onClose} title="Vuoi uscire da Skedoo?" tone="danger">
+			<p className="detail-text">
+				Su questo dispositivo verranno cancellati la sessione e i dati in memoria. Classe scelta, compiti completati e
+				preferenze restano salvati per il prossimo accesso.
+			</p>
+			<div className="confirm-actions">
+				<button className="confirm-actions__cancel" disabled={leaving} onClick={onClose} type="button">Annulla</button>
+				<button
+					className="confirm-actions__danger"
+					disabled={leaving}
+					onClick={() => {
+						setLeaving(true)
+						onLogout()
+					}}
+					type="button"
+				>
+					<Icon name="logout" size={17} />
+					{leaving ? 'Uscita in corso…' : 'Esci'}
+				</button>
+			</div>
+		</Sheet>
+	)
+}
+
 /** Mostra il dettaglio richiesto con openDetail({ type, ... }). */
 export function DetailHost({ detail, onClose }) {
 	if (!detail) return null
@@ -243,6 +280,8 @@ export function DetailHost({ detail, onClose }) {
 			return <SubjectDetail name={detail.name} onClose={onClose} />
 		case 'board':
 			return <BoardDetail item={detail.item} onClose={onClose} />
+		case 'logout':
+			return <LogoutDetail onClose={onClose} />
 		case 'changes':
 			return <ChangesDetail changes={detail.changes} onClose={onClose} />
 		default:

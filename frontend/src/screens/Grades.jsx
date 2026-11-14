@@ -4,6 +4,7 @@ import { LineChart } from '../components/LineChart.jsx'
 import { ErrorMessage, SectionHeading, Skeleton, StateMessage } from '../components/ui.jsx'
 import { useApp } from '../lib/appContext.js'
 import { useGrades } from '../lib/data.js'
+import { useToast } from '../lib/toast.js'
 import { classLabel, formatNumber, formatShortDate, monthName, parseDateKey, schoolYear, teacherShort } from '../lib/format.js'
 import {
 	averageLabel,
@@ -214,7 +215,13 @@ function Comparison({ subjects }) {
 
 function Grades() {
 	const { classId } = useApp()
+	const toast = useToast()
 	const grades = useGrades()
+
+	async function sync() {
+		const ok = await grades.reload()
+		toast(ok ? 'Voti aggiornati da ClasseViva' : 'Aggiornamento non riuscito, riprova tra poco', { tone: ok ? 'success' : 'error' })
+	}
 	const terms = termsOf(grades.data)
 	const [termChoice, setTermChoice] = useState(null)
 	const term = termChoice ?? currentTerm(grades.data) ?? YEAR
@@ -228,7 +235,7 @@ function Grades() {
 					<h1>Valutazioni &amp; Medie</h1>
 					<p className="page-header__subtitle">{subtitle}</p>
 				</div>
-				<button className={`sync-button${grades.refreshing ? ' sync-button--busy' : ''}`} disabled={grades.refreshing} onClick={grades.reload} type="button">
+				<button className={`sync-button${grades.refreshing ? ' sync-button--busy' : ''}`} disabled={grades.refreshing} onClick={sync} type="button">
 					<Icon name="refresh" size={16} />
 					{grades.refreshing ? 'Sincronizzo…' : 'Sincronizza'}
 				</button>

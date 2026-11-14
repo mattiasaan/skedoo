@@ -15,6 +15,55 @@ export function SectionHeading({ id, icon, title, aside, kicker = false }) {
 	)
 }
 
+/** Intestazione delle sottoschermate (Compiti, Bacheca, Presenze, Materiali) con il ritorno alla schermata madre. */
+export function SubPageHeader({ title, subtitle, backLabel, onBack, actions }) {
+	return (
+		<header className="subpage-header">
+			<button className="subpage-header__back" onClick={onBack} type="button">
+				<Icon name="chevronLeft" size={18} />
+				{backLabel}
+			</button>
+			<div className="subpage-header__row">
+				<div>
+					<h1>{title}</h1>
+					{subtitle && <p className="page-header__subtitle">{subtitle}</p>}
+				</div>
+				{actions}
+			</div>
+		</header>
+	)
+}
+
+/** Filtri a schede (Tutti / Compiti / Verifiche...). */
+export function FilterTabs({ label, options, value, onChange }) {
+	return (
+		<div aria-label={label} className="filter-tabs" role="group">
+			{options.map((option) => (
+				<button
+					aria-pressed={value === option.id}
+					className={`filter-tabs__button${value === option.id ? ' filter-tabs__button--active' : ''}`}
+					key={option.id}
+					onClick={() => onChange(option.id)}
+					type="button"
+				>
+					{option.label}
+					{option.count != null && <span className="filter-tabs__count">{option.count}</span>}
+				</button>
+			))}
+		</div>
+	)
+}
+
+export function SearchField({ label, value, onChange, placeholder }) {
+	return (
+		<label className="search-field">
+			<Icon name="search" size={17} />
+			<span className="visually-hidden">{label}</span>
+			<input onChange={(event) => onChange(event.target.value)} placeholder={placeholder} type="search" value={value} />
+		</label>
+	)
+}
+
 export function LinkButton({ children, onClick }) {
 	return (
 		<button className="link-button" onClick={onClick} type="button">

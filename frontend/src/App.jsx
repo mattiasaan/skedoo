@@ -3,7 +3,9 @@ import DashboardShell from './screens/DashboardShell.jsx'
 import Login from './screens/Login.jsx'
 import SchoolSetup from './screens/SchoolSetup.jsx'
 import { api, ApiError, UNAUTHORIZED_EVENT } from './lib/api.js'
+import { classLabel } from './lib/format.js'
 import { clearSession, getClassId, getStoredUser, getToken, isGalileiSchool, saveSession, saveUser, setClassId } from './lib/session.js'
+import { useToast } from './lib/toast.js'
 import { clearApiCache } from './lib/useApi.js'
 
 // Schermata da mostrare dopo il login: chi è del Galilei deve prima scegliere la classe.
@@ -12,6 +14,7 @@ function nextScreen(user) {
 }
 
 function App() {
+	const toast = useToast()
 	const [user, setUser] = useState(() => (getToken() ? getStoredUser() : null))
 	const [screen, setScreen] = useState(() => (getToken() ? 'checking' : 'login'))
 	const [classId, setClassIdState] = useState(() => getClassId(getStoredUser()?.id))
@@ -76,12 +79,16 @@ function App() {
 			// anche se il server non risponde, sul dispositivo la sessione va chiusa
 		}
 		resetToLogin()
+		toast('Sei uscito da Skedoo', { tone: 'info' })
 	}
 
 	function handleClassChosen(id) {
+		const changed = screen === 'change-class' && id !== classId
 		setClassId(user?.id, id)
 		setClassIdState(id)
 		setScreen('app')
+		// orario e variazioni hanno la classe nella chiave di cache: non serve svuotare nulla
+		if (changed) toast(`Classe impostata: ${classLabel(id)}`)
 	}
 
 	if (screen === 'checking') {

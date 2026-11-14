@@ -3,15 +3,13 @@ import { Icon } from '../components/Icon.jsx'
 import { ErrorMessage, LinkButton, SectionHeading, Skeleton, StateMessage } from '../components/ui.jsx'
 import { useApp } from '../lib/appContext.js'
 import { useAbsences, useDidactics } from '../lib/data.js'
+import { flattenMaterials, materialType } from '../lib/didactics.js'
 import { classLabel, dateKey, formatDateTime, initials, schoolDisplayName, schoolYear, teacherName, titleCase } from '../lib/format.js'
 import { readJson, writeJson } from '../lib/session.js'
+import { useToast } from '../lib/toast.js'
 import { clearApiCache } from '../lib/useApi.js'
 
-const MATERIAL_TYPES = {
-	file: { icon: 'file', tone: 'accent' },
-	link: { icon: 'link', tone: 'blue' },
-	text: { icon: 'clipboard', tone: 'amber' },
-}
+const PREVIEW_MATERIALS = 3
 
 function ProfileCard() {
 	const { user, classId } = useApp()
@@ -46,6 +44,7 @@ function ProfileCard() {
 }
 
 function AttendanceSection() {
+	const { navigate } = useApp()
 	const absences = useAbsences()
 	const events = absences.data?.eventi ?? []
 	const summary = absences.data?.riepilogo
@@ -57,7 +56,7 @@ function AttendanceSection() {
 
 	return (
 		<section className="profile-section" aria-labelledby="attendance-heading">
-			<SectionHeading aside={<span className="badge badge--accent">Anno in corso</span>} icon="pulse" id="attendance-heading" title="Quadro Presenze & Assenze" />
+			<SectionHeading aside={<LinkButton onClick={() => navigate('profilo/assenze')}>Dettagli</LinkButton>} icon="pulse" id="attendance-heading" title="Presenze & Assenze" />
 			{absences.loading && <Skeleton height={130} lines={1} />}
 			{absences.error && !absences.data && <ErrorMessage error={absences.error} onRetry={absences.reload} title="Presenze non disponibili" />}
 			{summary && (
@@ -90,25 +89,16 @@ function AttendanceSection() {
 }
 
 function MaterialsSection() {
+	const { navigate } = useApp()
 	const didactics = useDidactics()
-	const [expanded, setExpanded] = useState(false)
-	const materials = useMemo(() => (didactics.data?.docenti ?? [])
-		.flatMap((teacher) => teacher.cartelle.flatMap((folder) => folder.materiali.map((material) => ({
-			...material,
-			teacher: teacher.nome,
-			folder: folder.nome,
-			key: `${teacher.id}-${folder.id}-${material.id}`,
-		}))))
-		.sort((a, b) => String(b.condiviso_il ?? '').localeCompare(String(a.condiviso_il ?? ''))), [didactics.data])
-	const visible = expanded ? materials : materials.slice(0, 3)
+	const materials = useMemo(() => flattenMaterials(didactics.data), [didactics.data])
+	const visible = materials.slice(0, PREVIEW_MATERIALS)
 
 	return (
 		<section className="profile-section" aria-labelledby="materials-heading">
 			<SectionHeading
-				aside={materials.length > 3 && (
-					<LinkButton onClick={() => setExpanded((value) => !value)}>
-						{expanded ? 'Mostra meno' : `Vedi tutti (${materials.length})`}
-					</LinkButton>
+				aside={materials.length > PREVIEW_MATERIALS && (
+					<LinkButton onClick={() => navigate('profilo/materiali')}>Vedi tutti ({materials.length})</LinkButton>
 				)}
 				icon="book"
 				id="materials-heading"
@@ -119,7 +109,7 @@ function MaterialsSection() {
 			{didactics.data && (materials.length ? (
 				<ul className="material-list">
 					{visible.map((material) => {
-						const type = MATERIAL_TYPES[material.tipo] ?? MATERIAL_TYPES.file
+						const type = materialType(material)
 						return (
 							<li className="material-card" key={material.key}>
 								<span className={`icon-tile icon-tile--${type.tone}`}><Icon name={type.icon} size={18} /></span>
@@ -142,21 +132,23 @@ function MaterialsSection() {
 }
 
 function SettingsSection() {
-	const { isGalilei, classId, onChangeClass } = useApp()
-	const [alerts, setAlerts] = useState(() => readJson('pref-alerts', true))
+	const { isGalilei, classId, onChangeClass, alertsOn, setAlertsOn } = useApp()
+	const toast = useToast()
 	const [lastSync, setLastSync] = useState(() => readJson('last-sync', null))
 
 	function toggleAlerts(value) {
-		setAlerts(value)
-		writeJson('pref-alerts', value)
+		setAlertsOn(value)
+		toast(value ? 'Avvisi attivati' : 'Avvisi disattivati: la campanella non mostrerà il contatore', { tone: 'info' })
 	}
 
 	function syncNow() {
 		const date = new Date()
 		const now = `${dateKey(date)}T${date.toTimeString().slice(0, 5)}`
+		// svuotando la cache ogni schermata richiede di nuovo i dati quando viene mostrata
 		clearApiCache()
 		setLastSync(now)
 		writeJson('last-sync', now)
+		toast('Dati in aggiornamento da ClasseViva')
 	}
 
 	const syncLabel = lastSync ? `Ultimo sync: ${formatDateTime(lastSync)}` : 'Aggiorna voti, agenda, assenze e bacheca'
@@ -171,7 +163,7 @@ function SettingsSection() {
 						<strong>Avvisi Cambi Orario &amp; Supplenze</strong>
 						<small>Mostra il badge delle notifiche quando cambia l'orario o arriva una circolare</small>
 					</span>
-					<input checked={alerts} className="switch__input" onChange={(event) => toggleAlerts(event.target.checked)} type="checkbox" />
+					<input checked={alertsOn} className="switch__input" onChange={(event) => toggleAlerts(event.target.checked)} type="checkbox" />
 					<span className="switch" aria-hidden="true"><span /></span>
 				</label>
 				{isGalilei && (
@@ -198,8 +190,7 @@ function SettingsSection() {
 }
 
 function Profile() {
-	const { onLogout } = useApp()
-	const [leaving, setLeaving] = useState(false)
+	const { openDetail } = useApp()
 
 	return (
 		<div className="page page--profile" aria-labelledby="profile-heading">
@@ -211,17 +202,9 @@ function Profile() {
 				<div className="profile-layout__side">
 					<MaterialsSection />
 					<SettingsSection />
-					<button
-						className="logout-button"
-						disabled={leaving}
-						onClick={() => {
-							setLeaving(true)
-							onLogout()
-						}}
-						type="button"
-					>
+					<button className="logout-button" onClick={() => openDetail({ type: 'logout' })} type="button">
 						<Icon name="logout" size={18} />
-						{leaving ? 'Disconnessione in corso…' : 'Logout dal Profilo'}
+						Logout dal Profilo
 					</button>
 				</div>
 			</div>
