@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { LessonRow } from '../../components/Cards.jsx'
 import { Icon } from '../../components/Icon.jsx'
 import { ErrorMessage, SectionHeading, Skeleton, StateMessage } from '../../components/ui.jsx'
@@ -19,16 +19,23 @@ function nextSchoolDay(schedule, from) {
 	return null
 }
 
+const CHANGE_LABELS = {
+	entrata_posticipata: 'Entrata posticipata',
+	uscita_anticipata: 'Uscita anticipata',
+	senza_lezioni_pomeridiane: 'Niente lezioni pomeridiane',
+}
+
 function changeMessage(change, lessons) {
 	if (change.tipo === 'cambio_aula') {
 		const lesson = lessons.find((item) => item.ore.includes(change.ora))
+		const when = change.orario ? ` (${change.orario})` : change.ora ? ` (${change.ora}ª ora)` : ''
 		return (
 			<>
-				<b>Cambio aula</b> — {lesson ? `${lesson.materia} (${change.ora}ª ora)` : `${change.ora ?? ''}ª ora`} spostata in <u>{change.nuova_aula}</u>.
+				<b>Cambio aula</b> — {lesson ? lesson.materia : 'Lezione'}{when} spostata in <u>{change.nuova_aula}</u>.
 			</>
 		)
 	}
-	const label = change.tipo === 'entrata_posticipata' ? 'Entrata posticipata' : change.tipo === 'uscita_anticipata' ? 'Uscita anticipata' : 'Variazione'
+	const label = CHANGE_LABELS[change.tipo] ?? 'Variazione'
 	return <><b>{label}</b> — {change.testo}</>
 }
 
@@ -126,6 +133,7 @@ function HomeGalilei() {
 	const changes = useChanges(classId)
 	const todayKey = dateKey(now)
 	const minutes = nowMinutes(now)
+	const [showDone, setShowDone] = useState(false)
 
 	const todayChanges = useMemo(() => (changes.data ?? []).filter((change) => change.data === todayKey), [changes.data, todayKey])
 	const todayLessons = useMemo(() => buildDayLessons(schedule.data, now, todayChanges), [schedule.data, now, todayChanges])
@@ -136,6 +144,11 @@ function HomeGalilei() {
 	const listLessons = todayLessons.length ? todayLessons : upcomingDay?.lessons ?? []
 	const listIsToday = todayLessons.length > 0
 	const hours = listLessons.filter((lesson) => !lesson.cancelled).reduce((sum, lesson) => sum + lesson.ore.length, 0)
+	// le ore già svolte si nascondono finché ne restano altre: meno scorrimento per arrivare a quelle che servono
+	const withStatus = listLessons.map((lesson) => ({ lesson, status: lessonStatus(lesson, minutes, listIsToday) }))
+	const doneCount = withStatus.filter((item) => item.status === 'done').length
+	const canHideDone = doneCount > 0 && doneCount < withStatus.length
+	const visibleLessons = canHideDone && !showDone ? withStatus.filter((item) => item.status !== 'done') : withStatus
 	const school = schoolDisplayName(user?.scuola)
 	const className = schedule.data?.nome ? classDisplayName(schedule.data.nome) : classLabel(classId)
 
@@ -163,9 +176,13 @@ function HomeGalilei() {
 						{schedule.loading && <Skeleton height={76} lines={3} />}
 						{schedule.data && (listLessons.length ? (
 							<div className="lesson-list">
-								{listLessons.map((lesson) => (
-									<LessonRow key={lesson.id} lesson={lesson} status={lessonStatus(lesson, minutes, listIsToday)} />
-								))}
+								{canHideDone && (
+									<button aria-expanded={showDone} className="show-more" onClick={() => setShowDone((value) => !value)} type="button">
+										<Icon name={showDone ? 'chevronDown' : 'checkCircle'} size={15} />
+										{showDone ? 'Nascondi le ore già svolte' : `Mostra ${doneCount === 1 ? "l'ora già svolta" : `le ${doneCount} ore già svolte`}`}
+									</button>
+								)}
+								{visibleLessons.map(({ lesson, status }) => <LessonRow key={lesson.id} lesson={lesson} status={status} />)}
 							</div>
 						) : <StateMessage icon="calendar" text="Per questa classe non ci sono lezioni in orario." title="Nessuna lezione" />)}
 					</section>

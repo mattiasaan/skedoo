@@ -161,7 +161,7 @@
 .content {
   width: 100%;
   margin: 0 auto;
-  padding: 18px var(--gutter) calc(var(--nav-height) + 40px + env(safe-area-inset-bottom));
+  padding: 18px var(--gutter) calc(var(--nav-height) + 28px + env(safe-area-inset-bottom));
 }
 
 /* ---------- notifiche ---------- */
@@ -286,15 +286,15 @@
 .bottom-nav {
   position: fixed;
   z-index: 30;
-  right: 12px;
-  bottom: calc(12px + env(safe-area-inset-bottom));
-  left: 12px;
+  right: 16px;
+  bottom: calc(10px + env(safe-area-inset-bottom));
+  left: 16px;
   display: grid;
-  max-width: 520px;
+  max-width: 400px;
   height: var(--nav-height);
   grid-template-columns: repeat(4, 1fr);
   margin: 0 auto;
-  padding: 8px;
+  padding: 5px;
   border: 1px solid var(--border-strong);
   border-radius: 999px;
   background: rgba(18, 25, 30, 0.92);
@@ -305,17 +305,18 @@
 .bottom-nav__item {
   position: relative;
   display: flex;
+  min-width: 0;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  gap: 2px;
   border: 0;
   border-radius: 999px;
   background: transparent;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
-  transition: color 160ms ease;
+  transition: color 160ms ease, background-color 160ms ease;
 }
 
 .bottom-nav__item:hover {
@@ -323,17 +324,8 @@
 }
 
 .bottom-nav__item--active {
+  background: var(--accent-soft);
   color: var(--accent-text);
-}
-
-.bottom-nav__item--active::after {
-  position: absolute;
-  bottom: 3px;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--accent);
-  content: '';
 }
 
 /* =========================================================
@@ -905,6 +897,26 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: 12px;
+}
+
+.show-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 40px;
+  padding: 8px 12px;
+  border: 1px dashed var(--border-strong);
+  border-radius: 12px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.show-more:hover {
+  border-color: var(--accent-line);
+  color: var(--accent-text);
 }
 
 .lesson-row {
@@ -1940,18 +1952,44 @@
 /* ---------- simulatore ---------- */
 .simulator-card__heading {
   display: flex;
-  align-items: flex-start;
+  width: 100%;
+  align-items: center;
   gap: 14px;
-  padding-bottom: 18px;
+  padding: 0 0 18px;
+  border: 0;
   border-bottom: 1px solid var(--border);
+  background: transparent;
+  text-align: left;
 }
 
-.simulator-card__heading h3 {
+.simulator-card__heading > span:nth-child(2) {
+  min-width: 0;
+  flex: 1;
+}
+
+.simulator-card__chevron {
+  flex: 0 0 auto;
+  color: var(--muted);
+  transition: transform 160ms ease;
+}
+
+.simulator-card__heading[aria-expanded='true'] .simulator-card__chevron {
+  transform: rotate(180deg);
+}
+
+.simulator-card--closed .simulator-card__heading {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.simulator-card__title {
+  display: block;
   font-size: 17px;
   font-weight: 700;
 }
 
-.simulator-card__heading p {
+.simulator-card__heading small {
+  display: block;
   margin-top: 3px;
   color: var(--muted);
   font-size: 13px;
@@ -2973,6 +3011,443 @@ button.settings-row:hover {
 /* =========================================================
    Responsive
    ========================================================= */
+
+/* ---------- telefoni: versione compatta (stessi contenuti, meno scorrimento) ---------- */
+@media (max-width: 599px) {
+  .topbar {
+    min-height: 56px;
+    padding-block: 8px;
+  }
+
+  .topbar--rich {
+    min-height: 62px;
+  }
+
+  .notifications__button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .content {
+    padding-top: 14px;
+  }
+
+  .page,
+  .home-grid,
+  .home-grid__main,
+  .home-grid__side,
+  .grades-layout,
+  .grades-layout__overview,
+  .profile-layout,
+  .profile-layout__main,
+  .profile-layout__side,
+  .agenda-layout {
+    gap: 18px;
+  }
+
+  .page-intro__title {
+    margin-top: 4px;
+    font-size: 25px;
+  }
+
+  .page-header h1 {
+    font-size: 23px;
+  }
+
+  .page-header--stacked {
+    flex-wrap: nowrap;
+  }
+
+  .sync-button {
+    flex: 0 0 auto;
+    padding: 7px 12px;
+    font-size: 13px;
+  }
+
+  .page-intro__line {
+    margin-top: 2px;
+    font-size: 13px;
+  }
+
+  .section-heading {
+    min-height: 28px;
+    margin-bottom: 8px;
+  }
+
+  .card {
+    padding: 14px;
+    border-radius: var(--radius);
+  }
+
+  .lesson-list,
+  .task-list,
+  .agenda-list,
+  .subject-list,
+  .material-list {
+    gap: 8px;
+  }
+
+  /* avvisi */
+  .change-alert,
+  .board-card {
+    gap: 10px;
+    padding: 12px 40px 12px 14px;
+    border-radius: var(--radius);
+  }
+
+  .change-alert__icon,
+  .board-card__icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+  }
+
+  .change-alert__meta,
+  .board-card__meta {
+    margin-bottom: 4px;
+  }
+
+  .change-alert p,
+  .board-card p {
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .board-card__read {
+    margin-top: 8px;
+    padding: 5px 12px;
+    font-size: 13px;
+  }
+
+  /* prossima lezione */
+  .next-lesson {
+    padding: 14px 16px;
+    border-radius: var(--radius);
+  }
+
+  .next-lesson h3 {
+    margin-top: 2px;
+    font-size: 23px;
+  }
+
+  .room-pill {
+    padding: 5px 10px;
+    font-size: 13px;
+  }
+
+  .next-lesson__details {
+    margin-top: 8px;
+    font-size: 13px;
+  }
+
+  .next-lesson__progress {
+    margin-top: 12px;
+    padding-top: 10px;
+  }
+
+  .next-lesson__progress > div:first-child {
+    margin-bottom: 7px;
+    font-size: 12px;
+  }
+
+  /* orario di oggi */
+  .lesson-row {
+    min-height: 58px;
+    grid-template-columns: 50px minmax(0, 1fr) auto;
+    gap: 10px;
+    padding: 9px 12px;
+    border-radius: 14px;
+  }
+
+  .lesson-row__time {
+    padding-right: 10px;
+  }
+
+  .lesson-row__time strong,
+  .lesson-row__copy strong {
+    font-size: 14px;
+  }
+
+  .lesson-row__time span,
+  .lesson-row__copy > span {
+    font-size: 12px;
+  }
+
+  .lesson-row__copy > span {
+    margin-top: 2px;
+  }
+
+  .lesson-row > .badge {
+    padding: 2px 7px;
+    font-size: 10px;
+  }
+
+  /* compiti e verifiche */
+  .task-card {
+    padding: 12px 14px;
+    border-radius: var(--radius);
+  }
+
+  .task-card h3 {
+    margin-top: 8px;
+    font-size: 15px;
+  }
+
+  .task-card p {
+    margin-top: 3px;
+    font-size: 13px;
+    line-height: 1.45;
+    -webkit-line-clamp: 2;
+  }
+
+  .task-card__due {
+    font-size: 13px;
+  }
+
+  .task-card__footer {
+    margin-top: 10px;
+    padding-top: 8px;
+    font-size: 13px;
+  }
+
+  .task-toggle {
+    padding: 5px 10px;
+    font-size: 13px;
+  }
+
+  .bookmark-toggle {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* panoramica e presenze (altre scuole) */
+  .overview-grid {
+    gap: 8px;
+  }
+
+  .overview-card {
+    padding: 12px;
+    border-radius: var(--radius);
+  }
+
+  .overview-card__value {
+    margin-top: 4px;
+    font-size: 32px;
+  }
+
+  .overview-card__value + .overview-card__footer {
+    margin-top: 10px;
+  }
+
+  .overview-card__footer {
+    padding-top: 8px;
+    font-size: 12px;
+  }
+
+  .overview-card__last {
+    margin-top: 6px;
+  }
+
+  .attendance-strip {
+    padding: 12px 0;
+    border-radius: var(--radius);
+  }
+
+  .attendance-strip > div {
+    gap: 3px;
+    padding: 0 12px;
+  }
+
+  .attendance-strip p strong {
+    font-size: 24px;
+  }
+
+  /* agenda */
+  .week-strip {
+    gap: 6px;
+  }
+
+  .week-day {
+    gap: 3px;
+    padding: 9px 2px 8px;
+    border-radius: 14px;
+  }
+
+  .week-day strong {
+    font-size: 18px;
+  }
+
+  .day-view {
+    gap: 10px;
+  }
+
+  .day-view__heading h3 {
+    font-size: 17px;
+  }
+
+  .day-view__pill {
+    padding: 4px 9px;
+    font-size: 12px;
+  }
+
+  .agenda-lesson,
+  .agenda-item {
+    padding: 11px 12px 11px 16px;
+    border-radius: 14px;
+  }
+
+  .agenda-lesson__main {
+    margin-top: 5px;
+  }
+
+  .agenda-lesson__main h3 {
+    font-size: 16px;
+  }
+
+  .agenda-lesson__main span,
+  .agenda-lesson__time {
+    font-size: 13px;
+  }
+
+  .agenda-lesson__time strong {
+    font-size: 14px;
+  }
+
+  .agenda-lesson__room {
+    padding: 3px 8px;
+    font-size: 12px;
+  }
+
+  .agenda-note {
+    margin-top: 8px;
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .month-card {
+    padding: 10px;
+  }
+
+  .month-day {
+    min-height: 36px;
+    font-size: 14px;
+  }
+
+  /* voti */
+  .average-card__value strong {
+    font-size: 40px;
+  }
+
+  .average-card__counts {
+    margin-top: 12px;
+    padding-top: 12px;
+  }
+
+  .average-card__counts dd {
+    font-size: 16px;
+  }
+
+  .average-card__chart-heading {
+    margin: 14px 0 6px;
+  }
+
+  .subject-card {
+    gap: 10px;
+    padding: 12px;
+    border-radius: var(--radius);
+  }
+
+  .subject-card .icon-tile,
+  .material-card .icon-tile {
+    width: 36px;
+    height: 36px;
+  }
+
+  .subject-card__copy strong {
+    font-size: 15px;
+  }
+
+  .subject-card__last {
+    margin-top: 3px;
+    padding: 2px 8px;
+    font-size: 11px;
+  }
+
+  .score-box {
+    min-width: 50px;
+    height: 38px;
+    font-size: 17px;
+  }
+
+  .comparison {
+    gap: 11px;
+    margin-top: 14px;
+  }
+
+  /* profilo */
+  .profile-card {
+    padding: 18px 14px 14px;
+  }
+
+  .avatar--large {
+    width: 76px;
+    height: 76px;
+    font-size: 24px;
+  }
+
+  .profile-card h1 {
+    margin-top: 12px;
+    font-size: 22px;
+  }
+
+  .profile-card__school {
+    font-size: 13px;
+  }
+
+  .profile-card__linked {
+    margin-top: 10px;
+    padding: 5px 12px;
+    font-size: 12px;
+  }
+
+  .profile-card__meta {
+    margin-top: 12px;
+    padding-top: 10px;
+    font-size: 12px;
+  }
+
+  .attendance-grid {
+    gap: 8px;
+  }
+
+  .attendance-card {
+    gap: 6px;
+    padding: 11px 10px;
+  }
+
+  .attendance-card p strong {
+    font-size: 22px;
+  }
+
+  .material-card {
+    gap: 10px;
+    padding: 10px 12px;
+  }
+
+  .settings-row {
+    gap: 12px;
+    padding: 12px 14px;
+  }
+
+  .settings-row__icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .logout-button {
+    min-height: 48px;
+  }
+}
 
 /* telefoni */
 @media (max-width: 480px) {

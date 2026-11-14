@@ -83,6 +83,8 @@ function Simulator({ subjects }) {
 	// obiettivo iniziale raggiungibile: la sufficienza se la materia più debole è sotto il 6
 	const [target, setTarget] = useState(() => (lowest && lowest.media < 6 ? 6 : 7))
 	const subject = candidates.find((item) => item.materia === subjectName) ?? lowest
+	// su telefono parte chiuso: è lungo e non serve a ogni visita
+	const [open, setOpen] = useState(() => window.matchMedia?.('(min-width: 600px)').matches ?? true)
 
 	if (!subject) {
 		return (
@@ -107,15 +109,17 @@ function Simulator({ subjects }) {
 	}
 
 	return (
-		<article className="card simulator-card">
-			<div className="simulator-card__heading">
+		<article className={`card simulator-card${open ? '' : ' simulator-card--closed'}`}>
+			<button aria-controls="simulator-body" aria-expanded={open} className="simulator-card__heading" onClick={() => setOpen((value) => !value)} type="button">
 				<span className="icon-tile"><Icon name="clipboard" size={18} /></span>
-				<div>
-					<h3>Simulatore Media &amp; Obiettivo</h3>
-					<p>Calcolo del prossimo voto necessario</p>
-				</div>
-			</div>
+				<span>
+					<strong className="simulator-card__title">Simulatore Media &amp; Obiettivo</strong>
+					<small>{open ? 'Calcolo del prossimo voto necessario' : `${subject.name}: tocca per calcolare il voto necessario`}</small>
+				</span>
+				<Icon className="simulator-card__chevron" name="chevronDown" size={18} />
+			</button>
 
+			{open && <div id="simulator-body">
 			<label className="field-label" htmlFor="simulator-subject">Seleziona materia da recuperare / migliorare</label>
 			<div className="select-wrap">
 				<select id="simulator-subject" onChange={(event) => setSubjectName(event.target.value)} value={subject.materia}>
@@ -153,6 +157,7 @@ function Simulator({ subjects }) {
 					<small>Stima basata su {result.count} {result.count === 1 ? 'voto preesistente' : 'voti preesistenti'} e su un nuovo voto con peso ordinario 100%.</small>
 				</div>
 			</div>
+			</div>}
 		</article>
 	)
 }

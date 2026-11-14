@@ -329,6 +329,10 @@ enviorment.md
 
 backend/app/data
 backend/data/classi/
+# output di fetch_bacheca / ocr_changes: comunicazioni, allegati e variazioni (dati della scuola)
+backend/data/bacheca_fetch/
+backend/data/dati-bacheca/
+backend/scripts/bacheca_fetch/data/
 classi_index.json
 orario_classi.json
 
