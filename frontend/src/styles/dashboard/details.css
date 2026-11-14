@@ -1,0 +1,342 @@
+/* Pannelli di dettaglio (lezione, evento, materia, circolare). */
+
+/* =========================================================
+   Pannelli di dettaglio
+   ========================================================= */
+.detail-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.detail-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.detail-meta svg {
+  color: var(--accent-text);
+}
+
+.detail-text {
+  margin-top: 16px;
+  color: var(--text-2);
+  font-size: 15px;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+
+.detail-facts {
+  display: grid;
+  gap: 1px;
+  margin: 18px 0 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--border);
+}
+
+.detail-facts > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 14px;
+  background: var(--surface);
+}
+
+.detail-facts dt {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.detail-facts dd {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: right;
+}
+
+.detail-actions {
+  margin-top: 18px;
+}
+
+.detail-callout {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 16px;
+  padding: 12px 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text-2);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.detail-callout--amber {
+  border-color: var(--amber-line);
+  background: var(--amber-soft);
+}
+
+.detail-callout--amber svg {
+  flex: 0 0 auto;
+  color: var(--amber);
+}
+
+.sheet__body > .state-message {
+  margin-top: 16px;
+}
+
+.detail-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.detail-section h3 {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.related-link {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  text-align: left;
+}
+
+.detail-section .related-link {
+  margin-top: 0;
+}
+
+.related-link:hover {
+  border-color: var(--accent-line);
+}
+
+.related-link > svg:first-child {
+  flex: 0 0 auto;
+  color: var(--accent-text);
+}
+
+.related-link > svg:last-child {
+  flex: 0 0 auto;
+  color: var(--muted);
+}
+
+.related-link span {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.related-link small {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.related-link strong {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: 14px;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.related-link--danger > svg:first-child { color: var(--danger); }
+.related-link--blue > svg:first-child { color: var(--blue); }
+.related-link--amber > svg:first-child { color: var(--amber); }
+
+.subject-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--accent-line);
+  border-radius: var(--radius);
+  background: var(--accent-soft);
+}
+
+.subject-summary > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.subject-summary small {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.subject-summary strong {
+  color: var(--accent-text);
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.subject-summary span {
+  color: var(--accent-text);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.subject-summary p {
+  color: var(--text-2);
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: right;
+}
+
+.subject-summary--low {
+  border-color: var(--danger-line);
+  background: var(--danger-soft);
+}
+
+.subject-summary--low strong,
+.subject-summary--low span {
+  color: var(--danger);
+}
+
+.subject-summary--neutral {
+  border-color: var(--border-strong);
+  background: var(--surface);
+}
+
+.subject-summary--neutral strong,
+.subject-summary--neutral span {
+  color: var(--text);
+}
+
+.detail-chart {
+  margin-top: 16px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.grade-list,
+.attachment-list,
+.changes-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.grade-list__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.grade-list__item > span:last-child {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.grade-list__item strong {
+  font-size: 14px;
+}
+
+.grade-list__item small {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.grade-list__item em {
+  margin-top: 4px;
+  color: var(--text-2);
+  font-size: 13px;
+  font-style: normal;
+  line-height: 1.45;
+}
+
+.grade-list__item--void {
+  opacity: 0.55;
+}
+
+.attachment-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.attachment-list svg {
+  flex: 0 0 auto;
+  color: var(--accent-text);
+}
+
+.detail-hint {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.changes-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.changes-list__icon {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 10px;
+  background: var(--amber-soft);
+  color: var(--amber);
+}
+
+.changes-list li > span:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.changes-list strong {
+  font-size: 14px;
+}
+
+.changes-list small {
+  color: var(--text-2);
+  font-size: 13px;
+}

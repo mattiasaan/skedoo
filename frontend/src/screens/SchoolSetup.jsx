@@ -5,7 +5,7 @@ import { ErrorMessage } from '../components/ui.jsx'
 import { api } from '../lib/api.js'
 import { classDisplayName, normalizeText, schoolYear, titleCase } from '../lib/format.js'
 import { useApi } from '../lib/useApi.js'
-import './Login.css'
+import '../styles/auth.css'
 
 function classTitle(option) {
 	const name = classDisplayName(option.nome)

@@ -5,7 +5,8 @@ import { useCallback, useEffect, useSyncExternalStore } from 'react'
 const STALE_MS = 5 * 60 * 1000
 const cache = new Map() // key -> { data, error, time, promise }
 const listeners = new Set()
-let version = 0
+let version = 0 // cambia a ogni modifica della cache: fa ridisegnare chi la usa
+let generation = 0 // cambia solo quando la cache viene svuotata (logout, "Sincronizza")
 
 function notify() {
 	version += 1
@@ -22,13 +23,18 @@ function load(key, fetcher, force = false) {
 	if (entry?.promise) return entry.promise
 	if (!force && entry && !entry.error && Date.now() - entry.time < STALE_MS) return Promise.resolve(entry.data)
 
+	// una risposta arrivata dopo uno svuotamento (es. logout) non deve tornare in cache:
+	// sarebbe visibile al prossimo utente dello stesso dispositivo
+	const startedIn = generation
 	const promise = fetcher()
 		.then((data) => {
+			if (startedIn !== generation) return data
 			cache.set(key, { data, error: null, time: Date.now(), promise: null })
 			notify()
 			return data
 		})
 		.catch((error) => {
+			if (startedIn !== generation) throw error
 			cache.set(key, { data: entry?.data, error, time: Date.now(), promise: null })
 			notify()
 			throw error
@@ -40,6 +46,7 @@ function load(key, fetcher, force = false) {
 
 /** Svuota la cache (logout o "Sincronizza ora"). */
 export function clearApiCache() {
+	generation += 1
 	cache.clear()
 	notify()
 }
@@ -50,13 +57,15 @@ export function clearApiCache() {
  */
 export function useApi(key, fetcher) {
 	useSyncExternalStore(subscribe, () => version)
+	const currentGeneration = generation
 
+	// si (ri)carica quando cambia la chiave o dopo uno svuotamento della cache con la schermata aperta
 	useEffect(() => {
 		if (key == null) return
 		load(key, fetcher).catch(() => {})
 		// fetcher cambia identità a ogni render: la chiave basta a identificare la richiesta
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [key])
+	}, [key, currentGeneration])
 
 	/** Richiede di nuovo i dati: la promessa vale true se l'aggiornamento è riuscito. */
 	const reload = useCallback(() => {
