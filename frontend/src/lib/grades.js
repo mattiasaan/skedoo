@@ -96,7 +96,8 @@ export function requiredGrade(subject, target) {
 	const weight = valid.reduce((sum, grade) => sum + (grade.peso || 1), 0)
 	const sum = valid.reduce((total, grade) => total + grade.valore * (grade.peso || 1), 0)
 	const needed = target * (weight + 1) - sum
-	return { value: Math.ceil(needed * 4) / 4, count: valid.length }
+	// tolleranza: con pesi come 0.1 o 0.3 il risultato può uscire 6.5000000001 e salire a 6.75 per errore
+	return { value: Math.ceil(needed * 4 - 1e-9) / 4, count: valid.length }
 }
 
 export function averageLabel(value) {

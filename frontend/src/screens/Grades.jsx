@@ -97,16 +97,18 @@ function Simulator({ subjects }) {
 
 	const result = requiredGrade(subject, target)
 	const needed = String(Number(result.value.toFixed(2)))
+	// 2 decimali: con toFixed(1) 6.25 diventava "6.3" e 6.75 "6.8", diverso dal valore usato nel calcolo
+	const targetLabel = String(Number(target.toFixed(2)))
 
 	let message
 	if (result.value <= 1) {
-		message = <>La tua media è {formatNumber(subject.media, 2)}: resti sopra il <b>{target.toFixed(1)}</b> qualunque sia il prossimo voto.</>
+		message = <>La tua media è {formatNumber(subject.media, 2)}: resti sopra il <b>{targetLabel}</b> qualunque sia il prossimo voto.</>
 	} else if (result.value > 10) {
-		message = <>Con un solo voto non basta: anche un <b>10</b> lascerebbe la media sotto il <b>{target.toFixed(1)}</b>. Servono più prove positive.</>
+		message = <>Con un solo voto non basta: anche un <b>10</b> lascerebbe la media sotto il <b>{targetLabel}</b>. Servono più prove positive.</>
 	} else if (subject.media >= target) {
-		message = <>Sei già sopra il <b>{target.toFixed(1)}</b>: per restarci ti serve almeno <b className="prediction__value">{needed}</b> nella prossima verifica.</>
+		message = <>Sei già sopra il <b>{targetLabel}</b>: per restarci ti serve almeno <b className="prediction__value">{needed}</b> nella prossima verifica.</>
 	} else {
-		message = <>Per raggiungere la media del <b>{target.toFixed(1)}</b> devi prendere almeno <b className="prediction__value">{needed}</b> nella prossima verifica!</>
+		message = <>Per raggiungere la media del <b>{targetLabel}</b> devi prendere almeno <b className="prediction__value">{needed}</b> nella prossima verifica!</>
 	}
 
 	return (
@@ -135,7 +137,7 @@ function Simulator({ subjects }) {
 
 			<div className="simulator-card__target">
 				<label htmlFor="simulator-target">Media desiderata:</label>
-				<output htmlFor="simulator-target">{target.toFixed(1)}</output>
+				<output htmlFor="simulator-target">{targetLabel}</output>
 			</div>
 			<input
 				className="range"
