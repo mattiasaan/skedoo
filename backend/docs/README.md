@@ -174,7 +174,8 @@ python -m scripts.bacheca_fetch.ocr_changes --min-affidabilita media
 
 1. per ogni comunicazione trovata prende le immagini allegate (i PDF vengono ignorati);
 2. le legge con l'OCR di `helper/OCR/V4-AI` (Qwen3-VL via Ollama) in un processo separato:
-   `OCR_PYTHON` deve avere `opencv-python` e `numpy`, Ollama deve essere avviato con il modello di `config.json`;
+   di default con lo stesso Python del backend (`opencv-python` e `numpy` sono in `requirements.txt`; `OCR_PYTHON`
+   per usarne un altro), Ollama deve essere avviato con il modello di `config.json`;
 3. i risultati sono in cache per contenuto (`data/bacheca_fetch/ocr/`): un'immagine già letta non si rilegge;
 4. tiene solo le voci con affidabilità almeno `BACHECA_OCR_MIN_AFFIDABILITA` (default `alta`) e la data del
    cartellone solo se affidabile o coerente con la data di pubblicazione;
