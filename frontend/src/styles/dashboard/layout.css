@@ -136,13 +136,6 @@
   font-size: 14px;
 }
 
-.avatar--large {
-  width: 96px;
-  height: 96px;
-  font-size: 28px;
-  box-shadow: 0 0 0 8px rgba(16, 185, 129, 0.06), 0 0 0 9px var(--border);
-}
-
 .avatar--online::after {
   position: absolute;
   right: -1px;
