@@ -95,9 +95,10 @@ def test_grades_grouped_with_averages(client, auth):
   r = client.get("/grades", headers=auth).json()
   mat = {m["materia"]: m for m in r["materie"]}
   assert [m["materia"] for m in r["materie"]] == ["ITALIANO", "MATEMATICA"]
-  assert mat["MATEMATICA"]["media"] == 7.0  # (7*1 + 5.5*2 + 10*1) / 4, media pesata
-  assert [g["id"] for g in mat["MATEMATICA"]["voti"]] == [5, 2, 1]  # dal più recente
-  assert mat["MATEMATICA"]["voti"][1]["voto"] == "5½" and mat["MATEMATICA"]["voti"][1]["colore"] == "red"
+  assert mat["MATEMATICA"]["media"] == 7.0  # (7*1 + 5.5*2 + 10*1) / 4, media pesata; il 2 "non fa media" è escluso
+  assert [g["id"] for g in mat["MATEMATICA"]["voti"]] == [5, 6, 2, 1]  # dal più recente
+  assert [g["fa_media"] for g in mat["MATEMATICA"]["voti"]] == [True, False, True, True]
+  assert mat["MATEMATICA"]["voti"][2]["voto"] == "5½" and mat["MATEMATICA"]["voti"][2]["colore"] == "red"
   assert mat["ITALIANO"]["media"] is None  # "Ottimo" non è numerico, il 9 è annullato
   assert r["media_generale"] == 7.0
   assert ("voti", "26") in FakeUtente.calls  # anno scolastico 2026/27
@@ -128,7 +129,7 @@ def test_grades_include_period_position_and_teachers(client, auth):
   mat = {m["materia"]: m for m in r["materie"]}
   assert mat["MATEMATICA"]["docenti"] == ["BIANCHI ANNA"]
   assert mat["ITALIANO"]["docenti"] == []
-  assert [g["periodo_pos"] for g in mat["MATEMATICA"]["voti"]] == [2, 1, 1]
+  assert [g["periodo_pos"] for g in mat["MATEMATICA"]["voti"]] == [2, 1, 1, 1]
 
 
 def test_grades_work_without_teachers(client, auth):
