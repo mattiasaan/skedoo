@@ -8,6 +8,11 @@ export function lessonsOfDay(schedule, date) {
 	return schedule?.giorni?.find((day) => day.giorno === key)?.lezioni ?? []
 }
 
+const CANCEL_FROM = {
+	uscita_anticipata: 'Uscita anticipata',
+	senza_lezioni_pomeridiane: 'Niente lezioni pomeridiane',
+}
+
 /** Variazioni del giorno (cambi aula, entrate posticipate, uscite anticipate) applicate alle singole ore. */
 function applyChanges(lessons, changes) {
 	return lessons.map((lesson) => {
@@ -15,11 +20,11 @@ function applyChanges(lessons, changes) {
 		let cancelled = null
 		for (const change of changes) {
 			if (change.ora == null || lesson.ora == null) continue
-			if (change.tipo === 'cambio_aula' && change.ora === lesson.ora && change.nuova_aula) {
-				roomChange = change.nuova_aula
-			}
+			// un cambio aula può durare più ore: `ore` le elenca tutte (le risposte più vecchie hanno solo `ora`)
+			const hours = change.ore?.length ? change.ore : [change.ora]
+			if (change.tipo === 'cambio_aula' && change.nuova_aula && hours.includes(lesson.ora)) roomChange = change.nuova_aula
 			if (change.tipo === 'entrata_posticipata' && lesson.ora < change.ora) cancelled = 'Entrata posticipata'
-			if (change.tipo === 'uscita_anticipata' && lesson.ora >= change.ora) cancelled = 'Uscita anticipata'
+			if (CANCEL_FROM[change.tipo] && lesson.ora >= change.ora) cancelled = CANCEL_FROM[change.tipo]
 		}
 		return { ...lesson, roomChange, cancelled }
 	})

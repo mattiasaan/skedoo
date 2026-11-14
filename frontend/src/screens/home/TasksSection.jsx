@@ -4,7 +4,7 @@ import { useApp } from '../../lib/appContext.js'
 import { useUpcomingAgenda } from '../../lib/data.js'
 
 /** "Compiti & Verifiche": prossimi compiti e verifiche dall'agenda ClasseViva. */
-export function TasksSection({ limit = 4 }) {
+export function TasksSection({ limit = 3 }) {
 	const { navigate } = useApp()
 	const agenda = useUpcomingAgenda()
 	const tasks = agenda.items.filter((item) => item.kind === 'compito' || item.kind === 'verifica').slice(0, limit)

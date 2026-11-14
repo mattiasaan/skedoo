@@ -46,7 +46,7 @@
   --mono: 'JetBrains Mono', ui-monospace, monospace;
 
   --gutter: 16px;
-  --nav-height: 76px;
+  --nav-height: 58px;
 
   background: var(--bg);
   color: var(--text);
