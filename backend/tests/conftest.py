@@ -89,6 +89,10 @@ class FakeUtente:
     FakeUtente.calls.append(("assenze",))
     return ABSENCES
 
+  async def bacheca_leggi(self, codice, id_):
+    FakeUtente.calls.append(("bacheca_leggi", codice, id_))
+    return {"item": {"title": "Circolare 1", "text": "Testo"}, "reply": {"interno": "non va esposto"}}
+
   async def agenda_da_a(self, inizio, fine):
     FakeUtente.calls.append(("agenda", inizio, fine))
     if inizio > "2026-12-31":

@@ -56,6 +56,8 @@ async def protect(request: Request, call_next):
     response.headers.setdefault(name, value)
   if settings.is_production:
     response.headers.setdefault("Strict-Transport-Security", "max-age=31536000; includeSubDomains")
+    # l'API restituisce solo JSON (in sviluppo /docs ha bisogno di script e stili esterni)
+    response.headers.setdefault("Content-Security-Policy", "default-src 'none'; frame-ancestors 'none'")
   return response
 
 

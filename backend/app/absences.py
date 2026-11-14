@@ -6,6 +6,7 @@ from pydantic import BaseModel, Field
 from .classeviva import CvSession
 from .errors import AppError
 from .security import current_session, upstream_limit
+from .validation import check_date_range
 
 router = APIRouter(prefix="/assenze", tags=["Assenze"], dependencies=[Depends(upstream_limit)])
 
@@ -70,5 +71,7 @@ async def get_absences(
 ):
   if (da is None) != (a is None):
     raise AppError(422, "invalid_range", "Specificare entrambe le date da e a")
+  if da and a:
+    check_date_range(da, a)
   raw = await session.call("assenze_da_a", da.isoformat(), a.isoformat()) if da and a else await session.call("assenze")
   return build_absences(raw)

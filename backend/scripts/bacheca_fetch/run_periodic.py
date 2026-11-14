@@ -70,7 +70,15 @@ def _fetch_args() -> list[str]:
 
 
 async def cycle(args: list[str], with_ocr: bool) -> None:
-  """Un giro completo: fetch della bacheca e, se riuscito, OCR dei cartelloni."""
+  """Un giro completo. Un errore imprevisto viene registrato ma non ferma il servizio: si riprova al giro dopo."""
+  try:
+    await _cycle(args, with_ocr)
+  except Exception:  # noqa: BLE001 - un processo periodico non deve morire per un errore di un singolo giro
+    log.exception("Errore inatteso durante l'aggiornamento della bacheca; riprovo al prossimo ciclo")
+
+
+async def _cycle(args: list[str], with_ocr: bool) -> None:
+  """Fetch della bacheca e, se riuscito, OCR dei cartelloni."""
   result = await fetch_bacheca.main(args)
   if result:
     log.error("Fetch fallito con codice %s; riprovo al prossimo ciclo", result)
