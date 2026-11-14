@@ -54,12 +54,12 @@ Gli orari si leggono da `data/`: `classi_index.json` (facoltativo) e `classi/<ID
 | GET | `/schedules/classes` | `[{id, nome, docente_coordinatore, pomeriggio}]` |
 | GET | `/schedules/{classe}` | orario completo (id non sensibile a maiuscole: `1a` = `1A`) |
 | GET | `/schedules/{classe}/today` | lezioni di oggi (fuso Europe/Rome) |
-| GET | `/grades?anno=26&periodo=1` | voti per materia con medie |
+| GET | `/grades?anno=26&periodo=1` | voti per materia con medie e docenti della materia |
 | GET | `/agenda?da=YYYY-MM-DD&a=YYYY-MM-DD` | eventi per giorno (default oggi…+13 giorni, max 366) |
 | GET | `/didattica` | materiali didattici organizzati per docente e cartella |
 | GET | `/bacheca` | circolari e comunicazioni, con allegati |
 | GET | `/bacheca/{codice}/{id}` | dettaglio di una comunicazione |
-| GET | `/assenze?da=YYYY-MM-DD&a=YYYY-MM-DD` | assenze, ritardi e uscite; senza date restituisce l'anno |
+| GET | `/assenze?da=YYYY-MM-DD&a=YYYY-MM-DD` | assenze, ritardi e uscite con `riepilogo`; senza date restituisce l'anno |
 | GET | `/changes?classe=1A` | tutte le modifiche della classe dal JSON della bacheca |
 | GET | `/changes/entrate-uscite?classe=1A` | entrate e uscite della classe |
 | GET | `/changes/cambi-aula?classe=1A` | cambi aula della classe |
@@ -78,9 +78,16 @@ Gli orari si leggono da `data/`: `classi_index.json` (facoltativo) e `classi/<ID
 
 // /grades
 {"anno":"26","periodo":null,"media_generale":7.4,
- "materie":[{"materia_id":1,"materia":"MATEMATICA","media":7.5,
-   "voti":[{"id":1,"data":"2026-10-02","voto":"7+","valore":7.25,"tipo":"Scritto","periodo":"1","peso":1.0,"note":null,"colore":"green","annullato":false}]}]}
+ "materie":[{"materia_id":1,"materia":"MATEMATICA","media":7.5,"docenti":["BIANCHI ANNA"],
+   "voti":[{"id":1,"data":"2026-10-02","voto":"7+","valore":7.25,"tipo":"Scritto","periodo":"Primo periodo","periodo_pos":1,"peso":1.0,"note":null,"colore":"green","annullato":false}]}]}
 // "voto" è il testo da mostrare, "valore" serve per i calcoli (null per i giudizi)
+// "periodo_pos" permette al frontend di filtrare per quadrimestre con una sola richiesta
+// "docenti" arriva da ClasseViva `materie`: se non disponibile è [] e i voti arrivano comunque
+
+// /assenze
+{"eventi":[{"id":21,"data":"2026-10-08","tipo":"assenza","codice":"ABA0","ora":null,"giustificata":false,"motivo":null,"ore":[]}],
+ "riepilogo":{"assenze":2,"ritardi":2,"uscite":1,"da_giustificare":2}}
+// tipo: assenza (ABA0) | ritardo (ABR0, ABR1) | uscita (ABU0) | altro
 
 // /agenda
 {"giorni":[{"data":"2026-10-09","eventi":[

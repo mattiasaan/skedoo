@@ -123,6 +123,34 @@ def test_grades_errors(client, auth):
   assert "boom" not in r.text  # i dettagli interni non arrivano al client
 
 
+def test_grades_include_period_position_and_teachers(client, auth):
+  r = client.get("/grades", headers=auth).json()
+  mat = {m["materia"]: m for m in r["materie"]}
+  assert mat["MATEMATICA"]["docenti"] == ["BIANCHI ANNA"]
+  assert mat["ITALIANO"]["docenti"] == []
+  assert [g["periodo_pos"] for g in mat["MATEMATICA"]["voti"]] == [2, 1, 1]
+
+
+def test_grades_work_without_teachers(client, auth):
+  FakeUtente.no_subjects = True
+  r = client.get("/grades", headers=auth)
+  assert r.status_code == 200
+  assert all(m["docenti"] == [] for m in r.json()["materie"])
+
+
+# ---------- assenze ----------
+def test_absences_types_and_summary(client, auth):
+  r = client.get("/assenze", headers=auth).json()
+  assert [e["id"] for e in r["eventi"]] == [22, 25, 24, 23, 21]  # dal più recente
+  assert {e["id"]: e["tipo"] for e in r["eventi"]} == {21: "assenza", 22: "assenza", 23: "ritardo", 24: "ritardo", 25: "uscita"}
+  assert r["riepilogo"] == {"assenze": 2, "ritardi": 2, "uscite": 1, "da_giustificare": 2}
+
+
+def test_absences_need_both_dates(client, auth):
+  r = client.get("/assenze?da=2026-10-01", headers=auth)
+  assert r.status_code == 422 and r.json()["code"] == "invalid_range"
+
+
 # ---------- agenda ----------
 def test_agenda_grouped_by_day(client, auth):
   days = client.get("/agenda?da=2026-10-05&a=2026-10-10", headers=auth).json()["giorni"]
