@@ -3,7 +3,7 @@ import { api } from '../lib/api.js'
 import { useApp } from '../lib/appContext.js'
 import { useGrades, useMonthAgenda, useUpcomingAgenda } from '../lib/data.js'
 import { formatDateTime, formatLongDate, formatNumber, parseDateKey, relativeDay, teacherName, titleCase } from '../lib/format.js'
-import { averageLabel, gradeTone, subjectIcon, subjectsForTerm } from '../lib/grades.js'
+import { averageLabel, counted, gradeTone, subjectIcon, subjectsForTerm, usualWeight } from '../lib/grades.js'
 import { periodLabel, subjectMatches } from '../lib/schedule.js'
 import { useApi } from '../lib/useApi.js'
 import { Icon } from './Icon.jsx'
@@ -115,16 +115,18 @@ function LessonDetail({ lesson, onClose }) {
 
 // ---------- materia (voti) ----------
 function SubjectDetail({ name, onClose }) {
-	const { openDetail } = useApp()
+	const { openDetail, isGalilei } = useApp()
 	const grades = useGrades()
 	const upcoming = useUpcomingAgenda()
 	const subject = useMemo(
-		() => subjectsForTerm(grades.data, null).find((item) => subjectMatches(name, item.materia)),
-		[grades.data, name],
+		() => subjectsForTerm(grades.data, null, { practicalSplit: isGalilei }).find((item) => subjectMatches(name, item.materia)),
+		[grades.data, name, isGalilei],
 	)
 	const title = subject?.name ?? titleCase(name)
 	const events = upcoming.items.filter((item) => subjectMatches(title, item.subject))
-	const chronological = subject ? [...subject.voti].filter((grade) => grade.valore != null && !grade.annullato).reverse() : []
+	const chronological = subject ? subject.voti.filter(counted).reverse() : []
+	// il peso si mostra rispetto a quello ordinario della materia: ClasseViva può mandare 1 o 100 per lo stesso 100%
+	const usual = usualWeight(chronological)
 
 	return (
 		<Sheet kicker="Dettaglio materia" onClose={onClose} title={title}>
@@ -159,11 +161,11 @@ function SubjectDetail({ name, onClose }) {
 						<h3>Tutti i voti</h3>
 						<ul className="grade-list">
 							{subject.voti.map((grade) => (
-								<li className={`grade-list__item${grade.annullato ? ' grade-list__item--void' : ''}`} key={grade.id}>
+								<li className={`grade-list__item${grade.annullato || grade.fa_media === false ? ' grade-list__item--void' : ''}`} key={grade.id}>
 									<span className={`grade-chip grade-chip--${gradeTone(grade.valore)}`}>{grade.voto || '—'}</span>
 									<span>
-										<strong>{grade.tipo ?? 'Valutazione'}{grade.annullato ? ' (annullato)' : ''}</strong>
-										<small>{relativeDay(grade.data)}{grade.peso != null && grade.peso !== 1 ? ` • peso ${grade.peso * 100}%` : ''}</small>
+										<strong>{grade.tipo ?? 'Valutazione'}{grade.annullato ? ' (annullato)' : grade.fa_media === false ? ' (non fa media)' : ''}</strong>
+										<small>{relativeDay(grade.data)}{grade.peso != null && grade.peso > 0 && grade.peso !== usual ? ` • peso ${Math.round((grade.peso / usual) * 100)}%` : ''}</small>
 										{grade.note && <em>{grade.note}</em>}
 									</span>
 								</li>

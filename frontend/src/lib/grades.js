@@ -1,8 +1,8 @@
 import { titleCase } from './format.js'
 
-// Stesse regole del backend (app/grades.py): media pesata, esclusi annullati, giudizi e pesi non positivi.
-function counted(grade) {
-	return !grade.annullato && grade.valore != null && (grade.peso == null || grade.peso > 0)
+// Stesse regole del backend (app/grades.py): media pesata, esclusi annullati, "non fa media", giudizi e pesi non positivi.
+export function counted(grade) {
+	return !grade.annullato && grade.fa_media !== false && grade.valore != null && (grade.peso == null || grade.peso > 0)
 }
 
 export function weightedAverage(grades) {
@@ -10,6 +10,23 @@ export function weightedAverage(grades) {
 	if (!valid.length) return null
 	const total = valid.reduce((sum, grade) => sum + (grade.peso || 1), 0)
 	return valid.reduce((sum, grade) => sum + grade.valore * (grade.peso || 1), 0) / total
+}
+
+export function isPractical(grade) {
+	return /pratic/i.test(grade.tipo ?? '')
+}
+
+/**
+ * Media di una materia. Con `practicalSplit` (scuole Galilei) i pratici valgono meno:
+ * media di scritti e orali × 2/3 + media dei pratici × 1/3; se c'è un solo gruppo vale la sua media.
+ * Dentro ogni gruppo restano i pesi di ClasseViva (a pesi uguali è la media semplice).
+ */
+export function subjectAverage(grades, practicalSplit = false) {
+	if (!practicalSplit) return weightedAverage(grades)
+	const theory = weightedAverage(grades.filter((grade) => !isPractical(grade)))
+	const practical = weightedAverage(grades.filter(isPractical))
+	if (theory == null || practical == null) return theory ?? practical
+	return theory * (2 / 3) + practical * (1 / 3)
 }
 
 export function generalAverage(subjects) {
@@ -41,12 +58,15 @@ export function currentTerm(grades) {
 	return latest?.periodo_pos ?? termsOf(grades)[0]?.pos ?? null
 }
 
-/** Materie con soli i voti del periodo `pos` (null = tutto l'anno) e media ricalcolata. */
-export function subjectsForTerm(grades, pos) {
+/**
+ * Materie con soli i voti del periodo `pos` (null = tutto l'anno) e media ricalcolata.
+ * `practicalSplit`: pratici a 1/3 (vedi subjectAverage); resta sulla materia per andamento e simulatore.
+ */
+export function subjectsForTerm(grades, pos, { practicalSplit = false } = {}) {
 	return (grades?.materie ?? [])
 		.map((subject) => {
 			const voti = pos == null ? subject.voti : subject.voti.filter((grade) => grade.periodo_pos === pos)
-			return { ...subject, voti, media: weightedAverage(voti), name: titleCase(subject.materia) }
+			return { ...subject, voti, practicalSplit, media: subjectAverage(voti, practicalSplit), name: titleCase(subject.materia) }
 		})
 		.filter((subject) => subject.voti.length > 0)
 }
@@ -72,7 +92,7 @@ export function averageTimeline(subjects, maxPoints = 10) {
 	const dates = [...new Set(subjects.flatMap((subject) => subject.voti.filter(counted).map((grade) => grade.data)))].sort()
 	const points = dates.map((date) => {
 		const averages = subjects
-			.map((subject) => weightedAverage(subject.voti.filter((grade) => grade.data <= date)))
+			.map((subject) => subjectAverage(subject.voti.filter((grade) => grade.data <= date), subject.practicalSplit))
 			.filter((value) => value != null)
 		return { date, value: averages.reduce((sum, value) => sum + value, 0) / averages.length }
 	})
@@ -85,19 +105,46 @@ export function averageTimeline(subjects, maxPoints = 10) {
 /** Media generale alla data indicata (per "+0.2 questo mese"). */
 export function averageAt(subjects, date) {
 	const averages = subjects
-		.map((subject) => weightedAverage(subject.voti.filter((grade) => grade.data <= date)))
+		.map((subject) => subjectAverage(subject.voti.filter((grade) => grade.data <= date), subject.practicalSplit))
 		.filter((value) => value != null)
 	return averages.length ? averages.reduce((sum, value) => sum + value, 0) / averages.length : null
 }
 
-/** Voto minimo (a passi di 0.25) per portare la media della materia a `target` con un voto di peso 1. */
-export function requiredGrade(subject, target) {
+/** Peso più frequente tra i voti (a parità, il più alto): è il peso "ordinario" del prossimo voto. */
+export function usualWeight(grades) {
+	const counts = new Map()
+	for (const grade of grades) counts.set(grade.peso || 1, (counts.get(grade.peso || 1) ?? 0) + 1)
+	let best = 1
+	let bestCount = 0
+	for (const [weight, count] of counts) {
+		if (count > bestCount || (count === bestCount && weight > best)) [best, bestCount] = [weight, count]
+	}
+	return best
+}
+
+/**
+ * Voto minimo (a passi di 0.25, da 1 a 10) per portare la media della materia a `target` con un
+ * nuovo voto di peso ordinario; con `practical` il nuovo voto è un pratico (conta solo se la
+ * materia usa practicalSplit). `value` > 10: non basta neanche un 10.
+ * Il peso ordinario è il più frequente tra i voti dello stesso gruppo: ClasseViva non usa sempre
+ * peso 1 (alcune scuole mandano 100 = 100%) e un nuovo voto da 1 contro voti da 100 non conterebbe nulla.
+ * Si provano i voti uno per uno invece di invertire la formula: funziona con qualunque media.
+ */
+export function requiredGrade(subject, target, { practical = false } = {}) {
 	const valid = subject.voti.filter(counted)
-	const weight = valid.reduce((sum, grade) => sum + (grade.peso || 1), 0)
-	const sum = valid.reduce((total, grade) => total + grade.valore * (grade.peso || 1), 0)
-	const needed = target * (weight + 1) - sum
-	// tolleranza: con pesi come 0.1 o 0.3 il risultato può uscire 6.5000000001 e salire a 6.75 per errore
-	return { value: Math.ceil(needed * 4 - 1e-9) / 4, count: valid.length }
+	const split = Boolean(subject.practicalSplit)
+	const group = split ? valid.filter((grade) => isPractical(grade) === practical) : valid
+	const peso = usualWeight(group.length ? group : valid)
+	const tipo = split && practical ? 'Pratico' : 'Scritto'
+	const reaches = (valore) => subjectAverage([...valid, { valore, peso, tipo }], split) >= target - 1e-9
+	let value = 10.25
+	for (let step = 4; step <= 40; step++) {
+		if (reaches(step / 4)) {
+			value = step / 4
+			break
+		}
+	}
+	return { value, count: valid.length }
 }
 
 export function averageLabel(value) {
