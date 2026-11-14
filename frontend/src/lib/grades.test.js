@@ -51,6 +51,11 @@ describe('medie', () => {
 		expect(requiredGrade(subject, 6)).toEqual({ value: 6.5, count: 2 }) // (6*3 - 11.5) = 6.5
 		expect(requiredGrade(subject, 9).value).toBeGreaterThan(10)
 		expect(requiredGrade({ voti: [] }, 7)).toEqual({ value: 7, count: 0 })
+		// obiettivo a quarti: 6.25*3 - 11.5 = 7.25
+		expect(requiredGrade(subject, 6.25).value).toBe(7.25)
+		// pesi non binari (0.1, 0.2): il risultato esatto 6.75 (calcolato 6.750000000000001) non deve salire a 7 per errori di virgola mobile
+		const fractional = { voti: [grade(1, '2026-10-01', 5, { peso: 0.1 }), grade(2, '2026-10-02', 6, { peso: 0.2 })] }
+		expect(requiredGrade(fractional, 6.5).value).toBe(6.75)
 	})
 
 	it('etichette', () => {
