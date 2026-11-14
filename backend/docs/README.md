@@ -59,7 +59,7 @@ Gli orari si leggono da `data/`: `classi_index.json` (facoltativo) e `classi/<ID
 | GET | `/agenda?da=YYYY-MM-DD&a=YYYY-MM-DD` | eventi per giorno (default oggi…+13 giorni, max 366) |
 | GET | `/didattica` | materiali didattici organizzati per docente e cartella |
 | GET | `/bacheca` | circolari e comunicazioni, con allegati |
-| GET | `/bacheca/{codice}/{id}` | dettaglio di una comunicazione |
+| GET | `/bacheca/{codice}/{id}` | dettaglio di una comunicazione `{titolo, testo}` (la segna come letta su ClasseViva) |
 | GET | `/assenze?da=YYYY-MM-DD&a=YYYY-MM-DD` | assenze, ritardi e uscite con `riepilogo`; senza date restituisce l'anno |
 | GET | `/changes?classe=1A&data=YYYY-MM-DD` | modifiche della classe (tutti i giorni nel file, o solo `data`) |
 | GET | `/changes/entrate-uscite?classe=1A` | entrate e uscite della classe |
@@ -97,7 +97,7 @@ Gli orari si leggono da `data/`: `classi_index.json` (facoltativo) e `classi/<ID
 
 ### Errori
 
-Formato `{"code": "...", "message": "..."}` (le validazioni di FastAPI restano il classico `422 {"detail":[...]}`).
+Formato `{"code": "...", "message": "..."}`. Le validazioni dei parametri rispondono `422 {"code": "validation_error", "message", "detail": [{"loc", "msg", "type"}]}`: a differenza del default di FastAPI non ripetono i valori inviati (es. la password).
 
 | Status | code | Quando |
 |---|---|---|
@@ -106,7 +106,8 @@ Formato `{"code": "...", "message": "..."}` (le validazioni di FastAPI restano i
 | 401 | `invalid_credentials` | login con password errata |
 | 404 | `class_not_found` | classe inesistente |
 | 413 | `payload_too_large` | body > 16 KB |
-| 422 | `invalid_range`, `range_too_large`, `invalid_parameter`, `date_out_of_range` | parametri agenda |
+| 422 | `validation_error` | parametri mancanti o nel formato sbagliato |
+| 422 | `invalid_range`, `range_too_large`, `invalid_parameter`, `date_out_of_range` | date di agenda e assenze |
 | 429 | `rate_limited`, `too_many_attempts` | troppe richieste (header `Retry-After`) |
 | 502 | `classeviva_error` | ClasseViva non risponde |
 | 500 | `internal_error` | errore inatteso, dettagli solo nei log |

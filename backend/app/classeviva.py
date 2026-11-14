@@ -56,15 +56,18 @@ class CvSession:
 
   async def call(self, method: str, *args):
     """Chiama un metodo di Utente (es. call("voti", "26")), con cache per `cache_ttl_seconds`."""
-    self.last_used = time.monotonic()
+    now = self.last_used = time.monotonic()
+    ttl = get_settings().cache_ttl_seconds
     key = (method, args)
     hit = self._cache.get(key)
-    if hit and time.monotonic() - hit[0] < get_settings().cache_ttl_seconds:
+    if hit and now - hit[0] < ttl:
       return hit[1]
     try:
       result = await asyncio.to_thread(self._run, method, args)
     except Exception as e:
       raise translate(e) from e
+    # la sessione può vivere giorni: si tengono solo le risposte ancora valide (es. tanti intervalli di agenda)
+    self._cache = {k: v for k, v in self._cache.items() if now - v[0] < ttl}
     self._cache[key] = (time.monotonic(), result)
     return result
 

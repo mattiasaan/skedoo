@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Request
+from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from sqlalchemy.exc import SQLAlchemyError
 
@@ -21,6 +22,12 @@ def register_error_handlers(app: FastAPI) -> None:
   @app.exception_handler(AppError)
   async def _app_error(_: Request, e: AppError):
     return error_response(e.status, e.code, e.message, e.headers)
+
+  @app.exception_handler(RequestValidationError)
+  async def _validation_error(_: Request, e: RequestValidationError):
+    # come FastAPI, ma senza "input"/"ctx": la risposta non deve ripetere i valori inviati (es. la password)
+    detail = [{"loc": list(err.get("loc", ())), "msg": err.get("msg", ""), "type": err.get("type", "")} for err in e.errors()]
+    return JSONResponse({"code": "validation_error", "message": "Parametri non validi", "detail": detail}, status_code=422)
 
   @app.exception_handler(SQLAlchemyError)
   async def _db_error(_: Request, e: SQLAlchemyError):

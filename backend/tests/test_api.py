@@ -228,3 +228,35 @@ def test_changes_errors(client, auth, data_dir):
   write_board_data(data_dir, BOARD_DAYS)
   assert client.get("/changes?classe=1A;DROP", headers=auth).status_code == 422
   assert client.get("/changes?classe=1A").status_code == 401
+
+
+# ---------- revisione: controlli e dati esposti ----------
+def test_absences_range_checks(client, auth):
+  r = client.get("/assenze?da=2026-10-10&a=2026-10-01", headers=auth)
+  assert r.status_code == 422 and r.json()["code"] == "invalid_range"
+  r = client.get("/assenze?da=2025-01-01&a=2026-10-01", headers=auth)
+  assert r.status_code == 422 and r.json()["code"] == "range_too_large"
+
+
+def test_board_detail_does_not_expose_raw_classeviva_data(client, auth):
+  r = client.get("/bacheca/CF/12", headers=auth)
+  assert r.status_code == 200
+  assert r.json() == {"titolo": "Circolare 1", "testo": "Testo"}
+  assert "interno" not in r.text
+
+
+def test_validation_errors_do_not_echo_input(client):
+  secret = "segreta-" + "x" * 300  # oltre i 256 caratteri ammessi
+  r = client.post("/auth/login", json={"username": "S123X", "password": secret})
+  assert r.status_code == 422 and r.json()["code"] == "validation_error"
+  assert r.json()["detail"][0]["loc"] == ["body", "password"]
+  assert "segreta" not in r.text
+
+
+def test_session_cache_drops_expired_entries(client, auth, settings, monkeypatch):
+  from app import classeviva
+  session = next(iter(classeviva.store._sessions.values()))
+  monkeypatch.setattr(settings, "cache_ttl_seconds", 0)  # ogni risposta è subito scaduta
+  client.get("/agenda?da=2026-10-01&a=2026-10-05", headers=auth)
+  client.get("/agenda?da=2026-10-06&a=2026-10-10", headers=auth)
+  assert len(session._cache) == 1  # restano solo le risposte ancora valide
