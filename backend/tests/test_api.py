@@ -123,6 +123,34 @@ def test_grades_errors(client, auth):
   assert "boom" not in r.text  # i dettagli interni non arrivano al client
 
 
+def test_grades_include_period_position_and_teachers(client, auth):
+  r = client.get("/grades", headers=auth).json()
+  mat = {m["materia"]: m for m in r["materie"]}
+  assert mat["MATEMATICA"]["docenti"] == ["BIANCHI ANNA"]
+  assert mat["ITALIANO"]["docenti"] == []
+  assert [g["periodo_pos"] for g in mat["MATEMATICA"]["voti"]] == [2, 1, 1]
+
+
+def test_grades_work_without_teachers(client, auth):
+  FakeUtente.no_subjects = True
+  r = client.get("/grades", headers=auth)
+  assert r.status_code == 200
+  assert all(m["docenti"] == [] for m in r.json()["materie"])
+
+
+# ---------- assenze ----------
+def test_absences_types_and_summary(client, auth):
+  r = client.get("/assenze", headers=auth).json()
+  assert [e["id"] for e in r["eventi"]] == [22, 25, 24, 23, 21]  # dal più recente
+  assert {e["id"]: e["tipo"] for e in r["eventi"]} == {21: "assenza", 22: "assenza", 23: "ritardo", 24: "ritardo", 25: "uscita"}
+  assert r["riepilogo"] == {"assenze": 2, "ritardi": 2, "uscite": 1, "da_giustificare": 2}
+
+
+def test_absences_need_both_dates(client, auth):
+  r = client.get("/assenze?da=2026-10-01", headers=auth)
+  assert r.status_code == 422 and r.json()["code"] == "invalid_range"
+
+
 # ---------- agenda ----------
 def test_agenda_grouped_by_day(client, auth):
   days = client.get("/agenda?da=2026-10-05&a=2026-10-10", headers=auth).json()["giorni"]
@@ -146,3 +174,89 @@ def test_agenda_errors(client, auth):
   assert code("da=2026-01-01&a=2028-01-01") == "range_too_large"
   assert code("da=2027-03-01&a=2027-03-02") == "date_out_of_range"  # fuori dall'anno scolastico (da ClasseViva)
   assert client.get("/agenda?da=boh", headers=auth).status_code == 422
+
+
+# ---------- variazioni (file prodotto da bacheca -> OCR) ----------
+def write_board_data(data_dir, payload):
+  (data_dir / "dati-bacheca").mkdir(exist_ok=True)
+  (data_dir / "dati-bacheca" / "data.json").write_text(json.dumps(payload), encoding="utf-8")
+
+
+BOARD_DAYS = {"giorni": [
+  {"data_iso": "2026-11-17",
+   "entrate": [{"unit_id": "e1", "ora": "09:50", "classi": ["1A", "2B"]}],
+   "uscite": [{"unit_id": "u1", "ora": "12:35", "classi": ["3C/T"], "note": "Assemblea"}],
+   "senza_lezioni_pomeridiane": [{"unit_id": "p1", "classi": ["1A"]}],
+   "cambi_aula": [{"unit_id": "a1", "classe": "1A", "orario": "09:50 - 11:45", "aula": "AULA B108"},
+                  {"unit_id": "a2", "classe_dedotta": "1A", "orario": "10:55 - 11:45", "aula": "LAB. B201"}]},
+  {"data_iso": "2026-11-18", "entrate": [], "uscite": [], "cambi_aula": [{"unit_id": "a3", "classe": "1a", "orario": "08:10 - 09:00", "aula": "AULA B1"}]},
+]}
+
+
+def test_changes_multiple_days_and_hours(client, auth, data_dir):
+  write_board_data(data_dir, BOARD_DAYS)
+  changes = client.get("/changes?classe=1A", headers=auth).json()
+  by_id = {c["id"].split("-")[0] + "-" + c["id"].split("-")[-1]: c for c in changes}
+  assert [c["data"] for c in changes] == ["2026-11-17"] * 4 + ["2026-11-18"]
+  assert by_id["entrate-e1"]["tipo"] == "entrata_posticipata" and by_id["entrate-e1"]["ora"] == 3
+  assert by_id["aula-a1"]["ore"] == [3, 4]  # la 5ª inizia alle 11:45, quando il cambio finisce and by_id["aula-a1"]["nuova_aula"] == "AULA B108"
+  assert by_id["aula-a2"]["ore"] == [4]  # orario fuori griglia: solo le ore che si sovrappongono (4ª: 10:40-11:30)
+  assert by_id["pomeriggio-p1"]["tipo"] == "senza_lezioni_pomeridiane" and by_id["pomeriggio-p1"]["ora"] == 8
+  only_day = client.get("/changes?classe=1A&data=2026-11-18", headers=auth).json()
+  assert [c["nuova_aula"] for c in only_day] == ["AULA B1"]
+
+
+def test_changes_articulated_class_and_filters(client, auth, data_dir):
+  write_board_data(data_dir, BOARD_DAYS)
+  exits = client.get("/changes/entrate-uscite?classe=3T", headers=auth).json()
+  assert [(c["tipo"], c["ora"]) for c in exits] == [("uscita_anticipata", 6)]  # "3C/T" vale anche per 3T
+  rooms = client.get("/changes/cambi-aula?classe=1A", headers=auth).json()
+  assert {c["tipo"] for c in rooms} == {"cambio_aula"}
+
+
+def test_changes_legacy_single_day_format(client, auth, data_dir):
+  write_board_data(data_dir, {"data_iso": "2026-03-30", "entrate": [], "uscite": [],
+                              "cambi_aula": [{"unit_id": "x", "classe": "2B", "aula": "AULA D205", "orario": "08:10 - 09:00"}]})
+  r = client.get("/changes?classe=2b", headers=auth).json()
+  assert r == [{"id": "aula-2026-03-30-x", "data": "2026-03-30", "ora": 1, "ore": [1], "tipo": "cambio_aula",
+                "testo": "Aula cambiata: AULA D205", "nuova_aula": "AULA D205", "orario": "08:10 - 09:00"}]
+
+
+def test_changes_errors(client, auth, data_dir):
+  r = client.get("/changes?classe=1A", headers=auth)
+  assert r.status_code == 503 and r.json()["code"] == "changes_unavailable"  # file non ancora prodotto
+  write_board_data(data_dir, BOARD_DAYS)
+  assert client.get("/changes?classe=1A;DROP", headers=auth).status_code == 422
+  assert client.get("/changes?classe=1A").status_code == 401
+
+
+# ---------- revisione: controlli e dati esposti ----------
+def test_absences_range_checks(client, auth):
+  r = client.get("/assenze?da=2026-10-10&a=2026-10-01", headers=auth)
+  assert r.status_code == 422 and r.json()["code"] == "invalid_range"
+  r = client.get("/assenze?da=2025-01-01&a=2026-10-01", headers=auth)
+  assert r.status_code == 422 and r.json()["code"] == "range_too_large"
+
+
+def test_board_detail_does_not_expose_raw_classeviva_data(client, auth):
+  r = client.get("/bacheca/CF/12", headers=auth)
+  assert r.status_code == 200
+  assert r.json() == {"titolo": "Circolare 1", "testo": "Testo"}
+  assert "interno" not in r.text
+
+
+def test_validation_errors_do_not_echo_input(client):
+  secret = "segreta-" + "x" * 300  # oltre i 256 caratteri ammessi
+  r = client.post("/auth/login", json={"username": "S123X", "password": secret})
+  assert r.status_code == 422 and r.json()["code"] == "validation_error"
+  assert r.json()["detail"][0]["loc"] == ["body", "password"]
+  assert "segreta" not in r.text
+
+
+def test_session_cache_drops_expired_entries(client, auth, settings, monkeypatch):
+  from app import classeviva
+  session = next(iter(classeviva.store._sessions.values()))
+  monkeypatch.setattr(settings, "cache_ttl_seconds", 0)  # ogni risposta è subito scaduta
+  client.get("/agenda?da=2026-10-01&a=2026-10-05", headers=auth)
+  client.get("/agenda?da=2026-10-06&a=2026-10-10", headers=auth)
+  assert len(session._cache) == 1  # restano solo le risposte ancora valide

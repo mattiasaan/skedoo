@@ -31,7 +31,6 @@ class BoardOut(BaseModel):
 class BoardDetailOut(BaseModel):
   titolo: str | None = None
   testo: str | None = None
-  risposta: dict | None = None
 
 
 def _items(raw) -> list[dict]:
@@ -68,5 +67,6 @@ async def get_board_item(
 ):
   raw = await session.call("bacheca_leggi", codice, id)
   item = raw.get("item", raw) if isinstance(raw, dict) else {}
-  return BoardDetailOut(titolo=item.get("title"), testo=item.get("text"),
-                        risposta=raw.get("reply") if isinstance(raw, dict) else None)
+  if not isinstance(item, dict):
+    item = {}
+  return BoardDetailOut(titolo=item.get("title"), testo=item.get("text"))

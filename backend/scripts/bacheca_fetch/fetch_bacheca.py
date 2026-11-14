@@ -8,6 +8,7 @@ from __future__ import annotations
 import argparse
 import asyncio
 import json
+import logging
 import os
 import re
 import sys
@@ -24,6 +25,8 @@ DEFAULT_PATTERN = (
 )
 BACKEND_DIR = Path(__file__).resolve().parent.parent
 ENV_FILE = BACKEND_DIR / ".env"
+
+log = logging.getLogger("skedoo.bacheca_fetch")
 
 
 def _text(value: Any) -> str:
@@ -66,8 +69,13 @@ async def fetch_board(username: str, password: str) -> tuple[Any, list[dict[str,
     raise RuntimeError("Dipendenza Classeviva.py non installata") from exc
 
   user = Utente(username, password)
-  await user.accedi()
-  board = await user.bacheca()
+  try:
+    await user.accedi()
+    board = await user.bacheca()
+  except (RuntimeError, OSError):
+    raise
+  except Exception as exc:  # eccezioni di Classeviva.py (password errata, errori HTTP...): mai le credenziali nel messaggio
+    raise RuntimeError(f"ClasseViva ha rifiutato la richiesta ({exc.__class__.__name__})") from exc
   if not isinstance(board, list) or not all(isinstance(entry, Mapping) for entry in board):
     raise RuntimeError("La risposta della bacheca ClasseViva non ha il formato atteso")
   return user, [dict(entry) for entry in board]
@@ -78,49 +86,61 @@ def _safe_filename(name: Any, fallback: str) -> str:
   return filename if filename not in {"", ".", ".."} else fallback
 
 
+def _destination(output_dir: Path, match: Mapping[str, Any], position: int, attachment: Mapping[str, Any]) -> Path:
+  attachment_number = attachment.get("attachNum") or position
+  filename = _safe_filename(attachment.get("fileName"), f"allegato_{attachment_number}")
+  return output_dir / f"{match.get('cntId')}_{attachment_number}_{filename}"
+
+
 async def download_attachments(
   user: Any, matches: list[dict[str, Any]], output_dir: Path,
 ) -> int:
-  """Scarica gli allegati dei match e aggiunge i percorsi locali al JSON."""
+  """Scarica gli allegati dei match e aggiunge i percorsi locali al JSON.
+
+  Gli allegati già presenti sul disco non si riscaricano (il fetch gira ogni 15 minuti).
+  Una comunicazione che non si riesce a scaricare viene registrata e saltata: non blocca le altre.
+  Restituisce il numero di file scaricati in questo giro."""
   downloaded = 0
   output_dir.mkdir(parents=True, exist_ok=True)
+  for match in matches:
+    attachments = [a for a in match.get("attachments") or [] if isinstance(a, Mapping)]
+    targets = [(position, attachment, _destination(output_dir, match, position, attachment))
+               for position, attachment in enumerate(attachments, start=1)]
+    missing = [target for target in targets if not (target[2].is_file() and target[2].stat().st_size > 0)]
+    try:
+      if missing:
+        downloaded += await _download_match(user, match, missing)
+    except RuntimeError as exc:
+      log.error("%s", exc)
+    match["downloaded_attachments"] = [str(path) for _, _, path in targets if path.is_file()]
+  return downloaded
+
+
+async def _download_match(user: Any, match: Mapping[str, Any], targets: list[tuple[int, Mapping, Path]]) -> int:
   try:
     from classeviva import eccezioni
   except ImportError as exc:
     raise RuntimeError("Dipendenza Classeviva.py non installata") from exc
-  for match in matches:
-    codice = match.get("evtCode")
-    content_id = match.get("cntId")
-    publication_id = match.get("pubId")
-    attachments = match.get("attachments") or []
-    if not isinstance(attachments, list):
-      continue
-
-    local_files: list[str] = []
-    if not codice or not publication_id:
-      raise RuntimeError("Match senza evtCode o pubId: impossibile scaricare gli allegati")
+  codice, content_id, publication_id = match.get("evtCode"), match.get("cntId"), match.get("pubId")
+  if not codice or not publication_id:
+    raise RuntimeError(f"Comunicazione senza evtCode o pubId ({match.get('cntTitle') or 'senza titolo'}): allegati saltati")
+  try:
+    await user.bacheca_leggi(str(codice), int(publication_id))  # apre la comunicazione: serve per scaricare
+  except eccezioni.ErroreHTTP as exc:
+    raise RuntimeError(f"Impossibile aprire la comunicazione {publication_id}: {exc.__class__.__name__}") from exc
+  count = 0
+  for position, attachment, destination in targets:
+    attachment_number = attachment.get("attachNum") or position
     try:
-      await user.bacheca_leggi(str(codice), int(publication_id))
-    except eccezioni.ErroreHTTP as exc:
-      raise RuntimeError(
-        f"Impossibile aprire la comunicazione {publication_id}: {exc.__class__.__name__}"
-      ) from exc
-    for position, attachment in enumerate(attachments, start=1):
-      if not isinstance(attachment, Mapping):
-        continue
-      attachment_number = attachment.get("attachNum") or position
-      filename = _safe_filename(attachment.get("fileName"), f"allegato_{attachment_number}")
-      destination = output_dir / f"{content_id}_{attachment_number}_{filename}"
-      temporary = destination.with_suffix(destination.suffix + ".tmp")
-      content = await _download_attachment(
-        user, codice, content_id, publication_id, attachment_number, filename,
-      )
-      temporary.write_bytes(content)
-      temporary.replace(destination)
-      local_files.append(str(destination))
-      downloaded += 1
-    match["downloaded_attachments"] = local_files
-  return downloaded
+      content = await _download_attachment(user, codice, content_id, publication_id, attachment_number, destination.name)
+    except RuntimeError as exc:
+      log.error("%s", exc)
+      continue
+    temporary = destination.with_suffix(destination.suffix + ".tmp")
+    temporary.write_bytes(content)
+    temporary.replace(destination)
+    count += 1
+  return count
 
 
 async def _download_attachment(

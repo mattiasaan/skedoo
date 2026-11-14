@@ -1,469 +1,302 @@
-import { useState } from 'react'
-import { Icon } from './DashboardShared.jsx'
-import { getAgendaDateKey, getAgendaItemDate, getAgendaItemsForDate, getLessonsForDate, getRelatedAgendaItem } from './AgendaData.js'
-import { getSubjectAgendaItemByName } from './SubjectData.js'
+import { useMemo, useState } from 'react'
+import { Icon } from '../components/Icon.jsx'
+import { ErrorMessage, Skeleton, StateMessage } from '../components/ui.jsx'
+import { clickableProps } from '../lib/a11y.js'
+import { useApp } from '../lib/appContext.js'
+import { useChanges, useMonthAgenda, useSchedule } from '../lib/data.js'
+import { addDays, dateKey, formatLongDate, isSameDay, monthName, schoolYear, startOfWeek, teacherName, teacherShort, weekdayShort } from '../lib/format.js'
+import { buildDayLessons, periodLabel, subjectMatches } from '../lib/schedule.js'
 
-const views = [
-	{ id: 'today', label: 'Oggi' },
+const VIEWS = [
 	{ id: 'week', label: 'Settimana' },
 	{ id: 'month', label: 'Mese' },
 ]
+const MONTH_WEEKDAYS = ['LUN', 'MAR', 'MER', 'GIO', 'VEN', 'SAB', 'DOM']
+const TONE_ORDER = ['danger', 'blue', 'amber', 'neutral']
 
-const monthWeekdays = ['DOM', 'LUN', 'MAR', 'MER', 'GIO', 'VEN', 'SAB']
-
-function getWeekDays(date) {
-	const monday = new Date(date)
-	monday.setDate(date.getDate() - ((date.getDay() + 6) % 7))
-
-	return Array.from({ length: 6 }, (_, index) => {
-		const day = new Date(monday)
-		day.setDate(monday.getDate() + index)
-		return {
-			date: day,
-			label: new Intl.DateTimeFormat('it-IT', { weekday: 'short' }).format(day).replace('.', '').slice(0, 3).toUpperCase(),
-		}
-	})
+function initialDate() {
+	const today = new Date()
+	// la domenica non c'è scuola: si apre direttamente il lunedì
+	return today.getDay() === 0 ? addDays(today, 1) : today
 }
 
-function getMonthDays(date) {
-	const firstDay = new Date(date.getFullYear(), date.getMonth(), 1)
-	const leadingDays = firstDay.getDay()
-	const dayCount = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
-	const cellCount = Math.ceil((leadingDays + dayCount) / 7) * 7
-
-	return Array.from({ length: cellCount }, (_, index) => new Date(date.getFullYear(), date.getMonth(), index - leadingDays + 1))
+function lessonTone(lesson, related) {
+	if (lesson.cancelled) return 'muted'
+	if (lesson.roomChange) return 'amber'
+	if (related.some((item) => item.kind === 'verifica')) return 'danger'
+	if (related.some((item) => item.kind === 'compito')) return 'blue'
+	return 'green'
 }
 
-function formatSelectedDate(date) {
-	const formatted = new Intl.DateTimeFormat('it-IT', { weekday: 'long', day: 'numeric', month: 'long' }).format(date)
-	return formatted.charAt(0).toUpperCase() + formatted.slice(1)
-}
-
-function formatTime(time) {
-	return time?.replace(' - ', ' – ') ?? 'Orario da definire'
-}
-
-function formatGrade(value) {
-	const numericValue = Number(typeof value === 'string' ? value.replace(',', '.') : value)
-	return Number.isFinite(numericValue) ? numericValue.toFixed(1).replace('.', ',').replace(',0', '') : value ?? '—'
-}
-
-function formatSubjectDate(date) {
-	return date ? formatSelectedDate(getAgendaItemDate({ date })) : 'Data non disponibile'
-}
-
-function getGradeChartPoints(grades) {
-	if (!grades.length) return []
-
-	return grades.map((grade, index) => {
-		const value = Number(typeof grade.value === 'string' ? grade.value.replace(',', '.') : grade.value)
-		const x = grades.length === 1 ? 304 : 12 + (index / (grades.length - 1)) * 584
-		const y = 130 - ((Math.min(10, Math.max(1, value)) - 1) / 9) * 105
-		return { ...grade, x, y, value }
-	}).filter((grade) => Number.isFinite(grade.value))
-}
-
-function SubjectScheduleCard({ item, onOpen }) {
-	const isAssignment = item.type === 'task'
-	const dateLabel = item.due ?? formatSubjectDate(item.date)
+function AgendaLessonCard({ lesson, related }) {
+	const { openDetail } = useApp()
+	const tone = lessonTone(lesson, related)
+	const teacher = lesson.teachers[0]
 
 	return (
-		<button className={`subject-agenda-card subject-agenda-card--${isAssignment ? 'task' : 'event'}`} onClick={() => onOpen(item)} type="button">
-			<span className="subject-agenda-card__icon"><Icon name={isAssignment ? 'task' : 'calendar'} size={17} /></span>
-			<span className="subject-agenda-card__content">
-				<strong>{item.title}</strong>
-				<small>{dateLabel}{item.description ? ` · ${item.description}` : ''}</small>
+		<article className={`agenda-lesson agenda-lesson--${tone}`} {...clickableProps(() => openDetail({ type: 'lesson', lesson }))}>
+			<div className="agenda-lesson__top">
+				<span className="agenda-lesson__time">
+					<strong>{lesson.inizio} - {lesson.fine}</strong>
+					{periodLabel(lesson) && <><i aria-hidden="true">•</i>{periodLabel(lesson)}</>}
+				</span>
+				{lesson.cancelled ? (
+					<span className="badge badge--danger">{lesson.cancelled}</span>
+				) : lesson.roomChange ? (
+					<span className="badge badge--amber"><Icon name="swap" size={13} />Cambio aula / {lesson.roomChange}</span>
+				) : lesson.room ? (
+					<span className="agenda-lesson__room">{lesson.room}</span>
+				) : null}
+			</div>
+			<div className="agenda-lesson__main">
+				<h3>{lesson.materia}</h3>
+				{teacher && <span>{teacherShort(teacher)}</span>}
+			</div>
+			{lesson.roomChange && <p className="agenda-lesson__where">{lesson.roomChange}</p>}
+			{related.map((item) => (
+				<button
+					className={`agenda-note agenda-note--${item.tone}`}
+					key={item.key}
+					onClick={(event) => {
+						event.stopPropagation()
+						openDetail({ type: 'event', item })
+					}}
+					type="button"
+				>
+					<Icon name={item.kind === 'compito' ? 'clipboard' : 'calendar'} size={16} />
+					<span><b>{item.label}:</b> {item.description || item.title}</span>
+					<Icon name="chevron" size={16} />
+				</button>
+			))}
+		</article>
+	)
+}
+
+function AgendaItemCard({ item }) {
+	const { openDetail, doneTasks } = useApp()
+	const time = item.tutto_il_giorno || !item.ora_inizio ? 'Tutto il giorno' : `${item.ora_inizio}${item.ora_fine ? ` - ${item.ora_fine}` : ''}`
+
+	return (
+		<button className={`agenda-item agenda-item--${item.tone}${doneTasks[item.key] ? ' agenda-item--done' : ''}`} onClick={() => openDetail({ type: 'event', item })} type="button">
+			<span className="agenda-item__top">
+				<span className={`badge badge--${item.tone}`}>{item.label}</span>
+				<span>{time}</span>
 			</span>
-			<Icon name="chevron" size={17} />
+			<strong>{item.title}</strong>
+			{item.description && <span className="agenda-item__text">{item.description}</span>}
+			{item.autore && <small>{teacherName(item.autore)}</small>}
 		</button>
 	)
 }
 
-function SubjectDashboard({ item, onOpenItem }) {
-	const teachers = item.teachers ?? (item.teacher ? [item.teacher] : [])
-	const rooms = item.rooms ?? (item.room ? [item.room] : [])
-	const grades = [...(item.grades ?? [])].sort((a, b) => String(a.date ?? '').localeCompare(String(b.date ?? '')))
-	const chartPoints = getGradeChartPoints(grades)
-	const linePath = chartPoints.map((point, index) => `${index === 0 ? 'M' : 'L'}${point.x} ${point.y}`).join(' ')
-	const areaPath = chartPoints.length ? `${linePath} L${chartPoints.at(-1).x} 145 L${chartPoints[0].x} 145 Z` : ''
-	const recentGrades = [...grades].reverse()
-
-	function openScheduleItem(scheduleItem) {
-		onOpenItem({
-			...scheduleItem,
-			subject: scheduleItem.subject ?? item.title,
-			returnItem: item,
-			returnView: item.returnView ?? 'Voti',
-			returnTab: item.returnTab ?? 'grades',
-		})
-	}
+function DayView({ date, lessons, items, agenda, isGalilei }) {
+	const matched = new Set()
+	const lessonCards = lessons.map((lesson) => {
+		const related = items.filter((item) => item.kind !== 'annotazione' && subjectMatches(lesson.materia, item.subject))
+		related.forEach((item) => matched.add(item.key))
+		return { lesson, related }
+	})
+	const others = items.filter((item) => !matched.has(item.key))
+	const hours = lessons.filter((lesson) => !lesson.cancelled).reduce((sum, lesson) => sum + lesson.ore.length, 0)
+	const pill = isGalilei && lessons.length
+		? `${hours} ${hours === 1 ? 'ora' : 'ore'} di lezione`
+		: `${items.length} ${items.length === 1 ? 'impegno' : 'impegni'}`
 
 	return (
-		<div className="subject-dashboard">
-			<header className="subject-dashboard__header">
-				<p className="agenda-kicker">DETTAGLIO MATERIA</p>
-				<h1>{item.title}</h1>
-				<p>{item.description}</p>
-			</header>
+		<section className="day-view" aria-labelledby="day-heading">
+			<div className="day-view__heading">
+				<h3 id="day-heading"><span className="live-dot" aria-hidden="true" />{formatLongDate(date)}</h3>
+				<span className="day-view__pill">{pill}</span>
+			</div>
 
-			<section className="subject-dashboard-card subject-intro-card" aria-labelledby="subject-intro-heading">
-				<div className="subject-dashboard-card__heading">
-					<span className="subject-dashboard-card__icon"><Icon name="book" size={18} /></span>
-					<div><p className="agenda-kicker">LA TUA MATERIA</p><h2 id="subject-intro-heading">Informazioni</h2></div>
+			{lessonCards.length > 0 && (
+				<div className="agenda-list">
+					{lessonCards.map(({ lesson, related }) => <AgendaLessonCard key={lesson.id} lesson={lesson} related={related} />)}
 				</div>
-				<dl className="subject-info-grid">
-					<div><dt>Docenti</dt><dd>{teachers.length ? teachers.join(', ') : 'Non disponibile'}</dd></div>
-					<div><dt>Aule</dt><dd>{rooms.length ? rooms.join(', ') : 'Non disponibile'}</dd></div>
-					<div><dt>Ore a settimana</dt><dd>{item.weeklyHours != null ? `${item.weeklyHours} ${item.weeklyHours === 1 ? 'ora' : 'ore'}` : 'Non disponibile'}</dd></div>
-				</dl>
-			</section>
+			)}
 
-			<section className="subject-dashboard-card subject-progress-card" aria-labelledby="subject-progress-heading">
-				<div className="subject-dashboard-card__heading">
-					<span className="subject-dashboard-card__icon"><Icon name="chart" size={18} /></span>
-					<div><p className="agenda-kicker">IL TUO ANDAMENTO</p><h2 id="subject-progress-heading">Voti e media</h2></div>
-				</div>
-				<div className="subject-average">
-					<span>MEDIA GENERALE</span>
-					<strong>{item.average ?? '—'}</strong>
-					<small>{grades.length} {grades.length === 1 ? 'valutazione registrata' : 'valutazioni registrate'}</small>
-				</div>
-				{chartPoints.length > 0 ? (
-					<div className="subject-grade-chart-wrap">
-						<svg className="subject-grade-chart" viewBox="0 0 608 150" role="img" aria-label={`Andamento dei voti di ${item.title}`}>
-							<defs>
-								<linearGradient id="subject-grade-fill" x1="0" x2="0" y1="0" y2="1">
-									<stop offset="0%" stopColor="#10bd89" stopOpacity=".25" />
-									<stop offset="100%" stopColor="#10bd89" stopOpacity="0" />
-								</linearGradient>
-							</defs>
-							<path d="M12 25H596M12 77H596M12 130H596" className="subject-grade-chart__grid" />
-							{areaPath && <path d={areaPath} fill="url(#subject-grade-fill)" />}
-							{linePath && <path d={linePath} className="subject-grade-chart__line" />}
-							{chartPoints.map((point) => <circle key={point.id ?? `${point.date}-${point.x}`} cx={point.x} cy={point.y} r="5" className="subject-grade-chart__point"><title>{`${formatGrade(point.value)} · ${point.date}`}</title></circle>)}
-						</svg>
-						<div className="subject-grade-chart__labels"><span>1</span><span>6</span><span>10</span></div>
+			{agenda.loading && <Skeleton height={86} lines={2} />}
+			{agenda.error && !agenda.data && (
+				<ErrorMessage
+					error={agenda.error}
+					onRetry={agenda.reload}
+					title={agenda.error.code === 'date_out_of_range' ? 'Fuori dall\'anno scolastico' : 'Agenda non disponibile'}
+				/>
+			)}
+
+			{others.length > 0 && (
+				<>
+					{lessonCards.length > 0 && <h4 className="day-view__subheading">Altri impegni</h4>}
+					<div className="agenda-list">
+						{others.map((item) => <AgendaItemCard item={item} key={item.key} />)}
 					</div>
-				) : <p className="subject-dashboard-empty">Il grafico sarà disponibile quando saranno registrati i voti.</p>}
-				<div className="subject-grades-list">
-					<h3>Elenco voti</h3>
-					{recentGrades.length ? recentGrades.map((grade) => (
-						<div className="subject-grade-row" key={grade.id ?? `${grade.date}-${grade.type}`}>
-							<span className="subject-grade-row__score">{formatGrade(grade.value)}</span>
-							<span className="subject-grade-row__details"><strong>{grade.type ?? 'Valutazione'}{grade.description ? ` · ${grade.description}` : ''}</strong><small>{formatSubjectDate(grade.date)}</small></span>
-						</div>
-					)) : <p className="subject-dashboard-empty">Non ci sono ancora voti da mostrare.</p>}
-				</div>
-			</section>
+				</>
+			)}
 
-			<section className="subject-dashboard-card" aria-labelledby="subject-tasks-heading">
-				<div className="subject-dashboard-card__heading">
-					<span className="subject-dashboard-card__icon subject-dashboard-card__icon--blue"><Icon name="task" size={18} /></span>
-					<div><p className="agenda-kicker">DA COMPLETARE</p><h2 id="subject-tasks-heading">Compiti</h2></div>
-					<span className="subject-section-count">{item.assignments?.length ?? 0}</span>
-				</div>
-				<div className="subject-agenda-list">
-					{item.assignments?.length
-						? item.assignments.map((task) => <SubjectScheduleCard item={task} key={task.id} onOpen={openScheduleItem} />)
-						: <p className="subject-dashboard-empty">Non ci sono compiti da fare per questa materia.</p>}
-				</div>
-			</section>
-
-			<section className="subject-dashboard-card" aria-labelledby="subject-events-heading">
-				<div className="subject-dashboard-card__heading">
-					<span className="subject-dashboard-card__icon subject-dashboard-card__icon--amber"><Icon name="calendar" size={18} /></span>
-					<div><p className="agenda-kicker">DATE IMPORTANTI</p><h2 id="subject-events-heading">Verifiche e interrogazioni</h2></div>
-					<span className="subject-section-count">{item.events?.length ?? 0}</span>
-				</div>
-				<div className="subject-agenda-list">
-					{item.events?.length
-						? item.events.map((event) => <SubjectScheduleCard item={event} key={event.id} onOpen={openScheduleItem} />)
-						: <p className="subject-dashboard-empty">Non sono previste verifiche o interrogazioni.</p>}
-				</div>
-			</section>
-		</div>
-	)
-}
-
-function EventDetail({ item, onBack, onOpenItem }) {
-	const isLesson = item.type === 'lesson'
-	const isTask = item.type === 'task'
-	const isSubject = item.type === 'subject'
-	const isGrade = item.type === 'grade'
-	const kindLabel = isLesson ? 'LEZIONE' : isTask ? 'COMPITO' : isSubject ? 'MATERIA' : isGrade ? 'VALUTAZIONE' : 'EVENTO'
-	const date = getAgendaItemDate(item)
-	const relatedItem = isLesson ? getRelatedAgendaItem(item) : null
-
-	if (isSubject) {
-		return (
-			<section className="agenda-detail subject-detail" aria-label={`Dettaglio materia ${item.title}`}>
-				<button className="agenda-back-button" onClick={() => onBack(null, item)} type="button">
-					<Icon name="arrow" size={17} />
-					Torna a {item.returnItem?.title ?? item.returnView ?? 'Voti'}
-				</button>
-				<SubjectDashboard item={item} onOpenItem={onOpenItem} />
-			</section>
-		)
-	}
-
-	return (
-		<section className="agenda-detail" aria-labelledby="agenda-detail-heading">
-			<button className="agenda-back-button" onClick={() => onBack(null, item)} type="button">
-				<Icon name="arrow" size={17} />
-				Torna a {item.returnItem?.title ?? item.returnView ?? (isLesson ? 'Oggi' : 'Agenda')}
-			</button>
-			<article className={`agenda-detail-card agenda-detail-card--${item.tone ?? (isLesson || isSubject ? 'green' : 'blue')}`}>
-				<div className="agenda-detail-meta">
-					<span className={`assignment-kind${isTask ? ' assignment-kind--homework' : ' assignment-kind--test'}`}>{kindLabel}</span>
-					<span><Icon name="calendar" size={15} />{formatSelectedDate(date)}</span>
-				</div>
-				{item.time && <p className="agenda-detail-time"><Icon name="clock" size={16} />{formatTime(item.time)}</p>}
-				<h2 id="agenda-detail-heading">{item.title}</h2>
-				{item.subject && <p className="agenda-detail-subject">{item.subject}</p>}
-				<p className="agenda-detail-description">{item.description}</p>
-				{isGrade && (
-					<div className={`detail-grade-card detail-grade-card--${item.tone}`}>
-						<span>VOTO</span>
-						<strong>{item.grade}</strong>
-						<small>{item.gradeType} · {item.teacher}</small>
-					</div>
-				)}
-				<dl className="agenda-detail-facts">
-					{item.teacher && <div><dt>Docente</dt><dd>{item.teacher}</dd></div>}
-					{item.room && <div><dt>Aula</dt><dd>{item.room}</dd></div>}
-					{item.due && <div><dt>Scadenza</dt><dd>{item.due}</dd></div>}
-					{item.period && <div><dt>Ora</dt><dd>{item.period}</dd></div>}
-					{item.gradeDate && <div><dt>Data valutazione</dt><dd>{item.gradeDate}</dd></div>}
-				</dl>
-					{!isSubject && item.subject && (
-						<button
-							className="agenda-related-link"
-							onClick={() => onOpenItem({
-								...getSubjectAgendaItemByName(item.subject, item),
-								returnItem: item,
-								returnView: item.returnView ?? 'Agenda',
-								returnTab: 'agenda',
-							})}
-							type="button"
-						>
-							<Icon name="book" size={16} />
-							<span>Apri materia<strong>{item.subject}</strong></span>
-							<Icon name="chevron" size={17} />
-						</button>
-					)}
-					{relatedItem && (
-					<button className="agenda-related-link" onClick={() => onBack({ ...relatedItem, returnView: item.returnView })} type="button">
-						<Icon name="task" size={16} />
-						<span>{relatedItem.type === 'event' ? 'Apri evento collegato' : 'Apri compito collegato'}<strong>{relatedItem.title}</strong></span>
-						<Icon name="chevron" size={17} />
-					</button>
-				)}
-			</article>
+			{!lessonCards.length && !others.length && agenda.data && (
+				<StateMessage
+					icon="calendar"
+					text={isGalilei ? 'Nessuna lezione né impegno in agenda per questa giornata.' : 'Nessun compito, verifica o evento in agenda per questa giornata.'}
+					title="Giornata libera"
+				/>
+			)}
 		</section>
 	)
 }
 
-function AgendaItemCard({ item, onOpen, isComplete }) {
-	const typeLabel = item.type === 'lesson' ? item.period : item.type === 'task' ? 'COMPITO' : item.type === 'grade' ? 'VOTO' : 'EVENTO'
-	const time = item.time ? formatTime(item.time) : item.due
+function Agenda() {
+	const { classId, isGalilei } = useApp()
+	const [view, setView] = useState('week')
+	const [selected, setSelected] = useState(initialDate)
+	const agenda = useMonthAgenda(selected)
+	const schedule = useSchedule(classId)
+	const changes = useChanges(classId)
+	const today = new Date()
+
+	const itemsByDay = useMemo(() => {
+		const map = new Map()
+		for (const item of agenda.items) {
+			if (!map.has(item.date)) map.set(item.date, [])
+			map.get(item.date).push(item)
+		}
+		return map
+	}, [agenda.items])
+
+	const dotsFor = (date) => {
+		const key = dateKey(date)
+		const tones = new Set((itemsByDay.get(key) ?? []).map((item) => item.tone))
+		if ((changes.data ?? []).some((change) => change.data === key)) tones.add('amber')
+		return TONE_ORDER.filter((tone) => tones.has(tone)).slice(0, 3)
+	}
+
+	const selectedKey = dateKey(selected)
+	const dayLessons = useMemo(() => buildDayLessons(schedule.data, selected, changes.data ?? []), [schedule.data, selected, changes.data])
+	const dayItems = itemsByDay.get(selectedKey) ?? []
+
+	const weekStart = startOfWeek(selected)
+	const weekDays = Array.from({ length: 6 }, (_, index) => addDays(weekStart, index))
+	const monthCells = useMemo(() => {
+		const start = startOfWeek(new Date(selected.getFullYear(), selected.getMonth(), 1, 12))
+		const lastDay = new Date(selected.getFullYear(), selected.getMonth() + 1, 0, 12)
+		const end = addDays(startOfWeek(lastDay), 6)
+		const cells = []
+		for (let day = start; day <= end; day = addDays(day, 1)) cells.push(day)
+		return cells
+	}, [selected])
+
+	function shiftWeek(offset) {
+		setSelected((date) => addDays(date, offset * 7))
+	}
+
+	function shiftMonth(offset) {
+		setSelected((date) => {
+			const target = new Date(date.getFullYear(), date.getMonth() + offset, 1, 12)
+			return target.getMonth() === today.getMonth() && target.getFullYear() === today.getFullYear() ? new Date() : target
+		})
+	}
+
+	const monthLabel = `${monthName(selected)} ${selected.getFullYear()}`
 
 	return (
-		<button className={`agenda-item-card agenda-item-card--${item.tone ?? 'neutral'}${isComplete ? ' agenda-item-card--complete' : ''}`} onClick={() => onOpen(item)} type="button">
-			<span className="agenda-item-card__time">{time}</span>
-			<span className="agenda-item-card__copy">
-				<strong>{item.title}</strong>
-				<small>{typeLabel}{item.teacher ? ` · ${item.teacher}` : ''}</small>
-			</span>
-			<Icon name="chevron" size={17} />
-		</button>
-	)
-}
-
-function Agenda({ selectedItem, onOpenItem, onClearItem }) {
-	const [view, setView] = useState('today')
-	const [selectedDate, setSelectedDate] = useState(new Date(2025, 9, 14))
-	const weekDays = getWeekDays(selectedDate)
-	const monthDays = getMonthDays(selectedDate)
-	const formattedMonth = new Intl.DateTimeFormat('it-IT', { month: 'long', year: 'numeric' }).format(selectedDate)
-	const monthLabel = formattedMonth.charAt(0).toUpperCase() + formattedMonth.slice(1)
-	const selectedDayItems = getAgendaItemsForDate(selectedDate)
-	const scheduledLessons = getLessonsForDate(selectedDate)
-	const hasItems = (date) => getAgendaItemsForDate(date).some((item) => item.type !== 'lesson')
-	const isItemComplete = (item) => item.status === 'complete' || item.date < getAgendaDateKey(selectedDate)
-
-	function changeMonth(offset) {
-		setSelectedDate((date) => new Date(date.getFullYear(), date.getMonth() + offset, 1))
-	}
-
-	function showItem(item) {
-		onOpenItem({ ...item, returnView: views.find((itemView) => itemView.id === view)?.label ?? 'Programma' })
-	}
-
-	if (selectedItem) {
-		return <EventDetail item={selectedItem} onBack={(relatedItem, sourceItem) => {
-			if (relatedItem) {
-				onOpenItem(relatedItem)
-			} else if (sourceItem?.returnItem) {
-				onOpenItem(sourceItem.returnItem)
-			} else {
-				onClearItem(sourceItem ?? selectedItem)
-			}
-		}} onOpenItem={onOpenItem} />
-	}
-
-	return (
-		<section className="alternate-view" aria-labelledby="agenda-heading">
-			<div className="agenda-header">
-				<div>
-					<p className="agenda-kicker">{view === 'today' ? 'ORARIO SCOLASTICO' : 'ORARIO E AGENDA'}</p>
-					<h2 id="agenda-heading">{view === 'today' ? 'Oggi' : 'Orario &amp; Agenda'}</h2>
-				</div>
-				<div className="agenda-view-toggle" aria-label="Modalità vista agenda">
-					{views.map((item) => (
+		<div className="page page--agenda">
+			<header className="page-header">
+				<h1>Orario &amp; Agenda</h1>
+				<div className="segmented" role="group" aria-label="Vista">
+					{VIEWS.map((item) => (
 						<button
 							aria-pressed={view === item.id}
-							type="button"
+							className={`segmented__button${view === item.id ? ' segmented__button--active' : ''}`}
 							key={item.id}
-							className={`agenda-view-toggle__button${view === item.id ? ' agenda-view-toggle__button--active' : ''}`}
 							onClick={() => setView(item.id)}
+							type="button"
 						>
 							{item.label}
 						</button>
 					))}
 				</div>
+			</header>
+
+			<div className="agenda-toolbar">
+				<p className="agenda-toolbar__date">
+					<Icon name="calendar" size={18} />
+					<strong>{monthLabel}</strong>
+					<i aria-hidden="true" className="agenda-toolbar__year">•</i>
+					<span className="agenda-toolbar__year">A.S. {schoolYear(selected)}</span>
+				</p>
+				<div className="agenda-toolbar__nav">
+					{!isSameDay(selected, today) && (
+						<button className="chip-button" onClick={() => setSelected(new Date())} type="button">Oggi</button>
+					)}
+					<button aria-label={view === 'week' ? 'Settimana precedente' : 'Mese precedente'} className="icon-button icon-button--small" onClick={() => (view === 'week' ? shiftWeek(-1) : shiftMonth(-1))} type="button">
+						<Icon name="chevronLeft" size={17} />
+					</button>
+					<button aria-label={view === 'week' ? 'Settimana successiva' : 'Mese successivo'} className="icon-button icon-button--small" onClick={() => (view === 'week' ? shiftWeek(1) : shiftMonth(1))} type="button">
+						<Icon name="chevron" size={17} />
+					</button>
+				</div>
 			</div>
 
-			{view !== 'month' && (
-				<>
-					{view === 'week' && <div className="agenda-date-line"><Icon name="calendar" size={17} /><strong>{monthLabel}</strong><i />Trimestre 1</div>}
-					{view === 'week' && (
-						<div className="week-days" aria-label="Giorni della settimana">
-							{weekDays.map((day) => (
+			<div className={`agenda-layout agenda-layout--${view}`}>
+				{view === 'week' ? (
+					<div className="week-strip" role="group" aria-label="Giorni della settimana">
+						{weekDays.map((day) => {
+							const active = isSameDay(day, selected)
+							return (
 								<button
-									aria-pressed={day.date.toDateString() === selectedDate.toDateString()}
+									aria-label={formatLongDate(day)}
+									aria-pressed={active}
+									className={`week-day${active ? ' week-day--active' : ''}${isSameDay(day, today) ? ' week-day--today' : ''}`}
+									key={dateKey(day)}
+									onClick={() => setSelected(day)}
 									type="button"
-									key={day.date.toISOString()}
-									className={`week-day${day.date.toDateString() === selectedDate.toDateString() ? ' week-day--active' : ''}`}
-									onClick={() => setSelectedDate(day.date)}
 								>
-									<span>{day.label}</span>
-									<strong>{day.date.getDate()}</strong>
-									{hasItems(day.date) && <i aria-hidden="true" />}
+									<span>{weekdayShort(day)}</span>
+									<strong>{day.getDate()}</strong>
+									<span className="dots" aria-hidden="true">
+										{dotsFor(day).map((tone) => <i className={`dot dot--${tone}`} key={tone} />)}
+									</span>
 								</button>
-							))}
+							)
+						})}
+					</div>
+				) : (
+					<div className="month-card">
+						<div className="month-grid month-grid--labels" aria-hidden="true">
+							{MONTH_WEEKDAYS.map((label) => <span key={label}>{label}</span>)}
 						</div>
-					)}
-				</>
-			)}
-
-			{view === 'today' && (
-				<>
-					<h3 className="agenda-day-heading">{formatSelectedDate(selectedDate)}</h3>
-					{scheduledLessons.length ? (
-						<div className="agenda-list">
-							{scheduledLessons.map((lesson) => {
-								const relatedItem = getRelatedAgendaItem(lesson)
-								const isComplete = lesson.status === 'complete'
-								const lessonItem = { ...lesson, type: 'lesson', returnView: 'Oggi' }
+						<div className="month-grid" role="group" aria-label={monthLabel}>
+							{monthCells.map((day) => {
+								const active = isSameDay(day, selected)
+								const outside = day.getMonth() !== selected.getMonth()
 								return (
-									<article
-										key={lesson.id}
-										className={`agenda-entry agenda-entry--accent-${lesson.tone}${isComplete ? ' agenda-entry--complete' : lesson.status === 'current' ? ' agenda-entry--current' : ''}`}
-										onClick={() => showItem(lessonItem)}
-										onKeyDown={(event) => {
-											if (event.target === event.currentTarget && (event.key === 'Enter' || event.key === ' ')) {
-												event.preventDefault()
-												showItem(lessonItem)
-											}
-										}}
-										role="link"
-										tabIndex={0}
+									<button
+										aria-label={formatLongDate(day)}
+										aria-pressed={active}
+										className={`month-day${active ? ' month-day--active' : ''}${outside ? ' month-day--outside' : ''}${isSameDay(day, today) ? ' month-day--today' : ''}`}
+										key={dateKey(day)}
+										onClick={() => setSelected(day)}
+										type="button"
 									>
-										<div className="agenda-entry__header">
-											<div className="agenda-entry__time-block"><span>{lesson.time}</span><small>{lesson.period}</small></div>
-											<span className="agenda-entry__room">{lesson.room}</span>
-										</div>
-										<h3>{lesson.subject}</h3>
-										<p className="agenda-entry__teacher">{lesson.teacher}</p>
-										{relatedItem && (
-											<button className={`agenda-entry__note agenda-entry__note--${lesson.tone}`} onClick={(event) => { event.stopPropagation(); showItem(relatedItem) }} type="button">
-												<Icon name={relatedItem.type === 'event' ? 'alert' : 'task'} size={15} />
-												<span>{lesson.note}</span>
-												<Icon name="chevron" size={16} />
-											</button>
-										)}
-									</article>
+										<span>{day.getDate()}</span>
+										<span className="dots" aria-hidden="true">
+											{dotsFor(day).map((tone) => <i className={`dot dot--${tone}`} key={tone} />)}
+										</span>
+									</button>
 								)
 							})}
 						</div>
-					) : <p className="agenda-empty-state">Nessuna lezione in programma per questa giornata.</p>}
-				</>
-			)}
-
-			{view === 'week' && (
-				<>
-					<div className="agenda-summary">
-						<span className="agenda-summary__dot" aria-hidden="true" />
-						<strong>{formatSelectedDate(selectedDate)}</strong>
-						<span>{selectedDayItems.length} elementi</span>
-					</div>
-					<div className="agenda-items-list">
-						{selectedDayItems.length
-							? selectedDayItems.map((item) => <AgendaItemCard item={item} isComplete={isItemComplete(item)} key={item.id} onOpen={showItem} />)
-							: <p className="agenda-empty-state">Nessun evento o compito in programma per questa giornata.</p>}
-					</div>
-				</>
-			)}
-
-			{view === 'month' && (
-				<>
-					<div className="calendar-month-wrapper">
-						<div className="calendar-month-header">
-							<h3>{monthLabel}</h3>
-							<div className="calendar-nav" aria-label="Naviga mese">
-								<button type="button" aria-label="Mese precedente" onClick={() => changeMonth(-1)}>‹</button>
-								<button type="button" aria-label="Mese successivo" onClick={() => changeMonth(1)}>›</button>
-							</div>
-						</div>
-
-						<div className="calendar-weekdays" aria-label="Settimana del mese">
-							{monthWeekdays.map((day) => <span key={day}>{day}</span>)}
-						</div>
-
-						<div className="month-calendar" aria-label="Calendario mensile">
-							{monthDays.map((day) => (
-								<button
-									aria-label={formatSelectedDate(day)}
-									aria-pressed={day.toDateString() === selectedDate.toDateString()}
-									type="button"
-									key={day.toISOString()}
-									className={`month-day${day.getMonth() !== selectedDate.getMonth() ? ' month-day--muted' : ''}${day.toDateString() === selectedDate.toDateString() ? ' month-day--active' : ''}`}
-									onClick={() => setSelectedDate(day)}
-								>
-									<span>{day.getDate()}</span>
-									{hasItems(day) && <i aria-hidden="true" />}
-								</button>
-							))}
+						<div className="month-legend" aria-hidden="true">
+							<span><i className="dot dot--danger" />Verifiche</span>
+							<span><i className="dot dot--blue" />Compiti</span>
+							<span><i className="dot dot--amber" />Eventi e variazioni</span>
 						</div>
 					</div>
+				)}
 
-					<div className="calendar-legend">
-						<span><i className="legend-dot legend-dot--tests" aria-hidden="true" />Lezioni</span>
-						<span><i className="legend-dot legend-dot--deadlines" aria-hidden="true" />Compiti</span>
-						<span><i className="legend-dot legend-dot--holidays" aria-hidden="true" />Eventi</span>
-					</div>
-
-					<div className="agenda-month-items">
-						<div className="agenda-summary"><span className="agenda-summary__dot" aria-hidden="true" /><strong>{formatSelectedDate(selectedDate)}</strong><span>{selectedDayItems.length} elementi</span></div>
-						<div className="agenda-items-list">
-							{selectedDayItems.length
-								? selectedDayItems.map((item) => <AgendaItemCard item={item} isComplete={isItemComplete(item)} key={item.id} onOpen={showItem} />)
-								: <p className="agenda-empty-state">Nessun evento o compito in programma per questa giornata.</p>}
-						</div>
-					</div>
-				</>
-			)}
-		</section>
+				{schedule.error && !schedule.data && <ErrorMessage error={schedule.error} onRetry={schedule.reload} title="Orario non disponibile" />}
+				<DayView agenda={agenda} date={selected} isGalilei={isGalilei} items={dayItems} lessons={dayLessons} />
+			</div>
+		</div>
 	)
 }
 
