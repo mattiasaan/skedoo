@@ -12,7 +12,7 @@ export function TasksSection({ limit = 3 }) {
 	return (
 		<section className="home-section home-section--tasks" aria-labelledby="tasks-heading">
 			<SectionHeading
-				aside={<LinkButton onClick={() => navigate('agenda')}>Vedi tutti</LinkButton>}
+				aside={<LinkButton onClick={() => navigate('home/compiti')}>Vedi tutti</LinkButton>}
 				icon="clipboard"
 				id="tasks-heading"
 				title="Compiti & Verifiche"

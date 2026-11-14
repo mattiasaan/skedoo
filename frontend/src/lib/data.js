@@ -20,18 +20,22 @@ export function useChanges(classId) {
 	)
 }
 
-export function useUpcomingAgenda() {
-	const range = upcomingRange()
-	const result = useApi(`agenda:${range.da}:${range.a}`, () => api.agenda(range.da, range.a))
+/** Agenda tra due date (YYYY-MM-DD) con gli eventi già pronti per le card. */
+export function useAgendaRange(da, a) {
+	const result = useApi(`agenda:${da}:${a}`, () => api.agenda(da, a))
 	const items = useMemo(() => flattenAgenda(result.data), [result.data])
 	return { ...result, items }
 }
 
+/** Prossime due settimane (Home e dettaglio materia). */
+export function useUpcomingAgenda(days = 14) {
+	const range = upcomingRange(new Date(), days)
+	return useAgendaRange(range.da, range.a)
+}
+
 export function useMonthAgenda(date) {
 	const range = monthRange(date)
-	const result = useApi(`agenda:${range.da}:${range.a}`, () => api.agenda(range.da, range.a))
-	const items = useMemo(() => flattenAgenda(result.data), [result.data])
-	return { ...result, items, range }
+	return { ...useAgendaRange(range.da, range.a), range }
 }
 
 export const useGrades = () => useApi('grades', api.grades)

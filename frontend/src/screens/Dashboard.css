@@ -741,13 +741,6 @@
   background: rgba(16, 185, 129, 0.2);
 }
 
-.board-card__count {
-  display: block;
-  margin-top: 10px;
-  color: var(--muted);
-  font-size: 12px;
-}
-
 /* ---------- prossima lezione ---------- */
 .next-lesson {
   padding: 20px;

@@ -7,6 +7,7 @@ import { useApp } from '../../lib/appContext.js'
 import { useChanges, useNow, usePersistentFlags, useSchedule } from '../../lib/data.js'
 import { addDays, classDisplayName, classLabel, dateKey, formatDuration, formatKickerDate, nowMinutes, relativeDay, schoolDisplayName, teacherShort, weekdayName } from '../../lib/format.js'
 import { buildDayLessons, dayProgress, lessonStatus, periodLabel } from '../../lib/schedule.js'
+import { useToast } from '../../lib/toast.js'
 import { TasksSection } from './TasksSection.jsx'
 
 /** Prossimo giorno (entro una settimana) in cui la classe ha lezione. */
@@ -41,10 +42,20 @@ function changeMessage(change, lessons) {
 
 function ChangeAlert({ changes, lessons }) {
 	const { openDetail } = useApp()
+	const toast = useToast()
 	const [dismissed, dismiss] = usePersistentFlags('changes-dismissed')
 	const visible = changes.filter((change) => !dismissed[`${change.data}-${change.id}`])
 	if (!visible.length) return null
 	const [first] = visible
+
+	function hide() {
+		const keys = visible.map((change) => `${change.data}-${change.id}`)
+		keys.forEach((key) => dismiss(key, true))
+		toast('Avviso nascosto: le variazioni restano nell\'orario', {
+			tone: 'info',
+			action: { label: 'Annulla', onClick: () => keys.forEach((key) => dismiss(key, false)) },
+		})
+	}
 
 	return (
 		<aside className="change-alert" aria-label="Variazione orario" {...clickableProps(() => openDetail({ type: 'changes', changes }))}>
@@ -62,7 +73,7 @@ function ChangeAlert({ changes, lessons }) {
 				className="change-alert__close"
 				onClick={(event) => {
 					event.stopPropagation()
-					visible.forEach((change) => dismiss(`${change.data}-${change.id}`, true))
+					hide()
 				}}
 				type="button"
 			>
