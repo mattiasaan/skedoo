@@ -1,0 +1,13 @@
+/*
+ * Stili della dashboard, divisi per area. L'ordine conta: responsive.css per ultimo.
+ * Mobile first: le regole base sono per il telefono, i media query in responsive.css allargano.
+ */
+@import './layout.css';
+@import './components.css';
+@import './home.css';
+@import './agenda.css';
+@import './grades.css';
+@import './profile.css';
+@import './details.css';
+@import './subpages.css';
+@import './responsive.css';

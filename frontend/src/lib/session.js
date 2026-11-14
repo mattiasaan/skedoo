@@ -62,10 +62,16 @@ export function clearSession() {
 	write(KEYS.user, null)
 }
 
-// ---------- preferenze e stati locali (compiti completati, avvisi chiusi...) ----------
+// ---------- preferenze e stati locali (compiti completati, circolari lette...) ----------
+// Salvati per utente: su un dispositivo condiviso ognuno ritrova solo i propri.
+function userKey(key) {
+	const userId = String(getStoredUser()?.id ?? 'anonimo').toLowerCase()
+	return `skedoo:${userId}:${key}`
+}
+
 export function readJson(key, fallback) {
 	try {
-		const value = JSON.parse(read(`skedoo:${key}`) ?? 'null')
+		const value = JSON.parse(read(userKey(key)) ?? 'null')
 		return value ?? fallback
 	} catch {
 		return fallback
@@ -73,7 +79,7 @@ export function readJson(key, fallback) {
 }
 
 export function writeJson(key, value) {
-	write(`skedoo:${key}`, JSON.stringify(value))
+	write(userKey(key), JSON.stringify(value))
 }
 
 // ---------- scuola ----------

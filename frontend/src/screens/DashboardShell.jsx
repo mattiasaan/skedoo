@@ -18,7 +18,7 @@ import AbsencesPage from './subpages/AbsencesPage.jsx'
 import BoardPage from './subpages/BoardPage.jsx'
 import MaterialsPage from './subpages/MaterialsPage.jsx'
 import TasksPage from './subpages/TasksPage.jsx'
-import './Dashboard.css'
+import '../styles/dashboard/index.css'
 
 const SCREENS = {
 	home: Home,

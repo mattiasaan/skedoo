@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { AuthLayout } from '../components/AuthLayout.jsx'
 import { Icon } from '../components/Icon.jsx'
 import { api } from '../lib/api.js'
-import './Login.css'
+import '../styles/auth.css'
 
 function Login({ onLogin, notice: initialNotice }) {
 	const [username, setUsername] = useState('')
