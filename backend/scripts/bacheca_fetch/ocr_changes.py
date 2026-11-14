@@ -6,8 +6,9 @@ Flusso:
   2. questo script passa ogni immagine all'OCR (helper/OCR/V4-AI, Qwen3-VL via Ollama);
   3. tiene solo le voci abbastanza affidabili e scrive data/dati-bacheca/data.json.
 
-L'OCR gira in un processo separato con il suo interprete Python (OpenCV non è una dipendenza del
-backend) e i risultati sono messi in cache per contenuto: un'immagine già letta non si rilegge.
+L'OCR gira in un processo separato (di default con lo stesso Python del backend, che ha opencv-python
+e numpy in requirements.txt) e i risultati sono messi in cache per contenuto: un'immagine già letta
+non si rilegge.
 
 Avvio dalla directory ``backend``:
 
@@ -15,7 +16,7 @@ Avvio dalla directory ``backend``:
 
 Variabili (ambiente o backend/.env):
   OCR_DIR                       cartella dell'OCR (default: ../helper/OCR/V4-AI)
-  OCR_PYTHON                    interprete con opencv-python e numpy (default: quello corrente)
+  OCR_PYTHON                    interprete per l'OCR (default: quello corrente, cioè il venv del backend)
   OCR_TIMEOUT_SECONDS           tempo massimo per immagine (default 1800)
   BACHECA_OCR_MIN_AFFIDABILITA  alta (default) | media | bassa: voci meno affidabili vengono scartate
   CLASSVIVA_BOARD_OUTPUT        board_matches.json prodotto da fetch_bacheca.py
