@@ -37,12 +37,24 @@ AGENDA = [
   {"evtId": 9, "evtCode": "AGEV", "evtDatetimeBegin": "2026-10-05T08:00:00+02:00", "evtDatetimeEnd": "2026-10-05T09:00:00+02:00",
    "isFullDay": False, "notes": None},
 ]
+SUBJECTS = [
+  {"id": 10, "description": "MATEMATICA", "teachers": [{"teacherId": "T1", "teacherName": "BIANCHI ANNA"}]},
+  {"id": 11, "description": "ITALIANO", "teachers": []},
+]
+ABSENCES = [
+  {"evtId": 21, "evtCode": "ABA0", "evtDate": "2026-10-01", "isJustified": True, "justifReasonDesc": "Salute"},
+  {"evtId": 22, "evtCode": "ABA0", "evtDate": "2026-10-08", "isJustified": False},
+  {"evtId": 23, "evtCode": "ABR0", "evtDate": "2026-10-03", "evtHPos": 2, "isJustified": True},
+  {"evtId": 24, "evtCode": "ABR1", "evtDate": "2026-10-04", "evtHPos": 1, "isJustified": True},
+  {"evtId": 25, "evtCode": "ABU0", "evtDate": "2026-10-05", "evtHPos": 5, "isJustified": False},
+]
 
 
 class FakeUtente:
   """Al posto di classeviva.Utente: password "good" = login ok."""
   calls: list = []
   fail = False
+  no_subjects = False
 
   def __init__(self, id_, password):
     self.id, self.password, self.inizio, self._dati = id_, password, None, {}
@@ -66,6 +78,20 @@ class FakeUtente:
     if FakeUtente.fail:
       raise eccezioni.ErroreHTTP("boom: dettaglio interno")
     return GRADES
+
+  async def materie(self):
+    FakeUtente.calls.append(("materie",))
+    if FakeUtente.no_subjects:
+      raise eccezioni.ErroreHTTP("materie non disponibili")
+    return SUBJECTS
+
+  async def assenze(self):
+    FakeUtente.calls.append(("assenze",))
+    return ABSENCES
+
+  async def bacheca_leggi(self, codice, id_):
+    FakeUtente.calls.append(("bacheca_leggi", codice, id_))
+    return {"item": {"title": "Circolare 1", "text": "Testo"}, "reply": {"interno": "non va esposto"}}
 
   async def agenda_da_a(self, inizio, fine):
     FakeUtente.calls.append(("agenda", inizio, fine))
@@ -108,7 +134,7 @@ def settings():
 def client(monkeypatch, settings, data_dir):
   monkeypatch.setattr(classeviva, "Utente", FakeUtente)
   monkeypatch.setattr(settings, "data_dir", data_dir)
-  FakeUtente.calls, FakeUtente.fail = [], False
+  FakeUtente.calls, FakeUtente.fail, FakeUtente.no_subjects = [], False, False
   classeviva.store._sessions.clear()
   limiter.clear()
   get_store.cache_clear()

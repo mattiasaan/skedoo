@@ -23,6 +23,7 @@ app/
 scripts/import_schedules.py             importa i JSON nel database
 scripts/bacheca_fetch/fetch_bacheca.py  recupera e filtra la bacheca ClasseViva
 scripts/bacheca_fetch/run_periodic.py   esegue il fetch della bacheca a intervalli regolari
+scripts/bacheca_fetch/ocr_changes.py    legge con l'OCR i cartelloni scaricati e scrive data/dati-bacheca/data.json
 tests/                                  python -m pytest -q tests
 docs/db-schema.md                       schema e relazioni
 README-TECHNICAL.md                     documentazione tecnica estesa
@@ -54,13 +55,13 @@ Gli orari si leggono da `data/`: `classi_index.json` (facoltativo) e `classi/<ID
 | GET | `/schedules/classes` | `[{id, nome, docente_coordinatore, pomeriggio}]` |
 | GET | `/schedules/{classe}` | orario completo (id non sensibile a maiuscole: `1a` = `1A`) |
 | GET | `/schedules/{classe}/today` | lezioni di oggi (fuso Europe/Rome) |
-| GET | `/grades?anno=26&periodo=1` | voti per materia con medie |
+| GET | `/grades?anno=26&periodo=1` | voti per materia con medie e docenti della materia |
 | GET | `/agenda?da=YYYY-MM-DD&a=YYYY-MM-DD` | eventi per giorno (default oggi…+13 giorni, max 366) |
 | GET | `/didattica` | materiali didattici organizzati per docente e cartella |
 | GET | `/bacheca` | circolari e comunicazioni, con allegati |
-| GET | `/bacheca/{codice}/{id}` | dettaglio di una comunicazione |
-| GET | `/assenze?da=YYYY-MM-DD&a=YYYY-MM-DD` | assenze, ritardi e uscite; senza date restituisce l'anno |
-| GET | `/changes?classe=1A` | tutte le modifiche della classe dal JSON della bacheca |
+| GET | `/bacheca/{codice}/{id}` | dettaglio di una comunicazione `{titolo, testo}` (la segna come letta su ClasseViva) |
+| GET | `/assenze?da=YYYY-MM-DD&a=YYYY-MM-DD` | assenze, ritardi e uscite con `riepilogo`; senza date restituisce l'anno |
+| GET | `/changes?classe=1A&data=YYYY-MM-DD` | modifiche della classe (tutti i giorni nel file, o solo `data`) |
 | GET | `/changes/entrate-uscite?classe=1A` | entrate e uscite della classe |
 | GET | `/changes/cambi-aula?classe=1A` | cambi aula della classe |
 | GET | `/health` | `{"status":"ok"}`, pubblico |
@@ -78,9 +79,16 @@ Gli orari si leggono da `data/`: `classi_index.json` (facoltativo) e `classi/<ID
 
 // /grades
 {"anno":"26","periodo":null,"media_generale":7.4,
- "materie":[{"materia_id":1,"materia":"MATEMATICA","media":7.5,
-   "voti":[{"id":1,"data":"2026-10-02","voto":"7+","valore":7.25,"tipo":"Scritto","periodo":"1","peso":1.0,"note":null,"colore":"green","annullato":false}]}]}
+ "materie":[{"materia_id":1,"materia":"MATEMATICA","media":7.5,"docenti":["BIANCHI ANNA"],
+   "voti":[{"id":1,"data":"2026-10-02","voto":"7+","valore":7.25,"tipo":"Scritto","periodo":"Primo periodo","periodo_pos":1,"peso":1.0,"note":null,"colore":"green","annullato":false}]}]}
 // "voto" è il testo da mostrare, "valore" serve per i calcoli (null per i giudizi)
+// "periodo_pos" permette al frontend di filtrare per quadrimestre con una sola richiesta
+// "docenti" arriva da ClasseViva `materie`: se non disponibile è [] e i voti arrivano comunque
+
+// /assenze
+{"eventi":[{"id":21,"data":"2026-10-08","tipo":"assenza","codice":"ABA0","ora":null,"giustificata":false,"motivo":null,"ore":[]}],
+ "riepilogo":{"assenze":2,"ritardi":2,"uscite":1,"da_giustificare":2}}
+// tipo: assenza (ABA0) | ritardo (ABR0, ABR1) | uscita (ABU0) | altro
 
 // /agenda
 {"giorni":[{"data":"2026-10-09","eventi":[
@@ -89,7 +97,7 @@ Gli orari si leggono da `data/`: `classi_index.json` (facoltativo) e `classi/<ID
 
 ### Errori
 
-Formato `{"code": "...", "message": "..."}` (le validazioni di FastAPI restano il classico `422 {"detail":[...]}`).
+Formato `{"code": "...", "message": "..."}`. Le validazioni dei parametri rispondono `422 {"code": "validation_error", "message", "detail": [{"loc", "msg", "type"}]}`: a differenza del default di FastAPI non ripetono i valori inviati (es. la password).
 
 | Status | code | Quando |
 |---|---|---|
@@ -98,7 +106,8 @@ Formato `{"code": "...", "message": "..."}` (le validazioni di FastAPI restano i
 | 401 | `invalid_credentials` | login con password errata |
 | 404 | `class_not_found` | classe inesistente |
 | 413 | `payload_too_large` | body > 16 KB |
-| 422 | `invalid_range`, `range_too_large`, `invalid_parameter`, `date_out_of_range` | parametri agenda |
+| 422 | `validation_error` | parametri mancanti o nel formato sbagliato |
+| 422 | `invalid_range`, `range_too_large`, `invalid_parameter`, `date_out_of_range` | date di agenda e assenze |
 | 429 | `rate_limited`, `too_many_attempts` | troppe richieste (header `Retry-After`) |
 | 502 | `classeviva_error` | ClasseViva non risponde |
 | 500 | `internal_error` | errore inatteso, dettagli solo nei log |
@@ -153,7 +162,36 @@ Variabili opzionali:
 - `BACHECA_FETCH_LOG_LEVEL`: livello di logging, default `INFO`.
 
 Gli errori di un ciclo vengono registrati e non interrompono i cicli successivi.
-Il file prodotto sarà l'input del successivo script OCR.
+
+### Dai cartelloni alle variazioni (OCR)
+
+Dopo ogni fetch riuscito `run_periodic` esegue `ocr_changes`, che si può lanciare anche da solo:
+
+```bash
+python -m scripts.bacheca_fetch.ocr_changes            # usa board_matches.json del fetch
+python -m scripts.bacheca_fetch.ocr_changes --min-affidabilita media
+```
+
+1. per ogni comunicazione trovata prende le immagini allegate (i PDF vengono ignorati);
+2. le legge con l'OCR di `helper/OCR/V4-AI` (Qwen3-VL via Ollama) in un processo separato:
+   `OCR_PYTHON` deve avere `opencv-python` e `numpy`, Ollama deve essere avviato con il modello di `config.json`;
+3. i risultati sono in cache per contenuto (`data/bacheca_fetch/ocr/`): un'immagine già letta non si rilegge;
+4. tiene solo le voci con affidabilità almeno `BACHECA_OCR_MIN_AFFIDABILITA` (default `alta`) e la data del
+   cartellone solo se affidabile o coerente con la data di pubblicazione;
+5. se più comunicazioni riguardano lo stesso giorno vale la più recente ("Aggiornamento comunicazione...");
+6. scrive `data/dati-bacheca/data.json` (giorni da oggi in poi). Se nessuna immagine è leggibile il file precedente resta invariato.
+
+`/changes` rilegge il file quando cambia, senza riavviare l'API. Formato:
+
+```jsonc
+{"aggiornato_il": "...", "affidabilita_minima": "alta", "giorni": [
+  {"data_iso": "2026-11-17", "entrate": [{"ora": "09:50", "classi": ["1A"]}], "uscite": [...],
+   "senza_lezioni_pomeridiane": [{"classi": ["2OD"]}],
+   "cambi_aula": [{"classe": "1C", "orario": "09:50 - 11:45", "aula": "AULA B108"}]}]}
+// risposta di /changes: {"id","data","ora","ore":[3,4],"tipo","testo","nuova_aula","orario"}
+// tipo: cambio_aula | entrata_posticipata | uscita_anticipata | senza_lezioni_pomeridiane
+// "3C/T" sul cartellone vale sia per 3C sia per 3T
+```
 
 
 python -m uvicorn app.main:app --reload --host 0.0.0.0

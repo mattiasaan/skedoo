@@ -1,209 +1,142 @@
-import { useEffect, useState } from 'react'
-import { classPicker } from './api/classPicker'
-import './Login.css'
+import { useEffect, useId, useMemo, useRef, useState } from 'react'
+import { AuthLayout } from '../components/AuthLayout.jsx'
+import { Icon } from '../components/Icon.jsx'
+import { ErrorMessage } from '../components/ui.jsx'
+import { api } from '../lib/api.js'
+import { classDisplayName, normalizeText, schoolYear, titleCase } from '../lib/format.js'
+import { useApi } from '../lib/useApi.js'
+import '../styles/auth.css'
 
-function Icon({ name, size = 20 }) {
-	const shared = {
-		width: size,
-		height: size,
-		viewBox: '0 0 24 24',
-		fill: 'none',
-		stroke: 'currentColor',
-		strokeWidth: 1.8,
-		strokeLinecap: 'round',
-		strokeLinejoin: 'round',
-		'aria-hidden': true,
-	}
-
-	if (name === 'cap') {
-		return (
-			<svg {...shared}>
-				<path d="m2 9 10-5 10 5-10 5L2 9Z" />
-				<path d="M6 11v5c3.5 2.7 8.5 2.7 12 0v-5M22 9v6" />
-			</svg>
-		)
-	}
-
-	if (name === 'school') {
-		return (
-			<svg {...shared}>
-				<path d="m3 10 9-6 9 6-9 5-9-5Z" />
-				<path d="M6 12v5l6 3 6-3v-5M21 10v6" />
-			</svg>
-		)
-	}
-
-	if (name === 'chevronDown') {
-		return (
-			<svg {...shared}>
-				<path d="m6 9 6 6 6-6" />
-			</svg>
-		)
-	}
-
-	if (name === 'check') {
-		return (
-			<svg {...shared}>
-				<path d="m5 12 4 4L19 6" />
-			</svg>
-		)
-	}
-
-	return null
+function classTitle(option) {
+	const name = classDisplayName(option.nome)
+	const [number, ...section] = name.split(' ')
+	return section.length ? `${number} Sezione ${section.join(' ')}` : name
 }
 
-function SchoolSetup({ onEnter }) {
-	const [classes, setClasses] = useState([])
-	const [selectedClassId, setSelectedClassId] = useState('')
-	const [isOpen, setIsOpen] = useState(false)
-	const [loading, setLoading] = useState(true)
-	const [error, setError] = useState(null)
+function classSubtitle(option) {
+	return [option.pomeriggio ? 'Con rientri pomeridiani' : 'Solo mattina', `A.S. ${schoolYear()}`].join(' • ')
+}
+
+function SchoolSetup({ initialClassId, onDone, onCancel }) {
+	const classes = useApi('classes', api.classes)
+	const [selectedId, setSelectedId] = useState(initialClassId ?? '')
+	const [open, setOpen] = useState(false)
+	const [query, setQuery] = useState('')
+	const listId = useId()
+	const wrapperRef = useRef(null)
+	const searchRef = useRef(null)
+
+	const options = useMemo(() => classes.data ?? [], [classes.data])
+	const filtered = useMemo(() => {
+		const needle = normalizeText(query).replace(/ /g, '')
+		if (!needle) return options
+		return options.filter((option) => normalizeText(`${option.id} ${option.nome} ${option.docente_coordinatore ?? ''}`).replace(/ /g, '').includes(needle))
+	}, [options, query])
+	const selected = options.find((option) => option.id === selectedId)
 
 	useEffect(() => {
-		async function fetchClasses() {
-			try {
-				const data = await classPicker()
-				setClasses(data)
-				if (data.length > 0) {
-					setSelectedClassId(data[0].id)
-				}
-			} catch (err) {
-				setError(err.message)
-			} finally {
-				setLoading(false)
-			}
+		if (!open) return undefined
+		searchRef.current?.focus()
+		const onPointer = (event) => {
+			if (!wrapperRef.current?.contains(event.target)) setOpen(false)
 		}
+		document.addEventListener('pointerdown', onPointer)
+		return () => document.removeEventListener('pointerdown', onPointer)
+	}, [open])
 
-		fetchClasses()
-	}, [])
-
-	const schoolClass = classes.find((option) => option.id === selectedClassId) || {
-		nome: loading ? 'Caricamento classi...' : 'Nessuna classe disponibile',
-		docente_coordinatore: ''
+	function choose(option) {
+		setSelectedId(option.id)
+		setOpen(false)
+		setQuery('')
 	}
 
 	function handleSubmit(event) {
 		event.preventDefault()
-		localStorage.setItem('selectedClassId', selectedClassId)
-		onEnter()
+		if (selected) onDone(selected.id)
 	}
 
 	return (
-		<main className="login-page login-page--setup">
-			<section className="login-content" aria-labelledby="welcome-title">
-				<header className="login-heading login-heading--setup">
-					<div className="brand-mark" aria-hidden="true">
-						<Icon name="cap" size={34} />
-					</div>
-					<h1 id="welcome-title">Bentornato!</h1>
-					<p>Accedi al tuo registro elettronico ClasseViva</p>
-				</header>
+		<AuthLayout subtitle="Accedi al tuo registro elettronico ClasseViva">
+			<form className="auth-panel auth-panel--setup" onSubmit={handleSubmit} aria-labelledby="setup-title">
+				<h2 className="auth-panel__title" id="setup-title">Seleziona la tua Scuola</h2>
 
-				<form className="login-panel setup-panel" onSubmit={handleSubmit}>
-					<div className="setup-panel-heading">
-						<h2>Seleziona la tua Classe</h2>
-					</div>
-
-					{error && <p style={{ color: '#ff6b6b', fontSize: '14px', marginBottom: '10px' }}>{error}</p>}
-
-					<div className="setup-fields" style={{ position: 'relative' }}>
-						<div 
-							className="choice-control choice-control--single" 
-							onClick={() => !loading && classes.length > 0 && setIsOpen(!isOpen)}
-							style={{ cursor: 'pointer' }}
-						>
-							<Icon name="school" />
-							<span className="choice-copy">
-								<strong>{schoolClass.nome}</strong>
-								<small>{schoolClass.docente_coordinatore ? `Coordinatore: ${schoolClass.docente_coordinatore}` : 'Seleziona una sezione'}</small>
-							</span>
-							<Icon name="chevronDown" size={17} />
-						</div>
-
-						{/* Menu a tendina personalizzato con colori in palette */}
-						{isOpen && (
-							<ul style={{
-								position: 'absolute',
-								top: '100%',
-								left: 0,
-								right: 0,
-								marginTop: '8px',
-								background: 'rgba(13, 22, 23, 0.95)',
-								backdropFilter: 'blur(10px)',
-								border: '1px solid rgba(26, 43, 44, 0.8)',
-								borderRadius: '12px',
-								listStyle: 'none',
-								padding: '6px',
-								zIndex: 1000,
-								maxHeight: '220px',
-								overflowY: 'auto',
-								boxShadow: '0 12px 32px rgba(0, 0, 0, 0.6)'
-							}}>
-								{classes.map((option) => {
-									const isSelected = option.id === selectedClassId;
-									return (
-										<li
-											key={option.id}
-											onClick={() => {
-												setSelectedClassId(option.id)
-												setIsOpen(false)
-											}}
-											style={{
-												padding: '10px 14px',
-												borderRadius: '8px',
-												cursor: 'pointer',
-												color: '#ffffff',
-												background: isSelected ? 'rgba(16, 185, 129, 0.15)' : 'transparent',
-												border: isSelected ? '1px solid rgba(16, 185, 129, 0.4)' : '1px solid transparent',
-												display: 'flex',
-												flexDirection: 'column',
-												gap: '3px',
-												marginBottom: '4px',
-												transition: 'all 0.2s ease'
-											}}
-											onMouseEnter={(e) => {
-												if (!isSelected) e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)'
-											}}
-											onMouseLeave={(e) => {
-												if (!isSelected) e.currentTarget.style.background = 'transparent'
-											}}
-										>
-											<strong style={{ fontSize: '14px', color: isSelected ? '#10b981' : '#ffffff' }}>
-												{option.nome}
-											</strong>
-											{option.docente_coordinatore && (
-												<small style={{ color: '#94a3b8', fontSize: '12px' }}>
-													Coordinatore: {option.docente_coordinatore}
-												</small>
-											)}
-										</li>
-									);
-								})}
-							</ul>
-						)}
-					</div>
-
-					<button className="submit-button setup-submit" type="submit" disabled={loading || classes.length === 0}>
-						<Icon name="check" size={17} />
-						<span>Completa Configurazione ed Entra</span>
+				<div className="auth-field" ref={wrapperRef}>
+					<span className="auth-label" id={`${listId}-label`}>Classe &amp; Indirizzo di Studio</span>
+					<button
+						aria-controls={listId}
+						aria-expanded={open}
+						aria-haspopup="listbox"
+						aria-labelledby={`${listId}-label ${listId}-value`}
+						className={`choice-control${open ? ' choice-control--open' : ''}`}
+						disabled={classes.loading || !options.length}
+						onClick={() => setOpen((value) => !value)}
+						type="button"
+					>
+						<span className="choice-control__icon"><Icon name="users" size={18} /></span>
+						<span className="choice-control__copy" id={`${listId}-value`}>
+							<strong>{selected ? classTitle(selected) : classes.loading ? 'Caricamento classi…' : 'Scegli la tua classe'}</strong>
+							<small>{selected ? classSubtitle(selected) : `Istituto G. Galilei • A.S. ${schoolYear()}`}</small>
+						</span>
+						<Icon className="choice-control__chevron" name="chevronDown" size={18} />
 					</button>
-				</form>
-			</section>
 
-			<footer className="login-footer">
-				<nav className="footer-links" aria-label="Link informativi">
-					<a href="mailto:privacy@skedoo.app?subject=Informativa%20Privacy">Informativa Privacy</a>
-					<span aria-hidden="true">•</span>
-					<a href="mailto:supporto@skedoo.app">Supporto Tecnico</a>
-					<span aria-hidden="true">•</span>
-					<a href="https://web.spaggiari.eu/">Info ClasseViva</a>
-				</nav>
-				<p className="copyright">
-					SKEDOO APPS © 2025 · NON AFFILIATO UFFICIALMENTE A<br />
-					GRUPPO SPAGGIARI PARMA
-				</p>
-			</footer>
-		</main>
+					{open && (
+						<div className="choice-popover">
+							<div className="choice-search">
+								<Icon name="search" size={16} />
+								<input
+									aria-label="Cerca classe"
+									onChange={(event) => setQuery(event.target.value)}
+									onKeyDown={(event) => {
+										if (event.key === 'Escape') setOpen(false)
+										if (event.key === 'Enter') {
+											event.preventDefault()
+											if (filtered[0]) choose(filtered[0])
+										}
+									}}
+									placeholder="Cerca (es. 4A)"
+									ref={searchRef}
+									value={query}
+								/>
+							</div>
+							<ul aria-label="Classi" className="choice-list" id={listId} role="listbox">
+								{filtered.map((option) => (
+									<li
+										aria-selected={option.id === selectedId}
+										className={`choice-option${option.id === selectedId ? ' choice-option--selected' : ''}`}
+										key={option.id}
+										onClick={() => choose(option)}
+										onKeyDown={(event) => {
+											if (event.key === 'Enter' || event.key === ' ') {
+												event.preventDefault()
+												choose(option)
+											}
+										}}
+										role="option"
+										tabIndex={0}
+									>
+										<strong>{classTitle(option)}</strong>
+										{option.docente_coordinatore && <small>Coord. {titleCase(option.docente_coordinatore)}</small>}
+										{option.id === selectedId && <Icon name="check" size={16} />}
+									</li>
+								))}
+								{!filtered.length && <li className="choice-empty">Nessuna classe trovata</li>}
+							</ul>
+						</div>
+					)}
+				</div>
+
+				{classes.error && <ErrorMessage error={classes.error} onRetry={classes.reload} title="Classi non disponibili" />}
+
+				<button className="auth-submit" disabled={!selected} type="submit">
+					<Icon name="check" size={18} />
+					<span>Completa Configurazione ed Entra</span>
+				</button>
+				{onCancel && (
+					<button className="auth-secondary" onClick={onCancel} type="button">Annulla</button>
+				)}
+			</form>
+		</AuthLayout>
 	)
 }
 

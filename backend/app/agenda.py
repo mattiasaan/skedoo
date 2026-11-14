@@ -7,12 +7,11 @@ from pydantic import BaseModel
 
 from .classeviva import CvSession
 from .config import get_settings
-from .errors import AppError
 from .security import current_session, upstream_limit
+from .validation import check_date_range
 
 router = APIRouter(prefix="/agenda", tags=["Agenda"], dependencies=[Depends(upstream_limit)])
 
-MAX_DAYS = 366
 TIPI = {"AGHW": "compito", "AGNT": "annotazione"}  # il resto è "evento"
 
 
@@ -64,8 +63,5 @@ async def get_agenda(
   """Eventi dell'agenda (compiti, annotazioni, eventi) raggruppati per giorno."""
   da = da or datetime.now(ZoneInfo(get_settings().timezone)).date()
   a = a or da + timedelta(days=13)
-  if a < da:
-    raise AppError(422, "invalid_range", "La data 'a' è precedente a 'da'")
-  if (a - da).days > MAX_DAYS:
-    raise AppError(422, "range_too_large", f"Intervallo massimo: {MAX_DAYS} giorni")
+  check_date_range(da, a)
   return build_agenda(await session.call("agenda_da_a", da.isoformat(), a.isoformat()))

@@ -1,0 +1,341 @@
+/* Profilo: scheda studente, presenze, materiali, impostazioni. */
+
+/* =========================================================
+   Profilo
+   ========================================================= */
+.profile-layout,
+.profile-layout__main,
+.profile-layout__side {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 28px 18px 20px;
+  background: radial-gradient(100% 70% at 50% 0%, rgba(16, 185, 129, 0.08), transparent 70%), var(--surface);
+  text-align: center;
+}
+
+.profile-card__avatar {
+  position: relative;
+}
+
+.profile-card__verified {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  display: grid;
+  width: 26px;
+  height: 26px;
+  place-items: center;
+  border: 3px solid var(--surface);
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.profile-card h1 {
+  margin-top: 18px;
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.profile-card__school {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.profile-card__linked {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 16px;
+  padding: 7px 14px;
+  border: 1px solid var(--accent-line);
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  font-size: 13px;
+}
+
+.profile-card__linked .live-dot {
+  width: 7px;
+  height: 7px;
+  box-shadow: none;
+}
+
+.profile-card__meta {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6px 10px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.profile-card__meta i {
+  font-style: normal;
+}
+
+.profile-card__meta strong {
+  color: var(--text);
+}
+
+.profile-card__meta > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.attendance-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.attendance-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.attendance-card > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  color: var(--text-2);
+  font-size: 14px;
+}
+
+.attendance-card > div svg {
+  flex: 0 0 auto;
+  color: var(--muted);
+}
+
+.attendance-card p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.attendance-card p strong {
+  color: var(--text);
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.attendance-card__tag {
+  padding: 6px 8px;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  background: var(--surface-2);
+  color: var(--text-2);
+  font-size: 11px;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.attendance-card__tag--amber {
+  border-color: var(--amber-line);
+  color: var(--amber);
+}
+
+.attendance-card__tag--blue {
+  border-color: var(--blue-line);
+  color: #a7d9ff;
+}
+
+.material-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.material-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.material-card__copy {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.material-card__copy strong,
+.material-card__copy small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.material-card__copy strong {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.material-card__copy small {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.settings-card {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+
+.settings-row {
+  position: relative;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+}
+
+.settings-row + .settings-row {
+  border-top: 1px solid var(--border);
+}
+
+button.settings-row:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.settings-row__icon {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid var(--accent-line);
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--accent-text);
+}
+
+.settings-row__icon--plain {
+  border: 0;
+  background: transparent;
+}
+
+.settings-row__copy {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.settings-row__copy strong {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.settings-row__copy small {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.settings-row__chevron {
+  flex: 0 0 auto;
+  color: var(--muted);
+}
+
+.switch__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.switch {
+  position: relative;
+  width: 52px;
+  height: 30px;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: #334048;
+  transition: background-color 160ms ease;
+}
+
+.switch span {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  transition: transform 160ms ease;
+}
+
+.switch__input:checked + .switch {
+  background: var(--accent);
+}
+
+.switch__input:checked + .switch span {
+  transform: translateX(22px);
+}
+
+.switch__input:focus-visible + .switch {
+  outline: 2px solid var(--accent-bright);
+  outline-offset: 3px;
+}
+
+.logout-button {
+  display: flex;
+  width: 100%;
+  min-height: 54px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid rgba(242, 98, 111, 0.28);
+  border-radius: var(--radius);
+  background: rgba(242, 98, 111, 0.08);
+  color: #ff8c97;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.logout-button:hover:not(:disabled) {
+  background: rgba(242, 98, 111, 0.14);
+}

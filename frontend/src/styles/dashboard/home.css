@@ -1,0 +1,748 @@
+/* Home (Galilei e altre scuole): avvisi, prossima lezione, orario, compiti, panoramica. */
+
+/* =========================================================
+   Home
+   ========================================================= */
+.home-grid,
+.home-grid__main,
+.home-grid__side {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ---------- variazione orario (Galilei) ---------- */
+.change-alert,
+.board-card {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 44px 16px 16px;
+  overflow: hidden;
+  border: 1px solid var(--amber-line);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, rgba(245, 182, 42, 0.09), rgba(245, 182, 42, 0.02) 60%), var(--surface);
+  cursor: pointer;
+}
+
+.change-alert::before,
+.board-card::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 4px;
+  background: var(--amber);
+  content: '';
+}
+
+.change-alert__icon,
+.board-card__icon {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid var(--amber-line);
+  border-radius: 12px;
+  background: rgba(245, 182, 42, 0.14);
+  color: var(--amber);
+}
+
+.change-alert__copy,
+.board-card__copy {
+  min-width: 0;
+  flex: 1;
+}
+
+.change-alert__meta,
+.board-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.change-alert p,
+.board-card p {
+  color: #f1dfb6;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.change-alert b,
+.board-card b {
+  color: var(--text);
+}
+
+.change-alert u {
+  color: var(--amber);
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
+
+.change-alert__more {
+  display: inline-block;
+  margin-top: 6px;
+  color: var(--amber);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.change-alert__close {
+  position: absolute;
+  top: 10px;
+  right: 8px;
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--muted);
+}
+
+.change-alert__close:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+}
+
+/* ---------- bacheca (altre scuole) ---------- */
+.board-card {
+  border-color: var(--accent-line);
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), transparent 60%), var(--surface);
+  cursor: default;
+}
+
+.board-card::before {
+  background: var(--accent);
+}
+
+.board-card__icon {
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+  color: var(--accent-text);
+}
+
+.board-card p {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--text-2);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.board-card__read {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 12px;
+  padding: 7px 14px;
+  border: 1px solid var(--accent-line);
+  border-radius: 10px;
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.board-card__read:hover {
+  background: rgba(16, 185, 129, 0.2);
+}
+
+/* ---------- prossima lezione ---------- */
+.next-lesson {
+  padding: 20px;
+  border: 1px solid #1d4a3e;
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(120% 90% at 0% 0%, rgba(16, 185, 129, 0.13), transparent 55%),
+    linear-gradient(180deg, #11211f, #0f1a1b);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  cursor: pointer;
+  transition: border-color 160ms ease, transform 160ms ease;
+}
+
+.next-lesson:hover {
+  border-color: #27624f;
+}
+
+.next-lesson--changed {
+  border-color: var(--amber-line);
+}
+
+.next-lesson__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.next-lesson__period {
+  padding-top: 6px;
+  color: var(--accent-text);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.room-pill {
+  display: inline-flex;
+  max-width: 60%;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-strong);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 14px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.room-pill svg {
+  flex: 0 0 auto;
+  color: var(--accent-text);
+}
+
+.room-pill span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.next-lesson--changed .room-pill {
+  border-color: var(--amber-line);
+  color: var(--amber);
+}
+
+.next-lesson--changed .room-pill svg {
+  color: var(--amber);
+}
+
+.next-lesson h3 {
+  margin-top: 6px;
+  font-size: clamp(24px, 7vw, 30px);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+  text-transform: uppercase;
+}
+
+.next-lesson__details {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 22px;
+  margin-top: 16px;
+  color: var(--text-2);
+  font-size: 14px;
+}
+
+.next-lesson__details span,
+.next-lesson__details strong {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.next-lesson__details strong {
+  color: var(--text);
+}
+
+.next-lesson__details svg {
+  color: var(--accent-text);
+}
+
+.next-lesson__progress {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.next-lesson__progress > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+  color: var(--accent-text);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.progress-track {
+  height: 6px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.progress-track span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--accent), var(--accent-bright));
+  transition: width 400ms ease;
+}
+
+/* ---------- orario di oggi ---------- */
+.lesson-list,
+.task-list,
+.agenda-list,
+.subject-list,
+.material-list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+}
+
+.show-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 40px;
+  padding: 8px 12px;
+  border: 1px dashed var(--border-strong);
+  border-radius: 12px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.show-more:hover {
+  border-color: var(--accent-line);
+  color: var(--accent-text);
+}
+
+.lesson-row {
+  position: relative;
+  display: grid;
+  min-height: 78px;
+  grid-template-columns: 64px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  cursor: pointer;
+  transition: border-color 160ms ease, background-color 160ms ease;
+}
+
+.lesson-row:hover {
+  border-color: var(--border-strong);
+}
+
+.lesson-row__time {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding-right: 14px;
+  border-right: 1px solid var(--border-strong);
+}
+
+.lesson-row__time strong {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.lesson-row__time span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.lesson-row__copy {
+  min-width: 0;
+}
+
+.lesson-row__copy strong {
+  display: block;
+  overflow: hidden;
+  font-size: 15px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.lesson-row__copy > span {
+  display: block;
+  margin-top: 4px;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lesson-row__copy i {
+  margin: 0 6px;
+  font-style: normal;
+}
+
+.lesson-row__room-change {
+  color: var(--amber);
+  font-weight: 700;
+}
+
+.lesson-row__room-change svg {
+  margin-right: 4px;
+  vertical-align: -2px;
+}
+
+.lesson-row--current {
+  border-color: var(--accent-line);
+  background: linear-gradient(90deg, rgba(16, 185, 129, 0.08), transparent 70%), var(--surface);
+}
+
+.lesson-row--current::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 4px;
+  background: var(--accent);
+  content: '';
+}
+
+.lesson-row--current .lesson-row__time strong {
+  color: var(--accent-text);
+}
+
+.lesson-row--done {
+  opacity: 0.72;
+}
+
+.lesson-row--cancelled {
+  opacity: 0.6;
+}
+
+.lesson-row--cancelled .lesson-row__copy strong {
+  text-decoration: line-through;
+}
+
+/* ---------- compiti & verifiche ---------- */
+.task-card {
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  cursor: pointer;
+  transition: border-color 160ms ease;
+}
+
+.task-card:hover {
+  border-color: var(--border-strong);
+}
+
+.task-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.task-card__due {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.task-card__due--soon {
+  color: var(--accent-text);
+  font-weight: 700;
+}
+
+.task-card h3 {
+  margin-top: 14px;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.task-card p {
+  display: -webkit-box;
+  margin-top: 6px;
+  overflow: hidden;
+  color: var(--text-2);
+  font-size: 14px;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.task-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.task-card__footer > span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.task-card--done h3,
+.task-card--done p {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.task-toggle {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 12px;
+  border: 1px solid var(--accent-line);
+  border-radius: 10px;
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.task-toggle:hover {
+  background: rgba(16, 185, 129, 0.2);
+}
+
+.task-toggle--done {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.task-toggle--done:hover {
+  background: var(--accent);
+}
+
+.task-toggle--large {
+  width: 100%;
+  justify-content: center;
+  padding: 12px;
+}
+
+.bookmark-toggle {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 auto;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--muted);
+}
+
+.bookmark-toggle:hover {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+.bookmark-toggle--saved {
+  color: var(--accent-text);
+}
+
+.bookmark-toggle--saved svg {
+  fill: currentColor;
+}
+
+/* ---------- panoramica voti (altre scuole) ---------- */
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.overview-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  text-align: left;
+  transition: border-color 160ms ease;
+}
+
+.overview-card:hover:not(:disabled) {
+  border-color: var(--border-strong);
+}
+
+.overview-card:disabled {
+  cursor: default;
+}
+
+.overview-card__label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.overview-card__label svg {
+  color: var(--accent-text);
+}
+
+.overview-card__value {
+  margin-top: 8px;
+  color: var(--accent-text);
+  font-size: 38px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.overview-card__value small {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.overview-card__value--low {
+  color: var(--danger);
+}
+
+.overview-card__value--neutral {
+  color: var(--text);
+}
+
+.overview-card__last {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.overview-card__last strong {
+  display: -webkit-box;
+  min-width: 0;
+  overflow: hidden;
+  font-size: 16px;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.overview-card__sub {
+  display: -webkit-box;
+  margin-top: 6px;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 13px;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.overview-card__footer {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  color: var(--accent-text);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.overview-card__value + .overview-card__footer {
+  margin-top: 18px;
+}
+
+.overview-card__footer--muted {
+  margin-top: 12px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* ---------- presenze (altre scuole) ---------- */
+.attendance-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: 16px 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+
+.attendance-strip > div {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 0 14px;
+}
+
+.attendance-strip > div + div {
+  border-left: 1px solid var(--border);
+}
+
+.attendance-strip > div > span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.attendance-strip p {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.attendance-strip p strong {
+  color: var(--text);
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.attendance-strip p.is-good strong { color: var(--accent-text); }
+.attendance-strip p.is-warning strong { color: var(--amber); }
+
+.attendance-strip small {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.attendance-strip .badge {
+  font-size: 10px;
+  white-space: normal;
+}
