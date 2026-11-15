@@ -200,11 +200,24 @@ def test_changes_multiple_days_and_hours(client, auth, data_dir):
   by_id = {c["id"].split("-")[0] + "-" + c["id"].split("-")[-1]: c for c in changes}
   assert [c["data"] for c in changes] == ["2026-11-17"] * 4 + ["2026-11-18"]
   assert by_id["entrate-e1"]["tipo"] == "entrata_posticipata" and by_id["entrate-e1"]["ora"] == 3
+  assert by_id["entrate-e1"]["ore"] == [1, 2]
   assert by_id["aula-a1"]["ore"] == [3, 4]  # la 5ª inizia alle 11:45, quando il cambio finisce and by_id["aula-a1"]["nuova_aula"] == "AULA B108"
   assert by_id["aula-a2"]["ore"] == [4]  # orario fuori griglia: solo le ore che si sovrappongono (4ª: 10:40-11:30)
   assert by_id["pomeriggio-p1"]["tipo"] == "senza_lezioni_pomeridiane" and by_id["pomeriggio-p1"]["ora"] == 8
+  assert by_id["pomeriggio-p1"]["ore"] == [8, 9, 10, 11]
   only_day = client.get("/changes?classe=1A&data=2026-11-18", headers=auth).json()
   assert [c["nuova_aula"] for c in only_day] == ["AULA B1"]
+
+
+def test_entrance_and_exit_lost_hours():
+  from app.changes import hours_lost_entrance, hours_lost_exit
+  assert hours_lost_entrance("09:50") == [1, 2]
+  assert hours_lost_entrance("14:30") == [1, 2, 3, 4, 5, 6, 7]  # entra per il pomeriggio: salta la mattina
+  assert hours_lost_entrance("15:20") == [8]  # mattina fatta tutta, salta solo la prima pomeridiana
+  assert hours_lost_exit("11:45") == [5, 6, 7]  # il pomeriggio resta
+  assert hours_lost_exit("14:30") == [8, 9, 10, 11]
+  assert hours_lost_exit("16:10") == [10, 11]
+  assert hours_lost_entrance("boh") == [] and hours_lost_exit(None) == []
 
 
 def test_changes_articulated_class_and_filters(client, auth, data_dir):

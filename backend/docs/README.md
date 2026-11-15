@@ -191,6 +191,8 @@ python -m scripts.bacheca_fetch.ocr_changes --min-affidabilita media
    "cambi_aula": [{"classe": "1C", "orario": "09:50 - 11:45", "aula": "AULA B108"}]}]}
 // risposta di /changes: {"id","data","ora","ore":[3,4],"tipo","testo","nuova_aula","orario"}
 // tipo: cambio_aula | entrata_posticipata | uscita_anticipata | senza_lezioni_pomeridiane
+// ore: per cambio_aula le ore in cui vale; per entrate/uscite/pomeriggio le ore annullate
+//   (entrata 15:20 -> [8], la mattina resta; uscita 11:45 -> [5,6,7], il pomeriggio resta)
 // "3C/T" sul cartellone vale sia per 3C sia per 3T
 ```
 

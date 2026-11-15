@@ -30,7 +30,7 @@ describe('buildDayLessons', () => {
 	it('applica cambi aula su più ore, uscite e niente pomeriggio', () => {
 		const changes = [
 			{ data: '2026-11-17', tipo: 'cambio_aula', ora: 3, ore: [3, 4], nuova_aula: 'LAB. B201' },
-			{ data: '2026-11-17', tipo: 'senza_lezioni_pomeridiane', ora: 8, ore: [8] },
+			{ data: '2026-11-17', tipo: 'senza_lezioni_pomeridiane', ora: 8, ore: [8, 9, 10, 11] },
 			{ data: '2026-11-18', tipo: 'uscita_anticipata', ora: 1, ore: [1] }, // altro giorno: ignorata
 		]
 		const lessons = buildDayLessons(SCHEDULE, TUESDAY, changes)
@@ -42,9 +42,19 @@ describe('buildDayLessons', () => {
 		expect(byStart['08:10'].cancelled).toBeNull()
 	})
 
-	it('entrata posticipata annulla le ore precedenti', () => {
-		const lessons = buildDayLessons(SCHEDULE, TUESDAY, [{ data: '2026-11-17', tipo: 'entrata_posticipata', ora: 2 }])
-		expect(lessons.filter((item) => item.cancelled).map((item) => item.materia)).toEqual(['Tedesco'])
+	const cancelledWith = (change) => buildDayLessons(SCHEDULE, TUESDAY, [{ data: '2026-11-17', ...change }])
+		.filter((item) => item.cancelled).map((item) => item.materia)
+
+	it('entrata posticipata annulla solo le ore indicate', () => {
+		expect(cancelledWith({ tipo: 'entrata_posticipata', ora: 2, ore: [1] })).toEqual(['Tedesco'])
+		// entrata alle 15:20: la mattina si fa tutta, salta solo la 8ª
+		expect(cancelledWith({ tipo: 'entrata_posticipata', ora: 9, ore: [8] })).toEqual(['Sistemi'])
+	})
+
+	it('uscita anticipata al mattino non toglie il pomeriggio', () => {
+		// uscita alle 10:40: saltano 4ª–7ª, il pomeriggio resta
+		expect(cancelledWith({ tipo: 'uscita_anticipata', ora: 4, ore: [4, 5, 6, 7] })).toEqual(['Matematica'])
+		expect(cancelledWith({ tipo: 'uscita_anticipata', ora: 8, ore: [8, 9, 10, 11] })).toEqual(['Sistemi'])
 	})
 
 	it('giorno senza lezioni', () => {
