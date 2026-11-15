@@ -347,3 +347,6 @@ orario_classi.json
 /backend/docs/frontend-style
 
 /frontend/frontend-style
+
+# deploy sul Raspberry: orari copiati per l'import (dati della scuola)
+/deploy/orari/

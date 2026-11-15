@@ -1,0 +1,18 @@
+# Profilo "https": Caddy ottiene e rinnova da solo il certificato per API_DOMAIN (Let's Encrypt).
+# Requisiti: API_DOMAIN punta all'IP pubblico di casa e il router inoltra le porte 80 e 443 a questo Raspberry.
+{
+	admin off
+}
+
+{$API_DOMAIN} {
+	encode zstd gzip
+	request_body {
+		max_size 64KB
+	}
+	reverse_proxy api:8000
+	header -Server
+	log {
+		output stdout
+		format console
+	}
+}

@@ -1,0 +1,5 @@
+# Dipendenze del container OCR (service.py). Per l'uso da riga di comando basta requirements.txt.
+opencv-python-headless
+numpy
+fastapi>=0.110
+uvicorn>=0.29

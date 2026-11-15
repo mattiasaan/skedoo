@@ -1,0 +1,14 @@
+**/__pycache__
+**/.pytest_cache
+**/*.pyc
+**/.env
+**/.env.*
+output
+collaudo
+debug
+tests
+tests-output
+test_images
+ground_truth
+Dockerfile
+.dockerignore
