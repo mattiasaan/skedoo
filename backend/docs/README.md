@@ -128,7 +128,9 @@ Formato `{"code": "...", "message": "..."}`. Le validazioni dei parametri rispon
 `SCHEDULE_SOURCE=json` (default, comodo in sviluppo) oppure `db` (produzione).
 
 ```bash
-docker compose up -d                                   # PostgreSQL di sviluppo
+# PostgreSQL di sviluppo, raggiungibile solo dal tuo computer
+docker run -d --name skedoo-db -e POSTGRES_USER=skedoo -e POSTGRES_PASSWORD=skedoo -e POSTGRES_DB=skedoo \
+  -p 127.0.0.1:5432:5432 -v skedoo-db:/var/lib/postgresql/data postgres:16-alpine
 # .env: DATABASE_URL=postgresql://skedoo:skedoo@localhost:5432/skedoo  e  SCHEDULE_SOURCE=db
 python -m scripts.import_schedules                     # legge data/, crea le tabelle, importa (ripetibile)
 # opzioni: --data-dir PATH  --database-url URL
