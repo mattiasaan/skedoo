@@ -44,6 +44,10 @@ MIN_TOKEN_LENGTH = 32
 log = logging.getLogger("skedoo.ocr")
 
 
+class InvalidImage(Exception):
+    """Il corpo della richiesta non è un'immagine decodificabile (risposta 422 con messaggio fisso)."""
+
+
 class Settings:
     def __init__(self, env=os.environ):
         self.token = env.get("OCR_TOKEN", "")
@@ -168,9 +172,9 @@ def create_app(settings: Settings | None = None, start_engine: bool = True) -> F
             started = time.perf_counter()
             try:
                 result = await asyncio.to_thread(_process, bytes(body), name, state.engine, settings.cfg)
-            except ValueError as exc:
-                return _error(422, str(exc))
-            except Exception:  # noqa: BLE001 - l'errore va nei log del servizio, non al client
+            except InvalidImage:
+                return _error(422, "Il file non è un'immagine leggibile")
+            except Exception:  # noqa: BLE001 - l'errore va nei log del servizio, mai al client
                 log.exception("OCR fallito per %s", name)
                 return _error(500, "Lettura dell'immagine fallita")
         log.info("%s letto in %.0fs (%s voci)", name, time.perf_counter() - started, result.get("n_voci"))
@@ -184,7 +188,7 @@ def _process(data: bytes, name: str, engine, cfg: dict) -> dict:
     import numpy as np
 
     if cv2.imdecode(np.frombuffer(data, np.uint8), cv2.IMREAD_COLOR) is None:
-        raise ValueError("Il file non è un'immagine leggibile")
+        raise InvalidImage
     with tempfile.TemporaryDirectory(prefix="ocr-") as workdir:
         path = Path(workdir) / name
         path.write_bytes(data)
