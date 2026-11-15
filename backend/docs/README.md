@@ -128,7 +128,9 @@ Formato `{"code": "...", "message": "..."}`. Le validazioni dei parametri rispon
 `SCHEDULE_SOURCE=json` (default, comodo in sviluppo) oppure `db` (produzione).
 
 ```bash
-docker compose up -d                                   # PostgreSQL di sviluppo
+# PostgreSQL di sviluppo, raggiungibile solo dal tuo computer
+docker run -d --name skedoo-db -e POSTGRES_USER=skedoo -e POSTGRES_PASSWORD=skedoo -e POSTGRES_DB=skedoo \
+  -p 127.0.0.1:5432:5432 -v skedoo-db:/var/lib/postgresql/data postgres:16-alpine
 # .env: DATABASE_URL=postgresql://skedoo:skedoo@localhost:5432/skedoo  e  SCHEDULE_SOURCE=db
 python -m scripts.import_schedules                     # legge data/, crea le tabelle, importa (ripetibile)
 # opzioni: --data-dir PATH  --database-url URL
@@ -174,7 +176,8 @@ python -m scripts.bacheca_fetch.ocr_changes --min-affidabilita media
 
 1. per ogni comunicazione trovata prende le immagini allegate (i PDF vengono ignorati);
 2. le legge con l'OCR di `helper/OCR/V4-AI` (Qwen3-VL via Ollama) in un processo separato:
-   `OCR_PYTHON` deve avere `opencv-python` e `numpy`, Ollama deve essere avviato con il modello di `config.json`;
+   di default con lo stesso Python del backend (`opencv-python` e `numpy` sono in `requirements.txt`; `OCR_PYTHON`
+   per usarne un altro), Ollama deve essere avviato con il modello di `config.json`;
 3. i risultati sono in cache per contenuto (`data/bacheca_fetch/ocr/`): un'immagine già letta non si rilegge;
 4. tiene solo le voci con affidabilità almeno `BACHECA_OCR_MIN_AFFIDABILITA` (default `alta`) e la data del
    cartellone solo se affidabile o coerente con la data di pubblicazione;
@@ -190,6 +193,8 @@ python -m scripts.bacheca_fetch.ocr_changes --min-affidabilita media
    "cambi_aula": [{"classe": "1C", "orario": "09:50 - 11:45", "aula": "AULA B108"}]}]}
 // risposta di /changes: {"id","data","ora","ore":[3,4],"tipo","testo","nuova_aula","orario"}
 // tipo: cambio_aula | entrata_posticipata | uscita_anticipata | senza_lezioni_pomeridiane
+// ore: per cambio_aula le ore in cui vale; per entrate/uscite/pomeriggio le ore annullate
+//   (entrata 15:20 -> [8], la mattina resta; uscita 11:45 -> [5,6,7], il pomeriggio resta)
 // "3C/T" sul cartellone vale sia per 3C sia per 3T
 ```
 

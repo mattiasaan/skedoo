@@ -66,26 +66,20 @@ Come usarlo nell'altro progetto:
 - `orari_noti`: griglia degli orari; **fuori griglia = `bassa`**. Aggiornala se la scuola cambia orario.
 - `classi_file`, `aule_file`, `aule_nominali`: elenchi ammessi; fuori elenco = `media`.
   - `elenchi/classi.json`: elenco ufficiale delle classi. **Se è di un altro anno scolastico (mancano 3C, 3J, 5B, 5C, 5G, 5K, 3P, 4N…) molte classi vere risultano `media`: aggiornalo.**
-  - `elenchi/aule.json`: cresce con `python apprendi.py cartella_json_verificati` (JSON scaricati dalla revisione, `stato: verificato`).
+  - `elenchi/aule.json`: elenco delle aule; aggiungi a mano quelle nuove che risultano `media` (`aula_fuori_elenco`).
 
 ## Limiti noti (senza un secondo lettore)
-- Un valore **sbagliato ma valido e coerente** (es. `1I` letto `1D`, con entrambe in elenco e ordine rispettato) non è riconoscibile: nella simulazione
-  (`python tests/simula_vlm.py test_images 0.1 8`, ~10% di letture sbagliate) 3 errori su 85 sono rimasti `alta`. Tieni gli elenchi aggiornati: restringono lo spazio di questi errori.
+- Un valore **sbagliato ma valido e coerente** (es. `1I` letto `1D`, con entrambe in elenco e ordine rispettato) non è riconoscibile:
+  in una simulazione con ~10% di letture sbagliate 3 errori su 85 sono rimasti `alta`. Tieni gli elenchi aggiornati: restringono lo spazio di questi errori.
 - Il testo libero (nomi, FSL, viaggi) è controllato solo su caratteri e struttura, non sui nomi.
-- Per ridurre le voci `media`: aggiorna `elenchi/classi.json` (classi mancanti = `media`) e le aule con `apprendi.py`.
+- Per ridurre le voci `media`: aggiorna `elenchi/classi.json` (classi mancanti = `media`) e `elenchi/aule.json`.
 - Una sola passata: il modello è deterministico (temperature 0), rileggere non aggiungerebbe informazione.
 
-## Misurare / testare
+## Testare
 ```
-python collauda.py                               # TUTTE le immagini una alla volta + report in collaudo/report.md
-python collauda.py --solo-confronto --out collaudo   # rianalizza i JSON gia' prodotti, senza rileggere le immagini
 python -m unittest discover -s tests -v          # nessun modello necessario
-python tests/simula_vlm.py test_images 0.1 8      # finto Qwen con errori iniettati
-python main.py test_images --out output && python evaluate.py output ground_truth
+python main.py test_images --out output          # lettura vera delle immagini di prova (serve Ollama)
 ```
-`collauda.py` separa i **veri errori** (silenziosi = sbagliati e `alta`; intercettati = sbagliati ma segnalati; mancanti) dai **falsi allarmi** (giusti ma non `alta`, con l'elenco delle classi/aule da aggiungere agli elenchi) e confronta le immagini della stessa data. Esce con codice 1 se ci sono errori silenziosi.
-
-In `evaluate.py` **ERRORI_SILENZIOSI** = valori sbagliati marcati `alta`.
 
 ## download modelli
   - ollama pull qwen3-vl:2b-instruct # circa 2 minuti a immagine, 8 - 10s a ritaglio 
@@ -102,4 +96,3 @@ In `evaluate.py` **ERRORI_SILENZIOSI** = valori sbagliati marcati `alta`.
 - **Titolo con data di un altro anno** (immagini d'archivio): `data_iso` usa l'anno che fa tornare il
   giorno della settimana, con avviso `data_di_altro_anno:AAAA` (media). Usa `--anno 2026` per fissarlo.
 - Note con "al" (`posticipa 1° al 3°`) riconosciute.
-- `collauda.py` raggruppa le immagini per `giorno + data` nel confronto incrociato.

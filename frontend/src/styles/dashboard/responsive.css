@@ -378,33 +378,20 @@
 
   /* profilo */
   .profile-card {
-    padding: 18px 14px 14px;
-  }
-
-  .avatar--large {
-    width: 76px;
-    height: 76px;
-    font-size: 24px;
+    padding: 14px 14px 12px;
   }
 
   .profile-card h1 {
-    margin-top: 12px;
-    font-size: 22px;
+    font-size: 18px;
   }
 
   .profile-card__school {
     font-size: 13px;
   }
 
-  .profile-card__linked {
-    margin-top: 10px;
-    padding: 5px 12px;
-    font-size: 12px;
-  }
-
   .profile-card__meta {
-    margin-top: 12px;
-    padding-top: 10px;
+    margin-top: 10px;
+    padding-top: 8px;
     font-size: 12px;
   }
 

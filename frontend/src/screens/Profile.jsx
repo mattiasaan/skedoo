@@ -4,7 +4,7 @@ import { ErrorMessage, LinkButton, SectionHeading, Skeleton, StateMessage } from
 import { useApp } from '../lib/appContext.js'
 import { useAbsences, useDidactics } from '../lib/data.js'
 import { flattenMaterials, materialType } from '../lib/didactics.js'
-import { classLabel, dateKey, formatDateTime, initials, schoolDisplayName, schoolYear, teacherName, titleCase } from '../lib/format.js'
+import { classLabel, dateKey, formatDateTime, schoolDisplayName, schoolYear, teacherName, titleCase } from '../lib/format.js'
 import { readJson, writeJson } from '../lib/session.js'
 import { useToast } from '../lib/toast.js'
 import { clearApiCache } from '../lib/useApi.js'
@@ -23,13 +23,15 @@ function ProfileCard() {
 
 	return (
 		<article className="card profile-card">
-			<div className="profile-card__avatar">
-				<span className="avatar avatar--large">{initials(user?.nome, user?.cognome)}</span>
-				<span className="profile-card__verified"><Icon name="check" size={13} strokeWidth={2.6} /></span>
+			<div className="profile-card__head">
+				<div className="profile-card__identity">
+					<h1 id="profile-heading">{titleCase([user?.nome, user?.cognome].filter(Boolean).join(' ')) || 'Studente'}</h1>
+					{schoolLine && <p className="profile-card__school">{schoolLine}</p>}
+				</div>
+				<span className="profile-card__linked" title="Account collegato a Spaggiari ClasseViva">
+					<span className="status-dot" aria-hidden="true" />ClasseViva
+				</span>
 			</div>
-			<h1 id="profile-heading">{titleCase([user?.nome, user?.cognome].filter(Boolean).join(' ')) || 'Studente'}</h1>
-			{schoolLine && <p className="profile-card__school">{schoolLine}</p>}
-			<span className="profile-card__linked"><span className="live-dot" aria-hidden="true" />Account collegato a Spaggiari ClasseViva</span>
 			<div className="profile-card__meta">
 				<span>Cod. CV: <strong>{user?.id ?? '—'}</strong></span>
 				<i aria-hidden="true">•</i>

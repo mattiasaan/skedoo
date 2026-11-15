@@ -6,16 +6,21 @@ Flusso:
   2. questo script passa ogni immagine all'OCR (helper/OCR/V4-AI, Qwen3-VL via Ollama);
   3. tiene solo le voci abbastanza affidabili e scrive data/dati-bacheca/data.json.
 
-L'OCR gira in un processo separato con il suo interprete Python (OpenCV non è una dipendenza del
-backend) e i risultati sono messi in cache per contenuto: un'immagine già letta non si rilegge.
+L'OCR gira in due modi:
+  - servizio HTTP (container `ocr`, anche su un altro Raspberry): con OCR_URL impostato ogni immagine
+    viene inviata a POST <OCR_URL>/ocr con il token OCR_TOKEN;
+  - processo locale (sviluppo): senza OCR_URL si lancia helper/OCR/V4-AI/main.py con OCR_PYTHON.
+I risultati sono messi in cache per contenuto: un'immagine già letta non si rilegge.
 
 Avvio dalla directory ``backend``:
 
     python -m scripts.bacheca_fetch.ocr_changes
 
 Variabili (ambiente o backend/.env):
-  OCR_DIR                       cartella dell'OCR (default: ../helper/OCR/V4-AI)
-  OCR_PYTHON                    interprete con opencv-python e numpy (default: quello corrente)
+  OCR_URL                       servizio OCR, es. http://ocr:8090 (vuoto = processo locale)
+  OCR_TOKEN                     token condiviso con il servizio OCR (obbligatorio con OCR_URL)
+  OCR_DIR                      cartella dell'OCR (default: ../helper/OCR/V4-AI)
+  OCR_PYTHON                    interprete per l'OCR (default: quello corrente, cioè il venv del backend)
   OCR_TIMEOUT_SECONDS           tempo massimo per immagine (default 1800)
   BACHECA_OCR_MIN_AFFIDABILITA  alta (default) | media | bassa: voci meno affidabili vengono scartate
   CLASSVIVA_BOARD_OUTPUT        board_matches.json prodotto da fetch_bacheca.py
@@ -24,12 +29,16 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import ipaddress
 import json
 import logging
 import os
 import subprocess
 import sys
 import tempfile
+import urllib.error
+import urllib.parse
+import urllib.request
 from collections.abc import Callable, Iterable, Mapping, Sequence
 from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
@@ -72,13 +81,16 @@ def parse_args(argv: Sequence[str] | None, env: Mapping[str, str]) -> argparse.N
   parser.add_argument("--output", type=Path, default=None,
                       help="file delle variazioni (default: DATA_DIR/dati-bacheca/data.json)")
   parser.add_argument("--cache-dir", type=Path, default=DEFAULT_CACHE, help="cache dei risultati OCR")
+  parser.add_argument("--ocr-url", default=env.get("OCR_URL") or None, help="servizio OCR (default: OCR_URL)")
   parser.add_argument("--ocr-dir", type=Path, default=Path(env.get("OCR_DIR") or DEFAULT_OCR_DIR))
   parser.add_argument("--ocr-python", default=env.get("OCR_PYTHON") or sys.executable)
   parser.add_argument("--timeout", type=int, default=int(env.get("OCR_TIMEOUT_SECONDS") or 1800))
   parser.add_argument("--min-affidabilita", choices=["alta", "media", "bassa"],
                       default=env.get("BACHECA_OCR_MIN_AFFIDABILITA") or "alta")
   parser.add_argument("--keep-past", action="store_true", help="non scartare i giorni già passati")
-  return parser.parse_args(argv)
+  args = parser.parse_args(argv)
+  args.ocr_token = env.get("OCR_TOKEN") or ""  # solo da ambiente: sulla riga di comando sarebbe visibile in `ps`
+  return args
 
 
 def default_output() -> Path:
@@ -127,6 +139,46 @@ def subprocess_runner(ocr_dir: Path, python: str, timeout: int) -> OcrRunner:
       return json.loads(result_file.read_text(encoding="utf-8"))
 
   return run
+
+
+def http_runner(url: str, token: str, timeout: int) -> OcrRunner:
+  """Invia l'immagine al servizio OCR (POST <url>/ocr) e restituisce il JSON prodotto.
+  Il servizio può stare nello stesso compose, su un altro Raspberry in LAN o in un'altra rete (via VPN)."""
+  parsed = urllib.parse.urlsplit(url)
+  if parsed.scheme not in ("http", "https") or not parsed.hostname:
+    raise OcrError(f"OCR_URL non valido: {url!r} (es. http://ocr:8090)")
+  if len(token) < 32:
+    raise OcrError("OCR_TOKEN mancante o troppo corto (almeno 32 caratteri, lo stesso del servizio OCR)")
+  try:
+    if parsed.scheme == "http" and ipaddress.ip_address(parsed.hostname).is_global:
+      log.warning("OCR_URL punta a un IP pubblico in chiaro: usa una VPN (Tailscale) o https")
+  except ValueError:
+    pass  # nome host (es. "ocr" nel compose): niente da controllare
+  endpoint = url.rstrip("/") + "/ocr"
+
+  def run(image: Path) -> dict:
+    request = urllib.request.Request(
+      f"{endpoint}?{urllib.parse.urlencode({'nome': image.name})}", data=image.read_bytes(), method="POST",
+      headers={"Authorization": f"Bearer {token}", "Content-Type": "application/octet-stream"},
+    )
+    try:
+      with urllib.request.urlopen(request, timeout=timeout) as response:  # noqa: S310 - schema controllato sopra
+        return json.loads(response.read().decode("utf-8"))
+    except urllib.error.HTTPError as exc:
+      detail = exc.read(300).decode("utf-8", "replace").strip()
+      raise OcrError(f"Servizio OCR: errore {exc.code} per {image.name}: {detail}") from exc
+    except (urllib.error.URLError, TimeoutError, OSError) as exc:
+      raise OcrError(f"Servizio OCR non raggiungibile su {url}: {exc}") from exc
+    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+      raise OcrError(f"Servizio OCR: risposta non valida per {image.name}") from exc
+
+  return run
+
+
+def make_runner(args: argparse.Namespace) -> OcrRunner:
+  if args.ocr_url:
+    return http_runner(args.ocr_url, args.ocr_token, args.timeout)
+  return subprocess_runner(args.ocr_dir, args.ocr_python, args.timeout)
 
 
 def read_image(image: Path, runner: OcrRunner, cache_dir: Path) -> dict:
@@ -273,7 +325,7 @@ def run(args: argparse.Namespace, runner: OcrRunner | None = None, today: date |
     log.error("Comunicazioni non leggibili: %s", exc)
     return 2
   try:
-    runner = runner or subprocess_runner(args.ocr_dir, args.ocr_python, args.timeout)
+    runner = runner or make_runner(args)
   except OcrError as exc:
     log.error("%s", exc)
     return 2

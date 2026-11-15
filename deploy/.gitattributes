@@ -1,0 +1,2 @@
+# script e config letti su Linux (Raspberry): sempre a capo LF, anche se il repo è clonato su Windows
+* text=auto eol=lf

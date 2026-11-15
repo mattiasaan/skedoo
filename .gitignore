@@ -342,8 +342,10 @@ orario_classi.json
 # /helper/OCR/V4-AI/test_images
 /helper/OCR/V4-AI/output
 /helper/OCR/V4-AI/tests
-/helper/OCR/V4-AI/collaudo
 
 /backend/docs/frontend-style
 
 /frontend/frontend-style
+
+# deploy sul Raspberry: orari copiati per l'import (dati della scuola)
+/deploy/orari/

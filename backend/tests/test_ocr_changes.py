@@ -110,3 +110,74 @@ def test_run_rejects_unknown_ocr_format(board):
 
 def test_run_reports_missing_matches_file(tmp_path):
   assert oc.run(make_args(tmp_path, tmp_path / "manca.json"), lambda image: {}, today=date(2026, 11, 17)) == 2
+
+
+# ---------- servizio OCR via HTTP (container ocr, anche su un altro Raspberry) ----------
+TOKEN = "t" * 40
+
+
+@pytest.fixture
+def ocr_server():
+  """Finto servizio OCR: controlla il token e restituisce un risultato per l'immagine ricevuta."""
+  import threading
+  from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+  from urllib.parse import parse_qs, urlsplit
+
+  received = []
+
+  class Handler(BaseHTTPRequestHandler):
+    def do_POST(self):  # noqa: N802
+      body = self.rfile.read(int(self.headers["Content-Length"]))
+      query = parse_qs(urlsplit(self.path).query)
+      received.append((urlsplit(self.path).path, self.headers.get("Authorization"), query.get("nome"), body))
+      if self.headers.get("Authorization") != f"Bearer {TOKEN}":
+        self.send_response(401)
+        self.end_headers()
+        self.wfile.write(b'{"detail": "Token non valido"}')
+        return
+      payload = json.dumps(ocr_result(query["nome"][0], uscite=[EXIT_OK])).encode()
+      self.send_response(200)
+      self.send_header("Content-Type", "application/json")
+      self.send_header("Content-Length", str(len(payload)))
+      self.end_headers()
+      self.wfile.write(payload)
+
+    def log_message(self, *args):
+      pass
+
+  server = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
+  threading.Thread(target=server.serve_forever, daemon=True).start()
+  yield f"http://127.0.0.1:{server.server_port}", received
+  server.shutdown()
+
+
+def test_run_uses_the_ocr_service_when_ocr_url_is_set(board, ocr_server):
+  tmp_path, matches = board
+  url, received = ocr_server
+  args = oc.parse_args(["--matches", str(matches), "--output", str(tmp_path / "out" / "data.json"),
+                        "--cache-dir", str(tmp_path / "cache")], {"OCR_URL": url + "/", "OCR_TOKEN": TOKEN})
+  assert oc.run(args, today=date(2026, 11, 17)) == 0
+  assert received == [("/ocr", f"Bearer {TOKEN}", ["cartellone.png"], b"png finto")]
+  payload = json.loads((tmp_path / "out" / "data.json").read_text(encoding="utf-8"))
+  assert payload["giorni"][0]["uscite"][0]["classi"] == ["4A"]
+
+
+def test_http_runner_errors(tmp_path, ocr_server):
+  url, _ = ocr_server
+  image = tmp_path / "a.png"
+  image.write_bytes(b"x")
+  with pytest.raises(oc.OcrError, match="401"):
+    oc.http_runner(url, "s" * 40, 5)(image)
+  with pytest.raises(oc.OcrError, match="non raggiungibile"):
+    oc.http_runner("http://127.0.0.1:1", TOKEN, 5)(image)
+  with pytest.raises(oc.OcrError, match="OCR_TOKEN"):
+    oc.http_runner(url, "corto", 5)
+  with pytest.raises(oc.OcrError, match="OCR_URL"):
+    oc.http_runner("ftp://ocr", TOKEN, 5)
+
+
+def test_missing_token_with_ocr_url_stops_the_run(board):
+  tmp_path, matches = board
+  args = oc.parse_args(["--matches", str(matches), "--cache-dir", str(tmp_path / "cache"),
+                        "--output", str(tmp_path / "data.json")], {"OCR_URL": "http://ocr:8090"})
+  assert oc.run(args, today=date(2026, 11, 17)) == 2
