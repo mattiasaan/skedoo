@@ -9,7 +9,7 @@ from starlette.middleware.trustedhost import TrustedHostMiddleware
 
 from . import agenda, auth, grades, schedules, absences, board, didactics, changes
 from .config import get_settings
-from .db import get_engine
+from .db import Base, get_engine
 from .errors import AppError, error_response, register_error_handlers
 from .security import client_ip, rate_limit
 
@@ -30,6 +30,7 @@ async def lifespan(_: FastAPI):
   if settings.schedule_source == "db":  # se il database non risponde meglio fallire subito che a ogni richiesta
     with Session(get_engine()) as db:
       db.execute(select(1))
+    Base.metadata.create_all(get_engine())  # al primo avvio crea le tabelle (vuote finché non importi gli orari)
   yield
 
 

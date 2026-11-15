@@ -1,0 +1,16 @@
+# niente segreti, dati locali o ambienti di sviluppo nell'immagine
+**/.env
+**/.env.*
+**/__pycache__
+**/*.pyc
+.venv
+.pytest_cache
+data
+docs
+tests
+scripts/bacheca_fetch/data
+docker-compose.yml
+enviorment-setup.bat
+requirements-dev.txt
+Dockerfile
+.dockerignore

@@ -58,6 +58,11 @@ npm run dev -- --host  # per provarlo dal telefono sulla stessa rete
 
 In produzione impostare `VITE_API_URL` con l'indirizzo dell'API (vedi `frontend/.env.example`).
 
+## Deploy (Raspberry Pi)
+
+Backend, database e OCR girano in container Docker, su un solo Raspberry o su due (stessa LAN o reti diverse):
+guida passo passo in [deploy/README.md](deploy/README.md).
+
 # Sicurezza
 
 * Autenticazione tramite ClasseViva
