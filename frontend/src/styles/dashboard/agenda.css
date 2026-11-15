@@ -469,3 +469,53 @@
   color: var(--muted);
   text-decoration: line-through;
 }
+
+/* Calendario scorrevole: il contenuto segue il dito, poi la nuova settimana/mese entra dal lato giusto */
+.calendar-swipe {
+  overflow: hidden;
+  margin: -4px;
+  padding: 4px;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.calendar-swipe > * {
+  transition: transform 0.22s ease;
+}
+
+.calendar-swipe--dragging > * {
+  transition: none;
+}
+
+.calendar-slide--next {
+  animation: calendar-in-next 0.24s ease-out;
+}
+
+.calendar-slide--prev {
+  animation: calendar-in-prev 0.24s ease-out;
+}
+
+@keyframes calendar-in-next {
+  from { opacity: 0; transform: translateX(28px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes calendar-in-prev {
+  from { opacity: 0; transform: translateX(-28px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .calendar-swipe > * { transition: none; }
+  .calendar-slide--next,
+  .calendar-slide--prev { animation: none; }
+}
+
+.show-more__chevron {
+  transition: transform 0.18s ease;
+}
+
+.show-more__chevron--up {
+  transform: rotate(180deg);
+}

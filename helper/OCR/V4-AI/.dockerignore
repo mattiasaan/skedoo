@@ -1,0 +1,11 @@
+**/__pycache__
+**/.pytest_cache
+**/*.pyc
+**/.env
+**/.env.*
+output
+debug
+tests
+test_images
+Dockerfile
+.dockerignore

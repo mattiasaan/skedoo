@@ -14,6 +14,7 @@ import {
 	generalAverage,
 	gradeCounts,
 	gradeTone,
+	isPractical,
 	requiredGrade,
 	subjectIcon,
 	subjectsForTerm,
@@ -86,6 +87,7 @@ function Simulator({ subjects }) {
 	const subject = candidates.find((item) => item.materia === subjectName) ?? lowest
 	// su telefono parte chiuso: è lungo e non serve a ogni visita
 	const [open, setOpen] = useState(() => window.matchMedia?.('(min-width: 600px)').matches ?? true)
+	const [nextPractical, setNextPractical] = useState(false)
 
 	if (!subject) {
 		return (
@@ -95,18 +97,24 @@ function Simulator({ subjects }) {
 		)
 	}
 
-	const result = requiredGrade(subject, target)
+	// la scelta scritto/orale o pratico serve solo dove i pratici valgono meno e la materia ne ha
+	const hasPractical = subject.practicalSplit && subject.voti.some(isPractical)
+	const practical = hasPractical && nextPractical
+	const result = requiredGrade(subject, target, { practical })
+	const proof = practical ? 'nella prossima prova pratica' : 'nella prossima verifica'
 	const needed = String(Number(result.value.toFixed(2)))
+	// 2 decimali: con toFixed(1) 6.25 diventava "6.3" e 6.75 "6.8", diverso dal valore usato nel calcolo
+	const targetLabel = String(Number(target.toFixed(2)))
 
 	let message
 	if (result.value <= 1) {
-		message = <>La tua media è {formatNumber(subject.media, 2)}: resti sopra il <b>{target.toFixed(1)}</b> qualunque sia il prossimo voto.</>
+		message = <>La tua media è {formatNumber(subject.media, 2)}: resti sopra il <b>{targetLabel}</b> qualunque sia il prossimo voto.</>
 	} else if (result.value > 10) {
-		message = <>Con un solo voto non basta: anche un <b>10</b> lascerebbe la media sotto il <b>{target.toFixed(1)}</b>. Servono più prove positive.</>
+		message = <>Con un solo voto non basta: anche un <b>10</b> lascerebbe la media sotto il <b>{targetLabel}</b>. Servono più prove positive.</>
 	} else if (subject.media >= target) {
-		message = <>Sei già sopra il <b>{target.toFixed(1)}</b>: per restarci ti serve almeno <b className="prediction__value">{needed}</b> nella prossima verifica.</>
+		message = <>Sei già sopra il <b>{targetLabel}</b>: per restarci ti serve almeno <b className="prediction__value">{needed}</b> {proof}.</>
 	} else {
-		message = <>Per raggiungere la media del <b>{target.toFixed(1)}</b> devi prendere almeno <b className="prediction__value">{needed}</b> nella prossima verifica!</>
+		message = <>Per raggiungere la media del <b>{targetLabel}</b> devi prendere almeno <b className="prediction__value">{needed}</b> {proof}!</>
 	}
 
 	return (
@@ -135,7 +143,7 @@ function Simulator({ subjects }) {
 
 			<div className="simulator-card__target">
 				<label htmlFor="simulator-target">Media desiderata:</label>
-				<output htmlFor="simulator-target">{target.toFixed(1)}</output>
+				<output htmlFor="simulator-target">{targetLabel}</output>
 			</div>
 			<input
 				className="range"
@@ -150,12 +158,34 @@ function Simulator({ subjects }) {
 			/>
 			<div className="simulator-card__scale"><span>6.0 (Sufficienza minima)</span><span>7.5</span><span>9.0 (Eccellenza)</span></div>
 
+			{hasPractical && (
+				<div className="simulator-card__kind">
+					<span id="simulator-kind">Prossima prova:</span>
+					<div aria-labelledby="simulator-kind" className="segmented" role="group">
+						{[[false, 'Scritto / Orale'], [true, 'Pratico']].map(([value, label]) => (
+							<button
+								aria-pressed={practical === value}
+								className={`segmented__button${practical === value ? ' segmented__button--active' : ''}`}
+								key={label}
+								onClick={() => setNextPractical(value)}
+								type="button"
+							>
+								{label}
+							</button>
+						))}
+					</div>
+				</div>
+			)}
+
 			<div className="prediction">
 				<span className="icon-tile icon-tile--accent"><Icon name="flag" size={17} /></span>
 				<div>
 					<p className="card-kicker card-kicker--accent">Previsione calcolata</p>
 					<p className="prediction__text">{message}</p>
-					<small>Stima basata su {result.count} {result.count === 1 ? 'voto preesistente' : 'voti preesistenti'} e su un nuovo voto con peso ordinario 100%.</small>
+					<small>
+						Stima basata su {result.count} {result.count === 1 ? 'voto preesistente' : 'voti preesistenti'} e su un nuovo voto{hasPractical ? (practical ? ' pratico' : ' scritto o orale') : ''} con peso ordinario 100%.
+						{subject.practicalSplit && ' Media calcolata con scritti e orali a 2/3 e pratici a 1/3.'}
+					</small>
 				</div>
 			</div>
 			</div>}
@@ -214,7 +244,7 @@ function Comparison({ subjects }) {
 }
 
 function Grades() {
-	const { classId } = useApp()
+	const { classId, isGalilei } = useApp()
 	const toast = useToast()
 	const grades = useGrades()
 
@@ -225,7 +255,7 @@ function Grades() {
 	const terms = termsOf(grades.data)
 	const [termChoice, setTermChoice] = useState(null)
 	const term = termChoice ?? currentTerm(grades.data) ?? YEAR
-	const subjects = useMemo(() => subjectsForTerm(grades.data, term === YEAR ? null : term), [grades.data, term])
+	const subjects = useMemo(() => subjectsForTerm(grades.data, term === YEAR ? null : term, { practicalSplit: isGalilei }), [grades.data, term, isGalilei])
 	const subtitle = [`Anno Scolastico ${schoolYear()}`, classId ? classLabel(classId) : null].filter(Boolean).join(' • ')
 
 	return (

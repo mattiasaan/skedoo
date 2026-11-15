@@ -6,6 +6,7 @@ import { useApp } from '../lib/appContext.js'
 import { useChanges, useMonthAgenda, useSchedule } from '../lib/data.js'
 import { addDays, dateKey, formatLongDate, isSameDay, monthName, schoolYear, startOfWeek, teacherName, teacherShort, weekdayShort } from '../lib/format.js'
 import { buildDayLessons, periodLabel, subjectMatches } from '../lib/schedule.js'
+import { useSwipe } from '../lib/useSwipe.js'
 
 const VIEWS = [
 	{ id: 'week', label: 'Settimana' },
@@ -14,10 +15,26 @@ const VIEWS = [
 const MONTH_WEEKDAYS = ['LUN', 'MAR', 'MER', 'GIO', 'VEN', 'SAB', 'DOM']
 const TONE_ORDER = ['danger', 'blue', 'amber', 'neutral']
 
+// la domenica non c'è scuola: si passa direttamente al lunedì
+function schoolDay(date) {
+	return date.getDay() === 0 ? addDays(date, 1) : date
+}
+
 function initialDate() {
-	const today = new Date()
-	// la domenica non c'è scuola: si apre direttamente il lunedì
-	return today.getDay() === 0 ? addDays(today, 1) : today
+	return schoolDay(new Date())
+}
+
+/** Giorno da selezionare quando si apre la settimana che inizia il lunedì `monday`: oggi se è quella in corso, altrimenti il lunedì. */
+function dayForWeek(monday, today) {
+	const current = schoolDay(today)
+	return isSameDay(startOfWeek(current), monday) ? current : monday
+}
+
+/** Giorno da selezionare quando si apre il mese di `first`: oggi se è il mese in corso, altrimenti il primo giorno di scuola. */
+function dayForMonth(first, today) {
+	const current = schoolDay(today)
+	if (current.getMonth() === first.getMonth() && current.getFullYear() === first.getFullYear()) return current
+	return schoolDay(first)
 }
 
 function lessonTone(lesson, related) {
@@ -89,7 +106,9 @@ function AgendaItemCard({ item }) {
 	)
 }
 
-function DayView({ date, lessons, items, agenda, isGalilei }) {
+function DayView({ date, lessons, items, agenda, isGalilei, isToday }) {
+	// fuori da oggi si vede solo la prima lezione: così "Altri impegni" resta a portata di mano
+	const [expanded, setExpanded] = useState(isToday)
 	const matched = new Set()
 	const lessonCards = lessons.map((lesson) => {
 		const related = items.filter((item) => item.kind !== 'annotazione' && subjectMatches(lesson.materia, item.subject))
@@ -97,6 +116,15 @@ function DayView({ date, lessons, items, agenda, isGalilei }) {
 		return { lesson, related }
 	})
 	const others = items.filter((item) => !matched.has(item.key))
+	const collapsible = lessonCards.length > 1
+	const visibleCards = collapsible && !expanded ? lessonCards.slice(0, 1) : lessonCards
+	const hidden = lessonCards.slice(1)
+	const hiddenTests = hidden.reduce((sum, card) => sum + card.related.filter((item) => item.kind === 'verifica').length, 0)
+	const hiddenTasks = hidden.reduce((sum, card) => sum + card.related.filter((item) => item.kind === 'compito').length, 0)
+	const hiddenNotes = [
+		hiddenTests && `${hiddenTests} ${hiddenTests === 1 ? 'verifica' : 'verifiche'}`,
+		hiddenTasks && `${hiddenTasks} ${hiddenTasks === 1 ? 'compito' : 'compiti'}`,
+	].filter(Boolean).join(', ')
 	const hours = lessons.filter((lesson) => !lesson.cancelled).reduce((sum, lesson) => sum + lesson.ore.length, 0)
 	const pill = isGalilei && lessons.length
 		? `${hours} ${hours === 1 ? 'ora' : 'ore'} di lezione`
@@ -110,8 +138,16 @@ function DayView({ date, lessons, items, agenda, isGalilei }) {
 			</div>
 
 			{lessonCards.length > 0 && (
-				<div className="agenda-list">
-					{lessonCards.map(({ lesson, related }) => <AgendaLessonCard key={lesson.id} lesson={lesson} related={related} />)}
+				<div className="agenda-list" id="day-lessons">
+					{visibleCards.map(({ lesson, related }) => <AgendaLessonCard key={lesson.id} lesson={lesson} related={related} />)}
+					{collapsible && (
+						<button aria-controls="day-lessons" aria-expanded={expanded} className="show-more" onClick={() => setExpanded((value) => !value)} type="button">
+							<Icon className={`show-more__chevron${expanded ? ' show-more__chevron--up' : ''}`} name="chevronDown" size={15} />
+							{expanded
+								? 'Mostra solo la prima lezione'
+								: `Mostra ${hidden.length === 1 ? "l'altra lezione" : `le altre ${hidden.length} lezioni`}${hiddenNotes ? ` (${hiddenNotes})` : ''}`}
+						</button>
+					)}
 				</div>
 			)}
 
@@ -184,15 +220,33 @@ function Agenda() {
 		return cells
 	}, [selected])
 
+	// direzione dell'ultimo cambio di pagina, per l'animazione di entrata
+	const [slide, setSlide] = useState(null)
+
 	function shiftWeek(offset) {
-		setSelected((date) => addDays(date, offset * 7))
+		setSlide(offset > 0 ? 'next' : 'prev')
+		setSelected((date) => dayForWeek(addDays(startOfWeek(date), offset * 7), new Date()))
 	}
 
 	function shiftMonth(offset) {
-		setSelected((date) => {
-			const target = new Date(date.getFullYear(), date.getMonth() + offset, 1, 12)
-			return target.getMonth() === today.getMonth() && target.getFullYear() === today.getFullYear() ? new Date() : target
-		})
+		setSlide(offset > 0 ? 'next' : 'prev')
+		setSelected((date) => dayForMonth(new Date(date.getFullYear(), date.getMonth() + offset, 1, 12), new Date()))
+	}
+
+	const shift = (offset) => (view === 'week' ? shiftWeek(offset) : shiftMonth(offset))
+	const swipe = useSwipe({ onPrev: () => shift(-1), onNext: () => shift(1) })
+	const swipeStyle = swipe.offset ? { transform: `translateX(${swipe.offset}px)` } : undefined
+	const slideClass = slide ? ` calendar-slide calendar-slide--${slide}` : ''
+
+	function selectDay(day) {
+		setSlide(day < selected ? 'prev' : 'next')
+		setSelected(day)
+	}
+
+	function goToday() {
+		const day = initialDate()
+		setSlide(day < selected ? 'prev' : 'next')
+		setSelected(day)
 	}
 
 	const monthLabel = `${monthName(selected)} ${selected.getFullYear()}`
@@ -225,12 +279,12 @@ function Agenda() {
 				</p>
 				<div className="agenda-toolbar__nav">
 					{!isSameDay(selected, today) && (
-						<button className="chip-button" onClick={() => setSelected(new Date())} type="button">Oggi</button>
+						<button className="chip-button" onClick={goToday} type="button">Oggi</button>
 					)}
-					<button aria-label={view === 'week' ? 'Settimana precedente' : 'Mese precedente'} className="icon-button icon-button--small" onClick={() => (view === 'week' ? shiftWeek(-1) : shiftMonth(-1))} type="button">
+					<button aria-label={view === 'week' ? 'Settimana precedente' : 'Mese precedente'} className="icon-button icon-button--small" onClick={() => shift(-1)} type="button">
 						<Icon name="chevronLeft" size={17} />
 					</button>
-					<button aria-label={view === 'week' ? 'Settimana successiva' : 'Mese successivo'} className="icon-button icon-button--small" onClick={() => (view === 'week' ? shiftWeek(1) : shiftMonth(1))} type="button">
+					<button aria-label={view === 'week' ? 'Settimana successiva' : 'Mese successivo'} className="icon-button icon-button--small" onClick={() => shift(1)} type="button">
 						<Icon name="chevron" size={17} />
 					</button>
 				</div>
@@ -238,7 +292,14 @@ function Agenda() {
 
 			<div className={`agenda-layout agenda-layout--${view}`}>
 				{view === 'week' ? (
-					<div className="week-strip" role="group" aria-label="Giorni della settimana">
+					<div className={`calendar-swipe${swipe.dragging ? ' calendar-swipe--dragging' : ''}`} {...swipe.handlers}>
+					<div
+						className={`week-strip${slideClass}`}
+						key={dateKey(weekStart)}
+						role="group"
+						aria-label="Giorni della settimana (scorri per cambiare settimana)"
+						style={swipeStyle}
+					>
 						{weekDays.map((day) => {
 							const active = isSameDay(day, selected)
 							return (
@@ -247,7 +308,7 @@ function Agenda() {
 									aria-pressed={active}
 									className={`week-day${active ? ' week-day--active' : ''}${isSameDay(day, today) ? ' week-day--today' : ''}`}
 									key={dateKey(day)}
-									onClick={() => setSelected(day)}
+									onClick={() => selectDay(day)}
 									type="button"
 								>
 									<span>{weekdayShort(day)}</span>
@@ -259,12 +320,20 @@ function Agenda() {
 							)
 						})}
 					</div>
+					</div>
 				) : (
 					<div className="month-card">
 						<div className="month-grid month-grid--labels" aria-hidden="true">
 							{MONTH_WEEKDAYS.map((label) => <span key={label}>{label}</span>)}
 						</div>
-						<div className="month-grid" role="group" aria-label={monthLabel}>
+						<div className={`calendar-swipe${swipe.dragging ? ' calendar-swipe--dragging' : ''}`} {...swipe.handlers}>
+						<div
+							className={`month-grid${slideClass}`}
+							key={monthLabel}
+							role="group"
+							aria-label={`${monthLabel} (scorri per cambiare mese)`}
+							style={swipeStyle}
+						>
 							{monthCells.map((day) => {
 								const active = isSameDay(day, selected)
 								const outside = day.getMonth() !== selected.getMonth()
@@ -274,7 +343,7 @@ function Agenda() {
 										aria-pressed={active}
 										className={`month-day${active ? ' month-day--active' : ''}${outside ? ' month-day--outside' : ''}${isSameDay(day, today) ? ' month-day--today' : ''}`}
 										key={dateKey(day)}
-										onClick={() => setSelected(day)}
+										onClick={() => selectDay(day)}
 										type="button"
 									>
 										<span>{day.getDate()}</span>
@@ -285,6 +354,7 @@ function Agenda() {
 								)
 							})}
 						</div>
+						</div>
 						<div className="month-legend" aria-hidden="true">
 							<span><i className="dot dot--danger" />Verifiche</span>
 							<span><i className="dot dot--blue" />Compiti</span>
@@ -294,7 +364,7 @@ function Agenda() {
 				)}
 
 				{schedule.error && !schedule.data && <ErrorMessage error={schedule.error} onRetry={schedule.reload} title="Orario non disponibile" />}
-				<DayView agenda={agenda} date={selected} isGalilei={isGalilei} items={dayItems} lessons={dayLessons} />
+				<DayView agenda={agenda} date={selected} isGalilei={isGalilei} isToday={isSameDay(selected, today)} items={dayItems} key={selectedKey} lessons={dayLessons} />
 			</div>
 		</div>
 	)

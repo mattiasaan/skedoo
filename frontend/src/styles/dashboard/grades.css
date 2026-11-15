@@ -242,6 +242,17 @@
   font-size: 14px;
 }
 
+.simulator-card__kind {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
+  margin-top: 16px;
+  color: var(--text-2);
+  font-size: 14px;
+}
+
 .simulator-card__target output {
   padding: 5px 12px;
   border: 1px solid var(--accent-line);

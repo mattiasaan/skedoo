@@ -28,6 +28,7 @@ class GradeOut(BaseModel):
   note: str | None
   colore: str | None  # green / red / blue, come ClasseViva
   annullato: bool
+  fa_media: bool = True  # False se il docente l'ha segnato "non fa media" (noAverage di ClasseViva)
 
 
 class SubjectOut(BaseModel):
@@ -56,8 +57,8 @@ def _current_year() -> str:
 
 
 def average(grades: list[GradeOut]) -> float | None:
-  """Media pesata; ignora voti annullati, non numerici e pesi non positivi."""
-  counted = [g for g in grades if not g.annullato and g.valore is not None and (g.peso is None or g.peso > 0)]
+  """Media pesata; ignora voti annullati, che non fanno media, non numerici e pesi non positivi."""
+  counted = [g for g in grades if not g.annullato and g.fa_media and g.valore is not None and (g.peso is None or g.peso > 0)]
   total = sum(g.peso or 1 for g in counted)
   return round(sum(g.valore * (g.peso or 1) for g in counted) / total, 2) if counted else None
 
@@ -87,7 +88,7 @@ def build_grades(raw: list[dict], anno: str, periodo: int | None, teachers: dict
       id=r.get("evtId") or 0, data=r.get("evtDate") or "", voto=str(r.get("displayValue") or ""),
       valore=_num(r.get("decimalValue")), tipo=r.get("componentDesc") or None, periodo=r.get("periodDesc") or None,
       periodo_pos=_int(r.get("periodPos")), peso=_num(r.get("weightFactor")), note=r.get("notesForFamily") or None, colore=r.get("color") or None,
-      annullato=bool(r.get("canceled")),
+      annullato=bool(r.get("canceled")), fa_media=not r.get("noAverage"),
     ))
   materie = []
   for (subject_id, name), grades in sorted(by_subject.items(), key=lambda kv: kv[0][1]):

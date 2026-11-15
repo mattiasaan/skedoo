@@ -28,6 +28,8 @@ GRADES = [
    "displayValue": "Ottimo", "periodPos": 1, "weightFactor": 1.0, "canceled": False},
   {"evtId": 4, "subjectId": 11, "subjectDesc": "ITALIANO", "evtDate": "2026-10-03", "decimalValue": 9.0,
    "displayValue": "9", "periodPos": 1, "weightFactor": 1.0, "canceled": True},
+  {"evtId": 6, "subjectId": 10, "subjectDesc": "MATEMATICA", "evtDate": "2026-10-05", "decimalValue": 2.0,
+   "displayValue": "2", "componentDesc": "Scritto", "periodPos": 1, "weightFactor": 1.0, "canceled": False, "noAverage": True},
 ]
 AGENDA = [
   {"evtId": 7, "evtCode": "AGHW", "evtDatetimeBegin": "2026-10-06T00:00:00+02:00", "evtDatetimeEnd": "2026-10-06T23:59:59+02:00",

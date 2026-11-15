@@ -31,7 +31,8 @@ class ChangeOut(BaseModel):
   id: str
   data: str
   ora: int | None = None  # prima ora coinvolta (numero d'ora della griglia)
-  ore: list[int] = Field(default_factory=list)  # tutte le ore coinvolte (un cambio aula può durarne più di una)
+  # ore coinvolte: per un cambio aula quelle in cui vale, per entrate/uscite/pomeriggio quelle annullate
+  ore: list[int] = Field(default_factory=list)
   tipo: str  # cambio_aula | entrata_posticipata | uscita_anticipata | senza_lezioni_pomeridiane
   testo: str
   nuova_aula: str | None = None
@@ -98,6 +99,30 @@ def first_hour_after_exit(time_value: str | None) -> int | None:
   return next((index + 1 for index, (slot_start, _) in enumerate(SLOTS) if slot_start >= minutes), None)
 
 
+FIRST_AFTERNOON_HOUR = first_hour_after_exit(AFTERNOON_START)  # 8ª
+LAST_HOUR = len(SLOTS)
+
+
+def hours_lost_entrance(time_value: str | None) -> list[int]:
+  """Ore saltate con un'entrata posticipata. Al mattino si saltano le ore precedenti (09:50 -> [1, 2]);
+  nel pomeriggio la mattina si fa tutta e si saltano solo le ore pomeridiane prima dell'entrata (15:20 -> [8])."""
+  first = first_hour_after_entrance(time_value)
+  if first is None:
+    return []
+  start = FIRST_AFTERNOON_HOUR if first > FIRST_AFTERNOON_HOUR else 1
+  return list(range(start, first))
+
+
+def hours_lost_exit(time_value: str | None) -> list[int]:
+  """Ore perse con un'uscita anticipata. Uscendo al mattino si perdono solo le ore del mattino rimaste e il
+  pomeriggio resta (11:45 -> [5, 6, 7]); uscendo nel pomeriggio si perde il resto della giornata."""
+  first = first_hour_after_exit(time_value)
+  if first is None:
+    return []
+  end = FIRST_AFTERNOON_HOUR - 1 if first < FIRST_AFTERNOON_HOUR else LAST_HOUR
+  return list(range(first, end + 1))
+
+
 # ---------- classi ----------
 def _class_key(value: str) -> str:
   return re.sub(r"\s+", "", str(value or "")).upper()
@@ -127,27 +152,28 @@ def _class_matches(classes, selected: str) -> bool:
 def _entrances_and_exits(day: dict, classe: str) -> list[ChangeOut]:
   result = []
   data = day.get("data_iso") or ""
-  for key, change_type, label, hour_of in (
-    ("entrate", "entrata_posticipata", "Entrata", first_hour_after_entrance),
-    ("uscite", "uscita_anticipata", "Uscita", first_hour_after_exit),
+  # `ora`: prima ora seguita (entrata) o prima ora persa (uscita); `ore`: tutte le ore annullate
+  for key, change_type, label, hour_of, lost_of in (
+    ("entrate", "entrata_posticipata", "Entrata", first_hour_after_entrance, hours_lost_entrance),
+    ("uscite", "uscita_anticipata", "Uscita", first_hour_after_exit, hours_lost_exit),
   ):
     for index, entry in enumerate(day.get(key) or []):
       if not isinstance(entry, dict) or not _class_matches(entry.get("classi"), classe):
         continue
       time_value = entry.get("ora")
-      hour = hour_of(time_value)
       note = (entry.get("note") or "").strip()
       result.append(ChangeOut(
-        id=f"{key}-{data}-{entry.get('unit_id', index)}", data=data, ora=hour, ore=[hour] if hour else [],
+        id=f"{key}-{data}-{entry.get('unit_id', index)}", data=data, ora=hour_of(time_value), ore=lost_of(time_value),
         tipo=change_type, testo=f"{label} alle {time_value}" + (f". {note}" if note else ""),
       ))
   for index, entry in enumerate(day.get("senza_lezioni_pomeridiane") or []):
     if not isinstance(entry, dict) or not _class_matches(entry.get("classi"), classe):
       continue
-    hour = first_hour_after_exit(AFTERNOON_START)
+    hour = FIRST_AFTERNOON_HOUR
     note = (entry.get("note") or "").strip()
     result.append(ChangeOut(
-      id=f"pomeriggio-{data}-{entry.get('unit_id', index)}", data=data, ora=hour, ore=[hour] if hour else [],
+      id=f"pomeriggio-{data}-{entry.get('unit_id', index)}", data=data, ora=hour,
+      ore=list(range(hour, LAST_HOUR + 1)) if hour else [],
       tipo="senza_lezioni_pomeridiane", testo="Nessuna lezione pomeridiana" + (f". {note}" if note else ""),
     ))
   return result
