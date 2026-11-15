@@ -9,7 +9,6 @@ data
 docs
 tests
 scripts/bacheca_fetch/data
-docker-compose.yml
 enviorment-setup.bat
 requirements-dev.txt
 Dockerfile
