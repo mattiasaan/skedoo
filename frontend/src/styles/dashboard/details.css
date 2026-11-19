@@ -279,8 +279,18 @@
   line-height: 1.45;
 }
 
-.grade-list__item--void {
-  opacity: 0.55;
+.grade-list__item--void strong,
+.grade-list__item--void em {
+  color: var(--muted);
+}
+
+/* voto annullato: badge in grigio invece che trasparente, per non perdere contrasto */
+.grade-list__item--void > :first-child {
+  filter: grayscale(1);
+}
+
+.grade-list__item--void strong {
+  text-decoration: line-through;
 }
 
 .attachment-list li {

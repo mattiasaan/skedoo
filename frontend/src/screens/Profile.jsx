@@ -6,6 +6,7 @@ import { useAbsences, useDidactics } from '../lib/data.js'
 import { flattenMaterials, materialType } from '../lib/didactics.js'
 import { classLabel, dateKey, formatDateTime, schoolDisplayName, schoolYear, teacherName, titleCase } from '../lib/format.js'
 import { readJson, writeJson } from '../lib/session.js'
+import { readAccent, setAccent } from '../lib/theme.js'
 import { useToast } from '../lib/toast.js'
 import { clearApiCache } from '../lib/useApi.js'
 
@@ -137,6 +138,7 @@ function SettingsSection() {
 	const { isGalilei, classId, onChangeClass, alertsOn, setAlertsOn } = useApp()
 	const toast = useToast()
 	const [lastSync, setLastSync] = useState(() => readJson('last-sync', null))
+	const [accent, setAccentState] = useState(readAccent)
 
 	function toggleAlerts(value) {
 		setAlertsOn(value)
@@ -151,6 +153,11 @@ function SettingsSection() {
 		setLastSync(now)
 		writeJson('last-sync', now)
 		toast('Dati in aggiornamento da ClasseViva')
+	}
+
+	function chooseAccent(value) {
+		setAccentState(value)
+		setAccent(value)
 	}
 
 	const syncLabel = lastSync ? `Ultimo sync: ${formatDateTime(lastSync)}` : 'Aggiorna voti, agenda, assenze e bacheca'
@@ -168,6 +175,28 @@ function SettingsSection() {
 					<input checked={alertsOn} className="switch__input" onChange={(event) => toggleAlerts(event.target.checked)} type="checkbox" />
 					<span className="switch" aria-hidden="true"><span /></span>
 				</label>
+				<div className="settings-row settings-row--static">
+					<span className="settings-row__icon"><Icon name="palette" size={18} /></span>
+					<span className="settings-row__copy">
+						<strong>Colore dell'app</strong>
+						<small>Cambia il colore di pulsanti ed evidenziazioni</small>
+					</span>
+					<div aria-label="Colore dell'app" className="accent-picker" role="radiogroup">
+						{[['blue', 'Blu'], ['green', 'Verde']].map(([value, label]) => (
+							<button
+								aria-checked={accent === value}
+								className={`accent-picker__option accent-picker__option--${value}`}
+								key={value}
+								onClick={() => chooseAccent(value)}
+								role="radio"
+								type="button"
+							>
+								<span aria-hidden="true" className="accent-picker__swatch" />
+								{label}
+							</button>
+						))}
+					</div>
+				</div>
 				{isGalilei && (
 					<button className="settings-row" onClick={onChangeClass} type="button">
 						<span className="settings-row__icon"><Icon name="users" size={18} /></span>
@@ -208,6 +237,13 @@ function Profile() {
 						<Icon name="logout" size={18} />
 						Logout dal Profilo
 					</button>
+					<nav className="profile-legal" aria-label="Documenti legali">
+						<a href="#privacy">Privacy</a>
+						<span aria-hidden="true">•</span>
+						<a href="#cookie">Cookie</a>
+						<span aria-hidden="true">•</span>
+						<a href="#termini">Termini di servizio</a>
+					</nav>
 				</div>
 			</div>
 		</div>

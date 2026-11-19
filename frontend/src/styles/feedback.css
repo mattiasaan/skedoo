@@ -22,7 +22,7 @@
   padding: 10px 8px 10px 14px;
   border: 1px solid var(--border-strong);
   border-radius: 14px;
-  background: #1a242b;
+  background: #1d2228;
   box-shadow: var(--shadow);
   color: var(--text);
   font-size: 14px;
@@ -108,7 +108,7 @@
 
 .confirm-actions__danger {
   border: 1px solid var(--danger-line);
-  background: rgba(242, 98, 111, 0.16);
+  background: rgba(219, 107, 114, 0.16);
   color: #ff9aa4;
 }
 
