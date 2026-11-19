@@ -1,55 +1,65 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
 
 /* ---------- token del design "Stile Istituzionale" ---------- */
 :root {
   color-scheme: dark;
   font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
   font-synthesis: none;
+  font-variant-numeric: tabular-nums;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --bg: #0a0e11;
-  --bg-raised: #0d1317;
-  --surface: #12191e;
-  --surface-2: #161f25;
-  --inset: #0a0f12;
-  --border: #1f2a31;
-  --border-strong: #2a3840;
+  --bg: #111315;
+  --bg-raised: #15181b;
+  --surface: #191c20;
+  --surface-2: #1f2327;
+  --inset: #0e1012;
+  --border: #272b30;
+  --border-strong: #343a40;
 
-  --text: #f4f7f8;
-  --text-2: #c9d2d9;
-  --muted: #8d9cab;
-  --quiet: #5f7182;
+  --text: #e7eaee;
+  --text-2: #c0c7cf;
+  --muted: #8b95a1;
+  --quiet: #808a96;
 
-  --accent: #10b981;
-  --accent-bright: #2ee6a8;
-  --accent-text: #34d399;
-  --accent-soft: rgba(16, 185, 129, 0.12);
-  --accent-line: rgba(16, 185, 129, 0.35);
-  --on-accent: #04130e;
+  /* accento: blu di default, verde con <html data-accent="green"> (vedi lib/theme.js) */
+  --accent: #2b7ae0;
+  --accent-bright: #4a90ec;
+  --accent-hover: #2468c4;
+  --accent-text: #74adf2;
+  --accent-soft: color-mix(in srgb, var(--accent) 13%, transparent);
+  --accent-line: color-mix(in srgb, var(--accent) 34%, transparent);
+  --on-accent: #ffffff;
 
-  --amber: #f5b62a;
-  --amber-soft: rgba(245, 182, 42, 0.1);
-  --amber-line: rgba(245, 182, 42, 0.42);
-  --danger: #f2626f;
-  --danger-soft: rgba(242, 98, 111, 0.1);
-  --danger-line: rgba(242, 98, 111, 0.4);
-  --blue: #45b4ff;
-  --blue-soft: rgba(69, 180, 255, 0.1);
-  --blue-line: rgba(69, 180, 255, 0.4);
+  --amber: #d6a64f;
+  --amber-soft: rgba(214, 166, 79, 0.1);
+  --amber-line: rgba(214, 166, 79, 0.34);
+  --danger: #db6b72;
+  --danger-soft: rgba(219, 107, 114, 0.1);
+  --danger-line: rgba(219, 107, 114, 0.36);
+  --blue: #9a8fe0;
+  --blue-soft: color-mix(in srgb, var(--blue) 10%, transparent);
+  --blue-line: color-mix(in srgb, var(--blue) 36%, transparent);
 
-  --radius-sm: 10px;
-  --radius: 16px;
-  --radius-lg: 22px;
-  --shadow: 0 18px 44px rgba(0, 0, 0, 0.35);
-  --mono: 'JetBrains Mono', ui-monospace, monospace;
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 12px;
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+  --mono: 'Inter', 'Segoe UI', system-ui, sans-serif;
 
   --gutter: 16px;
   --nav-height: 58px;
 
   background: var(--bg);
   color: var(--text);
+}
+
+:root[data-accent='green'] {
+  --accent: #22ad7b;
+  --accent-bright: #33c08e;
+  --accent-hover: #1d9569;
+  --accent-text: #55d3a5;
+  --blue: #5ea6dd;
 }
 
 *,
@@ -216,7 +226,6 @@ a {
   flex: 0 0 auto;
   border-radius: 50%;
   background: var(--accent);
-  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.14);
 }
 
 /* ---------- caricamento e stati vuoti ---------- */
@@ -226,16 +235,29 @@ a {
 }
 
 .skeleton {
+  position: relative;
   display: block;
+  overflow: hidden;
   border-radius: var(--radius);
-  background: linear-gradient(90deg, var(--surface) 0%, var(--surface-2) 50%, var(--surface) 100%);
-  background-size: 200% 100%;
+  background: var(--surface);
+}
+
+/* il riflesso si muove con transform (gira sulla GPU), non con background-position */
+.skeleton::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, var(--surface-2) 50%, transparent 100%);
+  transform: translateX(-100%);
   animation: skeleton 1.4s ease-in-out infinite;
+  content: '';
 }
 
 @keyframes skeleton {
-  from { background-position: 100% 0; }
-  to { background-position: -100% 0; }
+  to { transform: translateX(100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton::after { animation: none; }
 }
 
 .state-message {
@@ -285,7 +307,7 @@ a {
 }
 
 .state-message--error .state-message__icon {
-  background: rgba(242, 98, 111, 0.16);
+  background: rgba(219, 107, 114, 0.16);
   color: var(--danger);
 }
 
@@ -311,7 +333,7 @@ a {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  background: rgba(3, 6, 8, 0.72);
+  background: rgba(6, 8, 10, 0.72);
   backdrop-filter: blur(4px);
   animation: fade-in 160ms ease;
 }

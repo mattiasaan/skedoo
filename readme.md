@@ -59,6 +59,9 @@ Integrazione con:
 Avvio in sviluppo (con il backend già attivo su `http://localhost:8000`):
 
 ```bash
+
+python -m uvicorn app.main:app --reload --host 0.0.0.0
+
 cd frontend
 npm install
 npm run dev            # http://localhost:5173, le chiamate /api/* passano dal proxy di Vite

@@ -264,6 +264,64 @@ button.settings-row:hover {
   color: var(--muted);
 }
 
+.settings-row--static {
+  cursor: default;
+}
+
+.accent-picker {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--inset);
+}
+
+.accent-picker__option {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 11px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.accent-picker__option[aria-checked='true'] {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+.accent-picker__option:focus-visible {
+  outline: 2px solid var(--accent-bright);
+  outline-offset: 1px;
+}
+
+.accent-picker__swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.accent-picker__option--blue .accent-picker__swatch { background: #2b7ae0; }
+.accent-picker__option--green .accent-picker__swatch { background: #22ad7b; }
+
+@media (max-width: 420px) {
+  .settings-row--static {
+    flex-wrap: wrap;
+  }
+
+  .accent-picker {
+    margin-left: 48px;
+  }
+}
+
 .switch__input {
   position: absolute;
   width: 1px;
@@ -277,7 +335,7 @@ button.settings-row:hover {
   height: 30px;
   flex: 0 0 auto;
   border-radius: 999px;
-  background: #334048;
+  background: #333b44;
   transition: background-color 160ms ease;
 }
 
@@ -313,14 +371,34 @@ button.settings-row:hover {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  border: 1px solid rgba(242, 98, 111, 0.28);
+  border: 1px solid rgba(219, 107, 114, 0.28);
   border-radius: var(--radius);
-  background: rgba(242, 98, 111, 0.08);
+  background: rgba(219, 107, 114, 0.08);
   color: #ff8c97;
   font-size: 15px;
   font-weight: 700;
 }
 
 .logout-button:hover:not(:disabled) {
-  background: rgba(242, 98, 111, 0.14);
+  background: rgba(219, 107, 114, 0.14);
+}
+
+/* ---------- link ai documenti legali ---------- */
+.profile-legal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 10px;
+  margin-top: 16px;
+  color: var(--quiet);
+  font-size: 13px;
+}
+
+.profile-legal a {
+  color: var(--muted);
+  text-underline-offset: 3px;
+}
+
+.profile-legal a:hover {
+  color: var(--text-2);
 }

@@ -8,9 +8,7 @@
   flex-direction: column;
   align-items: center;
   padding: clamp(40px, 9vh, 96px) var(--gutter) calc(20px + env(safe-area-inset-bottom));
-  background:
-    radial-gradient(120% 60% at 50% 0%, rgba(16, 185, 129, 0.07), transparent 60%),
-    var(--bg);
+  background: var(--bg);
 }
 
 .auth-page__inner {
@@ -146,7 +144,7 @@
 
 .input-wrap:focus-within {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.14);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 14%, transparent);
 }
 
 .input-wrap > svg {
@@ -239,7 +237,7 @@
 }
 
 .auth-submit:hover:not(:disabled) {
-  background: #19cf93;
+  background: var(--accent-hover);
 }
 
 .auth-submit:active:not(:disabled) {
@@ -265,7 +263,7 @@
 .spinner {
   width: 18px;
   height: 18px;
-  border: 2px solid rgba(4, 19, 14, 0.25);
+  border: 2px solid rgba(255, 255, 255, 0.3);
   border-top-color: var(--on-accent);
   border-radius: 50%;
   animation: spin 700ms linear infinite;
@@ -294,7 +292,7 @@
 .choice-control:hover:not(:disabled),
 .choice-control--open {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.12);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 12%, transparent);
 }
 
 .choice-control__icon {
@@ -518,4 +516,18 @@
   .auth-footer {
     padding-top: 28px;
   }
+}
+
+/* ---------- consenso ai termini sotto il pulsante di accesso ---------- */
+.auth-consent {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.55;
+  text-align: center;
+}
+
+.auth-consent a {
+  color: var(--text-2);
+  text-underline-offset: 2px;
 }
