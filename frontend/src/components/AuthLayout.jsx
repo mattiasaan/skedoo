@@ -19,11 +19,11 @@ export function AuthLayout({ title = 'Bentornato!', subtitle, badge, children })
 
 			<footer className="auth-footer">
 				<nav className="auth-footer__links" aria-label="Link informativi">
-					<a href="mailto:privacy@skedoo.app?subject=Informativa%20Privacy">Informativa Privacy</a>
+					<a href="#privacy">Privacy</a>
 					<span aria-hidden="true">•</span>
-					<a href="mailto:supporto@skedoo.app">Supporto Tecnico</a>
+					<a href="#cookie">Cookie</a>
 					<span aria-hidden="true">•</span>
-					<a href="https://web.spaggiari.eu/" rel="noreferrer" target="_blank">Info ClasseViva</a>
+					<a href="#termini">Termini di servizio</a>
 				</nav>
 				<p className="auth-footer__copyright">
 					SKEDOO APPS © {new Date().getFullYear()} • NON AFFILIATO UFFICIALMENTE A GRUPPO SPAGGIARI PARMA

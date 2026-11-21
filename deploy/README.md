@@ -36,8 +36,9 @@ Tutto gira con Docker, configurato da un solo `compose.yaml` e da un file `.env`
 - RAM: il backend sta in circa 1 GB. L'OCR (modello Qwen3-VL 2B) vuole **almeno 4 GB, meglio 8 GB**.
   Su CPU è lento (minuti per cartellone): va bene, il worker aspetta fino a 30 minuti per immagine.
 - Spazio: circa 2 GB per le immagini Docker e altri 2 GB per il modello. Meglio un SSD che una microSD.
-- Per l'API su internet: un dominio (es. `api.miosito.it`). Puoi usare Caddy, con le porte 80 e 443 inoltrate dal router,
-  oppure Cloudflare Tunnel, che non richiede porte aperte e funziona anche dietro CGNAT.
+- Per l'API su internet: un dominio (es. `api.miosito.it`). Puoi usare Cloudflare Tunnel, che non richiede porte aperte e
+  funziona anche dietro CGNAT, oppure Caddy, con le porte 80 e 443 inoltrate dal router.
+- Il frontend va su GitHub Pages (gratis), vedi il passo 3.
 
 ## 1. Preparazione (su ogni Raspberry)
 
@@ -65,9 +66,9 @@ aggiornamenti automatici (`sudo apt install unattended-upgrades`).
 In `.env`:
 
 ```ini
-COMPOSE_PROFILES=backend,ocr,tunnel      # oppure backend,ocr,https
+COMPOSE_PROFILES=backend,ocr,tunnel      # oppure backend,ocr,https (un solo Pi: è la configurazione prevista)
 API_DOMAIN=api.miosito.it
-CORS_ORIGINS=https://skedoo.miosito.it
+CORS_ORIGINS=https://<utente>.github.io  # solo l'origine, senza percorso
 CLASSVIVA_USERNAME=...
 CLASSVIVA_PASSWORD=...
 OCR_URL=http://ocr:8090                  # rete interna di Docker
@@ -149,20 +150,38 @@ sudo systemctl edit docker      # aggiungi:  [Unit]  After=tailscaled.service  W
 
 Per restringere ancora, nelle ACL di Tailscale permetti al Pi del backend solo la porta `8090` del Pi dell'OCR.
 
-## 3. Esporre l'API
+## 3. Esporre l'API e pubblicare il frontend
 
-Scegli **uno** dei due profili sul Pi del backend.
+### API: Cloudflare Tunnel (profilo `tunnel`)
 
-**Cloudflare Tunnel** (`tunnel`), consigliato se il router non permette di aprire porte:
-1. Sposta il dominio su Cloudflare (piano gratuito).
-2. In Zero Trust → Networks → Tunnels crea un tunnel e copia il token in `TUNNEL_TOKEN`.
-3. Aggiungi un *Public hostname* `api.miosito.it`, con servizio `http://api:8000`.
+Serve un dominio sul piano gratuito di Cloudflare. Non si aprono porte sul router.
 
-**Caddy** (`https`): crea un record DNS `A` `api.miosito.it` → IP pubblico di casa e inoltra le porte 80 e 443 del
-router al Pi. Caddy ottiene e rinnova da solo il certificato HTTPS.
+1. Aggiungi il dominio a Cloudflare (Add a site) e imposta i nameserver indicati presso chi te l'ha venduto.
+2. Zero Trust -> Networks -> Tunnels -> *Create a tunnel* (tipo Cloudflared). Copia il token in `TUNNEL_TOKEN`.
+3. Nello stesso tunnel aggiungi un *Public hostname*: `api.miosito.it` -> servizio `HTTP` `api:8000`.
+4. In `.env`: `COMPOSE_PROFILES=backend,ocr,tunnel`, `API_DOMAIN=api.miosito.it`.
 
-In tutti e due i casi `API_DOMAIN` deve essere esattamente il nome pubblico: l'API rifiuta gli altri host.
-Nel frontend imposta `VITE_API_URL=https://api.miosito.it` e metti il suo indirizzo in `CORS_ORIGINS`.
+In alternativa **Caddy** (`https`): record DNS `A` `api.miosito.it` verso l'IP pubblico di casa e porte 80/443 del router
+inoltrate al Pi. Caddy ottiene e rinnova il certificato da solo.
+
+`API_DOMAIN` deve essere esattamente il nome pubblico: l'API rifiuta gli altri host.
+
+### Frontend: GitHub Pages
+
+Il workflow [.github/workflows/frontend-pages.yml](../.github/workflows/frontend-pages.yml) compila e pubblica il frontend
+a ogni push su `main` che tocca `frontend/`. Una volta sola, su GitHub:
+
+1. *Settings -> Pages -> Source*: **GitHub Actions**.
+2. *Settings -> Secrets and variables -> Actions -> Variables*: crea `API_URL` = `https://api.miosito.it`.
+
+Il sito sarà su `https://<utente>.github.io/skedoo/`. Nel `.env` del Pi il CORS vuole solo l'**origine**, senza percorso
+e senza `/` finale:
+
+```ini
+CORS_ORIGINS=https://<utente>.github.io
+```
+
+Poi `docker compose up -d` per applicarlo. Il routing usa l'hash (`#home`), quindi non servono regole di fallback sul server.
 
 ## 4. Importa gli orari (una volta, e a ogni cambio d'orario)
 

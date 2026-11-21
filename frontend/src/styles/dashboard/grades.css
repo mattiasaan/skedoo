@@ -116,9 +116,8 @@
 
 .line-chart__last {
   fill: var(--surface);
-  stroke: #e9fff7;
-  stroke-width: 3;
-  filter: drop-shadow(0 0 6px rgba(46, 230, 168, 0.8));
+  stroke: var(--accent-bright);
+  stroke-width: 2.5;
 }
 
 .line-chart__threshold {
@@ -221,7 +220,7 @@
 .select-wrap select:focus-visible {
   border-color: var(--accent);
   outline: none;
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.14);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 14%, transparent);
 }
 
 .select-wrap svg {
@@ -295,20 +294,20 @@
   width: 22px;
   height: 22px;
   margin-top: -8px;
-  border: 3px solid #0c2c22;
+  border: 3px solid var(--surface);
   border-radius: 50%;
   background: var(--accent-bright);
-  box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.18), 0 0 14px rgba(46, 230, 168, 0.6);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
   appearance: none;
 }
 
 .range::-moz-range-thumb {
   width: 18px;
   height: 18px;
-  border: 3px solid #0c2c22;
+  border: 3px solid var(--surface);
   border-radius: 50%;
   background: var(--accent-bright);
-  box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.18);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
 .simulator-card__scale {
@@ -328,7 +327,7 @@
   padding: 16px;
   border: 1px solid var(--accent-line);
   border-radius: var(--radius);
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.03));
+  background: var(--accent-soft);
 }
 
 .prediction__text {
@@ -378,7 +377,7 @@
 
 .subject-card--low {
   border-color: var(--danger-line);
-  background: linear-gradient(135deg, rgba(242, 98, 111, 0.09), transparent 70%), var(--surface);
+  background: var(--surface);
 }
 
 .subject-card--low .icon-tile {
@@ -495,7 +494,7 @@
   top: -8px;
   bottom: -4px;
   left: 60%;
-  border-left: 2px dashed rgba(242, 98, 111, 0.7);
+  border-left: 2px dashed rgba(219, 107, 114, 0.7);
 }
 
 .comparison__label {

@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, Path
 from pydantic import BaseModel, Field
 
-from .classeviva import CvSession
+from .classeviva import ActiveSession
 from .security import current_session, upstream_limit
 
 router = APIRouter(prefix="/bacheca", tags=["Bacheca"], dependencies=[Depends(upstream_limit)])
@@ -55,7 +55,7 @@ def build_board(raw) -> BoardOut:
 
 
 @router.get("", response_model=BoardOut)
-async def get_board(session: CvSession = Depends(current_session)):
+async def get_board(session: ActiveSession = Depends(current_session)):
   return build_board(await session.call("bacheca"))
 
 
@@ -63,7 +63,7 @@ async def get_board(session: CvSession = Depends(current_session)):
 async def get_board_item(
   codice: str = Path(pattern=r"^[A-Za-z0-9_-]{1,16}$"),
   id: int = Path(ge=1),
-  session: CvSession = Depends(current_session),
+  session: ActiveSession = Depends(current_session),
 ):
   raw = await session.call("bacheca_leggi", codice, id)
   item = raw.get("item", raw) if isinstance(raw, dict) else {}

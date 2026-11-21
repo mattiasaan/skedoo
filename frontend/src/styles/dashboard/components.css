@@ -211,7 +211,7 @@
 
 .segmented__button--active {
   border-color: var(--accent-line);
-  background: rgba(16, 185, 129, 0.16);
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
   color: var(--accent-text);
 }
 

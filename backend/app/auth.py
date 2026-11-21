@@ -3,7 +3,7 @@ import logging
 from fastapi import APIRouter, Depends, Request
 from pydantic import BaseModel, Field
 
-from .classeviva import CvSession, store
+from .classeviva import ActiveSession, store
 from .config import get_settings
 from .errors import AppError
 from .security import client_ip, create_token, current_session, limiter, rate_limit, too_many
@@ -54,24 +54,24 @@ async def login(body: LoginIn, request: Request):
   if limiter.count(f"fail:{pair}", FAILURE_WINDOW) >= s.login_failures:  # bloccato anche con la password giusta
     raise too_many(FAILURE_WINDOW, "too_many_attempts")
   try:
-    session = await store.login(username, body.password)
+    session, key = await store.login(username, body.password)
   except AppError as e:
     if e.code == "invalid_credentials":
       limiter.add(f"fail:{pair}", FAILURE_WINDOW)
       log.warning("login fallito ip=%s user=%s", ip, username)
     raise
   limiter.reset(f"fail:{pair}")
-  token, expires_in = create_token(username, session.sid)
+  token, expires_in = create_token(username, session.sid, key)
   return TokenOut(access_token=token, expires_in=expires_in, utente=User(**session.profile))
 
 
 @router.get("/me", response_model=User, response_model_exclude_none=True)
-def me(session: CvSession = Depends(current_session)):
+def me(session: ActiveSession = Depends(current_session)):
   """Utente del token: utile all'avvio dell'app per sapere se è ancora loggato."""
   return User(**session.profile)
 
 
 @router.post("/logout", status_code=204)
-def logout(session: CvSession = Depends(current_session)):
+def logout(session: ActiveSession = Depends(current_session)):
   """Chiude la sessione di QUESTO dispositivo (gli altri restano collegati)."""
   store.logout(session.sid)

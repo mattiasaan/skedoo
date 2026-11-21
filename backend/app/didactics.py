@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from pydantic import BaseModel
 
-from .classeviva import CvSession
+from .classeviva import ActiveSession
 from .security import current_session, upstream_limit
 
 router = APIRouter(prefix="/didattica", tags=["Didattica"], dependencies=[Depends(upstream_limit)])
@@ -56,5 +56,5 @@ def build_didactics(raw) -> DidacticsOut:
 
 
 @router.get("", response_model=DidacticsOut)
-async def get_didactics(session: CvSession = Depends(current_session)):
+async def get_didactics(session: ActiveSession = Depends(current_session)):
   return build_didactics(await session.call("didattica"))
