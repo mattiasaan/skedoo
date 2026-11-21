@@ -16,7 +16,9 @@ I due documenti interni sono esclusi da git (`.gitignore`) perché il repository
 
 ## Da fare prima di pubblicare
 
-- [ ] Sostituire in tutti i file `[NOME E COGNOME DEL TITOLARE]`, `[NOME E COGNOME DEL COLLABORATORE]` e `[EMAIL DI CONTATTO]`. Il nome e un contatto del titolare sono **obbligatori** (art. 13 GDPR). Va bene un indirizzo email creato apposta per Skedoo, purché venga letto.
+- [x] Titolare indicato (Mattia Santomaso). Contatto: issue su GitHub.
+- [ ] Sostituire `[NOME E COGNOME DEL COLLABORATORE]` nel registro dei trattamenti.
+- [ ] **Consigliato:** creare un indirizzo email dedicato a Skedoo e usarlo come contatto privacy al posto degli issue di GitHub, che sono pubblici: chi vuole esercitare un diritto non dovrebbe dover scrivere in pubblico.
 - [ ] Far firmare al collaboratore l'autorizzazione (modello in fondo al registro).
 - [ ] **Leggere le condizioni d'uso di ClasseViva/Spaggiari.** È il rischio legale più grande: se vietano l'accesso tramite app di terze parti o la cessione delle credenziali, Spaggiari può bloccare il servizio o contestarlo, e nessuna informativa ti mette al riparo da questo. Valutare anche di chiedere alla scuola un riconoscimento del progetto.
 
