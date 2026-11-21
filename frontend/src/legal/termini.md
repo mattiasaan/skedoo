@@ -6,7 +6,7 @@ Questi termini regolano l'uso di Skedoo. Accedendo all'app li accetti. Se non li
 
 ## 1. Chi siamo
 
-Skedoo è un progetto indipendente, gratuito e senza scopo di lucro, sviluppato e gestito da **[NOME E COGNOME DEL TITOLARE]** ("noi"). Contatto: **[EMAIL DI CONTATTO]**.
+Skedoo è un progetto indipendente, gratuito e senza scopo di lucro, sviluppato e gestito da **Mattia Santomaso** ("noi"). Contatti: issue nel repository del progetto su [GitHub](https://github.com/mattiasaan/skedoo/issues).
 
 **Skedoo non è affiliato, approvato, sponsorizzato o gestito da Gruppo Spaggiari Parma S.p.A., né da ClasseViva, né da alcuna scuola.** "ClasseViva" e "Spaggiari" sono marchi dei rispettivi titolari e sono citati solo per indicare il servizio con cui Skedoo si collega.
 
@@ -22,7 +22,7 @@ Per usare Skedoo accedi con le tue credenziali ClasseViva. Accedendo:
 
 - dichiari che l'account è **tuo** oppure che sei autorizzato a usarlo (per esempio, il genitore che usa l'account genitore);
 - **autorizzi Skedoo ad accedere a ClasseViva per tuo conto**, al solo scopo di mostrarti i tuoi dati;
-- sei consapevole che la password resta nella memoria del server per tutta la durata della sessione, come spiegato nell'[Informativa privacy](#privacy).
+- sei consapevole che la password resta nella memoria del server per tutta la durata della sessione, in forma cifrata, come spiegato nell'[Informativa privacy](#privacy).
 
 Non condividere l'accesso con altri. Se pensi che qualcuno abbia usato il tuo account, cambia subito la password su ClasseViva: in questo modo tutte le sessioni di Skedoo collegate smettono di funzionare.
 
@@ -73,4 +73,4 @@ Questi termini sono regolati dalla legge italiana. Se sei un consumatore, per ev
 
 ## 11. Contatti
 
-Per domande su questi termini scrivi a **[EMAIL DI CONTATTO]**. Per la privacy leggi l'[Informativa privacy](#privacy) e la [Cookie policy](#cookie).
+Per domande su questi termini apri un issue su [GitHub](https://github.com/mattiasaan/skedoo/issues), senza scrivere dati personali. Per la privacy leggi l'[Informativa privacy](#privacy) e la [Cookie policy](#cookie).

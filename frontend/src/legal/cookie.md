@@ -12,7 +12,7 @@ Per funzionare, l'app salva alcune informazioni nella **memoria locale del brows
 
 | Nome | Cosa contiene | Quanto dura |
 |---|---|---|
-| `token` | Il token che ti tiene collegato (non contiene la password) | Fino al logout, al massimo 7 giorni di validità |
+| `token` | Il token che ti tiene collegato. Non contiene la password, ma la chiave che la sblocca sul server | Fino al logout, al massimo 7 giorni di validità |
 | `utente` | Nome, cognome e scuola, per mostrarli subito all'avvio | Fino al logout |
 | `skedoo:class:<utente>` | La classe che hai scelto (solo ITT Galilei) | Finché non cancelli i dati del sito |
 | `skedoo:<utente>:pref-alerts` | Se gli avvisi sono attivi | Finché non cancelli i dati del sito |
@@ -31,4 +31,4 @@ L'app carica il carattere tipografico da **Google Fonts** (Google LLC). Per scar
 - **Esci dall'app** (Profilo, poi Esci): vengono cancellati il token e i dati del profilo.
 - Per cancellare anche classe e preferenze, elimina i dati del sito dalle impostazioni del browser (di solito: Impostazioni, Privacy, Dati dei siti). Usando la navigazione privata, tutto viene cancellato alla chiusura della finestra.
 
-Per qualsiasi domanda leggi l'[Informativa privacy](#privacy) o scrivi a **[EMAIL DI CONTATTO]**.
+Per qualsiasi domanda leggi l'[Informativa privacy](#privacy), dove trovi anche come contattarci.

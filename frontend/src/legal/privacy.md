@@ -6,15 +6,15 @@ Questa informativa spiega quali dati personali tratta Skedoo, perché, per quant
 
 In breve:
 
-- per usare Skedoo accedi con le tue credenziali ClasseViva: la password **non viene mai salvata su disco**, resta solo nella memoria del server finché la sessione è attiva;
+- per usare Skedoo accedi con le tue credenziali ClasseViva: la password **non viene mai salvata su disco** e sul server resta **solo cifrata**, con una chiave che si trova unicamente sul tuo dispositivo;
 - voti, agenda, assenze, materiali e bacheca vengono letti da ClasseViva **quando li apri** e **non vengono archiviati** sui nostri server;
 - non usiamo cookie, pubblicità, profilazione né strumenti di analisi; non vendiamo né cediamo dati a nessuno.
 
 ## 1. Titolare del trattamento
 
-Il titolare del trattamento è **[NOME E COGNOME DEL TITOLARE]**, persona fisica che sviluppa e gestisce Skedoo a titolo personale e non commerciale.
+Il titolare del trattamento è **Mattia Santomaso**, persona fisica che sviluppa e gestisce Skedoo a titolo personale e non commerciale.
 
-Contatto per qualsiasi richiesta sulla privacy: **[EMAIL DI CONTATTO]**.
+Per qualsiasi richiesta sulla privacy puoi aprire un issue nel repository del progetto su [GitHub](https://github.com/mattiasaan/skedoo/issues). Gli issue sono **pubblici**: non scriverci dati personali (nome, codice ClasseViva, scuola), descrivi solo il tipo di richiesta.
 
 Skedoo è un progetto indipendente: **non è affiliato, approvato o gestito da Gruppo Spaggiari Parma S.p.A.** (che gestisce ClasseViva) **né da alcuna scuola**. Per i dati del registro elettronico il titolare resta la tua scuola: Skedoo li legge per tuo conto, con le tue credenziali, solo per mostrarli a te.
 
@@ -25,8 +25,10 @@ Skedoo è un progetto indipendente: **non è affiliato, approvato o gestito da G
 Codice personale (o email) e password che inserisci al login. Servono ad accedere a ClasseViva per tuo conto.
 
 - La password è trasmessa al server in modo cifrato (HTTPS) e **non viene mai scritta su disco, nei log, nel database o nel token di accesso**.
-- Resta **solo nella memoria di lavoro (RAM) del server** per tutta la durata della sessione, perché serve a ricollegarsi a ClasseViva quando la sessione di ClasseViva scade.
-- Viene cancellata quando esci (logout), quando la sessione resta inattiva per più di 7 giorni o quando il server si riavvia.
+- Serve a ricollegarsi a ClasseViva quando la sessione di ClasseViva scade, per questo il server la conserva per tutta la durata della sessione, ma **solo cifrata** (AES-256) e **solo nella memoria di lavoro (RAM)**.
+- La **chiave** per decifrarla viene creata a caso a ogni accesso e **non resta sul server**: è contenuta solo nel token di accesso salvato sul tuo dispositivo. La password viene decifrata solo per il tempo di una richiesta che fai tu, e subito dopo torna disponibile solo in forma cifrata.
+- La password cifrata viene cancellata quando esci (logout), quando la sessione resta inattiva per più di 7 giorni o quando il server si riavvia.
+- Poiché il token sul tuo dispositivo contiene la chiave, su un dispositivo condiviso ricordati di uscire (logout) quando hai finito.
 
 ### 2.2 Dati del registro elettronico
 
@@ -51,7 +53,7 @@ Come ogni servizio online, il server riceve il tuo indirizzo IP e i dati tecnici
 
 Per il solo ITT "G. Galilei" di Bolzano, Skedoo mostra l'orario delle classi e le variazioni giornaliere (entrate posticipate, uscite anticipate, cambi d'aula). Questi dati comprendono **nomi e cognomi dei docenti** e sono ricavati dall'orario pubblicato dalla scuola e dalle comunicazioni della bacheca ClasseViva, lette in automatico con un sistema di riconoscimento del testo (OCR) che gira **interamente sui nostri server**, senza servizi esterni di intelligenza artificiale.
 
-Se sei un docente e vuoi esercitare i tuoi diritti su questi dati, scrivi al contatto indicato al punto 1.
+Se sei un docente e vuoi esercitare i tuoi diritti su questi dati, usa il contatto indicato al punto 1.
 
 ## 3. Perché trattiamo i dati e su quale base giuridica
 
@@ -70,7 +72,7 @@ Skedoo **non** prende decisioni automatizzate che producano effetti giuridici su
 
 | Dato | Conservazione |
 |---|---|
-| Password ClasseViva | Solo in memoria (RAM), fino al logout, a 7 giorni di inattività o al riavvio del server |
+| Password ClasseViva | Solo cifrata, in memoria (RAM), fino al logout, a 7 giorni di inattività o al riavvio del server; la chiave resta solo sul tuo dispositivo |
 | Dati del registro (voti, agenda, assenze...) | In memoria per circa 60 secondi, poi scartati |
 | Token di accesso | Valido al massimo 7 giorni; cancellato dal dispositivo al logout |
 | Dati sul tuo dispositivo | Finché esci o cancelli i dati del sito dal browser (classe e preferenze restano anche dopo il logout, finché non li cancelli) |
@@ -99,7 +101,7 @@ Skedoo è pensato anche per studenti minorenni. Se hai **meno di 14 anni** puoi 
 
 ## 8. Sicurezza
 
-Adottiamo misure tecniche e organizzative adeguate: connessioni cifrate (HTTPS), password mai scritte su disco, token firmati con scadenza, limiti ai tentativi di login, isolamento dei servizi in container con permessi minimi, accesso al server riservato al titolare. Nessun sistema è però sicuro al 100%: in caso di violazione dei dati che possa mettere a rischio i tuoi diritti, ti informeremo come previsto dalla legge.
+Adottiamo misure tecniche e organizzative adeguate: connessioni cifrate (HTTPS), password mai scritte su disco e conservate in memoria solo cifrate con una chiave che il server non conserva, token firmati con scadenza, limiti ai tentativi di login, isolamento dei servizi in container con permessi minimi, accesso al server riservato al titolare. Nessun sistema è però sicuro al 100%: in caso di violazione dei dati che possa mettere a rischio i tuoi diritti, ti informeremo come previsto dalla legge.
 
 ## 9. I tuoi diritti
 
@@ -111,7 +113,7 @@ In ogni momento puoi chiedere di:
 - riceverli in un formato leggibile (**portabilità**, art. 20);
 - **opporti** ai trattamenti basati sul legittimo interesse (art. 21).
 
-Scrivi a **[EMAIL DI CONTATTO]**: risponderemo entro un mese. Dato che Skedoo non archivia i tuoi dati scolastici, nella maggior parte dei casi basta uscire dall'app (logout) e cancellare i dati del sito dal browser per eliminare ogni traccia. Per i dati del registro elettronico devi rivolgerti alla tua scuola.
+Usa il contatto indicato al punto 1, senza scrivere dati personali nell'issue: risponderemo entro un mese. Dato che Skedoo non archivia i tuoi dati scolastici, nella maggior parte dei casi basta uscire dall'app (logout) e cancellare i dati del sito dal browser per eliminare ogni traccia. Per i dati del registro elettronico devi rivolgerti alla tua scuola.
 
 Hai inoltre il diritto di proporre **reclamo al Garante per la protezione dei dati personali** (www.garanteprivacy.it), Piazza Venezia 11, 00187 Roma.
 
