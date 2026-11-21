@@ -6,7 +6,7 @@ from zoneinfo import ZoneInfo
 from fastapi import APIRouter, Depends, Query
 from pydantic import BaseModel, Field
 
-from .classeviva import CvSession
+from .classeviva import ActiveSession
 from .config import get_settings
 from .errors import AppError
 from .security import current_session, upstream_limit
@@ -104,7 +104,7 @@ def build_grades(raw: list[dict], anno: str, periodo: int | None, teachers: dict
 async def get_grades(
   anno: str | None = Query(None, pattern=r"^\d{2}$", description="Anno di inizio, es. 26 = 2026/27 (default: quello corrente)"),
   periodo: int | None = Query(None, ge=1, description="Solo un periodo (1 = primo, ...)"),
-  session: CvSession = Depends(current_session),
+  session: ActiveSession = Depends(current_session),
 ):
   """Voti raggruppati per materia, con la media di ogni materia e quella generale."""
   anno = anno or _current_year()

@@ -1,11 +1,14 @@
-import { useCallback, useEffect, useState } from 'react'
+import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import DashboardShell from './screens/DashboardShell.jsx'
 import Login from './screens/Login.jsx'
 import SchoolSetup from './screens/SchoolSetup.jsx'
 import { api, ApiError, UNAUTHORIZED_EVENT } from './lib/api.js'
 import { classLabel } from './lib/format.js'
+import { legalDocFromHash } from './lib/legal.js'
 import { clearSession, getClassId, getStoredUser, getToken, isGalileiSchool, saveSession, saveUser, setClassId } from './lib/session.js'
 import { useToast } from './lib/toast.js'
+
+const LegalPage = lazy(() => import('./screens/LegalPage.jsx'))
 import { clearApiCache } from './lib/useApi.js'
 
 // Schermata da mostrare dopo il login: chi è del Galilei deve prima scegliere la classe.
@@ -19,6 +22,25 @@ function App() {
 	const [screen, setScreen] = useState(() => (getToken() ? 'checking' : 'login'))
 	const [classId, setClassIdState] = useState(() => getClassId(getStoredUser()?.id))
 	const [loginNotice, setLoginNotice] = useState('')
+	const [legalDoc, setLegalDoc] = useState(() => legalDocFromHash())
+	const returnHash = useRef('')
+
+	// #privacy, #cookie e #termini si aprono sopra qualsiasi schermata, anche senza login
+	useEffect(() => {
+		let previous = window.location.hash
+		const onHash = () => {
+			const doc = legalDocFromHash()
+			if (doc && !legalDocFromHash(previous)) returnHash.current = previous
+			previous = window.location.hash
+			setLegalDoc(doc)
+		}
+		window.addEventListener('hashchange', onHash)
+		return () => window.removeEventListener('hashchange', onHash)
+	}, [])
+
+	function closeLegal() {
+		window.location.hash = returnHash.current.replace(/^#/, '') || 'home'
+	}
 
 	const resetToLogin = useCallback((notice = '') => {
 		clearSession()
@@ -89,6 +111,14 @@ function App() {
 		setScreen('app')
 		// orario e variazioni hanno la classe nella chiave di cache: non serve svuotare nulla
 		if (changed) toast(`Classe impostata: ${classLabel(id)}`)
+	}
+
+	if (legalDoc) {
+		return (
+			<Suspense fallback={null}>
+				<LegalPage doc={legalDoc} onClose={closeLegal} />
+			</Suspense>
+		)
 	}
 
 	if (screen === 'checking') {

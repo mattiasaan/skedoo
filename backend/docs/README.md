@@ -41,6 +41,8 @@ Gli orari si leggono da `data/`: `classi_index.json` (facoltativo) e `classi/<ID
 
 **Un solo processo**: sessioni e rate limit sono in memoria (niente `--workers N`).
 
+**Password ClasseViva**: il server la tiene solo cifrata (AES-256-GCM) dentro la sessione. La chiave è casuale per ogni login e viaggia solo nel JWT (claim `k`): il server la riceve con ogni richiesta, decifra la password per la durata della chiamata a ClasseViva e poi la toglie dall'oggetto `Utente`. Un JWT senza `k` valido è rifiutato.
+
 ## Login e sessione
 
 `POST /auth/login` con le credenziali ClasseViva → token JWT da mandare come `Authorization: Bearer <token>`. Il token punta a una sessione tenuta in memoria dal server: se il server riparte, dopo `logout` o alla scadenza il server risponde `401 session_expired` e il frontend rifà il login con le credenziali salvate.

@@ -40,6 +40,7 @@ function contentSecurityPolicy(env) {
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, fileURLToPath(new URL('.', import.meta.url)), '')
   return {
+    base: './', // percorsi relativi: funziona anche su GitHub Pages (https://utente.github.io/repo/). Il routing usa l'hash (#home)
     plugins: [react(), contentSecurityPolicy(env)],
     server: {
       // /api/* -> backend FastAPI: niente CORS e funziona anche dal telefono (npm run dev -- --host)

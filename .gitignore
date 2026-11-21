@@ -349,3 +349,7 @@ orario_classi.json
 
 # deploy sul Raspberry: orari copiati per l'import (dati della scuola)
 /deploy/orari/
+
+# documenti legali interni (contengono nomi e appunti del titolare): restano solo in locale
+legal/registro-trattamenti.md
+legal/procedura-data-breach.md

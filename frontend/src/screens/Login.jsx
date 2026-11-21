@@ -114,6 +114,10 @@ function Login({ onLogin, notice: initialNotice }) {
 					<span>{loading ? 'Accesso in corso…' : 'Accedi con ClasseViva'}</span>
 					{!loading && <Icon name="arrow" size={22} />}
 				</button>
+				<p className="auth-consent">
+					Accedendo accetti i <a href="#termini">Termini di servizio</a> e dichiari di aver letto l'
+					<a href="#privacy">Informativa privacy</a>. La password serve solo a collegarti a ClasseViva e non viene salvata.
+				</p>
 			</form>
 		</AuthLayout>
 	)

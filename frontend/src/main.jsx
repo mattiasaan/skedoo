@@ -4,6 +4,9 @@ import './styles/base.css'
 import App from './App.jsx'
 import { ToastProvider } from './components/Toasts.jsx'
 import './styles/feedback.css'
+import { applyAccent, readAccent } from './lib/theme.js'
+
+applyAccent(readAccent())
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

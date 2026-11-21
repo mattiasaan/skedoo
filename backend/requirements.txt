@@ -2,6 +2,7 @@ fastapi
 uvicorn[standard]
 pydantic-settings
 python-jose[cryptography]
+cryptography  # AES-GCM per la password in memoria (app/classeviva.py)
 Classeviva.py # pushata la v1.3 quindi non serve più compilare in locale
 python-dotenv
 tzdata

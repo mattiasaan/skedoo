@@ -109,7 +109,7 @@
 
 .week-day--active {
   border-color: var(--accent-line);
-  background: linear-gradient(180deg, rgba(16, 185, 129, 0.18), rgba(16, 185, 129, 0.08));
+  background: var(--accent-soft);
   color: var(--accent-text);
 }
 
@@ -168,7 +168,7 @@
 
 .month-day--active {
   border-color: var(--accent-line);
-  background: rgba(16, 185, 129, 0.16);
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
   color: var(--accent-text);
 }
 
@@ -269,11 +269,14 @@
 
 .agenda-lesson--amber {
   border-color: var(--amber-line);
-  background: linear-gradient(90deg, rgba(245, 182, 42, 0.05), transparent 60%), var(--surface);
+  background: var(--surface);
 }
 
-.agenda-lesson--muted {
-  opacity: 0.65;
+.agenda-lesson--muted .agenda-lesson__time strong,
+.agenda-lesson--muted .agenda-lesson__main h3,
+.agenda-lesson--muted .agenda-lesson__room,
+.agenda-lesson--muted .agenda-lesson__where {
+  color: var(--muted);
 }
 
 .agenda-lesson__top {

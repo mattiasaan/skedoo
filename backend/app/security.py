@@ -1,4 +1,6 @@
 """Sicurezza: JWT, rate limit, e la dipendenza `current_session` che protegge gli endpoint."""
+import base64
+import binascii
 import math
 import threading
 import time
@@ -9,7 +11,7 @@ from fastapi import Depends, Request
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from jose import JWTError, jwt
 
-from .classeviva import CvSession, store
+from .classeviva import ActiveSession, store
 from .config import get_settings
 from .errors import AppError
 
@@ -18,18 +20,20 @@ ISSUER = AUDIENCE = "skedoo"
 
 
 # ---------- JWT ----------
-def create_token(username: str, sid: str) -> tuple[str, int]:
-  """Il token contiene username e id di sessione, MAI la password. `sid` lo lega a una sessione sul server:
-  logout o riavvio lo invalidano anche se non è ancora scaduto."""
+def create_token(username: str, sid: str, key: bytes) -> tuple[str, int]:
+  """Il token contiene username, id di sessione e la chiave che decifra la password sul server, MAI la password.
+  `sid` lo lega a una sessione sul server: logout o riavvio lo invalidano anche se non è ancora scaduto.
+  `k` da sola non serve a nulla: la password cifrata esiste solo nella memoria del server."""
   s = get_settings()
   now = datetime.now(timezone.utc)
   ttl = timedelta(hours=s.jwt_ttl_hours)
-  claims = {"sub": username, "sid": sid, "iss": ISSUER, "aud": AUDIENCE, "iat": now, "exp": now + ttl}
+  k = base64.urlsafe_b64encode(key).rstrip(b"=").decode()
+  claims = {"sub": username, "sid": sid, "k": k, "iss": ISSUER, "aud": AUDIENCE, "iat": now, "exp": now + ttl}
   return jwt.encode(claims, s.jwt_secret, algorithm=ALGORITHM), int(ttl.total_seconds())
 
 
-def decode_token(token: str) -> tuple[str, str]:
-  """Restituisce (username, sid). L'algoritmo è fissato (niente `alg: none`) e tutti i claim sono obbligatori."""
+def decode_token(token: str) -> tuple[str, str, bytes]:
+  """Restituisce (username, sid, chiave). L'algoritmo è fissato (niente `alg: none`) e tutti i claim sono obbligatori."""
   try:
     claims = jwt.decode(
       token, get_settings().jwt_secret, algorithms=[ALGORITHM], audience=AUDIENCE, issuer=ISSUER,
@@ -37,10 +41,16 @@ def decode_token(token: str) -> tuple[str, str]:
     )
   except JWTError:
     raise AppError(401, "invalid_token", "Token non valido o scaduto")
-  sub, sid = claims.get("sub"), claims.get("sid")
-  if not isinstance(sub, str) or not isinstance(sid, str) or not sub or not sid:
+  sub, sid, k = claims.get("sub"), claims.get("sid"), claims.get("k")
+  if not all(isinstance(v, str) and v for v in (sub, sid, k)):
     raise AppError(401, "invalid_token", "Token non valido")
-  return sub, sid
+  try:
+    key = base64.urlsafe_b64decode(k + "=" * (-len(k) % 4))
+  except (binascii.Error, ValueError):
+    raise AppError(401, "invalid_token", "Token non valido")
+  if len(key) != 32:
+    raise AppError(401, "invalid_token", "Token non valido")
+  return sub, sid, key
 
 
 # ---------- rate limit (in memoria, un solo processo) ----------
@@ -114,17 +124,17 @@ def client_ip(request: Request) -> str:
 _bearer = HTTPBearer(auto_error=False)
 
 
-def current_session(creds: HTTPAuthorizationCredentials | None = Depends(_bearer)) -> CvSession:
+def current_session(creds: HTTPAuthorizationCredentials | None = Depends(_bearer)) -> ActiveSession:
   """Richiede un JWT valido legato a una sessione viva e applica il limite per utente.
   Va su OGNI endpoint tranne il login."""
   if creds is None:
     raise AppError(401, "not_authenticated", "Autenticazione richiesta")
-  username, sid = decode_token(creds.credentials)
+  username, sid, key = decode_token(creds.credentials)
   session = store.get(sid, username)
   rate_limit(f"user:{username.lower()}", get_settings().rate_limit_user)
-  return session
+  return ActiveSession(session, key)
 
 
-def upstream_limit(session: CvSession = Depends(current_session)) -> None:
+def upstream_limit(session: ActiveSession = Depends(current_session)) -> None:
   """Limite più stretto per gli endpoint che chiamano ClasseViva (voti, agenda)."""
   rate_limit(f"upstream:{session.username.lower()}", get_settings().rate_limit_upstream)
