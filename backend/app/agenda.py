@@ -5,7 +5,7 @@ from zoneinfo import ZoneInfo
 from fastapi import APIRouter, Depends, Query
 from pydantic import BaseModel
 
-from .classeviva import CvSession
+from .classeviva import ActiveSession
 from .config import get_settings
 from .security import current_session, upstream_limit
 from .validation import check_date_range
@@ -58,7 +58,7 @@ def build_agenda(raw: list[dict]) -> AgendaOut:
 async def get_agenda(
   da: date | None = Query(None, description="YYYY-MM-DD (default: oggi)"),
   a: date | None = Query(None, description="YYYY-MM-DD (default: da + 13 giorni; per un solo giorno metti a = da)"),
-  session: CvSession = Depends(current_session),
+  session: ActiveSession = Depends(current_session),
 ):
   """Eventi dell'agenda (compiti, annotazioni, eventi) raggruppati per giorno."""
   da = da or datetime.now(ZoneInfo(get_settings().timezone)).date()

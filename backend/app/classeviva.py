@@ -3,15 +3,22 @@
 Classeviva.py ha metodi `async` ma usa `requests` (sincrono): chiamati direttamente bloccherebbero FastAPI.
 Qui ogni chiamata gira in un thread, con un lock per sessione e una piccola cache.
 
-Ogni login crea una sessione con un `sid` (scritto nel JWT). Le sessioni stanno solo in memoria: la password
-serve a ricollegarsi a ClasseViva quando la sua sessione scade, e non viene mai scritta su disco né nel JWT.
-Se il server si riavvia le sessioni spariscono e il frontend riceve 401 `session_expired`: rifà il login.
+Ogni login crea una sessione con un `sid` (scritto nel JWT). Le sessioni stanno solo in memoria e se il server
+si riavvia spariscono: il frontend riceve 401 `session_expired` e rifà il login.
+
+La password serve a ricollegarsi a ClasseViva quando la sua sessione scade (circa ogni ora e mezza). Il server
+la tiene SOLO cifrata (AES-256-GCM): la chiave è casuale per ogni sessione e sta solo nel JWT dell'utente, non sul
+server. Chi copia la memoria del server trova solo password cifrate; ognuna viene decifrata per la durata di una
+singola chiamata a ClasseViva di quell'utente e poi tolta dall'oggetto `Utente`.
 """
 import asyncio
 import logging
 import secrets
 import threading
 import time
+
+from cryptography.exceptions import InvalidTag
+from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 
 from classeviva import Utente, eccezioni
 
@@ -43,9 +50,33 @@ class CvSession:
     self._cache: dict[tuple, tuple[float, object]] = {}
     self._school: dict | None = None
     self._card_profile: dict = {}
+    self._sealed: bytes | None = None  # nonce + password cifrata
 
-  def _run(self, method: str, args: tuple):
+  # ---------- password cifrata ----------
+  def _aad(self) -> bytes:
+    # lega il testo cifrato a questa sessione: non si può spostare su un'altra
+    return f"{self.sid}|{self.username}".encode()
+
+  def seal(self, password: str) -> bytes:
+    """Cifra la password, la toglie da `Utente` e restituisce la chiave (da mettere nel JWT, non da tenere)."""
+    key = AESGCM.generate_key(bit_length=256)
+    nonce = secrets.token_bytes(12)
+    self._sealed = nonce + AESGCM(key).encrypt(nonce, password.encode(), self._aad())
+    self.utente.password = ""
+    return key
+
+  def _unseal(self, key: bytes) -> str:
+    try:
+      return AESGCM(key).decrypt(self._sealed[:12], self._sealed[12:], self._aad()).decode()
+    except (InvalidTag, ValueError):
+      raise AppError(401, "session_expired", "Sessione scaduta, effettua di nuovo il login")
+
+  def _run(self, method: str, args: tuple, key: bytes | None):
     with self._lock:  # la sessione requests non è fatta per l'uso concorrente
+      if self._sealed is not None:
+        if key is None:
+          raise AppError(401, "session_expired", "Sessione scaduta, effettua di nuovo il login")
+        self.utente.password = self._unseal(key)  # serve solo se ClasseViva chiede un nuovo login
       try:
         return asyncio.run(getattr(self.utente, method)(*args))
       except eccezioni.ErroreHTTP as e:
@@ -53,22 +84,27 @@ class CvSession:
           raise
         self.utente.inizio = None  # sessione probabilmente scaduta su ClasseViva: nuovo login e un solo tentativo
         return asyncio.run(getattr(self.utente, method)(*args))
+      finally:
+        if self._sealed is not None:
+          self.utente.password = ""
 
-  async def call(self, method: str, *args):
+  async def call(self, method: str, *args, key: bytes | None = None):
     """Chiama un metodo di Utente (es. call("voti", "26")), con cache per `cache_ttl_seconds`."""
     now = self.last_used = time.monotonic()
     ttl = get_settings().cache_ttl_seconds
-    key = (method, args)
-    hit = self._cache.get(key)
+    cache_key = (method, args)
+    hit = self._cache.get(cache_key)
     if hit and now - hit[0] < ttl:
       return hit[1]
     try:
-      result = await asyncio.to_thread(self._run, method, args)
+      result = await asyncio.to_thread(self._run, method, args, key)
+    except AppError:
+      raise
     except Exception as e:
       raise translate(e) from e
     # la sessione può vivere giorni: si tengono solo le risposte ancora valide (es. tanti intervalli di agenda)
     self._cache = {k: v for k, v in self._cache.items() if now - v[0] < ttl}
-    self._cache[key] = (time.monotonic(), result)
+    self._cache[cache_key] = (time.monotonic(), result)
     return result
 
   @property
@@ -83,12 +119,12 @@ class CvSession:
       "scuola": self._school,
     }
 
-  async def load_school(self) -> None:
+  async def load_school(self, key: bytes | None = None) -> None:
     """Carica la scuola dalla carta ClasseViva, senza inserirla nel JWT."""
     if self._school is not None or not hasattr(self.utente, "carta"):
       return
     try:
-      raw = await self.call("carta")
+      raw = await self.call("carta", key=key)
     except (AppError, eccezioni.ErroreHTTP, eccezioni.SenzaDati) as exc:
       log.warning("Scuola ClasseViva non disponibile: %s", exc.__class__.__name__)
       return
@@ -108,12 +144,27 @@ class CvSession:
     }
 
 
+class ActiveSession:
+  """La sessione vista da UNA richiesta: unisce la sessione sul server alla chiave arrivata col JWT.
+  Vive solo per la durata della richiesta, così la chiave non resta in memoria sul server."""
+
+  def __init__(self, session: CvSession, key: bytes):
+    self._session, self._key = session, key
+
+  def __getattr__(self, name):
+    return getattr(self._session, name)
+
+  async def call(self, method: str, *args):
+    return await self._session.call(method, *args, key=self._key)
+
+
 class SessionStore:
   def __init__(self):
     self._sessions: dict[str, CvSession] = {}
     self._lock = threading.Lock()
 
-  async def login(self, username: str, password: str) -> CvSession:
+  async def login(self, username: str, password: str) -> tuple[CvSession, bytes]:
+    """Restituisce la sessione e la chiave della password cifrata: la chiave va nel JWT e NON va conservata."""
     utente = Utente(username, password)
     try:
       await asyncio.to_thread(lambda: asyncio.run(utente.accedi()))
@@ -123,13 +174,14 @@ class SessionStore:
     limit = get_settings().jwt_ttl_hours * 3600
     now = time.monotonic()
     session = CvSession(username, utente)
-    await session.load_school()
+    key = session.seal(password)
+    await session.load_school(key)
     with self._lock:
       self._sessions = {
         k: s for k, s in self._sessions.items() if now - s.last_used < limit
       }
       self._sessions[session.sid] = session
-    return session
+    return session, key
 
   def get(self, sid: str, username: str) -> CvSession:
     with self._lock:

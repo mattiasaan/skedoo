@@ -3,7 +3,7 @@ from datetime import date
 from fastapi import APIRouter, Depends, Query
 from pydantic import BaseModel, Field
 
-from .classeviva import CvSession
+from .classeviva import ActiveSession
 from .errors import AppError
 from .security import current_session, upstream_limit
 from .validation import check_date_range
@@ -67,7 +67,7 @@ def build_absences(raw) -> AbsencesOut:
 async def get_absences(
   da: date | None = Query(None, description="YYYY-MM-DD"),
   a: date | None = Query(None, description="YYYY-MM-DD"),
-  session: CvSession = Depends(current_session),
+  session: ActiveSession = Depends(current_session),
 ):
   if (da is None) != (a is None):
     raise AppError(422, "invalid_range", "Specificare entrambe le date da e a")

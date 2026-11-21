@@ -43,16 +43,21 @@ def test_only_login_and_health_are_open(client):
   assert open_ == OPEN
 
 
+VALID_K = base64.urlsafe_b64encode(bytes(32)).rstrip(b"=").decode()  # chiave AES ben formata
+
+
 def make_token(settings, key=None, **over):
   now = datetime.now(timezone.utc)
-  claims = {"sub": "S123X", "sid": "x", "iss": "skedoo", "aud": "skedoo", "iat": now, "exp": now + timedelta(hours=1), **over}
+  claims = {"sub": "S123X", "sid": "x", "k": VALID_K, "iss": "skedoo", "aud": "skedoo", "iat": now,
+            "exp": now + timedelta(hours=1), **over}
   return jwt.encode({k: v for k, v in claims.items() if v is not None}, key or settings.jwt_secret, algorithm="HS256")
 
 
 @pytest.mark.parametrize("over", [
   {"exp": datetime.now(timezone.utc) - timedelta(minutes=1)},  # scaduto
   {"aud": "altra-app"}, {"iss": "altri"},
-  {"aud": None}, {"iss": None}, {"iat": None}, {"sub": None}, {"sid": None},  # claim mancanti
+  {"aud": None}, {"iss": None}, {"iat": None}, {"sub": None}, {"sid": None}, {"k": None},  # claim mancanti
+  {"k": "corta"}, {"k": 123},  # chiave malformata
 ])
 def test_bad_token_claims_rejected(client, settings, over):
   r = client.get("/auth/me", headers={"Authorization": f"Bearer {make_token(settings, **over)}"})
@@ -196,3 +201,33 @@ def test_production_requires_explicit_secret_and_origins():
   for missing, msg in (("jwt_secret", "JWT_SECRET"), ("cors_origins", "CORS_ORIGINS")):
     with pytest.raises(ValidationError, match=msg):
       Settings(_env_file=None, **{k: v for k, v in GOOD.items() if k != missing})
+
+
+# ---------- password ClasseViva cifrata in memoria ----------
+def test_password_is_kept_only_encrypted(client):
+  login(client, password="good")
+  session = next(iter(store._sessions.values()))
+  assert session.utente.password == ""  # niente password in chiaro sull'oggetto Utente
+  assert session._sealed and b"good" not in session._sealed
+
+
+def test_password_is_decrypted_only_during_the_call(client, auth, monkeypatch):
+  import conftest
+  seen = []
+
+  async def voti(self, anno):  # come una chiamata che deve rifare il login su ClasseViva
+    seen.append(self.password)
+    return conftest.GRADES
+
+  monkeypatch.setattr(conftest.FakeUtente, "voti", voti)
+  assert client.get("/grades", headers=auth).status_code == 200
+  assert seen == ["good"]
+  assert next(iter(store._sessions.values())).utente.password == ""  # tolta subito dopo
+
+
+def test_token_with_wrong_key_cannot_decrypt_the_password(client, settings):
+  login(client, "S1X")
+  sid = next(iter(store._sessions))
+  forged = make_token(settings, sub="S1X", sid=sid)  # firma valida (stesso segreto) ma chiave AES sbagliata
+  r = client.get("/grades", headers={"Authorization": f"Bearer {forged}"})
+  assert r.status_code == 401 and r.json()["code"] == "session_expired"
