@@ -52,6 +52,32 @@ def test_session_lost_after_server_restart(client, auth):
   assert r.status_code == 401 and r.json()["code"] == "session_expired"
 
 
+def test_refresh_keeps_the_same_session(client, auth):
+  r = client.post("/auth/refresh", headers=auth)
+  body = r.json()
+  assert r.status_code == 200 and body["token_type"] == "bearer" and body["expires_in"] > 0
+  new = {"Authorization": f"Bearer {body['access_token']}"}
+  assert client.get("/grades", headers=new).status_code == 200  # la chiave della password è la stessa
+  assert client.get("/auth/me", headers=auth).status_code == 200  # il vecchio token vale fino alla scadenza
+  assert client.post("/auth/logout", headers=new).status_code == 204  # stessa sessione: il logout chiude entrambi
+  assert client.get("/auth/me", headers=auth).json()["code"] == "session_expired"
+
+
+def test_refresh_after_logout_fails(client, auth):
+  client.post("/auth/logout", headers=auth)
+  r = client.post("/auth/refresh", headers=auth)
+  assert r.status_code == 401 and r.json()["code"] == "session_expired"
+
+
+def test_session_used_without_classeviva_calls_stays_alive(client, auth, settings, monkeypatch):
+  # gli orari non chiamano ClasseViva, ma usarli deve evitare che la sessione venga eliminata come inattiva
+  session = next(iter(store._sessions.values()))
+  session.last_used -= settings.jwt_ttl_hours * 3600 + 1
+  client.get("/schedules/classes", headers=auth)
+  login(client, "ALTRO")  # ogni login elimina le sessioni inattive
+  assert client.get("/auth/me", headers=auth).status_code == 200
+
+
 # ---------- orari ----------
 def test_list_classes(client, auth):
   assert [c["id"] for c in client.get("/schedules/classes", headers=auth).json()] == ["1A", "2B"]

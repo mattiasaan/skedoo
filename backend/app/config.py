@@ -18,7 +18,8 @@ class Settings(BaseSettings):
 
   # --- JWT ---
   jwt_secret: str = Field(default_factory=lambda: secrets.token_urlsafe(48))  # casuale a ogni avvio se non impostato
-  jwt_ttl_hours: int = 24 * 7
+  jwt_ttl_hours: int = 24 * 7  # durata di ogni token: chi usa l'app lo rinnova (POST /auth/refresh)
+  session_max_days: int = 90  # dopo tanti giorni dal login niente più rinnovi: si rifà il login
 
   # --- rete ---
   cors_origins: str = "http://localhost:5173,http://localhost:3000"  # indirizzi del frontend, separati da virgola
