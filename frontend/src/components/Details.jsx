@@ -1,14 +1,15 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { api } from '../lib/api.js'
 import { useApp } from '../lib/appContext.js'
-import { useGrades, useMonthAgenda, useUpcomingAgenda } from '../lib/data.js'
-import { formatDateTime, formatLongDate, formatNumber, parseDateKey, relativeDay, teacherName, titleCase } from '../lib/format.js'
-import { averageLabel, counted, gradeTone, subjectIcon, subjectsForTerm, usualWeight } from '../lib/grades.js'
+import { useMonthAgenda } from '../lib/data.js'
+import { MAX_DOWNLOAD_MB } from '../lib/download.js'
+import { formatDateTime, formatLongDate, parseDateKey, relativeDay, teacherName } from '../lib/format.js'
+import { subjectIcon } from '../lib/grades.js'
 import { periodLabel, subjectMatches } from '../lib/schedule.js'
 import { useApi } from '../lib/useApi.js'
+import { AttachmentButton } from './Files.jsx'
 import { Icon } from './Icon.jsx'
-import { LineChart } from './LineChart.jsx'
-import { ErrorMessage, Sheet, Skeleton, StateMessage } from './ui.jsx'
+import { ErrorMessage, RelatedLink, Sheet, Skeleton, StateMessage } from './ui.jsx'
 
 function Facts({ items }) {
 	const visible = items.filter(([, value]) => value)
@@ -25,19 +26,9 @@ function Facts({ items }) {
 	)
 }
 
-function RelatedButton({ icon, label, value, onClick, tone = 'neutral' }) {
-	return (
-		<button className={`related-link related-link--${tone}`} onClick={onClick} type="button">
-			<Icon name={icon} size={17} />
-			<span><small>{label}</small><strong>{value}</strong></span>
-			<Icon name="chevron" size={17} />
-		</button>
-	)
-}
-
 // ---------- compito / verifica / evento ----------
 function EventDetail({ item, onClose }) {
-	const { openDetail, doneTasks, toggleDone, savedTasks, toggleSaved } = useApp()
+	const { openSubject, doneTasks, toggleDone, savedTasks, toggleSaved } = useApp()
 	const date = parseDateKey(item.date)
 	const done = Boolean(doneTasks[item.key])
 	const saved = Boolean(savedTasks[item.key])
@@ -65,7 +56,7 @@ function EventDetail({ item, onClose }) {
 				)}
 			</div>
 			{item.subject && (
-				<RelatedButton icon={subjectIcon(item.subject)} label="Apri materia" onClick={() => openDetail({ type: 'subject', name: item.subject })} value={item.subject} />
+				<RelatedLink icon={subjectIcon(item.subject)} label="Dashboard della materia" onClick={() => openSubject(item.subject)} value={item.subject} />
 			)}
 		</Sheet>
 	)
@@ -73,7 +64,7 @@ function EventDetail({ item, onClose }) {
 
 // ---------- lezione ----------
 function LessonDetail({ lesson, onClose }) {
-	const { openDetail } = useApp()
+	const { openDetail, openSubject } = useApp()
 	const date = parseDateKey(lesson.date) ?? new Date()
 	const agenda = useMonthAgenda(date)
 	const related = agenda.items.filter((item) => item.date === lesson.date && subjectMatches(lesson.materia, item.subject))
@@ -100,85 +91,19 @@ function LessonDetail({ lesson, onClose }) {
 					['Docenti', lesson.teachers.map(teacherName).join(', ')],
 				]}
 			/>
+			<button className="detail-primary" onClick={() => openSubject(lesson.materia)} type="button">
+				<Icon name={subjectIcon(lesson.materia)} size={19} />
+				<span>
+					<strong>Apri dashboard materia</strong>
+					<small>Verifiche, voti e materiali di {lesson.materia}</small>
+				</span>
+				<Icon name="chevron" size={18} />
+			</button>
 			{related.length > 0 && (
 				<div className="detail-section">
 					<h3>In agenda per questa lezione</h3>
 					{related.map((item) => (
-						<RelatedButton icon={item.kind === 'compito' ? 'clipboard' : 'calendar'} key={item.key} label={item.label} onClick={() => openDetail({ type: 'event', item })} tone={item.tone} value={item.description || item.title} />
-					))}
-				</div>
-			)}
-			<RelatedButton icon={subjectIcon(lesson.materia)} label="Voti e andamento" onClick={() => openDetail({ type: 'subject', name: lesson.materia })} value={lesson.materia} />
-		</Sheet>
-	)
-}
-
-// ---------- materia (voti) ----------
-function SubjectDetail({ name, onClose }) {
-	const { openDetail, isGalilei } = useApp()
-	const grades = useGrades()
-	const upcoming = useUpcomingAgenda()
-	const subject = useMemo(
-		() => subjectsForTerm(grades.data, null, { practicalSplit: isGalilei }).find((item) => subjectMatches(name, item.materia)),
-		[grades.data, name, isGalilei],
-	)
-	const title = subject?.name ?? titleCase(name)
-	const events = upcoming.items.filter((item) => subjectMatches(title, item.subject))
-	const chronological = subject ? subject.voti.filter(counted).reverse() : []
-	// il peso si mostra rispetto a quello ordinario della materia: ClasseViva può mandare 1 o 100 per lo stesso 100%
-	const usual = usualWeight(chronological)
-
-	return (
-		<Sheet kicker="Dettaglio materia" onClose={onClose} title={title}>
-			{grades.loading && <Skeleton height={64} lines={3} />}
-			{grades.error && !grades.data && <ErrorMessage error={grades.error} onRetry={grades.reload} />}
-			{grades.data && !subject && <StateMessage icon="chart" text="Non ci sono ancora voti registrati per questa materia." title="Nessun voto" />}
-			{subject && (
-				<>
-					<div className={`subject-summary subject-summary--${gradeTone(subject.media)}`}>
-						<div>
-							<small>Media dell'anno</small>
-							<strong>{formatNumber(subject.media)}</strong>
-							<span>{averageLabel(subject.media)}</span>
-						</div>
-						<p>
-							{subject.voti.length} {subject.voti.length === 1 ? 'valutazione' : 'valutazioni'}
-							{subject.docenti?.length ? <><br />{subject.docenti.map(teacherName).join(', ')}</> : null}
-						</p>
-					</div>
-					{chronological.length > 1 && (
-						<div className="detail-chart">
-							<LineChart
-								label={`Andamento dei voti di ${title}`}
-								max={10}
-								min={Math.max(1, Math.floor(Math.min(...chronological.map((grade) => grade.valore))) - 1)}
-								points={chronological.map((grade) => ({ key: grade.id, value: grade.valore, title: `${grade.voto} • ${grade.data}` }))}
-								threshold={6}
-							/>
-						</div>
-					)}
-					<div className="detail-section">
-						<h3>Tutti i voti</h3>
-						<ul className="grade-list">
-							{subject.voti.map((grade) => (
-								<li className={`grade-list__item${grade.annullato || grade.fa_media === false ? ' grade-list__item--void' : ''}`} key={grade.id}>
-									<span className={`grade-chip grade-chip--${gradeTone(grade.valore)}`}>{grade.voto || '—'}</span>
-									<span>
-										<strong>{grade.tipo ?? 'Valutazione'}{grade.annullato ? ' (annullato)' : grade.fa_media === false ? ' (non fa media)' : ''}</strong>
-										<small>{relativeDay(grade.data)}{grade.peso != null && grade.peso > 0 && grade.peso !== usual ? ` • peso ${Math.round((grade.peso / usual) * 100)}%` : ''}</small>
-										{grade.note && <em>{grade.note}</em>}
-									</span>
-								</li>
-							))}
-						</ul>
-					</div>
-				</>
-			)}
-			{events.length > 0 && (
-				<div className="detail-section">
-					<h3>Prossimi impegni</h3>
-					{events.map((item) => (
-						<RelatedButton icon={item.kind === 'compito' ? 'clipboard' : 'calendar'} key={item.key} label={`${item.label} • ${relativeDay(item.date)}`} onClick={() => openDetail({ type: 'event', item })} tone={item.tone} value={item.description || item.title} />
+						<RelatedLink icon={item.kind === 'compito' ? 'clipboard' : 'calendar'} key={item.key} label={item.label} onClick={() => openDetail({ type: 'event', item })} tone={item.tone} value={item.description || item.title} />
 					))}
 				</div>
 			)}
@@ -205,18 +130,25 @@ function BoardDetail({ item, onClose }) {
 			</div>
 			{detail.loading && <Skeleton height={18} lines={4} />}
 			{detail.error && <ErrorMessage error={detail.error} onRetry={detail.reload} title="Testo non disponibile" />}
-			{detail.data && <p className="detail-text">{detail.data.testo || 'Questa comunicazione non ha un testo: consulta gli allegati su ClasseViva.'}</p>}
+			{detail.data && <p className="detail-text">{detail.data.testo || (item.allegati?.length ? 'Questa comunicazione non ha un testo: il contenuto è negli allegati.' : 'Questa comunicazione non ha un testo.')}</p>}
 			{item.allegati?.length > 0 && (
 				<div className="detail-section">
 					<h3>Allegati</h3>
 					<ul className="attachment-list">
-						{item.allegati.map((attachment) => (
-							<li key={attachment.numero}><Icon name="file" size={16} />{attachment.nome || `Allegato ${attachment.numero}`}</li>
-						))}
+						{item.allegati.map((attachment) => <AttachmentButton attachment={attachment} item={item} key={attachment.numero} />)}
 					</ul>
-					<p className="detail-hint">Gli allegati si scaricano dall'app o dal sito ClasseViva.</p>
+					<p className="detail-hint">Tocca un allegato per scaricarlo. I file oltre {MAX_DOWNLOAD_MB} MB si scaricano solo dall'app o dal sito ClasseViva.</p>
 				</div>
 			)}
+		</Sheet>
+	)
+}
+
+// ---------- materiale di solo testo (didattica) ----------
+function TextDetail({ kicker, title, text, onClose }) {
+	return (
+		<Sheet kicker={kicker} onClose={onClose} title={title}>
+			<p className="detail-text detail-text--first">{text}</p>
 		</Sheet>
 	)
 }
@@ -278,8 +210,8 @@ export function DetailHost({ detail, onClose }) {
 			return <EventDetail item={detail.item} onClose={onClose} />
 		case 'lesson':
 			return <LessonDetail lesson={detail.lesson} onClose={onClose} />
-		case 'subject':
-			return <SubjectDetail name={detail.name} onClose={onClose} />
+		case 'text':
+			return <TextDetail kicker={detail.kicker} onClose={onClose} text={detail.text} title={detail.title} />
 		case 'board':
 			return <BoardDetail item={detail.item} onClose={onClose} />
 		case 'logout':

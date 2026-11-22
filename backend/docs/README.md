@@ -15,8 +15,9 @@ app/
   schedules.py   orari (JSON o DB) + endpoint /schedules
   grades.py      GET /grades
   agenda.py      GET /agenda
-  didactics.py   GET /didattica
-  board.py       GET /bacheca
+  didactics.py   GET /didattica, GET /didattica/{contenuto} (download)
+  board.py       GET /bacheca, GET /bacheca/{codice}/{id}/allegati/{numero} (download)
+  downloads.py   download in streaming da ClasseViva, con limite di dimensione e di download contemporanei
   absences.py    GET /assenze
   changes.py     GET /changes, /changes/entrate-uscite, /changes/cambi-aula
   db.py          tabelle SQLAlchemy (classes, lessons)
@@ -60,8 +61,10 @@ Gli orari si leggono da `data/`: `classi_index.json` (facoltativo) e `classi/<ID
 | GET | `/grades?anno=26&periodo=1` | voti per materia con medie e docenti della materia |
 | GET | `/agenda?da=YYYY-MM-DD&a=YYYY-MM-DD` | eventi per giorno (default oggi…+13 giorni, max 366) |
 | GET | `/didattica` | materiali didattici organizzati per docente e cartella |
+| GET | `/didattica/{contenuto}` | scarica un materiale (`id` dell'elenco); per link e testi risponde `{tipo: "link", url}` o `{tipo: "testo", testo}` |
 | GET | `/bacheca` | circolari e comunicazioni, con allegati |
 | GET | `/bacheca/{codice}/{id}` | dettaglio di una comunicazione `{titolo, testo}` (la segna come letta su ClasseViva) |
+| GET | `/bacheca/{codice}/{id}/allegati/{numero}` | scarica un allegato (`numero` dell'elenco `allegati`) |
 | GET | `/assenze?da=YYYY-MM-DD&a=YYYY-MM-DD` | assenze, ritardi e uscite con `riepilogo`; senza date restituisce l'anno |
 | GET | `/changes?classe=1A&data=YYYY-MM-DD` | modifiche della classe (tutti i giorni nel file, o solo `data`) |
 | GET | `/changes/entrate-uscite?classe=1A` | entrate e uscite della classe |
@@ -115,11 +118,17 @@ Formato `{"code": "...", "message": "..."}`. Le validazioni dei parametri rispon
 | 500 | `internal_error` | errore inatteso, dettagli solo nei log |
 | 503 | `database_unavailable`, `changes_unavailable` | DB o dati locali non disponibili |
 
+I download possono rispondere anche `404 file_not_found`, `413 file_too_large` (oltre `MAX_DOWNLOAD_MB`),
+`429 too_many_downloads` (oltre `MAX_PARALLEL_DOWNLOADS` in corso) e `502 not_downloadable` (ClasseViva non
+fornisce il contenuto come file).
+
 ## Sicurezza
 
 - JWT HS256 con `sub`, `sid`, `iss`, `aud`, `iat`, `exp` obbligatori.
 - Rate limit (finestra di 1 minuto, in memoria): per IP 300, per utente 60, voti/agenda 20, login 5 per (IP, username); dopo 10 password sbagliate in 15 minuti blocco temporaneo.
 - Body max 16 KB, header di sicurezza, CORS e host espliciti, `/docs` spento in produzione.
+- Download: il file passa a pezzi da 64 KB senza stare in memoria, al massimo `MAX_DOWNLOAD_MB` (250) e
+  `MAX_PARALLEL_DOWNLOADS` (2) per utente; i redirect si seguono solo in https verso `*.spaggiari.eu`.
 - `ENVIRONMENT=production` rifiuta di partire senza `JWT_SECRET` (≥32 caratteri), `SCHEDULE_SOURCE=db` + `DATABASE_URL`, `CORS_ORIGINS` e `ALLOWED_HOSTS` espliciti.
 - Dietro a un reverse proxy imposta `TRUST_PROXY_HEADERS=true`, altrimenti il rate limit per IP vede solo l'IP del proxy.
 - Il file `.env` non va mai committato.

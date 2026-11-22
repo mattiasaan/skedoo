@@ -1,7 +1,10 @@
+from classeviva.collegamenti.collegamenti import Collegamenti
 from fastapi import APIRouter, Depends, Path
+from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 
 from .classeviva import ActiveSession
+from .downloads import stream_file
 from .security import current_session, upstream_limit
 
 router = APIRouter(prefix="/bacheca", tags=["Bacheca"], dependencies=[Depends(upstream_limit)])
@@ -70,3 +73,15 @@ async def get_board_item(
   if not isinstance(item, dict):
     item = {}
   return BoardDetailOut(titolo=item.get("title"), testo=item.get("text"))
+
+
+@router.get("/{codice}/{id}/allegati/{numero}", response_class=StreamingResponse,
+            responses={200: {"content": {"application/octet-stream": {}}, "description": "Il file, in streaming"}})
+async def download_attachment(
+  codice: str = Path(pattern=r"^[A-Za-z0-9_-]{1,16}$"),
+  id: int = Path(ge=1),
+  numero: int = Path(ge=1, le=99, description="`numero` dell'allegato nell'elenco (attachNum di ClasseViva)"),
+  session: ActiveSession = Depends(current_session),
+):
+  """Scarica un allegato di una comunicazione (al massimo `MAX_DOWNLOAD_MB`)."""
+  return await stream_file(session, lambda student: Collegamenti.bacheca_allega.format(student, codice, id, numero))

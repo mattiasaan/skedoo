@@ -16,6 +16,8 @@ import logging
 import secrets
 import threading
 import time
+from contextlib import contextmanager
+from typing import NamedTuple
 
 from cryptography.exceptions import InvalidTag
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
@@ -38,6 +40,13 @@ def translate(exc: Exception) -> AppError:
     return AppError(422, "date_out_of_range", "Data fuori dall'anno scolastico corrente")
   log.error("Errore ClasseViva: %s", exc.__class__.__name__)
   return AppError(502, "classeviva_error", "ClasseViva non ha risposto correttamente, riprova tra poco")
+
+
+class Connection(NamedTuple):
+  """Quanto serve per chiamare ClasseViva senza passare da Classeviva.py (vedi `CvSession.connection`)."""
+  student_id: str
+  headers: dict
+  cookies: object  # RequestsCookieJar, copiato: chi lo usa non tocca la sessione condivisa
 
 
 class CvSession:
@@ -71,12 +80,23 @@ class CvSession:
     except (InvalidTag, ValueError):
       raise AppError(401, "session_expired", "Sessione scaduta, effettua di nuovo il login")
 
-  def _run(self, method: str, args: tuple, key: bytes | None):
-    with self._lock:  # la sessione requests non è fatta per l'uso concorrente
+  @contextmanager
+  def _unlocked(self, key: bytes | None):
+    """Lock della sessione e password in chiaro su `Utente` solo per la durata del blocco
+    (serve se ClasseViva chiede un nuovo login). La sessione requests non è fatta per l'uso concorrente."""
+    with self._lock:
       if self._sealed is not None:
         if key is None:
           raise AppError(401, "session_expired", "Sessione scaduta, effettua di nuovo il login")
-        self.utente.password = self._unseal(key)  # serve solo se ClasseViva chiede un nuovo login
+        self.utente.password = self._unseal(key)
+      try:
+        yield
+      finally:
+        if self._sealed is not None:
+          self.utente.password = ""
+
+  def _run(self, method: str, args: tuple, key: bytes | None):
+    with self._unlocked(key):
       try:
         return asyncio.run(getattr(self.utente, method)(*args))
       except eccezioni.ErroreHTTP as e:
@@ -84,9 +104,15 @@ class CvSession:
           raise
         self.utente.inizio = None  # sessione probabilmente scaduta su ClasseViva: nuovo login e un solo tentativo
         return asyncio.run(getattr(self.utente, method)(*args))
-      finally:
-        if self._sealed is not None:
-          self.utente.password = ""
+
+  def _connect(self, key: bytes | None, relogin: bool) -> Connection:
+    with self._unlocked(key):
+      if relogin:
+        self.utente.inizio = None
+      if not self.utente.connesso:
+        asyncio.run(self.utente.accedi())
+      http = self.utente._sessione
+      return Connection(str(self.utente._id), dict(http.headers), http.cookies.copy())
 
   async def call(self, method: str, *args, key: bytes | None = None):
     """Chiama un metodo di Utente (es. call("voti", "26")), con cache per `cache_ttl_seconds`."""
@@ -106,6 +132,18 @@ class CvSession:
     self._cache = {k: v for k, v in self._cache.items() if now - v[0] < ttl}
     self._cache[cache_key] = (time.monotonic(), result)
     return result
+
+  async def connection(self, *, key: bytes | None = None, relogin: bool = False) -> Connection:
+    """Login su ClasseViva se serve, poi id studente, header e cookie per una richiesta fatta da noi.
+    Serve ai download: Classeviva.py legge ogni file intero in memoria, e tenere il lock per tutto il
+    trasferimento bloccherebbe le altre chiamate dell'utente. `relogin` forza un nuovo login."""
+    self.last_used = time.monotonic()
+    try:
+      return await asyncio.to_thread(self._connect, key, relogin)
+    except AppError:
+      raise
+    except Exception as e:
+      raise translate(e) from e
 
   @property
   def profile(self) -> dict:
@@ -156,6 +194,9 @@ class ActiveSession:
 
   async def call(self, method: str, *args):
     return await self._session.call(method, *args, key=self._key)
+
+  async def connection(self, *, relogin: bool = False) -> Connection:
+    return await self._session.connection(key=self._key, relogin=relogin)
 
 
 class SessionStore:

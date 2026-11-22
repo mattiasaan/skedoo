@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { flattenAgenda, monthRange, toAgendaItem, upcomingRange } from './agenda.js'
-import { parseRoute } from './routes.js'
+import { parseRoute, subjectPath } from './routes.js'
 
 describe('agenda', () => {
 	it('riconosce verifiche, compiti ed eventi', () => {
@@ -34,7 +34,18 @@ describe('route', () => {
 		['#HOME/BACHECA', { path: 'home/bacheca', tab: 'home' }],
 		['#qualcosa', { path: 'home', tab: 'home' }],
 		['', { path: 'home', tab: 'home' }],
+		['#agenda/materia/Scienze%20sperimentali%20(FISICA)', { path: 'materia', tab: 'agenda', subject: 'Scienze sperimentali (FISICA)' }],
+		['#VOTI/materia/MATEMATICA', { path: 'materia', tab: 'voti', subject: 'MATEMATICA' }],
+		['#agenda/materia/', { path: 'home', tab: 'home' }],
+		['#bacheca/materia/Fisica', { path: 'home', tab: 'home' }],
+		['#agenda/materia/%E0%A4%A', { path: 'home', tab: 'home' }], // codifica non valida
 	])('%s', (hash, expected) => {
 		expect(parseRoute(hash)).toEqual(expected)
+	})
+
+	it('la dashboard della materia si apre dentro la tab corrente', () => {
+		expect(subjectPath('agenda', 'Lingua e letteratura italiana')).toBe('agenda/materia/Lingua%20e%20letteratura%20italiana')
+		expect(subjectPath('profilo/materiali', 'Fisica')).toBe('home/materia/Fisica')
+		expect(parseRoute(`#${subjectPath('voti', 'Storia & Geografia')}`)).toMatchObject({ tab: 'voti', subject: 'Storia & Geografia' })
 	})
 })
