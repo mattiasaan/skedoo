@@ -48,6 +48,31 @@ export function setClassId(userId, classId) {
 	write(classKey(userId), classId)
 }
 
+// Il token si rinnova (POST /auth/refresh) quando ha più di 12 ore: chi usa l'app almeno una volta
+// a settimana non deve mai rifare il login (il server lo chiede solo dopo 90 giorni dall'accesso).
+const REFRESH_AFTER_MS = 12 * 60 * 60 * 1000
+
+/** Istante di emissione del token (ms), letto dal payload del JWT; null se non si legge. Non verifica nulla: lo fa il server. */
+export function tokenIssuedAt(token) {
+	try {
+		const payload = token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/')
+		const iat = JSON.parse(atob(payload)).iat
+		return Number.isFinite(iat) ? iat * 1000 : null
+	} catch {
+		return null
+	}
+}
+
+export function shouldRefreshToken(token, now = Date.now()) {
+	if (!token) return false
+	const issued = tokenIssuedAt(token)
+	return issued == null || now - issued > REFRESH_AFTER_MS
+}
+
+export function saveToken(token) {
+	write(KEYS.token, token)
+}
+
 export function saveSession(token, user) {
 	write(KEYS.token, token)
 	write(KEYS.user, user ? JSON.stringify(user) : null)
