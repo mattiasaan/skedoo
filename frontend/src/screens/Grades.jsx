@@ -194,12 +194,12 @@ function Simulator({ subjects }) {
 }
 
 function SubjectCard({ subject }) {
-	const { openDetail } = useApp()
+	const { openSubject } = useApp()
 	const last = subject.voti.find((grade) => !grade.annullato) ?? subject.voti[0]
 	const tone = gradeTone(subject.media)
 
 	return (
-		<button className={`subject-card subject-card--${tone}`} onClick={() => openDetail({ type: 'subject', name: subject.materia })} type="button">
+		<button className={`subject-card subject-card--${tone}`} onClick={() => openSubject(subject.materia)} type="button">
 			<span className="icon-tile"><Icon name={subjectIcon(subject.materia)} size={18} /></span>
 			<span className="subject-card__copy">
 				<strong>{subject.name}</strong>

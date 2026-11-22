@@ -1,10 +1,11 @@
 import { useMemo, useState } from 'react'
+import { MaterialCard } from '../components/Files.jsx'
 import { Icon } from '../components/Icon.jsx'
 import { ErrorMessage, LinkButton, SectionHeading, Skeleton, StateMessage } from '../components/ui.jsx'
 import { useApp } from '../lib/appContext.js'
 import { useAbsences, useDidactics } from '../lib/data.js'
-import { flattenMaterials, materialType } from '../lib/didactics.js'
-import { classLabel, dateKey, formatDateTime, schoolDisplayName, schoolYear, teacherName, titleCase } from '../lib/format.js'
+import { flattenMaterials, materialDetails } from '../lib/didactics.js'
+import { classLabel, dateKey, formatDateTime, schoolDisplayName, schoolYear, titleCase } from '../lib/format.js'
 import { readJson, writeJson } from '../lib/session.js'
 import { readAccent, setAccent } from '../lib/theme.js'
 import { useToast } from '../lib/toast.js'
@@ -111,21 +112,7 @@ function MaterialsSection() {
 			{didactics.error && !didactics.data && <ErrorMessage error={didactics.error} onRetry={didactics.reload} title="Materiali non disponibili" />}
 			{didactics.data && (materials.length ? (
 				<ul className="material-list">
-					{visible.map((material) => {
-						const type = materialType(material)
-						return (
-							<li className="material-card" key={material.key}>
-								<span className={`icon-tile icon-tile--${type.tone}`}><Icon name={type.icon} size={18} /></span>
-								<span className="material-card__copy">
-									<strong title={material.nome}>{material.nome || 'Materiale senza titolo'}</strong>
-									<small>
-										{[material.teacher ? teacherName(material.teacher) : null, material.folder, material.condiviso_il ? formatDateTime(material.condiviso_il) : null]
-											.filter(Boolean).join(' • ')}
-									</small>
-								</span>
-							</li>
-						)
-					})}
+					{visible.map((material) => <MaterialCard details={materialDetails(material)} key={material.key} material={material} />)}
 				</ul>
 			) : (
 				<StateMessage icon="book" text="I docenti non hanno ancora condiviso materiali." title="Nessun materiale" />

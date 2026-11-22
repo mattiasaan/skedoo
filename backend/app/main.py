@@ -66,7 +66,7 @@ async def protect(request: Request, call_next):
 app.add_middleware(TrustedHostMiddleware, allowed_hosts=settings.hosts)
 app.add_middleware(
   CORSMiddleware, allow_origins=settings.origins, allow_methods=["GET", "POST"],
-  allow_headers=["Authorization", "Content-Type"], expose_headers=["Retry-After"],
+  allow_headers=["Authorization", "Content-Type"], expose_headers=["Retry-After", "Content-Disposition"],  # il nome dei file scaricati
 )
 register_error_handlers(app)
 

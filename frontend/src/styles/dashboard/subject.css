@@ -1,0 +1,144 @@
+/* Dashboard della materia (screens/SubjectPage.jsx). */
+
+.subject-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.subject-stat {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 3px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+
+.subject-stat small {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.subject-stat strong {
+  overflow: hidden;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.subject-stat span {
+  color: var(--text-2);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.subject-stat--good {
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+}
+
+.subject-stat--good strong { color: var(--accent-text); }
+
+.subject-stat--low,
+.subject-stat--danger {
+  border-color: var(--danger-line);
+  background: var(--danger-soft);
+}
+
+.subject-stat--low strong,
+.subject-stat--danger strong { color: var(--danger); }
+
+.subject-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  gap: 10px;
+}
+
+.subject-section .section-heading {
+  margin-bottom: 0;
+}
+
+.subject-section__list {
+  display: grid;
+  gap: 8px;
+}
+
+.subject-section__list .related-link {
+  margin-top: 0;
+}
+
+.subject-section .detail-chart {
+  margin-top: 0;
+}
+
+.subject-slots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.subject-slots li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.subject-slots strong {
+  font-size: 14px;
+}
+
+.subject-slots b {
+  color: var(--accent-text);
+  font-weight: 700;
+}
+
+.subject-slots span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.subject-page__grid,
+.subject-page__column {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  gap: 24px;
+}
+
+@media (max-width: 480px) {
+  .subject-stats {
+    gap: 8px;
+  }
+
+  .subject-stat {
+    padding: 11px 10px;
+  }
+
+  .subject-stat strong {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .subject-page__grid {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: 28px;
+  }
+}

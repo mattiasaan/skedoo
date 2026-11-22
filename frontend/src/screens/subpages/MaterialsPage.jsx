@@ -1,9 +1,11 @@
 import { useMemo, useState } from 'react'
+import { MaterialCard } from '../../components/Files.jsx'
 import { Icon } from '../../components/Icon.jsx'
 import { ErrorMessage, SearchField, Skeleton, StateMessage, SubPageHeader } from '../../components/ui.jsx'
 import { useApp } from '../../lib/appContext.js'
 import { useDidactics } from '../../lib/data.js'
 import { materialType } from '../../lib/didactics.js'
+import { MAX_DOWNLOAD_MB } from '../../lib/download.js'
 import { formatDateTime, normalizeText, teacherName } from '../../lib/format.js'
 
 /** Materiali condivisi dai docenti, raggruppati per docente e cartella ("Vedi tutti" del Profilo). */
@@ -49,18 +51,13 @@ function MaterialsPage() {
 						<div className="folder" key={folder.id ?? folder.nome}>
 							<p className="folder__name"><Icon name="book" size={15} />{folder.nome || 'Senza cartella'}</p>
 							<ul className="material-list">
-								{folder.materiali.map((material) => {
-									const type = materialType(material)
-									return (
-										<li className="material-card" key={material.id ?? material.nome}>
-											<span className={`icon-tile icon-tile--${type.tone}`}><Icon name={type.icon} size={18} /></span>
-											<span className="material-card__copy">
-												<strong title={material.nome}>{material.nome || 'Materiale senza titolo'}</strong>
-												<small>{[type.label, material.condiviso_il ? formatDateTime(material.condiviso_il) : null].filter(Boolean).join(' • ')}</small>
-											</span>
-										</li>
-									)
-								})}
+								{folder.materiali.map((material) => (
+									<MaterialCard
+										details={[materialType(material).label, material.condiviso_il ? formatDateTime(material.condiviso_il) : null].filter(Boolean).join(' • ')}
+										key={material.id ?? material.nome}
+										material={material}
+									/>
+								))}
 							</ul>
 						</div>
 					))}
@@ -68,7 +65,7 @@ function MaterialsPage() {
 			))}
 
 			{didactics.data && total > 0 && (
-				<p className="detail-hint">Per aprire o scaricare un materiale usa l'app o il sito ClasseViva.</p>
+				<p className="detail-hint">Tocca un materiale per scaricarlo o aprirlo. I file oltre {MAX_DOWNLOAD_MB} MB si scaricano solo dall'app o dal sito ClasseViva.</p>
 			)}
 		</div>
 	)

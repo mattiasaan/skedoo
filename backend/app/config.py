@@ -37,6 +37,10 @@ class Settings(BaseSettings):
   data_dir: Path = BASE_DIR / "data"
   database_url: str | None = None  # es. postgresql://user:pass@localhost:5432/skedoo
 
+  # --- download (allegati della bacheca, file della didattica) ---
+  max_download_mb: int = 250  # i file più grandi vengono rifiutati (o interrotti, se ClasseViva non dice quanto pesano)
+  max_parallel_downloads: int = 2  # download contemporanei per utente
+
   cache_ttl_seconds: int = 60  # per quanto si riusa una risposta di ClasseViva (per utente)
   timezone: str = "Europe/Rome"
 

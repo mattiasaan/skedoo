@@ -449,6 +449,30 @@ def build_class_object(raw):
     }
 
 
+def skip_articulated_pages(classes):
+    """Scarta le pagine delle classi articolate (es. "4C/T") quando il PDF ha anche le sezioni separate (4C, 4T).
+
+    L'id con "/" non può diventare un nome di file né un id dell'API, e l'orario di ogni sezione
+    è già nella sua pagina. Se una sezione manca, meglio fermarsi che perdere l'orario in silenzio.
+    """
+    ids = {c["id"] for c in classes}
+    kept = []
+    for c in classes:
+        match = re.fullmatch(r"(\d+)([A-Z]+(?:/[A-Z]+)+)", c["id"])
+        if not match:
+            kept.append(c)
+            continue
+        sections = [match[1] + s for s in match[2].split("/")]
+        missing = [s for s in sections if s not in ids]
+        if missing:
+            raise SystemExit(
+                f"Classe articolata {c['nome']}: nel PDF mancano le sezioni {', '.join(missing)}. "
+                "Va gestita a mano (l'id con '/' non è valido per file e API)."
+            )
+        print(f"  Saltata {c['nome']}: le sezioni {', '.join(sections)} sono già classi separate")
+    return kept
+
+
 # ═══════════════════════════════════════════════════════════════════════════════
 # MAIN
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -458,7 +482,7 @@ def main():
     raw_classes = extract_pdf(PDF_PATH)
     print(f"\nEstrazione completata: {len(raw_classes)} classi\n")
 
-    classes = [build_class_object(r) for r in raw_classes]
+    classes = skip_articulated_pages([build_class_object(r) for r in raw_classes])
     os.makedirs(CLASSI_DIR, exist_ok=True)
 
     # orario_classi.json
