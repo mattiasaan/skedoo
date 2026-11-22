@@ -4,13 +4,22 @@ import { Icon } from '../components/Icon.jsx'
 import { api } from '../lib/api.js'
 import '../styles/auth.css'
 
-function Login({ onLogin, notice: initialNotice }) {
-	const [username, setUsername] = useState('')
+// `remembered`: l'utente uscito per sessione scaduta ({ id, nome }), con lo username già inserito
+function Login({ onLogin, notice: initialNotice, remembered }) {
+	const [username, setUsername] = useState(remembered?.id ?? '')
 	const [password, setPassword] = useState('')
 	const [showPassword, setShowPassword] = useState(false)
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState(null)
 	const [notice, setNotice] = useState(initialNotice ?? '')
+	const [returning, setReturning] = useState(Boolean(remembered?.id))
+
+	function switchAccount() {
+		setReturning(false)
+		setUsername('')
+		setPassword('')
+		document.getElementById('username')?.focus()
+	}
 
 	async function handleSubmit(event) {
 		event.preventDefault()
@@ -38,10 +47,19 @@ function Login({ onLogin, notice: initialNotice }) {
 			)}
 		>
 			<form className="auth-panel" onSubmit={handleSubmit} aria-labelledby="credentials-title" noValidate>
-				<h2 className="auth-panel__title auth-panel__title--divided" id="credentials-title">Credenziali Personali</h2>
+				<h2 className="auth-panel__title auth-panel__title--divided" id="credentials-title">
+					{returning && remembered?.nome ? `Ciao ${remembered.nome}!` : 'Credenziali Personali'}
+				</h2>
 
 				<div className="auth-field">
-					<label className="auth-label" htmlFor="username">Codice Personale o Email</label>
+					<div className="auth-label-row">
+						<label className="auth-label" htmlFor="username">Codice Personale o Email</label>
+						{returning && (
+							<button className="auth-text-button" onClick={switchAccount} type="button">
+								Non sei tu?
+							</button>
+						)}
+					</div>
 					<div className="input-wrap">
 						<Icon name="person" size={20} />
 						<input
@@ -74,6 +92,7 @@ function Login({ onLogin, notice: initialNotice }) {
 						<Icon name="lock" size={20} />
 						<input
 							autoComplete="current-password"
+							autoFocus={returning}
 							id="password"
 							name="password"
 							onChange={(event) => setPassword(event.target.value)}
