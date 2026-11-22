@@ -4,6 +4,7 @@
 const KEYS = {
 	token: 'token',
 	user: 'utente',
+	lastLogin: 'skedoo:ultimo-accesso',
 }
 
 function read(key) {
@@ -80,6 +81,21 @@ export function saveSession(token, user) {
 
 export function saveUser(user) {
 	write(KEYS.user, user ? JSON.stringify(user) : null)
+}
+
+// Chi viene buttato fuori (sessione scaduta) ritrova username e nome già pronti: basta la password,
+// che il gestore di password del browser può inserire da solo. Il logout volontario li cancella.
+export function rememberLastLogin(user) {
+	write(KEYS.lastLogin, user?.id ? JSON.stringify({ id: user.id, nome: user.nome ?? '' }) : null)
+}
+
+export function getLastLogin() {
+	try {
+		const value = JSON.parse(read(KEYS.lastLogin) ?? 'null')
+		return typeof value?.id === 'string' && value.id ? value : null
+	} catch {
+		return null
+	}
 }
 
 export function clearSession() {

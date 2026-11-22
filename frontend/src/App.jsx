@@ -5,7 +5,9 @@ import SchoolSetup from './screens/SchoolSetup.jsx'
 import { api, ApiError, UNAUTHORIZED_EVENT } from './lib/api.js'
 import { classLabel } from './lib/format.js'
 import { legalDocFromHash } from './lib/legal.js'
-import { clearSession, getClassId, getStoredUser, getToken, isGalileiSchool, saveSession, saveUser, setClassId } from './lib/session.js'
+import {
+	clearSession, getClassId, getLastLogin, getStoredUser, getToken, isGalileiSchool, rememberLastLogin, saveSession, saveUser, setClassId,
+} from './lib/session.js'
 import { useToast } from './lib/toast.js'
 import { refreshTokenIfStale } from './lib/tokenRefresh.js'
 
@@ -48,7 +50,9 @@ function App() {
 		window.location.hash = returnHash.current.replace(/^#/, '') || 'home'
 	}
 
-	const resetToLogin = useCallback((notice = '') => {
+	// `expired`: uscita non voluta (sessione scaduta), si ricorda chi era collegato per il prossimo accesso
+	const resetToLogin = useCallback((notice = '', { expired = false } = {}) => {
+		rememberLastLogin(expired ? getStoredUser() : null)
 		clearSession()
 		clearApiCache()
 		setUser(null)
@@ -72,7 +76,7 @@ function App() {
 			.catch((error) => {
 				if (cancelled) return
 				if (error instanceof ApiError && error.status === 401) {
-					resetToLogin(expiredNotice(error))
+					resetToLogin(expiredNotice(error), { expired: true })
 				} else if (getStoredUser()) {
 					// server irraggiungibile: si entra comunque, le schermate mostrano l'errore con "Riprova"
 					setScreen(nextScreen(getStoredUser()))
@@ -87,7 +91,7 @@ function App() {
 
 	// Qualsiasi richiesta con 401 (sessione chiusa, server riavviato, password cambiata) riporta al login
 	useEffect(() => {
-		const onUnauthorized = (event) => resetToLogin(expiredNotice(event.detail))
+		const onUnauthorized = (event) => resetToLogin(expiredNotice(event.detail), { expired: true })
 		window.addEventListener(UNAUTHORIZED_EVENT, onUnauthorized)
 		return () => window.removeEventListener(UNAUTHORIZED_EVENT, onUnauthorized)
 	}, [resetToLogin])
@@ -110,6 +114,7 @@ function App() {
 
 	function handleLogin(token, loggedUser) {
 		clearApiCache()
+		rememberLastLogin(null)
 		saveSession(token, loggedUser)
 		setUser(loggedUser)
 		setClassIdState(getClassId(loggedUser.id))
@@ -154,7 +159,7 @@ function App() {
 	}
 
 	if (screen === 'login') {
-		return <Login key={loginNotice} notice={loginNotice} onLogin={handleLogin} />
+		return <Login key={loginNotice} notice={loginNotice} onLogin={handleLogin} remembered={getLastLogin()} />
 	}
 
 	if (screen === 'setup' || screen === 'change-class') {
