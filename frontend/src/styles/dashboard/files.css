@@ -1,0 +1,79 @@
+/* File scaricabili: materiali della didattica e allegati della bacheca (components/Files.jsx). */
+
+.material-card--action {
+  width: 100%;
+  text-align: left;
+  transition: border-color 120ms ease;
+}
+
+.material-card--action:hover:not(:disabled) {
+  border-color: var(--accent-line);
+}
+
+.material-card--action:disabled {
+  opacity: 0.6;
+}
+
+.attachment-button {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  font-size: 14px;
+  text-align: left;
+  overflow-wrap: anywhere;
+  transition: border-color 120ms ease;
+}
+
+.attachment-button:hover:not(:disabled) {
+  border-color: var(--accent-line);
+}
+
+.attachment-button > svg {
+  flex: 0 0 auto;
+  color: var(--accent-text);
+}
+
+.attachment-button > span:not(.download-state) {
+  min-width: 0;
+  flex: 1;
+}
+
+/* a destra della riga: icona dell'azione, oppure avanzamento del download */
+.download-state__icon {
+  flex: 0 0 auto;
+  color: var(--muted);
+}
+
+.material-card--action:hover .download-state__icon,
+.attachment-button:hover .download-state__icon {
+  color: var(--accent-text);
+}
+
+.download-state {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 7px;
+  color: var(--accent-text);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+.download-state__spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--accent-line);
+  border-top-color: var(--accent-text);
+  border-radius: 50%;
+  animation: spin 800ms linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .download-state__spinner { animation-duration: 2.4s; }
+}

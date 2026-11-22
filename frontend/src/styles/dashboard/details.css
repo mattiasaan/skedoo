@@ -293,21 +293,9 @@
   text-decoration: line-through;
 }
 
-.attachment-list li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 12px;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: var(--surface);
-  font-size: 14px;
-  overflow-wrap: anywhere;
-}
 
-.attachment-list svg {
-  flex: 0 0 auto;
-  color: var(--accent-text);
+.detail-text--first {
+  margin-top: 0;
 }
 
 .detail-hint {
