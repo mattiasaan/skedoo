@@ -127,7 +127,7 @@ class CvSession:
     except AppError:
       raise
     except Exception as e:
-      raise translate(e) from e
+      raise self._error(e) from e
     # la sessione può vivere giorni: si tengono solo le risposte ancora valide (es. tanti intervalli di agenda)
     self._cache = {k: v for k, v in self._cache.items() if now - v[0] < ttl}
     self._cache[cache_key] = (time.monotonic(), result)
@@ -143,7 +143,16 @@ class CvSession:
     except AppError:
       raise
     except Exception as e:
-      raise translate(e) from e
+      raise self._error(e) from e
+
+  def _error(self, exc: Exception) -> AppError:
+    """Come `translate`, ma qui la password era giusta al login: se ClasseViva ora la rifiuta (cambiata o
+    reimpostata) la sessione non può più ricollegarsi. Si chiude, e il frontend riporta al login."""
+    if isinstance(exc, eccezioni.PasswordNonValida):
+      store.logout(self.sid)
+      log.info("password ClasseViva cambiata, sessione chiusa user=%s", self.username)
+      return AppError(401, "credentials_changed", "La password di ClasseViva è cambiata: accedi di nuovo.")
+    return translate(exc)
 
   @property
   def profile(self) -> dict:
