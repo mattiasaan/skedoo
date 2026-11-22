@@ -11,7 +11,7 @@ app/
   security.py    JWT, rate limiter, dipendenza `current_session` usata da ogni endpoint protetto
   classeviva.py  sessioni ClasseViva (login, cache, ri-login) e traduzione degli errori
   errors.py      formato errori {"code","message"}
-  auth.py        POST /auth/login, GET /auth/me, POST /auth/logout
+  auth.py        POST /auth/login, GET /auth/me, POST /auth/refresh, POST /auth/logout
   schedules.py   orari (JSON o DB) + endpoint /schedules
   grades.py      GET /grades
   agenda.py      GET /agenda
@@ -48,12 +48,15 @@ Gli orari si leggono da `data/`: `classi_index.json` (facoltativo) e `classi/<ID
 
 `POST /auth/login` con le credenziali ClasseViva → token JWT da mandare come `Authorization: Bearer <token>`. Il token punta a una sessione tenuta in memoria dal server: se il server riparte, dopo `logout` o alla scadenza il server risponde `401 session_expired` e il frontend rifà il login con le credenziali salvate.
 
+Ogni token dura `JWT_TTL_HOURS` (7 giorni), ma il frontend lo rinnova con `POST /auth/refresh` quando l'app viene usata: si esce solo dopo 7 giorni di inattività, oppure dopo `SESSION_MAX_DAYS` (90) dal login. Il claim `auth` (istante del login) resta uguale a ogni rinnovo.
+
 ## Endpoint
 
 | Metodo | Path | Descrizione |
 |---|---|---|
 | POST | `/auth/login` | `{username, password}` → token e `utente` con dati personali e `scuola` (codice, nome, città, provincia) |
 | GET | `/auth/me` | profilo utente e scuola |
+| POST | `/auth/refresh` | nuovo token per la stessa sessione (`access_token`, `expires_in`); 401 `session_expired` dopo `SESSION_MAX_DAYS` dal login |
 | POST | `/auth/logout` | 204, chiude la sessione |
 | GET | `/schedules/classes` | `[{id, nome, docente_coordinatore, pomeriggio}]` |
 | GET | `/schedules/{classe}` | orario completo (id non sensibile a maiuscole: `1a` = `1A`) |

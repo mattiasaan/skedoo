@@ -71,6 +71,21 @@ def me(session: ActiveSession = Depends(current_session)):
   return User(**session.profile)
 
 
+class RefreshOut(BaseModel):
+  access_token: str
+  token_type: str = "bearer"
+  expires_in: int  # secondi
+
+
+@router.post("/refresh", response_model=RefreshOut)
+def refresh(session: ActiveSession = Depends(current_session)):
+  """Nuovo token per la STESSA sessione (stessi `sid` e chiave), senza password: chi usa l'app non resta mai
+  senza token. Il vecchio token resta valido fino alla sua scadenza. Dopo `session_max_days` dal login
+  risponde 401 `session_expired`."""
+  token, expires_in = create_token(session.username, session.sid, session.key, session.auth_time)
+  return RefreshOut(access_token=token, expires_in=expires_in)
+
+
 @router.post("/logout", status_code=204)
 def logout(session: ActiveSession = Depends(current_session)):
   """Chiude la sessione di QUESTO dispositivo (gli altri restano collegati)."""

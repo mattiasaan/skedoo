@@ -186,8 +186,12 @@ class ActiveSession:
   """La sessione vista da UNA richiesta: unisce la sessione sul server alla chiave arrivata col JWT.
   Vive solo per la durata della richiesta, così la chiave non resta in memoria sul server."""
 
-  def __init__(self, session: CvSession, key: bytes):
-    self._session, self._key = session, key
+  def __init__(self, session: CvSession, key: bytes, auth_time: int):
+    self._session, self._key, self.auth_time = session, key, auth_time
+
+  @property
+  def key(self) -> bytes:
+    return self._key
 
   def __getattr__(self, name):
     return getattr(self._session, name)
@@ -229,6 +233,7 @@ class SessionStore:
       s = self._sessions.get(sid)
     if s is None or s.username != username:
       raise AppError(401, "session_expired", "Sessione scaduta, effettua di nuovo il login")
+    s.last_used = time.monotonic()  # anche le richieste che non chiamano ClasseViva (orari, /auth/me) la tengono viva
     return s
 
   def logout(self, sid: str) -> None:
