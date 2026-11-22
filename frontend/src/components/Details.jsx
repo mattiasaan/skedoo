@@ -2,10 +2,12 @@ import { useEffect, useMemo, useState } from 'react'
 import { api } from '../lib/api.js'
 import { useApp } from '../lib/appContext.js'
 import { useGrades, useMonthAgenda, useUpcomingAgenda } from '../lib/data.js'
+import { MAX_DOWNLOAD_MB } from '../lib/download.js'
 import { formatDateTime, formatLongDate, formatNumber, parseDateKey, relativeDay, teacherName, titleCase } from '../lib/format.js'
 import { averageLabel, counted, gradeTone, subjectIcon, subjectsForTerm, usualWeight } from '../lib/grades.js'
 import { periodLabel, subjectMatches } from '../lib/schedule.js'
 import { useApi } from '../lib/useApi.js'
+import { AttachmentButton } from './Files.jsx'
 import { Icon } from './Icon.jsx'
 import { LineChart } from './LineChart.jsx'
 import { ErrorMessage, Sheet, Skeleton, StateMessage } from './ui.jsx'
@@ -205,18 +207,25 @@ function BoardDetail({ item, onClose }) {
 			</div>
 			{detail.loading && <Skeleton height={18} lines={4} />}
 			{detail.error && <ErrorMessage error={detail.error} onRetry={detail.reload} title="Testo non disponibile" />}
-			{detail.data && <p className="detail-text">{detail.data.testo || 'Questa comunicazione non ha un testo: consulta gli allegati su ClasseViva.'}</p>}
+			{detail.data && <p className="detail-text">{detail.data.testo || (item.allegati?.length ? 'Questa comunicazione non ha un testo: il contenuto è negli allegati.' : 'Questa comunicazione non ha un testo.')}</p>}
 			{item.allegati?.length > 0 && (
 				<div className="detail-section">
 					<h3>Allegati</h3>
 					<ul className="attachment-list">
-						{item.allegati.map((attachment) => (
-							<li key={attachment.numero}><Icon name="file" size={16} />{attachment.nome || `Allegato ${attachment.numero}`}</li>
-						))}
+						{item.allegati.map((attachment) => <AttachmentButton attachment={attachment} item={item} key={attachment.numero} />)}
 					</ul>
-					<p className="detail-hint">Gli allegati si scaricano dall'app o dal sito ClasseViva.</p>
+					<p className="detail-hint">Tocca un allegato per scaricarlo. I file oltre {MAX_DOWNLOAD_MB} MB si scaricano solo dall'app o dal sito ClasseViva.</p>
 				</div>
 			)}
+		</Sheet>
+	)
+}
+
+// ---------- materiale di solo testo (didattica) ----------
+function TextDetail({ kicker, title, text, onClose }) {
+	return (
+		<Sheet kicker={kicker} onClose={onClose} title={title}>
+			<p className="detail-text detail-text--first">{text}</p>
 		</Sheet>
 	)
 }
@@ -280,6 +289,8 @@ export function DetailHost({ detail, onClose }) {
 			return <LessonDetail lesson={detail.lesson} onClose={onClose} />
 		case 'subject':
 			return <SubjectDetail name={detail.name} onClose={onClose} />
+		case 'text':
+			return <TextDetail kicker={detail.kicker} onClose={onClose} text={detail.text} title={detail.title} />
 		case 'board':
 			return <BoardDetail item={detail.item} onClose={onClose} />
 		case 'logout':
