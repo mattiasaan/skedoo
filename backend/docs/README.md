@@ -112,6 +112,7 @@ Formato `{"code": "...", "message": "..."}`. Le validazioni dei parametri rispon
 | 401 | `not_authenticated`, `invalid_token` | token mancante o non valido |
 | 401 | `session_expired` | sessione chiusa/riavviata → rifare il login |
 | 401 | `invalid_credentials` | login con password errata |
+| 401 | `credentials_changed` | ClasseViva rifiuta la password al ricollegamento (cambiata dopo il login): la sessione viene chiusa → rifare il login |
 | 404 | `class_not_found` | classe inesistente |
 | 413 | `payload_too_large` | body > 16 KB |
 | 422 | `validation_error` | parametri mancanti o nel formato sbagliato |

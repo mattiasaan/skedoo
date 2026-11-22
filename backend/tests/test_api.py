@@ -6,6 +6,7 @@ from datetime import date
 from app.classeviva import store
 from app.classeviva import CvSession
 from app.schedules import load_json
+from classeviva import eccezioni
 from conftest import FakeUtente, login
 
 
@@ -76,6 +77,23 @@ def test_session_used_without_classeviva_calls_stays_alive(client, auth, setting
   client.get("/schedules/classes", headers=auth)
   login(client, "ALTRO")  # ogni login elimina le sessioni inattive
   assert client.get("/auth/me", headers=auth).status_code == 200
+
+
+def test_password_changed_on_classeviva_closes_the_session(client, auth):
+  # al ricollegamento ClasseViva rifiuta la password (cambiata dopo il login): niente errori a ripetizione
+  session = next(iter(store._sessions.values()))
+  session.utente.inizio = None
+  original = FakeUtente.voti
+
+  async def rejected(self, anno):
+    raise eccezioni.PasswordNonValida("no")
+  FakeUtente.voti = rejected
+  try:
+    r = client.get("/grades", headers=auth)
+  finally:
+    FakeUtente.voti = original
+  assert r.status_code == 401 and r.json()["code"] == "credentials_changed"
+  assert client.get("/auth/me", headers=auth).json()["code"] == "session_expired"
 
 
 # ---------- orari ----------
