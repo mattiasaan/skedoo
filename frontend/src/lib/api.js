@@ -107,6 +107,7 @@ async function download(path, { onProgress } = {}) {
 export const api = {
 	login: (username, password) => request('/auth/login', { method: 'POST', body: { username, password }, auth: false }),
 	me: () => request('/auth/me'),
+	refresh: () => request('/auth/refresh', { method: 'POST' }),
 	logout: () => request('/auth/logout', { method: 'POST' }),
 
 	classes: () => request('/schedules/classes'),

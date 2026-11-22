@@ -7,6 +7,7 @@ import { classLabel } from './lib/format.js'
 import { legalDocFromHash } from './lib/legal.js'
 import { clearSession, getClassId, getStoredUser, getToken, isGalileiSchool, saveSession, saveUser, setClassId } from './lib/session.js'
 import { useToast } from './lib/toast.js'
+import { refreshTokenIfStale } from './lib/tokenRefresh.js'
 
 const LegalPage = lazy(() => import('./screens/LegalPage.jsx'))
 import { clearApiCache } from './lib/useApi.js'
@@ -61,6 +62,7 @@ function App() {
 				setUser(me)
 				setClassIdState(getClassId(me.id))
 				setScreen(nextScreen(me))
+				refreshTokenIfStale()
 			})
 			.catch((error) => {
 				if (cancelled) return
@@ -84,6 +86,22 @@ function App() {
 		window.addEventListener(UNAUTHORIZED_EVENT, onUnauthorized)
 		return () => window.removeEventListener(UNAUTHORIZED_EVENT, onUnauthorized)
 	}, [resetToLogin])
+
+	// Con l'app aperta (o quando la PWA torna in primo piano) il token si rinnova da solo:
+	// si esce solo dopo 7 giorni senza usarla
+	const loggedIn = screen !== 'login' && screen !== 'checking'
+	useEffect(() => {
+		if (!loggedIn) return
+		const onVisible = () => {
+			if (document.visibilityState === 'visible') refreshTokenIfStale()
+		}
+		const timer = window.setInterval(refreshTokenIfStale, 60 * 60 * 1000)
+		document.addEventListener('visibilitychange', onVisible)
+		return () => {
+			window.clearInterval(timer)
+			document.removeEventListener('visibilitychange', onVisible)
+		}
+	}, [loggedIn])
 
 	function handleLogin(token, loggedUser) {
 		clearApiCache()
