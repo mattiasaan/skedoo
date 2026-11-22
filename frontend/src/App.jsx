@@ -17,6 +17,11 @@ function nextScreen(user) {
 	return isGalileiSchool(user?.scuola) && !getClassId(user?.id) ? 'setup' : 'app'
 }
 
+// Messaggio sulla schermata di login dopo un 401: la password cambiata su ClasseViva ha il suo
+function expiredNotice(error) {
+	return error?.code === 'credentials_changed' ? error.message : 'Sessione scaduta: accedi di nuovo.'
+}
+
 function App() {
 	const toast = useToast()
 	const [user, setUser] = useState(() => (getToken() ? getStoredUser() : null))
@@ -67,7 +72,7 @@ function App() {
 			.catch((error) => {
 				if (cancelled) return
 				if (error instanceof ApiError && error.status === 401) {
-					resetToLogin('Sessione scaduta: accedi di nuovo.')
+					resetToLogin(expiredNotice(error))
 				} else if (getStoredUser()) {
 					// server irraggiungibile: si entra comunque, le schermate mostrano l'errore con "Riprova"
 					setScreen(nextScreen(getStoredUser()))
@@ -80,9 +85,9 @@ function App() {
 		}
 	}, [screen, resetToLogin])
 
-	// Qualsiasi richiesta con 401 (sessione chiusa, server riavviato) riporta al login
+	// Qualsiasi richiesta con 401 (sessione chiusa, server riavviato, password cambiata) riporta al login
 	useEffect(() => {
-		const onUnauthorized = () => resetToLogin('Sessione scaduta: accedi di nuovo.')
+		const onUnauthorized = (event) => resetToLogin(expiredNotice(event.detail))
 		window.addEventListener(UNAUTHORIZED_EVENT, onUnauthorized)
 		return () => window.removeEventListener(UNAUTHORIZED_EVENT, onUnauthorized)
 	}, [resetToLogin])

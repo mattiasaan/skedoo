@@ -6,7 +6,7 @@ import { getToken } from './session.js'
 const API_BASE = (import.meta.env.VITE_API_URL || '/api').replace(/\/$/, '')
 
 export const UNAUTHORIZED_EVENT = 'skedoo:unauthorized'
-const AUTH_ERRORS = new Set(['not_authenticated', 'invalid_token', 'session_expired'])
+const AUTH_ERRORS = new Set(['not_authenticated', 'invalid_token', 'session_expired', 'credentials_changed'])
 
 export class ApiError extends Error {
 	constructor(status, code, message) {
