@@ -294,6 +294,48 @@
 }
 
 
+/* "Apri dashboard materia" nel pannello della lezione */
+.detail-primary {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 13px 14px;
+  border: 1px solid var(--accent-line);
+  border-radius: var(--radius);
+  background: var(--accent-soft);
+  text-align: left;
+}
+
+.detail-primary:hover {
+  border-color: var(--accent);
+}
+
+.detail-primary > svg {
+  flex: 0 0 auto;
+  color: var(--accent-text);
+}
+
+.detail-primary span {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.detail-primary strong {
+  color: var(--accent-text);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.detail-primary small {
+  color: var(--text-2);
+  font-size: 13px;
+}
+
 .detail-text--first {
   margin-top: 0;
 }

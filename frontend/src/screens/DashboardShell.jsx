@@ -7,13 +7,14 @@ import { boardKey } from '../lib/agenda.js'
 import { AppContext } from '../lib/appContext.js'
 import { usePersistentFlags } from '../lib/data.js'
 import { initials, schoolDisplayName } from '../lib/format.js'
-import { parseRoute } from '../lib/routes.js'
+import { parseRoute, subjectPath } from '../lib/routes.js'
 import { readJson, writeJson } from '../lib/session.js'
 import { useToast } from '../lib/toast.js'
 import Agenda from './Agenda.jsx'
 import Grades from './Grades.jsx'
 import Home from './Home.jsx'
 import Profile from './Profile.jsx'
+import SubjectPage from './SubjectPage.jsx'
 import AbsencesPage from './subpages/AbsencesPage.jsx'
 import BoardPage from './subpages/BoardPage.jsx'
 import MaterialsPage from './subpages/MaterialsPage.jsx'
@@ -29,6 +30,7 @@ const SCREENS = {
 	'home/bacheca': BoardPage,
 	'profilo/assenze': AbsencesPage,
 	'profilo/materiali': MaterialsPage,
+	materia: SubjectPage,
 }
 
 /** Navigazione tramite hash (#voti, #profilo/assenze): "indietro" e refresh funzionano. */
@@ -88,6 +90,13 @@ function DashboardShell({ user, classId, onLogout, onChangeClass }) {
 		if (!boardRead[boardKey(item)]) setBoardRead(boardKey(item), true)
 	}, [boardRead, setBoardRead])
 
+	// la dashboard della materia si apre "dentro" la tab corrente: da Agenda torna ad Agenda, da Voti a Voti
+	const openSubject = useCallback((name) => {
+		if (!name) return
+		setDetail(null)
+		navigate(subjectPath(route.tab, name))
+	}, [navigate, route.tab])
+
 	const setAlertsOn = useCallback((value) => {
 		setAlertsOnState(value)
 		writeJson('pref-alerts', value)
@@ -99,6 +108,7 @@ function DashboardShell({ user, classId, onLogout, onChangeClass }) {
 		isGalilei,
 		navigate,
 		openDetail: setDetail,
+		openSubject,
 		...tasks,
 		isBoardRead,
 		markBoardRead,
@@ -106,7 +116,7 @@ function DashboardShell({ user, classId, onLogout, onChangeClass }) {
 		setAlertsOn,
 		onLogout,
 		onChangeClass,
-	}), [user, classId, isGalilei, navigate, tasks, isBoardRead, markBoardRead, alertsOn, setAlertsOn, onLogout, onChangeClass])
+	}), [user, classId, isGalilei, navigate, openSubject, tasks, isBoardRead, markBoardRead, alertsOn, setAlertsOn, onLogout, onChangeClass])
 
 	const Screen = SCREENS[route.path] ?? Home
 	const school = schoolDisplayName(user?.scuola)
@@ -137,8 +147,8 @@ function DashboardShell({ user, classId, onLogout, onChangeClass }) {
 					</header>
 
 					<main className="content" id="content">
-						<ErrorBoundary resetKey={route.path}>
-							<Screen />
+						<ErrorBoundary resetKey={route.subject ? `${route.path}/${route.subject}` : route.path}>
+							<Screen route={route} />
 						</ErrorBoundary>
 					</main>
 				</div>
