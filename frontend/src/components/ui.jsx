@@ -73,6 +73,17 @@ export function LinkButton({ children, onClick }) {
 	)
 }
 
+/** Riga che porta a un altro dettaglio: icona, etichetta piccola, testo e freccia. */
+export function RelatedLink({ icon, label, value, onClick, tone = 'neutral' }) {
+	return (
+		<button className={`related-link related-link--${tone}`} onClick={onClick} type="button">
+			<Icon name={icon} size={17} />
+			<span><small>{label}</small><strong>{value}</strong></span>
+			<Icon name="chevron" size={17} />
+		</button>
+	)
+}
+
 /** Blocchi grigi mentre i dati arrivano. */
 export function Skeleton({ lines = 3, height = 72 }) {
 	return (

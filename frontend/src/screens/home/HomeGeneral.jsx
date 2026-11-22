@@ -60,7 +60,7 @@ function BoardCard() {
 }
 
 function GradesOverview() {
-	const { navigate, openDetail } = useApp()
+	const { navigate, openSubject } = useApp()
 	const grades = useGrades()
 	const term = currentTerm(grades.data)
 	const termLabel = termsOf(grades.data).find((item) => item.pos === term)?.label
@@ -87,7 +87,7 @@ function GradesOverview() {
 							{delta == null ? 'Nessun confronto disponibile' : `${delta >= 0 ? '+' : ''}${delta.toFixed(1)} questo mese ${delta >= 0 ? '↗' : '↘'}`}
 						</span>
 					</button>
-					<button className="overview-card" disabled={!last} onClick={() => last && openDetail({ type: 'subject', name: last.subject })} type="button">
+					<button className="overview-card" disabled={!last} onClick={() => last && openSubject(last.subject)} type="button">
 						<span className="overview-card__label">
 							Ultimo voto
 							{last && <span className="badge">{relativeDay(last.data)}</span>}
