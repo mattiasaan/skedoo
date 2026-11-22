@@ -1,7 +1,12 @@
-from fastapi import APIRouter, Depends
+import re
+
+from classeviva.collegamenti.collegamenti import Collegamenti
+from fastapi import APIRouter, Depends, Path
+from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 
 from .classeviva import ActiveSession
+from .downloads import stream_file
 from .security import current_session, upstream_limit
 
 router = APIRouter(prefix="/didattica", tags=["Didattica"], dependencies=[Depends(upstream_limit)])
@@ -58,3 +63,30 @@ def build_didactics(raw) -> DidacticsOut:
 @router.get("", response_model=DidacticsOut)
 async def get_didactics(session: ActiveSession = Depends(current_session)):
   return build_didactics(await session.call("didattica"))
+
+
+def material_json(raw) -> dict | None:
+  """Per i materiali che non sono file ClasseViva risponde con un JSON: {"item": {"link": ...}} o {"item": {"text": ...}}.
+  Qualunque altra cosa (es. l'elenco intero della didattica) vuol dire che il contenuto non è scaricabile."""
+  item = raw.get("item", raw) if isinstance(raw, dict) else None
+  if not isinstance(item, dict):
+    return None
+  link = item.get("link") or item.get("url")
+  if isinstance(link, str) and re.match(r"^https?://", link, re.IGNORECASE):
+    return {"tipo": "link", "url": link}
+  text = item.get("text")
+  if isinstance(text, str) and text.strip():
+    return {"tipo": "testo", "testo": text}
+  return None
+
+
+@router.get("/{contenuto}", response_class=StreamingResponse, responses={200: {
+  "content": {"application/octet-stream": {}, "application/json": {}},
+  "description": "Il file in streaming, oppure {tipo: link, url} / {tipo: testo, testo} per i materiali che non sono file",
+}})
+async def download_material(
+  contenuto: int = Path(ge=1, description="`id` del materiale (contentId di ClasseViva)"),
+  session: ActiveSession = Depends(current_session),
+):
+  """Scarica un materiale della didattica (al massimo `MAX_DOWNLOAD_MB`)."""
+  return await stream_file(session, lambda student: Collegamenti.didattica_elemento.format(student, contenuto), on_json=material_json)
