@@ -1,6 +1,6 @@
 # Cookie policy
 
-*Ultimo aggiornamento: 19 novembre 2026*
+*Ultimo aggiornamento: 22 novembre 2026*
 
 ## Skedoo non usa cookie
 
@@ -12,7 +12,7 @@ Per funzionare, l'app salva alcune informazioni nella **memoria locale del brows
 
 | Nome | Cosa contiene | Quanto dura |
 |---|---|---|
-| `token` | Il token che ti tiene collegato. Non contiene la password, ma la chiave che la sblocca sul server | Fino al logout, al massimo 7 giorni di validità |
+| `token` | Il token che ti tiene collegato. Non contiene la password, ma la chiave che la sblocca sul server | Fino al logout; scade dopo 7 giorni senza usare l'app e comunque dopo 90 giorni dall'accesso |
 | `utente` | Nome, cognome e scuola, per mostrarli subito all'avvio | Fino al logout |
 | `skedoo:class:<utente>` | La classe che hai scelto (solo ITT Galilei) | Finché non cancelli i dati del sito |
 | `skedoo:<utente>:pref-alerts` | Se gli avvisi sono attivi | Finché non cancelli i dati del sito |
