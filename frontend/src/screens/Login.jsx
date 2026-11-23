@@ -4,8 +4,19 @@ import { Icon } from '../components/Icon.jsx'
 import { api } from '../lib/api.js'
 import '../styles/auth.css'
 
-// `remembered`: l'utente uscito per sessione scaduta ({ id, nome }), con lo username già inserito
-function Login({ onLogin, notice: initialNotice, remembered }) {
+/** Chi aggiungere come secondo account: l'opposto di quello in uso (studente <-> genitore). */
+function addingSubtitle(current) {
+	if (current?.tipo === 'studente') return 'Accedi con le credenziali ClasseViva del genitore'
+	if (current?.tipo === 'genitore') return 'Accedi con le credenziali ClasseViva dello studente'
+	return 'Accedi con il secondo account ClasseViva'
+}
+
+/**
+ * `remembered`: l'utente uscito per sessione scaduta ({ id, nome }), con lo username già inserito.
+ * `adding`: aggiunta del secondo account (studente/genitore) dal Profilo, con `current` = account in uso.
+ * `other` + `onUseOther`: c'è un altro account salvato e ancora collegato, ci si torna senza password.
+ */
+function Login({ onLogin, notice: initialNotice, remembered, adding = false, current, onCancel, other, onUseOther }) {
 	const [username, setUsername] = useState(remembered?.id ?? '')
 	const [password, setPassword] = useState('')
 	const [showPassword, setShowPassword] = useState(false)
@@ -38,7 +49,8 @@ function Login({ onLogin, notice: initialNotice, remembered }) {
 
 	return (
 		<AuthLayout
-			subtitle="Accedi al tuo registro elettronico ClasseViva"
+			subtitle={adding ? addingSubtitle(current) : 'Accedi al tuo registro elettronico ClasseViva'}
+			title={adding ? 'Aggiungi un account' : undefined}
 			badge={(
 				<div className="compat-badge">
 					<Icon name="shield" size={16} />
@@ -48,7 +60,7 @@ function Login({ onLogin, notice: initialNotice, remembered }) {
 		>
 			<form className="auth-panel" onSubmit={handleSubmit} aria-labelledby="credentials-title" noValidate>
 				<h2 className="auth-panel__title auth-panel__title--divided" id="credentials-title">
-					{returning && remembered?.nome ? `Ciao ${remembered.nome}!` : 'Credenziali Personali'}
+					{adding ? 'Secondo account' : returning && remembered?.nome ? `Ciao ${remembered.nome}!` : 'Credenziali Personali'}
 				</h2>
 
 				<div className="auth-field">
@@ -130,9 +142,18 @@ function Login({ onLogin, notice: initialNotice, remembered }) {
 
 				<button className="auth-submit" disabled={loading || !username.trim() || !password} type="submit">
 					{loading ? <span className="spinner" aria-hidden="true" /> : null}
-					<span>{loading ? 'Accesso in corso…' : 'Accedi con ClasseViva'}</span>
+					<span>{loading ? 'Accesso in corso…' : adding ? 'Aggiungi account' : 'Accedi con ClasseViva'}</span>
 					{!loading && <Icon name="arrow" size={22} />}
 				</button>
+				{onCancel && (
+					<button className="auth-secondary" disabled={loading} onClick={onCancel} type="button">Annulla</button>
+				)}
+				{onUseOther && other && (
+					<button className="auth-secondary" disabled={loading} onClick={onUseOther} type="button">
+						<Icon name="swap" size={17} />
+						{other.tipo ? `Passa all'account ${other.tipo}` : `Passa a ${other.nome || other.id}`}
+					</button>
+				)}
 				<p className="auth-consent">
 					Accedendo accetti i <a href="#termini">Termini di servizio</a> e dichiari di aver letto l'
 					<a href="#privacy">Informativa privacy</a>. La password serve solo a collegarti a ClasseViva e non viene salvata.

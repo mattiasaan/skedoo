@@ -15,10 +15,27 @@ def test_login_and_me(client):
   r = client.post("/auth/login", json={"username": "S123X", "password": "good"})
   body = r.json()
   assert r.status_code == 200 and body["token_type"] == "bearer"
-  assert body["utente"] == {"id": "S123X", "nome": "Mario", "cognome": "Rossi"}
+  assert body["utente"] == {"id": "S123X", "nome": "Mario", "cognome": "Rossi", "tipo": "studente"}
   assert "good" not in body["access_token"]  # la password non è nel token
   me = client.get("/auth/me", headers={"Authorization": f"Bearer {body['access_token']}"})
   assert me.json()["cognome"] == "Rossi"
+
+
+def test_student_and_parent_accounts_are_separate_sessions(client):
+  """Il cambio account del frontend tiene due token: ognuno resta legato alla sua sessione e al suo tipo."""
+  student, parent = login(client, "S123X"), login(client, "G123X")
+  assert client.get("/auth/me", headers=student).json()["tipo"] == "studente"
+  assert client.get("/auth/me", headers=parent).json()["tipo"] == "genitore"
+  assert client.post("/auth/logout", headers=parent).status_code == 204
+  assert client.get("/auth/me", headers=student).status_code == 200
+
+
+def test_account_type_from_classeviva_code():
+  from app.classeviva import account_type
+  assert account_type("S1234567X") == "studente"
+  assert account_type("g1234567x") == "genitore"
+  assert account_type("mario.rossi@example.com") is None
+  assert account_type("SGX") is None and account_type(None) is None
 
 
 def test_profile_uses_card_identity_when_login_data_is_empty():

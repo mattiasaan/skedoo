@@ -5,6 +5,7 @@ const KEYS = {
 	token: 'token',
 	user: 'utente',
 	lastLogin: 'skedoo:ultimo-accesso',
+	other: 'skedoo:altro-account',
 }
 
 function read(key) {
@@ -101,6 +102,51 @@ export function getLastLogin() {
 export function clearSession() {
 	write(KEYS.token, null)
 	write(KEYS.user, null)
+}
+
+// ---------- secondo account (studente <-> genitore) ----------
+// L'account attivo resta in `token`/`utente`; l'altro aspetta qui con il suo token, così si passa
+// dall'uno all'altro senza rifare il login. Sul dispositivo non c'è mai una password, solo i due JWT.
+
+export function getOtherAccount() {
+	try {
+		const value = JSON.parse(read(KEYS.other) ?? 'null')
+		return typeof value?.token === 'string' && value.token && value.user?.id ? value : null
+	} catch {
+		return null
+	}
+}
+
+export function saveOtherAccount(account) {
+	write(KEYS.other, account?.token && account.user?.id ? JSON.stringify({ token: account.token, user: account.user }) : null)
+}
+
+export function saveOtherToken(token) {
+	const other = getOtherAccount()
+	if (other) saveOtherAccount({ ...other, token })
+}
+
+/** L'account attivo diventa quello in attesa e viceversa. Restituisce il nuovo account attivo (o null). */
+export function swapAccounts() {
+	const other = getOtherAccount()
+	if (!other) return null
+	const token = getToken()
+	const user = getStoredUser()
+	saveOtherAccount(token && user ? { token, user } : null)
+	saveSession(other.token, other.user)
+	return other
+}
+
+/** Stesso account ClasseViva? Gli username non distinguono maiuscole e minuscole. */
+export function sameAccount(first, second) {
+	return Boolean(first?.id && second?.id) && String(first.id).toLowerCase() === String(second.id).toLowerCase()
+}
+
+/** "Account genitore" / "Account studente" (o null se ClasseViva non lo dice). */
+export function accountTypeLabel(user) {
+	if (user?.tipo === 'genitore') return 'Account genitore'
+	if (user?.tipo === 'studente') return 'Account studente'
+	return null
 }
 
 // ---------- preferenze e stati locali (compiti completati, circolari lette...) ----------

@@ -6,15 +6,20 @@ import { useApp } from '../lib/appContext.js'
 import { useAbsences, useDidactics } from '../lib/data.js'
 import { flattenMaterials, materialDetails } from '../lib/didactics.js'
 import { classLabel, dateKey, formatDateTime, schoolDisplayName, schoolYear, titleCase } from '../lib/format.js'
-import { readJson, writeJson } from '../lib/session.js'
+import { accountTypeLabel, readJson, writeJson } from '../lib/session.js'
 import { readAccent, setAccent } from '../lib/theme.js'
 import { useToast } from '../lib/toast.js'
 import { clearApiCache } from '../lib/useApi.js'
 
 const PREVIEW_MATERIALS = 3
 
+/** Nome breve dell'altro account per i pulsanti: "genitore", "studente" o il nome. */
+function otherLabel(other) {
+	return other?.tipo ?? (titleCase(other?.nome?.split(' ')[0] ?? '') || other?.id || 'altro account')
+}
+
 function ProfileCard() {
-	const { user, classId } = useApp()
+	const { user, classId, otherAccount, onSwitchAccount } = useApp()
 	const absences = useAbsences()
 	const pending = absences.data?.riepilogo?.da_giustificare ?? 0
 	const school = user?.scuola
@@ -30,11 +35,24 @@ function ProfileCard() {
 					<h1 id="profile-heading">{titleCase([user?.nome, user?.cognome].filter(Boolean).join(' ')) || 'Studente'}</h1>
 					{schoolLine && <p className="profile-card__school">{schoolLine}</p>}
 				</div>
-				<span className="profile-card__linked" title="Account collegato a Spaggiari ClasseViva">
-					<span className="status-dot" aria-hidden="true" />ClasseViva
-				</span>
+				{otherAccount && onSwitchAccount ? (
+					<button className="profile-card__linked profile-card__switch" onClick={onSwitchAccount} type="button">
+						<Icon name="swap" size={14} />
+						<span className="visually-hidden">Passa all'account </span>{titleCase(otherLabel(otherAccount))}
+					</button>
+				) : (
+					<span className="profile-card__linked" title="Account collegato a Spaggiari ClasseViva">
+						<span className="status-dot" aria-hidden="true" />ClasseViva
+					</span>
+				)}
 			</div>
 			<div className="profile-card__meta">
+				{accountTypeLabel(user) && (
+					<>
+						<span>{accountTypeLabel(user)}</span>
+						<i aria-hidden="true">•</i>
+					</>
+				)}
 				<span>Cod. CV: <strong>{user?.id ?? '—'}</strong></span>
 				<i aria-hidden="true">•</i>
 				<span>A.S. {schoolYear()}</span>
@@ -121,6 +139,34 @@ function MaterialsSection() {
 	)
 }
 
+/** Secondo account: si aggiunge una volta, poi si passa dall'uno all'altro senza password. */
+function AccountRow() {
+	const { user, otherAccount, onSwitchAccount, onAddAccount } = useApp()
+	if (otherAccount && onSwitchAccount) {
+		return (
+			<button className="settings-row" onClick={onSwitchAccount} type="button">
+				<span className="settings-row__icon"><Icon name="swap" size={18} /></span>
+				<span className="settings-row__copy">
+					<strong>Passa all'account {otherLabel(otherAccount)}</strong>
+					<small>Cod. CV {otherAccount.id} • senza rifare il login</small>
+				</span>
+				<Icon className="settings-row__chevron" name="chevron" size={18} />
+			</button>
+		)
+	}
+	const target = user?.tipo === 'studente' ? 'genitore' : user?.tipo === 'genitore' ? 'studente' : null
+	return (
+		<button className="settings-row" onClick={onAddAccount} type="button">
+			<span className="settings-row__icon"><Icon name="users" size={18} /></span>
+			<span className="settings-row__copy">
+				<strong>{target ? `Aggiungi account ${target}` : 'Aggiungi un secondo account'}</strong>
+				<small>Passa da un account all'altro senza rifare il login</small>
+			</span>
+			<Icon className="settings-row__chevron" name="chevron" size={18} />
+		</button>
+	)
+}
+
 function SettingsSection() {
 	const { isGalilei, classId, onChangeClass, alertsOn, setAlertsOn } = useApp()
 	const toast = useToast()
@@ -153,6 +199,7 @@ function SettingsSection() {
 		<section className="profile-section" aria-labelledby="settings-heading">
 			<SectionHeading icon="gear" id="settings-heading" title="Impostazioni & Notifiche" />
 			<div className="settings-card">
+				<AccountRow />
 				<label className="settings-row">
 					<span className="settings-row__icon settings-row__icon--plain"><Icon name="swap" size={19} /></span>
 					<span className="settings-row__copy">

@@ -25,13 +25,14 @@ function errorMessage(status, payload) {
 	return 'Errore nella comunicazione con il server.'
 }
 
-async function send(path, { method = 'GET', body, auth = true, params, accept = 'application/json' } = {}) {
+// `token`: per parlare con il secondo account (quello non attivo) invece che con quello in uso
+async function send(path, { method = 'GET', body, auth = true, token: explicitToken, params, accept = 'application/json' } = {}) {
 	const query = params
 		? '?' + new URLSearchParams(Object.entries(params).filter(([, value]) => value != null && value !== '')).toString()
 		: ''
 	const headers = { Accept: accept }
 	if (body !== undefined) headers['Content-Type'] = 'application/json'
-	const token = auth ? getToken() : null
+	const token = auth ? explicitToken ?? getToken() : null
 	if (token) headers.Authorization = `Bearer ${token}`
 
 	try {
@@ -68,7 +69,8 @@ async function failure(response, auth) {
 
 async function request(path, options = {}) {
 	const response = await send(path, options)
-	if (!response.ok) throw await failure(response, options.auth ?? true)
+	// un 401 del secondo account non deve far uscire l'account attivo
+	if (!response.ok) throw await failure(response, (options.auth ?? true) && !options.token)
 	return readJson(response)
 }
 
@@ -107,8 +109,8 @@ async function download(path, { onProgress } = {}) {
 export const api = {
 	login: (username, password) => request('/auth/login', { method: 'POST', body: { username, password }, auth: false }),
 	me: () => request('/auth/me'),
-	refresh: () => request('/auth/refresh', { method: 'POST' }),
-	logout: () => request('/auth/logout', { method: 'POST' }),
+	refresh: (token) => request('/auth/refresh', { method: 'POST', token }),
+	logout: (token) => request('/auth/logout', { method: 'POST', token }),
 
 	classes: () => request('/schedules/classes'),
 	schedule: (classId) => request(`/schedules/${encodeURIComponent(classId)}`),
