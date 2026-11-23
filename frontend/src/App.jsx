@@ -3,10 +3,11 @@ import DashboardShell from './screens/DashboardShell.jsx'
 import Login from './screens/Login.jsx'
 import SchoolSetup from './screens/SchoolSetup.jsx'
 import { api, ApiError, UNAUTHORIZED_EVENT } from './lib/api.js'
-import { classLabel } from './lib/format.js'
+import { classLabel, titleCase } from './lib/format.js'
 import { legalDocFromHash } from './lib/legal.js'
 import {
-	clearSession, getClassId, getLastLogin, getStoredUser, getToken, isGalileiSchool, rememberLastLogin, saveSession, saveUser, setClassId,
+	clearSession, getClassId, getLastLogin, getOtherAccount, getStoredUser, getToken, isGalileiSchool, rememberLastLogin, sameAccount,
+	saveOtherAccount, saveSession, saveUser, setClassId, swapAccounts,
 } from './lib/session.js'
 import { useToast } from './lib/toast.js'
 import { refreshTokenIfStale } from './lib/tokenRefresh.js'
@@ -17,6 +18,25 @@ import { clearApiCache } from './lib/useApi.js'
 // Schermata da mostrare dopo il login: chi è del Galilei deve prima scegliere la classe.
 function nextScreen(user) {
 	return isGalileiSchool(user?.scuola) && !getClassId(user?.id) ? 'setup' : 'app'
+}
+
+// Genitore e studente vedono la stessa classe: il secondo account del Galilei la eredita dal primo
+function inheritClass(user, from, classId) {
+	if (!classId || getClassId(user?.id) || !isGalileiSchool(user?.scuola)) return
+	if (user.scuola?.codice && from?.scuola?.codice && user.scuola.codice !== from.scuola.codice) return
+	setClassId(user.id, classId)
+}
+
+// Il genitore su ClasseViva ha il nome dello studente: gli account si distinguono per tipo
+function accountName(user) {
+	if (user?.tipo) return `account ${user.tipo}`
+	const name = titleCase(user?.nome?.split(' ')[0] ?? '') || user?.id
+	return name ? `account di ${name}` : 'altro account'
+}
+
+/** Chiude una sessione sul server senza far uscire l'account attivo (token vecchi, doppioni). */
+function closeSession(token) {
+	if (token) api.logout(token).catch(() => {})
 }
 
 // Messaggio sulla schermata di login dopo un 401: la password cambiata su ClasseViva ha il suo
@@ -30,6 +50,7 @@ function App() {
 	const [screen, setScreen] = useState(() => (getToken() ? 'checking' : 'login'))
 	const [classId, setClassIdState] = useState(() => getClassId(getStoredUser()?.id))
 	const [loginNotice, setLoginNotice] = useState('')
+	const [other, setOther] = useState(() => getOtherAccount()?.user ?? null)
 	const [legalDoc, setLegalDoc] = useState(() => legalDocFromHash())
 	const returnHash = useRef('')
 
@@ -112,9 +133,42 @@ function App() {
 		}
 	}, [loggedIn])
 
+	// Passa a un account già salvato: lo controlla /auth/me nella schermata 'checking' (la sessione può essere scaduta)
+	function activate(account) {
+		clearApiCache()
+		setUser(account.user)
+		setClassIdState(getClassId(account.user.id))
+		setOther(getOtherAccount()?.user ?? null)
+		setLoginNotice('')
+		setScreen('checking')
+	}
+
+	function handleSwitchAccount() {
+		const account = swapAccounts()
+		if (!account) return
+		activate(account)
+		toast(`Ora usi l'${accountName(account.user)}`, { tone: 'info' })
+	}
+
+	// Dalla schermata di login (sessione scaduta) si può tornare all'altro account senza password
+	function handleUseOtherAccount() {
+		const account = getOtherAccount()
+		if (!account) return
+		saveSession(account.token, account.user)
+		saveOtherAccount(null)
+		activate(account)
+	}
+
 	function handleLogin(token, loggedUser) {
 		clearApiCache()
 		rememberLastLogin(null)
+		// rientrare con l'account che era in attesa: niente doppioni, la sessione vecchia si chiude
+		const waiting = getOtherAccount()
+		if (sameAccount(waiting?.user, loggedUser)) {
+			closeSession(waiting.token)
+			saveOtherAccount(null)
+			setOther(null)
+		}
 		saveSession(token, loggedUser)
 		setUser(loggedUser)
 		setClassIdState(getClassId(loggedUser.id))
@@ -122,11 +176,42 @@ function App() {
 		setScreen(nextScreen(loggedUser))
 	}
 
+	// Secondo account (studente <-> genitore): quello in uso va in attesa, il nuovo diventa attivo
+	function handleAccountAdded(token, loggedUser) {
+		const current = { token: getToken(), user: getStoredUser() ?? user }
+		if (sameAccount(current.user, loggedUser)) {
+			// ha rifatto il login con lo stesso account: si tiene solo il token nuovo
+			closeSession(current.token)
+			handleLogin(token, loggedUser)
+			return
+		}
+		closeSession(getOtherAccount()?.token)
+		saveOtherAccount(current.token ? current : null)
+		inheritClass(loggedUser, current.user, classId)
+		clearApiCache()
+		saveSession(token, loggedUser)
+		setUser(loggedUser)
+		setOther(getOtherAccount()?.user ?? null)
+		setClassIdState(getClassId(loggedUser.id))
+		setScreen(nextScreen(loggedUser))
+		toast(`Aggiunto l'${accountName(loggedUser)}: per tornare all'altro usa il Profilo`)
+	}
+
 	async function handleLogout() {
+		const leaving = getStoredUser()
 		try {
 			await api.logout()
 		} catch {
 			// anche se il server non risponde, sul dispositivo la sessione va chiusa
+		}
+		const account = getOtherAccount()
+		if (account) {
+			// con due account si esce solo da quello in uso e si passa all'altro
+			saveSession(account.token, account.user)
+			saveOtherAccount(null)
+			activate(account)
+			toast(`Sei uscito dall'${accountName(leaving)}`, { tone: 'info' })
+			return
 		}
 		resetToLogin()
 		toast('Sei uscito da Skedoo', { tone: 'info' })
@@ -159,7 +244,20 @@ function App() {
 	}
 
 	if (screen === 'login') {
-		return <Login key={loginNotice} notice={loginNotice} onLogin={handleLogin} remembered={getLastLogin()} />
+		return (
+			<Login
+				key={loginNotice}
+				notice={loginNotice}
+				onLogin={handleLogin}
+				onUseOther={other ? handleUseOtherAccount : undefined}
+				other={other}
+				remembered={getLastLogin()}
+			/>
+		)
+	}
+
+	if (screen === 'add-account') {
+		return <Login adding current={user} onCancel={() => setScreen('app')} onLogin={handleAccountAdded} />
 	}
 
 	if (screen === 'setup' || screen === 'change-class') {
@@ -174,9 +272,14 @@ function App() {
 
 	return (
 		<DashboardShell
+			// ogni account ha i suoi compiti completati, circolari lette e preferenze: cambiando account si riparte da zero
+			key={user?.id}
 			classId={isGalileiSchool(user?.scuola) ? classId : null}
+			onAddAccount={() => setScreen('add-account')}
 			onChangeClass={() => setScreen('change-class')}
 			onLogout={handleLogout}
+			onSwitchAccount={other ? handleSwitchAccount : undefined}
+			otherAccount={other}
 			user={user}
 		/>
 	)

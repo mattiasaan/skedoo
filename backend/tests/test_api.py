@@ -15,10 +15,27 @@ def test_login_and_me(client):
   r = client.post("/auth/login", json={"username": "S123X", "password": "good"})
   body = r.json()
   assert r.status_code == 200 and body["token_type"] == "bearer"
-  assert body["utente"] == {"id": "S123X", "nome": "Mario", "cognome": "Rossi"}
+  assert body["utente"] == {"id": "S123X", "nome": "Mario", "cognome": "Rossi", "tipo": "studente"}
   assert "good" not in body["access_token"]  # la password non è nel token
   me = client.get("/auth/me", headers={"Authorization": f"Bearer {body['access_token']}"})
   assert me.json()["cognome"] == "Rossi"
+
+
+def test_student_and_parent_accounts_are_separate_sessions(client):
+  """Il cambio account del frontend tiene due token: ognuno resta legato alla sua sessione e al suo tipo."""
+  student, parent = login(client, "S123X"), login(client, "G123X")
+  assert client.get("/auth/me", headers=student).json()["tipo"] == "studente"
+  assert client.get("/auth/me", headers=parent).json()["tipo"] == "genitore"
+  assert client.post("/auth/logout", headers=parent).status_code == 204
+  assert client.get("/auth/me", headers=student).status_code == 200
+
+
+def test_account_type_from_classeviva_code():
+  from app.classeviva import account_type
+  assert account_type("S1234567X") == "studente"
+  assert account_type("g1234567x") == "genitore"
+  assert account_type("mario.rossi@example.com") is None
+  assert account_type("SGX") is None and account_type(None) is None
 
 
 def test_profile_uses_card_identity_when_login_data_is_empty():
@@ -189,6 +206,27 @@ def test_absences_types_and_summary(client, auth):
   assert [e["id"] for e in r["eventi"]] == [22, 25, 24, 23, 21]  # dal più recente
   assert {e["id"]: e["tipo"] for e in r["eventi"]} == {21: "assenza", 22: "assenza", 23: "ritardo", 24: "ritardo", 25: "uscita"}
   assert r["riepilogo"] == {"assenze": 2, "ritardi": 2, "uscite": 1, "da_giustificare": 2}
+
+
+def test_lessons_of_the_day_with_topics(client, auth):
+  r = client.get("/lezioni?data=2026-10-06", headers=auth)
+  assert r.status_code == 200
+  body = r.json()
+  assert body["data"] == "2026-10-06" and ("lezioni_giorno", "2026-10-06") in FakeUtente.calls
+  first, physics, support = body["lezioni"]
+  assert (first["ora"], first["materia"], first["argomento"]) == (1, "MATEMATICA", None)  # argomento non scritto
+  assert physics["durata"] == 2 and physics["argomento"] == "Moto rettilineo\n\nesercizi pag. 12"
+  assert support["compresenza"] is True and support["argomento"] is None  # dopo la lezione della stessa ora
+
+
+def test_lessons_default_today_and_long_topics(client, auth):
+  from app import lessons
+  assert client.get("/lezioni", headers=auth).status_code == 200
+  assert FakeUtente.calls[-1][0] == "lezioni_giorno"
+  long_text = lessons.clean_topic("a" * 6000)
+  assert len(long_text) == lessons.MAX_TOPIC_CHARS + 1 and long_text.endswith("…")
+  assert lessons.clean_topic("   ") is None and lessons.clean_topic(42) is None
+  assert client.get("/lezioni?data=06-10-2026", headers=auth).status_code == 422
 
 
 def test_absences_need_both_dates(client, auth):

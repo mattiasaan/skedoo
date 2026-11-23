@@ -75,7 +75,7 @@ function useTaskFlags(toast) {
 	return useMemo(() => ({ doneTasks, toggleDone, savedTasks, toggleSaved }), [doneTasks, toggleDone, savedTasks, toggleSaved])
 }
 
-function DashboardShell({ user, classId, onLogout, onChangeClass }) {
+function DashboardShell({ user, classId, onLogout, onChangeClass, otherAccount, onSwitchAccount, onAddAccount }) {
 	const toast = useToast()
 	const [route, navigate] = useHashRoute()
 	const [detail, setDetail] = useState(null)
@@ -116,7 +116,10 @@ function DashboardShell({ user, classId, onLogout, onChangeClass }) {
 		setAlertsOn,
 		onLogout,
 		onChangeClass,
-	}), [user, classId, isGalilei, navigate, openSubject, tasks, isBoardRead, markBoardRead, alertsOn, setAlertsOn, onLogout, onChangeClass])
+		otherAccount,
+		onSwitchAccount,
+		onAddAccount,
+	}), [user, classId, isGalilei, navigate, openSubject, tasks, isBoardRead, markBoardRead, alertsOn, setAlertsOn, onLogout, onChangeClass, otherAccount, onSwitchAccount, onAddAccount])
 
 	const Screen = SCREENS[route.path] ?? Home
 	const school = schoolDisplayName(user?.scuola)

@@ -10,21 +10,34 @@ const STATUS_BADGE = {
 	upcoming: { label: 'In arrivo', className: 'badge--blue' },
 }
 
-/** Riga dell'orario di oggi (Home Galilei). */
-export function LessonRow({ lesson, status }) {
+/** Colonna sinistra: l'orario se c'è (Galilei), altrimenti le ore del registro ("2ª" / "–3ª"). */
+function LessonTime({ lesson }) {
+	if (lesson.inizio) {
+		return <><strong>{lesson.inizio}</strong><span>{lesson.fine}</span></>
+	}
+	const hours = lesson.ore?.filter((hour) => hour != null) ?? []
+	if (!hours.length) return <strong>—</strong>
+	return <><strong>{hours[0]}ª</strong><span>{hours.length > 1 ? `–${hours.at(-1)}ª` : 'ora'}</span></>
+}
+
+/**
+ * Riga dell'orario di oggi (Home Galilei) o del registro di oggi (altre scuole).
+ * `topic`: anteprima dell'argomento scritto dal docente, al massimo due righe (il testo intero è nel dettaglio).
+ */
+export function LessonRow({ lesson, status, topic }) {
 	const { openDetail } = useApp()
 	const badge = lesson.cancelled ? { label: 'Annullata', className: 'badge--danger' } : STATUS_BADGE[status]
 	const teacher = lesson.teachers[0]
+	const when = lesson.inizio ? `${lesson.inizio}–${lesson.fine}` : periodLabel(lesson)
 
 	return (
 		<article
-			className={`lesson-row lesson-row--${lesson.cancelled ? 'cancelled' : status}${lesson.roomChange ? ' lesson-row--changed' : ''}`}
+			className={`lesson-row lesson-row--${lesson.cancelled ? 'cancelled' : status ?? 'register'}${lesson.roomChange ? ' lesson-row--changed' : ''}${topic ? ' lesson-row--with-topic' : ''}`}
 			{...clickableProps(() => openDetail({ type: 'lesson', lesson }))}
-			aria-label={`${lesson.materia}, ${lesson.inizio}–${lesson.fine}`}
+			aria-label={[lesson.materia, when, topic ? `argomento: ${topic}` : null].filter(Boolean).join(', ')}
 		>
 			<div className="lesson-row__time">
-				<strong>{lesson.inizio}</strong>
-				<span>{lesson.fine}</span>
+				<LessonTime lesson={lesson} />
 			</div>
 			<div className="lesson-row__copy">
 				<strong>{lesson.materia}</strong>
@@ -47,6 +60,7 @@ export function LessonRow({ lesson, status }) {
 					{badge.icon && <Icon name={badge.icon} size={12} strokeWidth={2.4} />}
 				</span>
 			)}
+			{topic && <p className="lesson-row__topic">{topic}</p>}
 		</article>
 	)
 }

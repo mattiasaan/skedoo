@@ -38,6 +38,19 @@ export function useMonthAgenda(date) {
 	return { ...useAgendaRange(range.da, range.a), range }
 }
 
+/**
+ * Registro di classe di un giorno (YYYY-MM-DD): lezioni firmate e argomenti. `date` null = nessuna richiesta
+ * (giorni futuri: non c'è ancora niente di firmato). Fuori dall'anno scolastico il registro è semplicemente vuoto.
+ */
+export function useLessons(date) {
+	return useApi(date ? `lessons:${date}` : null, () =>
+		api.lessons(date).catch((error) => {
+			if (error.status === 422) return { data: date, lezioni: [] }
+			throw error
+		}),
+	)
+}
+
 export const useGrades = () => useApi('grades', api.grades)
 export const useAbsences = () => useApi('absences', api.absences)
 export const useBoard = () => useApi('board', api.board)
