@@ -6,7 +6,7 @@ import { getToken } from './session.js'
 const API_BASE = (import.meta.env.VITE_API_URL || '/api').replace(/\/$/, '')
 
 export const UNAUTHORIZED_EVENT = 'skedoo:unauthorized'
-const AUTH_ERRORS = new Set(['not_authenticated', 'invalid_token', 'session_expired'])
+const AUTH_ERRORS = new Set(['not_authenticated', 'invalid_token', 'session_expired', 'credentials_changed'])
 
 export class ApiError extends Error {
 	constructor(status, code, message) {
@@ -107,6 +107,7 @@ async function download(path, { onProgress } = {}) {
 export const api = {
 	login: (username, password) => request('/auth/login', { method: 'POST', body: { username, password }, auth: false }),
 	me: () => request('/auth/me'),
+	refresh: () => request('/auth/refresh', { method: 'POST' }),
 	logout: () => request('/auth/logout', { method: 'POST' }),
 
 	classes: () => request('/schedules/classes'),

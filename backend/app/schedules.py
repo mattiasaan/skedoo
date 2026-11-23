@@ -21,9 +21,15 @@ log = logging.getLogger("skedoo")
 
 GIORNI = ["lunedi", "martedi", "mercoledi", "giovedi", "venerdi", "sabato", "domenica"]  # come weekday() di Python
 ETICHETTE = {"lunedi": "Lunedì", "martedi": "Martedì", "mercoledi": "Mercoledì", "giovedi": "Giovedì", "venerdi": "Venerdì", "sabato": "Sabato", "domenica": "Domenica"}
-# Griglia oraria della scuola: inizio di ogni ora di lezione e durata
-SLOT_STARTS = ["08:10", "09:00", "09:50", "10:40", "11:45", "12:35", "13:25", "14:30", "15:20", "16:10", "17:10"]
-SLOT_MINUTES = 50
+# Griglia oraria della scuola: inizio e fine di ogni ora di lezione (ore da 50 minuti).
+# Pause: 10:40-10:55 la mattina, 16:10-16:20 il pomeriggio.
+SLOTS = [("08:10", "09:00"), ("09:00", "09:50"), ("09:50", "10:40"), ("10:55", "11:45"), ("11:45", "12:35"),
+         ("12:35", "13:25"), ("13:25", "14:15"), ("14:30", "15:20"), ("15:20", "16:10"), ("16:20", "17:10"),
+         ("17:10", "18:00")]
+SLOT_STARTS = [start for start, _ in SLOTS]
+SLOT_MINUTES = 50  # durata delle lezioni fuori griglia
+# Inizi della griglia precedente (senza pause), ancora nei file JSON e nel database: valgono come le ore nuove
+LEGACY_STARTS = {"10:40": "10:55", "16:10": "16:20"}
 
 
 # ---------- modelli delle risposte ----------
@@ -73,8 +79,13 @@ def class_key(class_id: str) -> str:
 
 def make_lesson(inizio: str, materia: str, materia_completa, docenti, aula) -> LessonOut:
   """Calcola numero d'ora e fine dalla griglia. Solleva ValueError se `inizio` non è "HH:MM"."""
-  fine = (datetime.strptime(inizio, "%H:%M") + timedelta(minutes=SLOT_MINUTES)).strftime("%H:%M")
-  ora = SLOT_STARTS.index(inizio) + 1 if inizio in SLOT_STARTS else None
+  start = datetime.strptime(inizio, "%H:%M")
+  inizio = LEGACY_STARTS.get(inizio, inizio)
+  if inizio in SLOT_STARTS:
+    ora = SLOT_STARTS.index(inizio) + 1
+    fine = SLOTS[ora - 1][1]
+  else:
+    ora, fine = None, (start + timedelta(minutes=SLOT_MINUTES)).strftime("%H:%M")
   return LessonOut(ora=ora, inizio=inizio, fine=fine, materia=materia, materia_completa=materia_completa,
                  docenti=docenti, aula=aula)
 

@@ -5,6 +5,7 @@ import math
 import threading
 import time
 from collections import deque
+from typing import NamedTuple
 from datetime import datetime, timedelta, timezone
 
 from fastapi import Depends, Request
@@ -20,20 +21,33 @@ ISSUER = AUDIENCE = "skedoo"
 
 
 # ---------- JWT ----------
-def create_token(username: str, sid: str, key: bytes) -> tuple[str, int]:
+class TokenData(NamedTuple):
+  username: str
+  sid: str
+  key: bytes
+  auth_time: int  # istante del login (epoch, secondi): resta lo stesso a ogni rinnovo
+
+
+def create_token(username: str, sid: str, key: bytes, auth_time: int | None = None) -> tuple[str, int]:
   """Il token contiene username, id di sessione e la chiave che decifra la password sul server, MAI la password.
   `sid` lo lega a una sessione sul server: logout o riavvio lo invalidano anche se non è ancora scaduto.
-  `k` da sola non serve a nulla: la password cifrata esiste solo nella memoria del server."""
+  `k` da sola non serve a nulla: la password cifrata esiste solo nella memoria del server.
+  `auth` è l'istante del login: i rinnovi (POST /auth/refresh) non vanno oltre `session_max_days` da lì."""
   s = get_settings()
   now = datetime.now(timezone.utc)
-  ttl = timedelta(hours=s.jwt_ttl_hours)
+  auth = datetime.fromtimestamp(auth_time, timezone.utc) if auth_time is not None else now
+  exp = min(now + timedelta(hours=s.jwt_ttl_hours), auth + timedelta(days=s.session_max_days))
+  if exp <= now:
+    raise AppError(401, "session_expired", "Sessione scaduta, effettua di nuovo il login")
   k = base64.urlsafe_b64encode(key).rstrip(b"=").decode()
-  claims = {"sub": username, "sid": sid, "k": k, "iss": ISSUER, "aud": AUDIENCE, "iat": now, "exp": now + ttl}
-  return jwt.encode(claims, s.jwt_secret, algorithm=ALGORITHM), int(ttl.total_seconds())
+  claims = {"sub": username, "sid": sid, "k": k, "auth": int(auth.timestamp()),
+            "iss": ISSUER, "aud": AUDIENCE, "iat": now, "exp": exp}
+  return jwt.encode(claims, s.jwt_secret, algorithm=ALGORITHM), int((exp - now).total_seconds())
 
 
-def decode_token(token: str) -> tuple[str, str, bytes]:
-  """Restituisce (username, sid, chiave). L'algoritmo è fissato (niente `alg: none`) e tutti i claim sono obbligatori."""
+def decode_token(token: str) -> TokenData:
+  """L'algoritmo è fissato (niente `alg: none`) e tutti i claim sono obbligatori (tranne `auth`: i token emessi
+  prima dei rinnovi non ce l'hanno e valgono dal loro `iat`)."""
   try:
     claims = jwt.decode(
       token, get_settings().jwt_secret, algorithms=[ALGORITHM], audience=AUDIENCE, issuer=ISSUER,
@@ -44,13 +58,16 @@ def decode_token(token: str) -> tuple[str, str, bytes]:
   sub, sid, k = claims.get("sub"), claims.get("sid"), claims.get("k")
   if not all(isinstance(v, str) and v for v in (sub, sid, k)):
     raise AppError(401, "invalid_token", "Token non valido")
+  auth = claims.get("auth", claims.get("iat"))
+  if not isinstance(auth, int) or isinstance(auth, bool):
+    raise AppError(401, "invalid_token", "Token non valido")
   try:
     key = base64.urlsafe_b64decode(k + "=" * (-len(k) % 4))
   except (binascii.Error, ValueError):
     raise AppError(401, "invalid_token", "Token non valido")
   if len(key) != 32:
     raise AppError(401, "invalid_token", "Token non valido")
-  return sub, sid, key
+  return TokenData(sub, sid, key, auth)
 
 
 # ---------- rate limit (in memoria, un solo processo) ----------
@@ -129,10 +146,10 @@ def current_session(creds: HTTPAuthorizationCredentials | None = Depends(_bearer
   Va su OGNI endpoint tranne il login."""
   if creds is None:
     raise AppError(401, "not_authenticated", "Autenticazione richiesta")
-  username, sid, key = decode_token(creds.credentials)
-  session = store.get(sid, username)
-  rate_limit(f"user:{username.lower()}", get_settings().rate_limit_user)
-  return ActiveSession(session, key)
+  token = decode_token(creds.credentials)
+  session = store.get(token.sid, token.username)
+  rate_limit(f"user:{token.username.lower()}", get_settings().rate_limit_user)
+  return ActiveSession(session, token.key, token.auth_time)
 
 
 def upstream_limit(session: ActiveSession = Depends(current_session)) -> None:

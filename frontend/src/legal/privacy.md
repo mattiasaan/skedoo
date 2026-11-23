@@ -1,6 +1,6 @@
 # Informativa sulla privacy
 
-*Ultimo aggiornamento: 19 novembre 2026*
+*Ultimo aggiornamento: 22 novembre 2026*
 
 Questa informativa spiega quali dati personali tratta Skedoo, perché, per quanto tempo e quali diritti hai. È resa ai sensi degli articoli 13 e 14 del Regolamento (UE) 2016/679 ("GDPR") e del D.Lgs. 196/2003 ("Codice privacy").
 
@@ -74,7 +74,7 @@ Skedoo **non** prende decisioni automatizzate che producano effetti giuridici su
 |---|---|
 | Password ClasseViva | Solo cifrata, in memoria (RAM), fino al logout, a 7 giorni di inattività o al riavvio del server; la chiave resta solo sul tuo dispositivo |
 | Dati del registro (voti, agenda, assenze...) | In memoria per circa 60 secondi, poi scartati |
-| Token di accesso | Valido al massimo 7 giorni; cancellato dal dispositivo al logout |
+| Token di accesso | Rinnovato mentre usi l'app: scade dopo 7 giorni di inattività e comunque dopo 90 giorni dall'accesso; cancellato dal dispositivo al logout |
 | Dati sul tuo dispositivo | Finché esci o cancelli i dati del sito dal browser (classe e preferenze restano anche dopo il logout, finché non li cancelli) |
 | Contatori anti-abuso | In memoria, da 1 a 60 minuti |
 | Log tecnici del server | Sovrascritti automaticamente a rotazione, e comunque non oltre 30 giorni |

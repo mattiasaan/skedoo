@@ -5,8 +5,11 @@ import SchoolSetup from './screens/SchoolSetup.jsx'
 import { api, ApiError, UNAUTHORIZED_EVENT } from './lib/api.js'
 import { classLabel } from './lib/format.js'
 import { legalDocFromHash } from './lib/legal.js'
-import { clearSession, getClassId, getStoredUser, getToken, isGalileiSchool, saveSession, saveUser, setClassId } from './lib/session.js'
+import {
+	clearSession, getClassId, getLastLogin, getStoredUser, getToken, isGalileiSchool, rememberLastLogin, saveSession, saveUser, setClassId,
+} from './lib/session.js'
 import { useToast } from './lib/toast.js'
+import { refreshTokenIfStale } from './lib/tokenRefresh.js'
 
 const LegalPage = lazy(() => import('./screens/LegalPage.jsx'))
 import { clearApiCache } from './lib/useApi.js'
@@ -14,6 +17,11 @@ import { clearApiCache } from './lib/useApi.js'
 // Schermata da mostrare dopo il login: chi è del Galilei deve prima scegliere la classe.
 function nextScreen(user) {
 	return isGalileiSchool(user?.scuola) && !getClassId(user?.id) ? 'setup' : 'app'
+}
+
+// Messaggio sulla schermata di login dopo un 401: la password cambiata su ClasseViva ha il suo
+function expiredNotice(error) {
+	return error?.code === 'credentials_changed' ? error.message : 'Sessione scaduta: accedi di nuovo.'
 }
 
 function App() {
@@ -42,7 +50,9 @@ function App() {
 		window.location.hash = returnHash.current.replace(/^#/, '') || 'home'
 	}
 
-	const resetToLogin = useCallback((notice = '') => {
+	// `expired`: uscita non voluta (sessione scaduta), si ricorda chi era collegato per il prossimo accesso
+	const resetToLogin = useCallback((notice = '', { expired = false } = {}) => {
+		rememberLastLogin(expired ? getStoredUser() : null)
 		clearSession()
 		clearApiCache()
 		setUser(null)
@@ -61,11 +71,12 @@ function App() {
 				setUser(me)
 				setClassIdState(getClassId(me.id))
 				setScreen(nextScreen(me))
+				refreshTokenIfStale()
 			})
 			.catch((error) => {
 				if (cancelled) return
 				if (error instanceof ApiError && error.status === 401) {
-					resetToLogin('Sessione scaduta: accedi di nuovo.')
+					resetToLogin(expiredNotice(error), { expired: true })
 				} else if (getStoredUser()) {
 					// server irraggiungibile: si entra comunque, le schermate mostrano l'errore con "Riprova"
 					setScreen(nextScreen(getStoredUser()))
@@ -78,15 +89,32 @@ function App() {
 		}
 	}, [screen, resetToLogin])
 
-	// Qualsiasi richiesta con 401 (sessione chiusa, server riavviato) riporta al login
+	// Qualsiasi richiesta con 401 (sessione chiusa, server riavviato, password cambiata) riporta al login
 	useEffect(() => {
-		const onUnauthorized = () => resetToLogin('Sessione scaduta: accedi di nuovo.')
+		const onUnauthorized = (event) => resetToLogin(expiredNotice(event.detail), { expired: true })
 		window.addEventListener(UNAUTHORIZED_EVENT, onUnauthorized)
 		return () => window.removeEventListener(UNAUTHORIZED_EVENT, onUnauthorized)
 	}, [resetToLogin])
 
+	// Con l'app aperta (o quando la PWA torna in primo piano) il token si rinnova da solo:
+	// si esce solo dopo 7 giorni senza usarla
+	const loggedIn = screen !== 'login' && screen !== 'checking'
+	useEffect(() => {
+		if (!loggedIn) return
+		const onVisible = () => {
+			if (document.visibilityState === 'visible') refreshTokenIfStale()
+		}
+		const timer = window.setInterval(refreshTokenIfStale, 60 * 60 * 1000)
+		document.addEventListener('visibilitychange', onVisible)
+		return () => {
+			window.clearInterval(timer)
+			document.removeEventListener('visibilitychange', onVisible)
+		}
+	}, [loggedIn])
+
 	function handleLogin(token, loggedUser) {
 		clearApiCache()
+		rememberLastLogin(null)
 		saveSession(token, loggedUser)
 		setUser(loggedUser)
 		setClassIdState(getClassId(loggedUser.id))
@@ -131,7 +159,7 @@ function App() {
 	}
 
 	if (screen === 'login') {
-		return <Login key={loginNotice} notice={loginNotice} onLogin={handleLogin} />
+		return <Login key={loginNotice} notice={loginNotice} onLogin={handleLogin} remembered={getLastLogin()} />
 	}
 
 	if (screen === 'setup' || screen === 'change-class') {
