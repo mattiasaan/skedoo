@@ -13,6 +13,7 @@ singola chiamata a ClasseViva di quell'utente e poi tolta dall'oggetto `Utente`.
 """
 import asyncio
 import logging
+import re
 import secrets
 import threading
 import time
@@ -40,6 +41,16 @@ def translate(exc: Exception) -> AppError:
     return AppError(422, "date_out_of_range", "Data fuori dall'anno scolastico corrente")
   log.error("Errore ClasseViva: %s", exc.__class__.__name__)
   return AppError(502, "classeviva_error", "ClasseViva non ha risposto correttamente, riprova tra poco")
+
+
+_ACCOUNT_TYPES = {"S": "studente", "G": "genitore"}
+
+
+def account_type(ident: str | None) -> str | None:
+  """Studente o genitore dal codice ClasseViva (S1234567X, G1234567X). Chi accede con l'email ha l'ident
+  da `whoami`; se il codice non ha la forma attesa il tipo resta sconosciuto (None)."""
+  match = re.match(r"^([SG])\d", (ident or "").strip().upper())
+  return _ACCOUNT_TYPES[match.group(1)] if match else None
 
 
 class Connection(NamedTuple):
@@ -163,6 +174,7 @@ class CvSession:
       "id": self.username,
       "nome": d.get("firstName") or self._card_profile.get("firstName", ""),
       "cognome": d.get("lastName") or self._card_profile.get("lastName", ""),
+      "tipo": account_type(d.get("ident") or self.username),
       "scuola": self._school,
     }
 

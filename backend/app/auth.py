@@ -32,6 +32,7 @@ class User(BaseModel):
   id: str
   nome: str
   cognome: str
+  tipo: str | None = None  # studente | genitore (dal codice ClasseViva), None se non riconoscibile
   scuola: School | None = None
 
 

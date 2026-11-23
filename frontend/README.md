@@ -23,7 +23,7 @@ src/
 │   ├── api.js           unico client HTTP: token, errori {code,message}, evento 401
 │   ├── useApi.js        cache in memoria condivisa + hook useApi(chiave, fetcher)
 │   ├── data.js          hook dei dati (useGrades, useSchedule, useAgendaRange...) e stati locali
-│   ├── session.js       localStorage: token, utente, classe e preferenze per utente
+│   ├── session.js       localStorage: token, utente, secondo account, classe e preferenze per utente
 │   ├── tokenRefresh.js  rinnovo del token (POST /auth/refresh) quando ha più di 12 ore
 │   ├── routes.js        schermate e sottoschermate (#voti, #profilo/assenze...)
 │   ├── schedule.js      orario del giorno: blocchi di ore, variazioni, lezione in corso
@@ -56,6 +56,10 @@ src/
   Un 401 di sessione scaduta emette `skedoo:unauthorized` e `App` torna al login.
 - **Sessione.** Il token dura 7 giorni ma `App` lo rinnova all'avvio, ogni ora e quando la PWA torna in primo piano
   (solo se ha più di 12 ore): si rifà il login solo dopo 7 giorni senza usare l'app o 90 giorni dall'accesso.
+- **Due account (studente e genitore).** Dal Profilo si aggiunge un secondo account ClasseViva: l'account in uso
+  resta in `token`/`utente`, l'altro aspetta in `skedoo:altro-account` con il suo JWT (mai la password) e si
+  rinnova insieme al primo. Cambiare account scambia i due token, svuota la cache e rimonta la dashboard (compiti
+  completati e preferenze sono per utente). Il logout chiude solo l'account in uso e passa all'altro.
 - **Navigazione.** La schermata è nell'hash (`#home`, `#profilo/materiali`): "indietro" e refresh funzionano.
   Per aggiungere una schermata: componente in `screens/`, voce in `SCREENS` di `DashboardShell.jsx`
   e, se è una sottoschermata, in `SUBPAGES` di `lib/routes.js`.

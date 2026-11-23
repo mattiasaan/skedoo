@@ -174,14 +174,17 @@ function ChangesDetail({ changes, onClose }) {
 
 // ---------- conferma logout ----------
 function LogoutDetail({ onClose }) {
-	const { onLogout } = useApp()
+	const { onLogout, otherAccount, user } = useApp()
 	const [leaving, setLeaving] = useState(false)
+	const current = user?.tipo ? `dall'account ${user.tipo}` : 'da questo account'
+	const next = otherAccount?.tipo ? `all'account ${otherAccount.tipo}` : "all'altro account"
 
 	return (
-		<Sheet kicker="Account" onClose={onClose} title="Vuoi uscire da Skedoo?" tone="danger">
+		<Sheet kicker="Account" onClose={onClose} title={otherAccount ? `Vuoi uscire ${current}?` : 'Vuoi uscire da Skedoo?'} tone="danger">
 			<p className="detail-text">
-				Su questo dispositivo verranno cancellati la sessione e i dati in memoria. Classe scelta, compiti completati e
-				preferenze restano salvati per il prossimo accesso.
+				{otherAccount
+					? `Esci solo ${current}: Skedoo passa ${next}, che resta collegato. Per aggiungerlo di nuovo servirà la password.`
+					: 'Su questo dispositivo verranno cancellati la sessione e i dati in memoria. Classe scelta, compiti completati e preferenze restano salvati per il prossimo accesso.'}
 			</p>
 			<div className="confirm-actions">
 				<button className="confirm-actions__cancel" disabled={leaving} onClick={onClose} type="button">Annulla</button>
