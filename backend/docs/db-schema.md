@@ -26,6 +26,6 @@ erDiagram
 ```
 
 - `UNIQUE (class_id, giorno, inizio)`: una classe non può avere due lezioni nello stesso slot.
-- Ora di fine e numero d'ora non sono salvati: si calcolano dalla griglia (inizio 08:10, ore da 50 minuti) in `app/schedules.py`.
+- Ora di fine e numero d'ora non sono salvati: si calcolano dalla griglia (inizio 08:10, ore da 50 minuti, pause 10:40-10:55 e 16:10-16:20) in `app/schedules.py`. Le lezioni salvate con gli inizi della griglia vecchia ("10:40", "16:10") valgono come 4ª e 10ª ora.
 - Cancellare una classe cancella le sue lezioni.
 - Reimportare una classe sostituisce tutte le sue lezioni; una classe presente solo nell'indice aggiorna i dati della classe e tiene le lezioni esistenti.

@@ -19,7 +19,7 @@ from pydantic import BaseModel, Field
 
 from .config import get_settings
 from .errors import AppError
-from .schedules import SLOT_MINUTES, SLOT_STARTS
+from .schedules import SLOTS as GRID
 from .security import current_session
 
 router = APIRouter(prefix="/changes", tags=["Modifiche"], dependencies=[Depends(current_session)])
@@ -72,7 +72,7 @@ def _minutes(value: str | None) -> int | None:
   return int(match[1]) * 60 + int(match[2]) if match else None
 
 
-SLOTS = [(_minutes(start), _minutes(start) + SLOT_MINUTES) for start in SLOT_STARTS]
+SLOTS = [(_minutes(start), _minutes(end)) for start, end in GRID]
 
 
 def hours_between(start: str | None, end: str | None) -> list[int]:

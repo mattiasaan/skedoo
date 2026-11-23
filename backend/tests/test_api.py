@@ -246,7 +246,7 @@ def test_changes_multiple_days_and_hours(client, auth, data_dir):
   assert by_id["entrate-e1"]["tipo"] == "entrata_posticipata" and by_id["entrate-e1"]["ora"] == 3
   assert by_id["entrate-e1"]["ore"] == [1, 2]
   assert by_id["aula-a1"]["ore"] == [3, 4]  # la 5ª inizia alle 11:45, quando il cambio finisce and by_id["aula-a1"]["nuova_aula"] == "AULA B108"
-  assert by_id["aula-a2"]["ore"] == [4]  # orario fuori griglia: solo le ore che si sovrappongono (4ª: 10:40-11:30)
+  assert by_id["aula-a2"]["ore"] == [4]  # orario fuori griglia: solo le ore che si sovrappongono (4ª: 10:55-11:45)
   assert by_id["pomeriggio-p1"]["tipo"] == "senza_lezioni_pomeridiane" and by_id["pomeriggio-p1"]["ora"] == 8
   assert by_id["pomeriggio-p1"]["ore"] == [8, 9, 10, 11]
   only_day = client.get("/changes?classe=1A&data=2026-11-18", headers=auth).json()
@@ -318,3 +318,18 @@ def test_session_cache_drops_expired_entries(client, auth, settings, monkeypatch
   client.get("/agenda?da=2026-10-01&a=2026-10-05", headers=auth)
   client.get("/agenda?da=2026-10-06&a=2026-10-10", headers=auth)
   assert len(session._cache) == 1  # restano solo le risposte ancora valide
+
+
+def test_grid_with_breaks():
+  from app.schedules import make_lesson
+  def hour(start):
+    l = make_lesson(start, "X", None, [], None)
+    return l.ora, l.inizio, l.fine
+  assert hour("09:50") == (3, "09:50", "10:40")
+  assert hour("10:55") == (4, "10:55", "11:45")  # dopo la pausa 10:40-10:55
+  assert hour("10:40") == (4, "10:55", "11:45")  # inizio della griglia vecchia, ancora nei dati
+  assert hour("15:20") == (9, "15:20", "16:10")
+  assert hour("16:20") == (10, "16:20", "17:10")  # dopo la pausa 16:10-16:20
+  assert hour("16:10") == (10, "16:20", "17:10")
+  assert hour("17:10") == (11, "17:10", "18:00")
+  assert hour("10:00") == (None, "10:00", "10:50")  # fuori griglia: 50 minuti
