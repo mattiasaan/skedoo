@@ -22,6 +22,17 @@ import {
 } from '../lib/grades.js'
 
 const YEAR = 'year'
+const COLLAPSED_SUBJECTS = 2
+
+/** Variazione arrotondata a un decimale: "-0.0" e una freccia in giù per -0.03 non hanno senso. */
+function trendOf(delta) {
+	const rounded = Math.round(delta * 10) / 10 || 0
+	return {
+		text: `${rounded > 0 ? '+' : ''}${rounded.toFixed(1)}`,
+		arrow: rounded > 0 ? '↗' : rounded < 0 ? '↘' : '→',
+		tone: rounded < 0 ? 'low' : 'good',
+	}
+}
 
 function AverageCard({ subjects }) {
 	const average = generalAverage(subjects)
@@ -30,7 +41,7 @@ function AverageCard({ subjects }) {
 	const first = timeline[0]
 	const middle = timeline[Math.floor((timeline.length - 1) / 2)]
 	const last = timeline.at(-1)
-	const delta = first && last ? last.value - first.value : null
+	const trend = first && last ? trendOf(last.value - first.value) : null
 	const firstMonth = first ? monthName(parseDateKey(first.date)).slice(0, 3) : ''
 	const lastMonth = last ? monthName(parseDateKey(last.date)).slice(0, 3) : ''
 
@@ -42,7 +53,7 @@ function AverageCard({ subjects }) {
 					<div className="average-card__value">
 						<strong className={`tone-text--${gradeTone(average)}`}>{formatNumber(average)}</strong>
 						<span className={`badge badge--pill badge--soft-case ${average != null && average < 6 ? 'badge--danger' : 'badge--accent'}`}>
-							{averageTrendLabel(average)} {delta != null && delta >= 0 ? '↗' : delta != null ? '↘' : ''}
+							{averageTrendLabel(average)}
 						</span>
 					</div>
 				</div>
@@ -59,7 +70,7 @@ function AverageCard({ subjects }) {
 				<>
 					<div className="average-card__chart-heading">
 						<span>Andamento temporale ({firstMonth} - {lastMonth})</span>
-						<strong className={delta < 0 ? 'tone-text--low' : 'tone-text--good'}>{delta >= 0 ? '+' : ''}{delta.toFixed(1)} p.ti</strong>
+						<strong className={`tone-text--${trend.tone}`}>{trend.arrow} {trend.text} p.ti</strong>
 					</div>
 					<LineChart
 						label="Andamento della media generale"
@@ -243,6 +254,25 @@ function Comparison({ subjects }) {
 	)
 }
 
+function SubjectsSection({ subjects }) {
+	const [showAll, setShowAll] = useState(false)
+	const list = showAll ? subjects : subjects.slice(0, COLLAPSED_SUBJECTS)
+	return (
+		<section className="grades-layout__subjects" aria-labelledby="subjects-heading">
+			<SectionHeading aside={<span className="section-heading__note">{subjects.length} {subjects.length === 1 ? 'Materia caricata' : 'Materie caricate'}</span>} id="subjects-heading" title="Dettaglio per Materia" />
+			<div className="subject-list" id="subject-list">
+				{list.map((subject) => <SubjectCard key={subject.materia} subject={subject} />)}
+			</div>
+			{subjects.length > COLLAPSED_SUBJECTS && (
+				<button aria-controls="subject-list" aria-expanded={showAll} className="show-more" onClick={() => setShowAll((value) => !value)} type="button">
+					<Icon className={`show-more__chevron${showAll ? ' show-more__chevron--up' : ''}`} name="chevronDown" size={15} />
+					{showAll ? 'Mostra meno materie' : `Mostra tutte le materie (${subjects.length})`}
+				</button>
+			)}
+		</section>
+	)
+}
+
 function Grades() {
 	const { classId, isGalilei } = useApp()
 	const toast = useToast()
@@ -295,12 +325,7 @@ function Grades() {
 						<Simulator key={term} subjects={subjects} />
 					</div>
 
-					<section className="grades-layout__subjects" aria-labelledby="subjects-heading">
-						<SectionHeading aside={<span className="section-heading__note">{subjects.length} {subjects.length === 1 ? 'Materia caricata' : 'Materie caricate'}</span>} id="subjects-heading" title="Dettaglio per Materia" />
-						<div className="subject-list">
-							{subjects.map((subject) => <SubjectCard key={subject.materia} subject={subject} />)}
-						</div>
-					</section>
+					<SubjectsSection subjects={subjects} />
 
 					<Comparison subjects={subjects} />
 				</div>

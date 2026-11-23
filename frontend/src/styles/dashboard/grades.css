@@ -528,3 +528,9 @@
 .comparison__fill--low {
   background: var(--danger);
 }
+
+/* "Dettaglio per Materia" parte con le prime materie: il resto si apre col pulsante */
+.grades-layout__subjects .show-more {
+  width: 100%;
+  margin-top: 10px;
+}

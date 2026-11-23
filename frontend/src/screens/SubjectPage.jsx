@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { MaterialCard } from '../components/Files.jsx'
 import { Icon } from '../components/Icon.jsx'
 import { LineChart } from '../components/LineChart.jsx'
-import { ErrorMessage, LinkButton, RelatedLink, SectionHeading, Skeleton, StateMessage, SubPageHeader } from '../components/ui.jsx'
+import { ErrorMessage, RelatedLink, SectionHeading, Skeleton, StateMessage, SubPageHeader } from '../components/ui.jsx'
 import { useApp } from '../lib/appContext.js'
 import { useDidactics, useGrades, useSchedule, useUpcomingAgenda } from '../lib/data.js'
 import { materialDetails } from '../lib/didactics.js'
@@ -14,7 +14,7 @@ import { subjectOverview } from '../lib/subject.js'
 
 const AGENDA_DAYS = 30
 const RECENT_GRADES = 5
-const RECENT_MATERIALS = 5
+const RECENT_MATERIALS = 2
 
 /** Sotto "Giovedì" la data, sotto "3 dic" il giorno della settimana: mai la stessa informazione due volte. */
 function testHint(key) {
@@ -110,26 +110,28 @@ function GradesSection({ grades, subject, title }) {
 }
 
 function MaterialsSection({ didactics, materials, multipleTeachers }) {
-	const { navigate } = useApp()
+	const [showAll, setShowAll] = useState(false)
+	const list = showAll ? materials : materials.slice(0, RECENT_MATERIALS)
 	return (
 		<section aria-labelledby="subject-materials" className="subject-section">
-			<SectionHeading
-				aside={materials.length > RECENT_MATERIALS && <LinkButton onClick={() => navigate('profilo/materiali')}>Tutti i materiali</LinkButton>}
-				icon="book"
-				id="subject-materials"
-				title="Materiali recenti"
-			/>
+			<SectionHeading icon="book" id="subject-materials" title="Materiali recenti" />
 			{didactics.loading && <Skeleton height={64} lines={2} />}
 			{didactics.error && !didactics.data && <ErrorMessage error={didactics.error} onRetry={didactics.reload} title="Materiali non disponibili" />}
 			{didactics.data && !materials.length && (
 				<StateMessage icon="book" text="I docenti di questa materia non hanno ancora condiviso materiali in Didattica." title="Nessun materiale" />
 			)}
-			{materials.length > 0 && (
+			{list.length > 0 && (
 				<ul className="material-list">
-					{materials.slice(0, RECENT_MATERIALS).map((material) => (
+					{list.map((material) => (
 						<MaterialCard details={materialDetails(material, { teacher: multipleTeachers })} key={material.key} material={material} />
 					))}
 				</ul>
+			)}
+			{materials.length > RECENT_MATERIALS && (
+				<button aria-expanded={showAll} className="show-more" onClick={() => setShowAll((value) => !value)} type="button">
+					<Icon className={`show-more__chevron${showAll ? ' show-more__chevron--up' : ''}`} name="chevronDown" size={15} />
+					{showAll ? 'Mostra solo i più recenti' : `Mostra tutti i materiali (${materials.length})`}
+				</button>
 			)}
 		</section>
 	)
@@ -200,9 +202,10 @@ function SubjectPage({ route }) {
 					/>
 					<ul className="subject-slots">
 						{slots.map((slot) => (
-							<li key={slot.key} title={slot.day}>
+							<li key={slot.key} title={[slot.day, slot.room].filter(Boolean).join(' • ')}>
 								<strong>{slot.day.slice(0, 3)} <b>{periodLabel({ ore: slot.hours }).replace(/ Ora$/, '')}</b></strong>
-								<span>{[`${slot.inizio}–${slot.fine}`, sameRoom ? null : slot.room].filter(Boolean).join(' • ')}</span>
+								<span>{slot.inizio}–{slot.fine}</span>
+								{!sameRoom && slot.room && <span className="subject-slots__room">{slot.room}</span>}
 							</li>
 						))}
 					</ul>
