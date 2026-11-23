@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import { api } from '../lib/api.js'
 import { useApp } from '../lib/appContext.js'
-import { useMonthAgenda } from '../lib/data.js'
+import { useLessons, useMonthAgenda } from '../lib/data.js'
 import { MAX_DOWNLOAD_MB } from '../lib/download.js'
-import { formatDateTime, formatLongDate, parseDateKey, relativeDay, teacherName } from '../lib/format.js'
+import { dateKey, formatDateTime, formatLongDate, minutesOf, nowMinutes, parseDateKey, relativeDay, teacherName } from '../lib/format.js'
 import { subjectIcon } from '../lib/grades.js'
+import { isLongTopic, topicsForBlock } from '../lib/lessons.js'
 import { periodLabel, subjectMatches } from '../lib/schedule.js'
 import { useApi } from '../lib/useApi.js'
 import { AttachmentButton } from './Files.jsx'
@@ -63,6 +64,59 @@ function EventDetail({ item, onClose }) {
 }
 
 // ---------- lezione ----------
+/** Testo scritto dal docente: intero se breve, altrimenti accorciato con "Mostra tutto" (niente pagine infinite). */
+function TopicText({ topic, showTeacher }) {
+	const [open, setOpen] = useState(false)
+	const long = isLongTopic(topic.text)
+	return (
+		<div className="lesson-topic">
+			<p className={`lesson-topic__text${long && !open ? ' lesson-topic__text--clamped' : ''}`}>{topic.text}</p>
+			{(showTeacher || (topic.type && topic.type !== 'Lezione')) && (
+				<small className="lesson-topic__meta">
+					{[topic.type && topic.type !== 'Lezione' ? topic.type : null, showTeacher && topic.teacher ? teacherName(topic.teacher) : null].filter(Boolean).join(' • ')}
+				</small>
+			)}
+			{long && (
+				<button aria-expanded={open} className="show-more" onClick={() => setOpen((value) => !value)} type="button">
+					<Icon className={`show-more__chevron${open ? ' show-more__chevron--up' : ''}`} name="chevronDown" size={15} />
+					{open ? 'Mostra meno' : 'Mostra tutto'}
+				</button>
+			)}
+		</div>
+	)
+}
+
+/** La lezione è già iniziata? Solo allora ha senso dire che l'argomento manca. */
+function hasStarted(lesson, now = new Date()) {
+	const today = dateKey(now)
+	if (lesson.date !== today) return lesson.date < today
+	const start = minutesOf(lesson.inizio)
+	return start == null || nowMinutes(now) >= start
+}
+
+function LessonTopics({ lesson }) {
+	const today = dateKey(new Date())
+	// le righe del registro (altre scuole) hanno già gli argomenti; per l'orario del Galilei si chiede il registro
+	// del giorno (stessa cache della Home), mai per i giorni futuri
+	const register = useLessons(!lesson.topics && lesson.date && lesson.date <= today ? lesson.date : null)
+	const topics = lesson.topics ?? (register.data ? topicsForBlock(register.data, lesson) : [])
+	const started = hasStarted(lesson)
+
+	if (!started || lesson.cancelled) return null
+	if (register.loading) return <Skeleton height={18} lines={2} />
+	if (!topics.length) {
+		if (register.error) return null
+		return <p className="detail-hint lesson-topic__empty">Il docente non ha ancora scritto l'argomento di questa lezione.</p>
+	}
+	const teachers = new Set(topics.map((topic) => topic.teacher).filter(Boolean))
+	return (
+		<div className="detail-section">
+			<h3>{topics.length > 1 ? 'Argomenti della lezione' : 'Argomento della lezione'}</h3>
+			{topics.map((topic) => <TopicText key={topic.text} showTeacher={teachers.size > 1} topic={topic} />)}
+		</div>
+	)
+}
+
 function LessonDetail({ lesson, onClose }) {
 	const { openDetail, openSubject } = useApp()
 	const date = parseDateKey(lesson.date) ?? new Date()
@@ -73,8 +127,9 @@ function LessonDetail({ lesson, onClose }) {
 		<Sheet kicker={periodLabel(lesson) || 'Lezione'} onClose={onClose} title={lesson.materia} tone={lesson.roomChange ? 'amber' : undefined}>
 			<div className="detail-meta">
 				<span><Icon name="calendar" size={15} />{formatLongDate(date)}</span>
-				<span><Icon name="clock" size={15} />{lesson.inizio} – {lesson.fine}</span>
+				{lesson.inizio && <span><Icon name="clock" size={15} />{lesson.inizio} – {lesson.fine}</span>}
 			</div>
+			<LessonTopics lesson={lesson} />
 			{lesson.cancelled && (
 				<StateMessage icon="alert" text="Per la classe è prevista una variazione d'orario: questa ora non si svolge." title={lesson.cancelled} />
 			)}
@@ -174,14 +229,17 @@ function ChangesDetail({ changes, onClose }) {
 
 // ---------- conferma logout ----------
 function LogoutDetail({ onClose }) {
-	const { onLogout } = useApp()
+	const { onLogout, otherAccount, user } = useApp()
 	const [leaving, setLeaving] = useState(false)
+	const current = user?.tipo ? `dall'account ${user.tipo}` : 'da questo account'
+	const next = otherAccount?.tipo ? `all'account ${otherAccount.tipo}` : "all'altro account"
 
 	return (
-		<Sheet kicker="Account" onClose={onClose} title="Vuoi uscire da Skedoo?" tone="danger">
+		<Sheet kicker="Account" onClose={onClose} title={otherAccount ? `Vuoi uscire ${current}?` : 'Vuoi uscire da Skedoo?'} tone="danger">
 			<p className="detail-text">
-				Su questo dispositivo verranno cancellati la sessione e i dati in memoria. Classe scelta, compiti completati e
-				preferenze restano salvati per il prossimo accesso.
+				{otherAccount
+					? `Esci solo ${current}: Skedoo passa ${next}, che resta collegato. Per aggiungerlo di nuovo servirà la password.`
+					: 'Su questo dispositivo verranno cancellati la sessione e i dati in memoria. Classe scelta, compiti completati e preferenze restano salvati per il prossimo accesso.'}
 			</p>
 			<div className="confirm-actions">
 				<button className="confirm-actions__cancel" disabled={leaving} onClick={onClose} type="button">Annulla</button>

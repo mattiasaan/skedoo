@@ -380,3 +380,45 @@
   color: var(--text-2);
   font-size: 13px;
 }
+
+/* ---------- argomento della lezione (registro di classe) ---------- */
+.lesson-topic {
+  display: grid;
+  gap: 8px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface-2);
+}
+
+.lesson-topic__text {
+  color: var(--text-2);
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+
+/* i "poemi" si accorciano a 7 righe: "Mostra tutto" apre il resto, la pagina non diventa infinita */
+.lesson-topic__text--clamped {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 7;
+  line-clamp: 7;
+}
+
+.lesson-topic__meta {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.lesson-topic .show-more {
+  justify-self: start;
+  min-height: 32px;
+  padding: 4px 10px;
+}
+
+.lesson-topic__empty {
+  margin-top: 16px;
+}

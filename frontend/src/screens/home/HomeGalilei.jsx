@@ -4,8 +4,9 @@ import { Icon } from '../../components/Icon.jsx'
 import { ErrorMessage, SectionHeading, Skeleton, StateMessage } from '../../components/ui.jsx'
 import { clickableProps } from '../../lib/a11y.js'
 import { useApp } from '../../lib/appContext.js'
-import { useChanges, useNow, usePersistentFlags, useSchedule } from '../../lib/data.js'
+import { useChanges, useLessons, useNow, usePersistentFlags, useSchedule } from '../../lib/data.js'
 import { addDays, classDisplayName, classLabel, dateKey, formatDuration, formatKickerDate, nowMinutes, relativeDay, schoolDisplayName, teacherShort, weekdayName } from '../../lib/format.js'
+import { topicPreview, topicsForBlock } from '../../lib/lessons.js'
 import { buildDayLessons, dayProgress, lessonStatus, periodLabel } from '../../lib/schedule.js'
 import { useToast } from '../../lib/toast.js'
 import { TasksSection } from './TasksSection.jsx'
@@ -154,6 +155,8 @@ function HomeGalilei() {
 
 	const listLessons = todayLessons.length ? todayLessons : upcomingDay?.lessons ?? []
 	const listIsToday = todayLessons.length > 0
+	// argomenti scritti dai docenti: esistono solo per le ore di oggi già iniziate
+	const register = useLessons(listIsToday ? todayKey : null)
 	const hours = listLessons.filter((lesson) => !lesson.cancelled).reduce((sum, lesson) => sum + lesson.ore.length, 0)
 	// le ore già svolte si nascondono finché ne restano altre: meno scorrimento per arrivare a quelle che servono
 	const withStatus = listLessons.map((lesson) => ({ lesson, status: lessonStatus(lesson, minutes, listIsToday) }))
@@ -193,7 +196,14 @@ function HomeGalilei() {
 										{showDone ? 'Nascondi le ore già svolte' : `Mostra ${doneCount === 1 ? "l'ora già svolta" : `le ${doneCount} ore già svolte`}`}
 									</button>
 								)}
-								{visibleLessons.map(({ lesson, status }) => <LessonRow key={lesson.id} lesson={lesson} status={status} />)}
+								{visibleLessons.map(({ lesson, status }) => (
+									<LessonRow
+										key={lesson.id}
+										lesson={lesson}
+										status={status}
+										topic={status !== 'upcoming' && !lesson.cancelled ? topicPreview(topicsForBlock(register.data, lesson)) : null}
+									/>
+								))}
 							</div>
 						) : <StateMessage icon="calendar" text="Per questa classe non ci sono lezioni in orario." title="Nessuna lezione" />)}
 					</section>

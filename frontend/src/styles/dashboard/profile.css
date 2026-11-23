@@ -53,6 +53,19 @@
   white-space: nowrap;
 }
 
+.profile-card__switch {
+  min-height: 32px;
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.profile-card__switch:hover {
+  border-color: var(--accent);
+}
+
 .profile-card__linked .status-dot {
   color: var(--accent);
 }

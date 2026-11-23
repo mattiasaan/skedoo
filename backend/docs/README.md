@@ -18,6 +18,7 @@ app/
   didactics.py   GET /didattica, GET /didattica/{contenuto} (download)
   board.py       GET /bacheca, GET /bacheca/{codice}/{id}/allegati/{numero} (download)
   downloads.py   download in streaming da ClasseViva, con limite di dimensione e di download contemporanei
+  lessons.py     GET /lezioni (registro di classe e argomenti)
   absences.py    GET /assenze
   changes.py     GET /changes, /changes/entrate-uscite, /changes/cambi-aula
   db.py          tabelle SQLAlchemy (classes, lessons)
@@ -54,7 +55,7 @@ Ogni token dura `JWT_TTL_HOURS` (7 giorni), ma il frontend lo rinnova con `POST 
 
 | Metodo | Path | Descrizione |
 |---|---|---|
-| POST | `/auth/login` | `{username, password}` → token e `utente` con dati personali e `scuola` (codice, nome, città, provincia) |
+| POST | `/auth/login` | `{username, password}` → token e `utente` con dati personali, `tipo` (`studente`/`genitore`, dal codice S…/G…; assente se non riconoscibile) e `scuola` (codice, nome, città, provincia) |
 | GET | `/auth/me` | profilo utente e scuola |
 | POST | `/auth/refresh` | nuovo token per la stessa sessione (`access_token`, `expires_in`); 401 `session_expired` dopo `SESSION_MAX_DAYS` dal login |
 | POST | `/auth/logout` | 204, chiude la sessione |
@@ -68,6 +69,7 @@ Ogni token dura `JWT_TTL_HOURS` (7 giorni), ma il frontend lo rinnova con `POST 
 | GET | `/bacheca` | circolari e comunicazioni, con allegati |
 | GET | `/bacheca/{codice}/{id}` | dettaglio di una comunicazione `{titolo, testo}` (la segna come letta su ClasseViva) |
 | GET | `/bacheca/{codice}/{id}/allegati/{numero}` | scarica un allegato (`numero` dell'elenco `allegati`) |
+| GET | `/lezioni?data=YYYY-MM-DD` | registro di classe del giorno (default oggi): lezioni firmate con l'argomento scritto dal docente |
 | GET | `/assenze?da=YYYY-MM-DD&a=YYYY-MM-DD` | assenze, ritardi e uscite con `riepilogo`; senza date restituisce l'anno |
 | GET | `/changes?classe=1A&data=YYYY-MM-DD` | modifiche della classe (tutti i giorni nel file, o solo `data`) |
 | GET | `/changes/entrate-uscite?classe=1A` | entrate e uscite della classe |
@@ -97,6 +99,13 @@ Ogni token dura `JWT_TTL_HOURS` (7 giorni), ma il frontend lo rinnova con `POST 
 {"eventi":[{"id":21,"data":"2026-10-08","tipo":"assenza","codice":"ABA0","ora":null,"giustificata":false,"motivo":null,"ore":[]}],
  "riepilogo":{"assenze":2,"ritardi":2,"uscite":1,"da_giustificare":2}}
 // tipo: assenza (ABA0) | ritardo (ABR0, ABR1) | uscita (ABU0) | altro
+
+// /lezioni
+{"data":"2026-10-06","lezioni":[
+   {"id":31,"ora":2,"durata":2,"materia":"FISICA","docente":"BIANCHI Anna","tipo":"Lezione","compresenza":false,"argomento":"Moto rettilineo"},
+   {"id":32,"ora":2,"durata":1,"materia":"SOSTEGNO","docente":"VERDI Luca","tipo":"Compresenza","compresenza":true,"argomento":null}]}
+// le lezioni compaiono solo dopo la firma; "argomento" è null se il docente non l'ha scritto, altrimenti è il testo
+// intero (spazi ripuliti, a capo mantenuti, al massimo 5000 caratteri): lo accorcia il frontend
 
 // /agenda
 {"giorni":[{"data":"2026-10-09","eventi":[
