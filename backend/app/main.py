@@ -7,7 +7,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 
-from . import agenda, auth, grades, schedules, absences, board, didactics, changes
+from . import agenda, auth, grades, schedules, absences, board, didactics, changes, lessons
 from .config import get_settings
 from .db import Base, get_engine
 from .errors import AppError, error_response, register_error_handlers
@@ -70,7 +70,7 @@ app.add_middleware(
 )
 register_error_handlers(app)
 
-for module in (auth, schedules, grades, agenda, absences, board, didactics, changes):
+for module in (auth, schedules, grades, agenda, absences, board, didactics, changes, lessons):
   app.include_router(module.router)
 
 

@@ -50,6 +50,14 @@ ABSENCES = [
   {"evtId": 24, "evtCode": "ABR1", "evtDate": "2026-10-04", "evtHPos": 1, "isJustified": True},
   {"evtId": 25, "evtCode": "ABU0", "evtDate": "2026-10-05", "evtHPos": 5, "isJustified": False},
 ]
+LESSONS = [
+  {"evtId": 31, "evtDate": "2026-10-06", "evtCode": "LSF0", "evtHPos": 2, "evtDuration": 2, "authorName": "BIANCHI Anna",
+   "subjectDesc": "FISICA", "lessonType": "Lezione", "lessonArg": "  Moto   rettilineo\r\n\r\n\r\n\r\nesercizi pag. 12  "},
+  {"evtId": 32, "evtDate": "2026-10-06", "evtCode": "LSC0", "evtHPos": 2, "evtDuration": 1, "authorName": "VERDI Luca",
+   "subjectDesc": "SOSTEGNO", "lessonType": "Compresenza", "lessonArg": ""},
+  {"evtId": 30, "evtDate": "2026-10-06", "evtCode": "LSF0", "evtHPos": 1, "evtDuration": 1, "authorName": "ROSSI Mario",
+   "subjectDesc": "MATEMATICA", "lessonType": "Lezione", "lessonArg": None},
+]
 
 
 class FakeUtente:
@@ -94,6 +102,10 @@ class FakeUtente:
   async def bacheca_leggi(self, codice, id_):
     FakeUtente.calls.append(("bacheca_leggi", codice, id_))
     return {"item": {"title": "Circolare 1", "text": "Testo"}, "reply": {"interno": "non va esposto"}}
+
+  async def lezioni_giorno(self, giorno):
+    FakeUtente.calls.append(("lezioni_giorno", giorno))
+    return LESSONS
 
   async def agenda_da_a(self, inizio, fine):
     FakeUtente.calls.append(("agenda", inizio, fine))

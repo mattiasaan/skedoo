@@ -394,6 +394,31 @@
   font-style: normal;
 }
 
+/* Argomento della lezione: seconda riga sotto materia e badge, mai più di due righe (il testo intero è nel
+   dettaglio). Senza argomento la riga resta identica; parole lunghissime o link vanno a capo. */
+.lesson-row--with-topic {
+  row-gap: 8px;
+}
+
+.lesson-row--with-topic .lesson-row__time {
+  grid-row: span 2;
+  align-self: stretch;
+  justify-content: center;
+}
+
+.lesson-row__topic {
+  display: -webkit-box;
+  grid-column: 2 / -1;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  color: var(--text-2);
+  font-size: 13px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
 .lesson-row__room-change {
   color: var(--amber);
   font-weight: 700;

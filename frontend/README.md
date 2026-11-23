@@ -27,6 +27,7 @@ src/
 │   ├── tokenRefresh.js  rinnovo del token (POST /auth/refresh) quando ha più di 12 ore
 │   ├── routes.js        schermate e sottoschermate (#voti, #profilo/assenze...)
 │   ├── schedule.js      orario del giorno: blocchi di ore, variazioni, lezione in corso
+│   ├── lessons.js       registro di classe: argomenti delle lezioni abbinati all'orario, lezioni di oggi
 │   ├── grades.js        medie, periodi, andamento, simulatore
 │   ├── agenda.js        eventi dell'agenda -> compiti / verifiche / eventi
 │   ├── format.js        date, nomi di docenti/classi/scuole, numeri
