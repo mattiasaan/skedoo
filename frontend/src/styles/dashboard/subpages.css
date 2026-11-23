@@ -135,7 +135,9 @@
 
 .day-group__title {
   display: flex;
+  min-width: 0;
   align-items: baseline;
+  overflow-wrap: anywhere;
   justify-content: space-between;
   gap: 10px;
   color: var(--text);
@@ -144,6 +146,7 @@
 }
 
 .day-group__title small {
+  flex: 0 0 auto;
   color: var(--muted);
   font-size: 12px;
   font-weight: 500;
@@ -371,14 +374,18 @@
 }
 
 /* ---------- materiali ---------- */
+/* minmax(0, 1fr): senza, i nomi lunghi dei file (su una riga) allargano la colonna oltre la pagina */
 .folder {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 8px;
 }
 
 .folder__name {
   display: flex;
+  min-width: 0;
   align-items: center;
+  overflow-wrap: anywhere;
   gap: 7px;
   color: var(--text-2);
   font-size: 13px;
@@ -386,5 +393,6 @@
 }
 
 .folder__name svg {
+  flex: 0 0 auto;
   color: var(--accent-text);
 }

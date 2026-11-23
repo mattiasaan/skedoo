@@ -239,6 +239,7 @@
 .attachment-list,
 .changes-list {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 8px;
   margin: 0;
   padding: 0;
@@ -384,6 +385,7 @@
 /* ---------- argomento della lezione (registro di classe) ---------- */
 .lesson-topic {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 8px;
   padding: 12px 14px;
   border: 1px solid var(--border);
