@@ -24,10 +24,16 @@ CLASSI_DIR = HERE / "classi"
 
 # ─── Costanti estrazione PDF ──────────────────────────────────────────────────
 
-TIME_LABELS  = ["8:10", "9:00", "9:50", "10:40", "11:45", "12:35", "13:25",
-                "14:30", "15:20", "16:10", "17:10"]
-TIME_MARKERS = ["8h10", "9h00", "9h50", "10h40", "11h45", "12h35", "13h25",
-                "14h30", "15h20", "16h10", "17h10"]
+# Etichette degli orari nel PDF -> inizio dell'ora nella griglia della scuola
+# (pause 10:40-10:55 e 16:10-16:20). Il PDF scrive "10h40" sulla riga della 4ª ora, che inizia alle 10:55.
+# Nel pomeriggio ha sia "16h10" (in fondo alla riga della 9ª ora, dove finisce) sia "16h20" (inizio della 10ª):
+# quando due etichette indicano la stessa ora vale quella più in basso, la prima è la fine dell'ora prima.
+TIME_MARKERS = {
+    "8h10": "08:10", "9h00": "09:00", "9h50": "09:50", "10h40": "10:55", "10h55": "10:55",
+    "11h45": "11:45", "12h35": "12:35", "13h25": "13:25", "14h30": "14:30", "15h20": "15:20",
+    "16h10": "16:20", "16h20": "16:20", "17h10": "17:10",
+}
+END_MARKERS = {"18h00"}  # fine dell'ultima ora: non apre una riga
 
 DAY_LABELS   = ["lunedì", "martedì", "mercoledì", "giovedì", "venerdì", "sabato"]
 DAY_PREFIXES = ["lune", "mart", "merc", "giov", "vene", "saba"]
@@ -38,23 +44,17 @@ SKIP_WORDS   = {"©", "Index", "Education", "2025", "ORARIO", "VALIDO",
 # ─── Costanti ristrutturazione ────────────────────────────────────────────────
 
 TIME_LABELS_ORDERED = [
-    "08:10", "09:00", "09:50", "10:40",
+    "08:10", "09:00", "09:50", "10:55",
     "11:45", "12:35", "13:25",
-    "14:30", "15:20", "16:10", "17:10"
+    "14:30", "15:20", "16:20", "17:10"
 ]
 
-TIME_NORMALIZE = {
-    "8:10": "08:10", "9:00": "09:00", "9:50": "09:50",
-    "10:40": "10:40", "11:45": "11:45", "12:35": "12:35", "13:25": "13:25",
-    "14:30": "14:30", "15:20": "15:20", "16:10": "16:10", "17:10": "17:10",
-}
-
 # Coppie consecutive valide per propagazione materie a 2 ore.
-# Non si propaga oltre il break pranzo (12:35 -> 14:30).
+# Si propaga oltre le pause brevi (10:40-10:55, 16:10-16:20), non oltre la pausa pranzo (12:35 -> 14:30).
 CONSECUTIVE_PAIRS = {
-    ("08:10", "09:00"), ("09:00", "09:50"), ("09:50", "10:40"),
-    ("10:40", "11:45"), ("11:45", "12:35"),
-    ("14:30", "15:20"), ("15:20", "16:10"), ("16:10", "17:10"),
+    ("08:10", "09:00"), ("09:00", "09:50"), ("09:50", "10:55"),
+    ("10:55", "11:45"), ("11:45", "12:35"),
+    ("14:30", "15:20"), ("15:20", "16:20"), ("16:20", "17:10"),
 }
 
 # Slot che nel PDF reale non vengono mai usati.
@@ -69,7 +69,7 @@ DAYS_ORDERED = [
     ("sabato",    "sabato"),
 ]
 
-AFTERNOON_SLOTS = {"14:30", "15:20", "16:10", "17:10"}
+AFTERNOON_SLOTS = {"14:30", "15:20", "16:20", "17:10"}
 
 MATERIA_SHORT = {
     "Lingua e letteratura italiana":    "Italiano",
@@ -272,11 +272,12 @@ def extract_page(page):
         col_bounds.append((dname, (prev_c + center) / 2, (center + next_c) / 2))
 
     # Righe orari
-    slot_markers = []
+    marker_tops = {}
     for w in words:
         if w['text'] in TIME_MARKERS:
-            slot_markers.append((TIME_LABELS[TIME_MARKERS.index(w['text'])], w['top']))
-    slot_markers.sort(key=lambda x: x[1])
+            label = TIME_MARKERS[w['text']]
+            marker_tops[label] = max(marker_tops.get(label, w['top']), w['top'])
+    slot_markers = sorted(marker_tops.items(), key=lambda x: x[1])
 
     slot_bounds = []
     for i, (label, ytop) in enumerate(slot_markers):
@@ -293,7 +294,7 @@ def extract_page(page):
     for w in words:
         wx, wy, wt = w['x0'], w['top'], w['text']
         if wy < first_slot_y or (footer_top is not None and wy >= footer_top) \
-                or wt in TIME_MARKERS or wt in SKIP_WORDS or wt.startswith('©'):
+                or wt in TIME_MARKERS or wt in END_MARKERS or wt in SKIP_WORDS or wt.startswith('©'):
             continue
         day_name = next((d for d, cx0, cx1 in col_bounds if cx0 <= wx < cx1), None)
         slot_label = next((l for l, sy, ey in slot_bounds if sy <= wy < ey), None)
@@ -419,12 +420,12 @@ def build_class_object(raw):
         if not raw_day:
             continue
         slots_clean = {}
-        for raw_time, norm_time in TIME_NORMALIZE.items():
-            if norm_time in NEVER_USED_SLOTS:
+        for slot in TIME_LABELS_ORDERED:
+            if slot in NEVER_USED_SLOTS:
                 continue
-            ora = normalize_ora(raw_day.get(raw_time))
+            ora = normalize_ora(raw_day.get(slot))
             if ora:
-                slots_clean[norm_time] = ora
+                slots_clean[slot] = ora
         slots_clean = fill_consecutive_slots(slots_clean)
         if slots_clean:
             # Ordina per orario crescente
