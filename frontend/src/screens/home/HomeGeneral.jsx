@@ -107,7 +107,8 @@ function GradesOverview() {
 	const subjects = useMemo(() => subjectsForTerm(grades.data, term), [grades.data, term])
 	const average = generalAverage(subjects)
 	const monthAgo = averageAt(subjects, dateKey(addDays(new Date(), -30)))
-	const delta = average != null && monthAgo != null ? average - monthAgo : null
+	// arrotondata prima di scegliere segno e freccia: -0.03 è "+0.0 →", non "-0.0 ↘"
+	const delta = average != null && monthAgo != null ? Math.round((average - monthAgo) * 10) / 10 || 0 : null
 	const last = allGrades(subjects)[0]
 	const lastTeacher = last ? subjects.find((subject) => subject.name === last.subject)?.docenti?.[0] : null
 
@@ -124,7 +125,7 @@ function GradesOverview() {
 							{formatNumber(average)}<small> / 10</small>
 						</span>
 						<span className="overview-card__footer">
-							{delta == null ? 'Nessun confronto disponibile' : `${delta >= 0 ? '+' : ''}${delta.toFixed(1)} questo mese ${delta >= 0 ? '↗' : '↘'}`}
+							{delta == null ? 'Nessun confronto disponibile' : `${delta > 0 ? '+' : ''}${delta.toFixed(1)} questo mese ${delta > 0 ? '↗' : delta < 0 ? '↘' : '→'}`}
 						</span>
 					</button>
 					<button className="overview-card" disabled={!last} onClick={() => last && openSubject(last.subject)} type="button">

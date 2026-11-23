@@ -70,6 +70,7 @@
 
 .subject-section__list {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 8px;
 }
 
@@ -81,9 +82,10 @@
   margin-top: 0;
 }
 
+/* griglia compatta: anche con 5-6 ore a settimana restano 2-3 righe, mai una colonna lunghissima */
 .subject-slots {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 118px), 1fr));
   gap: 8px;
   margin: 0;
   padding: 0;
@@ -92,6 +94,7 @@
 
 .subject-slots li {
   display: flex;
+  min-width: 0;
   flex-direction: column;
   gap: 2px;
   padding: 8px 12px;
@@ -102,6 +105,7 @@
 
 .subject-slots strong {
   font-size: 14px;
+  white-space: nowrap;
 }
 
 .subject-slots b {
@@ -112,6 +116,13 @@
 .subject-slots span {
   color: var(--muted);
   font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.subject-slots__room {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .subject-page__grid,
@@ -133,6 +144,15 @@
 
   .subject-stat strong {
     font-size: 20px;
+  }
+
+  .subject-slots {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 104px), 1fr));
+    gap: 6px;
+  }
+
+  .subject-slots li {
+    padding: 7px 10px;
   }
 }
 
