@@ -208,6 +208,27 @@ def test_absences_types_and_summary(client, auth):
   assert r["riepilogo"] == {"assenze": 2, "ritardi": 2, "uscite": 1, "da_giustificare": 2}
 
 
+def test_lessons_of_the_day_with_topics(client, auth):
+  r = client.get("/lezioni?data=2026-10-06", headers=auth)
+  assert r.status_code == 200
+  body = r.json()
+  assert body["data"] == "2026-10-06" and ("lezioni_giorno", "2026-10-06") in FakeUtente.calls
+  first, physics, support = body["lezioni"]
+  assert (first["ora"], first["materia"], first["argomento"]) == (1, "MATEMATICA", None)  # argomento non scritto
+  assert physics["durata"] == 2 and physics["argomento"] == "Moto rettilineo\n\nesercizi pag. 12"
+  assert support["compresenza"] is True and support["argomento"] is None  # dopo la lezione della stessa ora
+
+
+def test_lessons_default_today_and_long_topics(client, auth):
+  from app import lessons
+  assert client.get("/lezioni", headers=auth).status_code == 200
+  assert FakeUtente.calls[-1][0] == "lezioni_giorno"
+  long_text = lessons.clean_topic("a" * 6000)
+  assert len(long_text) == lessons.MAX_TOPIC_CHARS + 1 and long_text.endswith("…")
+  assert lessons.clean_topic("   ") is None and lessons.clean_topic(42) is None
+  assert client.get("/lezioni?data=06-10-2026", headers=auth).status_code == 422
+
+
 def test_absences_need_both_dates(client, auth):
   r = client.get("/assenze?da=2026-10-01", headers=auth)
   assert r.status_code == 422 and r.json()["code"] == "invalid_range"

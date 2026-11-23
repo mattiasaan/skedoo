@@ -118,6 +118,7 @@ export const api = {
 	grades: () => request('/grades'),
 	agenda: (da, a) => request('/agenda', { params: { da, a } }),
 	absences: () => request('/assenze'),
+	lessons: (data) => request('/lezioni', { params: { data } }),
 	didactics: () => request('/didattica'),
 	board: () => request('/bacheca'),
 	boardItem: (codice, id) => request(`/bacheca/${encodeURIComponent(codice)}/${encodeURIComponent(id)}`),
