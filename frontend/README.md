@@ -24,6 +24,7 @@ src/
 │   ├── useApi.js        cache in memoria condivisa + hook useApi(chiave, fetcher)
 │   ├── data.js          hook dei dati (useGrades, useSchedule, useAgendaRange...) e stati locali
 │   ├── session.js       localStorage: token, utente, classe e preferenze per utente
+│   ├── tokenRefresh.js  rinnovo del token (POST /auth/refresh) quando ha più di 12 ore
 │   ├── routes.js        schermate e sottoschermate (#voti, #profilo/assenze...)
 │   ├── schedule.js      orario del giorno: blocchi di ore, variazioni, lezione in corso
 │   ├── grades.js        medie, periodi, andamento, simulatore
@@ -53,6 +54,8 @@ src/
   `clearApiCache()` svuota tutto (logout, "Sincronizza").
 - **Errori.** `api.js` trasforma ogni risposta di errore in `ApiError` con `status`, `code` e un messaggio in italiano.
   Un 401 di sessione scaduta emette `skedoo:unauthorized` e `App` torna al login.
+- **Sessione.** Il token dura 7 giorni ma `App` lo rinnova all'avvio, ogni ora e quando la PWA torna in primo piano
+  (solo se ha più di 12 ore): si rifà il login solo dopo 7 giorni senza usare l'app o 90 giorni dall'accesso.
 - **Navigazione.** La schermata è nell'hash (`#home`, `#profilo/materiali`): "indietro" e refresh funzionano.
   Per aggiungere una schermata: componente in `screens/`, voce in `SCREENS` di `DashboardShell.jsx`
   e, se è una sottoschermata, in `SUBPAGES` di `lib/routes.js`.

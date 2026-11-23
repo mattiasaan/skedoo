@@ -58,6 +58,7 @@ def make_token(settings, key=None, **over):
   {"aud": "altra-app"}, {"iss": "altri"},
   {"aud": None}, {"iss": None}, {"iat": None}, {"sub": None}, {"sid": None}, {"k": None},  # claim mancanti
   {"k": "corta"}, {"k": 123},  # chiave malformata
+  {"auth": "ieri"}, {"auth": True},  # istante del login malformato
 ])
 def test_bad_token_claims_rejected(client, settings, over):
   r = client.get("/auth/me", headers={"Authorization": f"Bearer {make_token(settings, **over)}"})
@@ -83,6 +84,37 @@ def test_valid_signature_needs_a_live_session(client, settings):
   sid = next(iter(store._sessions))
   other = make_token(settings, sub="S2X", sid=sid)
   assert client.get("/auth/me", headers={"Authorization": f"Bearer {other}"}).json()["code"] == "session_expired"
+
+
+def test_refresh_stops_after_session_max_days(client, settings):
+  login(client, "S1X")
+  sid = next(iter(store._sessions))
+  now = datetime.now(timezone.utc)
+  old_login = int((now - timedelta(days=settings.session_max_days, minutes=1)).timestamp())
+  headers = {"Authorization": f"Bearer {make_token(settings, sub='S1X', sid=sid, auth=old_login)}"}
+  r = client.post("/auth/refresh", headers=headers)
+  assert r.status_code == 401 and r.json()["code"] == "session_expired"
+
+
+def test_refresh_never_goes_past_session_max_days(client, settings):
+  login(client, "S1X")
+  sid = next(iter(store._sessions))
+  # login di quasi `session_max_days` fa: il nuovo token dura solo fino a quel limite, non jwt_ttl_hours
+  now = datetime.now(timezone.utc)
+  auth_time = int((now - timedelta(days=settings.session_max_days) + timedelta(hours=1)).timestamp())
+  headers = {"Authorization": f"Bearer {make_token(settings, sub='S1X', sid=sid, auth=auth_time)}"}
+  r = client.post("/auth/refresh", headers=headers)
+  assert r.status_code == 200 and r.json()["expires_in"] <= 3600
+  claims = jwt.get_unverified_claims(r.json()["access_token"])
+  assert claims["auth"] == auth_time and claims["sid"] == sid
+
+
+def test_tokens_without_auth_claim_still_work(client, settings):
+  # token emessi prima dei rinnovi: niente claim `auth`, vale `iat`
+  login(client, "S1X")
+  sid = next(iter(store._sessions))
+  headers = {"Authorization": f"Bearer {make_token(settings, sub='S1X', sid=sid)}"}
+  assert client.post("/auth/refresh", headers=headers).status_code == 200
 
 
 # ---------- rate limit ----------

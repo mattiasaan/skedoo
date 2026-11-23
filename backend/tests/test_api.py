@@ -6,6 +6,7 @@ from datetime import date
 from app.classeviva import store
 from app.classeviva import CvSession
 from app.schedules import load_json
+from classeviva import eccezioni
 from conftest import FakeUtente, login
 
 
@@ -50,6 +51,49 @@ def test_session_lost_after_server_restart(client, auth):
   store._sessions.clear()  # come un riavvio: il frontend deve rifare il login
   r = client.get("/agenda", headers=auth)
   assert r.status_code == 401 and r.json()["code"] == "session_expired"
+
+
+def test_refresh_keeps_the_same_session(client, auth):
+  r = client.post("/auth/refresh", headers=auth)
+  body = r.json()
+  assert r.status_code == 200 and body["token_type"] == "bearer" and body["expires_in"] > 0
+  new = {"Authorization": f"Bearer {body['access_token']}"}
+  assert client.get("/grades", headers=new).status_code == 200  # la chiave della password è la stessa
+  assert client.get("/auth/me", headers=auth).status_code == 200  # il vecchio token vale fino alla scadenza
+  assert client.post("/auth/logout", headers=new).status_code == 204  # stessa sessione: il logout chiude entrambi
+  assert client.get("/auth/me", headers=auth).json()["code"] == "session_expired"
+
+
+def test_refresh_after_logout_fails(client, auth):
+  client.post("/auth/logout", headers=auth)
+  r = client.post("/auth/refresh", headers=auth)
+  assert r.status_code == 401 and r.json()["code"] == "session_expired"
+
+
+def test_session_used_without_classeviva_calls_stays_alive(client, auth, settings, monkeypatch):
+  # gli orari non chiamano ClasseViva, ma usarli deve evitare che la sessione venga eliminata come inattiva
+  session = next(iter(store._sessions.values()))
+  session.last_used -= settings.jwt_ttl_hours * 3600 + 1
+  client.get("/schedules/classes", headers=auth)
+  login(client, "ALTRO")  # ogni login elimina le sessioni inattive
+  assert client.get("/auth/me", headers=auth).status_code == 200
+
+
+def test_password_changed_on_classeviva_closes_the_session(client, auth):
+  # al ricollegamento ClasseViva rifiuta la password (cambiata dopo il login): niente errori a ripetizione
+  session = next(iter(store._sessions.values()))
+  session.utente.inizio = None
+  original = FakeUtente.voti
+
+  async def rejected(self, anno):
+    raise eccezioni.PasswordNonValida("no")
+  FakeUtente.voti = rejected
+  try:
+    r = client.get("/grades", headers=auth)
+  finally:
+    FakeUtente.voti = original
+  assert r.status_code == 401 and r.json()["code"] == "credentials_changed"
+  assert client.get("/auth/me", headers=auth).json()["code"] == "session_expired"
 
 
 # ---------- orari ----------
@@ -202,7 +246,7 @@ def test_changes_multiple_days_and_hours(client, auth, data_dir):
   assert by_id["entrate-e1"]["tipo"] == "entrata_posticipata" and by_id["entrate-e1"]["ora"] == 3
   assert by_id["entrate-e1"]["ore"] == [1, 2]
   assert by_id["aula-a1"]["ore"] == [3, 4]  # la 5ª inizia alle 11:45, quando il cambio finisce and by_id["aula-a1"]["nuova_aula"] == "AULA B108"
-  assert by_id["aula-a2"]["ore"] == [4]  # orario fuori griglia: solo le ore che si sovrappongono (4ª: 10:40-11:30)
+  assert by_id["aula-a2"]["ore"] == [4]  # orario fuori griglia: solo le ore che si sovrappongono (4ª: 10:55-11:45)
   assert by_id["pomeriggio-p1"]["tipo"] == "senza_lezioni_pomeridiane" and by_id["pomeriggio-p1"]["ora"] == 8
   assert by_id["pomeriggio-p1"]["ore"] == [8, 9, 10, 11]
   only_day = client.get("/changes?classe=1A&data=2026-11-18", headers=auth).json()
@@ -274,3 +318,18 @@ def test_session_cache_drops_expired_entries(client, auth, settings, monkeypatch
   client.get("/agenda?da=2026-10-01&a=2026-10-05", headers=auth)
   client.get("/agenda?da=2026-10-06&a=2026-10-10", headers=auth)
   assert len(session._cache) == 1  # restano solo le risposte ancora valide
+
+
+def test_grid_with_breaks():
+  from app.schedules import make_lesson
+  def hour(start):
+    l = make_lesson(start, "X", None, [], None)
+    return l.ora, l.inizio, l.fine
+  assert hour("09:50") == (3, "09:50", "10:40")
+  assert hour("10:55") == (4, "10:55", "11:45")  # dopo la pausa 10:40-10:55
+  assert hour("10:40") == (4, "10:55", "11:45")  # inizio della griglia vecchia, ancora nei dati
+  assert hour("15:20") == (9, "15:20", "16:10")
+  assert hour("16:20") == (10, "16:20", "17:10")  # dopo la pausa 16:10-16:20
+  assert hour("16:10") == (10, "16:20", "17:10")
+  assert hour("17:10") == (11, "17:10", "18:00")
+  assert hour("10:00") == (None, "10:00", "10:50")  # fuori griglia: 50 minuti
