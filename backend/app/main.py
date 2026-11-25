@@ -27,10 +27,10 @@ SECURITY_HEADERS = {
 
 @asynccontextmanager
 async def lifespan(_: FastAPI):
-  if settings.schedule_source == "db":  # se il database non risponde meglio fallire subito che a ogni richiesta
-    with Session(get_engine()) as db:
+  if settings.schedule_source == "db" or settings.push_enabled:  # orari e iscrizioni push stanno nel database
+    with Session(get_engine()) as db:  # se il database non risponde meglio fallire subito che a ogni richiesta
       db.execute(select(1))
-    Base.metadata.create_all(get_engine())  # al primo avvio crea le tabelle (vuote finché non importi gli orari)
+    Base.metadata.create_all(get_engine())  # crea solo le tabelle che mancano (vuote finché non importi gli orari)
   yield
 
 
