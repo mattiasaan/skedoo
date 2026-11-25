@@ -7,8 +7,10 @@ Così un cartellone costa una sola richiesta: il piano gratuito ha pochi messagg
 Come nella V4 il modello trascrive soltanto: interpretazione e controlli restano al codice della V4.
 
 Errori:
-  - 429 per limite al minuto, 5xx, rete: si riprova (attesa indicata da Google, al massimo max_attesa_s)
-  - 429 per quota giornaliera finita o 404 (modello non disponibile): si passa al modello successivo
+  - 429 per limite al minuto, 5xx (es. 503 "model is overloaded"), rete: si riprova sullo stesso modello
+    (attesa indicata da Google o 5s, 10s, 20s..., al massimo max_attesa_s); se non basta si passa al
+    modello successivo; se nessuno risponde GeminiUnavailable (riprovare più tardi)
+  - 429 per quota giornaliera finita o 404 (modello non disponibile): si passa subito al modello successivo
   - altro 4xx (chiave non valida, richiesta rifiutata): GeminiError subito
 """
 from __future__ import annotations
@@ -37,6 +39,10 @@ class QuotaExhausted(GeminiError):
     """Quota esaurita per tutti i modelli configurati: riprovare più tardi."""
 
 
+class GeminiUnavailable(GeminiError):
+    """Gemini sovraccarico o non raggiungibile (5xx, rete, limite al minuto) per tutti i modelli."""
+
+
 class InvalidKey(GeminiError):
     """Chiave API rifiutata da Google (400 API_KEY_INVALID, 401, 403)."""
 
@@ -49,6 +55,10 @@ class _Retry(Exception):
 
 class _NextModel(Exception):
     pass
+
+
+class _Temporary(Exception):
+    """Errore temporaneo che persiste dopo tutti i tentativi su un modello."""
 
 
 # ---------------------------------------------------------------------------
@@ -123,6 +133,7 @@ class GeminiEngine:
         self.batch = max(1, int(max_unita_per_richiesta))
         self.max_tentativi = max(1, int(max_tentativi))
         self.max_attesa = max_attesa_s
+        self.attesa_iniziale = 5.0
         self.generation_config = dict(generation_config or {})
         self._sleep = sleep
         self._log = log or (lambda m: None)
@@ -193,7 +204,7 @@ class GeminiEngine:
 
     def _generate(self, model: str, payload: dict) -> dict:
         """Una chiamata con i tentativi per gli errori temporanei."""
-        attesa = 2.0
+        attesa = self.attesa_iniziale
         for tentativo in range(1, self.max_tentativi + 1):
             try:
                 try:
@@ -204,7 +215,7 @@ class GeminiEngine:
                     raise _Retry(f"{model}: rete ({type(exc).__name__})") from None
             except _Retry as r:
                 if tentativo == self.max_tentativi:
-                    raise GeminiError(str(r)) from None
+                    raise _Temporary(str(r)) from None
                 wait = min(self.max_attesa, r.wait if r.wait is not None else attesa)
                 self._log(f"[GEMINI] {r} - nuovo tentativo tra {wait:.0f}s")
                 self._sleep(wait)
@@ -227,7 +238,7 @@ class GeminiEngine:
 
     def _leggi_blocco(self, items) -> dict:
         payload = self._payload(items)
-        ultimo = None
+        ultimo, temporanei = None, []
         for model in self.models:
             if self._esauriti.get(model, 0) > time.time():
                 continue
@@ -238,9 +249,15 @@ class GeminiEngine:
                 self._log(f"[GEMINI] {exc}: passo al modello successivo")
                 self._esauriti[model] = time.time() + 3600   # riprova tra un'ora (la quota si azzera a mezzanotte PT)
                 continue
+            except _Temporary as exc:
+                temporanei.append(str(exc))
+                self._log(f"[GEMINI] {exc}: passo al modello successivo")
+                continue
             self.model = model
             self.name = f"gemini:{model}@{self.scale}x"
             return estrai_unita(resp)
+        if temporanei:
+            raise GeminiUnavailable(f"Gemini non disponibile: {'; '.join(temporanei)}")
         raise QuotaExhausted(f"Gemini: nessun modello disponibile ({ultimo or 'quote esaurite'})")
 
     def read_batch(self, items) -> dict:
