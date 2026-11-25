@@ -2,8 +2,7 @@
 #
 # Un solo file per tutte le configurazioni: i PROFILI (COMPOSE_PROFILES in .env) scelgono cosa gira qui.
 #   backend  -> db (PostgreSQL), api (FastAPI), worker (bacheca ClasseViva -> OCR -> variazioni)
-#   ocr      -> ocr (servizio HTTP dell'OCR), ollama (modello Qwen3-VL)
-#   ocr-gemini -> ocr-gemini: lo stesso servizio OCR, ma con l'API Gemini (al posto di ocr, non insieme)
+#   ocr-gemini -> ocr-gemini: servizio HTTP dell'OCR dei cartelloni, con l'API Gemini
 #   https    -> caddy: HTTPS con certificato automatico (serve un dominio e le porte 80/443 aperte)
 #   tunnel   -> cloudflared: Cloudflare Tunnel (nessuna porta da aprire sul router)
 #
@@ -142,46 +141,14 @@ services:
     mem_limit: 256m
     depends_on: [api]
 
-  # ---------------------------------------------------------------- OCR
-  ocr:
-    <<: [*base, *locked]
-    profiles: [ocr]
-    build: ../helper/OCR/V4-AI
-    image: skedoo-ocr:latest
-    environment:
-      TZ: Europe/Rome
-      OCR_TOKEN: ${OCR_TOKEN}
-      OLLAMA_HOST: http://ollama:11434
-      OCR_MODEL: ${OCR_MODEL:-}
-    ports:
-      # tutto su un Pi: 127.0.0.1 (il worker usa la rete interna "ocr", la porta non serve fuori)
-      # OCR su un altro Pi: OCR_BIND=0.0.0.0 (o l'IP LAN / Tailscale del Pi), protetto da OCR_TOKEN
-      - "${OCR_BIND:-127.0.0.1}:${OCR_PORT:-8090}:8090"
-    networks: [ocr]
-    mem_limit: 1g
-    depends_on: [ollama]
-
-  ollama:
-    <<: *base
-    profiles: [ocr]
-    image: ollama/ollama:0.40.16  # stessa versione con cui è stato collaudato l'OCR
-    environment:
-      OLLAMA_NUM_PARALLEL: "1"
-      OLLAMA_MAX_LOADED_MODELS: "1"
-    volumes:
-      - ollama-models:/root/.ollama
-    networks: [ocr]  # nessuna porta pubblicata: lo usa solo il container ocr
-
-  # ---------------------------------------------------------------- OCR con Gemini (alternativa al profilo ocr)
-  # Stessa API del container ocr (POST /ocr, GET /health), ma legge i ritagli con l'API Gemini di
-  # Google AI Studio: niente modello locale, niente CPU al 100% sul Pi. Serve GEMINI_API_KEY.
-  # Usa il profilo ocr OPPURE ocr-gemini, non entrambi (stesso nome "ocr" in rete e stessa porta).
+  # ---------------------------------------------------------------- OCR con Gemini
+  # Servizio HTTP dell'OCR (POST /ocr, GET /health): legge i ritagli dei cartelloni con l'API Gemini di
+  # Google AI Studio, niente modello locale sul Pi. Serve GEMINI_API_KEY.
+  # (Il vecchio profilo "ocr" con Qwen3-VL su Ollama è archiviato in history/OCR/V4-AI.)
   ocr-gemini:
     <<: [*base, *locked]
     profiles: [ocr-gemini]
-    build:
-      context: ../helper/OCR          # serve anche il codice della V4 (segmentazione e validatori)
-      dockerfile: V5-Gemini/Dockerfile
+    build: ../helper/OCR/V5-Gemini
     image: skedoo-ocr-gemini:latest
     environment:
       TZ: Europe/Rome
@@ -189,6 +156,8 @@ services:
       GEMINI_API_KEY: ${GEMINI_API_KEY}
       GEMINI_MODELS: ${GEMINI_MODELS:-}
     ports:
+      # tutto su un Pi: 127.0.0.1 (il worker usa la rete interna "ocr", la porta non serve fuori)
+      # OCR su un altro Pi: OCR_BIND=0.0.0.0 (o l'IP LAN / Tailscale del Pi), protetto da OCR_TOKEN
       - "${OCR_BIND:-127.0.0.1}:${OCR_PORT:-8090}:8090"
     networks:
       ocr:
@@ -206,4 +175,3 @@ volumes:
   app-data:
   caddy-data:
   caddy-config:
-  ollama-models:

@@ -3,13 +3,14 @@
 Flusso:
   1. fetch_bacheca.py salva le comunicazioni "Comunicazioni per <giorno>" e i loro allegati
      (immagini del cartellone) in board_matches.json;
-  2. questo script passa ogni immagine all'OCR (helper/OCR/V4-AI, Qwen3-VL via Ollama);
+  2. questo script passa ogni immagine all'OCR (helper/OCR/V5-Gemini, API Gemini);
   3. tiene solo le voci abbastanza affidabili e scrive data/dati-bacheca/data.json.
 
 L'OCR gira in due modi:
   - servizio HTTP (container `ocr`, anche su un altro Raspberry): con OCR_URL impostato ogni immagine
     viene inviata a POST <OCR_URL>/ocr con il token OCR_TOKEN;
-  - processo locale (sviluppo): senza OCR_URL si lancia helper/OCR/V4-AI/main.py con OCR_PYTHON.
+  - processo locale (sviluppo): senza OCR_URL si lancia helper/OCR/V5-Gemini/main.py con OCR_PYTHON
+    (GEMINI_API_KEY e GEMINI_MODELS di backend/.env vengono passate al processo).
 I risultati sono messi in cache per contenuto: un'immagine già letta non si rilegge.
 
 Avvio dalla directory ``backend``:
@@ -19,7 +20,8 @@ Avvio dalla directory ``backend``:
 Variabili (ambiente o backend/.env):
   OCR_URL                       servizio OCR, es. http://ocr:8090 (vuoto = processo locale)
   OCR_TOKEN                     token condiviso con il servizio OCR (obbligatorio con OCR_URL)
-  OCR_DIR                      cartella dell'OCR (default: ../helper/OCR/V4-AI)
+  OCR_DIR                       cartella dell'OCR (default: ../helper/OCR/V5-Gemini)
+  GEMINI_API_KEY, GEMINI_MODELS chiave e modelli Gemini per il processo locale
   OCR_PYTHON                    interprete per l'OCR (default: quello corrente, cioè il venv del backend)
   OCR_TIMEOUT_SECONDS           tempo massimo per immagine (default 1800)
   BACHECA_OCR_MIN_AFFIDABILITA  alta (default) | media | bassa: voci meno affidabili vengono scartate
@@ -51,11 +53,12 @@ REPO_DIR = BACKEND_DIR.parent
 ENV_FILE = BACKEND_DIR / ".env"
 DEFAULT_MATCHES = BACKEND_DIR / "data" / "bacheca_fetch" / "board_matches.json"
 DEFAULT_CACHE = BACKEND_DIR / "data" / "bacheca_fetch" / "ocr"
-DEFAULT_OCR_DIR = REPO_DIR / "helper" / "OCR" / "V4-AI"
+DEFAULT_OCR_DIR = REPO_DIR / "helper" / "OCR" / "V5-Gemini"
 IMAGE_SUFFIXES = {".jpg", ".jpeg", ".png", ".bmp", ".webp", ".tif", ".tiff"}
 SCHEMA_VERSION = 2
 LEVELS = {"bassa": 0, "media": 1, "alta": 2, "verificata": 3}
 SECTIONS = ("entrate", "uscite", "senza_lezioni_pomeridiane", "cambi_aula")
+OCR_PROCESS_ENV = ("GEMINI_API_KEY", "GEMINI_MODELS")
 
 log = logging.getLogger("skedoo.ocr_changes")
 
@@ -90,6 +93,8 @@ def parse_args(argv: Sequence[str] | None, env: Mapping[str, str]) -> argparse.N
   parser.add_argument("--keep-past", action="store_true", help="non scartare i giorni già passati")
   args = parser.parse_args(argv)
   args.ocr_token = env.get("OCR_TOKEN") or ""  # solo da ambiente: sulla riga di comando sarebbe visibile in `ps`
+  # al processo locale dell'OCR: backend/.env non è nell'ambiente, quindi la chiave va passata esplicitamente
+  args.ocr_env = {name: env[name] for name in OCR_PROCESS_ENV if env.get(name)}
   return args
 
 
@@ -115,9 +120,11 @@ def write_json_atomic(path: Path, payload: Any) -> None:
   temporary.replace(path)
 
 
-def subprocess_runner(ocr_dir: Path, python: str, timeout: int) -> OcrRunner:
-  """Esegue `python main.py <immagine> --out <tmp>` nella cartella dell'OCR e restituisce il JSON prodotto."""
+def subprocess_runner(ocr_dir: Path, python: str, timeout: int, extra_env: Mapping[str, str] | None = None) -> OcrRunner:
+  """Esegue `python main.py <immagine> --out <tmp>` nella cartella dell'OCR e restituisce il JSON prodotto.
+  `extra_env` si aggiunge all'ambiente del processo (es. GEMINI_API_KEY letta da backend/.env)."""
   main_script = ocr_dir / "main.py"
+  process_env = {**os.environ, **(extra_env or {})}
   if not main_script.is_file():
     raise OcrError(f"OCR non trovato: {main_script} (imposta OCR_DIR)")
 
@@ -126,7 +133,8 @@ def subprocess_runner(ocr_dir: Path, python: str, timeout: int) -> OcrRunner:
       command = [python, str(main_script), str(image.resolve()), "--out", workdir]
       try:
         completed = subprocess.run(  # noqa: S603 - comando fisso, nessun input dall'utente
-          command, cwd=ocr_dir, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=timeout,
+          command, cwd=ocr_dir, env=process_env, capture_output=True, text=True, encoding="utf-8", errors="replace",
+          timeout=timeout,
         )
       except subprocess.TimeoutExpired as exc:
         raise OcrError(f"OCR oltre il tempo massimo ({timeout}s) per {image.name}") from exc
@@ -178,7 +186,7 @@ def http_runner(url: str, token: str, timeout: int) -> OcrRunner:
 def make_runner(args: argparse.Namespace) -> OcrRunner:
   if args.ocr_url:
     return http_runner(args.ocr_url, args.ocr_token, args.timeout)
-  return subprocess_runner(args.ocr_dir, args.ocr_python, args.timeout)
+  return subprocess_runner(args.ocr_dir, args.ocr_python, args.timeout, getattr(args, "ocr_env", None))
 
 
 def read_image(image: Path, runner: OcrRunner, cache_dir: Path) -> dict:
