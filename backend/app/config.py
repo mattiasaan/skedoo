@@ -45,6 +45,15 @@ class Settings(BaseSettings):
   cache_ttl_seconds: int = 60  # per quanto si riusa una risposta di ClasseViva (per utente)
   timezone: str = "Europe/Rome"
 
+  # --- notifiche push (Web Push con VAPID): spente finché mancano le chiavi o DATABASE_URL ---
+  # chiavi generate con `python -m scripts.generate_vapid` (base64url: pubblica 65 byte, privata 32 byte)
+  vapid_public_key: str = ""
+  vapid_private_key: str = ""
+  vapid_subject: str = ""  # contatto per i servizi push: mailto:admin@dominio.it oppure https://dominio.it
+  push_check_seconds: int = Field(60, ge=10)  # ogni quanto si cercano variazioni nuove da notificare
+  push_quiet_start: str = Field("22:00", pattern=r"^\d{2}:\d{2}$")  # di notte niente notifiche:
+  push_quiet_end: str = Field("06:30", pattern=r"^\d{2}:\d{2}$")  # quelle trovate partono alla fine del silenzio
+
   @property
   def origins(self) -> list[str]:
     return [o.strip() for o in self.cors_origins.split(",") if o.strip()]
@@ -57,11 +66,22 @@ class Settings(BaseSettings):
   def is_production(self) -> bool:
     return self.environment == "production"
 
+  @property
+  def push_enabled(self) -> bool:
+    """Le iscrizioni stanno nel database: senza DATABASE_URL o senza chiavi VAPID le notifiche push sono spente."""
+    return bool(self.vapid_public_key and self.vapid_private_key and self.database_url)
+
   @model_validator(mode="after")
   def _check_production(self):
+    problems = []
+    if bool(self.vapid_public_key) != bool(self.vapid_private_key):
+      problems.append("VAPID_PUBLIC_KEY e VAPID_PRIVATE_KEY vanno impostate insieme")
+    if self.vapid_private_key and not self.vapid_subject.startswith(("mailto:", "https://")):
+      problems.append("VAPID_SUBJECT deve essere mailto:indirizzo oppure https://sito (lo chiedono i servizi push)")
+    if problems:
+      raise ValueError("Configurazione delle notifiche push non valida:\n  - " + "\n  - ".join(problems))
     if not self.is_production:
       return self
-    problems = []
     if "jwt_secret" not in self.model_fields_set or len(self.jwt_secret) < 32:
       problems.append("JWT_SECRET deve essere impostato (almeno 32 caratteri)")
     if self.schedule_source != "db" or not self.database_url:

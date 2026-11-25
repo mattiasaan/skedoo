@@ -1,7 +1,9 @@
-"""Database degli orari (PostgreSQL): 2 tabelle, `classes` 1 ── N `lessons`. Schema in docs/db-schema.md."""
+"""Database (PostgreSQL). Orari: `classes` 1 ── N `lessons`. Notifiche push: `push_subscriptions` e `push_sent`.
+Schema in docs/db-schema.md."""
+from datetime import datetime
 from functools import lru_cache
 
-from sqlalchemy import JSON, Boolean, ForeignKey, String, UniqueConstraint, create_engine
+from sqlalchemy import JSON, Boolean, DateTime, ForeignKey, String, UniqueConstraint, create_engine
 from sqlalchemy.engine import Engine, make_url
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
@@ -36,6 +38,31 @@ class Lesson(Base):
   materia_completa: Mapped[str | None] = mapped_column(String(300))
   docenti: Mapped[list] = mapped_column(JSON, default=list)  # ["ROSSI Mario", ...]
   aula: Mapped[str | None] = mapped_column(String(200))
+
+
+class PushSubscription(Base):
+  """Un dispositivo iscritto alle notifiche push delle variazioni di una classe.
+  Solo i dati che servono a inviare: nessun username, la classe è l'unico legame con lo studente."""
+  __tablename__ = "push_subscriptions"
+
+  id: Mapped[int] = mapped_column(primary_key=True)
+  endpoint: Mapped[str] = mapped_column(String(1024), unique=True)  # URL del servizio push del browser
+  p256dh: Mapped[str] = mapped_column(String(128))  # chiave pubblica del browser (cifra il contenuto)
+  auth: Mapped[str] = mapped_column(String(64))  # segreto condiviso con il browser
+  class_id: Mapped[str] = mapped_column(String(16), index=True)  # "4A" (come in /changes?classe=)
+  created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+  last_sent_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+
+
+class PushSent(Base):
+  """Variazione già notificata a una classe: la stessa non parte due volte (riavvii, file riscritto dall'OCR).
+  `change_key` cambia anche se cambia il testo: una variazione corretta dalla bacheca si notifica di nuovo."""
+  __tablename__ = "push_sent"
+
+  class_id: Mapped[str] = mapped_column(String(16), primary_key=True)
+  change_key: Mapped[str] = mapped_column(String(64), primary_key=True)  # sha256 di id + contenuto
+  data: Mapped[str] = mapped_column(String(10), index=True)  # giorno della variazione: le righe passate si cancellano
+  sent_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
 
 
 def make_engine(url: str) -> Engine:

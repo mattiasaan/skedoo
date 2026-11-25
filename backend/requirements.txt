@@ -8,6 +8,7 @@ python-dotenv
 tzdata
 sqlalchemy>=2.0
 psycopg[binary]>=3.1
+pywebpush>=2.0  # notifiche push (Web Push con VAPID, app/push.py)
 
 opencv-python
 numpy
