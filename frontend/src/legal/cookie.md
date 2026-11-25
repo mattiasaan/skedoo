@@ -1,6 +1,6 @@
 # Cookie policy
 
-*Ultimo aggiornamento: 22 novembre 2026*
+*Ultimo aggiornamento: 25 novembre 2026*
 
 ## Skedoo non usa cookie
 
@@ -17,9 +17,14 @@ Per funzionare, l'app salva alcune informazioni nella **memoria locale del brows
 | `skedoo:ultimo-accesso` | Codice personale e nome, solo se la sessione scade da sola: li ritrovi già inseriti e ti basta la password | Fino al nuovo accesso o al logout |
 | `skedoo:class:<utente>` | La classe che hai scelto (solo ITT Galilei) | Finché non cancelli i dati del sito |
 | `skedoo:<utente>:pref-alerts` | Se gli avvisi sono attivi | Finché non cancelli i dati del sito |
+| `skedoo:<utente>:pref-push` | Se hai attivato le notifiche push su questo dispositivo | Finché non cancelli i dati del sito |
 | `skedoo:<utente>:notifications-seen` | Quali comunicazioni hai già letto | Finché non cancelli i dati del sito |
 | `skedoo:<utente>:last-sync` | Data dell'ultima sincronizzazione | Finché non cancelli i dati del sito |
 | `skedoo-accent` | Il colore dell'app che hai scelto | Finché non cancelli i dati del sito |
+
+Se attivi le notifiche push, il browser registra anche un **service worker** di Skedoo: un piccolo script che serve solo
+a mostrare le notifiche quando l'app è chiusa. Non salva dati e non traccia la navigazione. Il browser lo elimina quando
+cancelli i dati del sito.
 
 Questi dati restano sul tuo dispositivo e **non vengono letti da terze parti**. Il token viene inviato solo al server di Skedoo, insieme a ogni richiesta, per dimostrare che sei collegato.
 

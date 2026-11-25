@@ -1,6 +1,6 @@
 # Informativa sulla privacy
 
-*Ultimo aggiornamento: 22 novembre 2026*
+*Ultimo aggiornamento: 25 novembre 2026*
 
 Questa informativa spiega quali dati personali tratta Skedoo, perché, per quanto tempo e quali diritti hai. È resa ai sensi degli articoli 13 e 14 del Regolamento (UE) 2016/679 ("GDPR") e del D.Lgs. 196/2003 ("Codice privacy").
 
@@ -40,7 +40,7 @@ Quando apri una schermata, Skedoo legge da ClasseViva i dati che servono a mostr
 
 ### 2.3 Dati salvati sul tuo dispositivo
 
-Nel browser (localStorage, non cookie) Skedoo salva: il token di accesso, nome, cognome e scuola, la classe scelta e alcune preferenze (avvisi attivi, comunicazioni già lette, ultima sincronizzazione, colore dell'app). I dettagli sono nella [Cookie policy](#cookie). Questi dati restano sul tuo dispositivo e non vengono inviati a nessuno, a parte il token che accompagna ogni richiesta al server.
+Nel browser (localStorage, non cookie) Skedoo salva: il token di accesso, nome, cognome e scuola, la classe scelta e alcune preferenze (avvisi e notifiche push attivi, comunicazioni già lette, ultima sincronizzazione, colore dell'app). I dettagli sono nella [Cookie policy](#cookie). Questi dati restano sul tuo dispositivo e non vengono inviati a nessuno, a parte il token che accompagna ogni richiesta al server.
 
 ### 2.4 Dati tecnici e di sicurezza
 
@@ -55,12 +55,29 @@ Per il solo ITT "G. Galilei" di Bolzano, Skedoo mostra l'orario delle classi e l
 
 Se sei un docente e vuoi esercitare i tuoi diritti su questi dati, usa il contatto indicato al punto 1.
 
+### 2.6 Notifiche push (facoltative)
+
+Se attivi le notifiche push dal Profilo, il browser crea un'**iscrizione** per il tuo dispositivo e Skedoo la salva nel
+database insieme alla **classe** scelta. L'iscrizione è composta dall'indirizzo del servizio di notifiche del tuo browser
+e da due chiavi di cifratura. **Non contiene nome, codice ClasseViva, password né altri dati del registro**.
+
+- Le notifiche riguardano solo le variazioni d'orario della classe (entrate posticipate, uscite anticipate, cambi
+  d'aula), cioè gli stessi dati descritti al punto 2.5.
+- Le consegna il servizio di notifiche scelto dal tuo browser, non da Skedoo: Google (Chrome, Edge su Android e
+  la maggior parte dei browser Android), Mozilla (Firefox), Microsoft (Edge su Windows) o Apple (Safari). Il contenuto è
+  **cifrato per il tuo dispositivo**: questi servizi non possono leggerlo, ma vedono che una notifica viene consegnata.
+- Per non inviare due volte la stessa variazione, il server ricorda quali variazioni ha già notificato a ogni classe
+  (senza alcun riferimento alle persone) e lo cancella quando quel giorno è passato.
+- Puoi disattivarle in qualsiasi momento dal Profilo o dalle impostazioni del browser. L'iscrizione viene cancellata
+  quando le disattivi, quando esci (logout) o quando il servizio di notifiche la segnala come non più valida.
+
 ## 3. Perché trattiamo i dati e su quale base giuridica
 
 | Finalità | Base giuridica (art. 6 GDPR) |
 |---|---|
 | Accedere a ClasseViva e mostrarti i tuoi dati scolastici (punti 2.1, 2.2, 2.3) | Esecuzione del servizio che hai richiesto (art. 6.1.b) |
 | Sicurezza del servizio, prevenzione degli abusi, risoluzione di problemi tecnici (punto 2.4) | Legittimo interesse a mantenere il servizio sicuro e funzionante (art. 6.1.f) |
+| Inviarti le notifiche push che hai attivato (punto 2.6) | Esecuzione del servizio che hai richiesto (art. 6.1.b) |
 | Mostrare orari e variazioni con i nomi dei docenti (punto 2.5) | Legittimo interesse degli studenti a conoscere l'organizzazione delle lezioni (art. 6.1.f); i dati provengono da fonti già messe a disposizione dalla scuola |
 | Rispondere a richieste e difendere i propri diritti | Obblighi di legge e legittimo interesse (art. 6.1.c e 6.1.f) |
 
@@ -78,6 +95,8 @@ Skedoo **non** prende decisioni automatizzate che producano effetti giuridici su
 | Dati sul tuo dispositivo | Finché esci o cancelli i dati del sito dal browser (classe e preferenze restano anche dopo il logout, finché non li cancelli) |
 | Contatori anti-abuso | In memoria, da 1 a 60 minuti |
 | Log tecnici del server | Sovrascritti automaticamente a rotazione, e comunque non oltre 30 giorni |
+| Iscrizione alle notifiche push | Finché non le disattivi, esci (logout) o il servizio di notifiche la segnala come scaduta |
+| Variazioni già notificate (per classe) | Fino alla fine del giorno della variazione |
 | Orari e variazioni delle classi | Per l'anno scolastico in corso; le variazioni dei giorni passati vengono eliminate in automatico |
 
 ## 5. A chi vengono comunicati i dati
@@ -87,13 +106,15 @@ I dati non vengono venduti, ceduti o usati per pubblicità. Vengono trattati dal
 - **Gruppo Spaggiari Parma S.p.A. (ClasseViva)**: è il servizio da cui leggiamo i tuoi dati, con le tue credenziali. Spaggiari tratta i dati del registro per conto della tua scuola, secondo la propria informativa.
 - **GitHub, Inc. (GitHub Pages)**: ospita l'interfaccia dell'app (i file della pagina web). Riceve l'indirizzo IP e i dati tecnici di chi apre il sito. Non riceve credenziali né dati scolastici.
 - **Cloudflare, Inc.**: instrada in modo sicuro il traffico verso il nostro server (Cloudflare Tunnel) e lo protegge dagli attacchi. Il traffico, comprese le richieste di login, transita cifrato attraverso la sua rete.
+- **Servizi di notifiche push dei browser** (Google, Mozilla, Microsoft, Apple), solo se attivi le notifiche: ricevono il
+  contenuto cifrato della notifica e l'indirizzo dell'iscrizione, e la consegnano al tuo dispositivo (punto 2.6).
 - **Google LLC (Google Fonts)**: fornisce il carattere tipografico dell'app. Il browser scarica il font dai server di Google, che ricevono il tuo indirizzo IP.
 
 Il server dell'applicazione e il database si trovano in Italia, su hardware gestito direttamente dal titolare.
 
 ## 6. Trasferimenti fuori dall'Unione europea
 
-GitHub, Cloudflare e Google hanno sede negli Stati Uniti e possono trattare dati tecnici (in particolare l'indirizzo IP) anche fuori dall'UE. Le tre società aderiscono all'EU-U.S. Data Privacy Framework, riconosciuto adeguato dalla Commissione europea (decisione del 10 luglio 2023), e applicano inoltre le Clausole contrattuali standard approvate dalla Commissione.
+GitHub, Cloudflare e Google hanno sede negli Stati Uniti e possono trattare dati tecnici (in particolare l'indirizzo IP) anche fuori dall'UE. Lo stesso vale per i servizi di notifiche push dei browser (punto 2.6), che ricevono però solo contenuti cifrati. Le tre società aderiscono all'EU-U.S. Data Privacy Framework, riconosciuto adeguato dalla Commissione europea (decisione del 10 luglio 2023), e applicano inoltre le Clausole contrattuali standard approvate dalla Commissione.
 
 ## 7. Minori
 
