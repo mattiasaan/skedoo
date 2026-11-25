@@ -248,6 +248,8 @@ Thumbs.db
 ehthumbs.db
 Desktop.ini
 Icon?
+# "Icon?" (file di sistema del Mac) su Windows prende anche la cartella "icons": le icone dell'app vanno nel repo
+!frontend/public/icons/
 ._*
 
 
