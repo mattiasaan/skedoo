@@ -121,14 +121,14 @@ export function titleCase(value) {
 		.trim()
 }
 
-/** "BIANCHI ANNA" / "ROSSI Mario" -> "Prof. Bianchi Anna" */
+/** "BIANCHI ANNA" / "NERI Giulia" -> "Prof. Bianchi Anna" */
 export function teacherName(value) {
 	const clean = String(value ?? '').trim()
 	if (!clean) return ''
 	return `Prof. ${titleCase(clean)}`
 }
 
-/** Solo il cognome, per le card: "DE SANTIS Paolo" -> "Prof. De Santis", "ROSSI MARIO" -> "Prof. Moretti" */
+/** Solo il cognome, per le card: "DE SANTIS Paolo" -> "Prof. De Santis", "MORETTI ELENA" -> "Prof. Moretti" */
 export function teacherShort(value) {
 	const words = String(value ?? '').trim().split(/\s+/).filter(Boolean)
 	if (!words.length) return ''

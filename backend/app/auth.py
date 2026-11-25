@@ -5,7 +5,7 @@ import unicodedata
 from fastapi import APIRouter, Depends, Request
 from pydantic import BaseModel, Field, field_validator
 
-from .classeviva import ActiveSession, store
+from .classeviva import ActiveSession, pseudonym, store
 from .config import get_settings
 from .errors import AppError
 from .security import client_ip, create_token, current_session, limiter, rate_limit, too_many
@@ -76,7 +76,7 @@ async def login(body: LoginIn, request: Request):
   except AppError as e:
     if e.code == "invalid_credentials":
       limiter.add(f"fail:{pair}", FAILURE_WINDOW)
-      log.warning("login fallito ip=%s user=%s", ip, username)
+      log.warning("login fallito ip=%s user=%s", ip, pseudonym(username))  # mai il codice personale nei log
     raise
   limiter.reset(f"fail:{pair}")
   token, expires_in = create_token(username, session.sid, key)

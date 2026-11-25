@@ -9,6 +9,7 @@ from sqlalchemy.orm import Session
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 
 from . import agenda, auth, grades, schedules, absences, board, didactics, changes, lessons, push, push_sender
+from .classeviva import store
 from .config import get_settings
 from .db import Base, get_engine
 from .errors import AppError, error_response, register_error_handlers
@@ -18,6 +19,7 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name
 settings = get_settings()
 
 MAX_BODY_BYTES = 16 * 1024  # le richieste sono piccole (il login pesa poche decine di byte)
+JANITOR_SECONDS = 30  # ogni quanto si tolgono dalla memoria sessioni scadute e risposte di ClasseViva vecchie
 SECURITY_HEADERS = {
   "X-Content-Type-Options": "nosniff",
   "X-Frame-Options": "DENY",
@@ -26,20 +28,29 @@ SECURITY_HEADERS = {
 }
 
 
+async def janitor() -> None:
+  """Le durate promesse dall'informativa (sessioni, cache di 60 secondi) valgono anche quando nessuno usa l'app."""
+  while True:
+    await asyncio.sleep(JANITOR_SECONDS)
+    store.prune()
+
+
 @asynccontextmanager
 async def lifespan(_: FastAPI):
   if settings.schedule_source == "db" or settings.push_enabled:  # orari e iscrizioni push stanno nel database
     with Session(get_engine()) as db:  # se il database non risponde meglio fallire subito che a ogni richiesta
       db.execute(select(1))
     Base.metadata.create_all(get_engine())  # crea solo le tabelle che mancano (vuote finché non importi gli orari)
-  sender = asyncio.create_task(push_sender.run_forever()) if settings.push_enabled else None
+  tasks = [asyncio.create_task(janitor())]
+  if settings.push_enabled:
+    tasks.append(asyncio.create_task(push_sender.run_forever()))
   try:
     yield
   finally:
-    if sender:
-      sender.cancel()
+    for task in tasks:
+      task.cancel()
       with suppress(asyncio.CancelledError):
-        await sender
+        await task
 
 
 app = FastAPI(

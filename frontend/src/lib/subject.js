@@ -15,7 +15,7 @@ export function personKey(value) {
 	return normalizeText(value).split(' ').filter(Boolean).sort().join(' ')
 }
 
-/** Docenti della materia come li scrive l'orario ("ROSSI Mario"), senza progetti come "PNRR (301)". */
+/** Docenti della materia come li scrive l'orario ("BRUNI Marco"), senza progetti come "PNRR (301)". */
 export function scheduleTeachers(schedule, names) {
 	const list = (schedule?.giorni ?? []).flatMap((day) => day.lezioni
 		.filter((lesson) => matchesAny(names, lesson.materia))

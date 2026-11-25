@@ -116,12 +116,12 @@ class FakeUtente:
 
 # --- dati di prova degli orari ---
 CLASS_1A = {
-  "id": "1A", "nome": "1 A", "docente_coordinatore": "ROSSI Mario", "pomeriggio": True,
+  "id": "1A", "nome": "1 A", "docente_coordinatore": "NERI Giulia", "pomeriggio": True,
   "giorni_attivi": ["lunedi", "martedi"],
   "orario": {
     "lunedi": {
-      "08:10": {"materia": "Inglese", "materia_completa": "Lingua inglese", "docenti": ["ROSSI Mario"], "aula": "AULA B 205"},
-      "09:00": {"materia": "Matematica", "docenti": ["ROSSI Mario", "ROSSI Mario", "PNRR (301)"]},
+      "08:10": {"materia": "Inglese", "materia_completa": "Lingua inglese", "docenti": ["GIALLI Sara"], "aula": "AULA B 205"},
+      "09:00": {"materia": "Matematica", "docenti": ["BRUNI Marco", "BRUNI Marco", "PNRR (301)"]},
       "10:40": {"materia": None, "docenti": []},  # rumore dell'OCR: scartato
     },
     "martedi": {"08:10": {"materia": "Storia", "docenti": ["BIANCHI Anna"], "aula": "AULA B 107"}},

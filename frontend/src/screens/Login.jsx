@@ -156,7 +156,8 @@ function Login({ onLogin, notice: initialNotice, remembered, adding = false, cur
 				)}
 				<p className="auth-consent">
 					Accedendo accetti i <a href="#termini">Termini di servizio</a> e dichiari di aver letto l'
-					<a href="#privacy">Informativa privacy</a>. La password serve solo a collegarti a ClasseViva e non viene salvata.
+					<a href="#privacy">Informativa privacy</a>. La password serve solo a collegarti a ClasseViva: non viene mai
+					scritta su disco e, finché resti collegato, il server la tiene solo cifrata in memoria.
 				</p>
 			</form>
 		</AuthLayout>

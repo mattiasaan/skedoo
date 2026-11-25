@@ -25,6 +25,7 @@ app/
   push.py        GET /push/public-key, POST /push/subscribe, POST /push/unsubscribe
   push_sender.py task dell'API che manda le notifiche push delle variazioni nuove
   validation.py  controlli comuni sui parametri (intervalli di date)
+  school.py      orari, variazioni e push solo per gli utenti dell'ITT Galilei (403 `school_not_supported`)
   db.py          tabelle SQLAlchemy (classes, lessons, push_subscriptions, push_sent)
 scripts/import_schedules.py             importa i JSON nel database
 scripts/generate_vapid.py               genera le chiavi VAPID delle notifiche push
@@ -106,7 +107,7 @@ Ogni token dura `JWT_TTL_HOURS` (7 giorni), ma il frontend lo rinnova con `POST 
 // "docenti" arriva da ClasseViva `materie`: se non disponibile è [] e i voti arrivano comunque
 
 // /assenze
-{"eventi":[{"id":21,"data":"2026-10-08","tipo":"assenza","codice":"ABA0","ora":null,"giustificata":false,"motivo":null,"ore":[]}],
+{"eventi":[{"id":21,"data":"2026-10-08","tipo":"assenza","codice":"ABA0","ora":null,"giustificata":false,"ore":[]}],
  "riepilogo":{"assenze":2,"ritardi":2,"uscite":1,"da_giustificare":2}}
 // tipo: assenza (ABA0) | ritardo (ABR0, ABR1) | uscita (ABU0) | altro
 
@@ -131,6 +132,7 @@ Formato `{"code": "...", "message": "..."}`. Le validazioni dei parametri rispon
 | 401 | `not_authenticated`, `invalid_token` | token mancante o non valido |
 | 401 | `session_expired` | sessione chiusa/riavviata → rifare il login |
 | 401 | `invalid_credentials` | login con password errata |
+| 403 | `school_not_supported` | orari, variazioni e notifiche push solo per gli utenti dell'ITT Galilei (scuola nota e diversa) |
 | 401 | `credentials_changed` | ClasseViva rifiuta la password al ricollegamento (cambiata dopo il login): la sessione viene chiusa → rifare il login |
 | 404 | `class_not_found` | classe inesistente |
 | 422 | `invalid_class` | classe nel formato sbagliato (`/changes`, `/push/subscribe`) |

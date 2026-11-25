@@ -12,6 +12,8 @@ server. Chi copia la memoria del server trova solo password cifrate; ognuna vien
 singola chiamata a ClasseViva di quell'utente e poi tolta dall'oggetto `Utente`.
 """
 import asyncio
+import hashlib
+import hmac
 import logging
 import re
 import secrets
@@ -41,6 +43,34 @@ def translate(exc: Exception) -> AppError:
     return AppError(422, "date_out_of_range", "Data fuori dall'anno scolastico corrente")
   log.error("Errore ClasseViva: %s", exc.__class__.__name__)
   return AppError(502, "classeviva_error", "ClasseViva non ha risposto correttamente, riprova tra poco")
+
+
+def pseudonym(username: str) -> str:
+  """Per i log al posto dello username: lo stesso utente ha sempre lo stesso codice (si seguono i tentativi), ma il
+  codice personale non compare. HMAC con JWT_SECRET: senza il segreto non si risale allo username provando tutti i
+  codici possibili (S + 7 cifre + lettera sono pochi); il titolare lo ricalcola per cercare un utente nei log."""
+  digest = hmac.new(get_settings().jwt_secret.encode(), username.lower().encode(), hashlib.sha256)
+  return digest.hexdigest()[:12]
+
+
+# ---------- dati che Skedoo non tratta ----------
+ABSENCE_REASON_KEYS = ("justifReasonCode", "justifReasonDesc")
+
+
+def without_absence_reasons(raw):
+  """Il motivo di una giustificazione ("motivi di salute"...) è un dato relativo alla salute (art. 9 GDPR). Skedoo non
+  lo mostra: sparisce dalla risposta di ClasseViva prima della cache, così non resta neanche in memoria."""
+  def clean(event):
+    return {k: v for k, v in event.items() if k not in ABSENCE_REASON_KEYS} if isinstance(event, dict) else event
+  if isinstance(raw, dict) and isinstance(raw.get("events"), list):
+    return {**raw, "events": [clean(event) for event in raw["events"]]}
+  if isinstance(raw, list):
+    return [clean(event) for event in raw]
+  return raw
+
+
+# metodo di Utente -> pulizia della risposta, applicata appena arriva da ClasseViva
+CLEAN = {"assenze": without_absence_reasons, "assenze_da_a": without_absence_reasons}
 
 
 _ACCOUNT_TYPES = {"S": "studente", "G": "genitore"}
@@ -139,10 +169,16 @@ class CvSession:
       raise
     except Exception as e:
       raise self._error(e) from e
+    if method in CLEAN:
+      result = CLEAN[method](result)
     # la sessione può vivere giorni: si tengono solo le risposte ancora valide (es. tanti intervalli di agenda)
-    self._cache = {k: v for k, v in self._cache.items() if now - v[0] < ttl}
+    self.drop_expired(now, ttl)
     self._cache[cache_key] = (time.monotonic(), result)
     return result
+
+  def drop_expired(self, now: float, ttl: float) -> None:
+    """Toglie dalla memoria le risposte di ClasseViva più vecchie di `ttl` secondi."""
+    self._cache = {k: v for k, v in self._cache.items() if now - v[0] < ttl}
 
   async def connection(self, *, key: bytes | None = None, relogin: bool = False) -> Connection:
     """Login su ClasseViva se serve, poi id studente, header e cookie per una richiesta fatta da noi.
@@ -161,7 +197,7 @@ class CvSession:
     reimpostata) la sessione non può più ricollegarsi. Si chiude, e il frontend riporta al login."""
     if isinstance(exc, eccezioni.PasswordNonValida):
       store.logout(self.sid)
-      log.info("password ClasseViva cambiata, sessione chiusa user=%s", self.username)
+      log.info("password ClasseViva cambiata, sessione chiusa user=%s", pseudonym(self.username))
       return AppError(401, "credentials_changed", "La password di ClasseViva è cambiata: accedi di nuovo.")
     return translate(exc)
 
@@ -239,16 +275,11 @@ class SessionStore:
       await asyncio.to_thread(lambda: asyncio.run(utente.accedi()))
     except Exception as e:
       raise translate(e) from e
-    # elimina le sessioni inattive da più della durata del token
-    limit = get_settings().jwt_ttl_hours * 3600
-    now = time.monotonic()
     session = CvSession(username, utente)
     key = session.seal(password)
     await session.load_school(key)
+    self.prune()
     with self._lock:
-      self._sessions = {
-        k: s for k, s in self._sessions.items() if now - s.last_used < limit
-      }
       # ogni sessione tiene in memoria un client ClasseViva: login ripetuti non devono poterle accumulare senza fine
       same_user = sorted((s for s in self._sessions.values() if s.username.lower() == username.lower()),
                          key=lambda s: s.last_used)
@@ -264,6 +295,18 @@ class SessionStore:
       raise AppError(401, "session_expired", "Sessione scaduta, effettua di nuovo il login")
     s.last_used = time.monotonic()  # anche le richieste che non chiamano ClasseViva (orari, /auth/me) la tengono viva
     return s
+
+  def prune(self) -> None:
+    """Mantiene vere le durate dell'informativa: le sessioni inattive da più di JWT_TTL_HOURS spariscono dalla memoria
+    (con la loro password cifrata) e nelle altre le risposte di ClasseViva non restano oltre CACHE_TTL_SECONDS.
+    Gira a ogni login e ogni JANITOR_SECONDS (main.py), anche se nessuno usa l'app."""
+    s = get_settings()
+    now = time.monotonic()
+    with self._lock:
+      self._sessions = {k: v for k, v in self._sessions.items() if now - v.last_used < s.jwt_ttl_hours * 3600}
+      alive = list(self._sessions.values())
+    for session in alive:
+      session.drop_expired(now, s.cache_ttl_seconds)
 
   def logout(self, sid: str) -> None:
     with self._lock:

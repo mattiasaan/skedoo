@@ -2,7 +2,6 @@
   {
     "id": "1A",
     "nome": "1 A",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -15,7 +14,6 @@
   {
     "id": "1B",
     "nome": "1 B",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -28,7 +26,6 @@
   {
     "id": "1C",
     "nome": "1 C",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -41,7 +38,6 @@
   {
     "id": "1D",
     "nome": "1 D",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -54,7 +50,6 @@
   {
     "id": "1E",
     "nome": "1 E",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -67,7 +62,6 @@
   {
     "id": "1F",
     "nome": "1 F",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -80,7 +74,6 @@
   {
     "id": "1G",
     "nome": "1 G",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -93,7 +86,6 @@
   {
     "id": "1I",
     "nome": "1 I",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -106,7 +98,6 @@
   {
     "id": "1J",
     "nome": "1 J",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -119,7 +110,6 @@
   {
     "id": "1L",
     "nome": "1 L",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -132,7 +122,6 @@
   {
     "id": "1MAQ",
     "nome": "1 MAQ",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -145,7 +134,6 @@
   {
     "id": "1OD",
     "nome": "1 OD",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -158,7 +146,6 @@
   {
     "id": "1P",
     "nome": "1 P",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -171,7 +158,6 @@
   {
     "id": "2A",
     "nome": "2 A",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -184,7 +170,6 @@
   {
     "id": "2B",
     "nome": "2 B",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -197,7 +182,6 @@
   {
     "id": "2C",
     "nome": "2 C",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -210,7 +194,6 @@
   {
     "id": "2D",
     "nome": "2 D",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -223,7 +206,6 @@
   {
     "id": "2E",
     "nome": "2 E",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -236,7 +218,6 @@
   {
     "id": "2F",
     "nome": "2 F",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -249,7 +230,6 @@
   {
     "id": "2I",
     "nome": "2 I",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -262,7 +242,6 @@
   {
     "id": "2L",
     "nome": "2 L",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -275,7 +254,6 @@
   {
     "id": "2MAQ1",
     "nome": "2 MAQ1",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -288,7 +266,6 @@
   {
     "id": "2MAQ2",
     "nome": "2 MAQ2",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -301,7 +278,6 @@
   {
     "id": "2OD",
     "nome": "2 OD",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -314,7 +290,6 @@
   {
     "id": "2P",
     "nome": "2 P",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -327,7 +302,6 @@
   {
     "id": "3A",
     "nome": "3 A",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -340,7 +314,6 @@
   {
     "id": "3B",
     "nome": "3 B",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -353,7 +326,6 @@
   {
     "id": "3D",
     "nome": "3 D",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -366,7 +338,6 @@
   {
     "id": "3E",
     "nome": "3 E",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -379,7 +350,6 @@
   {
     "id": "3F",
     "nome": "3 F",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -392,7 +362,6 @@
   {
     "id": "3G",
     "nome": "3 G",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -405,7 +374,6 @@
   {
     "id": "3H",
     "nome": "3 H",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -418,7 +386,6 @@
   {
     "id": "3I",
     "nome": "3 I",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -431,7 +398,6 @@
   {
     "id": "3L",
     "nome": "3 L",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -444,7 +410,6 @@
   {
     "id": "3OD",
     "nome": "3 OD",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -457,7 +422,6 @@
   {
     "id": "3T",
     "nome": "3 T",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -470,7 +434,6 @@
   {
     "id": "4A",
     "nome": "4 A",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -483,7 +446,6 @@
   {
     "id": "4C",
     "nome": "4 C",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -496,7 +458,6 @@
   {
     "id": "4T",
     "nome": "4 T",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -509,7 +470,6 @@
   {
     "id": "4D",
     "nome": "4 D",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -522,7 +482,6 @@
   {
     "id": "4E",
     "nome": "4 E",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -535,7 +494,6 @@
   {
     "id": "4F",
     "nome": "4 F",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -548,7 +506,6 @@
   {
     "id": "4H",
     "nome": "4 H",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -561,7 +518,6 @@
   {
     "id": "4I",
     "nome": "4 I",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -574,7 +530,6 @@
   {
     "id": "4J",
     "nome": "4 J",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -587,7 +542,6 @@
   {
     "id": "4L",
     "nome": "4 L",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -600,7 +554,6 @@
   {
     "id": "4MAT",
     "nome": "4 MAT",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -613,7 +566,6 @@
   {
     "id": "4OD",
     "nome": "4 OD",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -626,7 +578,6 @@
   {
     "id": "4P",
     "nome": "4 P",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -639,7 +590,6 @@
   {
     "id": "5A",
     "nome": "5 A",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -652,7 +602,6 @@
   {
     "id": "5D",
     "nome": "5 D",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -665,7 +614,6 @@
   {
     "id": "5E",
     "nome": "5 E",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -678,7 +626,6 @@
   {
     "id": "5F",
     "nome": "5 F",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -691,7 +638,6 @@
   {
     "id": "5H",
     "nome": "5 H",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -704,7 +650,6 @@
   {
     "id": "5I",
     "nome": "5 I",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -717,7 +662,6 @@
   {
     "id": "5J",
     "nome": "5 J",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -730,7 +674,6 @@
   {
     "id": "5L",
     "nome": "5 L",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -743,7 +686,6 @@
   {
     "id": "5MAT",
     "nome": "5 MAT",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -756,7 +698,6 @@
   {
     "id": "5N",
     "nome": "5 N",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -769,7 +710,6 @@
   {
     "id": "5OD",
     "nome": "5 OD",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -782,7 +722,6 @@
   {
     "id": "5P",
     "nome": "5 P",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",
@@ -795,7 +734,6 @@
   {
     "id": "5T",
     "nome": "5 T",
-    "docente_coordinatore": "ROSSI Mario",
     "pomeriggio": true,
     "giorni_attivi": [
       "lunedi",

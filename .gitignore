@@ -354,3 +354,10 @@ orario_classi.json
 # documenti legali interni (contengono nomi e appunti del titolare): restano solo in locale
 legal/registro-trattamenti.md
 legal/procedura-data-breach.md
+legal/dpia.md
+
+# dati personali di terzi (docenti): immagini dei cartelloni della bacheca e PDF dell'orario della scuola.
+# Servono solo in locale (test dell'OCR, pdf_restructure.py): non vanno mai in un repository pubblico
+/helper/OCR/V5-Gemini/test_images/
+/history/OCR/V4-AI/test_images/
+/helper/orario_dataset/*.pdf

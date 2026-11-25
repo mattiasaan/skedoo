@@ -14,6 +14,7 @@ Per funzionare, l'app salva alcune informazioni nella **memoria locale del brows
 |---|---|---|
 | `token` | Il token che ti tiene collegato. Non contiene la password, ma la chiave che la sblocca sul server | Fino al logout; scade dopo 7 giorni senza usare l'app e comunque dopo 90 giorni dall'accesso |
 | `utente` | Nome, cognome e scuola, per mostrarli subito all'avvio | Fino al logout |
+| `skedoo:altro-account` | Solo se aggiungi un secondo account (studente e genitore): il suo token e il suo profilo, per passare da un account all'altro senza password | Fino al logout da quell'account |
 | `skedoo:ultimo-accesso` | Codice personale e nome, solo se la sessione scade da sola: li ritrovi già inseriti e ti basta la password | Fino al nuovo accesso o al logout |
 | `skedoo:class:<utente>` | La classe che hai scelto (solo ITT Galilei) | Finché non cancelli i dati del sito |
 | `skedoo:<utente>:pref-alerts` | Se gli avvisi sono attivi | Finché non cancelli i dati del sito |
@@ -30,11 +31,11 @@ Questi dati restano sul tuo dispositivo e **non vengono letti da terze parti**. 
 
 ## Servizi di terze parti
 
-L'app carica il carattere tipografico da **Google Fonts** (Google LLC). Per scaricarlo il browser si collega ai server di Google, che ricevono il tuo indirizzo IP. Google dichiara di non usare cookie per Google Fonts. Maggiori informazioni: https://developers.google.com/fonts/faq/privacy
+Nessuno: l'app non carica contenuti da altri siti. Anche il carattere tipografico (Inter) è incluso nell'app e arriva dallo stesso indirizzo della pagina.
 
 ## Come cancellare i dati
 
-- **Esci dall'app** (Profilo, poi Esci): vengono cancellati il token e i dati del profilo.
+- **Esci dall'app** (Profilo, poi Esci): vengono cancellati il token e i dati del profilo dell'account in uso. Se avevi aggiunto un secondo account, l'app passa a quello: esci anche da lì per cancellarlo.
 - Per cancellare anche classe e preferenze, elimina i dati del sito dalle impostazioni del browser (di solito: Impostazioni, Privacy, Dati dei siti). Usando la navigazione privata, tutto viene cancellato alla chiusura della finestra.
 
 Per qualsiasi domanda leggi l'[Informativa privacy](#privacy), dove trovi anche come contattarci.
