@@ -23,7 +23,9 @@ self.addEventListener('push', (event) => {
 		tag: message.tag || undefined,
 		renotify: Boolean(message.tag),
 		icon: 'icons/icon-192.png',
-		badge: 'icons/icon-192.png',
+		// Android: iconcina nella barra di stato e nel cerchio della notifica. Conta solo la trasparenza
+		// (sagoma bianca su fondo trasparente): con un'immagine piena il sistema mostra un'icona di ripiego
+		badge: 'icons/badge-96.png',
 		lang: 'it',
 		data: { url: message.url || './#home' },
 	}))

@@ -271,3 +271,28 @@ def test_message_helpers():
   assert quiet(time(23), "22:00", "06:30") and quiet(time(3), "22:00", "06:30") and not quiet(time(12), "22:00", "06:30")
   assert quiet(time(14), "13:00", "15:00") and not quiet(time(15), "13:00", "15:00")
   assert not quiet(time(3), "00:00", "00:00")  # inizio = fine: silenzio spento
+
+
+# ---------- notifica di prova (scripts/send_test_push.py) ----------
+def test_test_push_goes_to_latest_device_only(sender, engine):
+  from scripts.send_test_push import list_classes, send_test
+  first, second = FCM + "-vecchio", FCM + "-nuovo"
+  add_subscription(engine, first, "5J")
+  add_subscription(engine, second, "5J")
+  add_subscription(engine, FCM + "-altro", "4A")
+  assert send_test("5J", send=sender) == [None]
+  assert [(endpoint, title) for endpoint, title, _ in sender.messages()] == [(second, "Variazioni 5J (prova)")]
+  assert send_test("5J", everyone=True, send=sender) == [None, None]
+  assert list_classes() == [("4A", 1), ("5J", 2)]
+  with Session(engine) as db:
+    assert db.scalars(select(PushSent)).all() == []  # le variazioni vere non vengono segnate
+
+
+def test_test_push_removes_expired_device(sender, engine):
+  from scripts.send_test_push import main, send_test
+  add_subscription(engine, FCM, "5J")
+  sender.statuses = {FCM: 410}
+  assert send_test("5J", send=sender) == [410]
+  assert subscriptions(engine) == []
+  assert main(["5J"]) == 1  # nessun dispositivo rimasto
+  assert main(["5J;DROP"]) == 1
