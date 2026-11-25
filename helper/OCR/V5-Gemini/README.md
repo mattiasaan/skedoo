@@ -30,7 +30,7 @@ ENTRA/ESCE/NO LEZ. e righe dei cambi aula.
 Il piano gratuito ha limiti bassi e variabili per modello (richieste al minuto e al giorno: controllali nella
 pagina *Rate limit* di AI Studio). Per questo:
 - un cartellone = **una** richiesta (fino a `max_unita_per_richiesta` ritagli);
-- i limiti al minuto (429) vengono aspettati e ritentati;
+- i limiti al minuto (429) e i 503 di Google ("model is overloaded", frequenti sul piano gratuito) vengono ritentati (5s, 10s, 20s); se il modello resta non disponibile si passa al successivo;
 - quando la quota **giornaliera** di un modello è finita si passa al successivo di `models`;
 - il backend mette in cache i risultati: un'immagine già letta non viene più inviata.
 
@@ -58,7 +58,7 @@ risponde `starting` e `/ocr` 503.
 | 200 | JSON del cartellone |
 | 401 / 411 / 413 / 422 | token, lunghezza, dimensione, immagine non valida |
 | 502 | Gemini ha rifiutato la richiesta |
-| 503 | chiave non ancora verificata, oppure quota esaurita per tutti i modelli (`Retry-After`) |
+| 503 | chiave non ancora verificata, quota esaurita per tutti i modelli, oppure Gemini sovraccarico/irraggiungibile su tutti i modelli (`Retry-After`) |
 
 Nel deploy: profilo `ocr-gemini` in `deploy/compose.yaml` (vedi `deploy/README.md`).
 L'immagine si costruisce con contesto `helper/OCR`: `docker build -f V5-Gemini/Dockerfile helper/OCR`.

@@ -12,7 +12,7 @@ import numpy as np
 from fastapi.testclient import TestClient
 
 import service
-from gemini_ocr.engine import GeminiError, InvalidKey, QuotaExhausted
+from gemini_ocr.engine import GeminiError, GeminiUnavailable, InvalidKey, QuotaExhausted
 
 TOKEN = "x" * 40
 KEY = "chiave-segreta-di-prova"
@@ -99,6 +99,7 @@ class TestService(unittest.TestCase):
     def test_errori_di_gemini(self):
         self.ready()
         casi = ((QuotaExhausted("quota"), 503, "Quota Gemini esaurita, riprova più tardi"),
+                (GeminiUnavailable("503"), 503, "Gemini sovraccarico o non raggiungibile, riprova più tardi"),
                 (GeminiError(f"dettaglio {KEY}"), 502, "Lettura con Gemini fallita"),
                 (RuntimeError("/app/segreto"), 500, "Lettura dell'immagine fallita"))
         for exc, status, detail in casi:

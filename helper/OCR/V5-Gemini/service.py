@@ -13,7 +13,8 @@ Variabili d'ambiente:
   OCR_MAX_IMAGE_MB   dimensione massima di un'immagine (default 20)
 
 Una lettura alla volta: il piano gratuito ha pochi messaggi al minuto, le richieste in più aspettano.
-Codici di errore: 503 quota Gemini esaurita (Retry-After) o chiave in verifica, 502 errore di Gemini,
+Codici di errore: 503 quota Gemini esaurita, Gemini sovraccarico (Retry-After) o chiave in verifica,
+502 Gemini ha rifiutato la richiesta,
 500 errore interno. Il dettaglio va solo nei log del servizio.
 """
 from __future__ import annotations
@@ -33,7 +34,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
 from gemini_ocr.config import load_config, parse_models
-from gemini_ocr.engine import GeminiEngine, GeminiError, InvalidKey, QuotaExhausted
+from gemini_ocr.engine import GeminiEngine, GeminiError, GeminiUnavailable, InvalidKey, QuotaExhausted
 from gemini_ocr.pipeline import processa_array
 
 EXT = {".jpg", ".jpeg", ".png", ".bmp", ".webp", ".tif", ".tiff"}
@@ -166,6 +167,10 @@ def create_app(settings: Settings | None = None, start_engine: bool = True) -> F
             except QuotaExhausted:
                 log.warning("Quota Gemini esaurita per %s", name)
                 return _error(503, "Quota Gemini esaurita, riprova più tardi", {"Retry-After": "3600"})
+            except GeminiUnavailable as exc:
+                log.warning("Gemini non disponibile per %s: %s", name, exc)
+                return _error(503, "Gemini sovraccarico o non raggiungibile, riprova più tardi",
+                              {"Retry-After": "300"})
             except GeminiError as exc:
                 log.error("Gemini ha rifiutato la lettura di %s: %s", name, exc)
                 return _error(502, "Lettura con Gemini fallita")
