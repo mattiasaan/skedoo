@@ -29,19 +29,37 @@ fill() {  # fill NOME valore: imposta solo se vuoto
 
 fill POSTGRES_PASSWORD "$(secret)"
 fill JWT_SECRET "$(secret)"
-# chiavi VAPID delle notifiche push (P-256, base64url): la coppia si genera solo se mancano tutte e due.
-# Un .env creato prima delle notifiche non ha le righe: si aggiungono vuote
-b64url() { openssl base64 -A | tr '+/' '-_' | tr -d '='; }
+# ---------------------------------------------------------------- chiavi VAPID (notifiche push)
+# Un .env creato prima delle notifiche non ha le righe: si aggiungono vuote. Se il file non finisce con un a capo,
+# prima si va a capo (altrimenti la riga nuova finirebbe attaccata all'ultima)
+[ -z "$(tail -c1 .env)" ] || echo >> .env
+# riparazione di un .env già rovinato da una versione precedente di questo script ("ALTRO=xVAPID_PUBLIC_KEY=")
+sed -i 's/^\(..*\)\(VAPID_P[A-Z]*_KEY=\)$/\1\n\2/' .env
 for name in VAPID_PUBLIC_KEY VAPID_PRIVATE_KEY; do
   grep -q "^$name=" .env || printf '%s=\n' "$name" >> .env
 done
-if grep -q "^VAPID_PRIVATE_KEY=$" .env && grep -q "^VAPID_PUBLIC_KEY=$" .env; then
+
+b64url() { openssl base64 -A | tr '+/' '-_' | tr -d '='; }
+set_value() {  # set_value NOME valore: sostituisce il valore, qualunque fosse
+  sed -i "s|^$1=.*|$1=$2|" .env
+  echo "  $1 generato"
+}
+
+# le due chiavi valgono solo in coppia: se ne manca una si rigenerano tutte e due
+if ! grep -q "^VAPID_PRIVATE_KEY=." .env || ! grep -q "^VAPID_PUBLIC_KEY=." .env; then
   if command -v openssl >/dev/null 2>&1; then
     key=$(mktemp)
     openssl ecparam -name prime256v1 -genkey -noout -out "$key"
-    fill VAPID_PRIVATE_KEY "$(openssl ec -in "$key" -outform DER 2>/dev/null | tail -c +8 | head -c 32 | b64url)"
-    fill VAPID_PUBLIC_KEY "$(openssl ec -in "$key" -pubout -outform DER 2>/dev/null | tail -c 65 | b64url)"
+    private=$(openssl ec -in "$key" -outform DER 2>/dev/null | tail -c +8 | head -c 32 | b64url)
+    public=$(openssl ec -in "$key" -pubout -outform DER 2>/dev/null | tail -c 65 | b64url)
     rm -f "$key"
+    if [ "${#private}" -ne 43 ] || [ "${#public}" -ne 87 ]; then  # 32 e 65 byte in base64url
+      echo "Chiavi VAPID non generate (openssl: $(openssl version)). Generale con:" >&2
+      echo "  docker compose run --rm api python -m scripts.generate_vapid" >&2
+      exit 1
+    fi
+    set_value VAPID_PRIVATE_KEY "$private"
+    set_value VAPID_PUBLIC_KEY "$public"
   else
     echo "  openssl non trovato: genera le chiavi VAPID con"
     echo "    docker compose run --rm api python -m scripts.generate_vapid"
