@@ -6,10 +6,11 @@ L'invio delle variazioni nuove lo fa app/push_sender.py. Endpoint attivi solo co
 """
 from datetime import datetime, timezone
 from urllib.parse import urlsplit
+from zoneinfo import ZoneInfo
 
 from fastapi import APIRouter, Depends
 from pydantic import BaseModel, Field, field_validator
-from sqlalchemy import delete, select
+from sqlalchemy import delete, func, select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
@@ -17,6 +18,7 @@ from . import db as appdb
 from .changes import validate_class
 from .config import get_settings
 from .errors import AppError
+from .push_sender import mark_current_as_sent
 from .security import current_session
 
 
@@ -101,6 +103,13 @@ def save_subscription(db: Session, sub: Subscription, class_id: str) -> bool:
   return changed
 
 
+def _only_subscriber(db: Session, class_id: str) -> bool:
+  """Con altri dispositivi iscritti `push_sent` è già aggiornato per la classe (lo tiene aggiornato l'invio)."""
+  db.flush()
+  total = db.scalar(select(func.count()).select_from(appdb.PushSubscription).where(appdb.PushSubscription.class_id == class_id))
+  return total == 1
+
+
 @router.post("/subscribe", status_code=204)
 def subscribe(body: SubscribeIn):
   """Iscrive il dispositivo alle variazioni della classe. Si può ripetere (all'avvio, al cambio di classe):
@@ -109,7 +118,9 @@ def subscribe(body: SubscribeIn):
   for attempt in range(2):  # due richieste insieme con lo stesso endpoint: la seconda trova la riga e la aggiorna
     try:
       with _session() as db, db.begin():
-        save_subscription(db, body.subscription, class_id)
+        if save_subscription(db, body.subscription, class_id) and _only_subscriber(db, class_id):
+          # si notificano le variazioni che compaiono da ora: quelle già pubblicate sono nell'app
+          mark_current_as_sent(db, class_id, datetime.now(ZoneInfo(get_settings().timezone)).date())
       return
     except IntegrityError:
       if attempt:

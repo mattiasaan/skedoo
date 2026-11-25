@@ -1,5 +1,6 @@
+import asyncio
 import logging
-from contextlib import asynccontextmanager
+from contextlib import asynccontextmanager, suppress
 
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -7,7 +8,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 
-from . import agenda, auth, grades, schedules, absences, board, didactics, changes, lessons, push
+from . import agenda, auth, grades, schedules, absences, board, didactics, changes, lessons, push, push_sender
 from .config import get_settings
 from .db import Base, get_engine
 from .errors import AppError, error_response, register_error_handlers
@@ -31,7 +32,14 @@ async def lifespan(_: FastAPI):
     with Session(get_engine()) as db:  # se il database non risponde meglio fallire subito che a ogni richiesta
       db.execute(select(1))
     Base.metadata.create_all(get_engine())  # crea solo le tabelle che mancano (vuote finché non importi gli orari)
-  yield
+  sender = asyncio.create_task(push_sender.run_forever()) if settings.push_enabled else None
+  try:
+    yield
+  finally:
+    if sender:
+      sender.cancel()
+      with suppress(asyncio.CancelledError):
+        await sender
 
 
 app = FastAPI(
