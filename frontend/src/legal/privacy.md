@@ -51,7 +51,15 @@ Come ogni servizio online, il server riceve il tuo indirizzo IP e i dati tecnici
 
 ### 2.5 Orari delle classi e variazioni (riguarda anche i docenti)
 
-Per il solo ITT "G. Galilei" di Bolzano, Skedoo mostra l'orario delle classi e le variazioni giornaliere (entrate posticipate, uscite anticipate, cambi d'aula). Questi dati comprendono **nomi e cognomi dei docenti** e sono ricavati dall'orario pubblicato dalla scuola e dalle comunicazioni della bacheca ClasseViva, lette in automatico con un sistema di riconoscimento del testo (OCR) che gira **interamente sui nostri server**, senza servizi esterni di intelligenza artificiale.
+Per il solo ITT "G. Galilei" di Bolzano, Skedoo mostra l'orario delle classi e le variazioni giornaliere (entrate posticipate, uscite anticipate, cambi d'aula). Questi dati comprendono **nomi e cognomi dei docenti** e sono ricavati dall'orario pubblicato dalla scuola e dalle comunicazioni della bacheca ClasseViva, lette in automatico con un sistema di riconoscimento del testo (OCR).
+
+Il sistema OCR può funzionare interamente sui nostri server oppure, come avviene attualmente, appoggiandosi al servizio di intelligenza artificiale **Gemini API di Google LLC**:
+
+- l'immagine del cartellone viene prima divisa in ritagli sui nostri server, e a Google vengono inviati **solo** il titolo con la data, i riquadri delle entrate posticipate, delle uscite anticipate e dei pomeriggi senza lezione, e le righe dei cambi d'aula. Questi ritagli contengono classi, aule, orari ed eventuali note brevi scritte nei riquadri;
+- i riquadri informativi (per esempio docenti assenti, FSL, uscite e viaggi) **non vengono letti né inviati**;
+- ogni immagine viene inviata una sola volta: il risultato resta salvato sui nostri server e non viene richiesto di nuovo;
+- a Google non arriva **alcun dato degli utenti di Skedoo** (credenziali, voti, assenze, classe scelta): solo il contenuto dei cartelloni pubblicati dalla scuola in bacheca;
+- con il piano gratuito del servizio, Google può conservare i contenuti inviati e usarli per migliorare i propri prodotti, secondo i propri termini.
 
 Se sei un docente e vuoi esercitare i tuoi diritti su questi dati, usa il contatto indicato al punto 1.
 
@@ -109,12 +117,15 @@ I dati non vengono venduti, ceduti o usati per pubblicità. Vengono trattati dal
 - **Servizi di notifiche push dei browser** (Google, Mozilla, Microsoft, Apple), solo se attivi le notifiche: ricevono il
   contenuto cifrato della notifica e l'indirizzo dell'iscrizione, e la consegnano al tuo dispositivo (punto 2.6).
 - **Google LLC (Google Fonts)**: fornisce il carattere tipografico dell'app. Il browser scarica il font dai server di Google, che ricevono il tuo indirizzo IP.
+- **Google LLC (Gemini API)**: legge il testo dei ritagli dei cartelloni della bacheca per ricavare le variazioni d'orario (punto 2.5). Non riceve dati degli utenti di Skedoo.
 
 Il server dell'applicazione e il database si trovano in Italia, su hardware gestito direttamente dal titolare.
 
 ## 6. Trasferimenti fuori dall'Unione europea
 
-GitHub, Cloudflare e Google hanno sede negli Stati Uniti e possono trattare dati tecnici (in particolare l'indirizzo IP) anche fuori dall'UE. Lo stesso vale per i servizi di notifiche push dei browser (punto 2.6), che ricevono però solo contenuti cifrati. Le tre società aderiscono all'EU-U.S. Data Privacy Framework, riconosciuto adeguato dalla Commissione europea (decisione del 10 luglio 2023), e applicano inoltre le Clausole contrattuali standard approvate dalla Commissione.
+GitHub, Cloudflare e Google hanno sede negli Stati Uniti e possono trattare dati tecnici (in particolare l'indirizzo IP) anche fuori dall'UE; Google tratta fuori dall'UE anche i ritagli dei cartelloni inviati a Gemini API (punto 2.5). Le tre società aderiscono all'EU-U.S. Data Privacy Framework, riconosciuto adeguato dalla Commissione europea (decisione del 10 luglio 2023), e applicano inoltre le Clausole contrattuali standard approvate dalla Commissione.
+
+Anche i servizi di notifiche push dei browser (punto 2.6) possono trovarsi fuori dall'UE: ricevono però solo contenuti cifrati, che non possono leggere.
 
 ## 7. Minori
 
