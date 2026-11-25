@@ -2,6 +2,6 @@
 # OpenCV serve alla segmentazione ereditata dalla V4 (orario/).
 opencv-python-headless
 numpy
-fastapi>=0.110
+fastapi>=0.165.0
 uvicorn>=0.29
 h11>=0.16  # parser HTTP di uvicorn qui (senza [standard]): dalla 0.16 niente request smuggling (CVE-2025-43859)
