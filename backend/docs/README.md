@@ -1,6 +1,7 @@
 # Skedoo backend
 
-API FastAPI per la PWA: orari delle classi, voti e agenda da ClasseViva. Tutto richiede il token JWT tranne `/auth/login` e `/health`.
+API FastAPI per la PWA: orari delle classi, dati di ClasseViva (voti, agenda, lezioni, assenze, bacheca, didattica),
+variazioni d'orario lette dall'OCR e notifiche push. Tutto richiede il token JWT tranne `/auth/login` e `/health`.
 
 ## Struttura
 
@@ -21,19 +22,25 @@ app/
   lessons.py     GET /lezioni (registro di classe e argomenti)
   absences.py    GET /assenze
   changes.py     GET /changes, /changes/entrate-uscite, /changes/cambi-aula
-  db.py          tabelle SQLAlchemy (classes, lessons)
+  push.py        GET /push/public-key, POST /push/subscribe, POST /push/unsubscribe
+  push_sender.py task dell'API che manda le notifiche push delle variazioni nuove
+  validation.py  controlli comuni sui parametri (intervalli di date)
+  db.py          tabelle SQLAlchemy (classes, lessons, push_subscriptions, push_sent)
 scripts/import_schedules.py             importa i JSON nel database
+scripts/generate_vapid.py               genera le chiavi VAPID delle notifiche push
+scripts/send_test_push.py               notifica di prova ai dispositivi di una classe
+scripts/healthcheck.py                  healthcheck del container API
 scripts/bacheca_fetch/fetch_bacheca.py  recupera e filtra la bacheca ClasseViva
 scripts/bacheca_fetch/run_periodic.py   esegue il fetch della bacheca a intervalli regolari
 scripts/bacheca_fetch/ocr_changes.py    legge con l'OCR i cartelloni scaricati e scrive data/dati-bacheca/data.json
 tests/                                  python -m pytest -q tests
 docs/db-schema.md                       schema e relazioni
-README-TECHNICAL.md                     documentazione tecnica estesa
 ```
 
 ## Avvio
 
 ```bash
+# su Windows enviorment-setup.bat crea .venv e installa tutto (anche requirements-dev.txt)
 pip install -r requirements.txt
 cp .env.example .env
 uvicorn app.main:app --reload              # Swagger su /docs (solo in sviluppo)
@@ -47,7 +54,7 @@ Gli orari si leggono da `data/`: `classi_index.json` (facoltativo) e `classi/<ID
 
 ## Login e sessione
 
-`POST /auth/login` con le credenziali ClasseViva → token JWT da mandare come `Authorization: Bearer <token>`. Il token punta a una sessione tenuta in memoria dal server: se il server riparte, dopo `logout` o alla scadenza il server risponde `401 session_expired` e il frontend rifà il login con le credenziali salvate.
+`POST /auth/login` con le credenziali ClasseViva → token JWT da mandare come `Authorization: Bearer <token>`. Il token punta a una sessione tenuta in memoria dal server: se il server riparte, dopo `logout` o alla scadenza il server risponde `401 session_expired` e il frontend torna al login con username e nome già compilati: serve solo la password, che il dispositivo non conserva mai.
 
 Ogni token dura `JWT_TTL_HOURS` (7 giorni), ma il frontend lo rinnova con `POST /auth/refresh` quando l'app viene usata: si esce solo dopo 7 giorni di inattività, oppure dopo `SESSION_MAX_DAYS` (90) dal login. Il claim `auth` (istante del login) resta uguale a ogni rinnovo.
 
@@ -74,6 +81,9 @@ Ogni token dura `JWT_TTL_HOURS` (7 giorni), ma il frontend lo rinnova con `POST 
 | GET | `/changes?classe=1A&data=YYYY-MM-DD` | modifiche della classe (tutti i giorni nel file, o solo `data`) |
 | GET | `/changes/entrate-uscite?classe=1A` | entrate e uscite della classe |
 | GET | `/changes/cambi-aula?classe=1A` | cambi aula della classe |
+| GET | `/push/public-key` | `{public_key}`: chiave VAPID pubblica per creare l'iscrizione nel browser |
+| POST | `/push/subscribe` | 204; `{subscription: {endpoint, keys: {p256dh, auth}}, classe}` (stesso `endpoint` = aggiorna la classe) |
+| POST | `/push/unsubscribe` | 204; `{endpoint}` |
 | GET | `/health` | `{"status":"ok"}`, pubblico |
 
 ### Risposte
@@ -123,6 +133,7 @@ Formato `{"code": "...", "message": "..."}`. Le validazioni dei parametri rispon
 | 401 | `invalid_credentials` | login con password errata |
 | 401 | `credentials_changed` | ClasseViva rifiuta la password al ricollegamento (cambiata dopo il login): la sessione viene chiusa → rifare il login |
 | 404 | `class_not_found` | classe inesistente |
+| 422 | `invalid_class` | classe nel formato sbagliato (`/changes`, `/push/subscribe`) |
 | 413 | `payload_too_large` | body > 16 KB |
 | 422 | `validation_error` | parametri mancanti o nel formato sbagliato |
 | 422 | `invalid_range`, `range_too_large`, `invalid_parameter`, `date_out_of_range` | date di agenda e assenze |
@@ -130,6 +141,7 @@ Formato `{"code": "...", "message": "..."}`. Le validazioni dei parametri rispon
 | 502 | `classeviva_error` | ClasseViva non risponde |
 | 500 | `internal_error` | errore inatteso, dettagli solo nei log |
 | 503 | `database_unavailable`, `changes_unavailable` | DB o dati locali non disponibili |
+| 503 | `push_disabled` | notifiche push non configurate (mancano `VAPID_*` o `DATABASE_URL`) |
 
 I download possono rispondere anche `404 file_not_found`, `413 file_too_large` (oltre `MAX_DOWNLOAD_MB`),
 `429 too_many_downloads` (oltre `MAX_PARALLEL_DOWNLOADS` in corso) e `502 not_downloadable` (ClasseViva non
@@ -138,7 +150,7 @@ fornisce il contenuto come file).
 ## Sicurezza
 
 - JWT HS256 con `sub`, `sid`, `iss`, `aud`, `iat`, `exp` obbligatori.
-- Rate limit (finestra di 1 minuto, in memoria): per IP 300, per utente 60, voti/agenda 20, login 5 per (IP, username); dopo 10 password sbagliate in 15 minuti blocco temporaneo.
+- Rate limit (finestra di 1 minuto, in memoria): per IP 300, per utente 60, in più 20 sugli endpoint che chiamano ClasseViva (voti, agenda, lezioni, assenze, bacheca, didattica), login 5 per (IP, username); dopo 10 password sbagliate in 15 minuti blocco temporaneo.
 - Body max 16 KB, header di sicurezza, CORS e host espliciti, `/docs` spento in produzione.
 - Download: il file passa a pezzi da 64 KB senza stare in memoria, al massimo `MAX_DOWNLOAD_MB` (250) e
   `MAX_PARALLEL_DOWNLOADS` (2) per utente; i redirect si seguono solo in https verso `*.spaggiari.eu`.
@@ -160,7 +172,15 @@ python -m scripts.import_schedules                     # legge data/, crea le ta
 # opzioni: --data-dir PATH  --database-url URL
 ```
 
-Schema in [docs/db-schema.md](docs/db-schema.md).
+Schema in [db-schema.md](db-schema.md).
+
+## Notifiche push
+
+Attive solo con `DATABASE_URL` e le chiavi VAPID (`python -m scripts.generate_vapid`, poi `VAPID_PUBLIC_KEY`,
+`VAPID_PRIVATE_KEY` e `VAPID_SUBJECT` in `.env`); altrimenti `/push/*` risponde `503 push_disabled`.
+Il task di `app/push_sender.py` ogni `PUSH_CHECK_SECONDS` (60) rilegge `data/dati-bacheca/data.json` e manda a ogni
+classe iscritta una notifica per giorno con le variazioni nuove, tranne tra `PUSH_QUIET_START` e `PUSH_QUIET_END`
+(22:00-06:30). Prova manuale: `python -m scripts.send_test_push 5J`.
 
 ## Test
 
@@ -199,9 +219,10 @@ python -m scripts.bacheca_fetch.ocr_changes --min-affidabilita media
 ```
 
 1. per ogni comunicazione trovata prende le immagini allegate (i PDF vengono ignorati);
-2. le legge con l'OCR di `helper/OCR/V4-AI` (Qwen3-VL via Ollama) in un processo separato:
-   di default con lo stesso Python del backend (`opencv-python` e `numpy` sono in `requirements.txt`; `OCR_PYTHON`
-   per usarne un altro), Ollama deve essere avviato con il modello di `config.json`;
+2. le legge con l'OCR di `helper/OCR/V5-Gemini` (API Gemini): con `OCR_URL` le invia al servizio HTTP (nel deploy
+   il container `ocr-gemini`), altrimenti lancia `main.py` in un processo separato con lo stesso Python del backend
+   (`opencv-python` e `numpy` sono in `requirements.txt`; `OCR_PYTHON` per usarne un altro) e gli passa
+   `GEMINI_API_KEY` e `GEMINI_MODELS` di `.env`;
 3. i risultati sono in cache per contenuto (`data/bacheca_fetch/ocr/`): un'immagine già letta non si rilegge;
 4. tiene solo le voci con affidabilità almeno `BACHECA_OCR_MIN_AFFIDABILITA` (default `alta`) e la data del
    cartellone solo se affidabile o coerente con la data di pubblicazione;
@@ -221,6 +242,3 @@ python -m scripts.bacheca_fetch.ocr_changes --min-affidabilita media
 //   (entrata 15:20 -> [8], la mattina resta; uscita 11:45 -> [5,6,7], il pomeriggio resta)
 // "3C/T" sul cartellone vale sia per 3C sia per 3T
 ```
-
-
-python -m uvicorn app.main:app --reload --host 0.0.0.0

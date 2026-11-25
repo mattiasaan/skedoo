@@ -1,20 +1,22 @@
 # Estrattore orari bacheca con Gemini (V5)
 
-Stesso compito e **stesso JSON** della [V4](../V4-AI/README.md) (schema_versione 2), ma i ritagli li legge
+Stesso compito e **stesso JSON** della [V4](../../../history/OCR/V4-AI/README.md) (schema_versione 2), ma i ritagli li legge
 l'API Gemini di Google AI Studio (piano gratuito) invece di Qwen3-VL su Ollama. Sul Raspberry non gira più
 nessun modello: la CPU fa solo la segmentazione con OpenCV (pochi secondi), niente surriscaldamento.
 
 ## Come funziona
-1. **Segmentazione della V4** (`../V4-AI/orario/segment.py`): riquadri e righe del pannello CAMBIO AULA,
+1. **Segmentazione della V4** (`orario/segment.py`): riquadri e righe del pannello CAMBIO AULA,
    con gli stessi `unit_id` della V4.
 2. **Una sola richiesta a Gemini per cartellone**: tutti i ritagli insieme (`u01`, `u02`, ...), risposta JSON
    vincolata da `responseSchema`. Il modello trascrive soltanto.
 3. **Interpretazione e validatori della V4** (`parse.py`, `validazione.py`, controlli tra voci di `pipeline.py`):
    affidabilità `alta`/`media`/`bassa`, `da_verificare`, `stato`, come prima.
 
-Il codice della V4 **non è copiato**: viene importato da `../V4-AI` (o da `OCR_V4_DIR`). Regole, elenchi di
-classi/aule e griglia degli orari restano in un solo posto (`../V4-AI/config.json`, `../V4-AI/elenchi/`).
-`tests/test_pipeline.py` controlla che, a parità di testo letto, il JSON sia identico a quello della V4.
+La cartella è autosufficiente: `orario/` (segmentazione, parser, validatori), `elenchi/` e `schema/` sono una
+copia di quelli della V4, che ora è archiviata in [`history/OCR/V4-AI`](../../../history/OCR/V4-AI) e non è più usata.
+Regole, elenchi di classi/aule e griglia degli orari si modificano **qui** (`config.json`, `elenchi/`).
+`tests/test_pipeline.py` controlla che, a parità di testo letto, il JSON della pipeline Gemini sia identico a
+quello della pipeline originale della V4 (`orario/pipeline.py`).
 
 Differenze rispetto alla V4: `motore.modello` (es. `gemini-flash-latest`) e `motore.scala`; i titoli con il giorno
 abbreviato (`MER. 25 NOVEMBRE`) vengono riconosciuti; per i riquadri NO LEZ. POM. il colore non conta (la scuola li
@@ -43,7 +45,7 @@ pagina *Rate limit* di AI Studio). Per questo:
 ```
 pip install -r requirements.txt
 $env:GEMINI_API_KEY="..."            # PowerShell   (Linux: export GEMINI_API_KEY=...)
-python main.py ../V4-AI/test_images --out output
+python main.py test_images --out output
 python main.py immagine.jpg --anno 2026 --html
 python main.py immagine.jpg --modello gemini-flash-lite-latest
 ```
@@ -64,13 +66,20 @@ risponde `starting` e `/ocr` 503.
 | 503 | chiave non ancora verificata, quota esaurita per tutti i modelli, oppure Gemini sovraccarico/irraggiungibile su tutti i modelli (`Retry-After`) |
 
 Nel deploy: profilo `ocr-gemini` in `deploy/compose.yaml` (vedi `deploy/README.md`).
-L'immagine si costruisce con contesto `helper/OCR`: `docker build -f V5-Gemini/Dockerfile helper/OCR`.
+L'immagine si costruisce con contesto questa cartella: `docker build helper/OCR/V5-Gemini`.
 
 Variabili: `OCR_TOKEN`, `GEMINI_API_KEY`, `GEMINI_MODELS` (es. `gemini-flash-latest,gemini-flash-lite-latest`),
-`OCR_MAX_IMAGE_MB`, `OCR_V4_DIR`.
+`OCR_MAX_IMAGE_MB`.
 
 ## Configurazione (`config.json`)
-- `base_config`: configurazione della V4 da cui prendere griglia orari, elenchi, `leggi_note_libere`, `anno`.
+- `anno`: anno delle immagini (`null` = più vicino a oggi).
+- `orari_noti`: griglia degli orari; **fuori griglia = `bassa`**. Aggiornala se la scuola cambia orario
+  (insieme a `backend/app/changes.py`).
+- `classi_file`, `aule_file`, `aule_nominali`: elenchi ammessi; fuori elenco = `media`.
+  - `elenchi/classi.json`: elenco ufficiale delle classi: se è di un altro anno scolastico molte classi vere
+    risultano `media`, aggiornalo.
+  - `elenchi/aule.json`: elenco delle aule; aggiungi a mano quelle nuove che risultano `media` (`aula_fuori_elenco`).
+- `leggi_note_libere`: `false` = i riquadri informativi non vengono letti né inviati a Google.
 - `gemini.models`: modelli in ordine di preferenza. Gli alias `*-latest` seguono l'ultima versione di Google;
   per non avere sorprese puoi fissare una versione precisa (l'elenco è nella documentazione di Gemini).
 - `gemini.scale`: ingrandimento dei ritagli prima dell'invio (2).
@@ -82,5 +91,5 @@ Variabili: `OCR_TOKEN`, `GEMINI_API_KEY`, `GEMINI_MODELS` (es. `gemini-flash-lat
 ## Testare
 ```
 python -m unittest discover -s tests -v     # nessuna rete e nessuna chiave necessaria
-python main.py ../V4-AI/test_images         # lettura vera (serve GEMINI_API_KEY)
+python main.py test_images                  # lettura vera (serve GEMINI_API_KEY)
 ```

@@ -1,0 +1,14 @@
+# Contesto di build: questa cartella. Si manda solo ciò che serve al servizio.
+**
+!requirements.txt
+!config.json
+!main.py
+!service.py
+!gemini_ocr/**
+!orario/**
+!elenchi/*.json
+!schema/**
+**/__pycache__
+**/*.pyc
+**/.env
+**/.env.*

@@ -1,5 +1,32 @@
 {
-  "base_config": "../V4-AI/config.json",
+  "anno": null,
+  "orari_noti": [
+    "08:00",
+    "08:10",
+    "09:00",
+    "09:50",
+    "10:40",
+    "10:55",
+    "11:45",
+    "12:35",
+    "13:25",
+    "14:30",
+    "15:20",
+    "16:10",
+    "16:20",
+    "16:30",
+    "17:10"
+  ],
+  "aule_nominali": [
+    "MAGNA",
+    "CALABRONE",
+    "UDIENZE",
+    "TALVERA"
+  ],
+  "salva_ritagli": true,
+  "classi_file": "elenchi/classi.json",
+  "aule_file": "elenchi/aule.json",
+  "leggi_note_libere": false,
   "gemini": {
     "models": ["gemini-flash-latest", "gemini-flash-lite-latest"],
     "scale": 2,

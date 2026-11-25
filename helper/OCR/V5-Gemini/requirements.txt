@@ -1,5 +1,5 @@
 # OCR con Gemini (main.py e service.py). Le chiamate a Gemini usano solo la libreria standard (urllib).
-# OpenCV serve alla segmentazione della V4 (../V4-AI/orario), che questa versione riusa.
+# OpenCV serve alla segmentazione ereditata dalla V4 (orario/).
 opencv-python-headless
 numpy
 fastapi>=0.110

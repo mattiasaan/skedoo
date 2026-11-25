@@ -1,8 +1,7 @@
-"""Configurazione: quella della V4 (griglia orari, elenchi di classi e aule, ...) + la sezione "gemini"."""
-import json
+"""Configurazione: le chiavi della V4 (griglia orari, elenchi di classi e aule, ...) + la sezione "gemini"."""
 from pathlib import Path
 
-from .v4 import V4_DIR, load_v4_config
+from .v4 import load_v4_config
 
 HERE = Path(__file__).resolve().parent.parent
 
@@ -20,14 +19,14 @@ GEMINI_DEFAULTS = {
 
 
 def load_config(path=None) -> dict:
-    """config.json di questa cartella (o `path`) sopra la configurazione della V4 indicata da base_config."""
+    """config.json di questa cartella (o `path`). Le chiavi della V4 passano dal suo caricatore (default,
+    elenchi di classi e aule relativi alla cartella del file); "gemini" si completa con GEMINI_DEFAULTS."""
     p = Path(path) if path else HERE / "config.json"
-    own = json.loads(p.read_text(encoding="utf-8")) if p.is_file() else {}
-    base = own.get("base_config")
-    base_path = (p.parent / base).resolve() if base else V4_DIR / "config.json"
-    cfg = load_v4_config(str(base_path))
+    if not p.is_file():
+        raise FileNotFoundError(f"Configurazione non trovata: {p}")
+    cfg = load_v4_config(str(p))
     gemini = dict(GEMINI_DEFAULTS)
-    gemini.update(own.get("gemini") or {})
+    gemini.update(cfg.get("gemini") or {})
     if isinstance(gemini["models"], str):
         gemini["models"] = [gemini["models"]]
     cfg["gemini"] = gemini
