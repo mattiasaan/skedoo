@@ -3,5 +3,5 @@
 opencv-python-headless
 numpy
 fastapi>=0.110
-uvicorn>=0.29
+uvicorn>=0.54.0
 h11>=0.16  # parser HTTP di uvicorn qui (senza [standard]): dalla 0.16 niente request smuggling (CVE-2025-43859)
