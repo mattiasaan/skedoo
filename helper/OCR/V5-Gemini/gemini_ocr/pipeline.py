@@ -3,7 +3,8 @@
 Il JSON è quello di orario.pipeline.processa_immagine della V4 (schema_versione 2): stessi unit_id, stesse
 voci, stessi controlli. Cambiano solo il motore (`motore.modello` = modello Gemini usato) e il fatto che
 tutti i ritagli vengono letti insieme invece che uno alla volta. Unica aggiunta: i giorni abbreviati nel
-titolo (MER. 25 NOVEMBRE) vengono espansi prima del parser della V4 (espandi_giorno).
+titolo (MER. 25 NOVEMBRE) vengono espansi prima del parser della V4 (espandi_giorno), e per i riquadri
+NO LEZ. POM. il colore non conta (parse_riquadro).
 
 La costruzione delle unità ricalca il ciclo di processa_immagine della V4: se cambia lì, va aggiornata qui
 (i test di test_pipeline.py confrontano le due uscite con lo stesso testo letto).
@@ -41,6 +42,16 @@ def espandi_giorno(testo: str) -> str:
     return f"{giorni[0]} {testo[m.end():]}".strip()
 
 
+def parse_riquadro(lines, hint: str, cfg: dict):
+    """parse_box della V4, ma per NO LEZ. POM. il colore del riquadro non conta: la scuola lo stampa sia
+    bianco sia giallo, e l'intestazione "NO LEZ." non si confonde con ENTRA/ESCE. Per ENTRA/ESCE il controllo
+    del colore resta (scambiarli sposterebbe classi in entrata/uscita)."""
+    r = P.parse_box(lines, hint, cfg)
+    if r.kind == "nolez":
+        r.problems = [p for p in r.problems if not (p.startswith("colore_") and p.endswith("_incoerente_con_nolez"))]
+    return r
+
+
 def costruisci_unita(img, stem: str, cfg: dict) -> list:
     """Ritagli da leggere, con lo stesso ordine e gli stessi id della V4."""
     units, n = [], 0
@@ -72,7 +83,7 @@ def costruisci_unita(img, stem: str, cfg: dict) -> list:
             if kind == "info" and not cfg.get("leggi_note_libere", False):
                 continue    # riquadri informativi (FSL, viaggi, docenti assenti): non letti e non inviati a Google
             units.append(V4.Unit(nuovo_id("riquadro"), kind, crop,
-                                 (lambda h: (lambda ls: P.parse_box(ls, h, cfg)))(hint),
+                                 (lambda h: (lambda ls: parse_riquadro(ls, h, cfg)))(hint),
                                  meta={"tipo": "box", "hint": hint}))
     return units
 

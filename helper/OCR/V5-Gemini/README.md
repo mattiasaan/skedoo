@@ -16,7 +16,9 @@ Il codice della V4 **non è copiato**: viene importato da `../V4-AI` (o da `OCR_
 classi/aule e griglia degli orari restano in un solo posto (`../V4-AI/config.json`, `../V4-AI/elenchi/`).
 `tests/test_pipeline.py` controlla che, a parità di testo letto, il JSON sia identico a quello della V4.
 
-Differenze nel JSON rispetto alla V4: solo `motore.modello` (es. `gemini-flash-latest`) e `motore.scala`.
+Differenze rispetto alla V4: `motore.modello` (es. `gemini-flash-latest`) e `motore.scala`; i titoli con il giorno
+abbreviato (`MER. 25 NOVEMBRE`) vengono riconosciuti; per i riquadri NO LEZ. POM. il colore non conta (la scuola li
+stampa sia bianchi sia gialli), mentre per ENTRA/ESCE il controllo del colore resta.
 Un ritaglio che Gemini non restituisce diventa una voce `bassa` (`lettura_fallita`), come un errore di lettura nella V4.
 
 I riquadri informativi (FSL, viaggi, docenti assenti) con `"leggi_note_libere": false` (default della V4)
