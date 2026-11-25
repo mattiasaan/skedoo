@@ -119,6 +119,49 @@ class TestStessoJsonDellaV4(unittest.TestCase):
             self.assertTrue(voce["ritaglio"].startswith(f"{img.stem}_ritagli/"))
 
 
+class TestTitoloAbbreviato(unittest.TestCase):
+    def test_espandi_giorno(self):
+        casi = {"MER. 25 NOVEMBRE": "MERCOLEDÌ 25 NOVEMBRE", "mar 3 marzo": "MARTEDÌ 3 marzo",
+                "GIO.26 NOVEMBRE": "GIOVEDÌ 26 NOVEMBRE", "VEN 27 NOVEMBRE": "VENERDÌ 27 NOVEMBRE",
+                "SAB. 28 NOVEMBRE": "SABATO 28 NOVEMBRE", "MERC. 25 NOVEMBRE": "MERCOLEDÌ 25 NOVEMBRE",
+                "LUNEDÌ 16 NOVEMBRE": "LUNEDÌ 16 NOVEMBRE",       # già per intero: invariato
+                "LUNEDI 16 NOVEMBRE": "LUNEDI 16 NOVEMBRE",
+                "MA 3 MARZO": "MA 3 MARZO",                       # troppo corto / ambiguo: invariato
+                "25 NOVEMBRE": "25 NOVEMBRE", "": ""}
+        for testo, atteso in casi.items():
+            with self.subTest(testo=testo):
+                self.assertEqual(G.espandi_giorno(testo), atteso)
+
+    def test_titolo_abbreviato_e_affidabile(self):
+        cfg = dict(load_config(), anno=2026)
+        from gemini_ocr.v4 import parse as P
+        valuta = V4.valuta
+        t = P.parse_title(G.espandi_giorno("MER. 25 NOVEMBRE"), cfg)
+        self.assertEqual((t.giorno, t.iso), ("MERCOLEDÌ", "2026-11-25"))
+        self.assertEqual(valuta(t).affidabilita, "alta")
+        sbagliato = P.parse_title(G.espandi_giorno("GIO. 25 NOVEMBRE"), cfg)   # 25/11/2026 è mercoledì
+        self.assertEqual(valuta(sbagliato).affidabilita, "bassa")
+
+
+class TestColoreRiquadri(unittest.TestCase):
+    def setUp(self):
+        self.cfg = load_config()
+
+    def test_no_lez_di_qualsiasi_colore(self):
+        for hint in ("bianco", "giallo", "chiaro"):
+            with self.subTest(hint=hint):
+                r = G.parse_riquadro(["NO LEZ. POM.", "4 E"], hint, self.cfg)
+                self.assertEqual((r.kind, [c.classe for c in r.classi]), ("nolez", ["4E"]))
+                self.assertEqual(V4.valuta(r).affidabilita, "alta")
+
+    def test_entra_esce_col_colore_sbagliato_restano_bassa(self):
+        r = G.parse_riquadro(["ESCE ALLE 12.35", "1 D"], "giallo", self.cfg)
+        self.assertIn("colore_giallo_incoerente_con_esce", r.problems)
+        self.assertEqual(V4.valuta(r).affidabilita, "bassa")
+        r = G.parse_riquadro(["ENTRA ALLE 09.00", "1 D"], "bianco", self.cfg)
+        self.assertEqual(V4.valuta(r).affidabilita, "bassa")
+
+
 class TestConfig(unittest.TestCase):
     def test_config_della_v4_piu_gemini(self):
         cfg = load_config()

@@ -2,7 +2,9 @@
 
 Il JSON è quello di orario.pipeline.processa_immagine della V4 (schema_versione 2): stessi unit_id, stesse
 voci, stessi controlli. Cambiano solo il motore (`motore.modello` = modello Gemini usato) e il fatto che
-tutti i ritagli vengono letti insieme invece che uno alla volta.
+tutti i ritagli vengono letti insieme invece che uno alla volta. Unica aggiunta: i giorni abbreviati nel
+titolo (MER. 25 NOVEMBRE) vengono espansi prima del parser della V4 (espandi_giorno), e per i riquadri
+NO LEZ. POM. il colore non conta (parse_riquadro).
 
 La costruzione delle unità ricalca il ciclo di processa_immagine della V4: se cambia lì, va aggiornata qui
 (i test di test_pipeline.py confrontano le due uscite con lo stesso testo letto).
@@ -10,6 +12,7 @@ La costruzione delle unità ricalca il ciclo di processa_immagine della V4: se c
 from __future__ import annotations
 
 import datetime
+import re
 import time
 from pathlib import Path
 
@@ -18,6 +21,35 @@ import cv2
 from .v4 import parse as P
 from .v4 import pipeline as V4
 from .v4 import righe_pannello, ritaglia_riga, segmenta_riquadri
+
+
+_PAROLA_INIZIALE = re.compile(r"^\s*([A-Za-zÀ-ÿ']+)\.?\s*")
+
+
+def espandi_giorno(testo: str) -> str:
+    """'MER. 25 NOVEMBRE' -> 'MERCOLEDÌ 25 NOVEMBRE'. Il parser della V4 riconosce solo i giorni scritti per
+    intero; il cartellone a volte li abbrevia. Si espande solo un prefisso di almeno 3 lettere che indica un
+    solo giorno (MAR -> MARTEDÌ, MER -> MERCOLEDÌ); il controllo giorno/data della V4 resta valido."""
+    m = _PAROLA_INIZIALE.match(testo or "")
+    if not m:
+        return testo
+    parola = P.norm(m.group(1)).replace("Ì", "I").rstrip("'")
+    if len(parola) < 3:
+        return testo
+    giorni = [g for g in P.GIORNI if g.replace("Ì", "I").startswith(parola)]
+    if len(giorni) != 1 or giorni[0].replace("Ì", "I") == parola:
+        return testo
+    return f"{giorni[0]} {testo[m.end():]}".strip()
+
+
+def parse_riquadro(lines, hint: str, cfg: dict):
+    """parse_box della V4, ma per NO LEZ. POM. il colore del riquadro non conta: la scuola lo stampa sia
+    bianco sia giallo, e l'intestazione "NO LEZ." non si confonde con ENTRA/ESCE. Per ENTRA/ESCE il controllo
+    del colore resta (scambiarli sposterebbe classi in entrata/uscita)."""
+    r = P.parse_box(lines, hint, cfg)
+    if r.kind == "nolez":
+        r.problems = [p for p in r.problems if not (p.startswith("colore_") and p.endswith("_incoerente_con_nolez"))]
+    return r
 
 
 def costruisci_unita(img, stem: str, cfg: dict) -> list:
@@ -33,7 +65,8 @@ def costruisci_unita(img, stem: str, cfg: dict) -> list:
         crop = b.crop(img)
         if b.famiglia == "titolo":
             units.append(V4.Unit(nuovo_id("titolo"), "titolo", crop,
-                                 lambda ls: P.parse_title(" ".join(ls), cfg), meta={"tipo": "titolo"}))
+                                 lambda ls: P.parse_title(espandi_giorno(" ".join(ls)), cfg),
+                                 meta={"tipo": "titolo"}))
         elif b.famiglia == "cambio_aula":
             rows = righe_pannello(crop)
             for i, r in enumerate(rows):
@@ -50,7 +83,7 @@ def costruisci_unita(img, stem: str, cfg: dict) -> list:
             if kind == "info" and not cfg.get("leggi_note_libere", False):
                 continue    # riquadri informativi (FSL, viaggi, docenti assenti): non letti e non inviati a Google
             units.append(V4.Unit(nuovo_id("riquadro"), kind, crop,
-                                 (lambda h: (lambda ls: P.parse_box(ls, h, cfg)))(hint),
+                                 (lambda h: (lambda ls: parse_riquadro(ls, h, cfg)))(hint),
                                  meta={"tipo": "box", "hint": hint}))
     return units
 
