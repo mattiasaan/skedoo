@@ -143,6 +143,25 @@ class TestTitoloAbbreviato(unittest.TestCase):
         self.assertEqual(valuta(sbagliato).affidabilita, "bassa")
 
 
+class TestColoreRiquadri(unittest.TestCase):
+    def setUp(self):
+        self.cfg = load_config()
+
+    def test_no_lez_di_qualsiasi_colore(self):
+        for hint in ("bianco", "giallo", "chiaro"):
+            with self.subTest(hint=hint):
+                r = G.parse_riquadro(["NO LEZ. POM.", "4 E"], hint, self.cfg)
+                self.assertEqual((r.kind, [c.classe for c in r.classi]), ("nolez", ["4E"]))
+                self.assertEqual(V4.valuta(r).affidabilita, "alta")
+
+    def test_entra_esce_col_colore_sbagliato_restano_bassa(self):
+        r = G.parse_riquadro(["ESCE ALLE 12.35", "1 D"], "giallo", self.cfg)
+        self.assertIn("colore_giallo_incoerente_con_esce", r.problems)
+        self.assertEqual(V4.valuta(r).affidabilita, "bassa")
+        r = G.parse_riquadro(["ENTRA ALLE 09.00", "1 D"], "bianco", self.cfg)
+        self.assertEqual(V4.valuta(r).affidabilita, "bassa")
+
+
 class TestConfig(unittest.TestCase):
     def test_config_della_v4_piu_gemini(self):
         cfg = load_config()
