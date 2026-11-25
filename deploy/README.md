@@ -23,10 +23,15 @@ Tutto gira con Docker, configurato da un solo `compose.yaml` e da un file `.env`
                              └───────────┘
 ```
 
+In alternativa a `ocr` + `ollama` c'è **`ocr-gemini`** (profilo `ocr-gemini`, codice in `helper/OCR/V5-Gemini`): stessa
+API e stesso JSON, ma i ritagli li legge l'API Gemini di Google AI Studio. Il Pi fa solo la segmentazione (pochi secondi)
+invece di minuti di CPU al 100%. Vedi [OCR con Gemini](#ocr-con-gemini-profilo-ocr-gemini).
+
 | Profilo   | Container             | Dove                                         |
 |-----------|-----------------------|----------------------------------------------|
 | `backend` | `db`, `api`, `worker` | Pi del backend                               |
 | `ocr`     | `ocr`, `ollama`       | Pi dell'OCR (o lo stesso Pi)                 |
+| `ocr-gemini` | `ocr-gemini`       | al posto di `ocr`: OCR con l'API Gemini      |
 | `https`   | `caddy`               | Pi del backend, se hai porte 80/443 aperte   |
 | `tunnel`  | `cloudflared`         | Pi del backend, se usi Cloudflare Tunnel     |
 
@@ -150,6 +155,38 @@ sudo systemctl edit docker      # aggiungi:  [Unit]  After=tailscaled.service  W
 
 Per restringere ancora, nelle ACL di Tailscale permetti al Pi del backend solo la porta `8090` del Pi dell'OCR.
 
+### OCR con Gemini (profilo `ocr-gemini`)
+
+Consigliato quando l'OCR locale è troppo lento o scalda il Pi. Basta un Pi solo, anche da 2 GB.
+
+1. Crea una chiave su <https://aistudio.google.com/apikey> (piano gratuito).
+2. In `.env`:
+
+   ```ini
+   COMPOSE_PROFILES=backend,ocr-gemini,tunnel   # ocr-gemini AL POSTO di ocr, mai insieme
+   GEMINI_API_KEY=...
+   OCR_URL=http://ocr:8090                      # invariato: il container risponde anche al nome "ocr"
+   OCR_BIND=127.0.0.1
+   ```
+
+3. Se prima usavi il profilo `ocr`, togli i vecchi container: cambiare profilo non li ferma, e terrebbero occupati
+   la porta 8090 e il nome `ocr`. Poi, se vuoi, libera i ~2 GB del modello:
+
+   ```bash
+   docker compose rm -sf ocr ollama             # ferma e rimuove ocr e ollama (gli altri restano accesi)
+   docker volume rm skedoo_ollama-models        # facoltativo: cancella il modello Qwen scaricato
+   ```
+
+4. `docker compose up -d --build`
+
+Il piano gratuito ha pochi messaggi al giorno per modello: ogni cartellone costa **una** richiesta, i risultati restano
+in cache, e finita la quota del primo modello di `GEMINI_MODELS` si passa al successivo. Se le quote sono finite tutte
+il worker riprova al giro successivo. Si può usare anche con due Pi (configurazioni B e C): sul Pi dell'OCR metti
+`COMPOSE_PROFILES=ocr-gemini` e `OCR_BIND=0.0.0.0`.
+
+Sul piano gratuito Google può usare i ritagli inviati (classi, aule, orari) per migliorare i suoi prodotti: i riquadri
+informativi (docenti assenti, FSL, viaggi) non vengono letti né inviati.
+
 ## 3. Esporre l'API e pubblicare il frontend
 
 ### API: Cloudflare Tunnel (profilo `tunnel`)
@@ -214,6 +251,7 @@ Sul Pi dell'OCR:
 
 ```bash
 docker compose logs -f ocr        # al primo avvio scarica il modello (qualche minuto), poi "OCR pronto"
+docker compose logs -f ocr-gemini # con Gemini: "OCR pronto: Gemini ..." (oppure "chiave API rifiutata")
 curl http://127.0.0.1:8090/health # {"status":"ok"} quando il modello è pronto ("starting" mentre scarica)
 ```
 
@@ -253,6 +291,7 @@ Unica eccezione è `POSTGRES_PASSWORD`, che vale solo alla prima creazione del d
   se mancano `JWT_SECRET`, `CORS_ORIGINS` o `ALLOWED_HOSTS`. Restano attivi rate limit, header di sicurezza e
   documentazione spenta.
 - **OCR**: token obbligatorio (almeno 32 caratteri, confronto a tempo costante), solo immagini fino a 20 MB, una lettura
-  alla volta, nessuna documentazione. Ollama non ha porte esposte.
+  alla volta, nessuna documentazione. Ollama non ha porte esposte. Con `ocr-gemini` la chiave Gemini sta solo in quel
+  container, viaggia nell'header (mai nell'URL o nei log) e i dettagli degli errori di Google restano nei log.
 - **Container**: utente non root, filesystem in sola lettura, nessuna capability Linux, `no-new-privileges`,
   limiti di memoria, log ruotati. Le versioni delle immagini esterne sono fissate.
