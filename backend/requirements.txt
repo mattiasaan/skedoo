@@ -7,7 +7,7 @@ Classeviva.py>=1.3.0  # la 1.3 usa l'API web /rest/w1 con i cookie di sessione, 
 python-dotenv
 tzdata
 sqlalchemy>=2.0
-psycopg[binary]>=3.1
+psycopg[binary]>=3.3.9
 pywebpush>=2.0  # notifiche push (Web Push con VAPID, app/push.py)
 
 opencv-python
