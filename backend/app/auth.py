@@ -1,7 +1,9 @@
 import logging
+import re
+import unicodedata
 
 from fastapi import APIRouter, Depends, Request
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 from .classeviva import ActiveSession, store
 from .config import get_settings
@@ -14,10 +16,25 @@ router = APIRouter(prefix="/auth", tags=["Auth"])
 FAILURE_WINDOW = 15 * 60  # secondi
 
 
+USERNAME = re.compile(r"[\x21-\x7e]{1,64}")  # ASCII stampabile, senza spazi
+
+
 class LoginIn(BaseModel):
   # limiti stretti: sono input non fidato che finisce nei log e nelle richieste a ClasseViva
-  username: str = Field(min_length=1, max_length=64, pattern=r"^[^\s\x00-\x1f]+$")
+  username: str = Field(min_length=1, max_length=64)
   password: str = Field(min_length=1, max_length=256)
+
+  @field_validator("username")
+  @classmethod
+  def _one_form_per_username(cls, value: str) -> str:
+    """Un solo modo di scrivere ogni username. NFKC riporta ad ASCII le varianti "di compatibilità" (es. "Ｓ123X" a
+    tutta larghezza diventa "S123X") e il resto fuori da ASCII si rifiuta: altrimenti "Ŝ123X", "S123X" + spazio a
+    larghezza zero ecc. avrebbero ognuna i propri contatori di tentativi e di blocco, aggirabili se ClasseViva le
+    considera lo stesso account. Gli username ClasseViva sono codici (S1234567X) o indirizzi email."""
+    value = unicodedata.normalize("NFKC", value).strip()
+    if not USERNAME.fullmatch(value):
+      raise ValueError("username non valido")
+    return value
 
 
 class School(BaseModel):

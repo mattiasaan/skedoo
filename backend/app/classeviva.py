@@ -224,6 +224,9 @@ class ActiveSession:
     return await self._session.connection(key=self._key, relogin=relogin)
 
 
+MAX_SESSIONS_PER_USER = 10  # dispositivi collegati insieme: oltre, il nuovo login chiude quello usato meno di recente
+
+
 class SessionStore:
   def __init__(self):
     self._sessions: dict[str, CvSession] = {}
@@ -246,6 +249,11 @@ class SessionStore:
       self._sessions = {
         k: s for k, s in self._sessions.items() if now - s.last_used < limit
       }
+      # ogni sessione tiene in memoria un client ClasseViva: login ripetuti non devono poterle accumulare senza fine
+      same_user = sorted((s for s in self._sessions.values() if s.username.lower() == username.lower()),
+                         key=lambda s: s.last_used)
+      for old in same_user[:max(0, len(same_user) - MAX_SESSIONS_PER_USER + 1)]:
+        del self._sessions[old.sid]
       self._sessions[session.sid] = session
     return session, key
 
