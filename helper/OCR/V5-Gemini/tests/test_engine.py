@@ -11,7 +11,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import numpy as np
 
-from gemini_ocr.engine import GeminiEngine, GeminiError, InvalidKey, QuotaExhausted, estrai_unita
+from gemini_ocr.engine import (GeminiEngine, GeminiError, GeminiUnavailable, InvalidKey, QuotaExhausted,
+                               estrai_unita)
 
 KEY = "chiave-di-prova"
 
@@ -142,12 +143,26 @@ class TestGeminiEngine(unittest.TestCase):
             e.read_batch([("a", "riga", crop())])
         self.assertEqual(len(e.calls), 1)
 
-    def test_errori_del_servizio_riprova_poi_errore(self):
-        e = FakeEngine([http_error(503, {}), urllib.error.URLError("rete"), http_error(500, {})], max_tentativi=3)
-        with self.assertRaises(GeminiError) as ctx:
+    def test_modello_sovraccarico_passa_al_successivo(self):
+        overloaded = {"error": {"code": 503, "message": "The model is overloaded. Please try again later.",
+                                "status": "UNAVAILABLE"}}
+        e = FakeEngine([http_error(503, overloaded), http_error(503, overloaded), http_error(503, overloaded), eco],
+                       max_tentativi=3)
+        self.assertEqual(e.read_batch([("a", "riga", crop())]), {"a": ["testo u01"]})
+        self.assertEqual([c[1] for c in e.calls], ["models/m1:generateContent"] * 3 + ["models/m2:generateContent"])
+        self.assertEqual(e.sleeps, [5.0, 10.0])
+        self.assertEqual(e.model, "m2")
+        e.script = [eco]                                 # un 503 non esclude il modello: al giro dopo si riprova m1
+        e.read_batch([("a", "riga", crop())])
+        self.assertEqual(e.calls[-1][1], "models/m1:generateContent")
+
+    def test_errori_del_servizio_su_tutti_i_modelli(self):
+        e = FakeEngine([http_error(503, {}), urllib.error.URLError("rete"), http_error(500, {}), http_error(503, {})],
+                       max_tentativi=2)
+        with self.assertRaises(GeminiUnavailable) as ctx:
             e.read_batch([("a", "riga", crop())])
         self.assertNotIsInstance(ctx.exception, QuotaExhausted)
-        self.assertEqual(e.sleeps, [2.0, 4.0])
+        self.assertEqual(e.sleeps, [5.0, 5.0])
         self.assertNotIn(KEY, str(ctx.exception))
 
     def test_attesa_massima(self):
