@@ -1,7 +1,7 @@
 fastapi
 uvicorn[standard]
 pydantic-settings
-PyJWT>=2.10  # JWT HS256 (app/security.py). Sostituisce python-jose: CVE di alg confusion senza correzione (CVE-2026-85394)
+PyJWT>=2.15.1  # JWT HS256 (app/security.py). Sostituisce python-jose: CVE di alg confusion senza correzione (CVE-2026-85394)
 cryptography  # AES-GCM per la password in memoria (app/classeviva.py)
 Classeviva.py>=1.3.0  # la 1.3 usa l'API web /rest/w1 con i cookie di sessione, su cui si basano anche i download (app/downloads.py)
 requests>=2.32.4  # usata direttamente per i download in streaming (app/downloads.py)
