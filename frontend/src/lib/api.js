@@ -126,4 +126,8 @@ export const api = {
 		download(`/bacheca/${encodeURIComponent(codice)}/${encodeURIComponent(id)}/allegati/${encodeURIComponent(numero)}`, options),
 	material: (id, options) => download(`/didattica/${encodeURIComponent(id)}`, options),
 	changes: (classe) => request('/changes', { params: { classe } }),
+
+	pushPublicKey: () => request('/push/public-key'),
+	pushSubscribe: (subscription, classe) => request('/push/subscribe', { method: 'POST', body: { subscription, classe } }),
+	pushUnsubscribe: (endpoint) => request('/push/unsubscribe', { method: 'POST', body: { endpoint } }),
 }

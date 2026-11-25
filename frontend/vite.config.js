@@ -25,6 +25,7 @@ function contentSecurityPolicy(env) {
     "font-src https://fonts.gstatic.com",
     "img-src 'self' data:",
     `connect-src 'self' ${apiOrigin(env.VITE_API_URL)}`.trim(),
+    "worker-src 'self'", // public/sw.js (notifiche push)
     "object-src 'none'",
     "base-uri 'self'",
     "form-action 'self'",
