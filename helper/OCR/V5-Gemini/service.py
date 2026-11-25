@@ -13,6 +13,9 @@ Variabili d'ambiente:
   OCR_MAX_IMAGE_MB   dimensione massima di un'immagine (default 20)
 
 Una lettura alla volta: il piano gratuito ha pochi messaggi al minuto, le richieste in più aspettano.
+Gli ultimi risultati restano in memoria (chiave: contenuto + nome dell'immagine): se il worker richiede
+la stessa immagine, per esempio perché è stato riavviato mentre la lettura era in corso, la risposta è
+immediata e non costa un'altra richiesta a Gemini.
 Codici di errore: 503 quota Gemini esaurita, Gemini sovraccarico (Retry-After) o chiave in verifica,
 502 Gemini ha rifiutato la richiesta,
 500 errore interno. Il dettaglio va solo nei log del servizio.
@@ -20,6 +23,8 @@ Codici di errore: 503 quota Gemini esaurita, Gemini sovraccarico (Retry-After) o
 from __future__ import annotations
 
 import asyncio
+import copy
+import hashlib
 import hmac
 import logging
 import os
@@ -27,6 +32,7 @@ import re
 import threading
 import time
 import urllib.error
+from collections import OrderedDict
 from contextlib import asynccontextmanager
 from pathlib import Path
 
@@ -39,6 +45,7 @@ from gemini_ocr.pipeline import processa_array
 
 EXT = {".jpg", ".jpeg", ".png", ".bmp", ".webp", ".tif", ".tiff"}
 MIN_TOKEN_LENGTH = 32
+CACHE_SIZE = 32  # risultati tenuti in memoria (pochi KB l'uno)
 
 log = logging.getLogger("skedoo.ocr")
 
@@ -70,6 +77,19 @@ class State:
         self.engine: GeminiEngine | None = None
         self.lock = asyncio.Lock()
         self.stop = threading.Event()
+        self.results: OrderedDict[str, dict] = OrderedDict()
+
+    def cached(self, key: str) -> dict | None:
+        if key in self.results:
+            self.results.move_to_end(key)
+            return copy.deepcopy(self.results[key])
+        return None
+
+    def remember(self, key: str, result: dict) -> None:
+        self.results[key] = copy.deepcopy(result)
+        self.results.move_to_end(key)
+        while len(self.results) > CACHE_SIZE:
+            self.results.popitem(last=False)
 
 
 def make_engine(settings: Settings) -> GeminiEngine:
@@ -156,9 +176,16 @@ def create_app(settings: Settings | None = None, start_engine: bool = True) -> F
                 return _error(413, "Immagine troppo grande")
         if not body:
             return _error(422, "Immagine vuota")
+        key = hashlib.sha256(body).hexdigest() + ":" + name
+        if (result := state.cached(key)) is not None:
+            log.info("%s: risultato già calcolato, nessuna nuova richiesta a Gemini", name)
+            return result
         if state.engine is None:
             return _error(503, "OCR in preparazione, riprova più tardi", {"Retry-After": "60"})
         async with state.lock:
+            if (result := state.cached(key)) is not None:   # letta mentre questa richiesta aspettava in coda
+                log.info("%s: risultato già calcolato, nessuna nuova richiesta a Gemini", name)
+                return result
             started = time.perf_counter()
             try:
                 result = await asyncio.to_thread(_process, bytes(body), name, state.engine, settings.cfg)
@@ -177,6 +204,7 @@ def create_app(settings: Settings | None = None, start_engine: bool = True) -> F
             except Exception:  # noqa: BLE001 - l'errore va nei log del servizio, mai al client
                 log.exception("OCR fallito per %s", name)
                 return _error(500, "Lettura dell'immagine fallita")
+            state.remember(key, result)   # anche se il client nel frattempo si è disconnesso
         log.info("%s letto in %.0fs con %s (%s voci)", name, time.perf_counter() - started,
                  result.get("motore", {}).get("modello"), result.get("n_voci"))
         return result

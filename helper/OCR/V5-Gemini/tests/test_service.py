@@ -83,6 +83,42 @@ class TestService(unittest.TestCase):
         self.assertEqual(r.json()["_source"], "15128149_1_2_NOV_16_STU_1.png")
         self.assertEqual(self.calls, [("15128149_1_2_NOV_16_STU_1.png", (40, 60, 3), None, False)])
 
+    def test_stessa_immagine_letta_una_volta(self):
+        self.ready()
+        primo = self.post(nome="cartellone.png")
+        secondo = self.post(nome="cartellone.png")
+        self.assertEqual((primo.status_code, secondo.status_code), (200, 200))
+        self.assertEqual(primo.json(), secondo.json())
+        self.assertEqual(len(self.calls), 1)                 # la seconda volta niente Gemini
+        self.post(nome="altro.png")                          # nome diverso = unit_id diversi: si rilegge
+        other = np.full((40, 60, 3), 0, np.uint8)
+        self.post(cv2.imencode(".png", other)[1].tobytes(), nome="cartellone.png")   # contenuto diverso
+        self.assertEqual(len(self.calls), 3)
+
+    def test_risultato_in_memoria_anche_senza_motore(self):
+        self.ready()
+        self.post(nome="cartellone.png")
+        self.app.state.ocr.engine = None                     # es. dopo un problema con la chiave
+        self.assertEqual(self.post(nome="cartellone.png").status_code, 200)
+
+    def test_errori_non_restano_in_memoria(self):
+        self.ready()
+        with mock.patch.object(service, "processa_array", mock.Mock(side_effect=GeminiUnavailable("503"))), \
+                self.assertLogs("skedoo.ocr"):
+            self.assertEqual(self.post().status_code, 503)
+        self.assertEqual(self.post().status_code, 200)
+        self.assertEqual(len(self.calls), 1)
+
+    def test_memoria_limitata(self):
+        state = service.State()
+        for i in range(service.CACHE_SIZE + 5):
+            state.remember(str(i), {"i": i})
+        self.assertEqual(len(state.results), service.CACHE_SIZE)
+        self.assertIsNone(state.cached("0"))
+        risultato = state.cached(str(service.CACHE_SIZE + 4))
+        risultato["i"] = "modificato"                       # copia: la memoria non cambia
+        self.assertEqual(state.cached(str(service.CACHE_SIZE + 4)), {"i": service.CACHE_SIZE + 4})
+
     def test_non_pronto(self):
         r = self.post()
         self.assertEqual(r.status_code, 503)
