@@ -1,0 +1,12 @@
+{
+  "base_config": "../V4-AI/config.json",
+  "gemini": {
+    "models": ["gemini-flash-latest", "gemini-flash-lite-latest"],
+    "scale": 2,
+    "timeout_s": 180,
+    "max_unita_per_richiesta": 40,
+    "max_tentativi": 4,
+    "max_attesa_s": 90,
+    "generation_config": {}
+  }
+}
