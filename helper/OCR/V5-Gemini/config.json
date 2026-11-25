@@ -3,7 +3,7 @@
   "gemini": {
     "models": ["gemini-flash-latest", "gemini-flash-lite-latest"],
     "scale": 2,
-    "timeout_s": 180,
+    "timeout_s": 90,
     "max_unita_per_richiesta": 40,
     "max_tentativi": 4,
     "max_attesa_s": 90,

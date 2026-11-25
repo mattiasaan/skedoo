@@ -52,7 +52,8 @@ Output come la V4: `<nome>.json`, `<nome>_ritagli/`, `riepilogo.json`, `<nome>_r
 ## Servizio HTTP (container)
 `service.py` ha la stessa interfaccia del servizio della V4, il worker del backend non cambia:
 `POST /ocr?nome=<file>` con `Authorization: Bearer <OCR_TOKEN>`, `GET /health`.
-All'avvio verifica la chiave con l'elenco dei modelli (non consuma quota); finché non è valida `/health`
+Tiene in memoria gli ultimi 32 risultati: se il worker richiede di nuovo la stessa immagine (es. dopo un
+riavvio durante la lettura) la risposta è immediata e non consuma quota. All'avvio verifica la chiave con l'elenco dei modelli (non consuma quota); finché non è valida `/health`
 risponde `starting` e `/ocr` 503.
 
 | Codice | Quando |
@@ -73,7 +74,7 @@ Variabili: `OCR_TOKEN`, `GEMINI_API_KEY`, `GEMINI_MODELS` (es. `gemini-flash-lat
 - `gemini.models`: modelli in ordine di preferenza. Gli alias `*-latest` seguono l'ultima versione di Google;
   per non avere sorprese puoi fissare una versione precisa (l'elenco è nella documentazione di Gemini).
 - `gemini.scale`: ingrandimento dei ritagli prima dell'invio (2).
-- `gemini.max_unita_per_richiesta` (40), `max_tentativi` (4), `max_attesa_s` (90), `timeout_s` (180).
+- `gemini.max_unita_per_richiesta` (40), `max_tentativi` (4), `max_attesa_s` (90), `timeout_s` (90).
 - `gemini.generation_config`: campi aggiunti a `generationConfig`, ad esempio
   `{"temperature": 0}` o `{"thinkingConfig": {"thinkingBudget": 0}}` (dipendono dal modello: un campo non
   supportato fa rifiutare la richiesta con 400).

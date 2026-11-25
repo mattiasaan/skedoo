@@ -119,7 +119,7 @@ class GeminiEngine:
     kinds = {"riga", "riquadro", "titolo", "info"}
 
     def __init__(self, api_key: str, models, base_url=DEFAULT_BASE_URL,
-                 scale=2, timeout_s=180, max_unita_per_richiesta=40, max_tentativi=4, max_attesa_s=90,
+                 scale=2, timeout_s=90, max_unita_per_richiesta=40, max_tentativi=4, max_attesa_s=90,
                  generation_config=None, sleep=time.sleep, log=None):
         if not api_key:
             raise GeminiError("GEMINI_API_KEY mancante: creala su https://aistudio.google.com/apikey")
@@ -145,7 +145,7 @@ class GeminiEngine:
     def from_config(cls, cfg: dict, api_key: str, log=None, **kw):
         g = cfg["gemini"]
         return cls(api_key, g["models"], base_url=g.get("base_url") or DEFAULT_BASE_URL,
-                   scale=g.get("scale", 2), timeout_s=g.get("timeout_s", 180),
+                   scale=g.get("scale", 2), timeout_s=g.get("timeout_s", 90),
                    max_unita_per_richiesta=g.get("max_unita_per_richiesta", 40),
                    max_tentativi=g.get("max_tentativi", 4), max_attesa_s=g.get("max_attesa_s", 90),
                    generation_config=g.get("generation_config"), log=log, **kw)

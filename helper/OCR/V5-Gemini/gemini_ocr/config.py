@@ -11,7 +11,7 @@ GEMINI_DEFAULTS = {
     "models": ["gemini-flash-latest", "gemini-flash-lite-latest"],
     "base_url": "https://generativelanguage.googleapis.com/v1beta",
     "scale": 2,                      # ingrandimento del ritaglio prima dell'invio
-    "timeout_s": 180,                # per richiesta
+    "timeout_s": 90,                 # per richiesta (Gemini a volte resta appeso)
     "max_unita_per_richiesta": 40,   # ritagli per richiesta (di solito un cartellone = una richiesta)
     "max_tentativi": 4,              # per errori temporanei (rete, 5xx, limite al minuto)
     "max_attesa_s": 90,              # attesa massima tra due tentativi
