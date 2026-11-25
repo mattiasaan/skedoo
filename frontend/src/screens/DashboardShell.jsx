@@ -7,6 +7,7 @@ import { boardKey } from '../lib/agenda.js'
 import { AppContext } from '../lib/appContext.js'
 import { usePersistentFlags } from '../lib/data.js'
 import { initials, schoolDisplayName } from '../lib/format.js'
+import { syncPush } from '../lib/push.js'
 import { parseRoute, subjectPath } from '../lib/routes.js'
 import { readJson, writeJson } from '../lib/session.js'
 import { useToast } from '../lib/toast.js'
@@ -102,6 +103,23 @@ function DashboardShell({ user, classId, onLogout, onChangeClass, otherAccount, 
 		writeJson('pref-alerts', value)
 	}, [])
 
+	// notifiche push: preferenza per account, iscrizione per dispositivo. A ogni avvio, cambio di classe o di
+	// account il dispositivo si allinea (si iscrive con la classe giusta oppure si disiscrive)
+	const [pushOn, setPushOnState] = useState(() => readJson('pref-push', false))
+	const setPushOn = useCallback((value) => {
+		setPushOnState(value)
+		writeJson('pref-push', value)
+	}, [])
+	useEffect(() => {
+		let active = true
+		syncPush(pushOn ? classId : null)
+			.then((state) => {
+				if (active && state === 'denied') setPushOn(false) // permesso tolto dalle impostazioni del browser
+			})
+			.catch(() => {}) // server o rete non disponibili: si riprova al prossimo avvio
+		return () => { active = false }
+	}, [pushOn, classId, setPushOn])
+
 	const context = useMemo(() => ({
 		user,
 		classId,
@@ -114,12 +132,14 @@ function DashboardShell({ user, classId, onLogout, onChangeClass, otherAccount, 
 		markBoardRead,
 		alertsOn,
 		setAlertsOn,
+		pushOn,
+		setPushOn,
 		onLogout,
 		onChangeClass,
 		otherAccount,
 		onSwitchAccount,
 		onAddAccount,
-	}), [user, classId, isGalilei, navigate, openSubject, tasks, isBoardRead, markBoardRead, alertsOn, setAlertsOn, onLogout, onChangeClass, otherAccount, onSwitchAccount, onAddAccount])
+	}), [user, classId, isGalilei, navigate, openSubject, tasks, isBoardRead, markBoardRead, alertsOn, setAlertsOn, pushOn, setPushOn, onLogout, onChangeClass, otherAccount, onSwitchAccount, onAddAccount])
 
 	const Screen = SCREENS[route.path] ?? Home
 	const school = schoolDisplayName(user?.scuola)

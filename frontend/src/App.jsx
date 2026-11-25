@@ -5,6 +5,7 @@ import SchoolSetup from './screens/SchoolSetup.jsx'
 import { api, ApiError, UNAUTHORIZED_EVENT } from './lib/api.js'
 import { classLabel, titleCase } from './lib/format.js'
 import { legalDocFromHash } from './lib/legal.js'
+import { disablePush } from './lib/push.js'
 import {
 	clearSession, getClassId, getLastLogin, getOtherAccount, getStoredUser, getToken, isGalileiSchool, rememberLastLogin, sameAccount,
 	saveOtherAccount, saveSession, saveUser, setClassId, swapAccounts,
@@ -199,6 +200,13 @@ function App() {
 
 	async function handleLogout() {
 		const leaving = getStoredUser()
+		try {
+			// prima del logout, finché il token vale: il dispositivo non riceve più le variazioni di questa classe
+			// (con un secondo account, la shell nuova lo reiscrive se quell'account ha le notifiche attive)
+			await disablePush()
+		} catch {
+			// service worker non disponibile: niente da cancellare
+		}
 		try {
 			await api.logout()
 		} catch {
