@@ -3,6 +3,7 @@
 # Un solo file per tutte le configurazioni: i PROFILI (COMPOSE_PROFILES in .env) scelgono cosa gira qui.
 #   backend  -> db (PostgreSQL), api (FastAPI), worker (bacheca ClasseViva -> OCR -> variazioni)
 #   ocr      -> ocr (servizio HTTP dell'OCR), ollama (modello Qwen3-VL)
+#   ocr-gemini -> ocr-gemini: lo stesso servizio OCR, ma con l'API Gemini (al posto di ocr, non insieme)
 #   https    -> caddy: HTTPS con certificato automatico (serve un dominio e le porte 80/443 aperte)
 #   tunnel   -> cloudflared: Cloudflare Tunnel (nessuna porta da aprire sul router)
 #
@@ -164,6 +165,29 @@ services:
     volumes:
       - ollama-models:/root/.ollama
     networks: [ocr]  # nessuna porta pubblicata: lo usa solo il container ocr
+
+  # ---------------------------------------------------------------- OCR con Gemini (alternativa al profilo ocr)
+  # Stessa API del container ocr (POST /ocr, GET /health), ma legge i ritagli con l'API Gemini di
+  # Google AI Studio: niente modello locale, niente CPU al 100% sul Pi. Serve GEMINI_API_KEY.
+  # Usa il profilo ocr OPPURE ocr-gemini, non entrambi (stesso nome "ocr" in rete e stessa porta).
+  ocr-gemini:
+    <<: [*base, *locked]
+    profiles: [ocr-gemini]
+    build:
+      context: ../helper/OCR          # serve anche il codice della V4 (segmentazione e validatori)
+      dockerfile: V5-Gemini/Dockerfile
+    image: skedoo-ocr-gemini:latest
+    environment:
+      TZ: Europe/Rome
+      OCR_TOKEN: ${OCR_TOKEN}
+      GEMINI_API_KEY: ${GEMINI_API_KEY}
+      GEMINI_MODELS: ${GEMINI_MODELS:-}
+    ports:
+      - "${OCR_BIND:-127.0.0.1}:${OCR_PORT:-8090}:8090"
+    networks:
+      ocr:
+        aliases: [ocr]                # il worker continua a usare OCR_URL=http://ocr:8090
+    mem_limit: 512m
 
 networks:
   db:
