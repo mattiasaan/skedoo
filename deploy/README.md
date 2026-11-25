@@ -15,32 +15,32 @@ Tutto gira con Docker, configurato da un solo `compose.yaml` e da un file `.env`
               └─────┘        └─────┬─────┘
                                    │ POST /ocr  (Authorization: Bearer OCR_TOKEN)
                                    │ stesso Pi: rete Docker · altro Pi: LAN o Tailscale
-                             ┌─────┴─────┐
-                             │  ocr :8090│  service.py (pipeline helper/OCR/V4-AI)
-                             └─────┬─────┘
-                             ┌─────┴─────┐
-                             │  ollama   │  qwen3-vl:2b-instruct, nessuna porta esposta
-                             └───────────┘
+                        ┌──────────┴──────────┐
+                        │  ocr-gemini :8090   │  service.py (helper/OCR/V5-Gemini), nome in rete "ocr"
+                        └──────────┬──────────┘
+                                   │ HTTPS, GEMINI_API_KEY
+                                   ▼
+                        API Gemini (Google AI Studio)
 ```
 
-In alternativa a `ocr` + `ollama` c'è **`ocr-gemini`** (profilo `ocr-gemini`, codice in `helper/OCR/V5-Gemini`): stessa
-API e stesso JSON, ma i ritagli li legge l'API Gemini di Google AI Studio. Il Pi fa solo la segmentazione (pochi secondi)
-invece di minuti di CPU al 100%. Vedi [OCR con Gemini](#ocr-con-gemini-profilo-ocr-gemini).
+L'OCR (codice in `helper/OCR/V5-Gemini`) divide il cartellone in ritagli con OpenCV (pochi secondi sul Pi) e li fa
+leggere all'API Gemini: sul Pi non gira nessun modello. Il vecchio OCR locale (Qwen3-VL su Ollama, profilo `ocr`)
+è archiviato in `history/OCR/V4-AI` e non fa più parte del deploy: se lo usavi vedi
+[Passare dal vecchio profilo ocr](#passare-dal-vecchio-profilo-ocr).
 
-| Profilo   | Container             | Dove                                         |
-|-----------|-----------------------|----------------------------------------------|
-| `backend` | `db`, `api`, `worker` | Pi del backend                               |
-| `ocr`     | `ocr`, `ollama`       | Pi dell'OCR (o lo stesso Pi)                 |
-| `ocr-gemini` | `ocr-gemini`       | al posto di `ocr`: OCR con l'API Gemini      |
-| `https`   | `caddy`               | Pi del backend, se hai porte 80/443 aperte   |
-| `tunnel`  | `cloudflared`         | Pi del backend, se usi Cloudflare Tunnel     |
+| Profilo      | Container             | Dove                                         |
+|--------------|-----------------------|----------------------------------------------|
+| `backend`    | `db`, `api`, `worker` | Pi del backend                               |
+| `ocr-gemini` | `ocr-gemini`          | Pi dell'OCR (di solito lo stesso Pi)         |
+| `https`      | `caddy`               | Pi del backend, se hai porte 80/443 aperte   |
+| `tunnel`     | `cloudflared`         | Pi del backend, se usi Cloudflare Tunnel     |
 
 ## Requisiti
 
 - Raspberry Pi 4 o 5 con **Raspberry Pi OS 64 bit** (`uname -m` deve dire `aarch64`).
-- RAM: il backend sta in circa 1 GB. L'OCR (modello Qwen3-VL 2B) vuole **almeno 4 GB, meglio 8 GB**.
-  Su CPU è lento (minuti per cartellone): va bene, il worker aspetta fino a 30 minuti per immagine.
-- Spazio: circa 2 GB per le immagini Docker e altri 2 GB per il modello. Meglio un SSD che una microSD.
+- RAM: il backend sta in circa 1 GB, l'OCR in 512 MB: basta un Pi da 2 GB.
+- Spazio: circa 2 GB per le immagini Docker. Meglio un SSD che una microSD.
+- Una chiave dell'API Gemini (piano gratuito), vedi [Chiave Gemini](#chiave-gemini).
 - Per l'API su internet: un dominio (es. `api.miosito.it`). Puoi usare Cloudflare Tunnel, che non richiede porte aperte e
   funziona anche dietro CGNAT, oppure Caddy, con le porte 80 e 443 inoltrate dal router.
 - Il frontend va su GitHub Pages (gratis), vedi il passo 3.
@@ -71,14 +71,15 @@ aggiornamenti automatici (`sudo apt install unattended-upgrades`).
 In `.env`:
 
 ```ini
-COMPOSE_PROFILES=backend,ocr,tunnel      # oppure backend,ocr,https (un solo Pi: è la configurazione prevista)
+COMPOSE_PROFILES=backend,ocr-gemini,tunnel   # oppure backend,ocr-gemini,https (un solo Pi: è la configurazione prevista)
 API_DOMAIN=api.miosito.it
-CORS_ORIGINS=https://<utente>.github.io  # solo l'origine, senza percorso
+CORS_ORIGINS=https://<utente>.github.io      # solo l'origine, senza percorso
 CLASSVIVA_USERNAME=...
 CLASSVIVA_PASSWORD=...
-OCR_URL=http://ocr:8090                  # rete interna di Docker
-OCR_BIND=127.0.0.1                       # la porta dell'OCR non esce dal Pi
-TUNNEL_TOKEN=...                         # solo con il profilo tunnel
+GEMINI_API_KEY=...
+OCR_URL=http://ocr:8090                      # rete interna di Docker
+OCR_BIND=127.0.0.1                           # la porta dell'OCR non esce dal Pi
+TUNNEL_TOKEN=...                             # solo con il profilo tunnel
 ```
 
 ```bash
@@ -97,7 +98,8 @@ grep OCR_TOKEN .env                       # copia il token: serve sull'altro Pi
 In `.env`:
 
 ```ini
-COMPOSE_PROFILES=ocr
+COMPOSE_PROFILES=ocr-gemini
+GEMINI_API_KEY=...
 OCR_BIND=0.0.0.0                          # oppure 192.168.1.51
 ```
 
@@ -142,7 +144,7 @@ tailscale ip -4                           # IP del Pi nella VPN, es. 100.101.102
 
 Poi procedi come nella configurazione B. Cambia solo l'indirizzo dell'OCR:
 
-- Pi dell'OCR: `COMPOSE_PROFILES=ocr`, `OCR_BIND=0.0.0.0`. Il Pi resta irraggiungibile da internet, perché il router
+- Pi dell'OCR: `COMPOSE_PROFILES=ocr-gemini`, `OCR_BIND=0.0.0.0`. Il Pi resta irraggiungibile da internet, perché il router
   non inoltra la porta: arrivano solo la sua LAN e la VPN.
 - Pi del backend: `OCR_URL=http://100.101.102.103:8090` (IP Tailscale del Pi dell'OCR).
 
@@ -155,37 +157,37 @@ sudo systemctl edit docker      # aggiungi:  [Unit]  After=tailscaled.service  W
 
 Per restringere ancora, nelle ACL di Tailscale permetti al Pi del backend solo la porta `8090` del Pi dell'OCR.
 
-### OCR con Gemini (profilo `ocr-gemini`)
+### Chiave Gemini
 
-Consigliato quando l'OCR locale è troppo lento o scalda il Pi. Basta un Pi solo, anche da 2 GB.
-
-1. Crea una chiave su <https://aistudio.google.com/apikey> (piano gratuito).
-2. In `.env`:
-
-   ```ini
-   COMPOSE_PROFILES=backend,ocr-gemini,tunnel   # ocr-gemini AL POSTO di ocr, mai insieme
-   GEMINI_API_KEY=...
-   OCR_URL=http://ocr:8090                      # invariato: il container risponde anche al nome "ocr"
-   OCR_BIND=127.0.0.1
-   ```
-
-3. Se prima usavi il profilo `ocr`, togli i vecchi container: cambiare profilo non li ferma, e terrebbero occupati
-   la porta 8090 e il nome `ocr`. Poi, se vuoi, libera i ~2 GB del modello:
-
-   ```bash
-   docker compose rm -sf ocr ollama             # ferma e rimuove ocr e ollama (gli altri restano accesi)
-   docker volume rm skedoo_ollama-models        # facoltativo: cancella il modello Qwen scaricato
-   ```
-
-4. `docker compose up -d --build`
+1. Crea una chiave su <https://aistudio.google.com/apikey> (piano gratuito, senza carta).
+2. Mettila in `GEMINI_API_KEY` nel `.env` del Pi dell'OCR. `GEMINI_MODELS` (facoltativo) sceglie i modelli in ordine
+   di preferenza; vuoto = quelli di `helper/OCR/V5-Gemini/config.json`.
 
 Il piano gratuito ha pochi messaggi al giorno per modello: ogni cartellone costa **una** richiesta, i risultati restano
-in cache, e finita la quota del primo modello di `GEMINI_MODELS` si passa al successivo. Se le quote sono finite tutte
-il worker riprova al giro successivo. Si può usare anche con due Pi (configurazioni B e C): sul Pi dell'OCR metti
-`COMPOSE_PROFILES=ocr-gemini` e `OCR_BIND=0.0.0.0`.
+in cache, e finita la quota del primo modello si passa al successivo. Se le quote sono finite tutte il worker riprova
+al giro successivo.
 
 Sul piano gratuito Google può usare i ritagli inviati (classi, aule, orari) per migliorare i suoi prodotti: i riquadri
 informativi (docenti assenti, FSL, viaggi) non vengono letti né inviati.
+
+### Passare dal vecchio profilo `ocr`
+
+Il profilo `ocr` (Qwen3-VL su Ollama) non esiste più. Se il `.env` del Pi ha ancora `ocr` in `COMPOSE_PROFILES`:
+
+1. In `.env`: sostituisci `ocr` con `ocr-gemini` in `COMPOSE_PROFILES` e aggiungi `GEMINI_API_KEY`
+   (`OCR_URL=http://ocr:8090` resta uguale: il container risponde anche al nome `ocr`). `OCR_MODEL` non serve più.
+2. Aggiorna e togli i vecchi container `ocr` e `ollama`, che altrimenti terrebbero occupati la porta 8090 e il nome `ocr`:
+
+   ```bash
+   git pull && docker compose up -d --build --remove-orphans
+   ```
+
+3. Facoltativo, per liberare i ~2 GB del modello e le vecchie immagini:
+
+   ```bash
+   docker volume rm skedoo_ollama-models
+   docker image rm skedoo-ocr:latest ollama/ollama:0.40.16
+   ```
 
 ## 3. Esporre l'API e pubblicare il frontend
 
@@ -196,7 +198,7 @@ Serve un dominio sul piano gratuito di Cloudflare. Non si aprono porte sul route
 1. Aggiungi il dominio a Cloudflare (Add a site) e imposta i nameserver indicati presso chi te l'ha venduto.
 2. Zero Trust -> Networks -> Tunnels -> *Create a tunnel* (tipo Cloudflared). Copia il token in `TUNNEL_TOKEN`.
 3. Nello stesso tunnel aggiungi un *Public hostname*: `api.miosito.it` -> servizio `HTTP` `api:8000`.
-4. In `.env`: `COMPOSE_PROFILES=backend,ocr,tunnel`, `API_DOMAIN=api.miosito.it`.
+4. In `.env`: `COMPOSE_PROFILES=backend,ocr-gemini,tunnel`, `API_DOMAIN=api.miosito.it`.
 
 In alternativa **Caddy** (`https`): record DNS `A` `api.miosito.it` verso l'IP pubblico di casa e porte 80/443 del router
 inoltrate al Pi. Caddy ottiene e rinnova il certificato da solo.
@@ -260,7 +262,7 @@ Puoi rilanciarlo quando vuoi: sostituisce l'orario delle classi presenti nei fil
 ## 5. Verifica
 
 ```bash
-docker compose ps                                     # tutti "running", api e ocr "healthy"
+docker compose ps                                     # tutti "running", api e ocr-gemini "healthy"
 curl -H "Host: $(grep ^API_DOMAIN .env | cut -d= -f2)" http://127.0.0.1:8000/health   # {"status":"ok"}
 curl https://api.miosito.it/health                    # da fuori, dopo il passo 3
 docker compose logs -f worker                         # bacheca scaricata, immagini inviate all'OCR
@@ -270,9 +272,8 @@ docker compose logs api | grep -i push                # "notifiche push attive",
 Sul Pi dell'OCR:
 
 ```bash
-docker compose logs -f ocr        # al primo avvio scarica il modello (qualche minuto), poi "OCR pronto"
-docker compose logs -f ocr-gemini # con Gemini: "OCR pronto: Gemini ..." (oppure "chiave API rifiutata")
-curl http://127.0.0.1:8090/health # {"status":"ok"} quando il modello è pronto ("starting" mentre scarica)
+docker compose logs -f ocr-gemini # "OCR pronto: Gemini ..." (oppure "... controlla GEMINI_API_KEY")
+curl http://127.0.0.1:8090/health # {"status":"ok"} con la chiave verificata ("starting" prima)
 ```
 
 Dal Pi del backend, per verificare che l'OCR sia raggiungibile e che il token sia giusto:
@@ -316,7 +317,7 @@ Unica eccezione è `POSTGRES_PASSWORD`, che vale solo alla prima creazione del d
   se mancano `JWT_SECRET`, `CORS_ORIGINS` o `ALLOWED_HOSTS`. Restano attivi rate limit, header di sicurezza e
   documentazione spenta.
 - **OCR**: token obbligatorio (almeno 32 caratteri, confronto a tempo costante), solo immagini fino a 20 MB, una lettura
-  alla volta, nessuna documentazione. Ollama non ha porte esposte. Con `ocr-gemini` la chiave Gemini sta solo in quel
-  container, viaggia nell'header (mai nell'URL o nei log) e i dettagli degli errori di Google restano nei log.
+  alla volta, nessuna documentazione. La chiave Gemini sta solo nel container `ocr-gemini`, viaggia nell'header
+  (mai nell'URL o nei log) e i dettagli degli errori di Google restano nei log.
 - **Container**: utente non root, filesystem in sola lettura, nessuna capability Linux, `no-new-privileges`,
   limiti di memoria, log ruotati. Le versioni delle immagini esterne sono fissate.

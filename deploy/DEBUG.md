@@ -6,7 +6,7 @@ sono in [README.md](README.md).
 ## Stato generale
 
 ```bash
-docker compose ps                     # container accesi: api e ocr devono essere "healthy"
+docker compose ps                     # container accesi: api e ocr-gemini devono essere "healthy"
 docker stats --no-stream              # CPU e memoria di ogni container
 docker system df                      # spazio occupato da immagini, volumi e cache di Docker
 df -h /                               # spazio libero sulla scheda SD / sul disco
@@ -20,9 +20,7 @@ vcgencmd measure_temp                 # temperatura del Pi (sopra 80 °C rallent
 ```bash
 docker compose logs -f api                  # API: richieste, errori, notifiche push
 docker compose logs -f worker               # bacheca ClasseViva -> OCR -> variazioni
-docker compose logs -f ocr                  # OCR locale (profilo ocr)
 docker compose logs -f ocr-gemini           # OCR con Gemini (profilo ocr-gemini)
-docker compose logs -f ollama               # modello locale dell'OCR (profilo ocr)
 docker compose logs -f db                   # PostgreSQL
 docker compose logs -f caddy                # HTTPS (profilo https)
 docker compose logs -f cloudflared          # Cloudflare Tunnel (profilo tunnel)
@@ -95,7 +93,7 @@ docker compose exec api python -c "from app.changes import build_changes; [print
 
 # l'OCR è raggiungibile dal worker? (stato e token)
 docker compose exec worker python -c "import os,urllib.request as u; print(u.urlopen(os.environ['OCR_URL']+'/health').read())"
-curl -s http://127.0.0.1:8090/health        # dal Pi dell'OCR: {"status":"ok"} ("starting" mentre scarica il modello)
+curl -s http://127.0.0.1:8090/health        # dal Pi dell'OCR: {"status":"ok"} ("starting" finché la chiave Gemini non è verificata)
 
 # cartelloni già letti (cache dell'OCR): cancellandola, al prossimo giro vengono riletti tutti
 docker compose exec worker ls /app/data/bacheca_fetch/ocr

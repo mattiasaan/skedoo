@@ -6,19 +6,19 @@ Skedoo trasforma questi dati in un sistema **interattivo, aggiornato e notificab
 
 # Panoramica
 
-Il progetto è diviso in quattro parti:
-
 | Cartella    | Cosa contiene                                                                 |
 |-------------|-------------------------------------------------------------------------------|
 | `frontend/` | App **React + Vite** (login, home, orario e agenda, voti, profilo)            |
 | `backend/`  | API **FastAPI** con database PostgreSQL, integrazione ClasseViva e documentazione |
-| `helper/`   | Strumenti di supporto: parsing del PDF degli orari e **OCR** della bacheca    |
+| `helper/`   | Strumenti di supporto: parsing del PDF degli orari (`orario_dataset/`) e **OCR** della bacheca (`OCR/V5-Gemini/`) |
 | `deploy/`   | Docker Compose per mettere tutto su un Raspberry Pi                           |
+| `legal/`    | Indice della documentazione legale (privacy, cookie, termini)                 |
+| `history/`  | Vecchie versioni funzionanti ma non più usate dal progetto (OCR V3 e V4)      |
 
 # Cosa Fa
 Skedoo permette di:
 * 📅 Visualizzare l'orario scolastico in formato **digitale e interattivo**
-* 🔄 Vedere le **modifiche giornaliere** (assenze docenti, supplenze, cambi aula)
+* 🔄 Vedere le **modifiche giornaliere** (entrate posticipate, uscite anticipate, pomeriggi senza lezione, cambi aula)
 * 📝 Consultare **voti, agenda, assenze e bacheca** di ClasseViva
 * 🔔 Ricevere **notifiche mirate**
 * Evidenziare le differenze tra **orario standard e modifiche giornaliere**
@@ -56,11 +56,11 @@ Integrazione con:
 * **Responsive UI** (telefono, tablet e desktop con sidebar)
 * **Push Notifications**
 
-Avvio in sviluppo (con il backend già attivo su `http://localhost:8000`):
+Avvio in sviluppo (dettagli in [backend/docs/README.md](backend/docs/README.md) e [frontend/README.md](frontend/README.md)):
 
 ```bash
-
-python -m uvicorn app.main:app --reload --host 0.0.0.0
+cd backend
+python -m uvicorn app.main:app --reload --host 0.0.0.0   # API su http://localhost:8000
 
 cd frontend
 npm install
@@ -72,8 +72,10 @@ In produzione impostare `VITE_API_URL` con l'indirizzo dell'API (vedi `frontend/
 
 ## OCR
 
-Un servizio dedicato legge le immagini della bacheca con un modello di visione (Qwen3-VL, in esecuzione con Ollama)
-e ne estrae le modifiche all'orario. La pipeline si trova in `helper/OCR/V4-AI`.
+Un servizio dedicato divide i cartelloni della bacheca in ritagli (OpenCV), li fa leggere all'API **Gemini** di Google
+e controlla ogni voce con dei validatori (griglia degli orari, elenchi di classi e aule), assegnandole un'affidabilità.
+La pipeline si trova in [helper/OCR/V5-Gemini](helper/OCR/V5-Gemini/README.md). Le versioni precedenti
+(Tesseract, Qwen3-VL su Ollama) sono archiviate in [history/](history/README.md).
 
 ## Deploy (Raspberry Pi)
 
@@ -86,6 +88,13 @@ guida passo passo in [deploy/README.md](deploy/README.md).
 * JWT authentication
 * Validazione input
 * Rate limiting
+
+Hai trovato una vulnerabilità? **Non aprire una issue pubblica**: segui [SECURITY.md](SECURITY.md) e usa la scheda **Security → Report a vulnerability**.
+
+# Contribuire
+
+I contributi sono benvenuti tramite Pull Request, nei limiti della [Licenza](License).
+Leggi [CONTRIBUTING.md](CONTRIBUTING.md) e il [Codice di condotta](CODE_OF_CONDUCT.md) prima di iniziare.
 
 # Stato del Progetto
 
