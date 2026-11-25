@@ -125,7 +125,7 @@ def test_week_schedule(client, auth):
   assert lun["etichetta"] == "Lunedì"
   # la riga senza materia (rumore OCR) è scartata, il docente doppio è unico
   assert [l["materia"] for l in lun["lezioni"]] == ["Inglese", "Matematica"]
-  assert lun["lezioni"][1]["docenti"] == ["ROSSI Mario", "PNRR (301)"]
+  assert lun["lezioni"][1]["docenti"] == ["BRUNI Marco", "PNRR (301)"]
   first = lun["lezioni"][0]
   assert (first["ora"], first["inizio"], first["fine"], first["aula"]) == (1, "08:10", "09:00", "AULA B 205")
 

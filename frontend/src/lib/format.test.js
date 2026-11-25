@@ -18,10 +18,10 @@ describe('nomi', () => {
 	})
 
 	it('teacherShort tiene solo il cognome', () => {
-		expect(teacherShort('ROSSI Mario')).toBe('Prof. De Santis')
-		expect(teacherShort('ROSSI MARIO')).toBe('Prof. Moretti') // tutto maiuscolo: la prima parola è il cognome
+		expect(teacherShort('DE SANTIS Paolo Maria')).toBe('Prof. De Santis')
+		expect(teacherShort('MORETTI ELENA')).toBe('Prof. Moretti') // tutto maiuscolo: la prima parola è il cognome
 		expect(teacherShort('')).toBe('')
-		expect(teacherName('ROSSI Mario')).toBe('Prof. Neri Giulia')
+		expect(teacherName('NERI Giulia')).toBe('Prof. Neri Giulia')
 	})
 
 	it('classLabel aggiunge l\'ordinale', () => {

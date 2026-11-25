@@ -12,7 +12,7 @@ const SCHEDULE = {
 			lesson(1, '08:10', '09:00', 'Tedesco'),
 			lesson(2, '09:00', '09:50', 'Italiano', 'AULA B111'),
 			lesson(3, '09:50', '10:40', 'Italiano', 'AULA B111'),
-			lesson(4, '10:40', '11:30', 'Matematica', 'AULA D009', ['ROSSI Mario', 'PNRR AMB. (301)']),
+			lesson(4, '10:40', '11:30', 'Matematica', 'AULA D009', ['MORETTI Elena', 'PNRR AMB. (301)']),
 			lesson(8, '14:30', '15:20', 'Sistemi'),
 		],
 	}],
@@ -24,7 +24,7 @@ describe('buildDayLessons', () => {
 		expect(lessons.map((item) => item.materia)).toEqual(['Tedesco', 'Italiano', 'Matematica', 'Sistemi'])
 		expect(lessons[1]).toMatchObject({ inizio: '09:00', fine: '10:40', ore: [2, 3] })
 		expect(periodLabel(lessons[1])).toBe('2ª–3ª Ora')
-		expect(lessons[2].teachers).toEqual(['ROSSI Mario'])
+		expect(lessons[2].teachers).toEqual(['MORETTI Elena'])
 	})
 
 	it('applica cambi aula su più ore, uscite e niente pomeriggio', () => {
