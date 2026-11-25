@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 🔒 Segnala una vulnerabilità
+    url: https://github.com/mattiasaan/skedoo/security/advisories/new
+    about: Le segnalazioni di sicurezza si fanno in privato, mai nelle issue pubbliche.

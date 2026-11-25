@@ -1,0 +1,27 @@
+name: ✨ Proponi una funzionalità
+description: Un'idea per migliorare Skedoo
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problema
+    attributes:
+      label: Che problema risolve?
+      description: Descrivi la situazione in cui ti servirebbe.
+    validations:
+      required: true
+  - type: textarea
+    id: soluzione
+    attributes:
+      label: Soluzione proposta
+    validations:
+      required: true
+  - type: textarea
+    id: alternative
+    attributes:
+      label: Alternative considerate
+  - type: checkboxes
+    id: dati
+    attributes:
+      label: Dati personali
+      options:
+        - label: La funzionalità richiede di raccogliere nuovi dati o di inviarli a servizi esterni
