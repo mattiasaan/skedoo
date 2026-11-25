@@ -124,6 +124,15 @@ def test_subscribe_validates_keys_and_class(push_on, client, auth):
   assert subscribe(client, {}).status_code == 401
 
 
+def test_subscribe_is_rate_limited_per_user(push_on, client, auth, engine):
+  """Un utente non può riempire il database di endpoint finti (ogni variazione diventerebbe migliaia di invii)."""
+  from app.push import SUBSCRIBE_PER_HOUR
+  codes = [subscribe(client, auth, endpoint=f"{FCM}-{i}").status_code for i in range(SUBSCRIBE_PER_HOUR + 1)]
+  assert codes == [204] * SUBSCRIBE_PER_HOUR + [429]
+  assert len(subscriptions(engine)) == SUBSCRIBE_PER_HOUR
+  assert subscribe(client, login(client, "S9X"), endpoint=f"{FCM}-altro").status_code == 204  # gli altri utenti no
+
+
 def test_known_push_services():
   for endpoint in ("https://fcm.googleapis.com/fcm/send/x", "https://updates.push.services.mozilla.com/wpush/v2/x",
                    "https://wns2-par02p.notify.windows.com/w/?token=x", "https://web.push.apple.com/QH4x"):

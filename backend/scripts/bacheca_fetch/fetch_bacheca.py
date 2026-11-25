@@ -89,7 +89,8 @@ def _safe_filename(name: Any, fallback: str) -> str:
 def _destination(output_dir: Path, match: Mapping[str, Any], position: int, attachment: Mapping[str, Any]) -> Path:
   attachment_number = attachment.get("attachNum") or position
   filename = _safe_filename(attachment.get("fileName"), f"allegato_{attachment_number}")
-  return output_dir / f"{match.get('cntId')}_{attachment_number}_{filename}"
+  # anche cntId e attachNum arrivano da ClasseViva: il nome intero non deve poter uscire dalla cartella
+  return output_dir / _safe_filename(f"{match.get('cntId')}_{attachment_number}_{filename}", filename)
 
 
 async def download_attachments(

@@ -82,7 +82,7 @@ Ogni token dura `JWT_TTL_HOURS` (7 giorni), ma il frontend lo rinnova con `POST 
 | GET | `/changes/entrate-uscite?classe=1A` | entrate e uscite della classe |
 | GET | `/changes/cambi-aula?classe=1A` | cambi aula della classe |
 | GET | `/push/public-key` | `{public_key}`: chiave VAPID pubblica per creare l'iscrizione nel browser |
-| POST | `/push/subscribe` | 204; `{subscription: {endpoint, keys: {p256dh, auth}}, classe}` (stesso `endpoint` = aggiorna la classe) |
+| POST | `/push/subscribe` | 204; `{subscription: {endpoint, keys: {p256dh, auth}}, classe}` (stesso `endpoint` = aggiorna la classe). Max 20 all'ora per utente (429) |
 | POST | `/push/unsubscribe` | 204; `{endpoint}` |
 | GET | `/health` | `{"status":"ok"}`, pubblico |
 

@@ -4,12 +4,13 @@ import json
 from datetime import datetime, timedelta, timezone
 
 import pytest
-from jose import jwt
+import jwt
 from pydantic import ValidationError
 
 from app.classeviva import store
 from app.config import Settings
 from app.main import app
+from app.security import limiter
 from conftest import login
 
 OPEN = {("POST", "/auth/login"), ("GET", "/health")}  # gli unici senza JWT
@@ -68,12 +69,27 @@ def test_bad_token_claims_rejected(client, settings, over):
 def test_forged_tokens_rejected(client, settings):
   def bearer(t):
     return {"Authorization": f"Bearer {t}"}
-  assert client.get("/auth/me", headers=bearer(make_token(settings, key="altro-segreto"))).json()["code"] == "invalid_token"
+  assert client.get("/auth/me", headers=bearer(make_token(settings, key="un-altro-segreto-lungo-almeno-32-caratteri"))).json()["code"] == "invalid_token"
   b64 = lambda d: base64.urlsafe_b64encode(json.dumps(d).encode()).rstrip(b"=").decode()
   now = int(datetime.now(timezone.utc).timestamp())
   claims = {"sub": "S123X", "sid": "x", "iss": "skedoo", "aud": "skedoo", "iat": now, "exp": now + 3600}
   alg_none = f'{b64({"alg": "none", "typ": "JWT"})}.{b64(claims)}.'
   assert client.get("/auth/me", headers=bearer(alg_none)).json()["code"] == "invalid_token"
+
+
+@pytest.mark.parametrize("alg,digest", [("HS384", "sha384"), ("HS512", "sha512"), ("RS256", "sha256"),
+                                        ("ES256", "sha256"), ("None", "sha256"), ("NONE", "sha256")])
+def test_only_hs256_is_accepted(client, settings, alg, digest):
+  """Alg confusion: claim validi di una sessione viva, firmati con il segreto giusto, ma con un altro `alg`."""
+  import hashlib
+  import hmac
+  r = client.post("/auth/login", json={"username": "S123X", "password": "good"})
+  claims = jwt.decode(r.json()["access_token"], settings.jwt_secret, algorithms=["HS256"], audience="skedoo")
+  part = lambda d: base64.urlsafe_b64encode(json.dumps(d).encode()).rstrip(b"=").decode()
+  signing = f"{part({'alg': alg, 'typ': 'JWT'})}.{part(claims)}"
+  signature = base64.urlsafe_b64encode(hmac.new(settings.jwt_secret.encode(), signing.encode(), digest).digest()).rstrip(b"=").decode()
+  r = client.get("/auth/me", headers={"Authorization": f"Bearer {signing}.{signature}"})
+  assert r.status_code == 401 and r.json()["code"] == "invalid_token"
 
 
 def test_valid_signature_needs_a_live_session(client, settings):
@@ -105,7 +121,7 @@ def test_refresh_never_goes_past_session_max_days(client, settings):
   headers = {"Authorization": f"Bearer {make_token(settings, sub='S1X', sid=sid, auth=auth_time)}"}
   r = client.post("/auth/refresh", headers=headers)
   assert r.status_code == 200 and r.json()["expires_in"] <= 3600
-  claims = jwt.get_unverified_claims(r.json()["access_token"])
+  claims = jwt.decode(r.json()["access_token"], settings.jwt_secret, algorithms=["HS256"], audience="skedoo")
   assert claims["auth"] == auth_time and claims["sid"] == sid
 
 
@@ -189,6 +205,24 @@ def test_login_input_limits(client):
   assert all(client.post("/auth/login", json=b).status_code == 422 for b in bad)
 
 
+@pytest.mark.parametrize("variant", ["Ŝ1X", "S1X​", "S 1X", "S1Х"])  # accento, larghezza zero, nbsp, Х cirillica
+def test_login_rejects_non_ascii_usernames(client, variant):
+  assert client.post("/auth/login", json={"username": variant, "password": "good"}).status_code == 422
+
+
+def test_unicode_variants_share_the_lock_of_the_username(client, settings, monkeypatch):
+  """"Ｓ1Ｘ" a tutta larghezza è "S1X" (NFKC): stesso account, stessi contatori, niente blocco aggirabile."""
+  monkeypatch.setattr(settings, "login_attempts", 100)
+  monkeypatch.setattr(settings, "login_failures", 3)
+  for _ in range(3):
+    assert client.post("/auth/login", json={"username": "S1X", "password": "bad"}).status_code == 401
+  for variant in ("Ｓ1Ｘ", "s１x", " S1X "):
+    r = client.post("/auth/login", json={"username": variant, "password": "good"})
+    assert r.status_code == 429 and r.json()["code"] == "too_many_attempts"
+  r = client.post("/auth/login", json={"username": "Ｓ２Ｘ", "password": "good"})
+  assert r.status_code == 200 and r.json()["utente"]["id"] == "S2X"
+
+
 def test_body_too_large(client):
   r = client.post("/auth/login", content=b"x" * 20000, headers={"Content-Type": "application/json"})
   assert r.status_code == 413 and r.json()["code"] == "payload_too_large"
@@ -236,6 +270,20 @@ def test_production_requires_explicit_secret_and_origins():
 
 
 # ---------- password ClasseViva cifrata in memoria ----------
+def test_sessions_per_user_are_capped(client):
+  """Login ripetuti non accumulano sessioni in memoria: oltre il limite esce il dispositivo usato meno di recente."""
+  from app.classeviva import MAX_SESSIONS_PER_USER
+  first = login(client, "S1X")
+  other = login(client, "S2X")
+  for _ in range(MAX_SESSIONS_PER_USER):
+    limiter.clear()  # login distribuiti nel tempo
+    last = login(client, "s1x")
+  assert sum(s.username.lower() == "s1x" for s in store._sessions.values()) == MAX_SESSIONS_PER_USER
+  assert client.get("/auth/me", headers=first).json()["code"] == "session_expired"  # il più vecchio
+  assert client.get("/auth/me", headers=last).status_code == 200
+  assert client.get("/auth/me", headers=other).status_code == 200  # gli altri utenti non c'entrano
+
+
 def test_password_is_kept_only_encrypted(client):
   login(client, password="good")
   session = next(iter(store._sessions.values()))

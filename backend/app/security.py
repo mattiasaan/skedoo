@@ -10,7 +10,7 @@ from datetime import datetime, timedelta, timezone
 
 from fastapi import Depends, Request
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
-from jose import JWTError, jwt
+import jwt
 
 from .classeviva import ActiveSession, store
 from .config import get_settings
@@ -51,9 +51,9 @@ def decode_token(token: str) -> TokenData:
   try:
     claims = jwt.decode(
       token, get_settings().jwt_secret, algorithms=[ALGORITHM], audience=AUDIENCE, issuer=ISSUER,
-      options={f"require_{c}": True for c in ("exp", "iat", "sub", "iss", "aud")},
+      options={"require": ["exp", "iat", "sub", "iss", "aud"]},
     )
-  except JWTError:
+  except jwt.PyJWTError:
     raise AppError(401, "invalid_token", "Token non valido o scaduto")
   sub, sid, k = claims.get("sub"), claims.get("sid"), claims.get("k")
   if not all(isinstance(v, str) and v for v in (sub, sid, k)):

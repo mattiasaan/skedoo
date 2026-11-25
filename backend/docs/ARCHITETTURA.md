@@ -276,6 +276,7 @@ Dopo il login:
 | Limite assoluto | `exp` non supera mai `auth + SESSION_MAX_DAYS` (90 giorni): `auth` è l'istante del login e resta uguale a ogni rinnovo |
 | `POST /auth/logout` | chiude **solo la sessione di quel dispositivo** |
 | Pulizia | a ogni login vengono eliminate le sessioni inattive da più di `JWT_TTL_HOURS`. Ogni richiesta, anche senza chiamate a ClasseViva (orari, `/auth/me`), aggiorna `last_used`. |
+| Troppi dispositivi | al massimo `MAX_SESSIONS_PER_USER` (10) sessioni per username: un login in più chiude quella usata meno di recente (login ripetuti non riempiono la memoria) |
 | Riavvio del server | tutte le sessioni spariscono → 401 `session_expired` → il frontend riporta al login, con username e nome già compilati (sul dispositivo non c'è mai la password) |
 | Password cambiata su ClasseViva | al primo ri-login fallito la sessione viene chiusa → 401 `credentials_changed` |
 
@@ -289,8 +290,12 @@ Il login è l'unico endpoint senza JWT, quindi ha limiti propri in [auth.py](../
 - 5 tentativi/minuto per coppia (IP, username), 30/minuto per IP;
 - dopo 10 password sbagliate in 15 minuti per (IP, username) il login è bloccato **anche con la password giusta**
   (non si può usare l'API come oracolo per indovinarla); un login riuscito azzera il contatore;
-- `username` max 64 caratteri senza spazi né caratteri di controllo, `password` max 256: sono input non fidati che
-  finiscono nei log e nelle richieste a ClasseViva.
+- `username` max 64 caratteri, `password` max 256: sono input non fidati che finiscono nei log e nelle richieste a
+  ClasseViva;
+- lo `username` ha **una sola forma**: normalizzato NFKC (le varianti "di compatibilità", es. `Ｓ123X` a tutta
+  larghezza, diventano `S123X`) e poi solo ASCII stampabile senza spazi. Altrimenti `Ŝ123X`, `S123X` + spazio a
+  larghezza zero ecc. avrebbero ognuna i propri contatori di tentativi e di blocco: se ClasseViva le trattasse come
+  lo stesso account (confronti che ignorano accenti o larghezza) il blocco dopo 10 errori si aggirerebbe.
 
 ### Rate limiter
 
@@ -304,6 +309,7 @@ chiavi superano 20.000 elimina quelle ferme da più di un'ora. Chiavi usate:
 | `upstream:<username>` | 20/min | endpoint che chiamano ClasseViva |
 | `login-ip:<ip>`, `login:<ip>\|<user>` | 30 e 5/min | login |
 | `fail:<ip>\|<user>` | 10 in 15 min | password sbagliate |
+| `push-subscribe:<username>` | 20/ora | `POST /push/subscribe` (le iscrizioni non sono legate all'account: senza limite un utente riempirebbe il database di endpoint finti) |
 
 L'IP del client viene da `X-Forwarded-For` **solo** con `TRUST_PROXY_HEADERS=true`, e in quel caso si prende
 **l'ultima** voce (quella aggiunta dal proxy fidato; le precedenti le può scrivere chiunque). Per questo uvicorn gira
@@ -585,8 +591,9 @@ Dettagli:
 |---|---|---|
 | Furto della memoria del server | password solo cifrate (AES-256-GCM), chiave non sul server | `classeviva.py` |
 | Furto di un token | il token non contiene la password; vale solo finché la sessione è viva; logout per dispositivo | `security.py`, `auth.py` |
-| Token contraffatti | HS256 fisso, `iss`/`aud`, claim obbligatori, `JWT_SECRET` ≥ 32 caratteri obbligatorio in produzione | `security.py`, `config.py` |
-| Brute force sul login | limiti per IP e per (IP, username), blocco dopo 10 errori anche con password giusta | `auth.py` |
+| Token contraffatti, alg confusion | HS256 fisso (PyJWT, `algorithms=["HS256"]`), nessuna chiave asimmetrica, `iss`/`aud`, claim obbligatori, `JWT_SECRET` ≥ 32 caratteri obbligatorio in produzione | `security.py`, `config.py` |
+| Brute force sul login | limiti per IP e per (IP, username), blocco dopo 10 errori anche con password giusta; username normalizzato (NFKC, solo ASCII): le varianti Unicode non aggirano il blocco | `auth.py` |
+| Accumulo di sessioni / iscrizioni push | max 10 sessioni per username; max 20 iscrizioni push all'ora per utente | `classeviva.py`, `push.py` |
 | Abuso dell'API / di ClasseViva tramite l'API | limiti per IP, utente e chiamate a ClasseViva; cache | `security.py`, `classeviva.py` |
 | IP falsificato per aggirare i limiti | `X-Forwarded-For` ignorato se non dietro proxy fidato; ultima voce soltanto | `security.py` |
 | Body enormi / esaurimento memoria | body max 16 KB (64 KB su Caddy), download in streaming con limite di dimensione e di concorrenza | `main.py`, `downloads.py` |
@@ -595,7 +602,7 @@ Dettagli:
 | Cache di dati personali | `Cache-Control: no-store` su tutto | `main.py` |
 | Header Host / CORS arbitrari | `ALLOWED_HOSTS` e `CORS_ORIGINS` espliciti obbligatori in produzione | `config.py` |
 | Clickjacking, sniffing, referrer | `X-Frame-Options: DENY`, `nosniff`, `no-referrer`, CSP `default-src 'none'`, HSTS | `main.py` |
-| Nomi di file malevoli | nome ripulito da percorsi e caratteri di controllo | `downloads.py`, `fetch_bacheca.py` |
+| Nomi di file malevoli | nome ripulito da percorsi e caratteri di controllo (nel worker anche `cntId` e `attachNum` di ClasseViva) | `downloads.py`, `fetch_bacheca.py` |
 | Accesso al servizio OCR | token condiviso confrontato in tempo costante (`hmac.compare_digest`) | `helper/OCR/*/service.py` |
 | Compromissione di un container | utente senza privilegi, filesystem in sola lettura, nessuna capability, `no-new-privileges`, DB su rete interna senza internet, porta API solo su 127.0.0.1 | `Dockerfile`, `compose.yaml` |
 | Documentazione come mappa per un attaccante | `/docs` e `/openapi.json` spenti in produzione | `main.py` |
