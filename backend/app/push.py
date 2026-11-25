@@ -20,6 +20,7 @@ from .classeviva import ActiveSession
 from .config import get_settings
 from .errors import AppError
 from .push_sender import mark_current_as_sent
+from .school import require_galilei
 from .security import current_session, rate_limit
 
 
@@ -28,7 +29,8 @@ def require_push() -> None:
     raise AppError(503, "push_disabled", "Le notifiche push non sono attive su questo server")
 
 
-router = APIRouter(prefix="/push", tags=["Notifiche push"], dependencies=[Depends(current_session), Depends(require_push)])
+router = APIRouter(prefix="/push", tags=["Notifiche push"],
+                   dependencies=[Depends(current_session), Depends(require_galilei), Depends(require_push)])
 
 # Il server fa una POST all'endpoint scelto dal browser: si accettano solo i servizi push veri,
 # altrimenti chiunque abbia un account potrebbe far chiamare all'API indirizzi interni (SSRF).

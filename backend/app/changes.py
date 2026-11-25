@@ -20,9 +20,10 @@ from pydantic import BaseModel, Field
 from .config import get_settings
 from .errors import AppError
 from .schedules import SLOTS as GRID
+from .school import require_galilei
 from .security import current_session
 
-router = APIRouter(prefix="/changes", tags=["Modifiche"], dependencies=[Depends(current_session)])
+router = APIRouter(prefix="/changes", tags=["Modifiche"], dependencies=[Depends(current_session), Depends(require_galilei)])
 
 AFTERNOON_START = "14:30"  # prima ora pomeridiana: "senza lezioni pomeridiane" annulla da qui in poi
 

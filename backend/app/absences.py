@@ -22,7 +22,6 @@ class AbsenceOut(BaseModel):
   codice: str | None = None  # codice ClasseViva originale (ABA0, ABR0, ABR1, ABU0...)
   ora: int | None = None
   giustificata: bool = False
-  motivo: str | None = None
   ore: list[dict] = Field(default_factory=list)
 
 
@@ -51,7 +50,7 @@ def build_absences(raw) -> AbsencesOut:
     result.append(AbsenceOut(
       id=item.get("evtId"), data=item.get("evtDate"), tipo=TIPI.get(code, "altro"), codice=code,
       ora=item.get("evtHPos"), giustificata=bool(item.get("isJustified")),
-      motivo=item.get("justifReasonDesc"), ore=item.get("hoursAbsence") or [],
+      ore=item.get("hoursAbsence") or [],  # il motivo della giustificazione no: può essere un dato sulla salute
     ))
   result.sort(key=lambda e: e.data or "", reverse=True)
   summary = SummaryOut(

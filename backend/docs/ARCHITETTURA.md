@@ -110,12 +110,13 @@ flowchart LR
 ```
 backend/
   app/
-    main.py          FastAPI, lifespan (DB + task push), middleware, CORS, router
+    main.py          FastAPI, lifespan (DB, task push e pulizia della memoria), middleware, CORS, router
     config.py        Settings (pydantic-settings) e controlli per la produzione
     errors.py        AppError e formato errori {"code", "message"}
     validation.py    controlli comuni (intervalli di date)
     security.py      JWT, rate limiter, dipendenze current_session / upstream_limit
-    classeviva.py    sessioni ClasseViva: login, password cifrata, lock, cache, ri-login
+    classeviva.py    sessioni ClasseViva: login, password cifrata, lock, cache, ri-login, pulizia, pseudonimi
+    school.py        orari, variazioni e push solo per gli utenti dell'ITT Galilei
     db.py            modelli SQLAlchemy e engine
 
     auth.py          /auth/login, /auth/me, /auth/refresh, /auth/logout
@@ -275,7 +276,7 @@ Dopo il login:
 | `POST /auth/refresh` | nuovo token per **la stessa sessione** (stessi `sid` e `k`), senza password. Il frontend lo chiama quando il token ha più di 12 ore. |
 | Limite assoluto | `exp` non supera mai `auth + SESSION_MAX_DAYS` (90 giorni): `auth` è l'istante del login e resta uguale a ogni rinnovo |
 | `POST /auth/logout` | chiude **solo la sessione di quel dispositivo** |
-| Pulizia | a ogni login vengono eliminate le sessioni inattive da più di `JWT_TTL_HOURS`. Ogni richiesta, anche senza chiamate a ClasseViva (orari, `/auth/me`), aggiorna `last_used`. |
+| Pulizia | ogni 30 secondi (task `janitor` in `main.py`) e a ogni login: via le sessioni inattive da più di `JWT_TTL_HOURS` e, nelle altre, le risposte di ClasseViva più vecchie di `CACHE_TTL_SECONDS`. Ogni richiesta, anche senza chiamate a ClasseViva (orari, `/auth/me`), aggiorna `last_used`. |
 | Troppi dispositivi | al massimo `MAX_SESSIONS_PER_USER` (10) sessioni per username: un login in più chiude quella usata meno di recente (login ripetuti non riempiono la memoria) |
 | Riavvio del server | tutte le sessioni spariscono → 401 `session_expired` → il frontend riporta al login, con username e nome già compilati (sul dispositivo non c'è mai la password) |
 | Password cambiata su ClasseViva | al primo ri-login fallito la sessione viene chiusa → 401 `credentials_changed` |
@@ -598,6 +599,7 @@ Dettagli:
 | IP falsificato per aggirare i limiti | `X-Forwarded-For` ignorato se non dietro proxy fidato; ultima voce soltanto | `security.py` |
 | Body enormi / esaurimento memoria | body max 16 KB (64 KB su Caddy), download in streaming con limite di dimensione e di concorrenza | `main.py`, `downloads.py` |
 | SSRF | push solo verso servizi noti; redirect dei download solo verso `*.spaggiari.eu` in https | `push.py`, `downloads.py` |
+| Dati personali oltre il necessario (GDPR) | motivo delle giustificazioni scartato prima della cache; pseudonimi (HMAC) al posto degli username nei log; orari, variazioni e push solo agli utenti dell'ITT Galilei; immagini dei cartelloni e letture OCR cancellate dopo 30 giorni | `classeviva.py`, `school.py`, `fetch_bacheca.py` |
 | Fuga di dettagli negli errori | errori con codice stabile, nessun input ripetuto, dettagli solo nei log | `errors.py` |
 | Cache di dati personali | `Cache-Control: no-store` su tutto | `main.py` |
 | Header Host / CORS arbitrari | `ALLOWED_HOSTS` e `CORS_ORIGINS` espliciti obbligatori in produzione | `config.py` |

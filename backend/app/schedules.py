@@ -15,6 +15,7 @@ from sqlalchemy.orm import Session
 from .config import get_settings
 from .db import Class, Lesson, get_engine
 from .errors import AppError
+from .school import require_galilei
 from .security import current_session
 
 log = logging.getLogger("skedoo")
@@ -177,7 +178,7 @@ def get_store() -> JsonStore | DbStore:
 
 
 # ---------- endpoint ----------
-router = APIRouter(prefix="/schedules", tags=["Orario"], dependencies=[Depends(current_session)])
+router = APIRouter(prefix="/schedules", tags=["Orario"], dependencies=[Depends(current_session), Depends(require_galilei)])
 
 # Il parametro arriva dall'utente: formato stretto
 ClassId = PathParam(pattern=r"^[A-Za-z0-9 ]{1,16}$", description="Id della classe, es. 1A (maiuscole e spazi non contano)")
