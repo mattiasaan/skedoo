@@ -5,6 +5,7 @@ import { ErrorMessage, LinkButton, SectionHeading, Skeleton, StateMessage } from
 import { useApp } from '../lib/appContext.js'
 import { useAbsences, useDidactics } from '../lib/data.js'
 import { flattenMaterials, materialDetails } from '../lib/didactics.js'
+import { enablePush, pushSupport } from '../lib/push.js'
 import { classLabel, dateKey, formatDateTime, schoolDisplayName, schoolYear, titleCase } from '../lib/format.js'
 import { accountTypeLabel, readJson, writeJson } from '../lib/session.js'
 import { readAccent, setAccent } from '../lib/theme.js'
@@ -167,6 +168,64 @@ function AccountRow() {
 	)
 }
 
+const PUSH_HINTS = {
+	ok: "Avvisa delle variazioni d'orario della tua classe anche ad app chiusa (mai tra le 22 e le 6:30)",
+	denied: 'Notifiche bloccate: riattivale dalle impostazioni del browser per questo sito',
+	'needs-install': "Su iPhone e iPad: Condividi → Aggiungi alla schermata Home, poi apri Skedoo dall'icona",
+	unsupported: 'Questo browser non supporta le notifiche push',
+}
+
+function pushErrorMessage(error) {
+	if (error?.code === 'denied') return 'Permesso negato: le notifiche restano spente'
+	if (error?.code === 'push_disabled') return 'Le notifiche push non sono ancora attive sul server'
+	return error?.message || 'Non è stato possibile attivare le notifiche, riprova'
+}
+
+/** Notifiche push del dispositivo: il permesso si chiede solo qui, dopo il clic. */
+function PushRow() {
+	const { classId, pushOn, setPushOn } = useApp()
+	const toast = useToast()
+	const [busy, setBusy] = useState(false)
+	const support = pushSupport()
+	const available = support === 'ok'
+
+	async function toggle(value) {
+		if (!value) {
+			setPushOn(false) // la disiscrizione la fa DashboardShell (syncPush)
+			toast('Notifiche push disattivate su questo dispositivo', { tone: 'info' })
+			return
+		}
+		setBusy(true)
+		try {
+			await enablePush(classId)
+			setPushOn(true)
+			toast(`Notifiche attive: ti avvisiamo quando cambia l'orario della ${classLabel(classId)}`)
+		} catch (error) {
+			toast(pushErrorMessage(error), { tone: 'error' })
+		} finally {
+			setBusy(false)
+		}
+	}
+
+	return (
+		<label className={`settings-row${available ? '' : ' settings-row--disabled'}`}>
+			<span className="settings-row__icon settings-row__icon--plain"><Icon name="bell" size={19} /></span>
+			<span className="settings-row__copy">
+				<strong>Notifiche Push su Questo Dispositivo</strong>
+				<small>{PUSH_HINTS[support]}</small>
+			</span>
+			<input
+				checked={available && pushOn}
+				className="switch__input"
+				disabled={!available || busy}
+				onChange={(event) => toggle(event.target.checked)}
+				type="checkbox"
+			/>
+			<span className="switch" aria-hidden="true"><span /></span>
+		</label>
+	)
+}
+
 function SettingsSection() {
 	const { isGalilei, classId, onChangeClass, alertsOn, setAlertsOn } = useApp()
 	const toast = useToast()
@@ -209,6 +268,7 @@ function SettingsSection() {
 					<input checked={alertsOn} className="switch__input" onChange={(event) => toggleAlerts(event.target.checked)} type="checkbox" />
 					<span className="switch" aria-hidden="true"><span /></span>
 				</label>
+				{isGalilei && <PushRow />}
 				<div className="settings-row settings-row--static">
 					<span className="settings-row__icon"><Icon name="palette" size={18} /></span>
 					<span className="settings-row__copy">

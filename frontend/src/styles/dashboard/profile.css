@@ -377,6 +377,14 @@ button.settings-row:hover {
   outline-offset: 3px;
 }
 
+.switch__input:disabled + .switch {
+  opacity: 0.45;
+}
+
+.settings-row--disabled {
+  cursor: default;
+}
+
 .logout-button {
   display: flex;
   width: 100%;
