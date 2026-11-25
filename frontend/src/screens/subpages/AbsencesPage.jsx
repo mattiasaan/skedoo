@@ -86,7 +86,6 @@ function AbsencesPage() {
 									<span className="absence-row__copy">
 										<strong>{type.label}</strong>
 										<small>{[date ? formatLongDate(date) : null, eventDetail(event)].filter(Boolean).join(' • ')}</small>
-										{event.motivo && <em>{event.motivo}</em>}
 									</span>
 									<span className={`badge ${event.giustificata ? 'badge--accent' : 'badge--amber'}`}>
 										{event.giustificata ? (event.tipo === 'ritardo' ? 'Giustificato' : 'Giustificata') : 'Da giustificare'}

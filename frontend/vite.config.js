@@ -21,8 +21,8 @@ function contentSecurityPolicy(env) {
   const policy = [
     "default-src 'self'",
     "script-src 'self'",
-    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-    "font-src https://fonts.gstatic.com",
+    "style-src 'self' 'unsafe-inline'",
+    "font-src 'self'",
     "img-src 'self' data:",
     `connect-src 'self' ${apiOrigin(env.VITE_API_URL)}`.trim(),
     "worker-src 'self'", // public/sw.js (notifiche push)
