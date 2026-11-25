@@ -1,0 +1,55 @@
+name: 🐛 Segnala un bug
+description: Qualcosa non funziona come dovrebbe
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Hai trovato una vulnerabilità di sicurezza?** Non usare questo modulo: segui SECURITY.md (scheda Security → Report a vulnerability).
+        **Non inserire dati reali** (credenziali, voti, nomi): oscurali anche negli screenshot.
+  - type: textarea
+    id: descrizione
+    attributes:
+      label: Descrizione
+      description: Cosa succede?
+    validations:
+      required: true
+  - type: textarea
+    id: passi
+    attributes:
+      label: Passi per riprodurlo
+      placeholder: |
+        1. Vai su '...'
+        2. Clicca su '...'
+        3. Compare l'errore
+    validations:
+      required: true
+  - type: textarea
+    id: atteso
+    attributes:
+      label: Comportamento atteso
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Frontend (app)
+        - Backend (API)
+        - Notifiche push
+        - OCR / bacheca
+        - Orario (PDF)
+        - Deploy
+        - Non so
+    validations:
+      required: true
+  - type: input
+    id: ambiente
+    attributes:
+      label: Dispositivo e browser
+      placeholder: es. iPhone 15, Safari 18 / Windows 11, Chrome 131
+  - type: textarea
+    id: extra
+    attributes:
+      label: Log, screenshot o altro
