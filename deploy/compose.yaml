@@ -66,6 +66,12 @@ services:
       TRUST_PROXY_HEADERS: ${TRUST_PROXY_HEADERS:-true}
       SCHEDULE_SOURCE: db
       DATABASE_URL: postgresql://skedoo:${POSTGRES_PASSWORD}@db:5432/skedoo
+      # notifiche push: l'API invia le variazioni nuove ai servizi push dei browser (serve la rete "web")
+      VAPID_PUBLIC_KEY: ${VAPID_PUBLIC_KEY:-}
+      VAPID_PRIVATE_KEY: ${VAPID_PRIVATE_KEY:-}
+      VAPID_SUBJECT: ${VAPID_SUBJECT:-https://${API_DOMAIN}}
+      PUSH_QUIET_START: ${PUSH_QUIET_START:-22:00}
+      PUSH_QUIET_END: ${PUSH_QUIET_END:-06:30}
     volumes:
       - app-data:/app/data:ro  # l'API legge soltanto le variazioni scritte dal worker
     ports:

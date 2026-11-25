@@ -29,6 +29,24 @@ fill() {  # fill NOME valore: imposta solo se vuoto
 
 fill POSTGRES_PASSWORD "$(secret)"
 fill JWT_SECRET "$(secret)"
+# chiavi VAPID delle notifiche push (P-256, base64url): la coppia si genera solo se mancano tutte e due.
+# Un .env creato prima delle notifiche non ha le righe: si aggiungono vuote
+b64url() { openssl base64 -A | tr '+/' '-_' | tr -d '='; }
+for name in VAPID_PUBLIC_KEY VAPID_PRIVATE_KEY; do
+  grep -q "^$name=" .env || printf '%s=\n' "$name" >> .env
+done
+if grep -q "^VAPID_PRIVATE_KEY=$" .env && grep -q "^VAPID_PUBLIC_KEY=$" .env; then
+  if command -v openssl >/dev/null 2>&1; then
+    key=$(mktemp)
+    openssl ecparam -name prime256v1 -genkey -noout -out "$key"
+    fill VAPID_PRIVATE_KEY "$(openssl ec -in "$key" -outform DER 2>/dev/null | tail -c +8 | head -c 32 | b64url)"
+    fill VAPID_PUBLIC_KEY "$(openssl ec -in "$key" -pubout -outform DER 2>/dev/null | tail -c 65 | b64url)"
+    rm -f "$key"
+  else
+    echo "  openssl non trovato: genera le chiavi VAPID con"
+    echo "    docker compose run --rm api python -m scripts.generate_vapid"
+  fi
+fi
 if [ -n "$OCR_TOKEN_ARG" ]; then
   sed -i "s|^OCR_TOKEN=.*|OCR_TOKEN=$OCR_TOKEN_ARG|" .env
   echo "  OCR_TOKEN impostato"

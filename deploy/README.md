@@ -220,6 +220,25 @@ CORS_ORIGINS=https://<utente>.github.io
 
 Poi `docker compose up -d` per applicarlo. Il routing usa l'hash (`#home`), quindi non servono regole di fallback sul server.
 
+### Notifiche push
+
+L'API invia le variazioni d'orario (entrate, uscite, cambi aula) ai dispositivi iscritti dal Profilo dell'app. Servono
+solo le chiavi VAPID, che `./init-env.sh` genera da solo (anche su un `.env` già esistente: rilancialo dopo `git pull`).
+In alternativa:
+
+```bash
+docker compose run --rm api python -m scripts.generate_vapid   # stampa le due righe da copiare in .env
+```
+
+- `VAPID_SUBJECT` vuoto vale `https://API_DOMAIN`; puoi mettere `mailto:tuo@indirizzo.it`. I servizi push lo usano
+  per contattarti in caso di problemi.
+- Senza chiavi le notifiche sono spente: `GET /push/public-key` risponde 503 e l'interruttore nel Profilo lo dice.
+- Tra `PUSH_QUIET_START` e `PUSH_QUIET_END` (default 22:00-06:30) non parte niente: le variazioni trovate di notte
+  arrivano alla fine del silenzio.
+- **Non cambiare le chiavi** se non serve: le iscrizioni vecchie smettono di funzionare e ogni dispositivo si reiscrive
+  solo alla prossima apertura dell'app.
+- Su iPhone e iPad le notifiche arrivano solo se Skedoo è aggiunto alla schermata Home (iOS 16.4 o successivo).
+
 ## 4. Importa gli orari (una volta, e a ogni cambio d'orario)
 
 I JSON degli orari non sono nel repo. Dal PC copiali sul Pi del backend:
@@ -245,6 +264,7 @@ docker compose ps                                     # tutti "running", api e o
 curl -H "Host: $(grep ^API_DOMAIN .env | cut -d= -f2)" http://127.0.0.1:8000/health   # {"status":"ok"}
 curl https://api.miosito.it/health                    # da fuori, dopo il passo 3
 docker compose logs -f worker                         # bacheca scaricata, immagini inviate all'OCR
+docker compose logs api | grep -i push                # "notifiche push attive", poi "notifiche push consegnate: N"
 ```
 
 Sul Pi dell'OCR:
@@ -286,6 +306,9 @@ Unica eccezione è `POSTGRES_PASSWORD`, che vale solo alla prima creazione del d
 
 - **Segreti** solo in `deploy/.env` (permessi 600, ignorato da git, mai copiato nelle immagini). Ogni container riceve
   soltanto le variabili che gli servono: il worker non ha il JWT né la password del database, l'OCR ha solo il suo token.
+- **Notifiche push**: la chiave VAPID privata sta solo in `.env` e nell'API. Il server salva endpoint, chiavi del
+  browser e classe, nessun dato dell'utente; il contenuto delle notifiche è cifrato per il dispositivo (i servizi push
+  di Google, Mozilla, Microsoft e Apple non lo leggono). Endpoint accettati solo verso quei servizi, in `https`.
 - **Database** su una rete Docker interna: nessuna porta, nessun accesso a internet, lo raggiunge solo l'API.
 - **API** pubblicata solo su `127.0.0.1`: da fuori si arriva solo da Caddy o dal tunnel. In produzione l'API non parte
   se mancano `JWT_SECRET`, `CORS_ORIGINS` o `ALLOWED_HOSTS`. Restano attivi rate limit, header di sicurezza e
