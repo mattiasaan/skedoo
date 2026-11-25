@@ -338,13 +338,11 @@ backend/scripts/bacheca_fetch/data/
 classi_index.json
 orario_classi.json
 
-/helper/OCR/debug/*.png
-/helper/OCR/*.json
-
-# /helper/OCR/V4-AI/test_images
-/helper/OCR/V4-AI/output
 /helper/OCR/V5-Gemini/output
-/helper/OCR/V4-AI/tests
+
+# vecchie versioni archiviate: output dei loro script e test della V4 (solo in locale)
+/history/OCR/V4-AI/output
+/history/OCR/V4-AI/tests
 
 /backend/docs/frontend-style
 

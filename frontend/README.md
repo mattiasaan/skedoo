@@ -32,9 +32,17 @@ src/
 │   ├── agenda.js        eventi dell'agenda -> compiti / verifiche / eventi
 │   ├── format.js        date, nomi di docenti/classi/scuole, numeri
 │   ├── didactics.js     materiali didattici
+│   ├── subject.js       pagina di una materia: agenda, orario e materiali abbinati per nome
+│   ├── download.js      nome e salvataggio dei file scaricati (useDownload.js: stato dei download)
+│   ├── push.js          notifiche push: iscrizione del dispositivo con la classe
+│   ├── legal.js         documenti legali (#privacy, #cookie, #termini), caricati solo quando servono
+│   ├── markdown.jsx     mini renderer Markdown dei documenti legali (elementi React, mai HTML)
+│   ├── theme.js         colore d'accento (per dispositivo)
+│   ├── useSwipe.js      scorrimento orizzontale dei calendari (dito, mouse, trackpad)
 │   ├── appContext.js    contesto della dashboard (useApp)
 │   ├── toast.js         contesto dei toast (useToast)
 │   └── a11y.js          card cliccabili accessibili da tastiera
+├── legal/               privacy.md, cookie.md, termini.md (vedi legal/README.md nella root)
 ├── components/          pezzi riusati (icone, card, pannelli di dettaglio, navigazione, toast...)
 ├── screens/             una cartella/file per schermata
 │   ├── DashboardShell.jsx   barra in alto, navigazione, route, contesto
@@ -44,7 +52,12 @@ src/
     ├── base.css         token del design (colori, raggi...), reset, elementi comuni
     ├── auth.css         login e scelta classe
     ├── feedback.css     toast, conferme, schermata d'errore
+    ├── legal.css        pagine dei documenti legali
     └── dashboard/       un file per area; index.css li importa in ordine (responsive per ultimo)
+public/
+├── sw.js                service worker: solo notifiche push (nessuna cache)
+├── manifest.webmanifest PWA installabile (icone in icons/)
+└── favicon.svg, robots.txt
 ```
 
 ## Come funziona

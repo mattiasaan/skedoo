@@ -1,17 +1,17 @@
 """Il JSON della V5 deve essere quello della V4: stessa immagine, stesso testo letto -> stesso risultato.
-Usa le immagini di ../V4-AI/test_images e motori finti (nessuna rete, nessun Ollama)."""
+Usa le immagini di test_images e motori finti (nessuna rete, nessun Ollama)."""
 import sys
 import unittest
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+HERE = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(HERE))
 
 from gemini_ocr import pipeline as G
 from gemini_ocr.config import load_config
-from gemini_ocr.v4 import V4_DIR
 from gemini_ocr.v4 import pipeline as V4
 
-IMAGES = sorted((V4_DIR / "test_images").glob("*.*"))[:4]
+IMAGES = sorted((HERE / "test_images").glob("*.*"))[:4]
 
 TESTI = {
     "titolo": ["LUNEDÌ 16 NOVEMBRE"],
@@ -65,7 +65,7 @@ def senza_tempo(res):
     return res
 
 
-@unittest.skipUnless(IMAGES, "nessuna immagine in V4-AI/test_images")
+@unittest.skipUnless(IMAGES, "nessuna immagine in test_images")
 class TestStessoJsonDellaV4(unittest.TestCase):
     def setUp(self):
         self.cfg = load_config()
@@ -165,8 +165,8 @@ class TestColoreRiquadri(unittest.TestCase):
 class TestConfig(unittest.TestCase):
     def test_config_della_v4_piu_gemini(self):
         cfg = load_config()
-        self.assertTrue(cfg["orari_noti"])                   # dalla V4
-        self.assertTrue(cfg["classi_valide"])                # elenchi della V4
+        self.assertTrue(cfg["orari_noti"])                   # chiavi della V4 in config.json
+        self.assertTrue(cfg["classi_valide"])                # elenchi/ di questa cartella
         self.assertTrue(cfg["gemini"]["models"])
         self.assertNotIn("ollama", cfg)
 

@@ -1,4 +1,3 @@
-```bat
 @echo off
 setlocal
 
@@ -30,4 +29,3 @@ echo.
 echo ERRORE durante l'esecuzione del setup.
 pause
 exit /b 1
-```

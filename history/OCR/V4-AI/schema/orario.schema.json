@@ -1,0 +1,310 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Orario bacheca - output di main.py (schema_versione 2)",
+  "type": "object",
+  "required": [
+    "schema_versione",
+    "_source",
+    "giorno",
+    "data",
+    "data_numero",
+    "mese",
+    "data_iso",
+    "titolo_affidabilita",
+    "entrate",
+    "uscite",
+    "senza_lezioni_pomeridiane",
+    "cambi_aula",
+    "note",
+    "avvisi",
+    "da_verificare",
+    "n_voci",
+    "n_alta",
+    "n_media",
+    "n_bassa",
+    "n_da_verificare",
+    "stato"
+  ],
+  "properties": {
+    "schema_versione": {
+      "const": 2
+    },
+    "_source": {
+      "type": "string"
+    },
+    "estratto_il": {
+      "type": "string"
+    },
+    "motore": {
+      "type": "object"
+    },
+    "giorno": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "data": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "data_numero": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "mese": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "data_iso": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "YYYY-MM-DD, null se giorno/data incoerenti"
+    },
+    "titolo_affidabilita": {
+      "$ref": "#/$defs/aff"
+    },
+    "titolo_motivi": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "titolo_verifica": {
+      "enum": [
+        "ok",
+        "da_verificare",
+        "verificato"
+      ]
+    },
+    "entrate": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/blocco"
+      }
+    },
+    "uscite": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/blocco"
+      }
+    },
+    "senza_lezioni_pomeridiane": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/blocco"
+      }
+    },
+    "cambi_aula": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/riga"
+      }
+    },
+    "note": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/nota"
+      }
+    },
+    "avvisi": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "da_verificare": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "tipo",
+          "affidabilita",
+          "motivi",
+          "letto"
+        ]
+      }
+    },
+    "n_voci": {
+      "type": "integer"
+    },
+    "n_alta": {
+      "type": "integer"
+    },
+    "n_media": {
+      "type": "integer"
+    },
+    "n_bassa": {
+      "type": "integer"
+    },
+    "n_da_verificare": {
+      "type": "integer"
+    },
+    "stato": {
+      "enum": [
+        "completo",
+        "da_verificare",
+        "verificato"
+      ]
+    }
+  },
+  "$defs": {
+    "aff": {
+      "enum": [
+        "alta",
+        "media",
+        "bassa",
+        "verificata"
+      ]
+    },
+    "comuni": {
+      "required": [
+        "unit_id",
+        "affidabilita",
+        "motivi",
+        "verifica"
+      ],
+      "properties": {
+        "unit_id": {
+          "type": "string"
+        },
+        "affidabilita": {
+          "$ref": "#/$defs/aff"
+        },
+        "motivi": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "verifica": {
+          "enum": [
+            "ok",
+            "da_verificare",
+            "verificato"
+          ]
+        }
+      }
+    },
+    "riga": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/comuni"
+        },
+        {
+          "type": "object",
+          "required": [
+            "classe",
+            "orario",
+            "aula"
+          ],
+          "properties": {
+            "classe": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "orario": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^\\d\\d:\\d\\d - \\d\\d:\\d\\d$"
+            },
+            "aula": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "marcatore": {
+              "type": "string"
+            },
+            "classe_dedotta": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "aule": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "blocco": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/comuni"
+        },
+        {
+          "type": "object",
+          "required": [
+            "classi",
+            "note"
+          ],
+          "properties": {
+            "ora": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^\\d\\d:\\d\\d$"
+            },
+            "classi": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "note": {
+              "type": "string"
+            },
+            "marcatori": {
+              "type": "object"
+            }
+          }
+        }
+      ]
+    },
+    "nota": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/comuni"
+        },
+        {
+          "type": "object",
+          "required": [
+            "tipo",
+            "testo"
+          ],
+          "properties": {
+            "tipo": {
+              "type": "string"
+            },
+            "testo": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}

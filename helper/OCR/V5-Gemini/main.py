@@ -5,7 +5,7 @@ Estrazione degli orari dalle immagini della bacheca con l'API Gemini (stesso JSO
 Uso:
   set GEMINI_API_KEY=...            (PowerShell: $env:GEMINI_API_KEY="...", Linux: export GEMINI_API_KEY=...)
   python main.py immagine.jpg
-  python main.py ../V4-AI/test_images --out output
+  python main.py test_images --out output
   python main.py immagine.jpg --anno 2026 --html
   python main.py immagine.jpg --modello gemini-flash-lite-latest
 
@@ -68,7 +68,7 @@ def main(argv=None):
             continue
         (out / f"{img.stem}.json").write_text(json.dumps(res, ensure_ascii=False, indent=2), encoding="utf-8")
         if a.html and res["da_verificare"]:
-            from orario.report import scrivi_report  # V4, già nel path tramite gemini_ocr.v4
+            from orario.report import scrivi_report  # pagina di revisione della V4 (orario/)
             scrivi_report(res, out / f"{img.stem}_revisione.html")
         riepilogo.append({"file": img.name, "stato": res["stato"], "data_iso": res["data_iso"],
                           "modello": res["motore"]["modello"], "voci": res["n_voci"], "alta": res["n_alta"],
