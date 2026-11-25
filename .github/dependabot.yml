@@ -17,6 +17,21 @@ updates:
     directory: /backend
     schedule:
       interval: monthly
+  # immagini del compose: caddy e cloudflared ricevono il traffico da internet, postgres tiene i dati
+  - package-ecosystem: docker-compose
+    directory: /deploy
+    schedule:
+      interval: weekly
+  # servizio OCR (helper/OCR/V5-Gemini): stessa immagine base e stesse librerie HTTP del backend
+  - package-ecosystem: pip
+    directory: /helper/OCR/V5-Gemini
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+  - package-ecosystem: docker
+    directory: /helper/OCR/V5-Gemini
+    schedule:
+      interval: monthly
   - package-ecosystem: github-actions
     directory: /
     schedule:
