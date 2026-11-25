@@ -61,6 +61,21 @@ def test_download_attachments_saves_files_and_paths(tmp_path):
   assert matches[0]["downloaded_attachments"] == [str(saved)]
 
 
+def test_attachment_names_cannot_leave_the_folder(tmp_path):
+  """cntId, attachNum e fileName arrivano da ClasseViva: nessuna combinazione esce dalla cartella."""
+  from scripts.bacheca_fetch.fetch_bacheca import _destination
+  output = tmp_path / "attachments"
+  cases = [
+    ({"cntId": "../../fuori"}, {"fileName": "../../../avviso.png", "attachNum": 1}),
+    ({"cntId": 7}, {"fileName": "avviso.png", "attachNum": "../../x"}),
+    ({"cntId": ".."}, {"fileName": "..", "attachNum": ".."}),
+  ]
+  for match, attachment in cases:
+    target = _destination(output, match, 1, attachment)
+    assert target.parent == output and target.name not in ("", ".", ".."), target
+  assert _destination(output, {"cntId": 13409352}, 1, {"fileName": "avviso.png", "attachNum": 1}).name == "13409352_1_avviso.png"
+
+
 def test_download_attachments_skips_existing_files_and_failed_matches(tmp_path):
   from scripts.bacheca_fetch import fetch_bacheca
 
