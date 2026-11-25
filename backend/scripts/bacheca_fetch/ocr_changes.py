@@ -48,6 +48,8 @@ from typing import Any
 
 from dotenv import dotenv_values
 
+from .fetch_bacheca import FILE_RETENTION_DAYS, prune_files
+
 BACKEND_DIR = Path(__file__).resolve().parents[2]
 REPO_DIR = BACKEND_DIR.parent
 ENV_FILE = BACKEND_DIR / ".env"
@@ -339,6 +341,8 @@ def run(args: argparse.Namespace, runner: OcrRunner | None = None, today: date |
     return 2
 
   publications, failures = collect(matches, runner, args.cache_dir, args.min_affidabilita)
+  # le letture vecchie (anche le note con i cognomi dei docenti) non restano sul disco: vedi fetch_bacheca.py
+  prune_files(args.cache_dir, FILE_RETENTION_DAYS)
   days = build_days(publications, None if args.keep_past else today or date.today())
   if not days and failures:
     # nessuna lettura riuscita: meglio lasciare il file precedente che svuotarlo

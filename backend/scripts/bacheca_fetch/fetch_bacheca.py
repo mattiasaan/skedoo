@@ -13,7 +13,7 @@ import os
 import re
 import sys
 from collections.abc import Mapping, Sequence
-from datetime import UTC, datetime
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
 from typing import Any
 
@@ -25,6 +25,11 @@ DEFAULT_PATTERN = (
 )
 BACKEND_DIR = Path(__file__).resolve().parent.parent
 ENV_FILE = BACKEND_DIR / ".env"
+# I cartelloni contengono anche cognomi di docenti: se ne tiene solo quanto serve (informativa privacy, punto 2.5).
+# Un cartellone riguarda i giorni vicini alla pubblicazione (ocr_changes.plausible_date: fino a 10 giorni dopo), quindi
+# le comunicazioni più vecchie non si scaricano né si leggono più, e i file sul disco si cancellano dopo 30 giorni.
+MATCH_MAX_AGE_DAYS = 14
+FILE_RETENTION_DAYS = 30
 
 log = logging.getLogger("skedoo.bacheca_fetch")
 
@@ -43,6 +48,40 @@ def filter_board(entries: Sequence[Mapping[str, Any]], pattern: str) -> list[dic
   # IGNORECASE vale anche per le regex personalizzate passate da CLI o .env.
   matcher = re.compile(pattern, re.IGNORECASE | re.UNICODE)
   return [dict(entry) for entry in entries if matcher.search(_text(entry))]
+
+
+def recent(matches: Sequence[Mapping[str, Any]], max_age_days: int = MATCH_MAX_AGE_DAYS,
+           now: datetime | None = None) -> list[dict[str, Any]]:
+  """Solo le comunicazioni pubblicate negli ultimi `max_age_days` giorni (senza data leggibile restano)."""
+  limit = (now or datetime.now(UTC)) - timedelta(days=max_age_days)
+  kept = []
+  for match in matches:
+    try:
+      published = datetime.fromisoformat(str(match.get("pubDT")))
+    except ValueError:
+      kept.append(dict(match))
+      continue
+    if published.tzinfo is None:
+      published = published.replace(tzinfo=UTC)
+    if published >= limit:
+      kept.append(dict(match))
+  return kept
+
+
+def prune_files(directory: Path, max_age_days: int = FILE_RETENTION_DAYS, now: float | None = None) -> int:
+  """Cancella i file di `directory` modificati più di `max_age_days` giorni fa. Restituisce quanti ne ha cancellati."""
+  if not directory.is_dir():
+    return 0
+  limit = (now if now is not None else datetime.now(UTC).timestamp()) - max_age_days * 86400
+  removed = 0
+  for path in directory.iterdir():
+    try:
+      if path.is_file() and path.stat().st_mtime < limit:
+        path.unlink()
+        removed += 1
+    except OSError as exc:
+      log.warning("File %s non cancellato: %s", path.name, exc.__class__.__name__)
+  return removed
 
 
 def save_matches(
@@ -224,9 +263,12 @@ async def main(argv: Sequence[str] | None = None) -> int:
 
   try:
     user, board = await fetch_board(username, password)
-    matches = filter_board(board, args.pattern)
+    matches = recent(filter_board(board, args.pattern))
     attachments = await download_attachments(user, matches, args.attachments_dir)
     save_matches(args.output, matches, args.pattern)
+    removed = prune_files(args.attachments_dir)
+    if removed:
+      log.info("Allegati più vecchi di %s giorni cancellati: %s", FILE_RETENTION_DAYS, removed)
   except (RuntimeError, OSError, TypeError, ValueError) as exc:
     print(f"Errore nel recupero della bacheca: {exc}", file=sys.stderr)
     return 1
