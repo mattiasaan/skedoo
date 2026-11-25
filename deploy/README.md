@@ -55,7 +55,17 @@ sudo usermod -aG docker $USER && newgrp docker     # docker senza sudo (poi rien
 git clone <url-del-repo> ~/skedoo
 cd ~/skedoo/deploy
 sh init-env.sh                                     # crea .env (permessi 600) con i segreti generati
+
+# log: al massimo 30 giorni (lo promette l'informativa privacy). Una volta sola
+sudo mkdir -p /etc/systemd/journald.conf.d
+sudo cp journald-skedoo.conf /etc/systemd/journald.conf.d/skedoo.conf
+sudo systemctl restart systemd-journald
 ```
+
+I container scrivono i log nel journal di sistema (driver `journald`), che con `journald-skedoo.conf` li cancella
+dopo 30 giorni. `docker compose logs` funziona come prima. Senza quel file il journal li terrebbe molto più a lungo:
+`init-env.sh` avvisa se manca. Per provare il compose su un computer senza journald (Docker Desktop) metti
+`LOG_DRIVER=local` in `.env`.
 
 Sicurezza di base del Pi: accesso SSH solo con chiave (`PasswordAuthentication no` in `/etc/ssh/sshd_config`),
 aggiornamenti automatici (`sudo apt install unattended-upgrades`).
@@ -291,7 +301,7 @@ Per log, notifica di prova, OCR e database vedi [DEBUG.md](DEBUG.md).
 
 ```bash
 git pull && docker compose up -d --build     # aggiornare
-docker compose logs --tail 100 api           # log (ruotati: max 30 MB per container)
+docker compose logs --tail 100 api           # log (nel journal, cancellati dopo 30 giorni)
 docker compose down                          # fermare (i dati restano nei volumi)
 
 # backup del database
@@ -301,7 +311,8 @@ gunzip -c skedoo-AAAA-MM-GG.sql.gz | docker compose exec -T db psql -U skedoo sk
 ```
 
 Il contenuto del database si ricrea in ogni momento reimportando gli orari. Il volume `app-data` (bacheca e cache
-dell'OCR) si rigenera da solo. Per cambiare un segreto modifica `.env` e rilancia `docker compose up -d`.
+dell'OCR) si rigenera da solo: il worker legge solo le comunicazioni degli ultimi 14 giorni e cancella immagini e
+letture OCR più vecchie di 30 giorni (contengono cognomi di docenti). Per cambiare un segreto modifica `.env` e rilancia `docker compose up -d`.
 Unica eccezione è `POSTGRES_PASSWORD`, che vale solo alla prima creazione del database: per cambiarla dopo,
 `docker compose exec db psql -U skedoo -c "ALTER USER skedoo PASSWORD '...'"`.
 
@@ -320,4 +331,6 @@ Unica eccezione è `POSTGRES_PASSWORD`, che vale solo alla prima creazione del d
   alla volta, nessuna documentazione. La chiave Gemini sta solo nel container `ocr-gemini`, viaggia nell'header
   (mai nell'URL o nei log) e i dettagli degli errori di Google restano nei log.
 - **Container**: utente non root, filesystem in sola lettura, nessuna capability Linux, `no-new-privileges`,
-  limiti di memoria, log ruotati. Le versioni delle immagini esterne sono fissate.
+  limiti di memoria. Le versioni delle immagini esterne sono fissate.
+- **Log e privacy**: log nel journal di sistema, cancellati dopo 30 giorni (`journald-skedoo.conf`); nessun access log
+  su Caddy; nei login falliti l'API scrive l'IP e uno pseudonimo dello username, mai il codice personale.

@@ -13,9 +13,11 @@ name: skedoo
 x-base: &base
   restart: unless-stopped
   security_opt: ["no-new-privileges:true"]
+  # log nel journal di sistema, che li cancella dopo 30 giorni come promette l'informativa privacy:
+  # una volta sul Raspberry va installato deploy/journald-skedoo.conf (vedi deploy/README.md, "Log").
+  # Su un computer senza journald (Docker Desktop) metti LOG_DRIVER=local in .env
   logging:
-    driver: local
-    options: {max-size: "10m", max-file: "3"}
+    driver: ${LOG_DRIVER:-journald}
 
 # container delle nostre immagini: filesystem in sola lettura, nessuna capability di Linux
 x-locked: &locked

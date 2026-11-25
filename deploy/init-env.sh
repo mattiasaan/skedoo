@@ -73,3 +73,12 @@ else
 fi
 
 echo "Pronto: deploy/.env (permessi 600). Completa i campi vuoti con: nano .env"
+
+# i log dei container vanno nel journal: l'informativa promette che non restano più di 30 giorni
+if [ ! -f /etc/systemd/journald.conf.d/skedoo.conf ] && ! grep -q "^LOG_DRIVER=" .env; then
+  echo
+  echo "ATTENZIONE: manca la conservazione dei log a 30 giorni (informativa privacy). Esegui una volta:"
+  echo "  sudo mkdir -p /etc/systemd/journald.conf.d"
+  echo "  sudo cp journald-skedoo.conf /etc/systemd/journald.conf.d/skedoo.conf"
+  echo "  sudo systemctl restart systemd-journald"
+fi

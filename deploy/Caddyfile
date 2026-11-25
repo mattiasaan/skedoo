@@ -11,8 +11,6 @@
 	}
 	reverse_proxy api:8000
 	header -Server
-	log {
-		output stdout
-		format console
-	}
+	# niente access log: registrerebbe IP e browser di ogni richiesta (dati personali) senza servire alla sicurezza,
+	# che usa i limiti e i log dell'API. Gli errori di Caddy finiscono comunque nei log del container.
 }
