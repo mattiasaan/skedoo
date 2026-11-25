@@ -286,6 +286,8 @@ Se l'OCR non è ancora pronto, le immagini vengono rilette al giro successivo. Q
 
 ## Manutenzione
 
+Per log, notifica di prova, OCR e database vedi [DEBUG.md](DEBUG.md).
+
 ```bash
 git pull && docker compose up -d --build     # aggiornare
 docker compose logs --tail 100 api           # log (ruotati: max 30 MB per container)
